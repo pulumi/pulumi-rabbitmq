@@ -1,0 +1,3 @@
+name: user
+runtime: nodejs
+description: A typescript application that shows creation of a RabbitMQ user
