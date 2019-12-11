@@ -3,7 +3,7 @@
 
 using System.Collections.Immutable;
 
-namespace Pulumi.Rabbitmq
+namespace Pulumi.RabbitMQ
 {
     public static class Config
     {

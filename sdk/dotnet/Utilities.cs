@@ -6,7 +6,7 @@ using System.IO;
 using System.Reflection;
 using Pulumi;
 
-namespace Pulumi.Rabbitmq
+namespace Pulumi.RabbitMQ
 {
     static class Utilities
     {
@@ -66,7 +66,7 @@ namespace Pulumi.Rabbitmq
         static Utilities()
         {
             var assembly = typeof(Utilities).GetTypeInfo().Assembly;
-            using var stream = assembly.GetManifestResourceStream("Pulumi.Rabbitmq.version.txt");
+            using var stream = assembly.GetManifestResourceStream("Pulumi.RabbitMQ.version.txt");
             using var reader = new StreamReader(stream ?? throw new NotSupportedException("Missing embedded version.txt file"));
             version = reader.ReadToEnd().Trim();
         }
