@@ -5,7 +5,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Rabbitmq
+namespace Pulumi.RabbitMQ
 {
     /// <summary>
     /// The provider type for the rabbitmq package. By default, resources use package-wide configuration

@@ -5,7 +5,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Rabbitmq
+namespace Pulumi.RabbitMQ
 {
     /// <summary>
     /// The ``rabbitmq..Permissions`` resource creates and manages a user's set of

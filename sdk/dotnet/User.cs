@@ -5,7 +5,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Rabbitmq
+namespace Pulumi.RabbitMQ
 {
     /// <summary>
     /// The ``rabbitmq..User`` resource creates and manages a user.
