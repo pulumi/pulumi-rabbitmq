@@ -15,7 +15,7 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform/pkg/tfgen"
+	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfgen"
 
 	rabbitmq "github.com/pulumi/pulumi-rabbitmq"
 	"github.com/pulumi/pulumi-rabbitmq/pkg/version"
