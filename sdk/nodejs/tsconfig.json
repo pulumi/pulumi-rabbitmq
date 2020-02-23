@@ -22,6 +22,7 @@
         "policy.ts",
         "provider.ts",
         "queue.ts",
+        "topicPermissions.ts",
         "types/index.ts",
         "types/input.ts",
         "types/output.ts",

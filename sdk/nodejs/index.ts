@@ -8,6 +8,7 @@ export * from "./permissions";
 export * from "./policy";
 export * from "./provider";
 export * from "./queue";
+export * from "./topicPermissions";
 export * from "./user";
 export * from "./vHost";
 

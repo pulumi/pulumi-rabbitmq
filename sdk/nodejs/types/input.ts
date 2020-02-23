@@ -30,3 +30,9 @@ export interface QueueSettings {
     autoDelete?: pulumi.Input<boolean>;
     durable?: pulumi.Input<boolean>;
 }
+
+export interface TopicPermissionsPermission {
+    exchange: pulumi.Input<string>;
+    read: pulumi.Input<string>;
+    write: pulumi.Input<string>;
+}

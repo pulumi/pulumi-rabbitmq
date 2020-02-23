@@ -30,3 +30,9 @@ export interface QueueSettings {
     autoDelete?: boolean;
     durable?: boolean;
 }
+
+export interface TopicPermissionsPermission {
+    exchange: string;
+    read: string;
+    write: string;
+}
