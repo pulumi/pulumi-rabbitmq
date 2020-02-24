@@ -553,6 +553,104 @@ func (o QueueSettingsPtrOutput) Durable() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v QueueSettings) *bool { return v.Durable }).(pulumi.BoolPtrOutput)
 }
 
+type TopicPermissionsPermission struct {
+	Exchange string `pulumi:"exchange"`
+	Read string `pulumi:"read"`
+	Write string `pulumi:"write"`
+}
+
+type TopicPermissionsPermissionInput interface {
+	pulumi.Input
+
+	ToTopicPermissionsPermissionOutput() TopicPermissionsPermissionOutput
+	ToTopicPermissionsPermissionOutputWithContext(context.Context) TopicPermissionsPermissionOutput
+}
+
+type TopicPermissionsPermissionArgs struct {
+	Exchange pulumi.StringInput `pulumi:"exchange"`
+	Read pulumi.StringInput `pulumi:"read"`
+	Write pulumi.StringInput `pulumi:"write"`
+}
+
+func (TopicPermissionsPermissionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicPermissionsPermission)(nil)).Elem()
+}
+
+func (i TopicPermissionsPermissionArgs) ToTopicPermissionsPermissionOutput() TopicPermissionsPermissionOutput {
+	return i.ToTopicPermissionsPermissionOutputWithContext(context.Background())
+}
+
+func (i TopicPermissionsPermissionArgs) ToTopicPermissionsPermissionOutputWithContext(ctx context.Context) TopicPermissionsPermissionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicPermissionsPermissionOutput)
+}
+
+type TopicPermissionsPermissionArrayInput interface {
+	pulumi.Input
+
+	ToTopicPermissionsPermissionArrayOutput() TopicPermissionsPermissionArrayOutput
+	ToTopicPermissionsPermissionArrayOutputWithContext(context.Context) TopicPermissionsPermissionArrayOutput
+}
+
+type TopicPermissionsPermissionArray []TopicPermissionsPermissionInput
+
+func (TopicPermissionsPermissionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TopicPermissionsPermission)(nil)).Elem()
+}
+
+func (i TopicPermissionsPermissionArray) ToTopicPermissionsPermissionArrayOutput() TopicPermissionsPermissionArrayOutput {
+	return i.ToTopicPermissionsPermissionArrayOutputWithContext(context.Background())
+}
+
+func (i TopicPermissionsPermissionArray) ToTopicPermissionsPermissionArrayOutputWithContext(ctx context.Context) TopicPermissionsPermissionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicPermissionsPermissionArrayOutput)
+}
+
+type TopicPermissionsPermissionOutput struct { *pulumi.OutputState }
+
+func (TopicPermissionsPermissionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicPermissionsPermission)(nil)).Elem()
+}
+
+func (o TopicPermissionsPermissionOutput) ToTopicPermissionsPermissionOutput() TopicPermissionsPermissionOutput {
+	return o
+}
+
+func (o TopicPermissionsPermissionOutput) ToTopicPermissionsPermissionOutputWithContext(ctx context.Context) TopicPermissionsPermissionOutput {
+	return o
+}
+
+func (o TopicPermissionsPermissionOutput) Exchange() pulumi.StringOutput {
+	return o.ApplyT(func (v TopicPermissionsPermission) string { return v.Exchange }).(pulumi.StringOutput)
+}
+
+func (o TopicPermissionsPermissionOutput) Read() pulumi.StringOutput {
+	return o.ApplyT(func (v TopicPermissionsPermission) string { return v.Read }).(pulumi.StringOutput)
+}
+
+func (o TopicPermissionsPermissionOutput) Write() pulumi.StringOutput {
+	return o.ApplyT(func (v TopicPermissionsPermission) string { return v.Write }).(pulumi.StringOutput)
+}
+
+type TopicPermissionsPermissionArrayOutput struct { *pulumi.OutputState}
+
+func (TopicPermissionsPermissionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TopicPermissionsPermission)(nil)).Elem()
+}
+
+func (o TopicPermissionsPermissionArrayOutput) ToTopicPermissionsPermissionArrayOutput() TopicPermissionsPermissionArrayOutput {
+	return o
+}
+
+func (o TopicPermissionsPermissionArrayOutput) ToTopicPermissionsPermissionArrayOutputWithContext(ctx context.Context) TopicPermissionsPermissionArrayOutput {
+	return o
+}
+
+func (o TopicPermissionsPermissionArrayOutput) Index(i pulumi.IntInput) TopicPermissionsPermissionOutput {
+	return pulumi.All(o, i).ApplyT(func (vs []interface{}) TopicPermissionsPermission {
+		return vs[0].([]TopicPermissionsPermission)[vs[1].(int)]
+	}).(TopicPermissionsPermissionOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(ExchangeSettingsOutput{})
 	pulumi.RegisterOutputType(ExchangeSettingsPtrOutput{})
@@ -562,4 +660,6 @@ func init() {
 	pulumi.RegisterOutputType(PolicyPolicyPtrOutput{})
 	pulumi.RegisterOutputType(QueueSettingsOutput{})
 	pulumi.RegisterOutputType(QueueSettingsPtrOutput{})
+	pulumi.RegisterOutputType(TopicPermissionsPermissionOutput{})
+	pulumi.RegisterOutputType(TopicPermissionsPermissionArrayOutput{})
 }

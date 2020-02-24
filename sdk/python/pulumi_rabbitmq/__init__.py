@@ -15,6 +15,7 @@ from .exchange import *
 from .permissions import *
 from .policy import *
 from .queue import *
+from .topic_permissions import *
 from .user import *
 from .v_host import *
 from .provider import *
