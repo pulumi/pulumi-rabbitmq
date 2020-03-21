@@ -2,8 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to Pulumi v1.12.1
-* Upgrade to pulumi-terraform-bridge v1.8.2
+_(none)_
 
 ## 1.2.0 (2020-02-25)
 * Upgrade to v1.3.0 of the RabbitMQ Terraform Provider

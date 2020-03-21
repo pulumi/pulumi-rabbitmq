@@ -82,11 +82,11 @@ func getPythonBaseOptions() integration.ProgramTestOptions {
 
 func getCsharpBaseOptions() integration.ProgramTestOptions {
 	base := getBaseOptions()
-	basePython := base.With(integration.ProgramTestOptions{
+	baseCsharp := base.With(integration.ProgramTestOptions{
 		Dependencies: []string{
 			"Pulumi.RabbitMQ",
 		},
 	})
 
-	return basePython
+	return baseCsharp
 }
