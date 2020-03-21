@@ -13,7 +13,7 @@ import (
 
 // The ``.Binding`` resource creates and manages a binding relationship
 // between a queue an exchange.
-// 
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/binding.html.markdown.
 type Binding struct {
 	pulumi.CustomResourceState

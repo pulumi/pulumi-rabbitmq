@@ -8,7 +8,7 @@ const pw = new random.RandomPassword("my-password", {
     additionalSecretOutputs: ["result"]
 })
 
-const user = new rabbitmq.User("my-user", {
+const user = new rabbitmq.User("my-typescript-user", {
     password: pw.result
 });
 

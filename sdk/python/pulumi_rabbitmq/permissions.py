@@ -14,7 +14,7 @@ class Permissions(pulumi.CustomResource):
     """
     The settings of the permissions. The structure is
     described below.
-    
+
       * `configure` (`str`)
       * `read` (`str`)
       * `write` (`str`)
@@ -31,21 +31,21 @@ class Permissions(pulumi.CustomResource):
         """
         The ``.Permissions`` resource creates and manages a user's set of
         permissions.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/permissions.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] permissions: The settings of the permissions. The structure is
                described below.
         :param pulumi.Input[str] user: The user to apply the permissions to.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
-        
+
         The **permissions** object supports the following:
-        
+
           * `configure` (`pulumi.Input[str]`)
           * `read` (`pulumi.Input[str]`)
           * `write` (`pulumi.Input[str]`)
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/permissions.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -82,7 +82,7 @@ class Permissions(pulumi.CustomResource):
         """
         Get an existing Permissions resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -90,18 +90,17 @@ class Permissions(pulumi.CustomResource):
                described below.
         :param pulumi.Input[str] user: The user to apply the permissions to.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
-        
+
         The **permissions** object supports the following:
-        
+
           * `configure` (`pulumi.Input[str]`)
           * `read` (`pulumi.Input[str]`)
           * `write` (`pulumi.Input[str]`)
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/permissions.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["permissions"] = permissions
         __props__["user"] = user
         __props__["vhost"] = vhost

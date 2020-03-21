@@ -105,10 +105,15 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			"rabbitmq_queue":             {Tok: makeResource(mainMod, "Queue")},
-			"rabbitmq_user":              {Tok: makeResource(mainMod, "User")},
-			"rabbitmq_vhost":             {Tok: makeResource(mainMod, "VHost")},
-			"rabbitmq_topic_permissions": {Tok: makeResource(mainMod, "TopicPermissions")},
+			"rabbitmq_queue": {Tok: makeResource(mainMod, "Queue")},
+			"rabbitmq_user":  {Tok: makeResource(mainMod, "User")},
+			"rabbitmq_vhost": {Tok: makeResource(mainMod, "VHost")},
+			"rabbitmq_topic_permissions": {
+				Tok: makeResource(mainMod, "TopicPermissions"),
+				Docs: &tfbridge.DocInfo{
+					Source: "topic-permissions.html.markdown",
+				},
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{},
 		JavaScript: &tfbridge.JavaScriptInfo{
@@ -127,7 +132,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{
-				"Pulumi":                       "1.9.1-preview",
+				"Pulumi":                       "1.12.1-preview",
 				"System.Collections.Immutable": "1.6.0",
 			},
 			Namespaces: map[string]string{

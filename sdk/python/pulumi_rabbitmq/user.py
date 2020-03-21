@@ -27,10 +27,12 @@ class User(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, name=None, password=None, tags=None, __props__=None, __name__=None, __opts__=None):
         """
         The ``.User`` resource creates and manages a user.
-        
+
         > **Note:** All arguments including username and password will be stored in the raw state as plain-text.
         [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/user.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the user.
@@ -38,8 +40,6 @@ class User(pulumi.CustomResource):
                is plain-text so make sure to secure where this is defined.
         :param pulumi.Input[list] tags: Which permission model to apply to the user. Valid
                options are: management, policymaker, monitoring, and administrator.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/user.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -74,7 +74,7 @@ class User(pulumi.CustomResource):
         """
         Get an existing User resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -83,12 +83,11 @@ class User(pulumi.CustomResource):
                is plain-text so make sure to secure where this is defined.
         :param pulumi.Input[list] tags: Which permission model to apply to the user. Valid
                options are: management, policymaker, monitoring, and administrator.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/user.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["name"] = name
         __props__["password"] = password
         __props__["tags"] = tags

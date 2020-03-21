@@ -12,10 +12,10 @@ import (
 )
 
 // The ``.User`` resource creates and manages a user.
-// 
+//
 // > **Note:** All arguments including username and password will be stored in the raw state as plain-text.
 // [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
-// 
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/user.html.markdown.
 type User struct {
 	pulumi.CustomResourceState

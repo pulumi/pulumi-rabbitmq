@@ -18,7 +18,7 @@ class Queue(pulumi.CustomResource):
     """
     The settings of the queue. The structure is
     described below.
-    
+
       * `arguments` (`dict`)
       * `argumentsJson` (`str`)
       * `autoDelete` (`bool`)
@@ -31,22 +31,22 @@ class Queue(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, name=None, settings=None, vhost=None, __props__=None, __name__=None, __opts__=None):
         """
         The ``.Queue`` resource creates and manages a queue.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/queue.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the queue.
         :param pulumi.Input[dict] settings: The settings of the queue. The structure is
                described below.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
-        
+
         The **settings** object supports the following:
-        
+
           * `arguments` (`pulumi.Input[dict]`)
           * `argumentsJson` (`pulumi.Input[str]`)
           * `autoDelete` (`pulumi.Input[bool]`)
           * `durable` (`pulumi.Input[bool]`)
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/queue.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -81,7 +81,7 @@ class Queue(pulumi.CustomResource):
         """
         Get an existing Queue resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -89,19 +89,18 @@ class Queue(pulumi.CustomResource):
         :param pulumi.Input[dict] settings: The settings of the queue. The structure is
                described below.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
-        
+
         The **settings** object supports the following:
-        
+
           * `arguments` (`pulumi.Input[dict]`)
           * `argumentsJson` (`pulumi.Input[str]`)
           * `autoDelete` (`pulumi.Input[bool]`)
           * `durable` (`pulumi.Input[bool]`)
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/queue.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["name"] = name
         __props__["settings"] = settings
         __props__["vhost"] = vhost
