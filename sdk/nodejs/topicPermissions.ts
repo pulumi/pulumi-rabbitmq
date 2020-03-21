@@ -6,6 +6,34 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * The ``rabbitmq..TopicPermissions`` resource creates and manages a user's set of
+ * topic permissions.
+ * 
+ * ## Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as rabbitmq from "@pulumi/rabbitmq";
+ * 
+ * const testVHost = new rabbitmq.VHost("test", {});
+ * const testUser = new rabbitmq.User("test", {
+ *     password: "foobar",
+ *     tags: ["administrator"],
+ * });
+ * const testTopicPermissions = new rabbitmq.TopicPermissions("test", {
+ *     permissions: [{
+ *         exchange: "amq.topic",
+ *         read: ".*",
+ *         write: ".*",
+ *     }],
+ *     user: testUser.name,
+ *     vhost: testVHost.name,
+ * });
+ * ```
+ *
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/topic-permissions.html.markdown.
+ */
 export class TopicPermissions extends pulumi.CustomResource {
     /**
      * Get an existing TopicPermissions resource's state with the given name, ID, and optional extra
@@ -33,8 +61,18 @@ export class TopicPermissions extends pulumi.CustomResource {
         return obj['__pulumiType'] === TopicPermissions.__pulumiType;
     }
 
+    /**
+     * The settings of the permissions. The structure is
+     * described below.
+     */
     public readonly permissions!: pulumi.Output<outputs.TopicPermissionsPermission[]>;
+    /**
+     * The user to apply the permissions to.
+     */
     public readonly user!: pulumi.Output<string>;
+    /**
+     * The vhost to create the resource in.
+     */
     public readonly vhost!: pulumi.Output<string | undefined>;
 
     /**
@@ -79,8 +117,18 @@ export class TopicPermissions extends pulumi.CustomResource {
  * Input properties used for looking up and filtering TopicPermissions resources.
  */
 export interface TopicPermissionsState {
+    /**
+     * The settings of the permissions. The structure is
+     * described below.
+     */
     readonly permissions?: pulumi.Input<pulumi.Input<inputs.TopicPermissionsPermission>[]>;
+    /**
+     * The user to apply the permissions to.
+     */
     readonly user?: pulumi.Input<string>;
+    /**
+     * The vhost to create the resource in.
+     */
     readonly vhost?: pulumi.Input<string>;
 }
 
@@ -88,7 +136,17 @@ export interface TopicPermissionsState {
  * The set of arguments for constructing a TopicPermissions resource.
  */
 export interface TopicPermissionsArgs {
+    /**
+     * The settings of the permissions. The structure is
+     * described below.
+     */
     readonly permissions: pulumi.Input<pulumi.Input<inputs.TopicPermissionsPermission>[]>;
+    /**
+     * The user to apply the permissions to.
+     */
     readonly user: pulumi.Input<string>;
+    /**
+     * The vhost to create the resource in.
+     */
     readonly vhost?: pulumi.Input<string>;
 }

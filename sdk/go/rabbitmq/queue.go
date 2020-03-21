@@ -12,7 +12,7 @@ import (
 )
 
 // The ``.Queue`` resource creates and manages a queue.
-// 
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/queue.html.markdown.
 type Queue struct {
 	pulumi.CustomResourceState

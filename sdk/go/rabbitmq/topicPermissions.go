@@ -11,11 +11,19 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// The ``.TopicPermissions`` resource creates and manages a user's set of
+// topic permissions.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/topic-permissions.html.markdown.
 type TopicPermissions struct {
 	pulumi.CustomResourceState
 
+	// The settings of the permissions. The structure is
+	// described below.
 	Permissions TopicPermissionsPermissionArrayOutput `pulumi:"permissions"`
+	// The user to apply the permissions to.
 	User pulumi.StringOutput `pulumi:"user"`
+	// The vhost to create the resource in.
 	Vhost pulumi.StringPtrOutput `pulumi:"vhost"`
 }
 
@@ -53,14 +61,22 @@ func GetTopicPermissions(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TopicPermissions resources.
 type topicPermissionsState struct {
+	// The settings of the permissions. The structure is
+	// described below.
 	Permissions []TopicPermissionsPermission `pulumi:"permissions"`
+	// The user to apply the permissions to.
 	User *string `pulumi:"user"`
+	// The vhost to create the resource in.
 	Vhost *string `pulumi:"vhost"`
 }
 
 type TopicPermissionsState struct {
+	// The settings of the permissions. The structure is
+	// described below.
 	Permissions TopicPermissionsPermissionArrayInput
+	// The user to apply the permissions to.
 	User pulumi.StringPtrInput
+	// The vhost to create the resource in.
 	Vhost pulumi.StringPtrInput
 }
 
@@ -69,15 +85,23 @@ func (TopicPermissionsState) ElementType() reflect.Type {
 }
 
 type topicPermissionsArgs struct {
+	// The settings of the permissions. The structure is
+	// described below.
 	Permissions []TopicPermissionsPermission `pulumi:"permissions"`
+	// The user to apply the permissions to.
 	User string `pulumi:"user"`
+	// The vhost to create the resource in.
 	Vhost *string `pulumi:"vhost"`
 }
 
 // The set of arguments for constructing a TopicPermissions resource.
 type TopicPermissionsArgs struct {
+	// The settings of the permissions. The structure is
+	// described below.
 	Permissions TopicPermissionsPermissionArrayInput
+	// The user to apply the permissions to.
 	User pulumi.StringInput
+	// The vhost to create the resource in.
 	Vhost pulumi.StringPtrInput
 }
 

@@ -12,7 +12,7 @@ import (
 )
 
 // The ``.Exchange`` resource creates and manages an exchange.
-// 
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/exchange.html.markdown.
 type Exchange struct {
 	pulumi.CustomResourceState

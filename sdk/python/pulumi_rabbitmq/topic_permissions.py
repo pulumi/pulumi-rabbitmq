@@ -11,17 +11,38 @@ from . import utilities, tables
 
 class TopicPermissions(pulumi.CustomResource):
     permissions: pulumi.Output[list]
+    """
+    The settings of the permissions. The structure is
+    described below.
+
+      * `exchange` (`str`)
+      * `read` (`str`)
+      * `write` (`str`)
+    """
     user: pulumi.Output[str]
+    """
+    The user to apply the permissions to.
+    """
     vhost: pulumi.Output[str]
+    """
+    The vhost to create the resource in.
+    """
     def __init__(__self__, resource_name, opts=None, permissions=None, user=None, vhost=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a TopicPermissions resource with the given unique name, props, and options.
-        
+        The ``.TopicPermissions`` resource creates and manages a user's set of
+        topic permissions.
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/topic-permissions.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        
+        :param pulumi.Input[list] permissions: The settings of the permissions. The structure is
+               described below.
+        :param pulumi.Input[str] user: The user to apply the permissions to.
+        :param pulumi.Input[str] vhost: The vhost to create the resource in.
+
         The **permissions** object supports the following:
-        
+
           * `exchange` (`pulumi.Input[str]`)
           * `read` (`pulumi.Input[str]`)
           * `write` (`pulumi.Input[str]`)
@@ -61,13 +82,17 @@ class TopicPermissions(pulumi.CustomResource):
         """
         Get an existing TopicPermissions resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        
+        :param pulumi.Input[list] permissions: The settings of the permissions. The structure is
+               described below.
+        :param pulumi.Input[str] user: The user to apply the permissions to.
+        :param pulumi.Input[str] vhost: The vhost to create the resource in.
+
         The **permissions** object supports the following:
-        
+
           * `exchange` (`pulumi.Input[str]`)
           * `read` (`pulumi.Input[str]`)
           * `write` (`pulumi.Input[str]`)
@@ -75,6 +100,7 @@ class TopicPermissions(pulumi.CustomResource):
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["permissions"] = permissions
         __props__["user"] = user
         __props__["vhost"] = vhost

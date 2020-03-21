@@ -18,7 +18,7 @@ class Policy(pulumi.CustomResource):
     """
     The settings of the policy. The structure is
     described below.
-    
+
       * `applyTo` (`str`)
       * `definition` (`dict`)
       * `pattern` (`str`)
@@ -32,22 +32,22 @@ class Policy(pulumi.CustomResource):
         """
         The ``.Policy`` resource creates and manages policies for exchanges
         and queues.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/policy.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the policy.
         :param pulumi.Input[dict] policy: The settings of the policy. The structure is
                described below.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
-        
+
         The **policy** object supports the following:
-        
+
           * `applyTo` (`pulumi.Input[str]`)
           * `definition` (`pulumi.Input[dict]`)
           * `pattern` (`pulumi.Input[str]`)
           * `priority` (`pulumi.Input[float]`)
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/policy.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -84,7 +84,7 @@ class Policy(pulumi.CustomResource):
         """
         Get an existing Policy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -92,19 +92,18 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[dict] policy: The settings of the policy. The structure is
                described below.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
-        
+
         The **policy** object supports the following:
-        
+
           * `applyTo` (`pulumi.Input[str]`)
           * `definition` (`pulumi.Input[dict]`)
           * `pattern` (`pulumi.Input[str]`)
           * `priority` (`pulumi.Input[float]`)
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/policy.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["name"] = name
         __props__["policy"] = policy
         __props__["vhost"] = vhost

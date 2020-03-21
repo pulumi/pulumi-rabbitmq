@@ -105,10 +105,15 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			"rabbitmq_queue":             {Tok: makeResource(mainMod, "Queue")},
-			"rabbitmq_user":              {Tok: makeResource(mainMod, "User")},
-			"rabbitmq_vhost":             {Tok: makeResource(mainMod, "VHost")},
-			"rabbitmq_topic_permissions": {Tok: makeResource(mainMod, "TopicPermissions")},
+			"rabbitmq_queue": {Tok: makeResource(mainMod, "Queue")},
+			"rabbitmq_user":  {Tok: makeResource(mainMod, "User")},
+			"rabbitmq_vhost": {Tok: makeResource(mainMod, "VHost")},
+			"rabbitmq_topic_permissions": {
+				Tok: makeResource(mainMod, "TopicPermissions"),
+				Docs: &tfbridge.DocInfo{
+					Source: "topic-permissions.html.markdown",
+				},
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{},
 		JavaScript: &tfbridge.JavaScriptInfo{

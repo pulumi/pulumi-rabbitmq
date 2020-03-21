@@ -42,7 +42,9 @@ class Binding(pulumi.CustomResource):
         """
         The ``.Binding`` resource creates and manages a binding relationship
         between a queue an exchange.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/binding.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] arguments: Additional key/value arguments for the binding.
@@ -51,8 +53,6 @@ class Binding(pulumi.CustomResource):
         :param pulumi.Input[str] routing_key: A routing key for the binding.
         :param pulumi.Input[str] source: The source exchange.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/binding.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -97,7 +97,7 @@ class Binding(pulumi.CustomResource):
         """
         Get an existing Binding resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -108,12 +108,11 @@ class Binding(pulumi.CustomResource):
         :param pulumi.Input[str] routing_key: A routing key for the binding.
         :param pulumi.Input[str] source: The source exchange.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/binding.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["arguments"] = arguments
         __props__["destination"] = destination
         __props__["destination_type"] = destination_type
