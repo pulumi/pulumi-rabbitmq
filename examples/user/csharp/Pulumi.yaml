@@ -1,0 +1,3 @@
+name: user-csharp
+runtime: dotnet
+description: A CSharp application that shows creation of a RabbitMQ user
