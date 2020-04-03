@@ -1,12 +1,10 @@
-module github.com/pulumi/pulumi-rabbitmq
+module github.com/pulumi/pulumi-rabbitmq/provider
 
 go 1.13
 
 require (
-	github.com/hashicorp/terraform-plugin-sdk v1.4.1
-	github.com/pkg/errors v0.8.1
-	github.com/pulumi/pulumi v1.12.2-0.20200313044354-8111d33438b9
-	github.com/pulumi/pulumi-terraform-bridge v1.8.2
+	github.com/pulumi/pulumi v1.13.1
+	github.com/pulumi/pulumi-terraform-bridge v1.8.4
 	github.com/terraform-providers/terraform-provider-rabbitmq v1.3.0
 )
 

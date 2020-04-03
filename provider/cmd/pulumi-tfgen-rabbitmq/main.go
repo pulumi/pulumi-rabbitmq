@@ -12,18 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//go:generate go run ./generate.go
-
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfgen"
 
-	rabbitmq "github.com/pulumi/pulumi-rabbitmq"
-	"github.com/pulumi/pulumi-rabbitmq/pkg/version"
+	rabbitmq "github.com/pulumi/pulumi-rabbitmq/provider"
+	"github.com/pulumi/pulumi-rabbitmq/provider/pkg/version"
 )
 
 func main() {
 	// Modify the path to point to the new provider
-	tfbridge.Main("rabbitmq", version.Version, rabbitmq.Provider(), pulumiSchema)
+	tfgen.Main("rabbitmq", version.Version, rabbitmq.Provider())
 }
