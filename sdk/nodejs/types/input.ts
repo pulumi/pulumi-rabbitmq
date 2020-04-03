@@ -5,34 +5,97 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 
 export interface ExchangeSettings {
+    /**
+     * Additional key/value settings for the exchange.
+     */
     arguments?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Whether the exchange will self-delete when all
+     * queues have finished using it.
+     */
     autoDelete?: pulumi.Input<boolean>;
+    /**
+     * Whether the exchange survives server restarts.
+     * Defaults to `false`.
+     */
     durable?: pulumi.Input<boolean>;
+    /**
+     * The type of exchange.
+     */
     type: pulumi.Input<string>;
 }
 
 export interface PermissionsPermissions {
+    /**
+     * The "configure" ACL.
+     */
     configure: pulumi.Input<string>;
+    /**
+     * The "read" ACL.
+     */
     read: pulumi.Input<string>;
+    /**
+     * The "write" ACL.
+     */
     write: pulumi.Input<string>;
 }
 
 export interface PolicyPolicy {
+    /**
+     * Can either be "exchanges", "queues", or "all".
+     */
     applyTo: pulumi.Input<string>;
+    /**
+     * Key/value pairs of the policy definition. See the
+     * RabbitMQ documentation for definition references and examples.
+     */
     definition: pulumi.Input<{[key: string]: any}>;
+    /**
+     * A pattern to match an exchange or queue name.
+     */
     pattern: pulumi.Input<string>;
+    /**
+     * The policy with the greater priority is applied first.
+     */
     priority: pulumi.Input<number>;
 }
 
 export interface QueueSettings {
+    /**
+     * Additional key/value settings for the queue.
+     * All values will be sent to RabbitMQ as a string. If you require non-string
+     * values, use `argumentsJson`.
+     */
     arguments?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * A nested JSON string which contains additional
+     * settings for the queue. This is useful for when the arguments contain
+     * non-string values.
+     */
     argumentsJson?: pulumi.Input<string>;
+    /**
+     * Whether the queue will self-delete when all
+     * consumers have unsubscribed.
+     */
     autoDelete?: pulumi.Input<boolean>;
+    /**
+     * Whether the queue survives server restarts.
+     * Defaults to `false`.
+     */
     durable?: pulumi.Input<boolean>;
 }
 
 export interface TopicPermissionsPermission {
+    /**
+     * The exchange to set the permissions for.
+     */
     exchange: pulumi.Input<string>;
+    /**
+     * The "read" ACL.
+     */
     read: pulumi.Input<string>;
+    /**
+     * The "write" ACL.
+     */
     write: pulumi.Input<string>;
 }
