@@ -50,7 +50,7 @@ build:: tfgen provider
 		dotnet build /p:Version=${DOTNET_VERSION}
 
 tfgen::
-	cd provider && go install -ldflags "-X github.com/pulumi/pulumi-${PACK}/provicer/pkg/version.Version=${VERSION}" ${PROJECT}/provider/cmd/${TFGEN}
+	cd provider && go install -ldflags "-X github.com/pulumi/pulumi-${PACK}/provider/pkg/version.Version=${VERSION}" ${PROJECT}/provider/cmd/${TFGEN}
 
 generate_schema:: tfgen
 	$(TFGEN) schema --out ./provider/cmd/${PROVIDER}
