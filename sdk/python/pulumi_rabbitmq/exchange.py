@@ -19,10 +19,12 @@ class Exchange(pulumi.CustomResource):
     The settings of the exchange. The structure is
     described below.
 
-      * `arguments` (`dict`)
-      * `autoDelete` (`bool`)
-      * `durable` (`bool`)
-      * `type` (`str`)
+      * `arguments` (`dict`) - Additional key/value settings for the exchange.
+      * `autoDelete` (`bool`) - Whether the exchange will self-delete when all
+        queues have finished using it.
+      * `durable` (`bool`) - Whether the exchange survives server restarts.
+        Defaults to `false`.
+      * `type` (`str`) - The type of exchange.
     """
     vhost: pulumi.Output[str]
     """
@@ -43,10 +45,12 @@ class Exchange(pulumi.CustomResource):
 
         The **settings** object supports the following:
 
-          * `arguments` (`pulumi.Input[dict]`)
-          * `autoDelete` (`pulumi.Input[bool]`)
-          * `durable` (`pulumi.Input[bool]`)
-          * `type` (`pulumi.Input[str]`)
+          * `arguments` (`pulumi.Input[dict]`) - Additional key/value settings for the exchange.
+          * `autoDelete` (`pulumi.Input[bool]`) - Whether the exchange will self-delete when all
+            queues have finished using it.
+          * `durable` (`pulumi.Input[bool]`) - Whether the exchange survives server restarts.
+            Defaults to `false`.
+          * `type` (`pulumi.Input[str]`) - The type of exchange.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -92,10 +96,12 @@ class Exchange(pulumi.CustomResource):
 
         The **settings** object supports the following:
 
-          * `arguments` (`pulumi.Input[dict]`)
-          * `autoDelete` (`pulumi.Input[bool]`)
-          * `durable` (`pulumi.Input[bool]`)
-          * `type` (`pulumi.Input[str]`)
+          * `arguments` (`pulumi.Input[dict]`) - Additional key/value settings for the exchange.
+          * `autoDelete` (`pulumi.Input[bool]`) - Whether the exchange will self-delete when all
+            queues have finished using it.
+          * `durable` (`pulumi.Input[bool]`) - Whether the exchange survives server restarts.
+            Defaults to `false`.
+          * `type` (`pulumi.Input[str]`) - The type of exchange.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

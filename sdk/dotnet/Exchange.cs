@@ -138,18 +138,33 @@ namespace Pulumi.RabbitMQ
     {
         [Input("arguments")]
         private InputMap<object>? _arguments;
+
+        /// <summary>
+        /// Additional key/value settings for the exchange.
+        /// </summary>
         public InputMap<object> Arguments
         {
             get => _arguments ?? (_arguments = new InputMap<object>());
             set => _arguments = value;
         }
 
+        /// <summary>
+        /// Whether the exchange will self-delete when all
+        /// queues have finished using it.
+        /// </summary>
         [Input("autoDelete")]
         public Input<bool>? AutoDelete { get; set; }
 
+        /// <summary>
+        /// Whether the exchange survives server restarts.
+        /// Defaults to `false`.
+        /// </summary>
         [Input("durable")]
         public Input<bool>? Durable { get; set; }
 
+        /// <summary>
+        /// The type of exchange.
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
@@ -162,18 +177,33 @@ namespace Pulumi.RabbitMQ
     {
         [Input("arguments")]
         private InputMap<object>? _arguments;
+
+        /// <summary>
+        /// Additional key/value settings for the exchange.
+        /// </summary>
         public InputMap<object> Arguments
         {
             get => _arguments ?? (_arguments = new InputMap<object>());
             set => _arguments = value;
         }
 
+        /// <summary>
+        /// Whether the exchange will self-delete when all
+        /// queues have finished using it.
+        /// </summary>
         [Input("autoDelete")]
         public Input<bool>? AutoDelete { get; set; }
 
+        /// <summary>
+        /// Whether the exchange survives server restarts.
+        /// Defaults to `false`.
+        /// </summary>
         [Input("durable")]
         public Input<bool>? Durable { get; set; }
 
+        /// <summary>
+        /// The type of exchange.
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
@@ -189,9 +219,23 @@ namespace Pulumi.RabbitMQ
     [OutputType]
     public sealed class ExchangeSettings
     {
+        /// <summary>
+        /// Additional key/value settings for the exchange.
+        /// </summary>
         public readonly ImmutableDictionary<string, object>? Arguments;
+        /// <summary>
+        /// Whether the exchange will self-delete when all
+        /// queues have finished using it.
+        /// </summary>
         public readonly bool? AutoDelete;
+        /// <summary>
+        /// Whether the exchange survives server restarts.
+        /// Defaults to `false`.
+        /// </summary>
         public readonly bool? Durable;
+        /// <summary>
+        /// The type of exchange.
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

@@ -108,4 +108,3 @@ type TopicPermissionsArgs struct {
 func (TopicPermissionsArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*topicPermissionsArgs)(nil)).Elem()
 }
-

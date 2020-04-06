@@ -15,9 +15,9 @@ class TopicPermissions(pulumi.CustomResource):
     The settings of the permissions. The structure is
     described below.
 
-      * `exchange` (`str`)
-      * `read` (`str`)
-      * `write` (`str`)
+      * `exchange` (`str`) - The exchange to set the permissions for.
+      * `read` (`str`) - The "read" ACL.
+      * `write` (`str`) - The "write" ACL.
     """
     user: pulumi.Output[str]
     """
@@ -43,9 +43,9 @@ class TopicPermissions(pulumi.CustomResource):
 
         The **permissions** object supports the following:
 
-          * `exchange` (`pulumi.Input[str]`)
-          * `read` (`pulumi.Input[str]`)
-          * `write` (`pulumi.Input[str]`)
+          * `exchange` (`pulumi.Input[str]`) - The exchange to set the permissions for.
+          * `read` (`pulumi.Input[str]`) - The "read" ACL.
+          * `write` (`pulumi.Input[str]`) - The "write" ACL.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -93,9 +93,9 @@ class TopicPermissions(pulumi.CustomResource):
 
         The **permissions** object supports the following:
 
-          * `exchange` (`pulumi.Input[str]`)
-          * `read` (`pulumi.Input[str]`)
-          * `write` (`pulumi.Input[str]`)
+          * `exchange` (`pulumi.Input[str]`) - The exchange to set the permissions for.
+          * `read` (`pulumi.Input[str]`) - The "read" ACL.
+          * `write` (`pulumi.Input[str]`) - The "write" ACL.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

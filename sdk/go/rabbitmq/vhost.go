@@ -75,4 +75,3 @@ type VHostArgs struct {
 func (VHostArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*vhostArgs)(nil)).Elem()
 }
-

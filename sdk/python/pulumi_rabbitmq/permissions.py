@@ -15,9 +15,9 @@ class Permissions(pulumi.CustomResource):
     The settings of the permissions. The structure is
     described below.
 
-      * `configure` (`str`)
-      * `read` (`str`)
-      * `write` (`str`)
+      * `configure` (`str`) - The "configure" ACL.
+      * `read` (`str`) - The "read" ACL.
+      * `write` (`str`) - The "write" ACL.
     """
     user: pulumi.Output[str]
     """
@@ -43,9 +43,9 @@ class Permissions(pulumi.CustomResource):
 
         The **permissions** object supports the following:
 
-          * `configure` (`pulumi.Input[str]`)
-          * `read` (`pulumi.Input[str]`)
-          * `write` (`pulumi.Input[str]`)
+          * `configure` (`pulumi.Input[str]`) - The "configure" ACL.
+          * `read` (`pulumi.Input[str]`) - The "read" ACL.
+          * `write` (`pulumi.Input[str]`) - The "write" ACL.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -93,9 +93,9 @@ class Permissions(pulumi.CustomResource):
 
         The **permissions** object supports the following:
 
-          * `configure` (`pulumi.Input[str]`)
-          * `read` (`pulumi.Input[str]`)
-          * `write` (`pulumi.Input[str]`)
+          * `configure` (`pulumi.Input[str]`) - The "configure" ACL.
+          * `read` (`pulumi.Input[str]`) - The "read" ACL.
+          * `write` (`pulumi.Input[str]`) - The "write" ACL.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

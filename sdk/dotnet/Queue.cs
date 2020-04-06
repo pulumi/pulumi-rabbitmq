@@ -138,18 +138,37 @@ namespace Pulumi.RabbitMQ
     {
         [Input("arguments")]
         private InputMap<object>? _arguments;
+
+        /// <summary>
+        /// Additional key/value settings for the queue.
+        /// All values will be sent to RabbitMQ as a string. If you require non-string
+        /// values, use `arguments_json`.
+        /// </summary>
         public InputMap<object> Arguments
         {
             get => _arguments ?? (_arguments = new InputMap<object>());
             set => _arguments = value;
         }
 
+        /// <summary>
+        /// A nested JSON string which contains additional
+        /// settings for the queue. This is useful for when the arguments contain
+        /// non-string values.
+        /// </summary>
         [Input("argumentsJson")]
         public Input<string>? ArgumentsJson { get; set; }
 
+        /// <summary>
+        /// Whether the queue will self-delete when all
+        /// consumers have unsubscribed.
+        /// </summary>
         [Input("autoDelete")]
         public Input<bool>? AutoDelete { get; set; }
 
+        /// <summary>
+        /// Whether the queue survives server restarts.
+        /// Defaults to `false`.
+        /// </summary>
         [Input("durable")]
         public Input<bool>? Durable { get; set; }
 
@@ -162,18 +181,37 @@ namespace Pulumi.RabbitMQ
     {
         [Input("arguments")]
         private InputMap<object>? _arguments;
+
+        /// <summary>
+        /// Additional key/value settings for the queue.
+        /// All values will be sent to RabbitMQ as a string. If you require non-string
+        /// values, use `arguments_json`.
+        /// </summary>
         public InputMap<object> Arguments
         {
             get => _arguments ?? (_arguments = new InputMap<object>());
             set => _arguments = value;
         }
 
+        /// <summary>
+        /// A nested JSON string which contains additional
+        /// settings for the queue. This is useful for when the arguments contain
+        /// non-string values.
+        /// </summary>
         [Input("argumentsJson")]
         public Input<string>? ArgumentsJson { get; set; }
 
+        /// <summary>
+        /// Whether the queue will self-delete when all
+        /// consumers have unsubscribed.
+        /// </summary>
         [Input("autoDelete")]
         public Input<bool>? AutoDelete { get; set; }
 
+        /// <summary>
+        /// Whether the queue survives server restarts.
+        /// Defaults to `false`.
+        /// </summary>
         [Input("durable")]
         public Input<bool>? Durable { get; set; }
 
@@ -189,9 +227,27 @@ namespace Pulumi.RabbitMQ
     [OutputType]
     public sealed class QueueSettings
     {
+        /// <summary>
+        /// Additional key/value settings for the queue.
+        /// All values will be sent to RabbitMQ as a string. If you require non-string
+        /// values, use `arguments_json`.
+        /// </summary>
         public readonly ImmutableDictionary<string, object>? Arguments;
+        /// <summary>
+        /// A nested JSON string which contains additional
+        /// settings for the queue. This is useful for when the arguments contain
+        /// non-string values.
+        /// </summary>
         public readonly string? ArgumentsJson;
+        /// <summary>
+        /// Whether the queue will self-delete when all
+        /// consumers have unsubscribed.
+        /// </summary>
         public readonly bool? AutoDelete;
+        /// <summary>
+        /// Whether the queue survives server restarts.
+        /// Defaults to `false`.
+        /// </summary>
         public readonly bool? Durable;
 
         [OutputConstructor]

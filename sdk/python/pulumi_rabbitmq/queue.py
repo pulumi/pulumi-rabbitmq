@@ -19,10 +19,16 @@ class Queue(pulumi.CustomResource):
     The settings of the queue. The structure is
     described below.
 
-      * `arguments` (`dict`)
-      * `argumentsJson` (`str`)
-      * `autoDelete` (`bool`)
-      * `durable` (`bool`)
+      * `arguments` (`dict`) - Additional key/value settings for the queue.
+        All values will be sent to RabbitMQ as a string. If you require non-string
+        values, use `arguments_json`.
+      * `argumentsJson` (`str`) - A nested JSON string which contains additional
+        settings for the queue. This is useful for when the arguments contain
+        non-string values.
+      * `autoDelete` (`bool`) - Whether the queue will self-delete when all
+        consumers have unsubscribed.
+      * `durable` (`bool`) - Whether the queue survives server restarts.
+        Defaults to `false`.
     """
     vhost: pulumi.Output[str]
     """
@@ -43,10 +49,16 @@ class Queue(pulumi.CustomResource):
 
         The **settings** object supports the following:
 
-          * `arguments` (`pulumi.Input[dict]`)
-          * `argumentsJson` (`pulumi.Input[str]`)
-          * `autoDelete` (`pulumi.Input[bool]`)
-          * `durable` (`pulumi.Input[bool]`)
+          * `arguments` (`pulumi.Input[dict]`) - Additional key/value settings for the queue.
+            All values will be sent to RabbitMQ as a string. If you require non-string
+            values, use `arguments_json`.
+          * `argumentsJson` (`pulumi.Input[str]`) - A nested JSON string which contains additional
+            settings for the queue. This is useful for when the arguments contain
+            non-string values.
+          * `autoDelete` (`pulumi.Input[bool]`) - Whether the queue will self-delete when all
+            consumers have unsubscribed.
+          * `durable` (`pulumi.Input[bool]`) - Whether the queue survives server restarts.
+            Defaults to `false`.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -92,10 +104,16 @@ class Queue(pulumi.CustomResource):
 
         The **settings** object supports the following:
 
-          * `arguments` (`pulumi.Input[dict]`)
-          * `argumentsJson` (`pulumi.Input[str]`)
-          * `autoDelete` (`pulumi.Input[bool]`)
-          * `durable` (`pulumi.Input[bool]`)
+          * `arguments` (`pulumi.Input[dict]`) - Additional key/value settings for the queue.
+            All values will be sent to RabbitMQ as a string. If you require non-string
+            values, use `arguments_json`.
+          * `argumentsJson` (`pulumi.Input[str]`) - A nested JSON string which contains additional
+            settings for the queue. This is useful for when the arguments contain
+            non-string values.
+          * `autoDelete` (`pulumi.Input[bool]`) - Whether the queue will self-delete when all
+            consumers have unsubscribed.
+          * `durable` (`pulumi.Input[bool]`) - Whether the queue survives server restarts.
+            Defaults to `false`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

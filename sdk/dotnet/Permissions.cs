@@ -137,12 +137,21 @@ namespace Pulumi.RabbitMQ
 
     public sealed class PermissionsPermissionsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The "configure" ACL.
+        /// </summary>
         [Input("configure", required: true)]
         public Input<string> Configure { get; set; } = null!;
 
+        /// <summary>
+        /// The "read" ACL.
+        /// </summary>
         [Input("read", required: true)]
         public Input<string> Read { get; set; } = null!;
 
+        /// <summary>
+        /// The "write" ACL.
+        /// </summary>
         [Input("write", required: true)]
         public Input<string> Write { get; set; } = null!;
 
@@ -153,12 +162,21 @@ namespace Pulumi.RabbitMQ
 
     public sealed class PermissionsPermissionsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The "configure" ACL.
+        /// </summary>
         [Input("configure", required: true)]
         public Input<string> Configure { get; set; } = null!;
 
+        /// <summary>
+        /// The "read" ACL.
+        /// </summary>
         [Input("read", required: true)]
         public Input<string> Read { get; set; } = null!;
 
+        /// <summary>
+        /// The "write" ACL.
+        /// </summary>
         [Input("write", required: true)]
         public Input<string> Write { get; set; } = null!;
 
@@ -174,8 +192,17 @@ namespace Pulumi.RabbitMQ
     [OutputType]
     public sealed class PermissionsPermissions
     {
+        /// <summary>
+        /// The "configure" ACL.
+        /// </summary>
         public readonly string Configure;
+        /// <summary>
+        /// The "read" ACL.
+        /// </summary>
         public readonly string Read;
+        /// <summary>
+        /// The "write" ACL.
+        /// </summary>
         public readonly string Write;
 
         [OutputConstructor]

@@ -19,10 +19,11 @@ class Policy(pulumi.CustomResource):
     The settings of the policy. The structure is
     described below.
 
-      * `applyTo` (`str`)
-      * `definition` (`dict`)
-      * `pattern` (`str`)
-      * `priority` (`float`)
+      * `applyTo` (`str`) - Can either be "exchanges", "queues", or "all".
+      * `definition` (`dict`) - Key/value pairs of the policy definition. See the
+        RabbitMQ documentation for definition references and examples.
+      * `pattern` (`str`) - A pattern to match an exchange or queue name.
+      * `priority` (`float`) - The policy with the greater priority is applied first.
     """
     vhost: pulumi.Output[str]
     """
@@ -44,10 +45,11 @@ class Policy(pulumi.CustomResource):
 
         The **policy** object supports the following:
 
-          * `applyTo` (`pulumi.Input[str]`)
-          * `definition` (`pulumi.Input[dict]`)
-          * `pattern` (`pulumi.Input[str]`)
-          * `priority` (`pulumi.Input[float]`)
+          * `applyTo` (`pulumi.Input[str]`) - Can either be "exchanges", "queues", or "all".
+          * `definition` (`pulumi.Input[dict]`) - Key/value pairs of the policy definition. See the
+            RabbitMQ documentation for definition references and examples.
+          * `pattern` (`pulumi.Input[str]`) - A pattern to match an exchange or queue name.
+          * `priority` (`pulumi.Input[float]`) - The policy with the greater priority is applied first.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -95,10 +97,11 @@ class Policy(pulumi.CustomResource):
 
         The **policy** object supports the following:
 
-          * `applyTo` (`pulumi.Input[str]`)
-          * `definition` (`pulumi.Input[dict]`)
-          * `pattern` (`pulumi.Input[str]`)
-          * `priority` (`pulumi.Input[float]`)
+          * `applyTo` (`pulumi.Input[str]`) - Can either be "exchanges", "queues", or "all".
+          * `definition` (`pulumi.Input[dict]`) - Key/value pairs of the policy definition. See the
+            RabbitMQ documentation for definition references and examples.
+          * `pattern` (`pulumi.Input[str]`) - A pattern to match an exchange or queue name.
+          * `priority` (`pulumi.Input[float]`) - The policy with the greater priority is applied first.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
