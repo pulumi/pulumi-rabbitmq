@@ -7,10 +7,12 @@ package rabbitmq
 import (
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 // The ``.VHost`` resource creates and manages a vhost.
+//
+//
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/vhost.html.markdown.
 type VHost struct {

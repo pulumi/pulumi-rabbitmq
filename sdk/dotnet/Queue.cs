@@ -12,6 +12,8 @@ namespace Pulumi.RabbitMQ
     /// <summary>
     /// The ``rabbitmq..Queue`` resource creates and manages a queue.
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/queue.html.markdown.
     /// </summary>
     public partial class Queue : Pulumi.CustomResource

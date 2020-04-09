@@ -13,6 +13,8 @@ namespace Pulumi.RabbitMQ
     /// The ``rabbitmq..Binding`` resource creates and manages a binding relationship
     /// between a queue an exchange.
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/binding.html.markdown.
     /// </summary>
     public partial class Binding : Pulumi.CustomResource

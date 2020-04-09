@@ -12,6 +12,8 @@ namespace Pulumi.RabbitMQ
     /// <summary>
     /// The ``rabbitmq..VHost`` resource creates and manages a vhost.
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/vhost.html.markdown.
     /// </summary>
     public partial class VHost : Pulumi.CustomResource

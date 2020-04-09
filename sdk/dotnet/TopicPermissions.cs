@@ -13,6 +13,8 @@ namespace Pulumi.RabbitMQ
     /// The ``rabbitmq..TopicPermissions`` resource creates and manages a user's set of
     /// topic permissions.
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/topic-permissions.html.markdown.
     /// </summary>
     public partial class TopicPermissions : Pulumi.CustomResource

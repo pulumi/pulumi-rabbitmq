@@ -32,6 +32,8 @@ class TopicPermissions(pulumi.CustomResource):
         The ``.TopicPermissions`` resource creates and manages a user's set of
         topic permissions.
 
+
+
         > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/topic-permissions.html.markdown.
 
         :param str resource_name: The name of the resource.

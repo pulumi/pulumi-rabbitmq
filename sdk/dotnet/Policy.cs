@@ -13,6 +13,8 @@ namespace Pulumi.RabbitMQ
     /// The ``rabbitmq..Policy`` resource creates and manages policies for exchanges
     /// and queues.
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/policy.html.markdown.
     /// </summary>
     public partial class Policy : Pulumi.CustomResource
