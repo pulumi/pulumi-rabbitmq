@@ -5,7 +5,7 @@ CHANGELOG
 
 ---
 
-## 1.3.0 (2020-04-14)
+## 1.4.0 (2020-04-14)
 * Upgrade to pulumi-terraform-bridge v1.8.4
 * Upgrade to Pulumi v1.13.1
 * Refactor layout to support Go modules
