@@ -12,8 +12,6 @@ namespace Pulumi.RabbitMQ
     /// <summary>
     /// The ``rabbitmq..Policy`` resource creates and manages policies for exchanges
     /// and queues.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/policy.html.markdown.
     /// </summary>
     public partial class Policy : Pulumi.CustomResource
     {
@@ -45,7 +43,7 @@ namespace Pulumi.RabbitMQ
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Policy(string name, PolicyArgs args, CustomResourceOptions? options = null)
-            : base("rabbitmq:index/policy:Policy", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("rabbitmq:index/policy:Policy", name, args ?? new PolicyArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -130,124 +128,5 @@ namespace Pulumi.RabbitMQ
         public PolicyState()
         {
         }
-    }
-
-    namespace Inputs
-    {
-
-    public sealed class PolicyPolicyArgs : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// Can either be "exchanges", "queues", or "all".
-        /// </summary>
-        [Input("applyTo", required: true)]
-        public Input<string> ApplyTo { get; set; } = null!;
-
-        [Input("definition", required: true)]
-        private InputMap<object>? _definition;
-
-        /// <summary>
-        /// Key/value pairs of the policy definition. See the
-        /// RabbitMQ documentation for definition references and examples.
-        /// </summary>
-        public InputMap<object> Definition
-        {
-            get => _definition ?? (_definition = new InputMap<object>());
-            set => _definition = value;
-        }
-
-        /// <summary>
-        /// A pattern to match an exchange or queue name.
-        /// </summary>
-        [Input("pattern", required: true)]
-        public Input<string> Pattern { get; set; } = null!;
-
-        /// <summary>
-        /// The policy with the greater priority is applied first.
-        /// </summary>
-        [Input("priority", required: true)]
-        public Input<int> Priority { get; set; } = null!;
-
-        public PolicyPolicyArgs()
-        {
-        }
-    }
-
-    public sealed class PolicyPolicyGetArgs : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// Can either be "exchanges", "queues", or "all".
-        /// </summary>
-        [Input("applyTo", required: true)]
-        public Input<string> ApplyTo { get; set; } = null!;
-
-        [Input("definition", required: true)]
-        private InputMap<object>? _definition;
-
-        /// <summary>
-        /// Key/value pairs of the policy definition. See the
-        /// RabbitMQ documentation for definition references and examples.
-        /// </summary>
-        public InputMap<object> Definition
-        {
-            get => _definition ?? (_definition = new InputMap<object>());
-            set => _definition = value;
-        }
-
-        /// <summary>
-        /// A pattern to match an exchange or queue name.
-        /// </summary>
-        [Input("pattern", required: true)]
-        public Input<string> Pattern { get; set; } = null!;
-
-        /// <summary>
-        /// The policy with the greater priority is applied first.
-        /// </summary>
-        [Input("priority", required: true)]
-        public Input<int> Priority { get; set; } = null!;
-
-        public PolicyPolicyGetArgs()
-        {
-        }
-    }
-    }
-
-    namespace Outputs
-    {
-
-    [OutputType]
-    public sealed class PolicyPolicy
-    {
-        /// <summary>
-        /// Can either be "exchanges", "queues", or "all".
-        /// </summary>
-        public readonly string ApplyTo;
-        /// <summary>
-        /// Key/value pairs of the policy definition. See the
-        /// RabbitMQ documentation for definition references and examples.
-        /// </summary>
-        public readonly ImmutableDictionary<string, object> Definition;
-        /// <summary>
-        /// A pattern to match an exchange or queue name.
-        /// </summary>
-        public readonly string Pattern;
-        /// <summary>
-        /// The policy with the greater priority is applied first.
-        /// </summary>
-        public readonly int Priority;
-
-        [OutputConstructor]
-        private PolicyPolicy(
-            string applyTo,
-            ImmutableDictionary<string, object> definition,
-            string pattern,
-            int priority)
-        {
-            ApplyTo = applyTo;
-            Definition = definition;
-            Pattern = pattern;
-            Priority = priority;
-        }
-    }
     }
 }

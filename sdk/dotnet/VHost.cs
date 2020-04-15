@@ -11,8 +11,6 @@ namespace Pulumi.RabbitMQ
 {
     /// <summary>
     /// The ``rabbitmq..VHost`` resource creates and manages a vhost.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/vhost.html.markdown.
     /// </summary>
     public partial class VHost : Pulumi.CustomResource
     {
@@ -31,7 +29,7 @@ namespace Pulumi.RabbitMQ
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public VHost(string name, VHostArgs? args = null, CustomResourceOptions? options = null)
-            : base("rabbitmq:index/vHost:VHost", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("rabbitmq:index/vHost:VHost", name, args ?? new VHostArgs(), MakeResourceOptions(options, ""))
         {
         }
 

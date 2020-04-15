@@ -8,7 +8,6 @@ namespace Pulumi.RabbitMQ
     public static class Config
     {
         private static readonly Pulumi.Config __config = new Pulumi.Config("rabbitmq");
-
         public static string? CacertFile { get; set; } = __config.Get("cacertFile") ?? Utilities.GetEnv("RABBITMQ_CACERT");
 
         public static string? Endpoint { get; set; } = __config.Get("endpoint") ?? Utilities.GetEnv("RABBITMQ_ENDPOINT");
@@ -19,8 +18,5 @@ namespace Pulumi.RabbitMQ
 
         public static string? Username { get; set; } = __config.Get("username") ?? Utilities.GetEnv("RABBITMQ_USERNAME");
 
-    }
-    namespace ConfigTypes
-    {
     }
 }

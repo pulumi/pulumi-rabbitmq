@@ -17,10 +17,10 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
 
-	rabbitmq "github.com/pulumi/pulumi-rabbitmq/provider"
-	"github.com/pulumi/pulumi-rabbitmq/provider/pkg/version"
+	rabbitmq "github.com/pulumi/pulumi-rabbitmq/provider/v2"
+	"github.com/pulumi/pulumi-rabbitmq/provider/v2/pkg/version"
 )
 
 func main() {

@@ -12,8 +12,6 @@ namespace Pulumi.RabbitMQ
     /// <summary>
     /// The ``rabbitmq..TopicPermissions`` resource creates and manages a user's set of
     /// topic permissions.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/topic-permissions.html.markdown.
     /// </summary>
     public partial class TopicPermissions : Pulumi.CustomResource
     {
@@ -22,7 +20,7 @@ namespace Pulumi.RabbitMQ
         /// described below.
         /// </summary>
         [Output("permissions")]
-        public Output<ImmutableArray<Outputs.TopicPermissionsPermissions>> Permissions { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.TopicPermissionsPermission>> Permissions { get; private set; } = null!;
 
         /// <summary>
         /// The user to apply the permissions to.
@@ -45,7 +43,7 @@ namespace Pulumi.RabbitMQ
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public TopicPermissions(string name, TopicPermissionsArgs args, CustomResourceOptions? options = null)
-            : base("rabbitmq:index/topicPermissions:TopicPermissions", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("rabbitmq:index/topicPermissions:TopicPermissions", name, args ?? new TopicPermissionsArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -83,15 +81,15 @@ namespace Pulumi.RabbitMQ
     public sealed class TopicPermissionsArgs : Pulumi.ResourceArgs
     {
         [Input("permissions", required: true)]
-        private InputList<Inputs.TopicPermissionsPermissionsArgs>? _permissions;
+        private InputList<Inputs.TopicPermissionsPermissionArgs>? _permissions;
 
         /// <summary>
         /// The settings of the permissions. The structure is
         /// described below.
         /// </summary>
-        public InputList<Inputs.TopicPermissionsPermissionsArgs> Permissions
+        public InputList<Inputs.TopicPermissionsPermissionArgs> Permissions
         {
-            get => _permissions ?? (_permissions = new InputList<Inputs.TopicPermissionsPermissionsArgs>());
+            get => _permissions ?? (_permissions = new InputList<Inputs.TopicPermissionsPermissionArgs>());
             set => _permissions = value;
         }
 
@@ -115,15 +113,15 @@ namespace Pulumi.RabbitMQ
     public sealed class TopicPermissionsState : Pulumi.ResourceArgs
     {
         [Input("permissions")]
-        private InputList<Inputs.TopicPermissionsPermissionsGetArgs>? _permissions;
+        private InputList<Inputs.TopicPermissionsPermissionGetArgs>? _permissions;
 
         /// <summary>
         /// The settings of the permissions. The structure is
         /// described below.
         /// </summary>
-        public InputList<Inputs.TopicPermissionsPermissionsGetArgs> Permissions
+        public InputList<Inputs.TopicPermissionsPermissionGetArgs> Permissions
         {
-            get => _permissions ?? (_permissions = new InputList<Inputs.TopicPermissionsPermissionsGetArgs>());
+            get => _permissions ?? (_permissions = new InputList<Inputs.TopicPermissionsPermissionGetArgs>());
             set => _permissions = value;
         }
 
@@ -142,91 +140,5 @@ namespace Pulumi.RabbitMQ
         public TopicPermissionsState()
         {
         }
-    }
-
-    namespace Inputs
-    {
-
-    public sealed class TopicPermissionsPermissionsArgs : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// The exchange to set the permissions for.
-        /// </summary>
-        [Input("exchange", required: true)]
-        public Input<string> Exchange { get; set; } = null!;
-
-        /// <summary>
-        /// The "read" ACL.
-        /// </summary>
-        [Input("read", required: true)]
-        public Input<string> Read { get; set; } = null!;
-
-        /// <summary>
-        /// The "write" ACL.
-        /// </summary>
-        [Input("write", required: true)]
-        public Input<string> Write { get; set; } = null!;
-
-        public TopicPermissionsPermissionsArgs()
-        {
-        }
-    }
-
-    public sealed class TopicPermissionsPermissionsGetArgs : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// The exchange to set the permissions for.
-        /// </summary>
-        [Input("exchange", required: true)]
-        public Input<string> Exchange { get; set; } = null!;
-
-        /// <summary>
-        /// The "read" ACL.
-        /// </summary>
-        [Input("read", required: true)]
-        public Input<string> Read { get; set; } = null!;
-
-        /// <summary>
-        /// The "write" ACL.
-        /// </summary>
-        [Input("write", required: true)]
-        public Input<string> Write { get; set; } = null!;
-
-        public TopicPermissionsPermissionsGetArgs()
-        {
-        }
-    }
-    }
-
-    namespace Outputs
-    {
-
-    [OutputType]
-    public sealed class TopicPermissionsPermissions
-    {
-        /// <summary>
-        /// The exchange to set the permissions for.
-        /// </summary>
-        public readonly string Exchange;
-        /// <summary>
-        /// The "read" ACL.
-        /// </summary>
-        public readonly string Read;
-        /// <summary>
-        /// The "write" ACL.
-        /// </summary>
-        public readonly string Write;
-
-        [OutputConstructor]
-        private TopicPermissionsPermissions(
-            string exchange,
-            string read,
-            string write)
-        {
-            Exchange = exchange;
-            Read = read;
-            Write = write;
-        }
-    }
     }
 }

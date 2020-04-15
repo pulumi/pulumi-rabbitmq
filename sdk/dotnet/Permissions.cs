@@ -12,8 +12,6 @@ namespace Pulumi.RabbitMQ
     /// <summary>
     /// The ``rabbitmq..Permissions`` resource creates and manages a user's set of
     /// permissions.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/permissions.html.markdown.
     /// </summary>
     public partial class Permissions : Pulumi.CustomResource
     {
@@ -45,7 +43,7 @@ namespace Pulumi.RabbitMQ
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Permissions(string name, PermissionsArgs args, CustomResourceOptions? options = null)
-            : base("rabbitmq:index/permissions:Permissions", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("rabbitmq:index/permissions:Permissions", name, args ?? new PermissionsArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -130,91 +128,5 @@ namespace Pulumi.RabbitMQ
         public PermissionsState()
         {
         }
-    }
-
-    namespace Inputs
-    {
-
-    public sealed class PermissionsPermissionsArgs : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// The "configure" ACL.
-        /// </summary>
-        [Input("configure", required: true)]
-        public Input<string> Configure { get; set; } = null!;
-
-        /// <summary>
-        /// The "read" ACL.
-        /// </summary>
-        [Input("read", required: true)]
-        public Input<string> Read { get; set; } = null!;
-
-        /// <summary>
-        /// The "write" ACL.
-        /// </summary>
-        [Input("write", required: true)]
-        public Input<string> Write { get; set; } = null!;
-
-        public PermissionsPermissionsArgs()
-        {
-        }
-    }
-
-    public sealed class PermissionsPermissionsGetArgs : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// The "configure" ACL.
-        /// </summary>
-        [Input("configure", required: true)]
-        public Input<string> Configure { get; set; } = null!;
-
-        /// <summary>
-        /// The "read" ACL.
-        /// </summary>
-        [Input("read", required: true)]
-        public Input<string> Read { get; set; } = null!;
-
-        /// <summary>
-        /// The "write" ACL.
-        /// </summary>
-        [Input("write", required: true)]
-        public Input<string> Write { get; set; } = null!;
-
-        public PermissionsPermissionsGetArgs()
-        {
-        }
-    }
-    }
-
-    namespace Outputs
-    {
-
-    [OutputType]
-    public sealed class PermissionsPermissions
-    {
-        /// <summary>
-        /// The "configure" ACL.
-        /// </summary>
-        public readonly string Configure;
-        /// <summary>
-        /// The "read" ACL.
-        /// </summary>
-        public readonly string Read;
-        /// <summary>
-        /// The "write" ACL.
-        /// </summary>
-        public readonly string Write;
-
-        [OutputConstructor]
-        private PermissionsPermissions(
-            string configure,
-            string read,
-            string write)
-        {
-            Configure = configure;
-            Read = read;
-            Write = write;
-        }
-    }
     }
 }

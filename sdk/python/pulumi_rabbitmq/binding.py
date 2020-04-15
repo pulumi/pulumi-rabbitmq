@@ -43,7 +43,7 @@ class Binding(pulumi.CustomResource):
         The ``.Binding`` resource creates and manages a binding relationship
         between a queue an exchange.
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/binding.html.markdown.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -11,8 +11,6 @@ namespace Pulumi.RabbitMQ
 {
     /// <summary>
     /// The ``rabbitmq..Exchange`` resource creates and manages an exchange.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/exchange.html.markdown.
     /// </summary>
     public partial class Exchange : Pulumi.CustomResource
     {
@@ -44,7 +42,7 @@ namespace Pulumi.RabbitMQ
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Exchange(string name, ExchangeArgs args, CustomResourceOptions? options = null)
-            : base("rabbitmq:index/exchange:Exchange", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("rabbitmq:index/exchange:Exchange", name, args ?? new ExchangeArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -129,127 +127,5 @@ namespace Pulumi.RabbitMQ
         public ExchangeState()
         {
         }
-    }
-
-    namespace Inputs
-    {
-
-    public sealed class ExchangeSettingsArgs : Pulumi.ResourceArgs
-    {
-        [Input("arguments")]
-        private InputMap<object>? _arguments;
-
-        /// <summary>
-        /// Additional key/value settings for the exchange.
-        /// </summary>
-        public InputMap<object> Arguments
-        {
-            get => _arguments ?? (_arguments = new InputMap<object>());
-            set => _arguments = value;
-        }
-
-        /// <summary>
-        /// Whether the exchange will self-delete when all
-        /// queues have finished using it.
-        /// </summary>
-        [Input("autoDelete")]
-        public Input<bool>? AutoDelete { get; set; }
-
-        /// <summary>
-        /// Whether the exchange survives server restarts.
-        /// Defaults to `false`.
-        /// </summary>
-        [Input("durable")]
-        public Input<bool>? Durable { get; set; }
-
-        /// <summary>
-        /// The type of exchange.
-        /// </summary>
-        [Input("type", required: true)]
-        public Input<string> Type { get; set; } = null!;
-
-        public ExchangeSettingsArgs()
-        {
-        }
-    }
-
-    public sealed class ExchangeSettingsGetArgs : Pulumi.ResourceArgs
-    {
-        [Input("arguments")]
-        private InputMap<object>? _arguments;
-
-        /// <summary>
-        /// Additional key/value settings for the exchange.
-        /// </summary>
-        public InputMap<object> Arguments
-        {
-            get => _arguments ?? (_arguments = new InputMap<object>());
-            set => _arguments = value;
-        }
-
-        /// <summary>
-        /// Whether the exchange will self-delete when all
-        /// queues have finished using it.
-        /// </summary>
-        [Input("autoDelete")]
-        public Input<bool>? AutoDelete { get; set; }
-
-        /// <summary>
-        /// Whether the exchange survives server restarts.
-        /// Defaults to `false`.
-        /// </summary>
-        [Input("durable")]
-        public Input<bool>? Durable { get; set; }
-
-        /// <summary>
-        /// The type of exchange.
-        /// </summary>
-        [Input("type", required: true)]
-        public Input<string> Type { get; set; } = null!;
-
-        public ExchangeSettingsGetArgs()
-        {
-        }
-    }
-    }
-
-    namespace Outputs
-    {
-
-    [OutputType]
-    public sealed class ExchangeSettings
-    {
-        /// <summary>
-        /// Additional key/value settings for the exchange.
-        /// </summary>
-        public readonly ImmutableDictionary<string, object>? Arguments;
-        /// <summary>
-        /// Whether the exchange will self-delete when all
-        /// queues have finished using it.
-        /// </summary>
-        public readonly bool? AutoDelete;
-        /// <summary>
-        /// Whether the exchange survives server restarts.
-        /// Defaults to `false`.
-        /// </summary>
-        public readonly bool? Durable;
-        /// <summary>
-        /// The type of exchange.
-        /// </summary>
-        public readonly string Type;
-
-        [OutputConstructor]
-        private ExchangeSettings(
-            ImmutableDictionary<string, object>? arguments,
-            bool? autoDelete,
-            bool? durable,
-            string type)
-        {
-            Arguments = arguments;
-            AutoDelete = autoDelete;
-            Durable = durable;
-            Type = type;
-        }
-    }
     }
 }
