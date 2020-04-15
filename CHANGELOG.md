@@ -4,9 +4,13 @@ CHANGELOG
 ## HEAD (Unreleased)
 * Upgrade to pulumi-terraform-bridge v2.0.0-beta.1
 * Upgrade to Pulumi v2.0.0-beta.3
-* Refactor layout to support Go modules
 
 ---
+
+## 1.4.0 (2020-04-14)
+* Upgrade to pulumi-terraform-bridge v1.8.4
+* Upgrade to Pulumi v1.13.1
+* Refactor layout to support Go modules
 
 ## 1.2.0 (2020-02-25)
 * Upgrade to v1.3.0 of the RabbitMQ Terraform Provider
