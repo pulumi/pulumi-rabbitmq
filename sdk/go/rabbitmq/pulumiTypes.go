@@ -168,24 +168,44 @@ func (o ExchangeSettingsPtrOutput) Elem() ExchangeSettingsOutput {
 
 // Additional key/value settings for the exchange.
 func (o ExchangeSettingsPtrOutput) Arguments() pulumi.MapOutput {
-	return o.ApplyT(func(v ExchangeSettings) map[string]interface{} { return v.Arguments }).(pulumi.MapOutput)
+	return o.ApplyT(func(v *ExchangeSettings) map[string]interface{} {
+		if v == nil {
+			return nil
+		}
+		return v.Arguments
+	}).(pulumi.MapOutput)
 }
 
 // Whether the exchange will self-delete when all
 // queues have finished using it.
 func (o ExchangeSettingsPtrOutput) AutoDelete() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ExchangeSettings) *bool { return v.AutoDelete }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *ExchangeSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AutoDelete
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Whether the exchange survives server restarts.
 // Defaults to `false`.
 func (o ExchangeSettingsPtrOutput) Durable() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ExchangeSettings) *bool { return v.Durable }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *ExchangeSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Durable
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The type of exchange.
-func (o ExchangeSettingsPtrOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v ExchangeSettings) string { return v.Type }).(pulumi.StringOutput)
+func (o ExchangeSettingsPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExchangeSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
 }
 
 type PermissionsPermissions struct {
@@ -330,18 +350,33 @@ func (o PermissionsPermissionsPtrOutput) Elem() PermissionsPermissionsOutput {
 }
 
 // The "configure" ACL.
-func (o PermissionsPermissionsPtrOutput) Configure() pulumi.StringOutput {
-	return o.ApplyT(func(v PermissionsPermissions) string { return v.Configure }).(pulumi.StringOutput)
+func (o PermissionsPermissionsPtrOutput) Configure() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PermissionsPermissions) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Configure
+	}).(pulumi.StringPtrOutput)
 }
 
 // The "read" ACL.
-func (o PermissionsPermissionsPtrOutput) Read() pulumi.StringOutput {
-	return o.ApplyT(func(v PermissionsPermissions) string { return v.Read }).(pulumi.StringOutput)
+func (o PermissionsPermissionsPtrOutput) Read() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PermissionsPermissions) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Read
+	}).(pulumi.StringPtrOutput)
 }
 
 // The "write" ACL.
-func (o PermissionsPermissionsPtrOutput) Write() pulumi.StringOutput {
-	return o.ApplyT(func(v PermissionsPermissions) string { return v.Write }).(pulumi.StringOutput)
+func (o PermissionsPermissionsPtrOutput) Write() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PermissionsPermissions) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Write
+	}).(pulumi.StringPtrOutput)
 }
 
 type PolicyPolicy struct {
@@ -498,24 +533,44 @@ func (o PolicyPolicyPtrOutput) Elem() PolicyPolicyOutput {
 }
 
 // Can either be "exchanges", "queues", or "all".
-func (o PolicyPolicyPtrOutput) ApplyTo() pulumi.StringOutput {
-	return o.ApplyT(func(v PolicyPolicy) string { return v.ApplyTo }).(pulumi.StringOutput)
+func (o PolicyPolicyPtrOutput) ApplyTo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PolicyPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ApplyTo
+	}).(pulumi.StringPtrOutput)
 }
 
 // Key/value pairs of the policy definition. See the
 // RabbitMQ documentation for definition references and examples.
 func (o PolicyPolicyPtrOutput) Definition() pulumi.MapOutput {
-	return o.ApplyT(func(v PolicyPolicy) map[string]interface{} { return v.Definition }).(pulumi.MapOutput)
+	return o.ApplyT(func(v *PolicyPolicy) map[string]interface{} {
+		if v == nil {
+			return nil
+		}
+		return v.Definition
+	}).(pulumi.MapOutput)
 }
 
 // A pattern to match an exchange or queue name.
-func (o PolicyPolicyPtrOutput) Pattern() pulumi.StringOutput {
-	return o.ApplyT(func(v PolicyPolicy) string { return v.Pattern }).(pulumi.StringOutput)
+func (o PolicyPolicyPtrOutput) Pattern() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PolicyPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Pattern
+	}).(pulumi.StringPtrOutput)
 }
 
 // The policy with the greater priority is applied first.
-func (o PolicyPolicyPtrOutput) Priority() pulumi.IntOutput {
-	return o.ApplyT(func(v PolicyPolicy) int { return v.Priority }).(pulumi.IntOutput)
+func (o PolicyPolicyPtrOutput) Priority() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *PolicyPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Priority
+	}).(pulumi.IntPtrOutput)
 }
 
 type QueueSettings struct {
@@ -690,26 +745,46 @@ func (o QueueSettingsPtrOutput) Elem() QueueSettingsOutput {
 // All values will be sent to RabbitMQ as a string. If you require non-string
 // values, use `argumentsJson`.
 func (o QueueSettingsPtrOutput) Arguments() pulumi.MapOutput {
-	return o.ApplyT(func(v QueueSettings) map[string]interface{} { return v.Arguments }).(pulumi.MapOutput)
+	return o.ApplyT(func(v *QueueSettings) map[string]interface{} {
+		if v == nil {
+			return nil
+		}
+		return v.Arguments
+	}).(pulumi.MapOutput)
 }
 
 // A nested JSON string which contains additional
 // settings for the queue. This is useful for when the arguments contain
 // non-string values.
 func (o QueueSettingsPtrOutput) ArgumentsJson() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v QueueSettings) *string { return v.ArgumentsJson }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *QueueSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ArgumentsJson
+	}).(pulumi.StringPtrOutput)
 }
 
 // Whether the queue will self-delete when all
 // consumers have unsubscribed.
 func (o QueueSettingsPtrOutput) AutoDelete() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v QueueSettings) *bool { return v.AutoDelete }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *QueueSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AutoDelete
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Whether the queue survives server restarts.
 // Defaults to `false`.
 func (o QueueSettingsPtrOutput) Durable() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v QueueSettings) *bool { return v.Durable }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *QueueSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Durable
+	}).(pulumi.BoolPtrOutput)
 }
 
 type TopicPermissionsPermission struct {
