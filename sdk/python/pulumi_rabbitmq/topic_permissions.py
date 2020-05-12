@@ -32,6 +32,27 @@ class TopicPermissions(pulumi.CustomResource):
         The ``.TopicPermissions`` resource creates and manages a user's set of
         topic permissions.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        test_user = rabbitmq.User("testUser",
+            password="foobar",
+            tags=["administrator"])
+        test_topic_permissions = rabbitmq.TopicPermissions("testTopicPermissions",
+            permissions=[{
+                "exchange": "amq.topic",
+                "read": ".*",
+                "write": ".*",
+            }],
+            user=test_user.name,
+            vhost=test_v_host.name)
+        ```
 
 
         :param str resource_name: The name of the resource.

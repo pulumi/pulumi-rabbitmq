@@ -31,6 +31,21 @@ class User(pulumi.CustomResource):
         > **Note:** All arguments including username and password will be stored in the raw state as plain-text.
         [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test = rabbitmq.User("test",
+            password="foobar",
+            tags=[
+                "administrator",
+                "management",
+            ])
+        ```
 
 
         :param str resource_name: The name of the resource.

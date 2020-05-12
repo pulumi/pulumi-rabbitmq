@@ -34,6 +34,31 @@ class Exchange(pulumi.CustomResource):
         """
         The ``.Exchange`` resource creates and manages an exchange.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        guest = rabbitmq.Permissions("guest",
+            permissions={
+                "configure": ".*",
+                "read": ".*",
+                "write": ".*",
+            },
+            user="guest",
+            vhost=test_v_host.name)
+        test_exchange = rabbitmq.Exchange("testExchange",
+            settings={
+                "autoDelete": True,
+                "durable": False,
+                "type": "fanout",
+            },
+            vhost=guest.vhost)
+        ```
 
 
         :param str resource_name: The name of the resource.

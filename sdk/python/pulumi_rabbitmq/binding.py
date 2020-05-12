@@ -43,6 +43,43 @@ class Binding(pulumi.CustomResource):
         The ``.Binding`` resource creates and manages a binding relationship
         between a queue an exchange.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        guest = rabbitmq.Permissions("guest",
+            permissions={
+                "configure": ".*",
+                "read": ".*",
+                "write": ".*",
+            },
+            user="guest",
+            vhost=test_v_host.name)
+        test_exchange = rabbitmq.Exchange("testExchange",
+            settings={
+                "autoDelete": True,
+                "durable": False,
+                "type": "fanout",
+            },
+            vhost=guest.vhost)
+        test_queue = rabbitmq.Queue("testQueue",
+            settings={
+                "autoDelete": False,
+                "durable": True,
+            },
+            vhost=guest.vhost)
+        test_binding = rabbitmq.Binding("testBinding",
+            destination=test_queue.name,
+            destination_type="queue",
+            routing_key="#",
+            source=test_exchange.name,
+            vhost=test_v_host.name)
+        ```
 
 
         :param str resource_name: The name of the resource.

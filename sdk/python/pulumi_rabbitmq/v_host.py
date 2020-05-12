@@ -18,6 +18,16 @@ class VHost(pulumi.CustomResource):
         """
         The ``.VHost`` resource creates and manages a vhost.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        my_vhost = rabbitmq.VHost("myVhost")
+        ```
 
 
         :param str resource_name: The name of the resource.
