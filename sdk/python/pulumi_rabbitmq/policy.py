@@ -34,6 +34,34 @@ class Policy(pulumi.CustomResource):
         The ``.Policy`` resource creates and manages policies for exchanges
         and queues.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        guest = rabbitmq.Permissions("guest",
+            permissions={
+                "configure": ".*",
+                "read": ".*",
+                "write": ".*",
+            },
+            user="guest",
+            vhost=test_v_host.name)
+        test_policy = rabbitmq.Policy("testPolicy",
+            policy={
+                "applyTo": "all",
+                "definition": {
+                    "ha-mode": "all",
+                },
+                "pattern": ".*",
+                "priority": 0,
+            },
+            vhost=guest.vhost)
+        ```
 
 
         :param str resource_name: The name of the resource.
