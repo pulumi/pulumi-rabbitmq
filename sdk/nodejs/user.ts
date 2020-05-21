@@ -8,18 +8,18 @@ import * as utilities from "./utilities";
 
 /**
  * The ``rabbitmq..User`` resource creates and manages a user.
- * 
+ *
  * > **Note:** All arguments including username and password will be stored in the raw state as plain-text.
  * [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
- * 
+ *
  * const test = new rabbitmq.User("test", {
  *     password: "foobar",
  *     tags: [
@@ -28,8 +28,6 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/user.html.markdown.
  */
 export class User extends pulumi.CustomResource {
     /**

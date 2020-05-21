@@ -8,19 +8,17 @@ import * as utilities from "./utilities";
 
 /**
  * The ``rabbitmq..VHost`` resource creates and manages a vhost.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
- * 
+ *
  * const myVhost = new rabbitmq.VHost("myVhost", {});
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/vhost.html.markdown.
  */
 export class VHost extends pulumi.CustomResource {
     /**
