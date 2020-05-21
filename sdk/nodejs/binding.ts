@@ -7,15 +7,15 @@ import * as utilities from "./utilities";
 /**
  * The ``rabbitmq..Binding`` resource creates and manages a binding relationship
  * between a queue an exchange.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
- * 
+ *
  * const testVHost = new rabbitmq.VHost("test", {});
  * const guest = new rabbitmq.Permissions("guest", {
  *     permissions: {
@@ -49,8 +49,6 @@ import * as utilities from "./utilities";
  *     vhost: testVHost.name,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/binding.html.markdown.
  */
 export class Binding extends pulumi.CustomResource {
     /**

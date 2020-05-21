@@ -9,15 +9,15 @@ import * as utilities from "./utilities";
 /**
  * The ``rabbitmq..Policy`` resource creates and manages policies for exchanges
  * and queues.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
- * 
+ *
  * const testVHost = new rabbitmq.VHost("test", {});
  * const guest = new rabbitmq.Permissions("guest", {
  *     permissions: {
@@ -40,8 +40,6 @@ import * as utilities from "./utilities";
  *     vhost: guest.vhost,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/policy.html.markdown.
  */
 export class Policy extends pulumi.CustomResource {
     /**

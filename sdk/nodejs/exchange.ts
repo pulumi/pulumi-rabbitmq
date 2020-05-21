@@ -8,15 +8,15 @@ import * as utilities from "./utilities";
 
 /**
  * The ``rabbitmq..Exchange`` resource creates and manages an exchange.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
- * 
+ *
  * const testVHost = new rabbitmq.VHost("test", {});
  * const guest = new rabbitmq.Permissions("guest", {
  *     permissions: {
@@ -36,8 +36,6 @@ import * as utilities from "./utilities";
  *     vhost: guest.vhost,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-rabbitmq/blob/master/website/docs/r/exchange.html.markdown.
  */
 export class Exchange extends pulumi.CustomResource {
     /**
