@@ -11,6 +11,26 @@ namespace Pulumi.RabbitMQ
 {
     /// <summary>
     /// The ``rabbitmq..VHost`` resource creates and manages a vhost.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using RabbitMQ = Pulumi.RabbitMQ;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var myVhost = new RabbitMQ.VHost("myVhost", new RabbitMQ.VHostArgs
+    ///         {
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class VHost : Pulumi.CustomResource
     {

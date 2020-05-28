@@ -12,6 +12,48 @@ namespace Pulumi.RabbitMQ
     /// <summary>
     /// The ``rabbitmq..TopicPermissions`` resource creates and manages a user's set of
     /// topic permissions.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using RabbitMQ = Pulumi.RabbitMQ;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var testVHost = new RabbitMQ.VHost("testVHost", new RabbitMQ.VHostArgs
+    ///         {
+    ///         });
+    ///         var testUser = new RabbitMQ.User("testUser", new RabbitMQ.UserArgs
+    ///         {
+    ///             Password = "foobar",
+    ///             Tags = 
+    ///             {
+    ///                 "administrator",
+    ///             },
+    ///         });
+    ///         var testTopicPermissions = new RabbitMQ.TopicPermissions("testTopicPermissions", new RabbitMQ.TopicPermissionsArgs
+    ///         {
+    ///             Permissions = 
+    ///             {
+    ///                 new RabbitMQ.Inputs.TopicPermissionsPermissionArgs
+    ///                 {
+    ///                     Exchange = "amq.topic",
+    ///                     Read = ".*",
+    ///                     Write = ".*",
+    ///                 },
+    ///             },
+    ///             User = testUser.Name,
+    ///             Vhost = testVHost.Name,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class TopicPermissions : Pulumi.CustomResource
     {

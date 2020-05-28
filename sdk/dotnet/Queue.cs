@@ -11,6 +11,91 @@ namespace Pulumi.RabbitMQ
 {
     /// <summary>
     /// The ``rabbitmq..Queue`` resource creates and manages a queue.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Basic Example
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using RabbitMQ = Pulumi.RabbitMQ;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var testVHost = new RabbitMQ.VHost("testVHost", new RabbitMQ.VHostArgs
+    ///         {
+    ///         });
+    ///         var guest = new RabbitMQ.Permissions("guest", new RabbitMQ.PermissionsArgs
+    ///         {
+    ///             Permissions = new RabbitMQ.Inputs.PermissionsPermissionsArgs
+    ///             {
+    ///                 Configure = ".*",
+    ///                 Read = ".*",
+    ///                 Write = ".*",
+    ///             },
+    ///             User = "guest",
+    ///             Vhost = testVHost.Name,
+    ///         });
+    ///         var testQueue = new RabbitMQ.Queue("testQueue", new RabbitMQ.QueueArgs
+    ///         {
+    ///             Settings = new RabbitMQ.Inputs.QueueSettingsArgs
+    ///             {
+    ///                 AutoDelete = true,
+    ///                 Durable = false,
+    ///             },
+    ///             Vhost = guest.Vhost,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Example With JSON Arguments
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using RabbitMQ = Pulumi.RabbitMQ;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var config = new Config();
+    ///         var arguments = config.Get("arguments") ?? @"{
+    ///   ""x-message-ttl"": 5000
+    /// }
+    /// 
+    /// ";
+    ///         var testVHost = new RabbitMQ.VHost("testVHost", new RabbitMQ.VHostArgs
+    ///         {
+    ///         });
+    ///         var guest = new RabbitMQ.Permissions("guest", new RabbitMQ.PermissionsArgs
+    ///         {
+    ///             Permissions = new RabbitMQ.Inputs.PermissionsPermissionsArgs
+    ///             {
+    ///                 Configure = ".*",
+    ///                 Read = ".*",
+    ///                 Write = ".*",
+    ///             },
+    ///             User = "guest",
+    ///             Vhost = testVHost.Name,
+    ///         });
+    ///         var testQueue = new RabbitMQ.Queue("testQueue", new RabbitMQ.QueueArgs
+    ///         {
+    ///             Settings = new RabbitMQ.Inputs.QueueSettingsArgs
+    ///             {
+    ///                 ArgumentsJson = arguments,
+    ///                 AutoDelete = true,
+    ///                 Durable = false,
+    ///             },
+    ///             Vhost = guest.Vhost,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Queue : Pulumi.CustomResource
     {

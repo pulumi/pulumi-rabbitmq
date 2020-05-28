@@ -12,6 +12,51 @@ namespace Pulumi.RabbitMQ
     /// <summary>
     /// The ``rabbitmq..Policy`` resource creates and manages policies for exchanges
     /// and queues.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using RabbitMQ = Pulumi.RabbitMQ;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var testVHost = new RabbitMQ.VHost("testVHost", new RabbitMQ.VHostArgs
+    ///         {
+    ///         });
+    ///         var guest = new RabbitMQ.Permissions("guest", new RabbitMQ.PermissionsArgs
+    ///         {
+    ///             Permissions = new RabbitMQ.Inputs.PermissionsPermissionsArgs
+    ///             {
+    ///                 Configure = ".*",
+    ///                 Read = ".*",
+    ///                 Write = ".*",
+    ///             },
+    ///             User = "guest",
+    ///             Vhost = testVHost.Name,
+    ///         });
+    ///         var testPolicy = new RabbitMQ.Policy("testPolicy", new RabbitMQ.PolicyArgs
+    ///         {
+    ///             Policy = new RabbitMQ.Inputs.PolicyPolicyArgs
+    ///             {
+    ///                 ApplyTo = "all",
+    ///                 Definition = 
+    ///                 {
+    ///                     { "ha-mode", "all" },
+    ///                 },
+    ///                 Pattern = ".*",
+    ///                 Priority = 0,
+    ///             },
+    ///             Vhost = guest.Vhost,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Policy : Pulumi.CustomResource
     {
