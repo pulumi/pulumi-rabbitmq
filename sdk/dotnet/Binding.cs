@@ -12,6 +12,64 @@ namespace Pulumi.RabbitMQ
     /// <summary>
     /// The ``rabbitmq..Binding`` resource creates and manages a binding relationship
     /// between a queue an exchange.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using RabbitMQ = Pulumi.RabbitMQ;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var testVHost = new RabbitMQ.VHost("testVHost", new RabbitMQ.VHostArgs
+    ///         {
+    ///         });
+    ///         var guest = new RabbitMQ.Permissions("guest", new RabbitMQ.PermissionsArgs
+    ///         {
+    ///             Permissions = new RabbitMQ.Inputs.PermissionsPermissionsArgs
+    ///             {
+    ///                 Configure = ".*",
+    ///                 Read = ".*",
+    ///                 Write = ".*",
+    ///             },
+    ///             User = "guest",
+    ///             Vhost = testVHost.Name,
+    ///         });
+    ///         var testExchange = new RabbitMQ.Exchange("testExchange", new RabbitMQ.ExchangeArgs
+    ///         {
+    ///             Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
+    ///             {
+    ///                 AutoDelete = true,
+    ///                 Durable = false,
+    ///                 Type = "fanout",
+    ///             },
+    ///             Vhost = guest.Vhost,
+    ///         });
+    ///         var testQueue = new RabbitMQ.Queue("testQueue", new RabbitMQ.QueueArgs
+    ///         {
+    ///             Settings = new RabbitMQ.Inputs.QueueSettingsArgs
+    ///             {
+    ///                 AutoDelete = false,
+    ///                 Durable = true,
+    ///             },
+    ///             Vhost = guest.Vhost,
+    ///         });
+    ///         var testBinding = new RabbitMQ.Binding("testBinding", new RabbitMQ.BindingArgs
+    ///         {
+    ///             Destination = testQueue.Name,
+    ///             DestinationType = "queue",
+    ///             RoutingKey = "#",
+    ///             Source = testExchange.Name,
+    ///             Vhost = testVHost.Name,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Binding : Pulumi.CustomResource
     {

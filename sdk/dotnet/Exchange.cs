@@ -11,6 +11,47 @@ namespace Pulumi.RabbitMQ
 {
     /// <summary>
     /// The ``rabbitmq..Exchange`` resource creates and manages an exchange.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using RabbitMQ = Pulumi.RabbitMQ;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var testVHost = new RabbitMQ.VHost("testVHost", new RabbitMQ.VHostArgs
+    ///         {
+    ///         });
+    ///         var guest = new RabbitMQ.Permissions("guest", new RabbitMQ.PermissionsArgs
+    ///         {
+    ///             Permissions = new RabbitMQ.Inputs.PermissionsPermissionsArgs
+    ///             {
+    ///                 Configure = ".*",
+    ///                 Read = ".*",
+    ///                 Write = ".*",
+    ///             },
+    ///             User = "guest",
+    ///             Vhost = testVHost.Name,
+    ///         });
+    ///         var testExchange = new RabbitMQ.Exchange("testExchange", new RabbitMQ.ExchangeArgs
+    ///         {
+    ///             Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
+    ///             {
+    ///                 AutoDelete = true,
+    ///                 Durable = false,
+    ///                 Type = "fanout",
+    ///             },
+    ///             Vhost = guest.Vhost,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Exchange : Pulumi.CustomResource
     {
