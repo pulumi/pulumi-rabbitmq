@@ -28,7 +28,6 @@
         "types/output.ts",
         "user.ts",
         "utilities.ts",
-        "vHost.ts"
+        "vhost.ts"
     ]
 }
-

@@ -2,8 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -37,13 +35,11 @@ export class Provider extends pulumi.ProviderResource {
      */
     constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        {
-            inputs["cacertFile"] = (args ? args.cacertFile : undefined) || utilities.getEnv("RABBITMQ_CACERT");
-            inputs["endpoint"] = (args ? args.endpoint : undefined) || utilities.getEnv("RABBITMQ_ENDPOINT");
-            inputs["insecure"] = pulumi.output((args ? args.insecure : undefined) || utilities.getEnvBoolean("RABBITMQ_INSECURE")).apply(JSON.stringify);
-            inputs["password"] = (args ? args.password : undefined) || utilities.getEnv("RABBITMQ_PASSWORD");
-            inputs["username"] = (args ? args.username : undefined) || utilities.getEnv("RABBITMQ_USERNAME");
-        }
+        inputs["cacertFile"] = (args ? args.cacertFile : undefined) || utilities.getEnv("RABBITMQ_CACERT");
+        inputs["endpoint"] = (args ? args.endpoint : undefined) || utilities.getEnv("RABBITMQ_ENDPOINT");
+        inputs["insecure"] = pulumi.output((args ? args.insecure : undefined) || <any>utilities.getEnvBoolean("RABBITMQ_INSECURE")).apply(JSON.stringify);
+        inputs["password"] = (args ? args.password : undefined) || utilities.getEnv("RABBITMQ_PASSWORD");
+        inputs["username"] = (args ? args.username : undefined) || utilities.getEnv("RABBITMQ_USERNAME");
         if (!opts) {
             opts = {}
         }
