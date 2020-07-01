@@ -9,7 +9,28 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// The ``.VHost`` resource creates and manages a vhost.
+// The ``VHost`` resource creates and manages a vhost.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := rabbitmq.NewVHost(ctx, "myVhost", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type VHost struct {
 	pulumi.CustomResourceState
 

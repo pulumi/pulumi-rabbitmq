@@ -10,12 +10,10 @@ using Pulumi.Serialization;
 namespace Pulumi.RabbitMQ
 {
     /// <summary>
-    /// The ``rabbitmq..Permissions`` resource creates and manages a user's set of
+    /// The ``rabbitmq.Permissions`` resource creates and manages a user's set of
     /// permissions.
     /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;

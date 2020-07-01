@@ -10,8 +10,55 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// The ``.Policy`` resource creates and manages policies for exchanges
+// The ``Policy`` resource creates and manages policies for exchanges
 // and queues.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
+// 			Permissions: &rabbitmq.PermissionsPermissionsArgs{
+// 				Configure: pulumi.String(".*"),
+// 				Read:      pulumi.String(".*"),
+// 				Write:     pulumi.String(".*"),
+// 			},
+// 			User:  pulumi.String("guest"),
+// 			Vhost: testVHost.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = rabbitmq.NewPolicy(ctx, "testPolicy", &rabbitmq.PolicyArgs{
+// 			Policy: &rabbitmq.PolicyPolicyArgs{
+// 				ApplyTo: pulumi.String("all"),
+// 				Definition: pulumi.StringMap{
+// 					"ha-mode": pulumi.String("all"),
+// 				},
+// 				Pattern:  pulumi.String(".*"),
+// 				Priority: pulumi.Int(0),
+// 			},
+// 			Vhost: guest.Vhost,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Policy struct {
 	pulumi.CustomResourceState
 

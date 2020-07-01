@@ -10,7 +10,96 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// The ``.Queue`` resource creates and manages a queue.
+// The ``Queue`` resource creates and manages a queue.
+//
+// ## Example Usage
+// ### Basic Example
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
+// 			Permissions: &rabbitmq.PermissionsPermissionsArgs{
+// 				Configure: pulumi.String(".*"),
+// 				Read:      pulumi.String(".*"),
+// 				Write:     pulumi.String(".*"),
+// 			},
+// 			User:  pulumi.String("guest"),
+// 			Vhost: testVHost.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = rabbitmq.NewQueue(ctx, "testQueue", &rabbitmq.QueueArgs{
+// 			Settings: &rabbitmq.QueueSettingsArgs{
+// 				AutoDelete: pulumi.Bool(true),
+// 				Durable:    pulumi.Bool(false),
+// 			},
+// 			Vhost: guest.Vhost,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Example With JSON Arguments
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
+// 			Permissions: &rabbitmq.PermissionsPermissionsArgs{
+// 				Configure: pulumi.String(".*"),
+// 				Read:      pulumi.String(".*"),
+// 				Write:     pulumi.String(".*"),
+// 			},
+// 			User:  pulumi.String("guest"),
+// 			Vhost: testVHost.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = rabbitmq.NewQueue(ctx, "testQueue", &rabbitmq.QueueArgs{
+// 			Settings: &rabbitmq.QueueSettingsArgs{
+// 				ArgumentsJson: pulumi.String(arguments),
+// 				AutoDelete:    pulumi.Bool(true),
+// 				Durable:       pulumi.Bool(false),
+// 			},
+// 			Vhost: guest.Vhost,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Queue struct {
 	pulumi.CustomResourceState
 
