@@ -26,8 +26,7 @@ type ExchangeSettings struct {
 // ExchangeSettingsInput is an input type that accepts ExchangeSettingsArgs and ExchangeSettingsOutput values.
 // You can construct a concrete instance of `ExchangeSettingsInput` via:
 //
-// 		 ExchangeSettingsArgs{...}
-//
+//          ExchangeSettingsArgs{...}
 type ExchangeSettingsInput interface {
 	pulumi.Input
 
@@ -71,12 +70,11 @@ func (i ExchangeSettingsArgs) ToExchangeSettingsPtrOutputWithContext(ctx context
 // ExchangeSettingsPtrInput is an input type that accepts ExchangeSettingsArgs, ExchangeSettingsPtr and ExchangeSettingsPtrOutput values.
 // You can construct a concrete instance of `ExchangeSettingsPtrInput` via:
 //
-// 		 ExchangeSettingsArgs{...}
+//          ExchangeSettingsArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type ExchangeSettingsPtrInput interface {
 	pulumi.Input
 
@@ -220,8 +218,7 @@ type PermissionsPermissions struct {
 // PermissionsPermissionsInput is an input type that accepts PermissionsPermissionsArgs and PermissionsPermissionsOutput values.
 // You can construct a concrete instance of `PermissionsPermissionsInput` via:
 //
-// 		 PermissionsPermissionsArgs{...}
-//
+//          PermissionsPermissionsArgs{...}
 type PermissionsPermissionsInput interface {
 	pulumi.Input
 
@@ -261,12 +258,11 @@ func (i PermissionsPermissionsArgs) ToPermissionsPermissionsPtrOutputWithContext
 // PermissionsPermissionsPtrInput is an input type that accepts PermissionsPermissionsArgs, PermissionsPermissionsPtr and PermissionsPermissionsPtrOutput values.
 // You can construct a concrete instance of `PermissionsPermissionsPtrInput` via:
 //
-// 		 PermissionsPermissionsArgs{...}
+//          PermissionsPermissionsArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type PermissionsPermissionsPtrInput interface {
 	pulumi.Input
 
@@ -394,8 +390,7 @@ type PolicyPolicy struct {
 // PolicyPolicyInput is an input type that accepts PolicyPolicyArgs and PolicyPolicyOutput values.
 // You can construct a concrete instance of `PolicyPolicyInput` via:
 //
-// 		 PolicyPolicyArgs{...}
-//
+//          PolicyPolicyArgs{...}
 type PolicyPolicyInput interface {
 	pulumi.Input
 
@@ -438,12 +433,11 @@ func (i PolicyPolicyArgs) ToPolicyPolicyPtrOutputWithContext(ctx context.Context
 // PolicyPolicyPtrInput is an input type that accepts PolicyPolicyArgs, PolicyPolicyPtr and PolicyPolicyPtrOutput values.
 // You can construct a concrete instance of `PolicyPolicyPtrInput` via:
 //
-// 		 PolicyPolicyArgs{...}
+//          PolicyPolicyArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type PolicyPolicyPtrInput interface {
 	pulumi.Input
 
@@ -593,8 +587,7 @@ type QueueSettings struct {
 // QueueSettingsInput is an input type that accepts QueueSettingsArgs and QueueSettingsOutput values.
 // You can construct a concrete instance of `QueueSettingsInput` via:
 //
-// 		 QueueSettingsArgs{...}
-//
+//          QueueSettingsArgs{...}
 type QueueSettingsInput interface {
 	pulumi.Input
 
@@ -642,12 +635,11 @@ func (i QueueSettingsArgs) ToQueueSettingsPtrOutputWithContext(ctx context.Conte
 // QueueSettingsPtrInput is an input type that accepts QueueSettingsArgs, QueueSettingsPtr and QueueSettingsPtrOutput values.
 // You can construct a concrete instance of `QueueSettingsPtrInput` via:
 //
-// 		 QueueSettingsArgs{...}
+//          QueueSettingsArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type QueueSettingsPtrInput interface {
 	pulumi.Input
 
@@ -799,8 +791,7 @@ type TopicPermissionsPermission struct {
 // TopicPermissionsPermissionInput is an input type that accepts TopicPermissionsPermissionArgs and TopicPermissionsPermissionOutput values.
 // You can construct a concrete instance of `TopicPermissionsPermissionInput` via:
 //
-// 		 TopicPermissionsPermissionArgs{...}
-//
+//          TopicPermissionsPermissionArgs{...}
 type TopicPermissionsPermissionInput interface {
 	pulumi.Input
 
@@ -832,8 +823,7 @@ func (i TopicPermissionsPermissionArgs) ToTopicPermissionsPermissionOutputWithCo
 // TopicPermissionsPermissionArrayInput is an input type that accepts TopicPermissionsPermissionArray and TopicPermissionsPermissionArrayOutput values.
 // You can construct a concrete instance of `TopicPermissionsPermissionArrayInput` via:
 //
-// 		 TopicPermissionsPermissionArray{ TopicPermissionsPermissionArgs{...} }
-//
+//          TopicPermissionsPermissionArray{ TopicPermissionsPermissionArgs{...} }
 type TopicPermissionsPermissionArrayInput interface {
 	pulumi.Input
 

@@ -7,12 +7,10 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The ``rabbitmq..Policy`` resource creates and manages policies for exchanges
+ * The ``rabbitmq.Policy`` resource creates and manages policies for exchanges
  * and queues.
  *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

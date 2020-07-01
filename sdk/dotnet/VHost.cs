@@ -10,11 +10,9 @@ using Pulumi.Serialization;
 namespace Pulumi.RabbitMQ
 {
     /// <summary>
-    /// The ``rabbitmq..VHost`` resource creates and manages a vhost.
+    /// The ``rabbitmq.VHost`` resource creates and manages a vhost.
     /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;

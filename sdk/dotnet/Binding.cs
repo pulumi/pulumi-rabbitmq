@@ -10,12 +10,10 @@ using Pulumi.Serialization;
 namespace Pulumi.RabbitMQ
 {
     /// <summary>
-    /// The ``rabbitmq..Binding`` resource creates and manages a binding relationship
+    /// The ``rabbitmq.Binding`` resource creates and manages a binding relationship
     /// between a queue an exchange.
     /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;

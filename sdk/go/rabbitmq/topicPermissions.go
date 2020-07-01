@@ -10,8 +10,52 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// The ``.TopicPermissions`` resource creates and manages a user's set of
+// The ``TopicPermissions`` resource creates and manages a user's set of
 // topic permissions.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		testUser, err := rabbitmq.NewUser(ctx, "testUser", &rabbitmq.UserArgs{
+// 			Password: pulumi.String("foobar"),
+// 			Tags: pulumi.StringArray{
+// 				pulumi.String("administrator"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = rabbitmq.NewTopicPermissions(ctx, "testTopicPermissions", &rabbitmq.TopicPermissionsArgs{
+// 			Permissions: rabbitmq.TopicPermissionsPermissionArray{
+// 				&rabbitmq.TopicPermissionsPermissionArgs{
+// 					Exchange: pulumi.String("amq.topic"),
+// 					Read:     pulumi.String(".*"),
+// 					Write:    pulumi.String(".*"),
+// 				},
+// 			},
+// 			User:  testUser.Name,
+// 			Vhost: testVHost.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type TopicPermissions struct {
 	pulumi.CustomResourceState
 

@@ -7,10 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The ``rabbitmq..Queue`` resource creates and manages a queue.
+ * The ``rabbitmq.Queue`` resource creates and manages a queue.
  *
  * ## Example Usage
- *
  * ### Basic Example
  *
  * ```typescript
@@ -35,7 +34,6 @@ import * as utilities from "./utilities";
  *     vhost: guest.vhost,
  * });
  * ```
- *
  * ### Example With JSON Arguments
  *
  * ```typescript

@@ -7,12 +7,10 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The ``rabbitmq..Permissions`` resource creates and manages a user's set of
+ * The ``rabbitmq.Permissions`` resource creates and manages a user's set of
  * permissions.
  *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

@@ -5,12 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The ``rabbitmq..Binding`` resource creates and manages a binding relationship
+ * The ``rabbitmq.Binding`` resource creates and manages a binding relationship
  * between a queue an exchange.
  *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
