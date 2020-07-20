@@ -22,6 +22,12 @@
                     ]
                 }
             },
+            "clientcertFile": {
+                "type": "string"
+            },
+            "clientkeyFile": {
+                "type": "string"
+            },
             "endpoint": {
                 "type": "string",
                 "defaultInfo": {
@@ -107,6 +113,94 @@
             "type": "object",
             "required": [
                 "type"
+            ]
+        },
+        "rabbitmq:/FederationUpstreamDefinition:FederationUpstreamDefinition": {
+            "properties": {
+                "ackMode": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "exchange": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "expires": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maxHops": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "messageTtl": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "prefetchCount": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "queue": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "reconnectDelay": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "trustUserId": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "uri": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "uri"
             ]
         },
         "rabbitmq:/PermissionsPermissions:PermissionsPermissions": {
@@ -240,6 +334,132 @@
             },
             "type": "object"
         },
+        "rabbitmq:/ShovelInfo:ShovelInfo": {
+            "properties": {
+                "ackMode": {
+                    "type": "string",
+                    "description": "Determines how the shovel should acknowledge messages.\nDefaults to `on-confirm`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "addForwardHeaders": {
+                    "type": "boolean",
+                    "description": "Whether to amqp shovel headers.\nDefaults to `false`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "deleteAfter": {
+                    "type": "string",
+                    "description": "Determines when (if ever) the shovel should delete itself .\nDefaults to `never`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "destinationExchange": {
+                    "type": "string",
+                    "description": "The exchange to which messages should be published.\nEither this or destination_queue must be specified but not both.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "destinationExchangeKey": {
+                    "type": "string",
+                    "description": "The routing key when using destination_exchange.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "destinationQueue": {
+                    "type": "string",
+                    "description": "The queue to which messages should be published.\nEither this or destination_exchange must be specified but not both.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "destinationUri": {
+                    "type": "string",
+                    "description": "The amqp uri for the destination .\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "prefetchCount": {
+                    "type": "integer",
+                    "description": "The maximum number of unacknowledged messages copied over a shovel at any one time.\nDefaults to `1000`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "reconnectDelay": {
+                    "type": "integer",
+                    "description": "The duration in seconds to reconnect to a broker after disconnected.\nDefaults to `1`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sourceExchange": {
+                    "type": "string",
+                    "description": "The exchange from which to consume.\nEither this or source_queue must be specified but not both.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sourceExchangeKey": {
+                    "type": "string",
+                    "description": "The routing key when using source_exchange.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sourceQueue": {
+                    "type": "string",
+                    "description": "The queue from which to consume.\nEither this or source_exchange must be specified but not both.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sourceUri": {
+                    "type": "string",
+                    "description": "The amqp uri for the source.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "destinationUri",
+                "sourceUri"
+            ]
+        },
         "rabbitmq:/TopicPermissionsPermission:TopicPermissionsPermission": {
             "properties": {
                 "exchange": {
@@ -289,6 +509,12 @@
                     ]
                 }
             },
+            "clientcertFile": {
+                "type": "string"
+            },
+            "clientkeyFile": {
+                "type": "string"
+            },
             "endpoint": {
                 "type": "string",
                 "defaultInfo": {
@@ -334,6 +560,9 @@
                     },
                     "description": "Additional key/value arguments for the binding.\n"
                 },
+                "argumentsJson": {
+                    "type": "string"
+                },
                 "destination": {
                     "type": "string",
                     "description": "The destination queue or exchange.\n"
@@ -374,6 +603,9 @@
                     },
                     "description": "Additional key/value arguments for the binding.\n"
                 },
+                "argumentsJson": {
+                    "type": "string"
+                },
                 "destination": {
                     "type": "string",
                     "description": "The destination queue or exchange.\n"
@@ -410,6 +642,9 @@
                             "$ref": "pulumi.json#/Any"
                         },
                         "description": "Additional key/value arguments for the binding.\n"
+                    },
+                    "argumentsJson": {
+                        "type": "string"
                     },
                     "destination": {
                         "type": "string",
@@ -490,6 +725,61 @@
                     "vhost": {
                         "type": "string",
                         "description": "The vhost to create the resource in.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "rabbitmq:index/federationUpstream:FederationUpstream": {
+            "properties": {
+                "component": {
+                    "type": "string"
+                },
+                "definition": {
+                    "$ref": "#/types/rabbitmq:/FederationUpstreamDefinition:FederationUpstreamDefinition"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "vhost": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "component",
+                "definition",
+                "name",
+                "vhost"
+            ],
+            "inputProperties": {
+                "definition": {
+                    "$ref": "#/types/rabbitmq:/FederationUpstreamDefinition:FederationUpstreamDefinition"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "vhost": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "definition",
+                "vhost"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering FederationUpstream resources.\n",
+                "properties": {
+                    "component": {
+                        "type": "string"
+                    },
+                    "definition": {
+                        "$ref": "#/types/rabbitmq:/FederationUpstreamDefinition:FederationUpstreamDefinition"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "vhost": {
+                        "type": "string"
                     }
                 },
                 "type": "object"
@@ -641,7 +931,7 @@
             }
         },
         "rabbitmq:index/queue:Queue": {
-            "description": "The ``rabbitmq.Queue`` resource creates and manages a queue.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Basic Example\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as rabbitmq from \"@pulumi/rabbitmq\";\n\nconst testVHost = new rabbitmq.VHost(\"test\", {});\nconst guest = new rabbitmq.Permissions(\"guest\", {\n    permissions: {\n        configure: \".*\",\n        read: \".*\",\n        write: \".*\",\n    },\n    user: \"guest\",\n    vhost: testVHost.name,\n});\nconst testQueue = new rabbitmq.Queue(\"test\", {\n    settings: {\n        autoDelete: true,\n        durable: false,\n    },\n    vhost: guest.vhost,\n});\n```\n```python\nimport pulumi\nimport pulumi_rabbitmq as rabbitmq\n\ntest_v_host = rabbitmq.VHost(\"testVHost\")\nguest = rabbitmq.Permissions(\"guest\",\n    permissions={\n        \"configure\": \".*\",\n        \"read\": \".*\",\n        \"write\": \".*\",\n    },\n    user=\"guest\",\n    vhost=test_v_host.name)\ntest_queue = rabbitmq.Queue(\"testQueue\",\n    settings={\n        \"autoDelete\": True,\n        \"durable\": False,\n    },\n    vhost=guest.vhost)\n```\n```csharp\nusing Pulumi;\nusing RabbitMQ = Pulumi.RabbitMQ;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testVHost = new RabbitMQ.VHost(\"testVHost\", new RabbitMQ.VHostArgs\n        {\n        });\n        var guest = new RabbitMQ.Permissions(\"guest\", new RabbitMQ.PermissionsArgs\n        {\n            Permissions = new RabbitMQ.Inputs.PermissionsPermissionsArgs\n            {\n                Configure = \".*\",\n                Read = \".*\",\n                Write = \".*\",\n            },\n            User = \"guest\",\n            Vhost = testVHost.Name,\n        });\n        var testQueue = new RabbitMQ.Queue(\"testQueue\", new RabbitMQ.QueueArgs\n        {\n            Settings = new RabbitMQ.Inputs.QueueSettingsArgs\n            {\n                AutoDelete = true,\n                Durable = false,\n            },\n            Vhost = guest.Vhost,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestVHost, err := rabbitmq.NewVHost(ctx, \"testVHost\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tguest, err := rabbitmq.NewPermissions(ctx, \"guest\", \u0026rabbitmq.PermissionsArgs{\n\t\t\tPermissions: \u0026rabbitmq.PermissionsPermissionsArgs{\n\t\t\t\tConfigure: pulumi.String(\".*\"),\n\t\t\t\tRead:      pulumi.String(\".*\"),\n\t\t\t\tWrite:     pulumi.String(\".*\"),\n\t\t\t},\n\t\t\tUser:  pulumi.String(\"guest\"),\n\t\t\tVhost: testVHost.Name,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = rabbitmq.NewQueue(ctx, \"testQueue\", \u0026rabbitmq.QueueArgs{\n\t\t\tSettings: \u0026rabbitmq.QueueSettingsArgs{\n\t\t\t\tAutoDelete: pulumi.Bool(true),\n\t\t\t\tDurable:    pulumi.Bool(false),\n\t\t\t},\n\t\t\tVhost: guest.Vhost,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Example With JSON Arguments\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as rabbitmq from \"@pulumi/rabbitmq\";\n\nconst config = new pulumi.Config();\nconst arguments = config.get(\"arguments\") || `{\n  \"x-message-ttl\": 5000\n}\n`;\n\nconst testVHost = new rabbitmq.VHost(\"test\", {});\nconst guest = new rabbitmq.Permissions(\"guest\", {\n    permissions: {\n        configure: \".*\",\n        read: \".*\",\n        write: \".*\",\n    },\n    user: \"guest\",\n    vhost: testVHost.name,\n});\nconst testQueue = new rabbitmq.Queue(\"test\", {\n    settings: {\n        argumentsJson: arguments,\n        autoDelete: true,\n        durable: false,\n    },\n    vhost: guest.vhost,\n});\n```\n```python\nimport pulumi\nimport pulumi_rabbitmq as rabbitmq\n\nconfig = pulumi.Config()\narguments = config.get(\"arguments\")\nif arguments is None:\n    arguments = \"\"\"{\n  \"x-message-ttl\": 5000\n}\n\n\"\"\"\ntest_v_host = rabbitmq.VHost(\"testVHost\")\nguest = rabbitmq.Permissions(\"guest\",\n    permissions={\n        \"configure\": \".*\",\n        \"read\": \".*\",\n        \"write\": \".*\",\n    },\n    user=\"guest\",\n    vhost=test_v_host.name)\ntest_queue = rabbitmq.Queue(\"testQueue\",\n    settings={\n        \"argumentsJson\": arguments,\n        \"autoDelete\": True,\n        \"durable\": False,\n    },\n    vhost=guest.vhost)\n```\n```csharp\nusing Pulumi;\nusing RabbitMQ = Pulumi.RabbitMQ;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var config = new Config();\n        var arguments = config.Get(\"arguments\") ?? @\"{\n  \"\"x-message-ttl\"\": 5000\n}\n\n\";\n        var testVHost = new RabbitMQ.VHost(\"testVHost\", new RabbitMQ.VHostArgs\n        {\n        });\n        var guest = new RabbitMQ.Permissions(\"guest\", new RabbitMQ.PermissionsArgs\n        {\n            Permissions = new RabbitMQ.Inputs.PermissionsPermissionsArgs\n            {\n                Configure = \".*\",\n                Read = \".*\",\n                Write = \".*\",\n            },\n            User = \"guest\",\n            Vhost = testVHost.Name,\n        });\n        var testQueue = new RabbitMQ.Queue(\"testQueue\", new RabbitMQ.QueueArgs\n        {\n            Settings = new RabbitMQ.Inputs.QueueSettingsArgs\n            {\n                ArgumentsJson = arguments,\n                AutoDelete = true,\n                Durable = false,\n            },\n            Vhost = guest.Vhost,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestVHost, err := rabbitmq.NewVHost(ctx, \"testVHost\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tguest, err := rabbitmq.NewPermissions(ctx, \"guest\", \u0026rabbitmq.PermissionsArgs{\n\t\t\tPermissions: \u0026rabbitmq.PermissionsPermissionsArgs{\n\t\t\t\tConfigure: pulumi.String(\".*\"),\n\t\t\t\tRead:      pulumi.String(\".*\"),\n\t\t\t\tWrite:     pulumi.String(\".*\"),\n\t\t\t},\n\t\t\tUser:  pulumi.String(\"guest\"),\n\t\t\tVhost: testVHost.Name,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = rabbitmq.NewQueue(ctx, \"testQueue\", \u0026rabbitmq.QueueArgs{\n\t\t\tSettings: \u0026rabbitmq.QueueSettingsArgs{\n\t\t\t\tArgumentsJson: pulumi.String(arguments),\n\t\t\t\tAutoDelete:    pulumi.Bool(true),\n\t\t\t\tDurable:       pulumi.Bool(false),\n\t\t\t},\n\t\t\tVhost: guest.Vhost,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "The ``rabbitmq.Queue`` resource creates and manages a queue.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Basic Example\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as rabbitmq from \"@pulumi/rabbitmq\";\n\nconst testVHost = new rabbitmq.VHost(\"test\", {});\nconst guest = new rabbitmq.Permissions(\"guest\", {\n    permissions: {\n        configure: \".*\",\n        read: \".*\",\n        write: \".*\",\n    },\n    user: \"guest\",\n    vhost: testVHost.name,\n});\nconst testQueue = new rabbitmq.Queue(\"test\", {\n    settings: {\n        autoDelete: true,\n        durable: false,\n    },\n    vhost: guest.vhost,\n});\n```\n```python\nimport pulumi\nimport pulumi_rabbitmq as rabbitmq\n\ntest_v_host = rabbitmq.VHost(\"testVHost\")\nguest = rabbitmq.Permissions(\"guest\",\n    permissions={\n        \"configure\": \".*\",\n        \"read\": \".*\",\n        \"write\": \".*\",\n    },\n    user=\"guest\",\n    vhost=test_v_host.name)\ntest_queue = rabbitmq.Queue(\"testQueue\",\n    settings={\n        \"autoDelete\": True,\n        \"durable\": False,\n    },\n    vhost=guest.vhost)\n```\n```csharp\nusing Pulumi;\nusing RabbitMQ = Pulumi.RabbitMQ;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testVHost = new RabbitMQ.VHost(\"testVHost\", new RabbitMQ.VHostArgs\n        {\n        });\n        var guest = new RabbitMQ.Permissions(\"guest\", new RabbitMQ.PermissionsArgs\n        {\n            Permissions = new RabbitMQ.Inputs.PermissionsPermissionsArgs\n            {\n                Configure = \".*\",\n                Read = \".*\",\n                Write = \".*\",\n            },\n            User = \"guest\",\n            Vhost = testVHost.Name,\n        });\n        var testQueue = new RabbitMQ.Queue(\"testQueue\", new RabbitMQ.QueueArgs\n        {\n            Settings = new RabbitMQ.Inputs.QueueSettingsArgs\n            {\n                AutoDelete = true,\n                Durable = false,\n            },\n            Vhost = guest.Vhost,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestVHost, err := rabbitmq.NewVHost(ctx, \"testVHost\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tguest, err := rabbitmq.NewPermissions(ctx, \"guest\", \u0026rabbitmq.PermissionsArgs{\n\t\t\tPermissions: \u0026rabbitmq.PermissionsPermissionsArgs{\n\t\t\t\tConfigure: pulumi.String(\".*\"),\n\t\t\t\tRead:      pulumi.String(\".*\"),\n\t\t\t\tWrite:     pulumi.String(\".*\"),\n\t\t\t},\n\t\t\tUser:  pulumi.String(\"guest\"),\n\t\t\tVhost: testVHost.Name,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = rabbitmq.NewQueue(ctx, \"testQueue\", \u0026rabbitmq.QueueArgs{\n\t\t\tSettings: \u0026rabbitmq.QueueSettingsArgs{\n\t\t\t\tAutoDelete: pulumi.Bool(true),\n\t\t\t\tDurable:    pulumi.Bool(false),\n\t\t\t},\n\t\t\tVhost: guest.Vhost,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Example With JSON Arguments\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as rabbitmq from \"@pulumi/rabbitmq\";\n\nconst config = new pulumi.Config();\nconst arguments = config.get(\"arguments\") || `{\n  \"x-message-ttl\": 5000\n}\n`;\n\nconst testVHost = new rabbitmq.VHost(\"test\", {});\nconst guest = new rabbitmq.Permissions(\"guest\", {\n    permissions: {\n        configure: \".*\",\n        read: \".*\",\n        write: \".*\",\n    },\n    user: \"guest\",\n    vhost: testVHost.name,\n});\nconst testQueue = new rabbitmq.Queue(\"test\", {\n    settings: {\n        argumentsJson: arguments,\n        autoDelete: true,\n        durable: false,\n    },\n    vhost: guest.vhost,\n});\n```\n```python\nimport pulumi\nimport pulumi_rabbitmq as rabbitmq\n\nconfig = pulumi.Config()\narguments = config.get(\"arguments\")\nif arguments is None:\n    arguments = \"\"\"{\n  \"x-message-ttl\": 5000\n}\n\n\"\"\"\ntest_v_host = rabbitmq.VHost(\"testVHost\")\nguest = rabbitmq.Permissions(\"guest\",\n    permissions={\n        \"configure\": \".*\",\n        \"read\": \".*\",\n        \"write\": \".*\",\n    },\n    user=\"guest\",\n    vhost=test_v_host.name)\ntest_queue = rabbitmq.Queue(\"testQueue\",\n    settings={\n        \"arguments_json\": arguments,\n        \"autoDelete\": True,\n        \"durable\": False,\n    },\n    vhost=guest.vhost)\n```\n```csharp\nusing Pulumi;\nusing RabbitMQ = Pulumi.RabbitMQ;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var config = new Config();\n        var arguments = config.Get(\"arguments\") ?? @\"{\n  \"\"x-message-ttl\"\": 5000\n}\n\n\";\n        var testVHost = new RabbitMQ.VHost(\"testVHost\", new RabbitMQ.VHostArgs\n        {\n        });\n        var guest = new RabbitMQ.Permissions(\"guest\", new RabbitMQ.PermissionsArgs\n        {\n            Permissions = new RabbitMQ.Inputs.PermissionsPermissionsArgs\n            {\n                Configure = \".*\",\n                Read = \".*\",\n                Write = \".*\",\n            },\n            User = \"guest\",\n            Vhost = testVHost.Name,\n        });\n        var testQueue = new RabbitMQ.Queue(\"testQueue\", new RabbitMQ.QueueArgs\n        {\n            Settings = new RabbitMQ.Inputs.QueueSettingsArgs\n            {\n                ArgumentsJson = arguments,\n                AutoDelete = true,\n                Durable = false,\n            },\n            Vhost = guest.Vhost,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestVHost, err := rabbitmq.NewVHost(ctx, \"testVHost\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tguest, err := rabbitmq.NewPermissions(ctx, \"guest\", \u0026rabbitmq.PermissionsArgs{\n\t\t\tPermissions: \u0026rabbitmq.PermissionsPermissionsArgs{\n\t\t\t\tConfigure: pulumi.String(\".*\"),\n\t\t\t\tRead:      pulumi.String(\".*\"),\n\t\t\t\tWrite:     pulumi.String(\".*\"),\n\t\t\t},\n\t\t\tUser:  pulumi.String(\"guest\"),\n\t\t\tVhost: testVHost.Name,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = rabbitmq.NewQueue(ctx, \"testQueue\", \u0026rabbitmq.QueueArgs{\n\t\t\tSettings: \u0026rabbitmq.QueueSettingsArgs{\n\t\t\t\tArgumentsJson: pulumi.String(arguments),\n\t\t\t\tAutoDelete:    pulumi.Bool(true),\n\t\t\t\tDurable:       pulumi.Bool(false),\n\t\t\t},\n\t\t\tVhost: guest.Vhost,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "name": {
                     "type": "string",
@@ -687,6 +977,64 @@
                     "settings": {
                         "$ref": "#/types/rabbitmq:/QueueSettings:QueueSettings",
                         "description": "The settings of the queue. The structure is\ndescribed below.\n"
+                    },
+                    "vhost": {
+                        "type": "string",
+                        "description": "The vhost to create the resource in.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "rabbitmq:index/shovel:Shovel": {
+            "description": "The ``rabbitmq.Shovel`` resource creates and manages a shovel.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as rabbitmq from \"@pulumi/rabbitmq\";\n\nconst testVHost = new rabbitmq.VHost(\"test\", {});\nconst testExchange = new rabbitmq.Exchange(\"test\", {\n    settings: {\n        autoDelete: true,\n        durable: false,\n        type: \"fanout\",\n    },\n    vhost: testVHost.name,\n});\nconst testQueue = new rabbitmq.Queue(\"test\", {\n    settings: {\n        autoDelete: true,\n        durable: false,\n    },\n    vhost: testVHost.name,\n});\nconst shovelTest = new rabbitmq.Shovel(\"shovelTest\", {\n    info: {\n        destinationQueue: testQueue.name,\n        destinationUri: \"amqp:///test\",\n        sourceExchange: testExchange.name,\n        sourceExchangeKey: \"test\",\n        sourceUri: \"amqp:///test\",\n    },\n    vhost: testVHost.name,\n});\n```\n```python\nimport pulumi\nimport pulumi_rabbitmq as rabbitmq\n\ntest_v_host = rabbitmq.VHost(\"testVHost\")\ntest_exchange = rabbitmq.Exchange(\"testExchange\",\n    settings={\n        \"autoDelete\": True,\n        \"durable\": False,\n        \"type\": \"fanout\",\n    },\n    vhost=test_v_host.name)\ntest_queue = rabbitmq.Queue(\"testQueue\",\n    settings={\n        \"autoDelete\": True,\n        \"durable\": False,\n    },\n    vhost=test_v_host.name)\nshovel_test = rabbitmq.Shovel(\"shovelTest\",\n    info={\n        \"destinationQueue\": test_queue.name,\n        \"destinationUri\": \"amqp:///test\",\n        \"sourceExchange\": test_exchange.name,\n        \"sourceExchangeKey\": \"test\",\n        \"sourceUri\": \"amqp:///test\",\n    },\n    vhost=test_v_host.name)\n```\n```csharp\nusing Pulumi;\nusing RabbitMQ = Pulumi.RabbitMQ;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testVHost = new RabbitMQ.VHost(\"testVHost\", new RabbitMQ.VHostArgs\n        {\n        });\n        var testExchange = new RabbitMQ.Exchange(\"testExchange\", new RabbitMQ.ExchangeArgs\n        {\n            Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs\n            {\n                AutoDelete = true,\n                Durable = false,\n                Type = \"fanout\",\n            },\n            Vhost = testVHost.Name,\n        });\n        var testQueue = new RabbitMQ.Queue(\"testQueue\", new RabbitMQ.QueueArgs\n        {\n            Settings = new RabbitMQ.Inputs.QueueSettingsArgs\n            {\n                AutoDelete = true,\n                Durable = false,\n            },\n            Vhost = testVHost.Name,\n        });\n        var shovelTest = new RabbitMQ.Shovel(\"shovelTest\", new RabbitMQ.ShovelArgs\n        {\n            Info = new RabbitMQ.Inputs.ShovelInfoArgs\n            {\n                DestinationQueue = testQueue.Name,\n                DestinationUri = \"amqp:///test\",\n                SourceExchange = testExchange.Name,\n                SourceExchangeKey = \"test\",\n                SourceUri = \"amqp:///test\",\n            },\n            Vhost = testVHost.Name,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestVHost, err := rabbitmq.NewVHost(ctx, \"testVHost\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestExchange, err := rabbitmq.NewExchange(ctx, \"testExchange\", \u0026rabbitmq.ExchangeArgs{\n\t\t\tSettings: \u0026rabbitmq.ExchangeSettingsArgs{\n\t\t\t\tAutoDelete: pulumi.Bool(true),\n\t\t\t\tDurable:    pulumi.Bool(false),\n\t\t\t\tType:       pulumi.String(\"fanout\"),\n\t\t\t},\n\t\t\tVhost: testVHost.Name,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestQueue, err := rabbitmq.NewQueue(ctx, \"testQueue\", \u0026rabbitmq.QueueArgs{\n\t\t\tSettings: \u0026rabbitmq.QueueSettingsArgs{\n\t\t\t\tAutoDelete: pulumi.Bool(true),\n\t\t\t\tDurable:    pulumi.Bool(false),\n\t\t\t},\n\t\t\tVhost: testVHost.Name,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = rabbitmq.NewShovel(ctx, \"shovelTest\", \u0026rabbitmq.ShovelArgs{\n\t\t\tInfo: \u0026rabbitmq.ShovelInfoArgs{\n\t\t\t\tDestinationQueue:  testQueue.Name,\n\t\t\t\tDestinationUri:    pulumi.String(\"amqp:///test\"),\n\t\t\t\tSourceExchange:    testExchange.Name,\n\t\t\t\tSourceExchangeKey: pulumi.String(\"test\"),\n\t\t\t\tSourceUri:         pulumi.String(\"amqp:///test\"),\n\t\t\t},\n\t\t\tVhost: testVHost.Name,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "info": {
+                    "$ref": "#/types/rabbitmq:/ShovelInfo:ShovelInfo",
+                    "description": "The settings of the shovel. The structure is\ndescribed below.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The shovel name.\n"
+                },
+                "vhost": {
+                    "type": "string",
+                    "description": "The vhost to create the resource in.\n"
+                }
+            },
+            "required": [
+                "info",
+                "name",
+                "vhost"
+            ],
+            "inputProperties": {
+                "info": {
+                    "$ref": "#/types/rabbitmq:/ShovelInfo:ShovelInfo",
+                    "description": "The settings of the shovel. The structure is\ndescribed below.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The shovel name.\n"
+                },
+                "vhost": {
+                    "type": "string",
+                    "description": "The vhost to create the resource in.\n"
+                }
+            },
+            "requiredInputs": [
+                "info",
+                "vhost"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Shovel resources.\n",
+                "properties": {
+                    "info": {
+                        "$ref": "#/types/rabbitmq:/ShovelInfo:ShovelInfo",
+                        "description": "The settings of the shovel. The structure is\ndescribed below.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The shovel name.\n"
                     },
                     "vhost": {
                         "type": "string",

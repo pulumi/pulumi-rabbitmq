@@ -206,6 +206,267 @@ func (o ExchangeSettingsPtrOutput) Type() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type FederationUpstreamDefinition struct {
+	AckMode        *string `pulumi:"ackMode"`
+	Exchange       *string `pulumi:"exchange"`
+	Expires        *int    `pulumi:"expires"`
+	MaxHops        *int    `pulumi:"maxHops"`
+	MessageTtl     *int    `pulumi:"messageTtl"`
+	PrefetchCount  *int    `pulumi:"prefetchCount"`
+	Queue          *string `pulumi:"queue"`
+	ReconnectDelay *int    `pulumi:"reconnectDelay"`
+	TrustUserId    *bool   `pulumi:"trustUserId"`
+	Uri            string  `pulumi:"uri"`
+}
+
+// FederationUpstreamDefinitionInput is an input type that accepts FederationUpstreamDefinitionArgs and FederationUpstreamDefinitionOutput values.
+// You can construct a concrete instance of `FederationUpstreamDefinitionInput` via:
+//
+//          FederationUpstreamDefinitionArgs{...}
+type FederationUpstreamDefinitionInput interface {
+	pulumi.Input
+
+	ToFederationUpstreamDefinitionOutput() FederationUpstreamDefinitionOutput
+	ToFederationUpstreamDefinitionOutputWithContext(context.Context) FederationUpstreamDefinitionOutput
+}
+
+type FederationUpstreamDefinitionArgs struct {
+	AckMode        pulumi.StringPtrInput `pulumi:"ackMode"`
+	Exchange       pulumi.StringPtrInput `pulumi:"exchange"`
+	Expires        pulumi.IntPtrInput    `pulumi:"expires"`
+	MaxHops        pulumi.IntPtrInput    `pulumi:"maxHops"`
+	MessageTtl     pulumi.IntPtrInput    `pulumi:"messageTtl"`
+	PrefetchCount  pulumi.IntPtrInput    `pulumi:"prefetchCount"`
+	Queue          pulumi.StringPtrInput `pulumi:"queue"`
+	ReconnectDelay pulumi.IntPtrInput    `pulumi:"reconnectDelay"`
+	TrustUserId    pulumi.BoolPtrInput   `pulumi:"trustUserId"`
+	Uri            pulumi.StringInput    `pulumi:"uri"`
+}
+
+func (FederationUpstreamDefinitionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederationUpstreamDefinition)(nil)).Elem()
+}
+
+func (i FederationUpstreamDefinitionArgs) ToFederationUpstreamDefinitionOutput() FederationUpstreamDefinitionOutput {
+	return i.ToFederationUpstreamDefinitionOutputWithContext(context.Background())
+}
+
+func (i FederationUpstreamDefinitionArgs) ToFederationUpstreamDefinitionOutputWithContext(ctx context.Context) FederationUpstreamDefinitionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederationUpstreamDefinitionOutput)
+}
+
+func (i FederationUpstreamDefinitionArgs) ToFederationUpstreamDefinitionPtrOutput() FederationUpstreamDefinitionPtrOutput {
+	return i.ToFederationUpstreamDefinitionPtrOutputWithContext(context.Background())
+}
+
+func (i FederationUpstreamDefinitionArgs) ToFederationUpstreamDefinitionPtrOutputWithContext(ctx context.Context) FederationUpstreamDefinitionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederationUpstreamDefinitionOutput).ToFederationUpstreamDefinitionPtrOutputWithContext(ctx)
+}
+
+// FederationUpstreamDefinitionPtrInput is an input type that accepts FederationUpstreamDefinitionArgs, FederationUpstreamDefinitionPtr and FederationUpstreamDefinitionPtrOutput values.
+// You can construct a concrete instance of `FederationUpstreamDefinitionPtrInput` via:
+//
+//          FederationUpstreamDefinitionArgs{...}
+//
+//  or:
+//
+//          nil
+type FederationUpstreamDefinitionPtrInput interface {
+	pulumi.Input
+
+	ToFederationUpstreamDefinitionPtrOutput() FederationUpstreamDefinitionPtrOutput
+	ToFederationUpstreamDefinitionPtrOutputWithContext(context.Context) FederationUpstreamDefinitionPtrOutput
+}
+
+type federationUpstreamDefinitionPtrType FederationUpstreamDefinitionArgs
+
+func FederationUpstreamDefinitionPtr(v *FederationUpstreamDefinitionArgs) FederationUpstreamDefinitionPtrInput {
+	return (*federationUpstreamDefinitionPtrType)(v)
+}
+
+func (*federationUpstreamDefinitionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**FederationUpstreamDefinition)(nil)).Elem()
+}
+
+func (i *federationUpstreamDefinitionPtrType) ToFederationUpstreamDefinitionPtrOutput() FederationUpstreamDefinitionPtrOutput {
+	return i.ToFederationUpstreamDefinitionPtrOutputWithContext(context.Background())
+}
+
+func (i *federationUpstreamDefinitionPtrType) ToFederationUpstreamDefinitionPtrOutputWithContext(ctx context.Context) FederationUpstreamDefinitionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederationUpstreamDefinitionPtrOutput)
+}
+
+type FederationUpstreamDefinitionOutput struct{ *pulumi.OutputState }
+
+func (FederationUpstreamDefinitionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederationUpstreamDefinition)(nil)).Elem()
+}
+
+func (o FederationUpstreamDefinitionOutput) ToFederationUpstreamDefinitionOutput() FederationUpstreamDefinitionOutput {
+	return o
+}
+
+func (o FederationUpstreamDefinitionOutput) ToFederationUpstreamDefinitionOutputWithContext(ctx context.Context) FederationUpstreamDefinitionOutput {
+	return o
+}
+
+func (o FederationUpstreamDefinitionOutput) ToFederationUpstreamDefinitionPtrOutput() FederationUpstreamDefinitionPtrOutput {
+	return o.ToFederationUpstreamDefinitionPtrOutputWithContext(context.Background())
+}
+
+func (o FederationUpstreamDefinitionOutput) ToFederationUpstreamDefinitionPtrOutputWithContext(ctx context.Context) FederationUpstreamDefinitionPtrOutput {
+	return o.ApplyT(func(v FederationUpstreamDefinition) *FederationUpstreamDefinition {
+		return &v
+	}).(FederationUpstreamDefinitionPtrOutput)
+}
+func (o FederationUpstreamDefinitionOutput) AckMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederationUpstreamDefinition) *string { return v.AckMode }).(pulumi.StringPtrOutput)
+}
+
+func (o FederationUpstreamDefinitionOutput) Exchange() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederationUpstreamDefinition) *string { return v.Exchange }).(pulumi.StringPtrOutput)
+}
+
+func (o FederationUpstreamDefinitionOutput) Expires() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FederationUpstreamDefinition) *int { return v.Expires }).(pulumi.IntPtrOutput)
+}
+
+func (o FederationUpstreamDefinitionOutput) MaxHops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FederationUpstreamDefinition) *int { return v.MaxHops }).(pulumi.IntPtrOutput)
+}
+
+func (o FederationUpstreamDefinitionOutput) MessageTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FederationUpstreamDefinition) *int { return v.MessageTtl }).(pulumi.IntPtrOutput)
+}
+
+func (o FederationUpstreamDefinitionOutput) PrefetchCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FederationUpstreamDefinition) *int { return v.PrefetchCount }).(pulumi.IntPtrOutput)
+}
+
+func (o FederationUpstreamDefinitionOutput) Queue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederationUpstreamDefinition) *string { return v.Queue }).(pulumi.StringPtrOutput)
+}
+
+func (o FederationUpstreamDefinitionOutput) ReconnectDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FederationUpstreamDefinition) *int { return v.ReconnectDelay }).(pulumi.IntPtrOutput)
+}
+
+func (o FederationUpstreamDefinitionOutput) TrustUserId() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v FederationUpstreamDefinition) *bool { return v.TrustUserId }).(pulumi.BoolPtrOutput)
+}
+
+func (o FederationUpstreamDefinitionOutput) Uri() pulumi.StringOutput {
+	return o.ApplyT(func(v FederationUpstreamDefinition) string { return v.Uri }).(pulumi.StringOutput)
+}
+
+type FederationUpstreamDefinitionPtrOutput struct{ *pulumi.OutputState }
+
+func (FederationUpstreamDefinitionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FederationUpstreamDefinition)(nil)).Elem()
+}
+
+func (o FederationUpstreamDefinitionPtrOutput) ToFederationUpstreamDefinitionPtrOutput() FederationUpstreamDefinitionPtrOutput {
+	return o
+}
+
+func (o FederationUpstreamDefinitionPtrOutput) ToFederationUpstreamDefinitionPtrOutputWithContext(ctx context.Context) FederationUpstreamDefinitionPtrOutput {
+	return o
+}
+
+func (o FederationUpstreamDefinitionPtrOutput) Elem() FederationUpstreamDefinitionOutput {
+	return o.ApplyT(func(v *FederationUpstreamDefinition) FederationUpstreamDefinition { return *v }).(FederationUpstreamDefinitionOutput)
+}
+
+func (o FederationUpstreamDefinitionPtrOutput) AckMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FederationUpstreamDefinition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AckMode
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o FederationUpstreamDefinitionPtrOutput) Exchange() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FederationUpstreamDefinition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Exchange
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o FederationUpstreamDefinitionPtrOutput) Expires() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FederationUpstreamDefinition) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Expires
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o FederationUpstreamDefinitionPtrOutput) MaxHops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FederationUpstreamDefinition) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxHops
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o FederationUpstreamDefinitionPtrOutput) MessageTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FederationUpstreamDefinition) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MessageTtl
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o FederationUpstreamDefinitionPtrOutput) PrefetchCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FederationUpstreamDefinition) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PrefetchCount
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o FederationUpstreamDefinitionPtrOutput) Queue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FederationUpstreamDefinition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Queue
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o FederationUpstreamDefinitionPtrOutput) ReconnectDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FederationUpstreamDefinition) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ReconnectDelay
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o FederationUpstreamDefinitionPtrOutput) TrustUserId() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *FederationUpstreamDefinition) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.TrustUserId
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o FederationUpstreamDefinitionPtrOutput) Uri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FederationUpstreamDefinition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uri
+	}).(pulumi.StringPtrOutput)
+}
+
 type PermissionsPermissions struct {
 	// The "configure" ACL.
 	Configure string `pulumi:"configure"`
@@ -779,6 +1040,401 @@ func (o QueueSettingsPtrOutput) Durable() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+type ShovelInfo struct {
+	// Determines how the shovel should acknowledge messages.
+	// Defaults to `on-confirm`.
+	AckMode *string `pulumi:"ackMode"`
+	// Whether to amqp shovel headers.
+	// Defaults to `false`.
+	AddForwardHeaders *bool `pulumi:"addForwardHeaders"`
+	// Determines when (if ever) the shovel should delete itself .
+	// Defaults to `never`.
+	DeleteAfter *string `pulumi:"deleteAfter"`
+	// The exchange to which messages should be published.
+	// Either this or destinationQueue must be specified but not both.
+	DestinationExchange *string `pulumi:"destinationExchange"`
+	// The routing key when using destination_exchange.
+	DestinationExchangeKey *string `pulumi:"destinationExchangeKey"`
+	// The queue to which messages should be published.
+	// Either this or destinationExchange must be specified but not both.
+	DestinationQueue *string `pulumi:"destinationQueue"`
+	// The amqp uri for the destination .
+	DestinationUri string `pulumi:"destinationUri"`
+	// The maximum number of unacknowledged messages copied over a shovel at any one time.
+	// Defaults to `1000`.
+	PrefetchCount *int `pulumi:"prefetchCount"`
+	// The duration in seconds to reconnect to a broker after disconnected.
+	// Defaults to `1`.
+	ReconnectDelay *int `pulumi:"reconnectDelay"`
+	// The exchange from which to consume.
+	// Either this or sourceQueue must be specified but not both.
+	SourceExchange *string `pulumi:"sourceExchange"`
+	// The routing key when using source_exchange.
+	SourceExchangeKey *string `pulumi:"sourceExchangeKey"`
+	// The queue from which to consume.
+	// Either this or sourceExchange must be specified but not both.
+	SourceQueue *string `pulumi:"sourceQueue"`
+	// The amqp uri for the source.
+	SourceUri string `pulumi:"sourceUri"`
+}
+
+// ShovelInfoInput is an input type that accepts ShovelInfoArgs and ShovelInfoOutput values.
+// You can construct a concrete instance of `ShovelInfoInput` via:
+//
+//          ShovelInfoArgs{...}
+type ShovelInfoInput interface {
+	pulumi.Input
+
+	ToShovelInfoOutput() ShovelInfoOutput
+	ToShovelInfoOutputWithContext(context.Context) ShovelInfoOutput
+}
+
+type ShovelInfoArgs struct {
+	// Determines how the shovel should acknowledge messages.
+	// Defaults to `on-confirm`.
+	AckMode pulumi.StringPtrInput `pulumi:"ackMode"`
+	// Whether to amqp shovel headers.
+	// Defaults to `false`.
+	AddForwardHeaders pulumi.BoolPtrInput `pulumi:"addForwardHeaders"`
+	// Determines when (if ever) the shovel should delete itself .
+	// Defaults to `never`.
+	DeleteAfter pulumi.StringPtrInput `pulumi:"deleteAfter"`
+	// The exchange to which messages should be published.
+	// Either this or destinationQueue must be specified but not both.
+	DestinationExchange pulumi.StringPtrInput `pulumi:"destinationExchange"`
+	// The routing key when using destination_exchange.
+	DestinationExchangeKey pulumi.StringPtrInput `pulumi:"destinationExchangeKey"`
+	// The queue to which messages should be published.
+	// Either this or destinationExchange must be specified but not both.
+	DestinationQueue pulumi.StringPtrInput `pulumi:"destinationQueue"`
+	// The amqp uri for the destination .
+	DestinationUri pulumi.StringInput `pulumi:"destinationUri"`
+	// The maximum number of unacknowledged messages copied over a shovel at any one time.
+	// Defaults to `1000`.
+	PrefetchCount pulumi.IntPtrInput `pulumi:"prefetchCount"`
+	// The duration in seconds to reconnect to a broker after disconnected.
+	// Defaults to `1`.
+	ReconnectDelay pulumi.IntPtrInput `pulumi:"reconnectDelay"`
+	// The exchange from which to consume.
+	// Either this or sourceQueue must be specified but not both.
+	SourceExchange pulumi.StringPtrInput `pulumi:"sourceExchange"`
+	// The routing key when using source_exchange.
+	SourceExchangeKey pulumi.StringPtrInput `pulumi:"sourceExchangeKey"`
+	// The queue from which to consume.
+	// Either this or sourceExchange must be specified but not both.
+	SourceQueue pulumi.StringPtrInput `pulumi:"sourceQueue"`
+	// The amqp uri for the source.
+	SourceUri pulumi.StringInput `pulumi:"sourceUri"`
+}
+
+func (ShovelInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShovelInfo)(nil)).Elem()
+}
+
+func (i ShovelInfoArgs) ToShovelInfoOutput() ShovelInfoOutput {
+	return i.ToShovelInfoOutputWithContext(context.Background())
+}
+
+func (i ShovelInfoArgs) ToShovelInfoOutputWithContext(ctx context.Context) ShovelInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShovelInfoOutput)
+}
+
+func (i ShovelInfoArgs) ToShovelInfoPtrOutput() ShovelInfoPtrOutput {
+	return i.ToShovelInfoPtrOutputWithContext(context.Background())
+}
+
+func (i ShovelInfoArgs) ToShovelInfoPtrOutputWithContext(ctx context.Context) ShovelInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShovelInfoOutput).ToShovelInfoPtrOutputWithContext(ctx)
+}
+
+// ShovelInfoPtrInput is an input type that accepts ShovelInfoArgs, ShovelInfoPtr and ShovelInfoPtrOutput values.
+// You can construct a concrete instance of `ShovelInfoPtrInput` via:
+//
+//          ShovelInfoArgs{...}
+//
+//  or:
+//
+//          nil
+type ShovelInfoPtrInput interface {
+	pulumi.Input
+
+	ToShovelInfoPtrOutput() ShovelInfoPtrOutput
+	ToShovelInfoPtrOutputWithContext(context.Context) ShovelInfoPtrOutput
+}
+
+type shovelInfoPtrType ShovelInfoArgs
+
+func ShovelInfoPtr(v *ShovelInfoArgs) ShovelInfoPtrInput {
+	return (*shovelInfoPtrType)(v)
+}
+
+func (*shovelInfoPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ShovelInfo)(nil)).Elem()
+}
+
+func (i *shovelInfoPtrType) ToShovelInfoPtrOutput() ShovelInfoPtrOutput {
+	return i.ToShovelInfoPtrOutputWithContext(context.Background())
+}
+
+func (i *shovelInfoPtrType) ToShovelInfoPtrOutputWithContext(ctx context.Context) ShovelInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShovelInfoPtrOutput)
+}
+
+type ShovelInfoOutput struct{ *pulumi.OutputState }
+
+func (ShovelInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShovelInfo)(nil)).Elem()
+}
+
+func (o ShovelInfoOutput) ToShovelInfoOutput() ShovelInfoOutput {
+	return o
+}
+
+func (o ShovelInfoOutput) ToShovelInfoOutputWithContext(ctx context.Context) ShovelInfoOutput {
+	return o
+}
+
+func (o ShovelInfoOutput) ToShovelInfoPtrOutput() ShovelInfoPtrOutput {
+	return o.ToShovelInfoPtrOutputWithContext(context.Background())
+}
+
+func (o ShovelInfoOutput) ToShovelInfoPtrOutputWithContext(ctx context.Context) ShovelInfoPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *ShovelInfo {
+		return &v
+	}).(ShovelInfoPtrOutput)
+}
+
+// Determines how the shovel should acknowledge messages.
+// Defaults to `on-confirm`.
+func (o ShovelInfoOutput) AckMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *string { return v.AckMode }).(pulumi.StringPtrOutput)
+}
+
+// Whether to amqp shovel headers.
+// Defaults to `false`.
+func (o ShovelInfoOutput) AddForwardHeaders() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *bool { return v.AddForwardHeaders }).(pulumi.BoolPtrOutput)
+}
+
+// Determines when (if ever) the shovel should delete itself .
+// Defaults to `never`.
+func (o ShovelInfoOutput) DeleteAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *string { return v.DeleteAfter }).(pulumi.StringPtrOutput)
+}
+
+// The exchange to which messages should be published.
+// Either this or destinationQueue must be specified but not both.
+func (o ShovelInfoOutput) DestinationExchange() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *string { return v.DestinationExchange }).(pulumi.StringPtrOutput)
+}
+
+// The routing key when using destination_exchange.
+func (o ShovelInfoOutput) DestinationExchangeKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *string { return v.DestinationExchangeKey }).(pulumi.StringPtrOutput)
+}
+
+// The queue to which messages should be published.
+// Either this or destinationExchange must be specified but not both.
+func (o ShovelInfoOutput) DestinationQueue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *string { return v.DestinationQueue }).(pulumi.StringPtrOutput)
+}
+
+// The amqp uri for the destination .
+func (o ShovelInfoOutput) DestinationUri() pulumi.StringOutput {
+	return o.ApplyT(func(v ShovelInfo) string { return v.DestinationUri }).(pulumi.StringOutput)
+}
+
+// The maximum number of unacknowledged messages copied over a shovel at any one time.
+// Defaults to `1000`.
+func (o ShovelInfoOutput) PrefetchCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *int { return v.PrefetchCount }).(pulumi.IntPtrOutput)
+}
+
+// The duration in seconds to reconnect to a broker after disconnected.
+// Defaults to `1`.
+func (o ShovelInfoOutput) ReconnectDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *int { return v.ReconnectDelay }).(pulumi.IntPtrOutput)
+}
+
+// The exchange from which to consume.
+// Either this or sourceQueue must be specified but not both.
+func (o ShovelInfoOutput) SourceExchange() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *string { return v.SourceExchange }).(pulumi.StringPtrOutput)
+}
+
+// The routing key when using source_exchange.
+func (o ShovelInfoOutput) SourceExchangeKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *string { return v.SourceExchangeKey }).(pulumi.StringPtrOutput)
+}
+
+// The queue from which to consume.
+// Either this or sourceExchange must be specified but not both.
+func (o ShovelInfoOutput) SourceQueue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *string { return v.SourceQueue }).(pulumi.StringPtrOutput)
+}
+
+// The amqp uri for the source.
+func (o ShovelInfoOutput) SourceUri() pulumi.StringOutput {
+	return o.ApplyT(func(v ShovelInfo) string { return v.SourceUri }).(pulumi.StringOutput)
+}
+
+type ShovelInfoPtrOutput struct{ *pulumi.OutputState }
+
+func (ShovelInfoPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ShovelInfo)(nil)).Elem()
+}
+
+func (o ShovelInfoPtrOutput) ToShovelInfoPtrOutput() ShovelInfoPtrOutput {
+	return o
+}
+
+func (o ShovelInfoPtrOutput) ToShovelInfoPtrOutputWithContext(ctx context.Context) ShovelInfoPtrOutput {
+	return o
+}
+
+func (o ShovelInfoPtrOutput) Elem() ShovelInfoOutput {
+	return o.ApplyT(func(v *ShovelInfo) ShovelInfo { return *v }).(ShovelInfoOutput)
+}
+
+// Determines how the shovel should acknowledge messages.
+// Defaults to `on-confirm`.
+func (o ShovelInfoPtrOutput) AckMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AckMode
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether to amqp shovel headers.
+// Defaults to `false`.
+func (o ShovelInfoPtrOutput) AddForwardHeaders() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AddForwardHeaders
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Determines when (if ever) the shovel should delete itself .
+// Defaults to `never`.
+func (o ShovelInfoPtrOutput) DeleteAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DeleteAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// The exchange to which messages should be published.
+// Either this or destinationQueue must be specified but not both.
+func (o ShovelInfoPtrOutput) DestinationExchange() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DestinationExchange
+	}).(pulumi.StringPtrOutput)
+}
+
+// The routing key when using destination_exchange.
+func (o ShovelInfoPtrOutput) DestinationExchangeKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DestinationExchangeKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// The queue to which messages should be published.
+// Either this or destinationExchange must be specified but not both.
+func (o ShovelInfoPtrOutput) DestinationQueue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DestinationQueue
+	}).(pulumi.StringPtrOutput)
+}
+
+// The amqp uri for the destination .
+func (o ShovelInfoPtrOutput) DestinationUri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DestinationUri
+	}).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of unacknowledged messages copied over a shovel at any one time.
+// Defaults to `1000`.
+func (o ShovelInfoPtrOutput) PrefetchCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PrefetchCount
+	}).(pulumi.IntPtrOutput)
+}
+
+// The duration in seconds to reconnect to a broker after disconnected.
+// Defaults to `1`.
+func (o ShovelInfoPtrOutput) ReconnectDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ReconnectDelay
+	}).(pulumi.IntPtrOutput)
+}
+
+// The exchange from which to consume.
+// Either this or sourceQueue must be specified but not both.
+func (o ShovelInfoPtrOutput) SourceExchange() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SourceExchange
+	}).(pulumi.StringPtrOutput)
+}
+
+// The routing key when using source_exchange.
+func (o ShovelInfoPtrOutput) SourceExchangeKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SourceExchangeKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// The queue from which to consume.
+// Either this or sourceExchange must be specified but not both.
+func (o ShovelInfoPtrOutput) SourceQueue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SourceQueue
+	}).(pulumi.StringPtrOutput)
+}
+
+// The amqp uri for the source.
+func (o ShovelInfoPtrOutput) SourceUri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.SourceUri
+	}).(pulumi.StringPtrOutput)
+}
+
 type TopicPermissionsPermission struct {
 	// The exchange to set the permissions for.
 	Exchange string `pulumi:"exchange"`
@@ -897,12 +1553,16 @@ func (o TopicPermissionsPermissionArrayOutput) Index(i pulumi.IntInput) TopicPer
 func init() {
 	pulumi.RegisterOutputType(ExchangeSettingsOutput{})
 	pulumi.RegisterOutputType(ExchangeSettingsPtrOutput{})
+	pulumi.RegisterOutputType(FederationUpstreamDefinitionOutput{})
+	pulumi.RegisterOutputType(FederationUpstreamDefinitionPtrOutput{})
 	pulumi.RegisterOutputType(PermissionsPermissionsOutput{})
 	pulumi.RegisterOutputType(PermissionsPermissionsPtrOutput{})
 	pulumi.RegisterOutputType(PolicyPolicyOutput{})
 	pulumi.RegisterOutputType(PolicyPolicyPtrOutput{})
 	pulumi.RegisterOutputType(QueueSettingsOutput{})
 	pulumi.RegisterOutputType(QueueSettingsPtrOutput{})
+	pulumi.RegisterOutputType(ShovelInfoOutput{})
+	pulumi.RegisterOutputType(ShovelInfoPtrOutput{})
 	pulumi.RegisterOutputType(TopicPermissionsPermissionOutput{})
 	pulumi.RegisterOutputType(TopicPermissionsPermissionArrayOutput{})
 }

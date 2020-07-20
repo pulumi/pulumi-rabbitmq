@@ -10,6 +10,10 @@ namespace Pulumi.RabbitMQ
         private static readonly Pulumi.Config __config = new Pulumi.Config("rabbitmq");
         public static string? CacertFile { get; set; } = __config.Get("cacertFile") ?? Utilities.GetEnv("RABBITMQ_CACERT");
 
+        public static string? ClientcertFile { get; set; } = __config.Get("clientcertFile");
+
+        public static string? ClientkeyFile { get; set; } = __config.Get("clientkeyFile");
+
         public static string? Endpoint { get; set; } = __config.Get("endpoint") ?? Utilities.GetEnv("RABBITMQ_ENDPOINT");
 
         public static bool? Insecure { get; set; } = __config.GetBoolean("insecure") ?? Utilities.GetEnvBoolean("RABBITMQ_INSECURE");

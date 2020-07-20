@@ -26,6 +26,19 @@ export interface ExchangeSettings {
     type: pulumi.Input<string>;
 }
 
+export interface FederationUpstreamDefinition {
+    ackMode?: pulumi.Input<string>;
+    exchange?: pulumi.Input<string>;
+    expires?: pulumi.Input<number>;
+    maxHops?: pulumi.Input<number>;
+    messageTtl?: pulumi.Input<number>;
+    prefetchCount?: pulumi.Input<number>;
+    queue?: pulumi.Input<string>;
+    reconnectDelay?: pulumi.Input<number>;
+    trustUserId?: pulumi.Input<boolean>;
+    uri: pulumi.Input<string>;
+}
+
 export interface PermissionsPermissions {
     /**
      * The "configure" ACL.
@@ -84,6 +97,70 @@ export interface QueueSettings {
      * Defaults to `false`.
      */
     durable?: pulumi.Input<boolean>;
+}
+
+export interface ShovelInfo {
+    /**
+     * Determines how the shovel should acknowledge messages.
+     * Defaults to `on-confirm`.
+     */
+    ackMode?: pulumi.Input<string>;
+    /**
+     * Whether to amqp shovel headers.
+     * Defaults to `false`.
+     */
+    addForwardHeaders?: pulumi.Input<boolean>;
+    /**
+     * Determines when (if ever) the shovel should delete itself .
+     * Defaults to `never`.
+     */
+    deleteAfter?: pulumi.Input<string>;
+    /**
+     * The exchange to which messages should be published.
+     * Either this or destinationQueue must be specified but not both.
+     */
+    destinationExchange?: pulumi.Input<string>;
+    /**
+     * The routing key when using destination_exchange.
+     */
+    destinationExchangeKey?: pulumi.Input<string>;
+    /**
+     * The queue to which messages should be published.
+     * Either this or destinationExchange must be specified but not both.
+     */
+    destinationQueue?: pulumi.Input<string>;
+    /**
+     * The amqp uri for the destination .
+     */
+    destinationUri: pulumi.Input<string>;
+    /**
+     * The maximum number of unacknowledged messages copied over a shovel at any one time.
+     * Defaults to `1000`.
+     */
+    prefetchCount?: pulumi.Input<number>;
+    /**
+     * The duration in seconds to reconnect to a broker after disconnected.
+     * Defaults to `1`.
+     */
+    reconnectDelay?: pulumi.Input<number>;
+    /**
+     * The exchange from which to consume.
+     * Either this or sourceQueue must be specified but not both.
+     */
+    sourceExchange?: pulumi.Input<string>;
+    /**
+     * The routing key when using source_exchange.
+     */
+    sourceExchangeKey?: pulumi.Input<string>;
+    /**
+     * The queue from which to consume.
+     * Either this or sourceExchange must be specified but not both.
+     */
+    sourceQueue?: pulumi.Input<string>;
+    /**
+     * The amqp uri for the source.
+     */
+    sourceUri: pulumi.Input<string>;
 }
 
 export interface TopicPermissionsPermission {

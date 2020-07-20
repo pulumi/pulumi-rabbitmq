@@ -47,6 +47,12 @@ namespace Pulumi.RabbitMQ
         [Input("cacertFile")]
         public Input<string>? CacertFile { get; set; }
 
+        [Input("clientcertFile")]
+        public Input<string>? ClientcertFile { get; set; }
+
+        [Input("clientkeyFile")]
+        public Input<string>? ClientkeyFile { get; set; }
+
         [Input("endpoint")]
         public Input<string>? Endpoint { get; set; }
 

@@ -3,12 +3,14 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 _SNAKE_TO_CAMEL_CASE_TABLE = {
+    "arguments_json": "argumentsJson",
     "destination_type": "destinationType",
     "properties_key": "propertiesKey",
     "routing_key": "routingKey",
 }
 
 _CAMEL_TO_SNAKE_CASE_TABLE = {
+    "argumentsJson": "arguments_json",
     "destinationType": "destination_type",
     "propertiesKey": "properties_key",
     "routingKey": "routing_key",

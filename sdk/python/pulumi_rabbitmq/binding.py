@@ -14,6 +14,7 @@ class Binding(pulumi.CustomResource):
     """
     Additional key/value arguments for the binding.
     """
+    arguments_json: pulumi.Output[str]
     destination: pulumi.Output[str]
     """
     The destination queue or exchange.
@@ -38,7 +39,7 @@ class Binding(pulumi.CustomResource):
     """
     The vhost to create the resource in.
     """
-    def __init__(__self__, resource_name, opts=None, arguments=None, destination=None, destination_type=None, routing_key=None, source=None, vhost=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, arguments=None, arguments_json=None, destination=None, destination_type=None, routing_key=None, source=None, vhost=None, __props__=None, __name__=None, __opts__=None):
         """
         The ``Binding`` resource creates and manages a binding relationship
         between a queue an exchange.
@@ -106,6 +107,7 @@ class Binding(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['arguments'] = arguments
+            __props__['arguments_json'] = arguments_json
             if destination is None:
                 raise TypeError("Missing required property 'destination'")
             __props__['destination'] = destination
@@ -127,7 +129,7 @@ class Binding(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arguments=None, destination=None, destination_type=None, properties_key=None, routing_key=None, source=None, vhost=None):
+    def get(resource_name, id, opts=None, arguments=None, arguments_json=None, destination=None, destination_type=None, properties_key=None, routing_key=None, source=None, vhost=None):
         """
         Get an existing Binding resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -148,6 +150,7 @@ class Binding(pulumi.CustomResource):
         __props__ = dict()
 
         __props__["arguments"] = arguments
+        __props__["arguments_json"] = arguments_json
         __props__["destination"] = destination
         __props__["destination_type"] = destination_type
         __props__["properties_key"] = properties_key
