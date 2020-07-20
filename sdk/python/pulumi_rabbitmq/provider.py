@@ -11,7 +11,7 @@ from . import utilities, tables
 
 
 class Provider(pulumi.ProviderResource):
-    def __init__(__self__, resource_name, opts=None, cacert_file=None, endpoint=None, insecure=None, password=None, username=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, cacert_file=None, clientcert_file=None, clientkey_file=None, endpoint=None, insecure=None, password=None, username=None, __props__=None, __name__=None, __opts__=None):
         """
         The provider type for the rabbitmq package. By default, resources use package-wide configuration
         settings, however an explicit `Provider` instance may be created and passed during resource
@@ -41,6 +41,8 @@ class Provider(pulumi.ProviderResource):
             if cacert_file is None:
                 cacert_file = utilities.get_env('RABBITMQ_CACERT')
             __props__['cacert_file'] = cacert_file
+            __props__['clientcert_file'] = clientcert_file
+            __props__['clientkey_file'] = clientkey_file
             if endpoint is None:
                 endpoint = utilities.get_env('RABBITMQ_ENDPOINT')
             __props__['endpoint'] = endpoint

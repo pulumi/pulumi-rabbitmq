@@ -80,6 +80,7 @@ export class Binding extends pulumi.CustomResource {
      * Additional key/value arguments for the binding.
      */
     public readonly arguments!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly argumentsJson!: pulumi.Output<string | undefined>;
     /**
      * The destination queue or exchange.
      */
@@ -118,6 +119,7 @@ export class Binding extends pulumi.CustomResource {
         if (opts && opts.id) {
             const state = argsOrState as BindingState | undefined;
             inputs["arguments"] = state ? state.arguments : undefined;
+            inputs["argumentsJson"] = state ? state.argumentsJson : undefined;
             inputs["destination"] = state ? state.destination : undefined;
             inputs["destinationType"] = state ? state.destinationType : undefined;
             inputs["propertiesKey"] = state ? state.propertiesKey : undefined;
@@ -139,6 +141,7 @@ export class Binding extends pulumi.CustomResource {
                 throw new Error("Missing required property 'vhost'");
             }
             inputs["arguments"] = args ? args.arguments : undefined;
+            inputs["argumentsJson"] = args ? args.argumentsJson : undefined;
             inputs["destination"] = args ? args.destination : undefined;
             inputs["destinationType"] = args ? args.destinationType : undefined;
             inputs["routingKey"] = args ? args.routingKey : undefined;
@@ -165,6 +168,7 @@ export interface BindingState {
      * Additional key/value arguments for the binding.
      */
     readonly arguments?: pulumi.Input<{[key: string]: any}>;
+    readonly argumentsJson?: pulumi.Input<string>;
     /**
      * The destination queue or exchange.
      */
@@ -199,6 +203,7 @@ export interface BindingArgs {
      * Additional key/value arguments for the binding.
      */
     readonly arguments?: pulumi.Input<{[key: string]: any}>;
+    readonly argumentsJson?: pulumi.Input<string>;
     /**
      * The destination queue or exchange.
      */

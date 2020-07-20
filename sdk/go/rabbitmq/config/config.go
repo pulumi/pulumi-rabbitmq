@@ -15,6 +15,12 @@ func GetCacertFile(ctx *pulumi.Context) string {
 	}
 	return getEnvOrDefault("", nil, "RABBITMQ_CACERT").(string)
 }
+func GetClientcertFile(ctx *pulumi.Context) string {
+	return config.Get(ctx, "rabbitmq:clientcertFile")
+}
+func GetClientkeyFile(ctx *pulumi.Context) string {
+	return config.Get(ctx, "rabbitmq:clientkeyFile")
+}
 func GetEndpoint(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "rabbitmq:endpoint")
 	if err == nil {

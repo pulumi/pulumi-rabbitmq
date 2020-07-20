@@ -5,10 +5,12 @@
 # Export this package's modules as members:
 from .binding import *
 from .exchange import *
+from .federation_upstream import *
 from .permissions import *
 from .policy import *
 from .provider import *
 from .queue import *
+from .shovel import *
 from .topic_permissions import *
 from .user import *
 from .v_host import *

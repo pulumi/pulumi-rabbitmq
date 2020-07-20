@@ -12,6 +12,10 @@ __config__ = pulumi.Config('rabbitmq')
 
 cacert_file = __config__.get('cacertFile') or utilities.get_env('RABBITMQ_CACERT')
 
+clientcert_file = __config__.get('clientcertFile')
+
+clientkey_file = __config__.get('clientkeyFile')
+
 endpoint = __config__.get('endpoint') or utilities.get_env('RABBITMQ_ENDPOINT')
 
 insecure = __config__.get('insecure') or utilities.get_env_bool('RABBITMQ_INSECURE')

@@ -26,6 +26,19 @@ export interface ExchangeSettings {
     type: string;
 }
 
+export interface FederationUpstreamDefinition {
+    ackMode?: string;
+    exchange?: string;
+    expires?: number;
+    maxHops?: number;
+    messageTtl?: number;
+    prefetchCount?: number;
+    queue?: string;
+    reconnectDelay?: number;
+    trustUserId?: boolean;
+    uri: string;
+}
+
 export interface PermissionsPermissions {
     /**
      * The "configure" ACL.
@@ -84,6 +97,70 @@ export interface QueueSettings {
      * Defaults to `false`.
      */
     durable?: boolean;
+}
+
+export interface ShovelInfo {
+    /**
+     * Determines how the shovel should acknowledge messages.
+     * Defaults to `on-confirm`.
+     */
+    ackMode?: string;
+    /**
+     * Whether to amqp shovel headers.
+     * Defaults to `false`.
+     */
+    addForwardHeaders?: boolean;
+    /**
+     * Determines when (if ever) the shovel should delete itself .
+     * Defaults to `never`.
+     */
+    deleteAfter?: string;
+    /**
+     * The exchange to which messages should be published.
+     * Either this or destinationQueue must be specified but not both.
+     */
+    destinationExchange?: string;
+    /**
+     * The routing key when using destination_exchange.
+     */
+    destinationExchangeKey?: string;
+    /**
+     * The queue to which messages should be published.
+     * Either this or destinationExchange must be specified but not both.
+     */
+    destinationQueue?: string;
+    /**
+     * The amqp uri for the destination .
+     */
+    destinationUri: string;
+    /**
+     * The maximum number of unacknowledged messages copied over a shovel at any one time.
+     * Defaults to `1000`.
+     */
+    prefetchCount?: number;
+    /**
+     * The duration in seconds to reconnect to a broker after disconnected.
+     * Defaults to `1`.
+     */
+    reconnectDelay?: number;
+    /**
+     * The exchange from which to consume.
+     * Either this or sourceQueue must be specified but not both.
+     */
+    sourceExchange?: string;
+    /**
+     * The routing key when using source_exchange.
+     */
+    sourceExchangeKey?: string;
+    /**
+     * The queue from which to consume.
+     * Either this or sourceExchange must be specified but not both.
+     */
+    sourceQueue?: string;
+    /**
+     * The amqp uri for the source.
+     */
+    sourceUri: string;
 }
 
 export interface TopicPermissionsPermission {

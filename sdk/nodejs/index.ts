@@ -4,10 +4,12 @@
 // Export members:
 export * from "./binding";
 export * from "./exchange";
+export * from "./federationUpstream";
 export * from "./permissions";
 export * from "./policy";
 export * from "./provider";
 export * from "./queue";
+export * from "./shovel";
 export * from "./topicPermissions";
 export * from "./user";
 export * from "./vhost";

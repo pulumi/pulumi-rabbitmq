@@ -9,6 +9,8 @@ import * as utilities from "../utilities";
 let __config = new pulumi.Config("rabbitmq");
 
 export let cacertFile: string | undefined = __config.get("cacertFile") || utilities.getEnv("RABBITMQ_CACERT");
+export let clientcertFile: string | undefined = __config.get("clientcertFile");
+export let clientkeyFile: string | undefined = __config.get("clientkeyFile");
 export let endpoint: string | undefined = __config.get("endpoint") || utilities.getEnv("RABBITMQ_ENDPOINT");
 export let insecure: boolean | undefined = __config.getObject<boolean>("insecure") || <any>utilities.getEnvBoolean("RABBITMQ_INSECURE");
 export let password: string | undefined = __config.get("password") || utilities.getEnv("RABBITMQ_PASSWORD");

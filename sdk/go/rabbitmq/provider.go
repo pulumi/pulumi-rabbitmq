@@ -47,20 +47,24 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	CacertFile *string `pulumi:"cacertFile"`
-	Endpoint   *string `pulumi:"endpoint"`
-	Insecure   *bool   `pulumi:"insecure"`
-	Password   *string `pulumi:"password"`
-	Username   *string `pulumi:"username"`
+	CacertFile     *string `pulumi:"cacertFile"`
+	ClientcertFile *string `pulumi:"clientcertFile"`
+	ClientkeyFile  *string `pulumi:"clientkeyFile"`
+	Endpoint       *string `pulumi:"endpoint"`
+	Insecure       *bool   `pulumi:"insecure"`
+	Password       *string `pulumi:"password"`
+	Username       *string `pulumi:"username"`
 }
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
-	CacertFile pulumi.StringPtrInput
-	Endpoint   pulumi.StringPtrInput
-	Insecure   pulumi.BoolPtrInput
-	Password   pulumi.StringPtrInput
-	Username   pulumi.StringPtrInput
+	CacertFile     pulumi.StringPtrInput
+	ClientcertFile pulumi.StringPtrInput
+	ClientkeyFile  pulumi.StringPtrInput
+	Endpoint       pulumi.StringPtrInput
+	Insecure       pulumi.BoolPtrInput
+	Password       pulumi.StringPtrInput
+	Username       pulumi.StringPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {

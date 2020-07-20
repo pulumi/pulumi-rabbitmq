@@ -22,7 +22,7 @@ class Queue(pulumi.CustomResource):
       * `arguments` (`dict`) - Additional key/value settings for the queue.
         All values will be sent to RabbitMQ as a string. If you require non-string
         values, use `arguments_json`.
-      * `argumentsJson` (`str`) - A nested JSON string which contains additional
+      * `arguments_json` (`str`) - A nested JSON string which contains additional
         settings for the queue. This is useful for when the arguments contain
         non-string values.
       * `autoDelete` (`bool`) - Whether the queue will self-delete when all
@@ -86,7 +86,7 @@ class Queue(pulumi.CustomResource):
             vhost=test_v_host.name)
         test_queue = rabbitmq.Queue("testQueue",
             settings={
-                "argumentsJson": arguments,
+                "arguments_json": arguments,
                 "autoDelete": True,
                 "durable": False,
             },
@@ -105,7 +105,7 @@ class Queue(pulumi.CustomResource):
           * `arguments` (`pulumi.Input[dict]`) - Additional key/value settings for the queue.
             All values will be sent to RabbitMQ as a string. If you require non-string
             values, use `arguments_json`.
-          * `argumentsJson` (`pulumi.Input[str]`) - A nested JSON string which contains additional
+          * `arguments_json` (`pulumi.Input[str]`) - A nested JSON string which contains additional
             settings for the queue. This is useful for when the arguments contain
             non-string values.
           * `autoDelete` (`pulumi.Input[bool]`) - Whether the queue will self-delete when all
@@ -160,7 +160,7 @@ class Queue(pulumi.CustomResource):
           * `arguments` (`pulumi.Input[dict]`) - Additional key/value settings for the queue.
             All values will be sent to RabbitMQ as a string. If you require non-string
             values, use `arguments_json`.
-          * `argumentsJson` (`pulumi.Input[str]`) - A nested JSON string which contains additional
+          * `arguments_json` (`pulumi.Input[str]`) - A nested JSON string which contains additional
             settings for the queue. This is useful for when the arguments contain
             non-string values.
           * `autoDelete` (`pulumi.Input[bool]`) - Whether the queue will self-delete when all

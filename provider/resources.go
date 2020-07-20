@@ -114,6 +114,8 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "topic-permissions.html.markdown",
 				},
 			},
+			"rabbitmq_federation_upstream": {Tok: makeResource(mainMod, "FederationUpstream")},
+			"rabbitmq_shovel":              {Tok: makeResource(mainMod, "Shovel")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{},
 

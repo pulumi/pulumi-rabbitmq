@@ -77,6 +77,9 @@ namespace Pulumi.RabbitMQ
         [Output("arguments")]
         public Output<ImmutableDictionary<string, object>?> Arguments { get; private set; } = null!;
 
+        [Output("argumentsJson")]
+        public Output<string?> ArgumentsJson { get; private set; } = null!;
+
         /// <summary>
         /// The destination queue or exchange.
         /// </summary>
@@ -171,6 +174,9 @@ namespace Pulumi.RabbitMQ
             set => _arguments = value;
         }
 
+        [Input("argumentsJson")]
+        public Input<string>? ArgumentsJson { get; set; }
+
         /// <summary>
         /// The destination queue or exchange.
         /// </summary>
@@ -219,6 +225,9 @@ namespace Pulumi.RabbitMQ
             get => _arguments ?? (_arguments = new InputMap<object>());
             set => _arguments = value;
         }
+
+        [Input("argumentsJson")]
+        public Input<string>? ArgumentsJson { get; set; }
 
         /// <summary>
         /// The destination queue or exchange.

@@ -36,6 +36,8 @@ export class Provider extends pulumi.ProviderResource {
     constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let inputs: pulumi.Inputs = {};
         inputs["cacertFile"] = (args ? args.cacertFile : undefined) || utilities.getEnv("RABBITMQ_CACERT");
+        inputs["clientcertFile"] = args ? args.clientcertFile : undefined;
+        inputs["clientkeyFile"] = args ? args.clientkeyFile : undefined;
         inputs["endpoint"] = (args ? args.endpoint : undefined) || utilities.getEnv("RABBITMQ_ENDPOINT");
         inputs["insecure"] = pulumi.output((args ? args.insecure : undefined) || <any>utilities.getEnvBoolean("RABBITMQ_INSECURE")).apply(JSON.stringify);
         inputs["password"] = (args ? args.password : undefined) || utilities.getEnv("RABBITMQ_PASSWORD");
@@ -56,6 +58,8 @@ export class Provider extends pulumi.ProviderResource {
  */
 export interface ProviderArgs {
     readonly cacertFile?: pulumi.Input<string>;
+    readonly clientcertFile?: pulumi.Input<string>;
+    readonly clientkeyFile?: pulumi.Input<string>;
     readonly endpoint?: pulumi.Input<string>;
     readonly insecure?: pulumi.Input<boolean>;
     readonly password?: pulumi.Input<string>;
