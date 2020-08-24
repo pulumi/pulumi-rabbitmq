@@ -5,36 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Queue']
 
 
 class Queue(pulumi.CustomResource):
-    name: pulumi.Output[str]
-    """
-    The name of the queue.
-    """
-    settings: pulumi.Output[dict]
-    """
-    The settings of the queue. The structure is
-    described below.
-
-      * `arguments` (`dict`) - Additional key/value settings for the queue.
-        All values will be sent to RabbitMQ as a string. If you require non-string
-        values, use `arguments_json`.
-      * `arguments_json` (`str`) - A nested JSON string which contains additional
-        settings for the queue. This is useful for when the arguments contain
-        non-string values.
-      * `autoDelete` (`bool`) - Whether the queue will self-delete when all
-        consumers have unsubscribed.
-      * `durable` (`bool`) - Whether the queue survives server restarts.
-        Defaults to `false`.
-    """
-    vhost: pulumi.Output[str]
-    """
-    The vhost to create the resource in.
-    """
-    def __init__(__self__, resource_name, opts=None, name=None, settings=None, vhost=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 settings: Optional[pulumi.Input[pulumi.InputType['QueueSettingsArgs']]] = None,
+                 vhost: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         The ``Queue`` resource creates and manages a queue.
 
@@ -47,18 +35,18 @@ class Queue(pulumi.CustomResource):
 
         test_v_host = rabbitmq.VHost("testVHost")
         guest = rabbitmq.Permissions("guest",
-            permissions={
-                "configure": ".*",
-                "read": ".*",
-                "write": ".*",
-            },
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
             user="guest",
             vhost=test_v_host.name)
         test_queue = rabbitmq.Queue("testQueue",
-            settings={
-                "autoDelete": True,
-                "durable": False,
-            },
+            settings=rabbitmq.QueueSettingsArgs(
+                auto_delete=True,
+                durable=False,
+            ),
             vhost=guest.vhost)
         ```
         ### Example With JSON Arguments
@@ -77,41 +65,28 @@ class Queue(pulumi.CustomResource):
         \"\"\"
         test_v_host = rabbitmq.VHost("testVHost")
         guest = rabbitmq.Permissions("guest",
-            permissions={
-                "configure": ".*",
-                "read": ".*",
-                "write": ".*",
-            },
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
             user="guest",
             vhost=test_v_host.name)
         test_queue = rabbitmq.Queue("testQueue",
-            settings={
-                "arguments_json": arguments,
-                "autoDelete": True,
-                "durable": False,
-            },
+            settings=rabbitmq.QueueSettingsArgs(
+                arguments_json=arguments,
+                auto_delete=True,
+                durable=False,
+            ),
             vhost=guest.vhost)
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the queue.
-        :param pulumi.Input[dict] settings: The settings of the queue. The structure is
+        :param pulumi.Input[pulumi.InputType['QueueSettingsArgs']] settings: The settings of the queue. The structure is
                described below.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
-
-        The **settings** object supports the following:
-
-          * `arguments` (`pulumi.Input[dict]`) - Additional key/value settings for the queue.
-            All values will be sent to RabbitMQ as a string. If you require non-string
-            values, use `arguments_json`.
-          * `arguments_json` (`pulumi.Input[str]`) - A nested JSON string which contains additional
-            settings for the queue. This is useful for when the arguments contain
-            non-string values.
-          * `autoDelete` (`pulumi.Input[bool]`) - Whether the queue will self-delete when all
-            consumers have unsubscribed.
-          * `durable` (`pulumi.Input[bool]`) - Whether the queue survives server restarts.
-            Defaults to `false`.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -124,7 +99,7 @@ class Queue(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -142,31 +117,23 @@ class Queue(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, name=None, settings=None, vhost=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            settings: Optional[pulumi.Input[pulumi.InputType['QueueSettingsArgs']]] = None,
+            vhost: Optional[pulumi.Input[str]] = None) -> 'Queue':
         """
         Get an existing Queue resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the queue.
-        :param pulumi.Input[dict] settings: The settings of the queue. The structure is
+        :param pulumi.Input[pulumi.InputType['QueueSettingsArgs']] settings: The settings of the queue. The structure is
                described below.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
-
-        The **settings** object supports the following:
-
-          * `arguments` (`pulumi.Input[dict]`) - Additional key/value settings for the queue.
-            All values will be sent to RabbitMQ as a string. If you require non-string
-            values, use `arguments_json`.
-          * `arguments_json` (`pulumi.Input[str]`) - A nested JSON string which contains additional
-            settings for the queue. This is useful for when the arguments contain
-            non-string values.
-          * `autoDelete` (`pulumi.Input[bool]`) - Whether the queue will self-delete when all
-            consumers have unsubscribed.
-          * `durable` (`pulumi.Input[bool]`) - Whether the queue survives server restarts.
-            Defaults to `false`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -177,8 +144,34 @@ class Queue(pulumi.CustomResource):
         __props__["vhost"] = vhost
         return Queue(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the queue.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def settings(self) -> 'outputs.QueueSettings':
+        """
+        The settings of the queue. The structure is
+        described below.
+        """
+        return pulumi.get(self, "settings")
+
+    @property
+    @pulumi.getter
+    def vhost(self) -> Optional[str]:
+        """
+        The vhost to create the resource in.
+        """
+        return pulumi.get(self, "vhost")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

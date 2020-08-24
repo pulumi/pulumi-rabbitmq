@@ -5,22 +5,32 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'cacert_file',
+    'clientcert_file',
+    'clientkey_file',
+    'endpoint',
+    'insecure',
+    'password',
+    'username',
+]
 
 __config__ = pulumi.Config('rabbitmq')
 
-cacert_file = __config__.get('cacertFile') or utilities.get_env('RABBITMQ_CACERT')
+cacert_file = __config__.get('cacertFile') or _utilities.get_env('RABBITMQ_CACERT')
 
 clientcert_file = __config__.get('clientcertFile')
 
 clientkey_file = __config__.get('clientkeyFile')
 
-endpoint = __config__.get('endpoint') or utilities.get_env('RABBITMQ_ENDPOINT')
+endpoint = __config__.get('endpoint') or _utilities.get_env('RABBITMQ_ENDPOINT')
 
-insecure = __config__.get('insecure') or utilities.get_env_bool('RABBITMQ_INSECURE')
+insecure = __config__.get('insecure') or _utilities.get_env_bool('RABBITMQ_INSECURE')
 
-password = __config__.get('password') or utilities.get_env('RABBITMQ_PASSWORD')
+password = __config__.get('password') or _utilities.get_env('RABBITMQ_PASSWORD')
 
-username = __config__.get('username') or utilities.get_env('RABBITMQ_USERNAME')
+username = __config__.get('username') or _utilities.get_env('RABBITMQ_USERNAME')
 
