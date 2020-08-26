@@ -6,12 +6,26 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['Provider']
 
 
 class Provider(pulumi.ProviderResource):
-    def __init__(__self__, resource_name, opts=None, cacert_file=None, clientcert_file=None, clientkey_file=None, endpoint=None, insecure=None, password=None, username=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 cacert_file: Optional[pulumi.Input[str]] = None,
+                 clientcert_file: Optional[pulumi.Input[str]] = None,
+                 clientkey_file: Optional[pulumi.Input[str]] = None,
+                 endpoint: Optional[pulumi.Input[str]] = None,
+                 insecure: Optional[pulumi.Input[bool]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         The provider type for the rabbitmq package. By default, resources use package-wide configuration
         settings, however an explicit `Provider` instance may be created and passed during resource
@@ -32,28 +46,28 @@ class Provider(pulumi.ProviderResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
             if cacert_file is None:
-                cacert_file = utilities.get_env('RABBITMQ_CACERT')
+                cacert_file = _utilities.get_env('RABBITMQ_CACERT')
             __props__['cacert_file'] = cacert_file
             __props__['clientcert_file'] = clientcert_file
             __props__['clientkey_file'] = clientkey_file
             if endpoint is None:
-                endpoint = utilities.get_env('RABBITMQ_ENDPOINT')
+                endpoint = _utilities.get_env('RABBITMQ_ENDPOINT')
             __props__['endpoint'] = endpoint
             if insecure is None:
-                insecure = utilities.get_env_bool('RABBITMQ_INSECURE')
+                insecure = _utilities.get_env_bool('RABBITMQ_INSECURE')
             __props__['insecure'] = pulumi.Output.from_input(insecure).apply(json.dumps) if insecure is not None else None
             if password is None:
-                password = utilities.get_env('RABBITMQ_PASSWORD')
+                password = _utilities.get_env('RABBITMQ_PASSWORD')
             __props__['password'] = password
             if username is None:
-                username = utilities.get_env('RABBITMQ_USERNAME')
+                username = _utilities.get_env('RABBITMQ_USERNAME')
             __props__['username'] = username
         super(Provider, __self__).__init__(
             'rabbitmq',
@@ -62,7 +76,8 @@ class Provider(pulumi.ProviderResource):
             opts)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

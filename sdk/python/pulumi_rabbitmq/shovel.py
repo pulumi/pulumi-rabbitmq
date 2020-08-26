@@ -5,48 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Shovel']
 
 
 class Shovel(pulumi.CustomResource):
-    info: pulumi.Output[dict]
-    """
-    The settings of the shovel. The structure is
-    described below.
-
-      * `ackMode` (`str`) - Determines how the shovel should acknowledge messages.
-        Defaults to `on-confirm`.
-      * `addForwardHeaders` (`bool`) - Whether to amqp shovel headers.
-        Defaults to `false`.
-      * `deleteAfter` (`str`) - Determines when (if ever) the shovel should delete itself .
-        Defaults to `never`.
-      * `destinationExchange` (`str`) - The exchange to which messages should be published.
-        Either this or destination_queue must be specified but not both.
-      * `destinationExchangeKey` (`str`) - The routing key when using destination_exchange.
-      * `destinationQueue` (`str`) - The queue to which messages should be published.
-        Either this or destination_exchange must be specified but not both.
-      * `destinationUri` (`str`) - The amqp uri for the destination .
-      * `prefetchCount` (`float`) - The maximum number of unacknowledged messages copied over a shovel at any one time.
-        Defaults to `1000`.
-      * `reconnectDelay` (`float`) - The duration in seconds to reconnect to a broker after disconnected.
-        Defaults to `1`.
-      * `sourceExchange` (`str`) - The exchange from which to consume.
-        Either this or source_queue must be specified but not both.
-      * `sourceExchangeKey` (`str`) - The routing key when using source_exchange.
-      * `sourceQueue` (`str`) - The queue from which to consume.
-        Either this or source_exchange must be specified but not both.
-      * `sourceUri` (`str`) - The amqp uri for the source.
-    """
-    name: pulumi.Output[str]
-    """
-    The shovel name.
-    """
-    vhost: pulumi.Output[str]
-    """
-    The vhost to create the resource in.
-    """
-    def __init__(__self__, resource_name, opts=None, info=None, name=None, vhost=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 info: Optional[pulumi.Input[pulumi.InputType['ShovelInfoArgs']]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 vhost: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         The ``Shovel`` resource creates and manages a shovel.
 
@@ -58,60 +34,35 @@ class Shovel(pulumi.CustomResource):
 
         test_v_host = rabbitmq.VHost("testVHost")
         test_exchange = rabbitmq.Exchange("testExchange",
-            settings={
-                "autoDelete": True,
-                "durable": False,
-                "type": "fanout",
-            },
+            settings=rabbitmq.ExchangeSettingsArgs(
+                auto_delete=True,
+                durable=False,
+                type="fanout",
+            ),
             vhost=test_v_host.name)
         test_queue = rabbitmq.Queue("testQueue",
-            settings={
-                "autoDelete": True,
-                "durable": False,
-            },
+            settings=rabbitmq.QueueSettingsArgs(
+                auto_delete=True,
+                durable=False,
+            ),
             vhost=test_v_host.name)
         shovel_test = rabbitmq.Shovel("shovelTest",
-            info={
-                "destinationQueue": test_queue.name,
-                "destinationUri": "amqp:///test",
-                "sourceExchange": test_exchange.name,
-                "sourceExchangeKey": "test",
-                "sourceUri": "amqp:///test",
-            },
+            info=rabbitmq.ShovelInfoArgs(
+                destination_queue=test_queue.name,
+                destination_uri="amqp:///test",
+                source_exchange=test_exchange.name,
+                source_exchange_key="test",
+                source_uri="amqp:///test",
+            ),
             vhost=test_v_host.name)
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] info: The settings of the shovel. The structure is
+        :param pulumi.Input[pulumi.InputType['ShovelInfoArgs']] info: The settings of the shovel. The structure is
                described below.
         :param pulumi.Input[str] name: The shovel name.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
-
-        The **info** object supports the following:
-
-          * `ackMode` (`pulumi.Input[str]`) - Determines how the shovel should acknowledge messages.
-            Defaults to `on-confirm`.
-          * `addForwardHeaders` (`pulumi.Input[bool]`) - Whether to amqp shovel headers.
-            Defaults to `false`.
-          * `deleteAfter` (`pulumi.Input[str]`) - Determines when (if ever) the shovel should delete itself .
-            Defaults to `never`.
-          * `destinationExchange` (`pulumi.Input[str]`) - The exchange to which messages should be published.
-            Either this or destination_queue must be specified but not both.
-          * `destinationExchangeKey` (`pulumi.Input[str]`) - The routing key when using destination_exchange.
-          * `destinationQueue` (`pulumi.Input[str]`) - The queue to which messages should be published.
-            Either this or destination_exchange must be specified but not both.
-          * `destinationUri` (`pulumi.Input[str]`) - The amqp uri for the destination .
-          * `prefetchCount` (`pulumi.Input[float]`) - The maximum number of unacknowledged messages copied over a shovel at any one time.
-            Defaults to `1000`.
-          * `reconnectDelay` (`pulumi.Input[float]`) - The duration in seconds to reconnect to a broker after disconnected.
-            Defaults to `1`.
-          * `sourceExchange` (`pulumi.Input[str]`) - The exchange from which to consume.
-            Either this or source_queue must be specified but not both.
-          * `sourceExchangeKey` (`pulumi.Input[str]`) - The routing key when using source_exchange.
-          * `sourceQueue` (`pulumi.Input[str]`) - The queue from which to consume.
-            Either this or source_exchange must be specified but not both.
-          * `sourceUri` (`pulumi.Input[str]`) - The amqp uri for the source.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -124,7 +75,7 @@ class Shovel(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -144,43 +95,23 @@ class Shovel(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, info=None, name=None, vhost=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            info: Optional[pulumi.Input[pulumi.InputType['ShovelInfoArgs']]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            vhost: Optional[pulumi.Input[str]] = None) -> 'Shovel':
         """
         Get an existing Shovel resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] info: The settings of the shovel. The structure is
+        :param pulumi.Input[pulumi.InputType['ShovelInfoArgs']] info: The settings of the shovel. The structure is
                described below.
         :param pulumi.Input[str] name: The shovel name.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
-
-        The **info** object supports the following:
-
-          * `ackMode` (`pulumi.Input[str]`) - Determines how the shovel should acknowledge messages.
-            Defaults to `on-confirm`.
-          * `addForwardHeaders` (`pulumi.Input[bool]`) - Whether to amqp shovel headers.
-            Defaults to `false`.
-          * `deleteAfter` (`pulumi.Input[str]`) - Determines when (if ever) the shovel should delete itself .
-            Defaults to `never`.
-          * `destinationExchange` (`pulumi.Input[str]`) - The exchange to which messages should be published.
-            Either this or destination_queue must be specified but not both.
-          * `destinationExchangeKey` (`pulumi.Input[str]`) - The routing key when using destination_exchange.
-          * `destinationQueue` (`pulumi.Input[str]`) - The queue to which messages should be published.
-            Either this or destination_exchange must be specified but not both.
-          * `destinationUri` (`pulumi.Input[str]`) - The amqp uri for the destination .
-          * `prefetchCount` (`pulumi.Input[float]`) - The maximum number of unacknowledged messages copied over a shovel at any one time.
-            Defaults to `1000`.
-          * `reconnectDelay` (`pulumi.Input[float]`) - The duration in seconds to reconnect to a broker after disconnected.
-            Defaults to `1`.
-          * `sourceExchange` (`pulumi.Input[str]`) - The exchange from which to consume.
-            Either this or source_queue must be specified but not both.
-          * `sourceExchangeKey` (`pulumi.Input[str]`) - The routing key when using source_exchange.
-          * `sourceQueue` (`pulumi.Input[str]`) - The queue from which to consume.
-            Either this or source_exchange must be specified but not both.
-          * `sourceUri` (`pulumi.Input[str]`) - The amqp uri for the source.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -191,8 +122,34 @@ class Shovel(pulumi.CustomResource):
         __props__["vhost"] = vhost
         return Shovel(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def info(self) -> 'outputs.ShovelInfo':
+        """
+        The settings of the shovel. The structure is
+        described below.
+        """
+        return pulumi.get(self, "info")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The shovel name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def vhost(self) -> str:
+        """
+        The vhost to create the resource in.
+        """
+        return pulumi.get(self, "vhost")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

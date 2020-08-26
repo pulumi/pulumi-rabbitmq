@@ -5,41 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['Binding']
 
 
 class Binding(pulumi.CustomResource):
-    arguments: pulumi.Output[dict]
-    """
-    Additional key/value arguments for the binding.
-    """
-    arguments_json: pulumi.Output[str]
-    destination: pulumi.Output[str]
-    """
-    The destination queue or exchange.
-    """
-    destination_type: pulumi.Output[str]
-    """
-    The type of destination (queue or exchange).
-    """
-    properties_key: pulumi.Output[str]
-    """
-    A unique key to refer to the binding.
-    """
-    routing_key: pulumi.Output[str]
-    """
-    A routing key for the binding.
-    """
-    source: pulumi.Output[str]
-    """
-    The source exchange.
-    """
-    vhost: pulumi.Output[str]
-    """
-    The vhost to create the resource in.
-    """
-    def __init__(__self__, resource_name, opts=None, arguments=None, arguments_json=None, destination=None, destination_type=None, routing_key=None, source=None, vhost=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 arguments: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 arguments_json: Optional[pulumi.Input[str]] = None,
+                 destination: Optional[pulumi.Input[str]] = None,
+                 destination_type: Optional[pulumi.Input[str]] = None,
+                 routing_key: Optional[pulumi.Input[str]] = None,
+                 source: Optional[pulumi.Input[str]] = None,
+                 vhost: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         The ``Binding`` resource creates and manages a binding relationship
         between a queue an exchange.
@@ -52,25 +37,25 @@ class Binding(pulumi.CustomResource):
 
         test_v_host = rabbitmq.VHost("testVHost")
         guest = rabbitmq.Permissions("guest",
-            permissions={
-                "configure": ".*",
-                "read": ".*",
-                "write": ".*",
-            },
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
             user="guest",
             vhost=test_v_host.name)
         test_exchange = rabbitmq.Exchange("testExchange",
-            settings={
-                "autoDelete": True,
-                "durable": False,
-                "type": "fanout",
-            },
+            settings=rabbitmq.ExchangeSettingsArgs(
+                auto_delete=True,
+                durable=False,
+                type="fanout",
+            ),
             vhost=guest.vhost)
         test_queue = rabbitmq.Queue("testQueue",
-            settings={
-                "autoDelete": False,
-                "durable": True,
-            },
+            settings=rabbitmq.QueueSettingsArgs(
+                auto_delete=False,
+                durable=True,
+            ),
             vhost=guest.vhost)
         test_binding = rabbitmq.Binding("testBinding",
             destination=test_queue.name,
@@ -82,7 +67,7 @@ class Binding(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] arguments: Additional key/value arguments for the binding.
+        :param pulumi.Input[Mapping[str, Any]] arguments: Additional key/value arguments for the binding.
         :param pulumi.Input[str] destination: The destination queue or exchange.
         :param pulumi.Input[str] destination_type: The type of destination (queue or exchange).
         :param pulumi.Input[str] routing_key: A routing key for the binding.
@@ -100,7 +85,7 @@ class Binding(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -129,15 +114,25 @@ class Binding(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arguments=None, arguments_json=None, destination=None, destination_type=None, properties_key=None, routing_key=None, source=None, vhost=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arguments: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            arguments_json: Optional[pulumi.Input[str]] = None,
+            destination: Optional[pulumi.Input[str]] = None,
+            destination_type: Optional[pulumi.Input[str]] = None,
+            properties_key: Optional[pulumi.Input[str]] = None,
+            routing_key: Optional[pulumi.Input[str]] = None,
+            source: Optional[pulumi.Input[str]] = None,
+            vhost: Optional[pulumi.Input[str]] = None) -> 'Binding':
         """
         Get an existing Binding resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] arguments: Additional key/value arguments for the binding.
+        :param pulumi.Input[Mapping[str, Any]] arguments: Additional key/value arguments for the binding.
         :param pulumi.Input[str] destination: The destination queue or exchange.
         :param pulumi.Input[str] destination_type: The type of destination (queue or exchange).
         :param pulumi.Input[str] properties_key: A unique key to refer to the binding.
@@ -159,8 +154,70 @@ class Binding(pulumi.CustomResource):
         __props__["vhost"] = vhost
         return Binding(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def arguments(self) -> Optional[Mapping[str, Any]]:
+        """
+        Additional key/value arguments for the binding.
+        """
+        return pulumi.get(self, "arguments")
+
+    @property
+    @pulumi.getter(name="argumentsJson")
+    def arguments_json(self) -> Optional[str]:
+        return pulumi.get(self, "arguments_json")
+
+    @property
+    @pulumi.getter
+    def destination(self) -> str:
+        """
+        The destination queue or exchange.
+        """
+        return pulumi.get(self, "destination")
+
+    @property
+    @pulumi.getter(name="destinationType")
+    def destination_type(self) -> str:
+        """
+        The type of destination (queue or exchange).
+        """
+        return pulumi.get(self, "destination_type")
+
+    @property
+    @pulumi.getter(name="propertiesKey")
+    def properties_key(self) -> str:
+        """
+        A unique key to refer to the binding.
+        """
+        return pulumi.get(self, "properties_key")
+
+    @property
+    @pulumi.getter(name="routingKey")
+    def routing_key(self) -> Optional[str]:
+        """
+        A routing key for the binding.
+        """
+        return pulumi.get(self, "routing_key")
+
+    @property
+    @pulumi.getter
+    def source(self) -> str:
+        """
+        The source exchange.
+        """
+        return pulumi.get(self, "source")
+
+    @property
+    @pulumi.getter
+    def vhost(self) -> str:
+        """
+        The vhost to create the resource in.
+        """
+        return pulumi.get(self, "vhost")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

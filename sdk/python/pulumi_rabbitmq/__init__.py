@@ -14,3 +14,10 @@ from .shovel import *
 from .topic_permissions import *
 from .user import *
 from .v_host import *
+from ._inputs import *
+from . import outputs
+
+# Make subpackages available:
+from . import (
+    config,
+)
