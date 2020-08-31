@@ -15,7 +15,7 @@ __all__ = ['Permissions']
 
 class Permissions(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  permissions: Optional[pulumi.Input[pulumi.InputType['PermissionsPermissionsArgs']]] = None,
                  user: Optional[pulumi.Input[str]] = None,
@@ -114,7 +114,7 @@ class Permissions(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def permissions(self) -> 'outputs.PermissionsPermissions':
+    def permissions(self) -> pulumi.Output['outputs.PermissionsPermissions']:
         """
         The settings of the permissions. The structure is
         described below.
@@ -123,7 +123,7 @@ class Permissions(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def user(self) -> str:
+    def user(self) -> pulumi.Output[str]:
         """
         The user to apply the permissions to.
         """
@@ -131,7 +131,7 @@ class Permissions(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vhost(self) -> Optional[str]:
+    def vhost(self) -> pulumi.Output[Optional[str]]:
         """
         The vhost to create the resource in.
         """

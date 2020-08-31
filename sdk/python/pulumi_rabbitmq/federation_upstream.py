@@ -15,7 +15,7 @@ __all__ = ['FederationUpstream']
 
 class FederationUpstream(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  definition: Optional[pulumi.Input[pulumi.InputType['FederationUpstreamDefinitionArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -87,22 +87,22 @@ class FederationUpstream(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def component(self) -> str:
+    def component(self) -> pulumi.Output[str]:
         return pulumi.get(self, "component")
 
     @property
     @pulumi.getter
-    def definition(self) -> 'outputs.FederationUpstreamDefinition':
+    def definition(self) -> pulumi.Output['outputs.FederationUpstreamDefinition']:
         return pulumi.get(self, "definition")
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
-    def vhost(self) -> str:
+    def vhost(self) -> pulumi.Output[str]:
         return pulumi.get(self, "vhost")
 
     def translate_output_property(self, prop):

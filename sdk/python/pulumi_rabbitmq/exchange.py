@@ -15,7 +15,7 @@ __all__ = ['Exchange']
 
 class Exchange(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  settings: Optional[pulumi.Input[pulumi.InputType['ExchangeSettingsArgs']]] = None,
@@ -115,7 +115,7 @@ class Exchange(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         The name of the exchange.
         """
@@ -123,7 +123,7 @@ class Exchange(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def settings(self) -> 'outputs.ExchangeSettings':
+    def settings(self) -> pulumi.Output['outputs.ExchangeSettings']:
         """
         The settings of the exchange. The structure is
         described below.
@@ -132,7 +132,7 @@ class Exchange(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vhost(self) -> Optional[str]:
+    def vhost(self) -> pulumi.Output[Optional[str]]:
         """
         The vhost to create the resource in.
         """
