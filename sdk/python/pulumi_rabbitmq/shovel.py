@@ -15,7 +15,7 @@ __all__ = ['Shovel']
 
 class Shovel(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  info: Optional[pulumi.Input[pulumi.InputType['ShovelInfoArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -124,7 +124,7 @@ class Shovel(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def info(self) -> 'outputs.ShovelInfo':
+    def info(self) -> pulumi.Output['outputs.ShovelInfo']:
         """
         The settings of the shovel. The structure is
         described below.
@@ -133,7 +133,7 @@ class Shovel(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         The shovel name.
         """
@@ -141,7 +141,7 @@ class Shovel(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vhost(self) -> str:
+    def vhost(self) -> pulumi.Output[str]:
         """
         The vhost to create the resource in.
         """

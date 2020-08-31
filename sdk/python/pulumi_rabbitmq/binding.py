@@ -13,7 +13,7 @@ __all__ = ['Binding']
 
 class Binding(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  arguments: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  arguments_json: Optional[pulumi.Input[str]] = None,
@@ -156,7 +156,7 @@ class Binding(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def arguments(self) -> Optional[Mapping[str, Any]]:
+    def arguments(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
         Additional key/value arguments for the binding.
         """
@@ -164,12 +164,12 @@ class Binding(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="argumentsJson")
-    def arguments_json(self) -> Optional[str]:
+    def arguments_json(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "arguments_json")
 
     @property
     @pulumi.getter
-    def destination(self) -> str:
+    def destination(self) -> pulumi.Output[str]:
         """
         The destination queue or exchange.
         """
@@ -177,7 +177,7 @@ class Binding(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="destinationType")
-    def destination_type(self) -> str:
+    def destination_type(self) -> pulumi.Output[str]:
         """
         The type of destination (queue or exchange).
         """
@@ -185,7 +185,7 @@ class Binding(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="propertiesKey")
-    def properties_key(self) -> str:
+    def properties_key(self) -> pulumi.Output[str]:
         """
         A unique key to refer to the binding.
         """
@@ -193,7 +193,7 @@ class Binding(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="routingKey")
-    def routing_key(self) -> Optional[str]:
+    def routing_key(self) -> pulumi.Output[Optional[str]]:
         """
         A routing key for the binding.
         """
@@ -201,7 +201,7 @@ class Binding(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def source(self) -> str:
+    def source(self) -> pulumi.Output[str]:
         """
         The source exchange.
         """
@@ -209,7 +209,7 @@ class Binding(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vhost(self) -> str:
+    def vhost(self) -> pulumi.Output[str]:
         """
         The vhost to create the resource in.
         """

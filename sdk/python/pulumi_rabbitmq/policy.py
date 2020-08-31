@@ -15,7 +15,7 @@ __all__ = ['Policy']
 
 class Policy(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  policy: Optional[pulumi.Input[pulumi.InputType['PolicyPolicyArgs']]] = None,
@@ -121,7 +121,7 @@ class Policy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         The name of the policy.
         """
@@ -129,7 +129,7 @@ class Policy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def policy(self) -> 'outputs.PolicyPolicy':
+    def policy(self) -> pulumi.Output['outputs.PolicyPolicy']:
         """
         The settings of the policy. The structure is
         described below.
@@ -138,7 +138,7 @@ class Policy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vhost(self) -> str:
+    def vhost(self) -> pulumi.Output[str]:
         """
         The vhost to create the resource in.
         """
