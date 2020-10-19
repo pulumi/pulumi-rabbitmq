@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -85,12 +85,12 @@ class FederationUpstreamDefinition(dict):
                  uri: str,
                  ack_mode: Optional[str] = None,
                  exchange: Optional[str] = None,
-                 expires: Optional[float] = None,
-                 max_hops: Optional[float] = None,
-                 message_ttl: Optional[float] = None,
-                 prefetch_count: Optional[float] = None,
+                 expires: Optional[int] = None,
+                 max_hops: Optional[int] = None,
+                 message_ttl: Optional[int] = None,
+                 prefetch_count: Optional[int] = None,
                  queue: Optional[str] = None,
-                 reconnect_delay: Optional[float] = None,
+                 reconnect_delay: Optional[int] = None,
                  trust_user_id: Optional[bool] = None):
         pulumi.set(__self__, "uri", uri)
         if ack_mode is not None:
@@ -129,22 +129,22 @@ class FederationUpstreamDefinition(dict):
 
     @property
     @pulumi.getter
-    def expires(self) -> Optional[float]:
+    def expires(self) -> Optional[int]:
         return pulumi.get(self, "expires")
 
     @property
     @pulumi.getter(name="maxHops")
-    def max_hops(self) -> Optional[float]:
+    def max_hops(self) -> Optional[int]:
         return pulumi.get(self, "max_hops")
 
     @property
     @pulumi.getter(name="messageTtl")
-    def message_ttl(self) -> Optional[float]:
+    def message_ttl(self) -> Optional[int]:
         return pulumi.get(self, "message_ttl")
 
     @property
     @pulumi.getter(name="prefetchCount")
-    def prefetch_count(self) -> Optional[float]:
+    def prefetch_count(self) -> Optional[int]:
         return pulumi.get(self, "prefetch_count")
 
     @property
@@ -154,7 +154,7 @@ class FederationUpstreamDefinition(dict):
 
     @property
     @pulumi.getter(name="reconnectDelay")
-    def reconnect_delay(self) -> Optional[float]:
+    def reconnect_delay(self) -> Optional[int]:
         return pulumi.get(self, "reconnect_delay")
 
     @property
@@ -215,13 +215,13 @@ class PolicyPolicy(dict):
                  apply_to: str,
                  definition: Mapping[str, Any],
                  pattern: str,
-                 priority: float):
+                 priority: int):
         """
         :param str apply_to: Can either be "exchanges", "queues", or "all".
         :param Mapping[str, Any] definition: Key/value pairs of the policy definition. See the
                RabbitMQ documentation for definition references and examples.
         :param str pattern: A pattern to match an exchange or queue name.
-        :param float priority: The policy with the greater priority is applied first.
+        :param int priority: The policy with the greater priority is applied first.
         """
         pulumi.set(__self__, "apply_to", apply_to)
         pulumi.set(__self__, "definition", definition)
@@ -255,7 +255,7 @@ class PolicyPolicy(dict):
 
     @property
     @pulumi.getter
-    def priority(self) -> float:
+    def priority(self) -> int:
         """
         The policy with the greater priority is applied first.
         """
@@ -346,8 +346,8 @@ class ShovelInfo(dict):
                  destination_exchange: Optional[str] = None,
                  destination_exchange_key: Optional[str] = None,
                  destination_queue: Optional[str] = None,
-                 prefetch_count: Optional[float] = None,
-                 reconnect_delay: Optional[float] = None,
+                 prefetch_count: Optional[int] = None,
+                 reconnect_delay: Optional[int] = None,
                  source_exchange: Optional[str] = None,
                  source_exchange_key: Optional[str] = None,
                  source_queue: Optional[str] = None):
@@ -365,9 +365,9 @@ class ShovelInfo(dict):
         :param str destination_exchange_key: The routing key when using destination_exchange.
         :param str destination_queue: The queue to which messages should be published.
                Either this or destination_exchange must be specified but not both.
-        :param float prefetch_count: The maximum number of unacknowledged messages copied over a shovel at any one time.
+        :param int prefetch_count: The maximum number of unacknowledged messages copied over a shovel at any one time.
                Defaults to `1000`.
-        :param float reconnect_delay: The duration in seconds to reconnect to a broker after disconnected.
+        :param int reconnect_delay: The duration in seconds to reconnect to a broker after disconnected.
                Defaults to `1`.
         :param str source_exchange: The exchange from which to consume.
                Either this or source_queue must be specified but not both.
@@ -471,7 +471,7 @@ class ShovelInfo(dict):
 
     @property
     @pulumi.getter(name="prefetchCount")
-    def prefetch_count(self) -> Optional[float]:
+    def prefetch_count(self) -> Optional[int]:
         """
         The maximum number of unacknowledged messages copied over a shovel at any one time.
         Defaults to `1000`.
@@ -480,7 +480,7 @@ class ShovelInfo(dict):
 
     @property
     @pulumi.getter(name="reconnectDelay")
-    def reconnect_delay(self) -> Optional[float]:
+    def reconnect_delay(self) -> Optional[int]:
         """
         The duration in seconds to reconnect to a broker after disconnected.
         Defaults to `1`.

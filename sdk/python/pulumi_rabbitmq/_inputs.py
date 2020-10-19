@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -98,12 +98,12 @@ class FederationUpstreamDefinitionArgs:
                  uri: pulumi.Input[str],
                  ack_mode: Optional[pulumi.Input[str]] = None,
                  exchange: Optional[pulumi.Input[str]] = None,
-                 expires: Optional[pulumi.Input[float]] = None,
-                 max_hops: Optional[pulumi.Input[float]] = None,
-                 message_ttl: Optional[pulumi.Input[float]] = None,
-                 prefetch_count: Optional[pulumi.Input[float]] = None,
+                 expires: Optional[pulumi.Input[int]] = None,
+                 max_hops: Optional[pulumi.Input[int]] = None,
+                 message_ttl: Optional[pulumi.Input[int]] = None,
+                 prefetch_count: Optional[pulumi.Input[int]] = None,
                  queue: Optional[pulumi.Input[str]] = None,
-                 reconnect_delay: Optional[pulumi.Input[float]] = None,
+                 reconnect_delay: Optional[pulumi.Input[int]] = None,
                  trust_user_id: Optional[pulumi.Input[bool]] = None):
         pulumi.set(__self__, "uri", uri)
         if ack_mode is not None:
@@ -154,38 +154,38 @@ class FederationUpstreamDefinitionArgs:
 
     @property
     @pulumi.getter
-    def expires(self) -> Optional[pulumi.Input[float]]:
+    def expires(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "expires")
 
     @expires.setter
-    def expires(self, value: Optional[pulumi.Input[float]]):
+    def expires(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "expires", value)
 
     @property
     @pulumi.getter(name="maxHops")
-    def max_hops(self) -> Optional[pulumi.Input[float]]:
+    def max_hops(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "max_hops")
 
     @max_hops.setter
-    def max_hops(self, value: Optional[pulumi.Input[float]]):
+    def max_hops(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_hops", value)
 
     @property
     @pulumi.getter(name="messageTtl")
-    def message_ttl(self) -> Optional[pulumi.Input[float]]:
+    def message_ttl(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "message_ttl")
 
     @message_ttl.setter
-    def message_ttl(self, value: Optional[pulumi.Input[float]]):
+    def message_ttl(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "message_ttl", value)
 
     @property
     @pulumi.getter(name="prefetchCount")
-    def prefetch_count(self) -> Optional[pulumi.Input[float]]:
+    def prefetch_count(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "prefetch_count")
 
     @prefetch_count.setter
-    def prefetch_count(self, value: Optional[pulumi.Input[float]]):
+    def prefetch_count(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "prefetch_count", value)
 
     @property
@@ -199,11 +199,11 @@ class FederationUpstreamDefinitionArgs:
 
     @property
     @pulumi.getter(name="reconnectDelay")
-    def reconnect_delay(self) -> Optional[pulumi.Input[float]]:
+    def reconnect_delay(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "reconnect_delay")
 
     @reconnect_delay.setter
-    def reconnect_delay(self, value: Optional[pulumi.Input[float]]):
+    def reconnect_delay(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "reconnect_delay", value)
 
     @property
@@ -274,13 +274,13 @@ class PolicyPolicyArgs:
                  apply_to: pulumi.Input[str],
                  definition: pulumi.Input[Mapping[str, Any]],
                  pattern: pulumi.Input[str],
-                 priority: pulumi.Input[float]):
+                 priority: pulumi.Input[int]):
         """
         :param pulumi.Input[str] apply_to: Can either be "exchanges", "queues", or "all".
         :param pulumi.Input[Mapping[str, Any]] definition: Key/value pairs of the policy definition. See the
                RabbitMQ documentation for definition references and examples.
         :param pulumi.Input[str] pattern: A pattern to match an exchange or queue name.
-        :param pulumi.Input[float] priority: The policy with the greater priority is applied first.
+        :param pulumi.Input[int] priority: The policy with the greater priority is applied first.
         """
         pulumi.set(__self__, "apply_to", apply_to)
         pulumi.set(__self__, "definition", definition)
@@ -326,14 +326,14 @@ class PolicyPolicyArgs:
 
     @property
     @pulumi.getter
-    def priority(self) -> pulumi.Input[float]:
+    def priority(self) -> pulumi.Input[int]:
         """
         The policy with the greater priority is applied first.
         """
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: pulumi.Input[float]):
+    def priority(self, value: pulumi.Input[int]):
         pulumi.set(self, "priority", value)
 
 
@@ -431,8 +431,8 @@ class ShovelInfoArgs:
                  destination_exchange: Optional[pulumi.Input[str]] = None,
                  destination_exchange_key: Optional[pulumi.Input[str]] = None,
                  destination_queue: Optional[pulumi.Input[str]] = None,
-                 prefetch_count: Optional[pulumi.Input[float]] = None,
-                 reconnect_delay: Optional[pulumi.Input[float]] = None,
+                 prefetch_count: Optional[pulumi.Input[int]] = None,
+                 reconnect_delay: Optional[pulumi.Input[int]] = None,
                  source_exchange: Optional[pulumi.Input[str]] = None,
                  source_exchange_key: Optional[pulumi.Input[str]] = None,
                  source_queue: Optional[pulumi.Input[str]] = None):
@@ -450,9 +450,9 @@ class ShovelInfoArgs:
         :param pulumi.Input[str] destination_exchange_key: The routing key when using destination_exchange.
         :param pulumi.Input[str] destination_queue: The queue to which messages should be published.
                Either this or destination_exchange must be specified but not both.
-        :param pulumi.Input[float] prefetch_count: The maximum number of unacknowledged messages copied over a shovel at any one time.
+        :param pulumi.Input[int] prefetch_count: The maximum number of unacknowledged messages copied over a shovel at any one time.
                Defaults to `1000`.
-        :param pulumi.Input[float] reconnect_delay: The duration in seconds to reconnect to a broker after disconnected.
+        :param pulumi.Input[int] reconnect_delay: The duration in seconds to reconnect to a broker after disconnected.
                Defaults to `1`.
         :param pulumi.Input[str] source_exchange: The exchange from which to consume.
                Either this or source_queue must be specified but not both.
@@ -588,7 +588,7 @@ class ShovelInfoArgs:
 
     @property
     @pulumi.getter(name="prefetchCount")
-    def prefetch_count(self) -> Optional[pulumi.Input[float]]:
+    def prefetch_count(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of unacknowledged messages copied over a shovel at any one time.
         Defaults to `1000`.
@@ -596,12 +596,12 @@ class ShovelInfoArgs:
         return pulumi.get(self, "prefetch_count")
 
     @prefetch_count.setter
-    def prefetch_count(self, value: Optional[pulumi.Input[float]]):
+    def prefetch_count(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "prefetch_count", value)
 
     @property
     @pulumi.getter(name="reconnectDelay")
-    def reconnect_delay(self) -> Optional[pulumi.Input[float]]:
+    def reconnect_delay(self) -> Optional[pulumi.Input[int]]:
         """
         The duration in seconds to reconnect to a broker after disconnected.
         Defaults to `1`.
@@ -609,7 +609,7 @@ class ShovelInfoArgs:
         return pulumi.get(self, "reconnect_delay")
 
     @reconnect_delay.setter
-    def reconnect_delay(self, value: Optional[pulumi.Input[float]]):
+    def reconnect_delay(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "reconnect_delay", value)
 
     @property

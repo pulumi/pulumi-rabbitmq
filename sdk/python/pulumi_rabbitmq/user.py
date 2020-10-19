@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['User']
@@ -17,7 +17,7 @@ class User(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -46,7 +46,7 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the user.
         :param pulumi.Input[str] password: The password of the user. The value of this argument
                is plain-text so make sure to secure where this is defined.
-        :param pulumi.Input[List[pulumi.Input[str]]] tags: Which permission model to apply to the user. Valid
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Which permission model to apply to the user. Valid
                options are: management, policymaker, monitoring, and administrator.
         """
         if __name__ is not None:
@@ -83,7 +83,7 @@ class User(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             name: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
-            tags: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'User':
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'User':
         """
         Get an existing User resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -94,7 +94,7 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the user.
         :param pulumi.Input[str] password: The password of the user. The value of this argument
                is plain-text so make sure to secure where this is defined.
-        :param pulumi.Input[List[pulumi.Input[str]]] tags: Which permission model to apply to the user. Valid
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Which permission model to apply to the user. Valid
                options are: management, policymaker, monitoring, and administrator.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -125,7 +125,7 @@ class User(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def tags(self) -> pulumi.Output[Optional[List[str]]]:
+    def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Which permission model to apply to the user. Valid
         options are: management, policymaker, monitoring, and administrator.
