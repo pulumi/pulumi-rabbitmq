@@ -47,6 +47,16 @@ class TopicPermissions(pulumi.CustomResource):
             vhost=test_v_host.name)
         ```
 
+        ## Import
+
+        Permissions can be imported using the `id` which is composed of
+
+        `user@vhost`. E.g.
+
+        ```sh
+         $ pulumi import rabbitmq:index/topicPermissions:TopicPermissions test user@vhost
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TopicPermissionsPermissionArgs']]]] permissions: The settings of the permissions. The structure is

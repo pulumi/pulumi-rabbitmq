@@ -41,6 +41,14 @@ class User(pulumi.CustomResource):
             ])
         ```
 
+        ## Import
+
+        Users can be imported using the `name`, e.g.
+
+        ```sh
+         $ pulumi import rabbitmq:index/user:User test mctest
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the user.

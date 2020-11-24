@@ -4,6 +4,7 @@
 package rabbitmq
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -85,4 +86,43 @@ type FederationUpstreamArgs struct {
 
 func (FederationUpstreamArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*federationUpstreamArgs)(nil)).Elem()
+}
+
+type FederationUpstreamInput interface {
+	pulumi.Input
+
+	ToFederationUpstreamOutput() FederationUpstreamOutput
+	ToFederationUpstreamOutputWithContext(ctx context.Context) FederationUpstreamOutput
+}
+
+func (FederationUpstream) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederationUpstream)(nil)).Elem()
+}
+
+func (i FederationUpstream) ToFederationUpstreamOutput() FederationUpstreamOutput {
+	return i.ToFederationUpstreamOutputWithContext(context.Background())
+}
+
+func (i FederationUpstream) ToFederationUpstreamOutputWithContext(ctx context.Context) FederationUpstreamOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederationUpstreamOutput)
+}
+
+type FederationUpstreamOutput struct {
+	*pulumi.OutputState
+}
+
+func (FederationUpstreamOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederationUpstreamOutput)(nil)).Elem()
+}
+
+func (o FederationUpstreamOutput) ToFederationUpstreamOutput() FederationUpstreamOutput {
+	return o
+}
+
+func (o FederationUpstreamOutput) ToFederationUpstreamOutputWithContext(ctx context.Context) FederationUpstreamOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(FederationUpstreamOutput{})
 }

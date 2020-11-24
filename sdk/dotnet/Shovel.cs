@@ -60,6 +60,14 @@ namespace Pulumi.RabbitMQ
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Shovels can be imported using the `name` and `vhost` E.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import rabbitmq:index/shovel:Shovel test shovelTest@test
+    /// ```
     /// </summary>
     public partial class Shovel : Pulumi.CustomResource
     {

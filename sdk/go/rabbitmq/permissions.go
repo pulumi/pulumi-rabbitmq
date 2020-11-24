@@ -4,6 +4,7 @@
 package rabbitmq
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -53,6 +54,16 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Permissions can be imported using the `id` which is composed of
+//
+// `user@vhost`. E.g.
+//
+// ```sh
+//  $ pulumi import rabbitmq:index/permissions:Permissions test user@vhost
 // ```
 type Permissions struct {
 	pulumi.CustomResourceState
@@ -146,4 +157,43 @@ type PermissionsArgs struct {
 
 func (PermissionsArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*permissionsArgs)(nil)).Elem()
+}
+
+type PermissionsInput interface {
+	pulumi.Input
+
+	ToPermissionsOutput() PermissionsOutput
+	ToPermissionsOutputWithContext(ctx context.Context) PermissionsOutput
+}
+
+func (Permissions) ElementType() reflect.Type {
+	return reflect.TypeOf((*Permissions)(nil)).Elem()
+}
+
+func (i Permissions) ToPermissionsOutput() PermissionsOutput {
+	return i.ToPermissionsOutputWithContext(context.Background())
+}
+
+func (i Permissions) ToPermissionsOutputWithContext(ctx context.Context) PermissionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PermissionsOutput)
+}
+
+type PermissionsOutput struct {
+	*pulumi.OutputState
+}
+
+func (PermissionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PermissionsOutput)(nil)).Elem()
+}
+
+func (o PermissionsOutput) ToPermissionsOutput() PermissionsOutput {
+	return o
+}
+
+func (o PermissionsOutput) ToPermissionsOutputWithContext(ctx context.Context) PermissionsOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PermissionsOutput{})
 }

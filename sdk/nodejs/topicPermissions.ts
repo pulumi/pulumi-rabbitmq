@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -30,6 +29,16 @@ import * as utilities from "./utilities";
  *     user: testUser.name,
  *     vhost: testVHost.name,
  * });
+ * ```
+ *
+ * ## Import
+ *
+ * Permissions can be imported using the `id` which is composed of
+ *
+ * `user@vhost`. E.g.
+ *
+ * ```sh
+ *  $ pulumi import rabbitmq:index/topicPermissions:TopicPermissions test user@vhost
  * ```
  */
 export class TopicPermissions extends pulumi.CustomResource {

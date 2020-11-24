@@ -38,6 +38,14 @@ namespace Pulumi.RabbitMQ
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Users can be imported using the `name`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import rabbitmq:index/user:User test mctest
+    /// ```
     /// </summary>
     public partial class User : Pulumi.CustomResource
     {

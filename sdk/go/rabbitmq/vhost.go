@@ -4,6 +4,7 @@
 package rabbitmq
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -30,6 +31,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Vhosts can be imported using the `name`, e.g.
+//
+// ```sh
+//  $ pulumi import rabbitmq:index/vHost:VHost my_vhost my_vhost
 // ```
 type VHost struct {
 	pulumi.CustomResourceState
@@ -92,4 +101,43 @@ type VHostArgs struct {
 
 func (VHostArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*vhostArgs)(nil)).Elem()
+}
+
+type VHostInput interface {
+	pulumi.Input
+
+	ToVHostOutput() VHostOutput
+	ToVHostOutputWithContext(ctx context.Context) VHostOutput
+}
+
+func (VHost) ElementType() reflect.Type {
+	return reflect.TypeOf((*VHost)(nil)).Elem()
+}
+
+func (i VHost) ToVHostOutput() VHostOutput {
+	return i.ToVHostOutputWithContext(context.Background())
+}
+
+func (i VHost) ToVHostOutputWithContext(ctx context.Context) VHostOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VHostOutput)
+}
+
+type VHostOutput struct {
+	*pulumi.OutputState
+}
+
+func (VHostOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VHostOutput)(nil)).Elem()
+}
+
+func (o VHostOutput) ToVHostOutput() VHostOutput {
+	return o
+}
+
+func (o VHostOutput) ToVHostOutputWithContext(ctx context.Context) VHostOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(VHostOutput{})
 }

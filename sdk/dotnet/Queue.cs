@@ -94,6 +94,14 @@ namespace Pulumi.RabbitMQ
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Queues can be imported using the `id` which is composed of `name@vhost`. E.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import rabbitmq:index/queue:Queue test name@vhost
+    /// ```
     /// </summary>
     public partial class Queue : Pulumi.CustomResource
     {

@@ -50,6 +50,16 @@ class Exchange(pulumi.CustomResource):
             vhost=guest.vhost)
         ```
 
+        ## Import
+
+        Exchanges can be imported using the `id` which is composed of
+
+        `name@vhost`. E.g.
+
+        ```sh
+         $ pulumi import rabbitmq:index/exchange:Exchange test test@vhost
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the exchange.
