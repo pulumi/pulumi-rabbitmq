@@ -15,6 +15,14 @@ import * as utilities from "./utilities";
  *
  * const myVhost = new rabbitmq.VHost("my_vhost", {});
  * ```
+ *
+ * ## Import
+ *
+ * Vhosts can be imported using the `name`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import rabbitmq:index/vHost:VHost my_vhost my_vhost
+ * ```
  */
 export class VHost extends pulumi.CustomResource {
     /**

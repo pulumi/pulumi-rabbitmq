@@ -4,6 +4,7 @@
 package rabbitmq
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -55,6 +56,16 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Permissions can be imported using the `id` which is composed of
+//
+// `user@vhost`. E.g.
+//
+// ```sh
+//  $ pulumi import rabbitmq:index/topicPermissions:TopicPermissions test user@vhost
 // ```
 type TopicPermissions struct {
 	pulumi.CustomResourceState
@@ -148,4 +159,43 @@ type TopicPermissionsArgs struct {
 
 func (TopicPermissionsArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*topicPermissionsArgs)(nil)).Elem()
+}
+
+type TopicPermissionsInput interface {
+	pulumi.Input
+
+	ToTopicPermissionsOutput() TopicPermissionsOutput
+	ToTopicPermissionsOutputWithContext(ctx context.Context) TopicPermissionsOutput
+}
+
+func (TopicPermissions) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicPermissions)(nil)).Elem()
+}
+
+func (i TopicPermissions) ToTopicPermissionsOutput() TopicPermissionsOutput {
+	return i.ToTopicPermissionsOutputWithContext(context.Background())
+}
+
+func (i TopicPermissions) ToTopicPermissionsOutputWithContext(ctx context.Context) TopicPermissionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicPermissionsOutput)
+}
+
+type TopicPermissionsOutput struct {
+	*pulumi.OutputState
+}
+
+func (TopicPermissionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicPermissionsOutput)(nil)).Elem()
+}
+
+func (o TopicPermissionsOutput) ToTopicPermissionsOutput() TopicPermissionsOutput {
+	return o
+}
+
+func (o TopicPermissionsOutput) ToTopicPermissionsOutputWithContext(ctx context.Context) TopicPermissionsOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TopicPermissionsOutput{})
 }

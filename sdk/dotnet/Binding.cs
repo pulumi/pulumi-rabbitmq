@@ -68,6 +68,16 @@ namespace Pulumi.RabbitMQ
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Bindings can be imported using the `id` which is composed of
+    /// 
+    ///  `vhost/source/destination/destination_type/properties_key`. E.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23
+    /// ```
     /// </summary>
     public partial class Binding : Pulumi.CustomResource
     {

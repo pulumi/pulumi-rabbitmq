@@ -47,6 +47,16 @@ import * as utilities from "./utilities";
  *     vhost: testVHost.name,
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Bindings can be imported using the `id` which is composed of
+ *
+ *  `vhost/source/destination/destination_type/properties_key`. E.g.
+ *
+ * ```sh
+ *  $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23
+ * ```
  */
 export class Binding extends pulumi.CustomResource {
     /**

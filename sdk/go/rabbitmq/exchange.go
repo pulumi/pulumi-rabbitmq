@@ -4,6 +4,7 @@
 package rabbitmq
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -54,6 +55,16 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Exchanges can be imported using the `id` which is composed of
+//
+// `name@vhost`. E.g.
+//
+// ```sh
+//  $ pulumi import rabbitmq:index/exchange:Exchange test test@vhost
 // ```
 type Exchange struct {
 	pulumi.CustomResourceState
@@ -144,4 +155,43 @@ type ExchangeArgs struct {
 
 func (ExchangeArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*exchangeArgs)(nil)).Elem()
+}
+
+type ExchangeInput interface {
+	pulumi.Input
+
+	ToExchangeOutput() ExchangeOutput
+	ToExchangeOutputWithContext(ctx context.Context) ExchangeOutput
+}
+
+func (Exchange) ElementType() reflect.Type {
+	return reflect.TypeOf((*Exchange)(nil)).Elem()
+}
+
+func (i Exchange) ToExchangeOutput() ExchangeOutput {
+	return i.ToExchangeOutputWithContext(context.Background())
+}
+
+func (i Exchange) ToExchangeOutputWithContext(ctx context.Context) ExchangeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExchangeOutput)
+}
+
+type ExchangeOutput struct {
+	*pulumi.OutputState
+}
+
+func (ExchangeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExchangeOutput)(nil)).Elem()
+}
+
+func (o ExchangeOutput) ToExchangeOutput() ExchangeOutput {
+	return o
+}
+
+func (o ExchangeOutput) ToExchangeOutputWithContext(ctx context.Context) ExchangeOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ExchangeOutput{})
 }

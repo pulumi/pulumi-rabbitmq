@@ -57,6 +57,14 @@ class Shovel(pulumi.CustomResource):
             vhost=test_v_host.name)
         ```
 
+        ## Import
+
+        Shovels can be imported using the `name` and `vhost` E.g.
+
+        ```sh
+         $ pulumi import rabbitmq:index/shovel:Shovel test shovelTest@test
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['ShovelInfoArgs']] info: The settings of the shovel. The structure is

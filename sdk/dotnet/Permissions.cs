@@ -49,6 +49,16 @@ namespace Pulumi.RabbitMQ
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Permissions can be imported using the `id` which is composed of
+    /// 
+    /// `user@vhost`. E.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import rabbitmq:index/permissions:Permissions test user@vhost
+    /// ```
     /// </summary>
     public partial class Permissions : Pulumi.CustomResource
     {

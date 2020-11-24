@@ -4,6 +4,7 @@
 package rabbitmq
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -75,6 +76,16 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Bindings can be imported using the `id` which is composed of
+//
+//  `vhost/source/destination/destination_type/properties_key`. E.g.
+//
+// ```sh
+//  $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23
 // ```
 type Binding struct {
 	pulumi.CustomResourceState
@@ -210,4 +221,43 @@ type BindingArgs struct {
 
 func (BindingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*bindingArgs)(nil)).Elem()
+}
+
+type BindingInput interface {
+	pulumi.Input
+
+	ToBindingOutput() BindingOutput
+	ToBindingOutputWithContext(ctx context.Context) BindingOutput
+}
+
+func (Binding) ElementType() reflect.Type {
+	return reflect.TypeOf((*Binding)(nil)).Elem()
+}
+
+func (i Binding) ToBindingOutput() BindingOutput {
+	return i.ToBindingOutputWithContext(context.Background())
+}
+
+func (i Binding) ToBindingOutputWithContext(ctx context.Context) BindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BindingOutput)
+}
+
+type BindingOutput struct {
+	*pulumi.OutputState
+}
+
+func (BindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BindingOutput)(nil)).Elem()
+}
+
+func (o BindingOutput) ToBindingOutput() BindingOutput {
+	return o
+}
+
+func (o BindingOutput) ToBindingOutputWithContext(ctx context.Context) BindingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BindingOutput{})
 }

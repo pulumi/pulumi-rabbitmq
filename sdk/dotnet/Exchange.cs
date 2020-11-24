@@ -50,6 +50,16 @@ namespace Pulumi.RabbitMQ
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Exchanges can be imported using the `id` which is composed of
+    /// 
+    /// `name@vhost`. E.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import rabbitmq:index/exchange:Exchange test test@vhost
+    /// ```
     /// </summary>
     public partial class Exchange : Pulumi.CustomResource
     {

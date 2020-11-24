@@ -81,6 +81,14 @@ class Queue(pulumi.CustomResource):
             vhost=guest.vhost)
         ```
 
+        ## Import
+
+        Queues can be imported using the `id` which is composed of `name@vhost`. E.g.
+
+        ```sh
+         $ pulumi import rabbitmq:index/queue:Queue test name@vhost
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the queue.

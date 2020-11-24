@@ -65,6 +65,16 @@ class Binding(pulumi.CustomResource):
             vhost=test_v_host.name)
         ```
 
+        ## Import
+
+        Bindings can be imported using the `id` which is composed of
+
+         `vhost/source/destination/destination_type/properties_key`. E.g.
+
+        ```sh
+         $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, Any]] arguments: Additional key/value arguments for the binding.

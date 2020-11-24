@@ -4,6 +4,7 @@
 package rabbitmq
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -65,6 +66,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Shovels can be imported using the `name` and `vhost` E.g.
+//
+// ```sh
+//  $ pulumi import rabbitmq:index/shovel:Shovel test shovelTest@test
 // ```
 type Shovel struct {
 	pulumi.CustomResourceState
@@ -158,4 +167,43 @@ type ShovelArgs struct {
 
 func (ShovelArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*shovelArgs)(nil)).Elem()
+}
+
+type ShovelInput interface {
+	pulumi.Input
+
+	ToShovelOutput() ShovelOutput
+	ToShovelOutputWithContext(ctx context.Context) ShovelOutput
+}
+
+func (Shovel) ElementType() reflect.Type {
+	return reflect.TypeOf((*Shovel)(nil)).Elem()
+}
+
+func (i Shovel) ToShovelOutput() ShovelOutput {
+	return i.ToShovelOutputWithContext(context.Background())
+}
+
+func (i Shovel) ToShovelOutputWithContext(ctx context.Context) ShovelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShovelOutput)
+}
+
+type ShovelOutput struct {
+	*pulumi.OutputState
+}
+
+func (ShovelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShovelOutput)(nil)).Elem()
+}
+
+func (o ShovelOutput) ToShovelOutput() ShovelOutput {
+	return o
+}
+
+func (o ShovelOutput) ToShovelOutputWithContext(ctx context.Context) ShovelOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ShovelOutput{})
 }

@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -37,6 +36,14 @@ import * as utilities from "./utilities";
  *     },
  *     vhost: guest.vhost,
  * });
+ * ```
+ *
+ * ## Import
+ *
+ * Policies can be imported using the `id` which is composed of `name@vhost`. E.g.
+ *
+ * ```sh
+ *  $ pulumi import rabbitmq:index/policy:Policy test name@vhost
  * ```
  */
 export class Policy extends pulumi.CustomResource {

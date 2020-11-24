@@ -47,6 +47,16 @@ class Permissions(pulumi.CustomResource):
             vhost=test_v_host.name)
         ```
 
+        ## Import
+
+        Permissions can be imported using the `id` which is composed of
+
+        `user@vhost`. E.g.
+
+        ```sh
+         $ pulumi import rabbitmq:index/permissions:Permissions test user@vhost
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['PermissionsPermissionsArgs']] permissions: The settings of the permissions. The structure is
