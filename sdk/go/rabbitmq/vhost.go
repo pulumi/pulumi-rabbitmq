@@ -53,6 +53,7 @@ func NewVHost(ctx *pulumi.Context,
 	if args == nil {
 		args = &VHostArgs{}
 	}
+
 	var resource VHost
 	err := ctx.RegisterResource("rabbitmq:index/vHost:VHost", name, args, &resource, opts...)
 	if err != nil {

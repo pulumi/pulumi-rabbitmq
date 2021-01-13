@@ -21,3 +21,68 @@ from . import outputs
 from . import (
     config,
 )
+
+def _register_module():
+    import pulumi
+    from . import _utilities
+
+
+    class Module(pulumi.runtime.ResourceModule):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Module._version
+
+        def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+            if typ == "rabbitmq:index/binding:Binding":
+                return Binding(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "rabbitmq:index/exchange:Exchange":
+                return Exchange(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "rabbitmq:index/federationUpstream:FederationUpstream":
+                return FederationUpstream(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "rabbitmq:index/permissions:Permissions":
+                return Permissions(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "rabbitmq:index/policy:Policy":
+                return Policy(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "rabbitmq:index/queue:Queue":
+                return Queue(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "rabbitmq:index/shovel:Shovel":
+                return Shovel(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "rabbitmq:index/topicPermissions:TopicPermissions":
+                return TopicPermissions(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "rabbitmq:index/user:User":
+                return User(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "rabbitmq:index/vHost:VHost":
+                return VHost(name, pulumi.ResourceOptions(urn=urn))
+            else:
+                raise Exception(f"unknown resource type {typ}")
+
+
+    _module_instance = Module()
+    pulumi.runtime.register_resource_module("rabbitmq", "index/binding", _module_instance)
+    pulumi.runtime.register_resource_module("rabbitmq", "index/exchange", _module_instance)
+    pulumi.runtime.register_resource_module("rabbitmq", "index/federationUpstream", _module_instance)
+    pulumi.runtime.register_resource_module("rabbitmq", "index/permissions", _module_instance)
+    pulumi.runtime.register_resource_module("rabbitmq", "index/policy", _module_instance)
+    pulumi.runtime.register_resource_module("rabbitmq", "index/queue", _module_instance)
+    pulumi.runtime.register_resource_module("rabbitmq", "index/shovel", _module_instance)
+    pulumi.runtime.register_resource_module("rabbitmq", "index/topicPermissions", _module_instance)
+    pulumi.runtime.register_resource_module("rabbitmq", "index/user", _module_instance)
+    pulumi.runtime.register_resource_module("rabbitmq", "index/vHost", _module_instance)
+
+
+    class Package(pulumi.runtime.ResourcePackage):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Package._version
+
+        def construct_provider(self, name: str, typ: str, urn: str) -> pulumi.ProviderResource:
+            if typ != "pulumi:providers:rabbitmq":
+                raise Exception(f"unknown provider type {typ}")
+            return Provider(name, pulumi.ResourceOptions(urn=urn))
+
+
+    pulumi.runtime.register_resource_package("rabbitmq", Package())
+
+_register_module()

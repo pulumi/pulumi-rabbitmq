@@ -24,6 +24,7 @@ func NewProvider(ctx *pulumi.Context,
 	if args == nil {
 		args = &ProviderArgs{}
 	}
+
 	if args.CacertFile == nil {
 		args.CacertFile = pulumi.StringPtr(getEnvOrDefault("", nil, "RABBITMQ_CACERT").(string))
 	}

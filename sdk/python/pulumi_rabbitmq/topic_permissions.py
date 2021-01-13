@@ -81,10 +81,10 @@ class TopicPermissions(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if permissions is None:
+            if permissions is None and not opts.urn:
                 raise TypeError("Missing required property 'permissions'")
             __props__['permissions'] = permissions
-            if user is None:
+            if user is None and not opts.urn:
                 raise TypeError("Missing required property 'user'")
             __props__['user'] = user
             __props__['vhost'] = vhost

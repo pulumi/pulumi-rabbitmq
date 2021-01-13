@@ -23,14 +23,15 @@ type FederationUpstream struct {
 // NewFederationUpstream registers a new resource with the given unique name, arguments, and options.
 func NewFederationUpstream(ctx *pulumi.Context,
 	name string, args *FederationUpstreamArgs, opts ...pulumi.ResourceOption) (*FederationUpstream, error) {
-	if args == nil || args.Definition == nil {
-		return nil, errors.New("missing required argument 'Definition'")
-	}
-	if args == nil || args.Vhost == nil {
-		return nil, errors.New("missing required argument 'Vhost'")
-	}
 	if args == nil {
-		args = &FederationUpstreamArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Definition == nil {
+		return nil, errors.New("invalid value for required argument 'Definition'")
+	}
+	if args.Vhost == nil {
+		return nil, errors.New("invalid value for required argument 'Vhost'")
 	}
 	var resource FederationUpstream
 	err := ctx.RegisterResource("rabbitmq:index/federationUpstream:FederationUpstream", name, args, &resource, opts...)

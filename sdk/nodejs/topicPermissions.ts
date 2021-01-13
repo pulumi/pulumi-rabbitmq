@@ -100,10 +100,10 @@ export class TopicPermissions extends pulumi.CustomResource {
             inputs["vhost"] = state ? state.vhost : undefined;
         } else {
             const args = argsOrState as TopicPermissionsArgs | undefined;
-            if (!args || args.permissions === undefined) {
+            if ((!args || args.permissions === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'permissions'");
             }
-            if (!args || args.user === undefined) {
+            if ((!args || args.user === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'user'");
             }
             inputs["permissions"] = args ? args.permissions : undefined;

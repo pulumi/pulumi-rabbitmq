@@ -105,10 +105,10 @@ export class Policy extends pulumi.CustomResource {
             inputs["vhost"] = state ? state.vhost : undefined;
         } else {
             const args = argsOrState as PolicyArgs | undefined;
-            if (!args || args.policy === undefined) {
+            if ((!args || args.policy === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'policy'");
             }
-            if (!args || args.vhost === undefined) {
+            if ((!args || args.vhost === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'vhost'");
             }
             inputs["name"] = args ? args.name : undefined;

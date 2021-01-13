@@ -80,14 +80,15 @@ type Permissions struct {
 // NewPermissions registers a new resource with the given unique name, arguments, and options.
 func NewPermissions(ctx *pulumi.Context,
 	name string, args *PermissionsArgs, opts ...pulumi.ResourceOption) (*Permissions, error) {
-	if args == nil || args.Permissions == nil {
-		return nil, errors.New("missing required argument 'Permissions'")
-	}
-	if args == nil || args.User == nil {
-		return nil, errors.New("missing required argument 'User'")
-	}
 	if args == nil {
-		args = &PermissionsArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Permissions == nil {
+		return nil, errors.New("invalid value for required argument 'Permissions'")
+	}
+	if args.User == nil {
+		return nil, errors.New("invalid value for required argument 'User'")
 	}
 	var resource Permissions
 	err := ctx.RegisterResource("rabbitmq:index/permissions:Permissions", name, args, &resource, opts...)

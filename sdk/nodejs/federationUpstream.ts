@@ -56,10 +56,10 @@ export class FederationUpstream extends pulumi.CustomResource {
             inputs["vhost"] = state ? state.vhost : undefined;
         } else {
             const args = argsOrState as FederationUpstreamArgs | undefined;
-            if (!args || args.definition === undefined) {
+            if ((!args || args.definition === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'definition'");
             }
-            if (!args || args.vhost === undefined) {
+            if ((!args || args.vhost === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'vhost'");
             }
             inputs["definition"] = args ? args.definition : undefined;

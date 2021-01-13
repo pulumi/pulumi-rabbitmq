@@ -110,20 +110,21 @@ type Binding struct {
 // NewBinding registers a new resource with the given unique name, arguments, and options.
 func NewBinding(ctx *pulumi.Context,
 	name string, args *BindingArgs, opts ...pulumi.ResourceOption) (*Binding, error) {
-	if args == nil || args.Destination == nil {
-		return nil, errors.New("missing required argument 'Destination'")
-	}
-	if args == nil || args.DestinationType == nil {
-		return nil, errors.New("missing required argument 'DestinationType'")
-	}
-	if args == nil || args.Source == nil {
-		return nil, errors.New("missing required argument 'Source'")
-	}
-	if args == nil || args.Vhost == nil {
-		return nil, errors.New("missing required argument 'Vhost'")
-	}
 	if args == nil {
-		args = &BindingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Destination == nil {
+		return nil, errors.New("invalid value for required argument 'Destination'")
+	}
+	if args.DestinationType == nil {
+		return nil, errors.New("invalid value for required argument 'DestinationType'")
+	}
+	if args.Source == nil {
+		return nil, errors.New("invalid value for required argument 'Source'")
+	}
+	if args.Vhost == nil {
+		return nil, errors.New("invalid value for required argument 'Vhost'")
 	}
 	var resource Binding
 	err := ctx.RegisterResource("rabbitmq:index/binding:Binding", name, args, &resource, opts...)

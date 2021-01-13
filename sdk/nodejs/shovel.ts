@@ -109,10 +109,10 @@ export class Shovel extends pulumi.CustomResource {
             inputs["vhost"] = state ? state.vhost : undefined;
         } else {
             const args = argsOrState as ShovelArgs | undefined;
-            if (!args || args.info === undefined) {
+            if ((!args || args.info === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'info'");
             }
-            if (!args || args.vhost === undefined) {
+            if ((!args || args.vhost === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'vhost'");
             }
             inputs["info"] = args ? args.info : undefined;
