@@ -90,14 +90,15 @@ type Shovel struct {
 // NewShovel registers a new resource with the given unique name, arguments, and options.
 func NewShovel(ctx *pulumi.Context,
 	name string, args *ShovelArgs, opts ...pulumi.ResourceOption) (*Shovel, error) {
-	if args == nil || args.Info == nil {
-		return nil, errors.New("missing required argument 'Info'")
-	}
-	if args == nil || args.Vhost == nil {
-		return nil, errors.New("missing required argument 'Vhost'")
-	}
 	if args == nil {
-		args = &ShovelArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Info == nil {
+		return nil, errors.New("invalid value for required argument 'Info'")
+	}
+	if args.Vhost == nil {
+		return nil, errors.New("invalid value for required argument 'Vhost'")
 	}
 	var resource Shovel
 	err := ctx.RegisterResource("rabbitmq:index/shovel:Shovel", name, args, &resource, opts...)

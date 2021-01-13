@@ -132,7 +132,7 @@ export class Queue extends pulumi.CustomResource {
             inputs["vhost"] = state ? state.vhost : undefined;
         } else {
             const args = argsOrState as QueueArgs | undefined;
-            if (!args || args.settings === undefined) {
+            if ((!args || args.settings === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'settings'");
             }
             inputs["name"] = args ? args.name : undefined;

@@ -103,17 +103,17 @@ class Binding(pulumi.CustomResource):
 
             __props__['arguments'] = arguments
             __props__['arguments_json'] = arguments_json
-            if destination is None:
+            if destination is None and not opts.urn:
                 raise TypeError("Missing required property 'destination'")
             __props__['destination'] = destination
-            if destination_type is None:
+            if destination_type is None and not opts.urn:
                 raise TypeError("Missing required property 'destination_type'")
             __props__['destination_type'] = destination_type
             __props__['routing_key'] = routing_key
-            if source is None:
+            if source is None and not opts.urn:
                 raise TypeError("Missing required property 'source'")
             __props__['source'] = source
-            if vhost is None:
+            if vhost is None and not opts.urn:
                 raise TypeError("Missing required property 'vhost'")
             __props__['vhost'] = vhost
             __props__['properties_key'] = None

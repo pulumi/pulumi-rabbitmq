@@ -81,11 +81,12 @@ type Exchange struct {
 // NewExchange registers a new resource with the given unique name, arguments, and options.
 func NewExchange(ctx *pulumi.Context,
 	name string, args *ExchangeArgs, opts ...pulumi.ResourceOption) (*Exchange, error) {
-	if args == nil || args.Settings == nil {
-		return nil, errors.New("missing required argument 'Settings'")
-	}
 	if args == nil {
-		args = &ExchangeArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Settings == nil {
+		return nil, errors.New("invalid value for required argument 'Settings'")
 	}
 	var resource Exchange
 	err := ctx.RegisterResource("rabbitmq:index/exchange:Exchange", name, args, &resource, opts...)

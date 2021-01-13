@@ -138,16 +138,16 @@ export class Binding extends pulumi.CustomResource {
             inputs["vhost"] = state ? state.vhost : undefined;
         } else {
             const args = argsOrState as BindingArgs | undefined;
-            if (!args || args.destination === undefined) {
+            if ((!args || args.destination === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'destination'");
             }
-            if (!args || args.destinationType === undefined) {
+            if ((!args || args.destinationType === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'destinationType'");
             }
-            if (!args || args.source === undefined) {
+            if ((!args || args.source === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'source'");
             }
-            if (!args || args.vhost === undefined) {
+            if ((!args || args.vhost === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'vhost'");
             }
             inputs["arguments"] = args ? args.arguments : undefined;

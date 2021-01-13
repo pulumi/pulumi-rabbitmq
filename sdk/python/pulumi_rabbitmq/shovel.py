@@ -89,11 +89,11 @@ class Shovel(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if info is None:
+            if info is None and not opts.urn:
                 raise TypeError("Missing required property 'info'")
             __props__['info'] = info
             __props__['name'] = name
-            if vhost is None:
+            if vhost is None and not opts.urn:
                 raise TypeError("Missing required property 'vhost'")
             __props__['vhost'] = vhost
         super(Shovel, __self__).__init__(

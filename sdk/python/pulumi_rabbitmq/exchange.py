@@ -85,7 +85,7 @@ class Exchange(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['name'] = name
-            if settings is None:
+            if settings is None and not opts.urn:
                 raise TypeError("Missing required property 'settings'")
             __props__['settings'] = settings
             __props__['vhost'] = vhost

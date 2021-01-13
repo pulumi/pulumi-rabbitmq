@@ -82,14 +82,15 @@ type TopicPermissions struct {
 // NewTopicPermissions registers a new resource with the given unique name, arguments, and options.
 func NewTopicPermissions(ctx *pulumi.Context,
 	name string, args *TopicPermissionsArgs, opts ...pulumi.ResourceOption) (*TopicPermissions, error) {
-	if args == nil || args.Permissions == nil {
-		return nil, errors.New("missing required argument 'Permissions'")
-	}
-	if args == nil || args.User == nil {
-		return nil, errors.New("missing required argument 'User'")
-	}
 	if args == nil {
-		args = &TopicPermissionsArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Permissions == nil {
+		return nil, errors.New("invalid value for required argument 'Permissions'")
+	}
+	if args.User == nil {
+		return nil, errors.New("invalid value for required argument 'User'")
 	}
 	var resource TopicPermissions
 	err := ctx.RegisterResource("rabbitmq:index/topicPermissions:TopicPermissions", name, args, &resource, opts...)
