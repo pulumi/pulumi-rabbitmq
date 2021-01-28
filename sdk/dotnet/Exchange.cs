@@ -61,6 +61,7 @@ namespace Pulumi.RabbitMQ
     ///  $ pulumi import rabbitmq:index/exchange:Exchange test test@vhost
     /// ```
     /// </summary>
+    [RabbitMQResourceType("rabbitmq:index/exchange:Exchange")]
     public partial class Exchange : Pulumi.CustomResource
     {
         /// <summary>

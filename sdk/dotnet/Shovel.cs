@@ -69,6 +69,7 @@ namespace Pulumi.RabbitMQ
     ///  $ pulumi import rabbitmq:index/shovel:Shovel test shovelTest@test
     /// ```
     /// </summary>
+    [RabbitMQResourceType("rabbitmq:index/shovel:Shovel")]
     public partial class Shovel : Pulumi.CustomResource
     {
         /// <summary>

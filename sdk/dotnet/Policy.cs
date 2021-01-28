@@ -64,6 +64,7 @@ namespace Pulumi.RabbitMQ
     ///  $ pulumi import rabbitmq:index/policy:Policy test name@vhost
     /// ```
     /// </summary>
+    [RabbitMQResourceType("rabbitmq:index/policy:Policy")]
     public partial class Policy : Pulumi.CustomResource
     {
         /// <summary>

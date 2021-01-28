@@ -60,6 +60,7 @@ namespace Pulumi.RabbitMQ
     ///  $ pulumi import rabbitmq:index/permissions:Permissions test user@vhost
     /// ```
     /// </summary>
+    [RabbitMQResourceType("rabbitmq:index/permissions:Permissions")]
     public partial class Permissions : Pulumi.CustomResource
     {
         /// <summary>

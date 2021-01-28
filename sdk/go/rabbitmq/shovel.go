@@ -20,6 +20,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq"
+// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -177,15 +178,15 @@ type ShovelInput interface {
 	ToShovelOutputWithContext(ctx context.Context) ShovelOutput
 }
 
-func (Shovel) ElementType() reflect.Type {
-	return reflect.TypeOf((*Shovel)(nil)).Elem()
+func (*Shovel) ElementType() reflect.Type {
+	return reflect.TypeOf((*Shovel)(nil))
 }
 
-func (i Shovel) ToShovelOutput() ShovelOutput {
+func (i *Shovel) ToShovelOutput() ShovelOutput {
 	return i.ToShovelOutputWithContext(context.Background())
 }
 
-func (i Shovel) ToShovelOutputWithContext(ctx context.Context) ShovelOutput {
+func (i *Shovel) ToShovelOutputWithContext(ctx context.Context) ShovelOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ShovelOutput)
 }
 
@@ -194,7 +195,7 @@ type ShovelOutput struct {
 }
 
 func (ShovelOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ShovelOutput)(nil)).Elem()
+	return reflect.TypeOf((*Shovel)(nil))
 }
 
 func (o ShovelOutput) ToShovelOutput() ShovelOutput {

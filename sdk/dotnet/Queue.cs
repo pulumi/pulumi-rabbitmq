@@ -103,6 +103,7 @@ namespace Pulumi.RabbitMQ
     ///  $ pulumi import rabbitmq:index/queue:Queue test name@vhost
     /// ```
     /// </summary>
+    [RabbitMQResourceType("rabbitmq:index/queue:Queue")]
     public partial class Queue : Pulumi.CustomResource
     {
         /// <summary>

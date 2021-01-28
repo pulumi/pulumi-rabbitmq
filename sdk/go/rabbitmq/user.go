@@ -22,7 +22,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq"
+// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -154,15 +154,15 @@ type UserInput interface {
 	ToUserOutputWithContext(ctx context.Context) UserOutput
 }
 
-func (User) ElementType() reflect.Type {
-	return reflect.TypeOf((*User)(nil)).Elem()
+func (*User) ElementType() reflect.Type {
+	return reflect.TypeOf((*User)(nil))
 }
 
-func (i User) ToUserOutput() UserOutput {
+func (i *User) ToUserOutput() UserOutput {
 	return i.ToUserOutputWithContext(context.Background())
 }
 
-func (i User) ToUserOutputWithContext(ctx context.Context) UserOutput {
+func (i *User) ToUserOutputWithContext(ctx context.Context) UserOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserOutput)
 }
 
@@ -171,7 +171,7 @@ type UserOutput struct {
 }
 
 func (UserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserOutput)(nil)).Elem()
+	return reflect.TypeOf((*User)(nil))
 }
 
 func (o UserOutput) ToUserOutput() UserOutput {
