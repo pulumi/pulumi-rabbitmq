@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.RabbitMQ
 {
+    [RabbitMQResourceType("rabbitmq:index/federationUpstream:FederationUpstream")]
     public partial class FederationUpstream : Pulumi.CustomResource
     {
         [Output("component")]

@@ -38,6 +38,7 @@ namespace Pulumi.RabbitMQ
     ///  $ pulumi import rabbitmq:index/vHost:VHost my_vhost my_vhost
     /// ```
     /// </summary>
+    [RabbitMQResourceType("rabbitmq:index/vHost:VHost")]
     public partial class VHost : Pulumi.CustomResource
     {
         /// <summary>

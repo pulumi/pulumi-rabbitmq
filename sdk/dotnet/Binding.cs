@@ -79,6 +79,7 @@ namespace Pulumi.RabbitMQ
     ///  $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23
     /// ```
     /// </summary>
+    [RabbitMQResourceType("rabbitmq:index/binding:Binding")]
     public partial class Binding : Pulumi.CustomResource
     {
         /// <summary>

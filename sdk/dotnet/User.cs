@@ -47,6 +47,7 @@ namespace Pulumi.RabbitMQ
     ///  $ pulumi import rabbitmq:index/user:User test mctest
     /// ```
     /// </summary>
+    [RabbitMQResourceType("rabbitmq:index/user:User")]
     public partial class User : Pulumi.CustomResource
     {
         /// <summary>

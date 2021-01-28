@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq"
+// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -111,15 +111,15 @@ type VHostInput interface {
 	ToVHostOutputWithContext(ctx context.Context) VHostOutput
 }
 
-func (VHost) ElementType() reflect.Type {
-	return reflect.TypeOf((*VHost)(nil)).Elem()
+func (*VHost) ElementType() reflect.Type {
+	return reflect.TypeOf((*VHost)(nil))
 }
 
-func (i VHost) ToVHostOutput() VHostOutput {
+func (i *VHost) ToVHostOutput() VHostOutput {
 	return i.ToVHostOutputWithContext(context.Background())
 }
 
-func (i VHost) ToVHostOutputWithContext(ctx context.Context) VHostOutput {
+func (i *VHost) ToVHostOutputWithContext(ctx context.Context) VHostOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VHostOutput)
 }
 
@@ -128,7 +128,7 @@ type VHostOutput struct {
 }
 
 func (VHostOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VHostOutput)(nil)).Elem()
+	return reflect.TypeOf((*VHost)(nil))
 }
 
 func (o VHostOutput) ToVHostOutput() VHostOutput {

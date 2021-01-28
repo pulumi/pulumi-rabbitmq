@@ -48,7 +48,7 @@ setup(name='pulumi_rabbitmq',
       packages=find_packages(),
       package_data={
           'pulumi_rabbitmq': [
-              'py.typed'
+              'py.typed',
           ]
       },
       install_requires=[

@@ -77,4 +77,11 @@ namespace Pulumi.RabbitMQ
             }
         }
     }
+
+    internal sealed class RabbitMQResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    {
+        public RabbitMQResourceTypeAttribute(string type) : base(type, Utilities.Version)
+        {
+        }
+    }
 }

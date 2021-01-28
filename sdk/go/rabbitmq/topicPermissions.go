@@ -21,6 +21,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq"
+// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -169,15 +170,15 @@ type TopicPermissionsInput interface {
 	ToTopicPermissionsOutputWithContext(ctx context.Context) TopicPermissionsOutput
 }
 
-func (TopicPermissions) ElementType() reflect.Type {
-	return reflect.TypeOf((*TopicPermissions)(nil)).Elem()
+func (*TopicPermissions) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicPermissions)(nil))
 }
 
-func (i TopicPermissions) ToTopicPermissionsOutput() TopicPermissionsOutput {
+func (i *TopicPermissions) ToTopicPermissionsOutput() TopicPermissionsOutput {
 	return i.ToTopicPermissionsOutputWithContext(context.Background())
 }
 
-func (i TopicPermissions) ToTopicPermissionsOutputWithContext(ctx context.Context) TopicPermissionsOutput {
+func (i *TopicPermissions) ToTopicPermissionsOutputWithContext(ctx context.Context) TopicPermissionsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TopicPermissionsOutput)
 }
 
@@ -186,7 +187,7 @@ type TopicPermissionsOutput struct {
 }
 
 func (TopicPermissionsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TopicPermissionsOutput)(nil)).Elem()
+	return reflect.TypeOf((*TopicPermissions)(nil))
 }
 
 func (o TopicPermissionsOutput) ToTopicPermissionsOutput() TopicPermissionsOutput {

@@ -96,15 +96,15 @@ type FederationUpstreamInput interface {
 	ToFederationUpstreamOutputWithContext(ctx context.Context) FederationUpstreamOutput
 }
 
-func (FederationUpstream) ElementType() reflect.Type {
-	return reflect.TypeOf((*FederationUpstream)(nil)).Elem()
+func (*FederationUpstream) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederationUpstream)(nil))
 }
 
-func (i FederationUpstream) ToFederationUpstreamOutput() FederationUpstreamOutput {
+func (i *FederationUpstream) ToFederationUpstreamOutput() FederationUpstreamOutput {
 	return i.ToFederationUpstreamOutputWithContext(context.Background())
 }
 
-func (i FederationUpstream) ToFederationUpstreamOutputWithContext(ctx context.Context) FederationUpstreamOutput {
+func (i *FederationUpstream) ToFederationUpstreamOutputWithContext(ctx context.Context) FederationUpstreamOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FederationUpstreamOutput)
 }
 
@@ -113,7 +113,7 @@ type FederationUpstreamOutput struct {
 }
 
 func (FederationUpstreamOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FederationUpstreamOutput)(nil)).Elem()
+	return reflect.TypeOf((*FederationUpstream)(nil))
 }
 
 func (o FederationUpstreamOutput) ToFederationUpstreamOutput() FederationUpstreamOutput {

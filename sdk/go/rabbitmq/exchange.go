@@ -20,6 +20,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq"
+// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -165,15 +166,15 @@ type ExchangeInput interface {
 	ToExchangeOutputWithContext(ctx context.Context) ExchangeOutput
 }
 
-func (Exchange) ElementType() reflect.Type {
-	return reflect.TypeOf((*Exchange)(nil)).Elem()
+func (*Exchange) ElementType() reflect.Type {
+	return reflect.TypeOf((*Exchange)(nil))
 }
 
-func (i Exchange) ToExchangeOutput() ExchangeOutput {
+func (i *Exchange) ToExchangeOutput() ExchangeOutput {
 	return i.ToExchangeOutputWithContext(context.Background())
 }
 
-func (i Exchange) ToExchangeOutputWithContext(ctx context.Context) ExchangeOutput {
+func (i *Exchange) ToExchangeOutputWithContext(ctx context.Context) ExchangeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ExchangeOutput)
 }
 
@@ -182,7 +183,7 @@ type ExchangeOutput struct {
 }
 
 func (ExchangeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ExchangeOutput)(nil)).Elem()
+	return reflect.TypeOf((*Exchange)(nil))
 }
 
 func (o ExchangeOutput) ToExchangeOutput() ExchangeOutput {
