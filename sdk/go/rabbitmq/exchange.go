@@ -20,7 +20,6 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq"
-// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -178,6 +177,85 @@ func (i *Exchange) ToExchangeOutputWithContext(ctx context.Context) ExchangeOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ExchangeOutput)
 }
 
+func (i *Exchange) ToExchangePtrOutput() ExchangePtrOutput {
+	return i.ToExchangePtrOutputWithContext(context.Background())
+}
+
+func (i *Exchange) ToExchangePtrOutputWithContext(ctx context.Context) ExchangePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExchangePtrOutput)
+}
+
+type ExchangePtrInput interface {
+	pulumi.Input
+
+	ToExchangePtrOutput() ExchangePtrOutput
+	ToExchangePtrOutputWithContext(ctx context.Context) ExchangePtrOutput
+}
+
+type exchangePtrType ExchangeArgs
+
+func (*exchangePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**Exchange)(nil))
+}
+
+func (i *exchangePtrType) ToExchangePtrOutput() ExchangePtrOutput {
+	return i.ToExchangePtrOutputWithContext(context.Background())
+}
+
+func (i *exchangePtrType) ToExchangePtrOutputWithContext(ctx context.Context) ExchangePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExchangePtrOutput)
+}
+
+// ExchangeArrayInput is an input type that accepts ExchangeArray and ExchangeArrayOutput values.
+// You can construct a concrete instance of `ExchangeArrayInput` via:
+//
+//          ExchangeArray{ ExchangeArgs{...} }
+type ExchangeArrayInput interface {
+	pulumi.Input
+
+	ToExchangeArrayOutput() ExchangeArrayOutput
+	ToExchangeArrayOutputWithContext(context.Context) ExchangeArrayOutput
+}
+
+type ExchangeArray []ExchangeInput
+
+func (ExchangeArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*Exchange)(nil))
+}
+
+func (i ExchangeArray) ToExchangeArrayOutput() ExchangeArrayOutput {
+	return i.ToExchangeArrayOutputWithContext(context.Background())
+}
+
+func (i ExchangeArray) ToExchangeArrayOutputWithContext(ctx context.Context) ExchangeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExchangeArrayOutput)
+}
+
+// ExchangeMapInput is an input type that accepts ExchangeMap and ExchangeMapOutput values.
+// You can construct a concrete instance of `ExchangeMapInput` via:
+//
+//          ExchangeMap{ "key": ExchangeArgs{...} }
+type ExchangeMapInput interface {
+	pulumi.Input
+
+	ToExchangeMapOutput() ExchangeMapOutput
+	ToExchangeMapOutputWithContext(context.Context) ExchangeMapOutput
+}
+
+type ExchangeMap map[string]ExchangeInput
+
+func (ExchangeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*Exchange)(nil))
+}
+
+func (i ExchangeMap) ToExchangeMapOutput() ExchangeMapOutput {
+	return i.ToExchangeMapOutputWithContext(context.Background())
+}
+
+func (i ExchangeMap) ToExchangeMapOutputWithContext(ctx context.Context) ExchangeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExchangeMapOutput)
+}
+
 type ExchangeOutput struct {
 	*pulumi.OutputState
 }
@@ -194,6 +272,75 @@ func (o ExchangeOutput) ToExchangeOutputWithContext(ctx context.Context) Exchang
 	return o
 }
 
+func (o ExchangeOutput) ToExchangePtrOutput() ExchangePtrOutput {
+	return o.ToExchangePtrOutputWithContext(context.Background())
+}
+
+func (o ExchangeOutput) ToExchangePtrOutputWithContext(ctx context.Context) ExchangePtrOutput {
+	return o.ApplyT(func(v Exchange) *Exchange {
+		return &v
+	}).(ExchangePtrOutput)
+}
+
+type ExchangePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ExchangePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Exchange)(nil))
+}
+
+func (o ExchangePtrOutput) ToExchangePtrOutput() ExchangePtrOutput {
+	return o
+}
+
+func (o ExchangePtrOutput) ToExchangePtrOutputWithContext(ctx context.Context) ExchangePtrOutput {
+	return o
+}
+
+type ExchangeArrayOutput struct{ *pulumi.OutputState }
+
+func (ExchangeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Exchange)(nil))
+}
+
+func (o ExchangeArrayOutput) ToExchangeArrayOutput() ExchangeArrayOutput {
+	return o
+}
+
+func (o ExchangeArrayOutput) ToExchangeArrayOutputWithContext(ctx context.Context) ExchangeArrayOutput {
+	return o
+}
+
+func (o ExchangeArrayOutput) Index(i pulumi.IntInput) ExchangeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Exchange {
+		return vs[0].([]Exchange)[vs[1].(int)]
+	}).(ExchangeOutput)
+}
+
+type ExchangeMapOutput struct{ *pulumi.OutputState }
+
+func (ExchangeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]Exchange)(nil))
+}
+
+func (o ExchangeMapOutput) ToExchangeMapOutput() ExchangeMapOutput {
+	return o
+}
+
+func (o ExchangeMapOutput) ToExchangeMapOutputWithContext(ctx context.Context) ExchangeMapOutput {
+	return o
+}
+
+func (o ExchangeMapOutput) MapIndex(k pulumi.StringInput) ExchangeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) Exchange {
+		return vs[0].(map[string]Exchange)[vs[1].(string)]
+	}).(ExchangeOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(ExchangeOutput{})
+	pulumi.RegisterOutputType(ExchangePtrOutput{})
+	pulumi.RegisterOutputType(ExchangeArrayOutput{})
+	pulumi.RegisterOutputType(ExchangeMapOutput{})
 }

@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq/"
+// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -123,6 +123,85 @@ func (i *VHost) ToVHostOutputWithContext(ctx context.Context) VHostOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VHostOutput)
 }
 
+func (i *VHost) ToVHostPtrOutput() VHostPtrOutput {
+	return i.ToVHostPtrOutputWithContext(context.Background())
+}
+
+func (i *VHost) ToVHostPtrOutputWithContext(ctx context.Context) VHostPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VHostPtrOutput)
+}
+
+type VHostPtrInput interface {
+	pulumi.Input
+
+	ToVHostPtrOutput() VHostPtrOutput
+	ToVHostPtrOutputWithContext(ctx context.Context) VHostPtrOutput
+}
+
+type vhostPtrType VHostArgs
+
+func (*vhostPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VHost)(nil))
+}
+
+func (i *vhostPtrType) ToVHostPtrOutput() VHostPtrOutput {
+	return i.ToVHostPtrOutputWithContext(context.Background())
+}
+
+func (i *vhostPtrType) ToVHostPtrOutputWithContext(ctx context.Context) VHostPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VHostPtrOutput)
+}
+
+// VHostArrayInput is an input type that accepts VHostArray and VHostArrayOutput values.
+// You can construct a concrete instance of `VHostArrayInput` via:
+//
+//          VHostArray{ VHostArgs{...} }
+type VHostArrayInput interface {
+	pulumi.Input
+
+	ToVHostArrayOutput() VHostArrayOutput
+	ToVHostArrayOutputWithContext(context.Context) VHostArrayOutput
+}
+
+type VHostArray []VHostInput
+
+func (VHostArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*VHost)(nil))
+}
+
+func (i VHostArray) ToVHostArrayOutput() VHostArrayOutput {
+	return i.ToVHostArrayOutputWithContext(context.Background())
+}
+
+func (i VHostArray) ToVHostArrayOutputWithContext(ctx context.Context) VHostArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VHostArrayOutput)
+}
+
+// VHostMapInput is an input type that accepts VHostMap and VHostMapOutput values.
+// You can construct a concrete instance of `VHostMapInput` via:
+//
+//          VHostMap{ "key": VHostArgs{...} }
+type VHostMapInput interface {
+	pulumi.Input
+
+	ToVHostMapOutput() VHostMapOutput
+	ToVHostMapOutputWithContext(context.Context) VHostMapOutput
+}
+
+type VHostMap map[string]VHostInput
+
+func (VHostMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*VHost)(nil))
+}
+
+func (i VHostMap) ToVHostMapOutput() VHostMapOutput {
+	return i.ToVHostMapOutputWithContext(context.Background())
+}
+
+func (i VHostMap) ToVHostMapOutputWithContext(ctx context.Context) VHostMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VHostMapOutput)
+}
+
 type VHostOutput struct {
 	*pulumi.OutputState
 }
@@ -139,6 +218,75 @@ func (o VHostOutput) ToVHostOutputWithContext(ctx context.Context) VHostOutput {
 	return o
 }
 
+func (o VHostOutput) ToVHostPtrOutput() VHostPtrOutput {
+	return o.ToVHostPtrOutputWithContext(context.Background())
+}
+
+func (o VHostOutput) ToVHostPtrOutputWithContext(ctx context.Context) VHostPtrOutput {
+	return o.ApplyT(func(v VHost) *VHost {
+		return &v
+	}).(VHostPtrOutput)
+}
+
+type VHostPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (VHostPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VHost)(nil))
+}
+
+func (o VHostPtrOutput) ToVHostPtrOutput() VHostPtrOutput {
+	return o
+}
+
+func (o VHostPtrOutput) ToVHostPtrOutputWithContext(ctx context.Context) VHostPtrOutput {
+	return o
+}
+
+type VHostArrayOutput struct{ *pulumi.OutputState }
+
+func (VHostArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VHost)(nil))
+}
+
+func (o VHostArrayOutput) ToVHostArrayOutput() VHostArrayOutput {
+	return o
+}
+
+func (o VHostArrayOutput) ToVHostArrayOutputWithContext(ctx context.Context) VHostArrayOutput {
+	return o
+}
+
+func (o VHostArrayOutput) Index(i pulumi.IntInput) VHostOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VHost {
+		return vs[0].([]VHost)[vs[1].(int)]
+	}).(VHostOutput)
+}
+
+type VHostMapOutput struct{ *pulumi.OutputState }
+
+func (VHostMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]VHost)(nil))
+}
+
+func (o VHostMapOutput) ToVHostMapOutput() VHostMapOutput {
+	return o
+}
+
+func (o VHostMapOutput) ToVHostMapOutputWithContext(ctx context.Context) VHostMapOutput {
+	return o
+}
+
+func (o VHostMapOutput) MapIndex(k pulumi.StringInput) VHostOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VHost {
+		return vs[0].(map[string]VHost)[vs[1].(string)]
+	}).(VHostOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(VHostOutput{})
+	pulumi.RegisterOutputType(VHostPtrOutput{})
+	pulumi.RegisterOutputType(VHostArrayOutput{})
+	pulumi.RegisterOutputType(VHostMapOutput{})
 }

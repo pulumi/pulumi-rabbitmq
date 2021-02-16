@@ -93,29 +93,26 @@ export class Permissions extends pulumi.CustomResource {
     constructor(name: string, args: PermissionsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: PermissionsArgs | PermissionsState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as PermissionsState | undefined;
             inputs["permissions"] = state ? state.permissions : undefined;
             inputs["user"] = state ? state.user : undefined;
             inputs["vhost"] = state ? state.vhost : undefined;
         } else {
             const args = argsOrState as PermissionsArgs | undefined;
-            if ((!args || args.permissions === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.permissions === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'permissions'");
             }
-            if ((!args || args.user === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.user === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'user'");
             }
             inputs["permissions"] = args ? args.permissions : undefined;
             inputs["user"] = args ? args.user : undefined;
             inputs["vhost"] = args ? args.vhost : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Permissions.__pulumiType, name, inputs, opts);
     }

@@ -96,26 +96,23 @@ export class Exchange extends pulumi.CustomResource {
     constructor(name: string, args: ExchangeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ExchangeArgs | ExchangeState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ExchangeState | undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["settings"] = state ? state.settings : undefined;
             inputs["vhost"] = state ? state.vhost : undefined;
         } else {
             const args = argsOrState as ExchangeArgs | undefined;
-            if ((!args || args.settings === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.settings === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'settings'");
             }
             inputs["name"] = args ? args.name : undefined;
             inputs["settings"] = args ? args.settings : undefined;
             inputs["vhost"] = args ? args.vhost : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Exchange.__pulumiType, name, inputs, opts);
     }

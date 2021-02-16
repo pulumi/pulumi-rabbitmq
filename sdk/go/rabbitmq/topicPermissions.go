@@ -21,7 +21,6 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq"
-// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v2/go/rabbitmq/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -182,6 +181,85 @@ func (i *TopicPermissions) ToTopicPermissionsOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(TopicPermissionsOutput)
 }
 
+func (i *TopicPermissions) ToTopicPermissionsPtrOutput() TopicPermissionsPtrOutput {
+	return i.ToTopicPermissionsPtrOutputWithContext(context.Background())
+}
+
+func (i *TopicPermissions) ToTopicPermissionsPtrOutputWithContext(ctx context.Context) TopicPermissionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicPermissionsPtrOutput)
+}
+
+type TopicPermissionsPtrInput interface {
+	pulumi.Input
+
+	ToTopicPermissionsPtrOutput() TopicPermissionsPtrOutput
+	ToTopicPermissionsPtrOutputWithContext(ctx context.Context) TopicPermissionsPtrOutput
+}
+
+type topicPermissionsPtrType TopicPermissionsArgs
+
+func (*topicPermissionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TopicPermissions)(nil))
+}
+
+func (i *topicPermissionsPtrType) ToTopicPermissionsPtrOutput() TopicPermissionsPtrOutput {
+	return i.ToTopicPermissionsPtrOutputWithContext(context.Background())
+}
+
+func (i *topicPermissionsPtrType) ToTopicPermissionsPtrOutputWithContext(ctx context.Context) TopicPermissionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicPermissionsPtrOutput)
+}
+
+// TopicPermissionsArrayInput is an input type that accepts TopicPermissionsArray and TopicPermissionsArrayOutput values.
+// You can construct a concrete instance of `TopicPermissionsArrayInput` via:
+//
+//          TopicPermissionsArray{ TopicPermissionsArgs{...} }
+type TopicPermissionsArrayInput interface {
+	pulumi.Input
+
+	ToTopicPermissionsArrayOutput() TopicPermissionsArrayOutput
+	ToTopicPermissionsArrayOutputWithContext(context.Context) TopicPermissionsArrayOutput
+}
+
+type TopicPermissionsArray []TopicPermissionsInput
+
+func (TopicPermissionsArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*TopicPermissions)(nil))
+}
+
+func (i TopicPermissionsArray) ToTopicPermissionsArrayOutput() TopicPermissionsArrayOutput {
+	return i.ToTopicPermissionsArrayOutputWithContext(context.Background())
+}
+
+func (i TopicPermissionsArray) ToTopicPermissionsArrayOutputWithContext(ctx context.Context) TopicPermissionsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicPermissionsArrayOutput)
+}
+
+// TopicPermissionsMapInput is an input type that accepts TopicPermissionsMap and TopicPermissionsMapOutput values.
+// You can construct a concrete instance of `TopicPermissionsMapInput` via:
+//
+//          TopicPermissionsMap{ "key": TopicPermissionsArgs{...} }
+type TopicPermissionsMapInput interface {
+	pulumi.Input
+
+	ToTopicPermissionsMapOutput() TopicPermissionsMapOutput
+	ToTopicPermissionsMapOutputWithContext(context.Context) TopicPermissionsMapOutput
+}
+
+type TopicPermissionsMap map[string]TopicPermissionsInput
+
+func (TopicPermissionsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*TopicPermissions)(nil))
+}
+
+func (i TopicPermissionsMap) ToTopicPermissionsMapOutput() TopicPermissionsMapOutput {
+	return i.ToTopicPermissionsMapOutputWithContext(context.Background())
+}
+
+func (i TopicPermissionsMap) ToTopicPermissionsMapOutputWithContext(ctx context.Context) TopicPermissionsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicPermissionsMapOutput)
+}
+
 type TopicPermissionsOutput struct {
 	*pulumi.OutputState
 }
@@ -198,6 +276,75 @@ func (o TopicPermissionsOutput) ToTopicPermissionsOutputWithContext(ctx context.
 	return o
 }
 
+func (o TopicPermissionsOutput) ToTopicPermissionsPtrOutput() TopicPermissionsPtrOutput {
+	return o.ToTopicPermissionsPtrOutputWithContext(context.Background())
+}
+
+func (o TopicPermissionsOutput) ToTopicPermissionsPtrOutputWithContext(ctx context.Context) TopicPermissionsPtrOutput {
+	return o.ApplyT(func(v TopicPermissions) *TopicPermissions {
+		return &v
+	}).(TopicPermissionsPtrOutput)
+}
+
+type TopicPermissionsPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TopicPermissionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TopicPermissions)(nil))
+}
+
+func (o TopicPermissionsPtrOutput) ToTopicPermissionsPtrOutput() TopicPermissionsPtrOutput {
+	return o
+}
+
+func (o TopicPermissionsPtrOutput) ToTopicPermissionsPtrOutputWithContext(ctx context.Context) TopicPermissionsPtrOutput {
+	return o
+}
+
+type TopicPermissionsArrayOutput struct{ *pulumi.OutputState }
+
+func (TopicPermissionsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TopicPermissions)(nil))
+}
+
+func (o TopicPermissionsArrayOutput) ToTopicPermissionsArrayOutput() TopicPermissionsArrayOutput {
+	return o
+}
+
+func (o TopicPermissionsArrayOutput) ToTopicPermissionsArrayOutputWithContext(ctx context.Context) TopicPermissionsArrayOutput {
+	return o
+}
+
+func (o TopicPermissionsArrayOutput) Index(i pulumi.IntInput) TopicPermissionsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TopicPermissions {
+		return vs[0].([]TopicPermissions)[vs[1].(int)]
+	}).(TopicPermissionsOutput)
+}
+
+type TopicPermissionsMapOutput struct{ *pulumi.OutputState }
+
+func (TopicPermissionsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]TopicPermissions)(nil))
+}
+
+func (o TopicPermissionsMapOutput) ToTopicPermissionsMapOutput() TopicPermissionsMapOutput {
+	return o
+}
+
+func (o TopicPermissionsMapOutput) ToTopicPermissionsMapOutputWithContext(ctx context.Context) TopicPermissionsMapOutput {
+	return o
+}
+
+func (o TopicPermissionsMapOutput) MapIndex(k pulumi.StringInput) TopicPermissionsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) TopicPermissions {
+		return vs[0].(map[string]TopicPermissions)[vs[1].(string)]
+	}).(TopicPermissionsOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(TopicPermissionsOutput{})
+	pulumi.RegisterOutputType(TopicPermissionsPtrOutput{})
+	pulumi.RegisterOutputType(TopicPermissionsArrayOutput{})
+	pulumi.RegisterOutputType(TopicPermissionsMapOutput{})
 }

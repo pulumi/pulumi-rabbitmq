@@ -126,7 +126,8 @@ export class Binding extends pulumi.CustomResource {
     constructor(name: string, args: BindingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: BindingArgs | BindingState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as BindingState | undefined;
             inputs["arguments"] = state ? state.arguments : undefined;
             inputs["argumentsJson"] = state ? state.argumentsJson : undefined;
@@ -138,16 +139,16 @@ export class Binding extends pulumi.CustomResource {
             inputs["vhost"] = state ? state.vhost : undefined;
         } else {
             const args = argsOrState as BindingArgs | undefined;
-            if ((!args || args.destination === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.destination === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'destination'");
             }
-            if ((!args || args.destinationType === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.destinationType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'destinationType'");
             }
-            if ((!args || args.source === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.source === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'source'");
             }
-            if ((!args || args.vhost === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.vhost === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'vhost'");
             }
             inputs["arguments"] = args ? args.arguments : undefined;
@@ -159,12 +160,8 @@ export class Binding extends pulumi.CustomResource {
             inputs["vhost"] = args ? args.vhost : undefined;
             inputs["propertiesKey"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Binding.__pulumiType, name, inputs, opts);
     }
