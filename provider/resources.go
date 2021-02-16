@@ -64,21 +64,6 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:    "https://pulumi.io",
 		Repository:  "https://github.com/pulumi/pulumi-rabbitmq",
 		Config: map[string]*tfbridge.SchemaInfo{
-			"endpoint": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"RABBITMQ_ENDPOINT"},
-				},
-			},
-			"username": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"RABBITMQ_USERNAME"},
-				},
-			},
-			"password": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"RABBITMQ_PASSWORD"},
-				},
-			},
 			"insecure": {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"RABBITMQ_INSECURE"},

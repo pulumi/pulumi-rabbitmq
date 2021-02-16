@@ -102,29 +102,26 @@ export class Shovel extends pulumi.CustomResource {
     constructor(name: string, args: ShovelArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ShovelArgs | ShovelState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ShovelState | undefined;
             inputs["info"] = state ? state.info : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["vhost"] = state ? state.vhost : undefined;
         } else {
             const args = argsOrState as ShovelArgs | undefined;
-            if ((!args || args.info === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.info === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'info'");
             }
-            if ((!args || args.vhost === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.vhost === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'vhost'");
             }
             inputs["info"] = args ? args.info : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["vhost"] = args ? args.vhost : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Shovel.__pulumiType, name, inputs, opts);
     }

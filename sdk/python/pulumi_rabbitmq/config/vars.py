@@ -26,11 +26,11 @@ clientcert_file = __config__.get('clientcertFile')
 
 clientkey_file = __config__.get('clientkeyFile')
 
-endpoint = __config__.get('endpoint') or _utilities.get_env('RABBITMQ_ENDPOINT')
+endpoint = __config__.get('endpoint')
 
 insecure = __config__.get('insecure') or _utilities.get_env_bool('RABBITMQ_INSECURE')
 
-password = __config__.get('password') or _utilities.get_env('RABBITMQ_PASSWORD')
+password = __config__.get('password')
 
-username = __config__.get('username') or _utilities.get_env('RABBITMQ_USERNAME')
+username = __config__.get('username')
 

@@ -108,6 +108,85 @@ func (i *FederationUpstream) ToFederationUpstreamOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(FederationUpstreamOutput)
 }
 
+func (i *FederationUpstream) ToFederationUpstreamPtrOutput() FederationUpstreamPtrOutput {
+	return i.ToFederationUpstreamPtrOutputWithContext(context.Background())
+}
+
+func (i *FederationUpstream) ToFederationUpstreamPtrOutputWithContext(ctx context.Context) FederationUpstreamPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederationUpstreamPtrOutput)
+}
+
+type FederationUpstreamPtrInput interface {
+	pulumi.Input
+
+	ToFederationUpstreamPtrOutput() FederationUpstreamPtrOutput
+	ToFederationUpstreamPtrOutputWithContext(ctx context.Context) FederationUpstreamPtrOutput
+}
+
+type federationUpstreamPtrType FederationUpstreamArgs
+
+func (*federationUpstreamPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**FederationUpstream)(nil))
+}
+
+func (i *federationUpstreamPtrType) ToFederationUpstreamPtrOutput() FederationUpstreamPtrOutput {
+	return i.ToFederationUpstreamPtrOutputWithContext(context.Background())
+}
+
+func (i *federationUpstreamPtrType) ToFederationUpstreamPtrOutputWithContext(ctx context.Context) FederationUpstreamPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederationUpstreamPtrOutput)
+}
+
+// FederationUpstreamArrayInput is an input type that accepts FederationUpstreamArray and FederationUpstreamArrayOutput values.
+// You can construct a concrete instance of `FederationUpstreamArrayInput` via:
+//
+//          FederationUpstreamArray{ FederationUpstreamArgs{...} }
+type FederationUpstreamArrayInput interface {
+	pulumi.Input
+
+	ToFederationUpstreamArrayOutput() FederationUpstreamArrayOutput
+	ToFederationUpstreamArrayOutputWithContext(context.Context) FederationUpstreamArrayOutput
+}
+
+type FederationUpstreamArray []FederationUpstreamInput
+
+func (FederationUpstreamArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*FederationUpstream)(nil))
+}
+
+func (i FederationUpstreamArray) ToFederationUpstreamArrayOutput() FederationUpstreamArrayOutput {
+	return i.ToFederationUpstreamArrayOutputWithContext(context.Background())
+}
+
+func (i FederationUpstreamArray) ToFederationUpstreamArrayOutputWithContext(ctx context.Context) FederationUpstreamArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederationUpstreamArrayOutput)
+}
+
+// FederationUpstreamMapInput is an input type that accepts FederationUpstreamMap and FederationUpstreamMapOutput values.
+// You can construct a concrete instance of `FederationUpstreamMapInput` via:
+//
+//          FederationUpstreamMap{ "key": FederationUpstreamArgs{...} }
+type FederationUpstreamMapInput interface {
+	pulumi.Input
+
+	ToFederationUpstreamMapOutput() FederationUpstreamMapOutput
+	ToFederationUpstreamMapOutputWithContext(context.Context) FederationUpstreamMapOutput
+}
+
+type FederationUpstreamMap map[string]FederationUpstreamInput
+
+func (FederationUpstreamMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*FederationUpstream)(nil))
+}
+
+func (i FederationUpstreamMap) ToFederationUpstreamMapOutput() FederationUpstreamMapOutput {
+	return i.ToFederationUpstreamMapOutputWithContext(context.Background())
+}
+
+func (i FederationUpstreamMap) ToFederationUpstreamMapOutputWithContext(ctx context.Context) FederationUpstreamMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederationUpstreamMapOutput)
+}
+
 type FederationUpstreamOutput struct {
 	*pulumi.OutputState
 }
@@ -124,6 +203,75 @@ func (o FederationUpstreamOutput) ToFederationUpstreamOutputWithContext(ctx cont
 	return o
 }
 
+func (o FederationUpstreamOutput) ToFederationUpstreamPtrOutput() FederationUpstreamPtrOutput {
+	return o.ToFederationUpstreamPtrOutputWithContext(context.Background())
+}
+
+func (o FederationUpstreamOutput) ToFederationUpstreamPtrOutputWithContext(ctx context.Context) FederationUpstreamPtrOutput {
+	return o.ApplyT(func(v FederationUpstream) *FederationUpstream {
+		return &v
+	}).(FederationUpstreamPtrOutput)
+}
+
+type FederationUpstreamPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (FederationUpstreamPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FederationUpstream)(nil))
+}
+
+func (o FederationUpstreamPtrOutput) ToFederationUpstreamPtrOutput() FederationUpstreamPtrOutput {
+	return o
+}
+
+func (o FederationUpstreamPtrOutput) ToFederationUpstreamPtrOutputWithContext(ctx context.Context) FederationUpstreamPtrOutput {
+	return o
+}
+
+type FederationUpstreamArrayOutput struct{ *pulumi.OutputState }
+
+func (FederationUpstreamArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FederationUpstream)(nil))
+}
+
+func (o FederationUpstreamArrayOutput) ToFederationUpstreamArrayOutput() FederationUpstreamArrayOutput {
+	return o
+}
+
+func (o FederationUpstreamArrayOutput) ToFederationUpstreamArrayOutputWithContext(ctx context.Context) FederationUpstreamArrayOutput {
+	return o
+}
+
+func (o FederationUpstreamArrayOutput) Index(i pulumi.IntInput) FederationUpstreamOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FederationUpstream {
+		return vs[0].([]FederationUpstream)[vs[1].(int)]
+	}).(FederationUpstreamOutput)
+}
+
+type FederationUpstreamMapOutput struct{ *pulumi.OutputState }
+
+func (FederationUpstreamMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]FederationUpstream)(nil))
+}
+
+func (o FederationUpstreamMapOutput) ToFederationUpstreamMapOutput() FederationUpstreamMapOutput {
+	return o
+}
+
+func (o FederationUpstreamMapOutput) ToFederationUpstreamMapOutputWithContext(ctx context.Context) FederationUpstreamMapOutput {
+	return o
+}
+
+func (o FederationUpstreamMapOutput) MapIndex(k pulumi.StringInput) FederationUpstreamOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FederationUpstream {
+		return vs[0].(map[string]FederationUpstream)[vs[1].(string)]
+	}).(FederationUpstreamOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(FederationUpstreamOutput{})
+	pulumi.RegisterOutputType(FederationUpstreamPtrOutput{})
+	pulumi.RegisterOutputType(FederationUpstreamArrayOutput{})
+	pulumi.RegisterOutputType(FederationUpstreamMapOutput{})
 }

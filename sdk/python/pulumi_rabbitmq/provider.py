@@ -56,17 +56,17 @@ class Provider(pulumi.ProviderResource):
             __props__['cacert_file'] = cacert_file
             __props__['clientcert_file'] = clientcert_file
             __props__['clientkey_file'] = clientkey_file
-            if endpoint is None:
-                endpoint = _utilities.get_env('RABBITMQ_ENDPOINT')
+            if endpoint is None and not opts.urn:
+                raise TypeError("Missing required property 'endpoint'")
             __props__['endpoint'] = endpoint
             if insecure is None:
                 insecure = _utilities.get_env_bool('RABBITMQ_INSECURE')
             __props__['insecure'] = pulumi.Output.from_input(insecure).apply(pulumi.runtime.to_json) if insecure is not None else None
-            if password is None:
-                password = _utilities.get_env('RABBITMQ_PASSWORD')
+            if password is None and not opts.urn:
+                raise TypeError("Missing required property 'password'")
             __props__['password'] = password
-            if username is None:
-                username = _utilities.get_env('RABBITMQ_USERNAME')
+            if username is None and not opts.urn:
+                raise TypeError("Missing required property 'username'")
             __props__['username'] = username
         super(Provider, __self__).__init__(
             'rabbitmq',

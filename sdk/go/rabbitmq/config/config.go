@@ -22,11 +22,7 @@ func GetClientkeyFile(ctx *pulumi.Context) string {
 	return config.Get(ctx, "rabbitmq:clientkeyFile")
 }
 func GetEndpoint(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "rabbitmq:endpoint")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "RABBITMQ_ENDPOINT").(string)
+	return config.Get(ctx, "rabbitmq:endpoint")
 }
 func GetInsecure(ctx *pulumi.Context) bool {
 	v, err := config.TryBool(ctx, "rabbitmq:insecure")
@@ -36,16 +32,8 @@ func GetInsecure(ctx *pulumi.Context) bool {
 	return getEnvOrDefault(false, parseEnvBool, "RABBITMQ_INSECURE").(bool)
 }
 func GetPassword(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "rabbitmq:password")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "RABBITMQ_PASSWORD").(string)
+	return config.Get(ctx, "rabbitmq:password")
 }
 func GetUsername(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "rabbitmq:username")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "RABBITMQ_USERNAME").(string)
+	return config.Get(ctx, "rabbitmq:username")
 }

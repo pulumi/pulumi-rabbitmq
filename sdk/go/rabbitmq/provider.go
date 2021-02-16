@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -22,23 +23,23 @@ type Provider struct {
 func NewProvider(ctx *pulumi.Context,
 	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
 	if args == nil {
-		args = &ProviderArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Endpoint == nil {
+		return nil, errors.New("invalid value for required argument 'Endpoint'")
+	}
+	if args.Password == nil {
+		return nil, errors.New("invalid value for required argument 'Password'")
+	}
+	if args.Username == nil {
+		return nil, errors.New("invalid value for required argument 'Username'")
+	}
 	if args.CacertFile == nil {
 		args.CacertFile = pulumi.StringPtr(getEnvOrDefault("", nil, "RABBITMQ_CACERT").(string))
 	}
-	if args.Endpoint == nil {
-		args.Endpoint = pulumi.StringPtr(getEnvOrDefault("", nil, "RABBITMQ_ENDPOINT").(string))
-	}
 	if args.Insecure == nil {
 		args.Insecure = pulumi.BoolPtr(getEnvOrDefault(false, parseEnvBool, "RABBITMQ_INSECURE").(bool))
-	}
-	if args.Password == nil {
-		args.Password = pulumi.StringPtr(getEnvOrDefault("", nil, "RABBITMQ_PASSWORD").(string))
-	}
-	if args.Username == nil {
-		args.Username = pulumi.StringPtr(getEnvOrDefault("", nil, "RABBITMQ_USERNAME").(string))
 	}
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:rabbitmq", name, args, &resource, opts...)
@@ -52,10 +53,10 @@ type providerArgs struct {
 	CacertFile     *string `pulumi:"cacertFile"`
 	ClientcertFile *string `pulumi:"clientcertFile"`
 	ClientkeyFile  *string `pulumi:"clientkeyFile"`
-	Endpoint       *string `pulumi:"endpoint"`
+	Endpoint       string  `pulumi:"endpoint"`
 	Insecure       *bool   `pulumi:"insecure"`
-	Password       *string `pulumi:"password"`
-	Username       *string `pulumi:"username"`
+	Password       string  `pulumi:"password"`
+	Username       string  `pulumi:"username"`
 }
 
 // The set of arguments for constructing a Provider resource.
@@ -63,10 +64,10 @@ type ProviderArgs struct {
 	CacertFile     pulumi.StringPtrInput
 	ClientcertFile pulumi.StringPtrInput
 	ClientkeyFile  pulumi.StringPtrInput
-	Endpoint       pulumi.StringPtrInput
+	Endpoint       pulumi.StringInput
 	Insecure       pulumi.BoolPtrInput
-	Password       pulumi.StringPtrInput
-	Username       pulumi.StringPtrInput
+	Password       pulumi.StringInput
+	Username       pulumi.StringInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
@@ -92,6 +93,35 @@ func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
 }
 
+func (i *Provider) ToProviderPtrOutput() ProviderPtrOutput {
+	return i.ToProviderPtrOutputWithContext(context.Background())
+}
+
+func (i *Provider) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderPtrOutput)
+}
+
+type ProviderPtrInput interface {
+	pulumi.Input
+
+	ToProviderPtrOutput() ProviderPtrOutput
+	ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput
+}
+
+type providerPtrType ProviderArgs
+
+func (*providerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**Provider)(nil))
+}
+
+func (i *providerPtrType) ToProviderPtrOutput() ProviderPtrOutput {
+	return i.ToProviderPtrOutputWithContext(context.Background())
+}
+
+func (i *providerPtrType) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderPtrOutput)
+}
+
 type ProviderOutput struct {
 	*pulumi.OutputState
 }
@@ -108,6 +138,33 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
+func (o ProviderOutput) ToProviderPtrOutput() ProviderPtrOutput {
+	return o.ToProviderPtrOutputWithContext(context.Background())
+}
+
+func (o ProviderOutput) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return o.ApplyT(func(v Provider) *Provider {
+		return &v
+	}).(ProviderPtrOutput)
+}
+
+type ProviderPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProviderPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Provider)(nil))
+}
+
+func (o ProviderPtrOutput) ToProviderPtrOutput() ProviderPtrOutput {
+	return o
+}
+
+func (o ProviderPtrOutput) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ProviderOutput{})
+	pulumi.RegisterOutputType(ProviderPtrOutput{})
 }

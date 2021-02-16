@@ -14,13 +14,13 @@ namespace Pulumi.RabbitMQ
 
         public static string? ClientkeyFile { get; set; } = __config.Get("clientkeyFile");
 
-        public static string? Endpoint { get; set; } = __config.Get("endpoint") ?? Utilities.GetEnv("RABBITMQ_ENDPOINT");
+        public static string? Endpoint { get; set; } = __config.Get("endpoint");
 
         public static bool? Insecure { get; set; } = __config.GetBoolean("insecure") ?? Utilities.GetEnvBoolean("RABBITMQ_INSECURE");
 
-        public static string? Password { get; set; } = __config.Get("password") ?? Utilities.GetEnv("RABBITMQ_PASSWORD");
+        public static string? Password { get; set; } = __config.Get("password");
 
-        public static string? Username { get; set; } = __config.Get("username") ?? Utilities.GetEnv("RABBITMQ_USERNAME");
+        public static string? Username { get; set; } = __config.Get("username");
 
     }
 }

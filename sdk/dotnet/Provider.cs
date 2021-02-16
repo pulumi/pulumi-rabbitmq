@@ -25,7 +25,7 @@ namespace Pulumi.RabbitMQ
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Provider(string name, ProviderArgs? args = null, CustomResourceOptions? options = null)
+        public Provider(string name, ProviderArgs args, CustomResourceOptions? options = null)
             : base("rabbitmq", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -54,25 +54,22 @@ namespace Pulumi.RabbitMQ
         [Input("clientkeyFile")]
         public Input<string>? ClientkeyFile { get; set; }
 
-        [Input("endpoint")]
-        public Input<string>? Endpoint { get; set; }
+        [Input("endpoint", required: true)]
+        public Input<string> Endpoint { get; set; } = null!;
 
         [Input("insecure", json: true)]
         public Input<bool>? Insecure { get; set; }
 
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        [Input("password", required: true)]
+        public Input<string> Password { get; set; } = null!;
 
-        [Input("username")]
-        public Input<string>? Username { get; set; }
+        [Input("username", required: true)]
+        public Input<string> Username { get; set; } = null!;
 
         public ProviderArgs()
         {
             CacertFile = Utilities.GetEnv("RABBITMQ_CACERT");
-            Endpoint = Utilities.GetEnv("RABBITMQ_ENDPOINT");
             Insecure = Utilities.GetEnvBoolean("RABBITMQ_INSECURE");
-            Password = Utilities.GetEnv("RABBITMQ_PASSWORD");
-            Username = Utilities.GetEnv("RABBITMQ_USERNAME");
         }
     }
 }

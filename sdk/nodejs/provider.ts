@@ -33,23 +33,29 @@ export class Provider extends pulumi.ProviderResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let inputs: pulumi.Inputs = {};
+        opts = opts || {};
         {
+            if ((!args || args.endpoint === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'endpoint'");
+            }
+            if ((!args || args.password === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'password'");
+            }
+            if ((!args || args.username === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'username'");
+            }
             inputs["cacertFile"] = (args ? args.cacertFile : undefined) || utilities.getEnv("RABBITMQ_CACERT");
             inputs["clientcertFile"] = args ? args.clientcertFile : undefined;
             inputs["clientkeyFile"] = args ? args.clientkeyFile : undefined;
-            inputs["endpoint"] = (args ? args.endpoint : undefined) || utilities.getEnv("RABBITMQ_ENDPOINT");
+            inputs["endpoint"] = args ? args.endpoint : undefined;
             inputs["insecure"] = pulumi.output((args ? args.insecure : undefined) || <any>utilities.getEnvBoolean("RABBITMQ_INSECURE")).apply(JSON.stringify);
-            inputs["password"] = (args ? args.password : undefined) || utilities.getEnv("RABBITMQ_PASSWORD");
-            inputs["username"] = (args ? args.username : undefined) || utilities.getEnv("RABBITMQ_USERNAME");
+            inputs["password"] = args ? args.password : undefined;
+            inputs["username"] = args ? args.username : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Provider.__pulumiType, name, inputs, opts);
     }
@@ -62,8 +68,8 @@ export interface ProviderArgs {
     readonly cacertFile?: pulumi.Input<string>;
     readonly clientcertFile?: pulumi.Input<string>;
     readonly clientkeyFile?: pulumi.Input<string>;
-    readonly endpoint?: pulumi.Input<string>;
+    readonly endpoint: pulumi.Input<string>;
     readonly insecure?: pulumi.Input<boolean>;
-    readonly password?: pulumi.Input<string>;
-    readonly username?: pulumi.Input<string>;
+    readonly password: pulumi.Input<string>;
+    readonly username: pulumi.Input<string>;
 }
