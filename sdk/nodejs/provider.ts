@@ -46,11 +46,11 @@ export class Provider extends pulumi.ProviderResource {
             if ((!args || args.username === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            inputs["cacertFile"] = (args ? args.cacertFile : undefined) || utilities.getEnv("RABBITMQ_CACERT");
+            inputs["cacertFile"] = (args ? args.cacertFile : undefined) ?? utilities.getEnv("RABBITMQ_CACERT");
             inputs["clientcertFile"] = args ? args.clientcertFile : undefined;
             inputs["clientkeyFile"] = args ? args.clientkeyFile : undefined;
             inputs["endpoint"] = args ? args.endpoint : undefined;
-            inputs["insecure"] = pulumi.output((args ? args.insecure : undefined) || <any>utilities.getEnvBoolean("RABBITMQ_INSECURE")).apply(JSON.stringify);
+            inputs["insecure"] = pulumi.output((args ? args.insecure : undefined) ?? <any>utilities.getEnvBoolean("RABBITMQ_INSECURE")).apply(JSON.stringify);
             inputs["password"] = args ? args.password : undefined;
             inputs["username"] = args ? args.username : undefined;
         }
