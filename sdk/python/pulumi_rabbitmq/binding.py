@@ -5,13 +5,125 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['Binding']
+__all__ = ['BindingArgs', 'Binding']
+
+@pulumi.input_type
+class BindingArgs:
+    def __init__(__self__, *,
+                 destination: pulumi.Input[str],
+                 destination_type: pulumi.Input[str],
+                 source: pulumi.Input[str],
+                 vhost: pulumi.Input[str],
+                 arguments: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 arguments_json: Optional[pulumi.Input[str]] = None,
+                 routing_key: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a Binding resource.
+        :param pulumi.Input[str] destination: The destination queue or exchange.
+        :param pulumi.Input[str] destination_type: The type of destination (queue or exchange).
+        :param pulumi.Input[str] source: The source exchange.
+        :param pulumi.Input[str] vhost: The vhost to create the resource in.
+        :param pulumi.Input[Mapping[str, Any]] arguments: Additional key/value arguments for the binding.
+        :param pulumi.Input[str] routing_key: A routing key for the binding.
+        """
+        pulumi.set(__self__, "destination", destination)
+        pulumi.set(__self__, "destination_type", destination_type)
+        pulumi.set(__self__, "source", source)
+        pulumi.set(__self__, "vhost", vhost)
+        if arguments is not None:
+            pulumi.set(__self__, "arguments", arguments)
+        if arguments_json is not None:
+            pulumi.set(__self__, "arguments_json", arguments_json)
+        if routing_key is not None:
+            pulumi.set(__self__, "routing_key", routing_key)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> pulumi.Input[str]:
+        """
+        The destination queue or exchange.
+        """
+        return pulumi.get(self, "destination")
+
+    @destination.setter
+    def destination(self, value: pulumi.Input[str]):
+        pulumi.set(self, "destination", value)
+
+    @property
+    @pulumi.getter(name="destinationType")
+    def destination_type(self) -> pulumi.Input[str]:
+        """
+        The type of destination (queue or exchange).
+        """
+        return pulumi.get(self, "destination_type")
+
+    @destination_type.setter
+    def destination_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "destination_type", value)
+
+    @property
+    @pulumi.getter
+    def source(self) -> pulumi.Input[str]:
+        """
+        The source exchange.
+        """
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: pulumi.Input[str]):
+        pulumi.set(self, "source", value)
+
+    @property
+    @pulumi.getter
+    def vhost(self) -> pulumi.Input[str]:
+        """
+        The vhost to create the resource in.
+        """
+        return pulumi.get(self, "vhost")
+
+    @vhost.setter
+    def vhost(self, value: pulumi.Input[str]):
+        pulumi.set(self, "vhost", value)
+
+    @property
+    @pulumi.getter
+    def arguments(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Additional key/value arguments for the binding.
+        """
+        return pulumi.get(self, "arguments")
+
+    @arguments.setter
+    def arguments(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "arguments", value)
+
+    @property
+    @pulumi.getter(name="argumentsJson")
+    def arguments_json(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "arguments_json")
+
+    @arguments_json.setter
+    def arguments_json(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "arguments_json", value)
+
+    @property
+    @pulumi.getter(name="routingKey")
+    def routing_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        A routing key for the binding.
+        """
+        return pulumi.get(self, "routing_key")
+
+    @routing_key.setter
+    def routing_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "routing_key", value)
 
 
 class Binding(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -84,6 +196,87 @@ class Binding(pulumi.CustomResource):
         :param pulumi.Input[str] source: The source exchange.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: BindingArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        The ``Binding`` resource creates and manages a binding relationship
+        between a queue an exchange.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        guest = rabbitmq.Permissions("guest",
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
+            user="guest",
+            vhost=test_v_host.name)
+        test_exchange = rabbitmq.Exchange("testExchange",
+            settings=rabbitmq.ExchangeSettingsArgs(
+                auto_delete=True,
+                durable=False,
+                type="fanout",
+            ),
+            vhost=guest.vhost)
+        test_queue = rabbitmq.Queue("testQueue",
+            settings=rabbitmq.QueueSettingsArgs(
+                auto_delete=False,
+                durable=True,
+            ),
+            vhost=guest.vhost)
+        test_binding = rabbitmq.Binding("testBinding",
+            destination=test_queue.name,
+            destination_type="queue",
+            routing_key="#",
+            source=test_exchange.name,
+            vhost=test_v_host.name)
+        ```
+
+        ## Import
+
+        Bindings can be imported using the `id` which is composed of
+
+         `vhost/source/destination/destination_type/properties_key`. E.g.
+
+        ```sh
+         $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param BindingArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(BindingArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 arguments: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 arguments_json: Optional[pulumi.Input[str]] = None,
+                 destination: Optional[pulumi.Input[str]] = None,
+                 destination_type: Optional[pulumi.Input[str]] = None,
+                 routing_key: Optional[pulumi.Input[str]] = None,
+                 source: Optional[pulumi.Input[str]] = None,
+                 vhost: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__
