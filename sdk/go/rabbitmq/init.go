@@ -21,29 +21,30 @@ func (m *module) Version() semver.Version {
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
 	case "rabbitmq:index/binding:Binding":
-		r, err = NewBinding(ctx, name, nil, pulumi.URN_(urn))
+		r = &Binding{}
 	case "rabbitmq:index/exchange:Exchange":
-		r, err = NewExchange(ctx, name, nil, pulumi.URN_(urn))
+		r = &Exchange{}
 	case "rabbitmq:index/federationUpstream:FederationUpstream":
-		r, err = NewFederationUpstream(ctx, name, nil, pulumi.URN_(urn))
+		r = &FederationUpstream{}
 	case "rabbitmq:index/permissions:Permissions":
-		r, err = NewPermissions(ctx, name, nil, pulumi.URN_(urn))
+		r = &Permissions{}
 	case "rabbitmq:index/policy:Policy":
-		r, err = NewPolicy(ctx, name, nil, pulumi.URN_(urn))
+		r = &Policy{}
 	case "rabbitmq:index/queue:Queue":
-		r, err = NewQueue(ctx, name, nil, pulumi.URN_(urn))
+		r = &Queue{}
 	case "rabbitmq:index/shovel:Shovel":
-		r, err = NewShovel(ctx, name, nil, pulumi.URN_(urn))
+		r = &Shovel{}
 	case "rabbitmq:index/topicPermissions:TopicPermissions":
-		r, err = NewTopicPermissions(ctx, name, nil, pulumi.URN_(urn))
+		r = &TopicPermissions{}
 	case "rabbitmq:index/user:User":
-		r, err = NewUser(ctx, name, nil, pulumi.URN_(urn))
+		r = &User{}
 	case "rabbitmq:index/vHost:VHost":
-		r, err = NewVHost(ctx, name, nil, pulumi.URN_(urn))
+		r = &VHost{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
 	return
 }
 
@@ -60,7 +61,9 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 		return nil, fmt.Errorf("unknown provider type: %s", typ)
 	}
 
-	return NewProvider(ctx, name, nil, pulumi.URN_(urn))
+	r := &Provider{}
+	err := ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	return r, err
 }
 
 func init() {

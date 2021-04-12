@@ -5,15 +5,72 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['Queue']
+__all__ = ['QueueArgs', 'Queue']
+
+@pulumi.input_type
+class QueueArgs:
+    def __init__(__self__, *,
+                 settings: pulumi.Input['QueueSettingsArgs'],
+                 name: Optional[pulumi.Input[str]] = None,
+                 vhost: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a Queue resource.
+        :param pulumi.Input['QueueSettingsArgs'] settings: The settings of the queue. The structure is
+               described below.
+        :param pulumi.Input[str] name: The name of the queue.
+        :param pulumi.Input[str] vhost: The vhost to create the resource in.
+        """
+        pulumi.set(__self__, "settings", settings)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if vhost is not None:
+            pulumi.set(__self__, "vhost", vhost)
+
+    @property
+    @pulumi.getter
+    def settings(self) -> pulumi.Input['QueueSettingsArgs']:
+        """
+        The settings of the queue. The structure is
+        described below.
+        """
+        return pulumi.get(self, "settings")
+
+    @settings.setter
+    def settings(self, value: pulumi.Input['QueueSettingsArgs']):
+        pulumi.set(self, "settings", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the queue.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def vhost(self) -> Optional[pulumi.Input[str]]:
+        """
+        The vhost to create the resource in.
+        """
+        return pulumi.get(self, "vhost")
+
+    @vhost.setter
+    def vhost(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vhost", value)
 
 
 class Queue(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -96,6 +153,99 @@ class Queue(pulumi.CustomResource):
                described below.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: QueueArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        The ``Queue`` resource creates and manages a queue.
+
+        ## Example Usage
+        ### Basic Example
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        guest = rabbitmq.Permissions("guest",
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
+            user="guest",
+            vhost=test_v_host.name)
+        test_queue = rabbitmq.Queue("testQueue",
+            settings=rabbitmq.QueueSettingsArgs(
+                auto_delete=True,
+                durable=False,
+            ),
+            vhost=guest.vhost)
+        ```
+        ### Example With JSON Arguments
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        config = pulumi.Config()
+        arguments = config.get("arguments")
+        if arguments is None:
+            arguments = \"\"\"{
+          "x-message-ttl": 5000
+        }
+
+        \"\"\"
+        test_v_host = rabbitmq.VHost("testVHost")
+        guest = rabbitmq.Permissions("guest",
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
+            user="guest",
+            vhost=test_v_host.name)
+        test_queue = rabbitmq.Queue("testQueue",
+            settings=rabbitmq.QueueSettingsArgs(
+                arguments_json=arguments,
+                auto_delete=True,
+                durable=False,
+            ),
+            vhost=guest.vhost)
+        ```
+
+        ## Import
+
+        Queues can be imported using the `id` which is composed of `name@vhost`. E.g.
+
+        ```sh
+         $ pulumi import rabbitmq:index/queue:Queue test name@vhost
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param QueueArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(QueueArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 settings: Optional[pulumi.Input[pulumi.InputType['QueueSettingsArgs']]] = None,
+                 vhost: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

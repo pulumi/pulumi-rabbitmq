@@ -5,15 +5,71 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['Permissions']
+__all__ = ['PermissionsArgs', 'Permissions']
+
+@pulumi.input_type
+class PermissionsArgs:
+    def __init__(__self__, *,
+                 permissions: pulumi.Input['PermissionsPermissionsArgs'],
+                 user: pulumi.Input[str],
+                 vhost: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a Permissions resource.
+        :param pulumi.Input['PermissionsPermissionsArgs'] permissions: The settings of the permissions. The structure is
+               described below.
+        :param pulumi.Input[str] user: The user to apply the permissions to.
+        :param pulumi.Input[str] vhost: The vhost to create the resource in.
+        """
+        pulumi.set(__self__, "permissions", permissions)
+        pulumi.set(__self__, "user", user)
+        if vhost is not None:
+            pulumi.set(__self__, "vhost", vhost)
+
+    @property
+    @pulumi.getter
+    def permissions(self) -> pulumi.Input['PermissionsPermissionsArgs']:
+        """
+        The settings of the permissions. The structure is
+        described below.
+        """
+        return pulumi.get(self, "permissions")
+
+    @permissions.setter
+    def permissions(self, value: pulumi.Input['PermissionsPermissionsArgs']):
+        pulumi.set(self, "permissions", value)
+
+    @property
+    @pulumi.getter
+    def user(self) -> pulumi.Input[str]:
+        """
+        The user to apply the permissions to.
+        """
+        return pulumi.get(self, "user")
+
+    @user.setter
+    def user(self, value: pulumi.Input[str]):
+        pulumi.set(self, "user", value)
+
+    @property
+    @pulumi.getter
+    def vhost(self) -> Optional[pulumi.Input[str]]:
+        """
+        The vhost to create the resource in.
+        """
+        return pulumi.get(self, "vhost")
+
+    @vhost.setter
+    def vhost(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vhost", value)
 
 
 class Permissions(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -64,6 +120,67 @@ class Permissions(pulumi.CustomResource):
         :param pulumi.Input[str] user: The user to apply the permissions to.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: PermissionsArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        The ``Permissions`` resource creates and manages a user's set of
+        permissions.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        test_user = rabbitmq.User("testUser",
+            password="foobar",
+            tags=["administrator"])
+        test_permissions = rabbitmq.Permissions("testPermissions",
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
+            user=test_user.name,
+            vhost=test_v_host.name)
+        ```
+
+        ## Import
+
+        Permissions can be imported using the `id` which is composed of
+
+        `user@vhost`. E.g.
+
+        ```sh
+         $ pulumi import rabbitmq:index/permissions:Permissions test user@vhost
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param PermissionsArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(PermissionsArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 permissions: Optional[pulumi.Input[pulumi.InputType['PermissionsPermissionsArgs']]] = None,
+                 user: Optional[pulumi.Input[str]] = None,
+                 vhost: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

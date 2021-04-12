@@ -5,15 +5,72 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['Exchange']
+__all__ = ['ExchangeArgs', 'Exchange']
+
+@pulumi.input_type
+class ExchangeArgs:
+    def __init__(__self__, *,
+                 settings: pulumi.Input['ExchangeSettingsArgs'],
+                 name: Optional[pulumi.Input[str]] = None,
+                 vhost: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a Exchange resource.
+        :param pulumi.Input['ExchangeSettingsArgs'] settings: The settings of the exchange. The structure is
+               described below.
+        :param pulumi.Input[str] name: The name of the exchange.
+        :param pulumi.Input[str] vhost: The vhost to create the resource in.
+        """
+        pulumi.set(__self__, "settings", settings)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if vhost is not None:
+            pulumi.set(__self__, "vhost", vhost)
+
+    @property
+    @pulumi.getter
+    def settings(self) -> pulumi.Input['ExchangeSettingsArgs']:
+        """
+        The settings of the exchange. The structure is
+        described below.
+        """
+        return pulumi.get(self, "settings")
+
+    @settings.setter
+    def settings(self, value: pulumi.Input['ExchangeSettingsArgs']):
+        pulumi.set(self, "settings", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the exchange.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def vhost(self) -> Optional[pulumi.Input[str]]:
+        """
+        The vhost to create the resource in.
+        """
+        return pulumi.get(self, "vhost")
+
+    @vhost.setter
+    def vhost(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vhost", value)
 
 
 class Exchange(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -67,6 +124,70 @@ class Exchange(pulumi.CustomResource):
                described below.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: ExchangeArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        The ``Exchange`` resource creates and manages an exchange.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        guest = rabbitmq.Permissions("guest",
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
+            user="guest",
+            vhost=test_v_host.name)
+        test_exchange = rabbitmq.Exchange("testExchange",
+            settings=rabbitmq.ExchangeSettingsArgs(
+                auto_delete=True,
+                durable=False,
+                type="fanout",
+            ),
+            vhost=guest.vhost)
+        ```
+
+        ## Import
+
+        Exchanges can be imported using the `id` which is composed of
+
+        `name@vhost`. E.g.
+
+        ```sh
+         $ pulumi import rabbitmq:index/exchange:Exchange test test@vhost
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param ExchangeArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(ExchangeArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 settings: Optional[pulumi.Input[pulumi.InputType['ExchangeSettingsArgs']]] = None,
+                 vhost: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__
