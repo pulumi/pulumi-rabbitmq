@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = [
     'ExchangeSettings',
@@ -20,6 +20,23 @@ __all__ = [
 
 @pulumi.output_type
 class ExchangeSettings(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "autoDelete":
+            suggest = "auto_delete"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ExchangeSettings. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ExchangeSettings.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ExchangeSettings.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  type: str,
                  arguments: Optional[Mapping[str, Any]] = None,
@@ -75,12 +92,36 @@ class ExchangeSettings(dict):
         """
         return pulumi.get(self, "durable")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class FederationUpstreamDefinition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ackMode":
+            suggest = "ack_mode"
+        elif key == "maxHops":
+            suggest = "max_hops"
+        elif key == "messageTtl":
+            suggest = "message_ttl"
+        elif key == "prefetchCount":
+            suggest = "prefetch_count"
+        elif key == "reconnectDelay":
+            suggest = "reconnect_delay"
+        elif key == "trustUserId":
+            suggest = "trust_user_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FederationUpstreamDefinition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FederationUpstreamDefinition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FederationUpstreamDefinition.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  uri: str,
                  ack_mode: Optional[str] = None,
@@ -162,9 +203,6 @@ class FederationUpstreamDefinition(dict):
     def trust_user_id(self) -> Optional[bool]:
         return pulumi.get(self, "trust_user_id")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class PermissionsPermissions(dict):
@@ -205,12 +243,26 @@ class PermissionsPermissions(dict):
         """
         return pulumi.get(self, "write")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class PolicyPolicy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "applyTo":
+            suggest = "apply_to"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PolicyPolicy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PolicyPolicy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PolicyPolicy.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  apply_to: str,
                  definition: Mapping[str, Any],
@@ -261,12 +313,28 @@ class PolicyPolicy(dict):
         """
         return pulumi.get(self, "priority")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class QueueSettings(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "argumentsJson":
+            suggest = "arguments_json"
+        elif key == "autoDelete":
+            suggest = "auto_delete"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in QueueSettings. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        QueueSettings.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        QueueSettings.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  arguments: Optional[Mapping[str, Any]] = None,
                  arguments_json: Optional[str] = None,
@@ -331,12 +399,50 @@ class QueueSettings(dict):
         """
         return pulumi.get(self, "durable")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ShovelInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "destinationUri":
+            suggest = "destination_uri"
+        elif key == "sourceUri":
+            suggest = "source_uri"
+        elif key == "ackMode":
+            suggest = "ack_mode"
+        elif key == "addForwardHeaders":
+            suggest = "add_forward_headers"
+        elif key == "deleteAfter":
+            suggest = "delete_after"
+        elif key == "destinationExchange":
+            suggest = "destination_exchange"
+        elif key == "destinationExchangeKey":
+            suggest = "destination_exchange_key"
+        elif key == "destinationQueue":
+            suggest = "destination_queue"
+        elif key == "prefetchCount":
+            suggest = "prefetch_count"
+        elif key == "reconnectDelay":
+            suggest = "reconnect_delay"
+        elif key == "sourceExchange":
+            suggest = "source_exchange"
+        elif key == "sourceExchangeKey":
+            suggest = "source_exchange_key"
+        elif key == "sourceQueue":
+            suggest = "source_queue"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ShovelInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ShovelInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ShovelInfo.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  destination_uri: str,
                  source_uri: str,
@@ -513,9 +619,6 @@ class ShovelInfo(dict):
         """
         return pulumi.get(self, "source_queue")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class TopicPermissionsPermission(dict):
@@ -555,8 +658,5 @@ class TopicPermissionsPermission(dict):
         The "write" ACL.
         """
         return pulumi.get(self, "write")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
