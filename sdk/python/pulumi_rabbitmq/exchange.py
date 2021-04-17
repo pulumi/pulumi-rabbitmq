@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
@@ -55,6 +55,64 @@ class ExchangeArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def vhost(self) -> Optional[pulumi.Input[str]]:
+        """
+        The vhost to create the resource in.
+        """
+        return pulumi.get(self, "vhost")
+
+    @vhost.setter
+    def vhost(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vhost", value)
+
+
+@pulumi.input_type
+class _ExchangeState:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None,
+                 settings: Optional[pulumi.Input['ExchangeSettingsArgs']] = None,
+                 vhost: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Exchange resources.
+        :param pulumi.Input[str] name: The name of the exchange.
+        :param pulumi.Input['ExchangeSettingsArgs'] settings: The settings of the exchange. The structure is
+               described below.
+        :param pulumi.Input[str] vhost: The vhost to create the resource in.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if settings is not None:
+            pulumi.set(__self__, "settings", settings)
+        if vhost is not None:
+            pulumi.set(__self__, "vhost", vhost)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the exchange.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def settings(self) -> Optional[pulumi.Input['ExchangeSettingsArgs']]:
+        """
+        The settings of the exchange. The structure is
+        described below.
+        """
+        return pulumi.get(self, "settings")
+
+    @settings.setter
+    def settings(self, value: Optional[pulumi.Input['ExchangeSettingsArgs']]):
+        pulumi.set(self, "settings", value)
 
     @property
     @pulumi.getter
@@ -203,13 +261,13 @@ class Exchange(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = ExchangeArgs.__new__(ExchangeArgs)
 
-            __props__['name'] = name
+            __props__.__dict__["name"] = name
             if settings is None and not opts.urn:
                 raise TypeError("Missing required property 'settings'")
-            __props__['settings'] = settings
-            __props__['vhost'] = vhost
+            __props__.__dict__["settings"] = settings
+            __props__.__dict__["vhost"] = vhost
         super(Exchange, __self__).__init__(
             'rabbitmq:index/exchange:Exchange',
             resource_name,
@@ -237,11 +295,11 @@ class Exchange(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _ExchangeState.__new__(_ExchangeState)
 
-        __props__["name"] = name
-        __props__["settings"] = settings
-        __props__["vhost"] = vhost
+        __props__.__dict__["name"] = name
+        __props__.__dict__["settings"] = settings
+        __props__.__dict__["vhost"] = vhost
         return Exchange(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -268,10 +326,4 @@ class Exchange(pulumi.CustomResource):
         The vhost to create the resource in.
         """
         return pulumi.get(self, "vhost")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

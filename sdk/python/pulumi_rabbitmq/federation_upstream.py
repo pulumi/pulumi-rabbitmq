@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
@@ -52,6 +52,62 @@ class FederationUpstreamArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class _FederationUpstreamState:
+    def __init__(__self__, *,
+                 component: Optional[pulumi.Input[str]] = None,
+                 definition: Optional[pulumi.Input['FederationUpstreamDefinitionArgs']] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 vhost: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering FederationUpstream resources.
+        """
+        if component is not None:
+            pulumi.set(__self__, "component", component)
+        if definition is not None:
+            pulumi.set(__self__, "definition", definition)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if vhost is not None:
+            pulumi.set(__self__, "vhost", vhost)
+
+    @property
+    @pulumi.getter
+    def component(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "component")
+
+    @component.setter
+    def component(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "component", value)
+
+    @property
+    @pulumi.getter
+    def definition(self) -> Optional[pulumi.Input['FederationUpstreamDefinitionArgs']]:
+        return pulumi.get(self, "definition")
+
+    @definition.setter
+    def definition(self, value: Optional[pulumi.Input['FederationUpstreamDefinitionArgs']]):
+        pulumi.set(self, "definition", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def vhost(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "vhost")
+
+    @vhost.setter
+    def vhost(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vhost", value)
 
 
 class FederationUpstream(pulumi.CustomResource):
@@ -114,16 +170,16 @@ class FederationUpstream(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = FederationUpstreamArgs.__new__(FederationUpstreamArgs)
 
             if definition is None and not opts.urn:
                 raise TypeError("Missing required property 'definition'")
-            __props__['definition'] = definition
-            __props__['name'] = name
+            __props__.__dict__["definition"] = definition
+            __props__.__dict__["name"] = name
             if vhost is None and not opts.urn:
                 raise TypeError("Missing required property 'vhost'")
-            __props__['vhost'] = vhost
-            __props__['component'] = None
+            __props__.__dict__["vhost"] = vhost
+            __props__.__dict__["component"] = None
         super(FederationUpstream, __self__).__init__(
             'rabbitmq:index/federationUpstream:FederationUpstream',
             resource_name,
@@ -148,12 +204,12 @@ class FederationUpstream(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _FederationUpstreamState.__new__(_FederationUpstreamState)
 
-        __props__["component"] = component
-        __props__["definition"] = definition
-        __props__["name"] = name
-        __props__["vhost"] = vhost
+        __props__.__dict__["component"] = component
+        __props__.__dict__["definition"] = definition
+        __props__.__dict__["name"] = name
+        __props__.__dict__["vhost"] = vhost
         return FederationUpstream(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -175,10 +231,4 @@ class FederationUpstream(pulumi.CustomResource):
     @pulumi.getter
     def vhost(self) -> pulumi.Output[str]:
         return pulumi.get(self, "vhost")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

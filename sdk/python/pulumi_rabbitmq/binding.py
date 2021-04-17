@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['BindingArgs', 'Binding']
 
@@ -120,6 +120,138 @@ class BindingArgs:
     @routing_key.setter
     def routing_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "routing_key", value)
+
+
+@pulumi.input_type
+class _BindingState:
+    def __init__(__self__, *,
+                 arguments: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 arguments_json: Optional[pulumi.Input[str]] = None,
+                 destination: Optional[pulumi.Input[str]] = None,
+                 destination_type: Optional[pulumi.Input[str]] = None,
+                 properties_key: Optional[pulumi.Input[str]] = None,
+                 routing_key: Optional[pulumi.Input[str]] = None,
+                 source: Optional[pulumi.Input[str]] = None,
+                 vhost: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Binding resources.
+        :param pulumi.Input[Mapping[str, Any]] arguments: Additional key/value arguments for the binding.
+        :param pulumi.Input[str] destination: The destination queue or exchange.
+        :param pulumi.Input[str] destination_type: The type of destination (queue or exchange).
+        :param pulumi.Input[str] properties_key: A unique key to refer to the binding.
+        :param pulumi.Input[str] routing_key: A routing key for the binding.
+        :param pulumi.Input[str] source: The source exchange.
+        :param pulumi.Input[str] vhost: The vhost to create the resource in.
+        """
+        if arguments is not None:
+            pulumi.set(__self__, "arguments", arguments)
+        if arguments_json is not None:
+            pulumi.set(__self__, "arguments_json", arguments_json)
+        if destination is not None:
+            pulumi.set(__self__, "destination", destination)
+        if destination_type is not None:
+            pulumi.set(__self__, "destination_type", destination_type)
+        if properties_key is not None:
+            pulumi.set(__self__, "properties_key", properties_key)
+        if routing_key is not None:
+            pulumi.set(__self__, "routing_key", routing_key)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
+        if vhost is not None:
+            pulumi.set(__self__, "vhost", vhost)
+
+    @property
+    @pulumi.getter
+    def arguments(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Additional key/value arguments for the binding.
+        """
+        return pulumi.get(self, "arguments")
+
+    @arguments.setter
+    def arguments(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "arguments", value)
+
+    @property
+    @pulumi.getter(name="argumentsJson")
+    def arguments_json(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "arguments_json")
+
+    @arguments_json.setter
+    def arguments_json(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "arguments_json", value)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> Optional[pulumi.Input[str]]:
+        """
+        The destination queue or exchange.
+        """
+        return pulumi.get(self, "destination")
+
+    @destination.setter
+    def destination(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "destination", value)
+
+    @property
+    @pulumi.getter(name="destinationType")
+    def destination_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of destination (queue or exchange).
+        """
+        return pulumi.get(self, "destination_type")
+
+    @destination_type.setter
+    def destination_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "destination_type", value)
+
+    @property
+    @pulumi.getter(name="propertiesKey")
+    def properties_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        A unique key to refer to the binding.
+        """
+        return pulumi.get(self, "properties_key")
+
+    @properties_key.setter
+    def properties_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "properties_key", value)
+
+    @property
+    @pulumi.getter(name="routingKey")
+    def routing_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        A routing key for the binding.
+        """
+        return pulumi.get(self, "routing_key")
+
+    @routing_key.setter
+    def routing_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "routing_key", value)
+
+    @property
+    @pulumi.getter
+    def source(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source exchange.
+        """
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source", value)
+
+    @property
+    @pulumi.getter
+    def vhost(self) -> Optional[pulumi.Input[str]]:
+        """
+        The vhost to create the resource in.
+        """
+        return pulumi.get(self, "vhost")
+
+    @vhost.setter
+    def vhost(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vhost", value)
 
 
 class Binding(pulumi.CustomResource):
@@ -292,24 +424,24 @@ class Binding(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = BindingArgs.__new__(BindingArgs)
 
-            __props__['arguments'] = arguments
-            __props__['arguments_json'] = arguments_json
+            __props__.__dict__["arguments"] = arguments
+            __props__.__dict__["arguments_json"] = arguments_json
             if destination is None and not opts.urn:
                 raise TypeError("Missing required property 'destination'")
-            __props__['destination'] = destination
+            __props__.__dict__["destination"] = destination
             if destination_type is None and not opts.urn:
                 raise TypeError("Missing required property 'destination_type'")
-            __props__['destination_type'] = destination_type
-            __props__['routing_key'] = routing_key
+            __props__.__dict__["destination_type"] = destination_type
+            __props__.__dict__["routing_key"] = routing_key
             if source is None and not opts.urn:
                 raise TypeError("Missing required property 'source'")
-            __props__['source'] = source
+            __props__.__dict__["source"] = source
             if vhost is None and not opts.urn:
                 raise TypeError("Missing required property 'vhost'")
-            __props__['vhost'] = vhost
-            __props__['properties_key'] = None
+            __props__.__dict__["vhost"] = vhost
+            __props__.__dict__["properties_key"] = None
         super(Binding, __self__).__init__(
             'rabbitmq:index/binding:Binding',
             resource_name,
@@ -345,16 +477,16 @@ class Binding(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _BindingState.__new__(_BindingState)
 
-        __props__["arguments"] = arguments
-        __props__["arguments_json"] = arguments_json
-        __props__["destination"] = destination
-        __props__["destination_type"] = destination_type
-        __props__["properties_key"] = properties_key
-        __props__["routing_key"] = routing_key
-        __props__["source"] = source
-        __props__["vhost"] = vhost
+        __props__.__dict__["arguments"] = arguments
+        __props__.__dict__["arguments_json"] = arguments_json
+        __props__.__dict__["destination"] = destination
+        __props__.__dict__["destination_type"] = destination_type
+        __props__.__dict__["properties_key"] = properties_key
+        __props__.__dict__["routing_key"] = routing_key
+        __props__.__dict__["source"] = source
+        __props__.__dict__["vhost"] = vhost
         return Binding(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -417,10 +549,4 @@ class Binding(pulumi.CustomResource):
         The vhost to create the resource in.
         """
         return pulumi.get(self, "vhost")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

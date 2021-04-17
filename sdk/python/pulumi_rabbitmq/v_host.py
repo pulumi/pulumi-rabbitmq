@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['VHostArgs', 'VHost']
 
@@ -16,6 +16,30 @@ class VHostArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VHost resource.
+        :param pulumi.Input[str] name: The name of the vhost.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the vhost.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class _VHostState:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering VHost resources.
         :param pulumi.Input[str] name: The name of the vhost.
         """
         if name is not None:
@@ -127,9 +151,9 @@ class VHost(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = VHostArgs.__new__(VHostArgs)
 
-            __props__['name'] = name
+            __props__.__dict__["name"] = name
         super(VHost, __self__).__init__(
             'rabbitmq:index/vHost:VHost',
             resource_name,
@@ -152,9 +176,9 @@ class VHost(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _VHostState.__new__(_VHostState)
 
-        __props__["name"] = name
+        __props__.__dict__["name"] = name
         return VHost(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -164,10 +188,4 @@ class VHost(pulumi.CustomResource):
         The name of the vhost.
         """
         return pulumi.get(self, "name")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 
