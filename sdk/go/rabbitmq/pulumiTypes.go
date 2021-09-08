@@ -207,16 +207,26 @@ func (o ExchangeSettingsPtrOutput) Type() pulumi.StringPtrOutput {
 }
 
 type FederationUpstreamDefinition struct {
-	AckMode        *string `pulumi:"ackMode"`
-	Exchange       *string `pulumi:"exchange"`
-	Expires        *int    `pulumi:"expires"`
-	MaxHops        *int    `pulumi:"maxHops"`
-	MessageTtl     *int    `pulumi:"messageTtl"`
-	PrefetchCount  *int    `pulumi:"prefetchCount"`
-	Queue          *string `pulumi:"queue"`
-	ReconnectDelay *int    `pulumi:"reconnectDelay"`
-	TrustUserId    *bool   `pulumi:"trustUserId"`
-	Uri            string  `pulumi:"uri"`
+	// Determines how the link should acknowledge messages. Valid values are `on-confirm`, `on-publish`, and `no-ack`. Default is `on-confirm`.
+	AckMode *string `pulumi:"ackMode"`
+	// The name of the upstream exchange.
+	Exchange *string `pulumi:"exchange"`
+	// The expiry time (in milliseconds) after which an upstream queue for a federated exchange may be deleted if a connection to the upstream is lost.
+	Expires *int `pulumi:"expires"`
+	// Maximum number of federation links that messages can traverse before being dropped. Default is `1`.
+	MaxHops *int `pulumi:"maxHops"`
+	// The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
+	MessageTtl *int `pulumi:"messageTtl"`
+	// Maximum number of unacknowledged messages that may be in flight over a federation link at one time. Default is `1000`.
+	PrefetchCount *int `pulumi:"prefetchCount"`
+	// The name of the upstream queue.
+	Queue *string `pulumi:"queue"`
+	// Time in seconds to wait after a network link goes down before attempting reconnection. Default is `5`.
+	ReconnectDelay *int `pulumi:"reconnectDelay"`
+	// Determines how federation should interact with the validated user-id feature. Default is `false`.
+	TrustUserId *bool `pulumi:"trustUserId"`
+	// The AMQP URI(s) for the upstream. Note that the URI may contain sensitive information, such as a password.
+	Uri string `pulumi:"uri"`
 }
 
 // FederationUpstreamDefinitionInput is an input type that accepts FederationUpstreamDefinitionArgs and FederationUpstreamDefinitionOutput values.
@@ -231,16 +241,26 @@ type FederationUpstreamDefinitionInput interface {
 }
 
 type FederationUpstreamDefinitionArgs struct {
-	AckMode        pulumi.StringPtrInput `pulumi:"ackMode"`
-	Exchange       pulumi.StringPtrInput `pulumi:"exchange"`
-	Expires        pulumi.IntPtrInput    `pulumi:"expires"`
-	MaxHops        pulumi.IntPtrInput    `pulumi:"maxHops"`
-	MessageTtl     pulumi.IntPtrInput    `pulumi:"messageTtl"`
-	PrefetchCount  pulumi.IntPtrInput    `pulumi:"prefetchCount"`
-	Queue          pulumi.StringPtrInput `pulumi:"queue"`
-	ReconnectDelay pulumi.IntPtrInput    `pulumi:"reconnectDelay"`
-	TrustUserId    pulumi.BoolPtrInput   `pulumi:"trustUserId"`
-	Uri            pulumi.StringInput    `pulumi:"uri"`
+	// Determines how the link should acknowledge messages. Valid values are `on-confirm`, `on-publish`, and `no-ack`. Default is `on-confirm`.
+	AckMode pulumi.StringPtrInput `pulumi:"ackMode"`
+	// The name of the upstream exchange.
+	Exchange pulumi.StringPtrInput `pulumi:"exchange"`
+	// The expiry time (in milliseconds) after which an upstream queue for a federated exchange may be deleted if a connection to the upstream is lost.
+	Expires pulumi.IntPtrInput `pulumi:"expires"`
+	// Maximum number of federation links that messages can traverse before being dropped. Default is `1`.
+	MaxHops pulumi.IntPtrInput `pulumi:"maxHops"`
+	// The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
+	MessageTtl pulumi.IntPtrInput `pulumi:"messageTtl"`
+	// Maximum number of unacknowledged messages that may be in flight over a federation link at one time. Default is `1000`.
+	PrefetchCount pulumi.IntPtrInput `pulumi:"prefetchCount"`
+	// The name of the upstream queue.
+	Queue pulumi.StringPtrInput `pulumi:"queue"`
+	// Time in seconds to wait after a network link goes down before attempting reconnection. Default is `5`.
+	ReconnectDelay pulumi.IntPtrInput `pulumi:"reconnectDelay"`
+	// Determines how federation should interact with the validated user-id feature. Default is `false`.
+	TrustUserId pulumi.BoolPtrInput `pulumi:"trustUserId"`
+	// The AMQP URI(s) for the upstream. Note that the URI may contain sensitive information, such as a password.
+	Uri pulumi.StringInput `pulumi:"uri"`
 }
 
 func (FederationUpstreamDefinitionArgs) ElementType() reflect.Type {
@@ -319,42 +339,53 @@ func (o FederationUpstreamDefinitionOutput) ToFederationUpstreamDefinitionPtrOut
 		return &v
 	}).(FederationUpstreamDefinitionPtrOutput)
 }
+
+// Determines how the link should acknowledge messages. Valid values are `on-confirm`, `on-publish`, and `no-ack`. Default is `on-confirm`.
 func (o FederationUpstreamDefinitionOutput) AckMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederationUpstreamDefinition) *string { return v.AckMode }).(pulumi.StringPtrOutput)
 }
 
+// The name of the upstream exchange.
 func (o FederationUpstreamDefinitionOutput) Exchange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederationUpstreamDefinition) *string { return v.Exchange }).(pulumi.StringPtrOutput)
 }
 
+// The expiry time (in milliseconds) after which an upstream queue for a federated exchange may be deleted if a connection to the upstream is lost.
 func (o FederationUpstreamDefinitionOutput) Expires() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v FederationUpstreamDefinition) *int { return v.Expires }).(pulumi.IntPtrOutput)
 }
 
+// Maximum number of federation links that messages can traverse before being dropped. Default is `1`.
 func (o FederationUpstreamDefinitionOutput) MaxHops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v FederationUpstreamDefinition) *int { return v.MaxHops }).(pulumi.IntPtrOutput)
 }
 
+// The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
 func (o FederationUpstreamDefinitionOutput) MessageTtl() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v FederationUpstreamDefinition) *int { return v.MessageTtl }).(pulumi.IntPtrOutput)
 }
 
+// Maximum number of unacknowledged messages that may be in flight over a federation link at one time. Default is `1000`.
 func (o FederationUpstreamDefinitionOutput) PrefetchCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v FederationUpstreamDefinition) *int { return v.PrefetchCount }).(pulumi.IntPtrOutput)
 }
 
+// The name of the upstream queue.
 func (o FederationUpstreamDefinitionOutput) Queue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederationUpstreamDefinition) *string { return v.Queue }).(pulumi.StringPtrOutput)
 }
 
+// Time in seconds to wait after a network link goes down before attempting reconnection. Default is `5`.
 func (o FederationUpstreamDefinitionOutput) ReconnectDelay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v FederationUpstreamDefinition) *int { return v.ReconnectDelay }).(pulumi.IntPtrOutput)
 }
 
+// Determines how federation should interact with the validated user-id feature. Default is `false`.
 func (o FederationUpstreamDefinitionOutput) TrustUserId() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v FederationUpstreamDefinition) *bool { return v.TrustUserId }).(pulumi.BoolPtrOutput)
 }
 
+// The AMQP URI(s) for the upstream. Note that the URI may contain sensitive information, such as a password.
 func (o FederationUpstreamDefinitionOutput) Uri() pulumi.StringOutput {
 	return o.ApplyT(func(v FederationUpstreamDefinition) string { return v.Uri }).(pulumi.StringOutput)
 }
@@ -377,6 +408,7 @@ func (o FederationUpstreamDefinitionPtrOutput) Elem() FederationUpstreamDefiniti
 	return o.ApplyT(func(v *FederationUpstreamDefinition) FederationUpstreamDefinition { return *v }).(FederationUpstreamDefinitionOutput)
 }
 
+// Determines how the link should acknowledge messages. Valid values are `on-confirm`, `on-publish`, and `no-ack`. Default is `on-confirm`.
 func (o FederationUpstreamDefinitionPtrOutput) AckMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FederationUpstreamDefinition) *string {
 		if v == nil {
@@ -386,6 +418,7 @@ func (o FederationUpstreamDefinitionPtrOutput) AckMode() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
+// The name of the upstream exchange.
 func (o FederationUpstreamDefinitionPtrOutput) Exchange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FederationUpstreamDefinition) *string {
 		if v == nil {
@@ -395,6 +428,7 @@ func (o FederationUpstreamDefinitionPtrOutput) Exchange() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
+// The expiry time (in milliseconds) after which an upstream queue for a federated exchange may be deleted if a connection to the upstream is lost.
 func (o FederationUpstreamDefinitionPtrOutput) Expires() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *FederationUpstreamDefinition) *int {
 		if v == nil {
@@ -404,6 +438,7 @@ func (o FederationUpstreamDefinitionPtrOutput) Expires() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// Maximum number of federation links that messages can traverse before being dropped. Default is `1`.
 func (o FederationUpstreamDefinitionPtrOutput) MaxHops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *FederationUpstreamDefinition) *int {
 		if v == nil {
@@ -413,6 +448,7 @@ func (o FederationUpstreamDefinitionPtrOutput) MaxHops() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
 func (o FederationUpstreamDefinitionPtrOutput) MessageTtl() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *FederationUpstreamDefinition) *int {
 		if v == nil {
@@ -422,6 +458,7 @@ func (o FederationUpstreamDefinitionPtrOutput) MessageTtl() pulumi.IntPtrOutput 
 	}).(pulumi.IntPtrOutput)
 }
 
+// Maximum number of unacknowledged messages that may be in flight over a federation link at one time. Default is `1000`.
 func (o FederationUpstreamDefinitionPtrOutput) PrefetchCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *FederationUpstreamDefinition) *int {
 		if v == nil {
@@ -431,6 +468,7 @@ func (o FederationUpstreamDefinitionPtrOutput) PrefetchCount() pulumi.IntPtrOutp
 	}).(pulumi.IntPtrOutput)
 }
 
+// The name of the upstream queue.
 func (o FederationUpstreamDefinitionPtrOutput) Queue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FederationUpstreamDefinition) *string {
 		if v == nil {
@@ -440,6 +478,7 @@ func (o FederationUpstreamDefinitionPtrOutput) Queue() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Time in seconds to wait after a network link goes down before attempting reconnection. Default is `5`.
 func (o FederationUpstreamDefinitionPtrOutput) ReconnectDelay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *FederationUpstreamDefinition) *int {
 		if v == nil {
@@ -449,6 +488,7 @@ func (o FederationUpstreamDefinitionPtrOutput) ReconnectDelay() pulumi.IntPtrOut
 	}).(pulumi.IntPtrOutput)
 }
 
+// Determines how federation should interact with the validated user-id feature. Default is `false`.
 func (o FederationUpstreamDefinitionPtrOutput) TrustUserId() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *FederationUpstreamDefinition) *bool {
 		if v == nil {
@@ -458,6 +498,7 @@ func (o FederationUpstreamDefinitionPtrOutput) TrustUserId() pulumi.BoolPtrOutpu
 	}).(pulumi.BoolPtrOutput)
 }
 
+// The AMQP URI(s) for the upstream. Note that the URI may contain sensitive information, such as a password.
 func (o FederationUpstreamDefinitionPtrOutput) Uri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FederationUpstreamDefinition) *string {
 		if v == nil {
@@ -1041,38 +1082,64 @@ func (o QueueSettingsPtrOutput) Durable() pulumi.BoolPtrOutput {
 }
 
 type ShovelInfo struct {
-	// Determines how the shovel should acknowledge messages.
+	// Determines how the shovel should acknowledge messages. Possible values are: `on-confirm`, `on-publish` and `no-ack`.
 	// Defaults to `on-confirm`.
 	AckMode *string `pulumi:"ackMode"`
-	// Whether to amqp shovel headers.
-	// Defaults to `false`.
+	// Whether to add `x-shovelled` headers to shovelled messages.
+	//
+	// Deprecated: use destination_add_forward_headers instead
 	AddForwardHeaders *bool `pulumi:"addForwardHeaders"`
-	// Determines when (if ever) the shovel should delete itself .
-	// Defaults to `never`.
+	// Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+	//
+	// Deprecated: use source_delete_after instead
 	DeleteAfter *string `pulumi:"deleteAfter"`
+	// Whether to add `x-shovelled` headers to shovelled messages.
+	DestinationAddForwardHeaders  *bool `pulumi:"destinationAddForwardHeaders"`
+	DestinationAddTimestampHeader *bool `pulumi:"destinationAddTimestampHeader"`
+	// The AMQP 1.0 destination link address.
+	DestinationAddress *string `pulumi:"destinationAddress"`
+	// Application properties to set when shovelling messages.
+	DestinationApplicationProperties *string `pulumi:"destinationApplicationProperties"`
 	// The exchange to which messages should be published.
-	// Either this or destinationQueue must be specified but not both.
+	// Either this or `destinationQueue` must be specified but not both.
 	DestinationExchange *string `pulumi:"destinationExchange"`
-	// The routing key when using destination_exchange.
+	// The routing key when using `destinationExchange`.
 	DestinationExchangeKey *string `pulumi:"destinationExchangeKey"`
+	// Properties to overwrite when shovelling messages.
+	DestinationProperties *string `pulumi:"destinationProperties"`
+	// The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
+	// Defaults to `amqp091`.
+	DestinationProtocol *string `pulumi:"destinationProtocol"`
+	// A map of properties to overwrite when shovelling messages.
+	DestinationPublishProperties *string `pulumi:"destinationPublishProperties"`
 	// The queue to which messages should be published.
-	// Either this or destinationExchange must be specified but not both.
+	// Either this or `destinationExchange` must be specified but not both.
 	DestinationQueue *string `pulumi:"destinationQueue"`
 	// The amqp uri for the destination .
 	DestinationUri string `pulumi:"destinationUri"`
 	// The maximum number of unacknowledged messages copied over a shovel at any one time.
-	// Defaults to `1000`.
+	//
+	// Deprecated: use source_prefetch_count instead
 	PrefetchCount *int `pulumi:"prefetchCount"`
 	// The duration in seconds to reconnect to a broker after disconnected.
 	// Defaults to `1`.
 	ReconnectDelay *int `pulumi:"reconnectDelay"`
+	// The AMQP 1.0 source link address.
+	SourceAddress *string `pulumi:"sourceAddress"`
+	// Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+	SourceDeleteAfter *string `pulumi:"sourceDeleteAfter"`
 	// The exchange from which to consume.
-	// Either this or sourceQueue must be specified but not both.
+	// Either this or `sourceQueue` must be specified but not both.
 	SourceExchange *string `pulumi:"sourceExchange"`
-	// The routing key when using source_exchange.
+	// The routing key when using `sourceExchange`.
 	SourceExchangeKey *string `pulumi:"sourceExchangeKey"`
+	// The maximum number of unacknowledged messages copied over a shovel at any one time.
+	SourcePrefetchCount *int `pulumi:"sourcePrefetchCount"`
+	// The protocol (`amqp091` or `amqp10`) to use when connecting to the source.
+	// Defaults to `amqp091`.
+	SourceProtocol *string `pulumi:"sourceProtocol"`
 	// The queue from which to consume.
-	// Either this or sourceExchange must be specified but not both.
+	// Either this or `sourceExchange` must be specified but not both.
 	SourceQueue *string `pulumi:"sourceQueue"`
 	// The amqp uri for the source.
 	SourceUri string `pulumi:"sourceUri"`
@@ -1090,38 +1157,64 @@ type ShovelInfoInput interface {
 }
 
 type ShovelInfoArgs struct {
-	// Determines how the shovel should acknowledge messages.
+	// Determines how the shovel should acknowledge messages. Possible values are: `on-confirm`, `on-publish` and `no-ack`.
 	// Defaults to `on-confirm`.
 	AckMode pulumi.StringPtrInput `pulumi:"ackMode"`
-	// Whether to amqp shovel headers.
-	// Defaults to `false`.
+	// Whether to add `x-shovelled` headers to shovelled messages.
+	//
+	// Deprecated: use destination_add_forward_headers instead
 	AddForwardHeaders pulumi.BoolPtrInput `pulumi:"addForwardHeaders"`
-	// Determines when (if ever) the shovel should delete itself .
-	// Defaults to `never`.
+	// Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+	//
+	// Deprecated: use source_delete_after instead
 	DeleteAfter pulumi.StringPtrInput `pulumi:"deleteAfter"`
+	// Whether to add `x-shovelled` headers to shovelled messages.
+	DestinationAddForwardHeaders  pulumi.BoolPtrInput `pulumi:"destinationAddForwardHeaders"`
+	DestinationAddTimestampHeader pulumi.BoolPtrInput `pulumi:"destinationAddTimestampHeader"`
+	// The AMQP 1.0 destination link address.
+	DestinationAddress pulumi.StringPtrInput `pulumi:"destinationAddress"`
+	// Application properties to set when shovelling messages.
+	DestinationApplicationProperties pulumi.StringPtrInput `pulumi:"destinationApplicationProperties"`
 	// The exchange to which messages should be published.
-	// Either this or destinationQueue must be specified but not both.
+	// Either this or `destinationQueue` must be specified but not both.
 	DestinationExchange pulumi.StringPtrInput `pulumi:"destinationExchange"`
-	// The routing key when using destination_exchange.
+	// The routing key when using `destinationExchange`.
 	DestinationExchangeKey pulumi.StringPtrInput `pulumi:"destinationExchangeKey"`
+	// Properties to overwrite when shovelling messages.
+	DestinationProperties pulumi.StringPtrInput `pulumi:"destinationProperties"`
+	// The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
+	// Defaults to `amqp091`.
+	DestinationProtocol pulumi.StringPtrInput `pulumi:"destinationProtocol"`
+	// A map of properties to overwrite when shovelling messages.
+	DestinationPublishProperties pulumi.StringPtrInput `pulumi:"destinationPublishProperties"`
 	// The queue to which messages should be published.
-	// Either this or destinationExchange must be specified but not both.
+	// Either this or `destinationExchange` must be specified but not both.
 	DestinationQueue pulumi.StringPtrInput `pulumi:"destinationQueue"`
 	// The amqp uri for the destination .
 	DestinationUri pulumi.StringInput `pulumi:"destinationUri"`
 	// The maximum number of unacknowledged messages copied over a shovel at any one time.
-	// Defaults to `1000`.
+	//
+	// Deprecated: use source_prefetch_count instead
 	PrefetchCount pulumi.IntPtrInput `pulumi:"prefetchCount"`
 	// The duration in seconds to reconnect to a broker after disconnected.
 	// Defaults to `1`.
 	ReconnectDelay pulumi.IntPtrInput `pulumi:"reconnectDelay"`
+	// The AMQP 1.0 source link address.
+	SourceAddress pulumi.StringPtrInput `pulumi:"sourceAddress"`
+	// Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+	SourceDeleteAfter pulumi.StringPtrInput `pulumi:"sourceDeleteAfter"`
 	// The exchange from which to consume.
-	// Either this or sourceQueue must be specified but not both.
+	// Either this or `sourceQueue` must be specified but not both.
 	SourceExchange pulumi.StringPtrInput `pulumi:"sourceExchange"`
-	// The routing key when using source_exchange.
+	// The routing key when using `sourceExchange`.
 	SourceExchangeKey pulumi.StringPtrInput `pulumi:"sourceExchangeKey"`
+	// The maximum number of unacknowledged messages copied over a shovel at any one time.
+	SourcePrefetchCount pulumi.IntPtrInput `pulumi:"sourcePrefetchCount"`
+	// The protocol (`amqp091` or `amqp10`) to use when connecting to the source.
+	// Defaults to `amqp091`.
+	SourceProtocol pulumi.StringPtrInput `pulumi:"sourceProtocol"`
 	// The queue from which to consume.
-	// Either this or sourceExchange must be specified but not both.
+	// Either this or `sourceExchange` must be specified but not both.
 	SourceQueue pulumi.StringPtrInput `pulumi:"sourceQueue"`
 	// The amqp uri for the source.
 	SourceUri pulumi.StringInput `pulumi:"sourceUri"`
@@ -1204,37 +1297,74 @@ func (o ShovelInfoOutput) ToShovelInfoPtrOutputWithContext(ctx context.Context) 
 	}).(ShovelInfoPtrOutput)
 }
 
-// Determines how the shovel should acknowledge messages.
+// Determines how the shovel should acknowledge messages. Possible values are: `on-confirm`, `on-publish` and `no-ack`.
 // Defaults to `on-confirm`.
 func (o ShovelInfoOutput) AckMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ShovelInfo) *string { return v.AckMode }).(pulumi.StringPtrOutput)
 }
 
-// Whether to amqp shovel headers.
-// Defaults to `false`.
+// Whether to add `x-shovelled` headers to shovelled messages.
+//
+// Deprecated: use destination_add_forward_headers instead
 func (o ShovelInfoOutput) AddForwardHeaders() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ShovelInfo) *bool { return v.AddForwardHeaders }).(pulumi.BoolPtrOutput)
 }
 
-// Determines when (if ever) the shovel should delete itself .
-// Defaults to `never`.
+// Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+//
+// Deprecated: use source_delete_after instead
 func (o ShovelInfoOutput) DeleteAfter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ShovelInfo) *string { return v.DeleteAfter }).(pulumi.StringPtrOutput)
 }
 
+// Whether to add `x-shovelled` headers to shovelled messages.
+func (o ShovelInfoOutput) DestinationAddForwardHeaders() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *bool { return v.DestinationAddForwardHeaders }).(pulumi.BoolPtrOutput)
+}
+
+func (o ShovelInfoOutput) DestinationAddTimestampHeader() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *bool { return v.DestinationAddTimestampHeader }).(pulumi.BoolPtrOutput)
+}
+
+// The AMQP 1.0 destination link address.
+func (o ShovelInfoOutput) DestinationAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *string { return v.DestinationAddress }).(pulumi.StringPtrOutput)
+}
+
+// Application properties to set when shovelling messages.
+func (o ShovelInfoOutput) DestinationApplicationProperties() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *string { return v.DestinationApplicationProperties }).(pulumi.StringPtrOutput)
+}
+
 // The exchange to which messages should be published.
-// Either this or destinationQueue must be specified but not both.
+// Either this or `destinationQueue` must be specified but not both.
 func (o ShovelInfoOutput) DestinationExchange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ShovelInfo) *string { return v.DestinationExchange }).(pulumi.StringPtrOutput)
 }
 
-// The routing key when using destination_exchange.
+// The routing key when using `destinationExchange`.
 func (o ShovelInfoOutput) DestinationExchangeKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ShovelInfo) *string { return v.DestinationExchangeKey }).(pulumi.StringPtrOutput)
 }
 
+// Properties to overwrite when shovelling messages.
+func (o ShovelInfoOutput) DestinationProperties() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *string { return v.DestinationProperties }).(pulumi.StringPtrOutput)
+}
+
+// The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
+// Defaults to `amqp091`.
+func (o ShovelInfoOutput) DestinationProtocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *string { return v.DestinationProtocol }).(pulumi.StringPtrOutput)
+}
+
+// A map of properties to overwrite when shovelling messages.
+func (o ShovelInfoOutput) DestinationPublishProperties() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *string { return v.DestinationPublishProperties }).(pulumi.StringPtrOutput)
+}
+
 // The queue to which messages should be published.
-// Either this or destinationExchange must be specified but not both.
+// Either this or `destinationExchange` must be specified but not both.
 func (o ShovelInfoOutput) DestinationQueue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ShovelInfo) *string { return v.DestinationQueue }).(pulumi.StringPtrOutput)
 }
@@ -1245,7 +1375,8 @@ func (o ShovelInfoOutput) DestinationUri() pulumi.StringOutput {
 }
 
 // The maximum number of unacknowledged messages copied over a shovel at any one time.
-// Defaults to `1000`.
+//
+// Deprecated: use source_prefetch_count instead
 func (o ShovelInfoOutput) PrefetchCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ShovelInfo) *int { return v.PrefetchCount }).(pulumi.IntPtrOutput)
 }
@@ -1256,19 +1387,40 @@ func (o ShovelInfoOutput) ReconnectDelay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ShovelInfo) *int { return v.ReconnectDelay }).(pulumi.IntPtrOutput)
 }
 
+// The AMQP 1.0 source link address.
+func (o ShovelInfoOutput) SourceAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *string { return v.SourceAddress }).(pulumi.StringPtrOutput)
+}
+
+// Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+func (o ShovelInfoOutput) SourceDeleteAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *string { return v.SourceDeleteAfter }).(pulumi.StringPtrOutput)
+}
+
 // The exchange from which to consume.
-// Either this or sourceQueue must be specified but not both.
+// Either this or `sourceQueue` must be specified but not both.
 func (o ShovelInfoOutput) SourceExchange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ShovelInfo) *string { return v.SourceExchange }).(pulumi.StringPtrOutput)
 }
 
-// The routing key when using source_exchange.
+// The routing key when using `sourceExchange`.
 func (o ShovelInfoOutput) SourceExchangeKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ShovelInfo) *string { return v.SourceExchangeKey }).(pulumi.StringPtrOutput)
 }
 
+// The maximum number of unacknowledged messages copied over a shovel at any one time.
+func (o ShovelInfoOutput) SourcePrefetchCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *int { return v.SourcePrefetchCount }).(pulumi.IntPtrOutput)
+}
+
+// The protocol (`amqp091` or `amqp10`) to use when connecting to the source.
+// Defaults to `amqp091`.
+func (o ShovelInfoOutput) SourceProtocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShovelInfo) *string { return v.SourceProtocol }).(pulumi.StringPtrOutput)
+}
+
 // The queue from which to consume.
-// Either this or sourceExchange must be specified but not both.
+// Either this or `sourceExchange` must be specified but not both.
 func (o ShovelInfoOutput) SourceQueue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ShovelInfo) *string { return v.SourceQueue }).(pulumi.StringPtrOutput)
 }
@@ -1296,7 +1448,7 @@ func (o ShovelInfoPtrOutput) Elem() ShovelInfoOutput {
 	return o.ApplyT(func(v *ShovelInfo) ShovelInfo { return *v }).(ShovelInfoOutput)
 }
 
-// Determines how the shovel should acknowledge messages.
+// Determines how the shovel should acknowledge messages. Possible values are: `on-confirm`, `on-publish` and `no-ack`.
 // Defaults to `on-confirm`.
 func (o ShovelInfoPtrOutput) AckMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ShovelInfo) *string {
@@ -1307,8 +1459,9 @@ func (o ShovelInfoPtrOutput) AckMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Whether to amqp shovel headers.
-// Defaults to `false`.
+// Whether to add `x-shovelled` headers to shovelled messages.
+//
+// Deprecated: use destination_add_forward_headers instead
 func (o ShovelInfoPtrOutput) AddForwardHeaders() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ShovelInfo) *bool {
 		if v == nil {
@@ -1318,8 +1471,9 @@ func (o ShovelInfoPtrOutput) AddForwardHeaders() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Determines when (if ever) the shovel should delete itself .
-// Defaults to `never`.
+// Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+//
+// Deprecated: use source_delete_after instead
 func (o ShovelInfoPtrOutput) DeleteAfter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ShovelInfo) *string {
 		if v == nil {
@@ -1329,8 +1483,47 @@ func (o ShovelInfoPtrOutput) DeleteAfter() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Whether to add `x-shovelled` headers to shovelled messages.
+func (o ShovelInfoPtrOutput) DestinationAddForwardHeaders() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DestinationAddForwardHeaders
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o ShovelInfoPtrOutput) DestinationAddTimestampHeader() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DestinationAddTimestampHeader
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The AMQP 1.0 destination link address.
+func (o ShovelInfoPtrOutput) DestinationAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DestinationAddress
+	}).(pulumi.StringPtrOutput)
+}
+
+// Application properties to set when shovelling messages.
+func (o ShovelInfoPtrOutput) DestinationApplicationProperties() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DestinationApplicationProperties
+	}).(pulumi.StringPtrOutput)
+}
+
 // The exchange to which messages should be published.
-// Either this or destinationQueue must be specified but not both.
+// Either this or `destinationQueue` must be specified but not both.
 func (o ShovelInfoPtrOutput) DestinationExchange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ShovelInfo) *string {
 		if v == nil {
@@ -1340,7 +1533,7 @@ func (o ShovelInfoPtrOutput) DestinationExchange() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The routing key when using destination_exchange.
+// The routing key when using `destinationExchange`.
 func (o ShovelInfoPtrOutput) DestinationExchangeKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ShovelInfo) *string {
 		if v == nil {
@@ -1350,8 +1543,39 @@ func (o ShovelInfoPtrOutput) DestinationExchangeKey() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Properties to overwrite when shovelling messages.
+func (o ShovelInfoPtrOutput) DestinationProperties() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DestinationProperties
+	}).(pulumi.StringPtrOutput)
+}
+
+// The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
+// Defaults to `amqp091`.
+func (o ShovelInfoPtrOutput) DestinationProtocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DestinationProtocol
+	}).(pulumi.StringPtrOutput)
+}
+
+// A map of properties to overwrite when shovelling messages.
+func (o ShovelInfoPtrOutput) DestinationPublishProperties() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DestinationPublishProperties
+	}).(pulumi.StringPtrOutput)
+}
+
 // The queue to which messages should be published.
-// Either this or destinationExchange must be specified but not both.
+// Either this or `destinationExchange` must be specified but not both.
 func (o ShovelInfoPtrOutput) DestinationQueue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ShovelInfo) *string {
 		if v == nil {
@@ -1372,7 +1596,8 @@ func (o ShovelInfoPtrOutput) DestinationUri() pulumi.StringPtrOutput {
 }
 
 // The maximum number of unacknowledged messages copied over a shovel at any one time.
-// Defaults to `1000`.
+//
+// Deprecated: use source_prefetch_count instead
 func (o ShovelInfoPtrOutput) PrefetchCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ShovelInfo) *int {
 		if v == nil {
@@ -1393,8 +1618,28 @@ func (o ShovelInfoPtrOutput) ReconnectDelay() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// The AMQP 1.0 source link address.
+func (o ShovelInfoPtrOutput) SourceAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SourceAddress
+	}).(pulumi.StringPtrOutput)
+}
+
+// Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+func (o ShovelInfoPtrOutput) SourceDeleteAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SourceDeleteAfter
+	}).(pulumi.StringPtrOutput)
+}
+
 // The exchange from which to consume.
-// Either this or sourceQueue must be specified but not both.
+// Either this or `sourceQueue` must be specified but not both.
 func (o ShovelInfoPtrOutput) SourceExchange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ShovelInfo) *string {
 		if v == nil {
@@ -1404,7 +1649,7 @@ func (o ShovelInfoPtrOutput) SourceExchange() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The routing key when using source_exchange.
+// The routing key when using `sourceExchange`.
 func (o ShovelInfoPtrOutput) SourceExchangeKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ShovelInfo) *string {
 		if v == nil {
@@ -1414,8 +1659,29 @@ func (o ShovelInfoPtrOutput) SourceExchangeKey() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The maximum number of unacknowledged messages copied over a shovel at any one time.
+func (o ShovelInfoPtrOutput) SourcePrefetchCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *int {
+		if v == nil {
+			return nil
+		}
+		return v.SourcePrefetchCount
+	}).(pulumi.IntPtrOutput)
+}
+
+// The protocol (`amqp091` or `amqp10`) to use when connecting to the source.
+// Defaults to `amqp091`.
+func (o ShovelInfoPtrOutput) SourceProtocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ShovelInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SourceProtocol
+	}).(pulumi.StringPtrOutput)
+}
+
 // The queue from which to consume.
-// Either this or sourceExchange must be specified but not both.
+// Either this or `sourceExchange` must be specified but not both.
 func (o ShovelInfoPtrOutput) SourceQueue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ShovelInfo) *string {
 		if v == nil {

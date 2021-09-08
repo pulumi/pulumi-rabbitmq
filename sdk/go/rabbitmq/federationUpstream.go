@@ -11,13 +11,101 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The ``FederationUpstream`` resource creates and manages a federation upstream parameter.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		test, err := rabbitmq.NewVHost(ctx, "test", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
+// 			User:  pulumi.String("guest"),
+// 			Vhost: test.Name,
+// 			Permissions: &rabbitmq.PermissionsPermissionsArgs{
+// 				Configure: pulumi.String(".*"),
+// 				Write:     pulumi.String(".*"),
+// 				Read:      pulumi.String(".*"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooExchange, err := rabbitmq.NewExchange(ctx, "fooExchange", &rabbitmq.ExchangeArgs{
+// 			Vhost: guest.Vhost,
+// 			Settings: &rabbitmq.ExchangeSettingsArgs{
+// 				Type:    pulumi.String("topic"),
+// 				Durable: pulumi.Bool(true),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooFederationUpstream, err := rabbitmq.NewFederationUpstream(ctx, "fooFederationUpstream", &rabbitmq.FederationUpstreamArgs{
+// 			Vhost: guest.Vhost,
+// 			Definition: &rabbitmq.FederationUpstreamDefinitionArgs{
+// 				Uri:            pulumi.String(fmt.Sprintf("%v%v%v", "amqp://guest:guest@upstream-server-name:5672/", "%", "2f")),
+// 				PrefetchCount:  pulumi.Int(1000),
+// 				ReconnectDelay: pulumi.Int(5),
+// 				AckMode:        pulumi.String("on-confirm"),
+// 				TrustUserId:    pulumi.Bool(false),
+// 				MaxHops:        pulumi.Int(1),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = rabbitmq.NewPolicy(ctx, "fooPolicy", &rabbitmq.PolicyArgs{
+// 			Vhost: guest.Vhost,
+// 			Policy: &rabbitmq.PolicyPolicyArgs{
+// 				Pattern: fooExchange.Name.ApplyT(func(name string) (string, error) {
+// 					return fmt.Sprintf("%v%v%v%v", "(^", name, "$", ")"), nil
+// 				}).(pulumi.StringOutput),
+// 				Priority: pulumi.Int(1),
+// 				ApplyTo:  pulumi.String("exchanges"),
+// 				Definition: pulumi.StringMap{
+// 					"federation-upstream": fooFederationUpstream.Name,
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ## Import
+//
+// A Federation upstream can be imported using the resource `id` which is composed of `name@vhost`, e.g.
+//
+// ```sh
+//  $ pulumi import rabbitmq:index/federationUpstream:FederationUpstream foo foo@test
+// ```
 type FederationUpstream struct {
 	pulumi.CustomResourceState
 
-	Component  pulumi.StringOutput                `pulumi:"component"`
+	// Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
+	Component pulumi.StringOutput `pulumi:"component"`
+	// The configuration of the federation upstream. The structure is described below.
 	Definition FederationUpstreamDefinitionOutput `pulumi:"definition"`
-	Name       pulumi.StringOutput                `pulumi:"name"`
-	Vhost      pulumi.StringOutput                `pulumi:"vhost"`
+	// The name of the federation upstream.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// The vhost to create the resource in.
+	Vhost pulumi.StringOutput `pulumi:"vhost"`
 }
 
 // NewFederationUpstream registers a new resource with the given unique name, arguments, and options.
@@ -55,17 +143,25 @@ func GetFederationUpstream(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FederationUpstream resources.
 type federationUpstreamState struct {
-	Component  *string                       `pulumi:"component"`
+	// Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
+	Component *string `pulumi:"component"`
+	// The configuration of the federation upstream. The structure is described below.
 	Definition *FederationUpstreamDefinition `pulumi:"definition"`
-	Name       *string                       `pulumi:"name"`
-	Vhost      *string                       `pulumi:"vhost"`
+	// The name of the federation upstream.
+	Name *string `pulumi:"name"`
+	// The vhost to create the resource in.
+	Vhost *string `pulumi:"vhost"`
 }
 
 type FederationUpstreamState struct {
-	Component  pulumi.StringPtrInput
+	// Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
+	Component pulumi.StringPtrInput
+	// The configuration of the federation upstream. The structure is described below.
 	Definition FederationUpstreamDefinitionPtrInput
-	Name       pulumi.StringPtrInput
-	Vhost      pulumi.StringPtrInput
+	// The name of the federation upstream.
+	Name pulumi.StringPtrInput
+	// The vhost to create the resource in.
+	Vhost pulumi.StringPtrInput
 }
 
 func (FederationUpstreamState) ElementType() reflect.Type {
@@ -73,16 +169,22 @@ func (FederationUpstreamState) ElementType() reflect.Type {
 }
 
 type federationUpstreamArgs struct {
+	// The configuration of the federation upstream. The structure is described below.
 	Definition FederationUpstreamDefinition `pulumi:"definition"`
-	Name       *string                      `pulumi:"name"`
-	Vhost      string                       `pulumi:"vhost"`
+	// The name of the federation upstream.
+	Name *string `pulumi:"name"`
+	// The vhost to create the resource in.
+	Vhost string `pulumi:"vhost"`
 }
 
 // The set of arguments for constructing a FederationUpstream resource.
 type FederationUpstreamArgs struct {
+	// The configuration of the federation upstream. The structure is described below.
 	Definition FederationUpstreamDefinitionInput
-	Name       pulumi.StringPtrInput
-	Vhost      pulumi.StringInput
+	// The name of the federation upstream.
+	Name pulumi.StringPtrInput
+	// The vhost to create the resource in.
+	Vhost pulumi.StringInput
 }
 
 func (FederationUpstreamArgs) ElementType() reflect.Type {

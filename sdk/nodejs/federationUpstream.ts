@@ -5,6 +5,66 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * The ``rabbitmq.FederationUpstream`` resource creates and manages a federation upstream parameter.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as rabbitmq from "@pulumi/rabbitmq";
+ *
+ * const test = new rabbitmq.VHost("test", {});
+ * const guest = new rabbitmq.Permissions("guest", {
+ *     user: "guest",
+ *     vhost: test.name,
+ *     permissions: {
+ *         configure: ".*",
+ *         write: ".*",
+ *         read: ".*",
+ *     },
+ * });
+ * // downstream exchange
+ * const fooExchange = new rabbitmq.Exchange("fooExchange", {
+ *     vhost: guest.vhost,
+ *     settings: {
+ *         type: "topic",
+ *         durable: "true",
+ *     },
+ * });
+ * // upstream broker
+ * const fooFederationUpstream = new rabbitmq.FederationUpstream("fooFederationUpstream", {
+ *     vhost: guest.vhost,
+ *     definition: {
+ *         uri: `amqp://guest:guest@upstream-server-name:5672/%2f`,
+ *         prefetchCount: 1000,
+ *         reconnectDelay: 5,
+ *         ackMode: "on-confirm",
+ *         trustUserId: false,
+ *         maxHops: 1,
+ *     },
+ * });
+ * const fooPolicy = new rabbitmq.Policy("fooPolicy", {
+ *     vhost: guest.vhost,
+ *     policy: {
+ *         pattern: pulumi.interpolate`(^${fooExchange.name}$)`,
+ *         priority: 1,
+ *         applyTo: "exchanges",
+ *         definition: {
+ *             "federation-upstream": fooFederationUpstream.name,
+ *         },
+ *     },
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * A Federation upstream can be imported using the resource `id` which is composed of `name@vhost`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import rabbitmq:index/federationUpstream:FederationUpstream foo foo@test
+ * ```
+ */
 export class FederationUpstream extends pulumi.CustomResource {
     /**
      * Get an existing FederationUpstream resource's state with the given name, ID, and optional extra
@@ -33,9 +93,21 @@ export class FederationUpstream extends pulumi.CustomResource {
         return obj['__pulumiType'] === FederationUpstream.__pulumiType;
     }
 
+    /**
+     * Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
+     */
     public /*out*/ readonly component!: pulumi.Output<string>;
+    /**
+     * The configuration of the federation upstream. The structure is described below.
+     */
     public readonly definition!: pulumi.Output<outputs.FederationUpstreamDefinition>;
+    /**
+     * The name of the federation upstream.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The vhost to create the resource in.
+     */
     public readonly vhost!: pulumi.Output<string>;
 
     /**
@@ -79,9 +151,21 @@ export class FederationUpstream extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FederationUpstream resources.
  */
 export interface FederationUpstreamState {
+    /**
+     * Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
+     */
     readonly component?: pulumi.Input<string>;
+    /**
+     * The configuration of the federation upstream. The structure is described below.
+     */
     readonly definition?: pulumi.Input<inputs.FederationUpstreamDefinition>;
+    /**
+     * The name of the federation upstream.
+     */
     readonly name?: pulumi.Input<string>;
+    /**
+     * The vhost to create the resource in.
+     */
     readonly vhost?: pulumi.Input<string>;
 }
 
@@ -89,7 +173,16 @@ export interface FederationUpstreamState {
  * The set of arguments for constructing a FederationUpstream resource.
  */
 export interface FederationUpstreamArgs {
+    /**
+     * The configuration of the federation upstream. The structure is described below.
+     */
     readonly definition: pulumi.Input<inputs.FederationUpstreamDefinition>;
+    /**
+     * The name of the federation upstream.
+     */
     readonly name?: pulumi.Input<string>;
+    /**
+     * The vhost to create the resource in.
+     */
     readonly vhost: pulumi.Input<string>;
 }

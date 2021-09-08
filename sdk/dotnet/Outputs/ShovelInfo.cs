@@ -14,32 +14,56 @@ namespace Pulumi.RabbitMQ.Outputs
     public sealed class ShovelInfo
     {
         /// <summary>
-        /// Determines how the shovel should acknowledge messages.
+        /// Determines how the shovel should acknowledge messages. Possible values are: `on-confirm`, `on-publish` and `no-ack`.
         /// Defaults to `on-confirm`.
         /// </summary>
         public readonly string? AckMode;
         /// <summary>
-        /// Whether to amqp shovel headers.
-        /// Defaults to `false`.
+        /// Whether to add `x-shovelled` headers to shovelled messages.
         /// </summary>
         public readonly bool? AddForwardHeaders;
         /// <summary>
-        /// Determines when (if ever) the shovel should delete itself .
-        /// Defaults to `never`.
+        /// Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
         /// </summary>
         public readonly string? DeleteAfter;
         /// <summary>
+        /// Whether to add `x-shovelled` headers to shovelled messages.
+        /// </summary>
+        public readonly bool? DestinationAddForwardHeaders;
+        public readonly bool? DestinationAddTimestampHeader;
+        /// <summary>
+        /// The AMQP 1.0 destination link address.
+        /// </summary>
+        public readonly string? DestinationAddress;
+        /// <summary>
+        /// Application properties to set when shovelling messages.
+        /// </summary>
+        public readonly string? DestinationApplicationProperties;
+        /// <summary>
         /// The exchange to which messages should be published.
-        /// Either this or destination_queue must be specified but not both.
+        /// Either this or `destination_queue` must be specified but not both.
         /// </summary>
         public readonly string? DestinationExchange;
         /// <summary>
-        /// The routing key when using destination_exchange.
+        /// The routing key when using `destination_exchange`.
         /// </summary>
         public readonly string? DestinationExchangeKey;
         /// <summary>
+        /// Properties to overwrite when shovelling messages.
+        /// </summary>
+        public readonly string? DestinationProperties;
+        /// <summary>
+        /// The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
+        /// Defaults to `amqp091`.
+        /// </summary>
+        public readonly string? DestinationProtocol;
+        /// <summary>
+        /// A map of properties to overwrite when shovelling messages.
+        /// </summary>
+        public readonly string? DestinationPublishProperties;
+        /// <summary>
         /// The queue to which messages should be published.
-        /// Either this or destination_exchange must be specified but not both.
+        /// Either this or `destination_exchange` must be specified but not both.
         /// </summary>
         public readonly string? DestinationQueue;
         /// <summary>
@@ -48,7 +72,6 @@ namespace Pulumi.RabbitMQ.Outputs
         public readonly string DestinationUri;
         /// <summary>
         /// The maximum number of unacknowledged messages copied over a shovel at any one time.
-        /// Defaults to `1000`.
         /// </summary>
         public readonly int? PrefetchCount;
         /// <summary>
@@ -57,17 +80,34 @@ namespace Pulumi.RabbitMQ.Outputs
         /// </summary>
         public readonly int? ReconnectDelay;
         /// <summary>
+        /// The AMQP 1.0 source link address.
+        /// </summary>
+        public readonly string? SourceAddress;
+        /// <summary>
+        /// Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+        /// </summary>
+        public readonly string? SourceDeleteAfter;
+        /// <summary>
         /// The exchange from which to consume.
-        /// Either this or source_queue must be specified but not both.
+        /// Either this or `source_queue` must be specified but not both.
         /// </summary>
         public readonly string? SourceExchange;
         /// <summary>
-        /// The routing key when using source_exchange.
+        /// The routing key when using `source_exchange`.
         /// </summary>
         public readonly string? SourceExchangeKey;
         /// <summary>
+        /// The maximum number of unacknowledged messages copied over a shovel at any one time.
+        /// </summary>
+        public readonly int? SourcePrefetchCount;
+        /// <summary>
+        /// The protocol (`amqp091` or `amqp10`) to use when connecting to the source.
+        /// Defaults to `amqp091`.
+        /// </summary>
+        public readonly string? SourceProtocol;
+        /// <summary>
         /// The queue from which to consume.
-        /// Either this or source_exchange must be specified but not both.
+        /// Either this or `source_exchange` must be specified but not both.
         /// </summary>
         public readonly string? SourceQueue;
         /// <summary>
@@ -83,9 +123,23 @@ namespace Pulumi.RabbitMQ.Outputs
 
             string? deleteAfter,
 
+            bool? destinationAddForwardHeaders,
+
+            bool? destinationAddTimestampHeader,
+
+            string? destinationAddress,
+
+            string? destinationApplicationProperties,
+
             string? destinationExchange,
 
             string? destinationExchangeKey,
+
+            string? destinationProperties,
+
+            string? destinationProtocol,
+
+            string? destinationPublishProperties,
 
             string? destinationQueue,
 
@@ -95,9 +149,17 @@ namespace Pulumi.RabbitMQ.Outputs
 
             int? reconnectDelay,
 
+            string? sourceAddress,
+
+            string? sourceDeleteAfter,
+
             string? sourceExchange,
 
             string? sourceExchangeKey,
+
+            int? sourcePrefetchCount,
+
+            string? sourceProtocol,
 
             string? sourceQueue,
 
@@ -106,14 +168,25 @@ namespace Pulumi.RabbitMQ.Outputs
             AckMode = ackMode;
             AddForwardHeaders = addForwardHeaders;
             DeleteAfter = deleteAfter;
+            DestinationAddForwardHeaders = destinationAddForwardHeaders;
+            DestinationAddTimestampHeader = destinationAddTimestampHeader;
+            DestinationAddress = destinationAddress;
+            DestinationApplicationProperties = destinationApplicationProperties;
             DestinationExchange = destinationExchange;
             DestinationExchangeKey = destinationExchangeKey;
+            DestinationProperties = destinationProperties;
+            DestinationProtocol = destinationProtocol;
+            DestinationPublishProperties = destinationPublishProperties;
             DestinationQueue = destinationQueue;
             DestinationUri = destinationUri;
             PrefetchCount = prefetchCount;
             ReconnectDelay = reconnectDelay;
+            SourceAddress = sourceAddress;
+            SourceDeleteAfter = sourceDeleteAfter;
             SourceExchange = sourceExchange;
             SourceExchangeKey = sourceExchangeKey;
+            SourcePrefetchCount = sourcePrefetchCount;
+            SourceProtocol = sourceProtocol;
             SourceQueue = sourceQueue;
             SourceUri = sourceUri;
         }

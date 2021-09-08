@@ -19,7 +19,8 @@ class ProviderArgs:
                  cacert_file: Optional[pulumi.Input[str]] = None,
                  clientcert_file: Optional[pulumi.Input[str]] = None,
                  clientkey_file: Optional[pulumi.Input[str]] = None,
-                 insecure: Optional[pulumi.Input[bool]] = None):
+                 insecure: Optional[pulumi.Input[bool]] = None,
+                 proxy: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
         """
@@ -38,6 +39,8 @@ class ProviderArgs:
             insecure = _utilities.get_env_bool('RABBITMQ_INSECURE')
         if insecure is not None:
             pulumi.set(__self__, "insecure", insecure)
+        if proxy is not None:
+            pulumi.set(__self__, "proxy", proxy)
 
     @property
     @pulumi.getter
@@ -102,6 +105,15 @@ class ProviderArgs:
     def insecure(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "insecure", value)
 
+    @property
+    @pulumi.getter
+    def proxy(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "proxy")
+
+    @proxy.setter
+    def proxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy", value)
+
 
 class Provider(pulumi.ProviderResource):
     @overload
@@ -114,6 +126,7 @@ class Provider(pulumi.ProviderResource):
                  endpoint: Optional[pulumi.Input[str]] = None,
                  insecure: Optional[pulumi.Input[bool]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -158,6 +171,7 @@ class Provider(pulumi.ProviderResource):
                  endpoint: Optional[pulumi.Input[str]] = None,
                  insecure: Optional[pulumi.Input[bool]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -185,6 +199,7 @@ class Provider(pulumi.ProviderResource):
             if password is None and not opts.urn:
                 raise TypeError("Missing required property 'password'")
             __props__.__dict__["password"] = password
+            __props__.__dict__["proxy"] = proxy
             if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
             __props__.__dict__["username"] = username

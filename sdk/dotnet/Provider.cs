@@ -63,6 +63,9 @@ namespace Pulumi.RabbitMQ
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
 
+        [Input("proxy")]
+        public Input<string>? Proxy { get; set; }
+
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 

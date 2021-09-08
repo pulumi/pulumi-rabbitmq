@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.RabbitMQ
 {
     /// <summary>
-    /// The ``rabbitmq.Shovel`` resource creates and manages a shovel.
+    /// The ``rabbitmq.Shovel`` resource creates and manages a dynamic shovel.
     /// 
     /// ## Example Usage
     /// 
@@ -73,7 +73,7 @@ namespace Pulumi.RabbitMQ
     public partial class Shovel : Pulumi.CustomResource
     {
         /// <summary>
-        /// The settings of the shovel. The structure is
+        /// The settings of the dynamic shovel. The structure is
         /// described below.
         /// </summary>
         [Output("info")]
@@ -138,7 +138,7 @@ namespace Pulumi.RabbitMQ
     public sealed class ShovelArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The settings of the shovel. The structure is
+        /// The settings of the dynamic shovel. The structure is
         /// described below.
         /// </summary>
         [Input("info", required: true)]
@@ -164,7 +164,7 @@ namespace Pulumi.RabbitMQ
     public sealed class ShovelState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The settings of the shovel. The structure is
+        /// The settings of the dynamic shovel. The structure is
         /// described below.
         /// </summary>
         [Input("info")]

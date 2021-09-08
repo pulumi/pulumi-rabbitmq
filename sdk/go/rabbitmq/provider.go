@@ -56,6 +56,7 @@ type providerArgs struct {
 	Endpoint       string  `pulumi:"endpoint"`
 	Insecure       *bool   `pulumi:"insecure"`
 	Password       string  `pulumi:"password"`
+	Proxy          *string `pulumi:"proxy"`
 	Username       string  `pulumi:"username"`
 }
 
@@ -67,6 +68,7 @@ type ProviderArgs struct {
 	Endpoint       pulumi.StringInput
 	Insecure       pulumi.BoolPtrInput
 	Password       pulumi.StringInput
+	Proxy          pulumi.StringPtrInput
 	Username       pulumi.StringInput
 }
 

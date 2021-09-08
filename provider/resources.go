@@ -103,14 +103,19 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "topic-permissions.html.markdown",
 				},
 			},
-			"rabbitmq_federation_upstream": {Tok: makeResource(mainMod, "FederationUpstream")},
-			"rabbitmq_shovel":              {Tok: makeResource(mainMod, "Shovel")},
+			"rabbitmq_federation_upstream": {
+				Tok: makeResource(mainMod, "FederationUpstream"),
+				Docs: &tfbridge.DocInfo{
+					Source: "federation-upstream.html.markdown",
+				},
+			},
+			"rabbitmq_shovel": {Tok: makeResource(mainMod, "Shovel")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{},
 
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{
-				"@pulumi/pulumi": "^3.0.0-alpha.0",
+				"@pulumi/pulumi": "^3.0.0",
 			},
 			DevDependencies: map[string]string{
 				"@types/node": "^10.0.0",
@@ -119,7 +124,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Python: &tfbridge.PythonInfo{
 			Requires: map[string]string{
-				"pulumi": ">=3.0.0a1,<4.0.0",
+				"pulumi": ">=3.0.0,<4.0.0",
 			},
 		},
 		Golang: &tfbridge.GolangInfo{
@@ -133,8 +138,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{
-				"Pulumi":                       "3.*-*",
-				"System.Collections.Immutable": "1.6.0",
+				"Pulumi": "3.*",
 			},
 			Namespaces: map[string]string{
 				mainPkg: "RabbitMQ",

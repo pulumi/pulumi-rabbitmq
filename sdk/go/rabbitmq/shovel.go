@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The ``Shovel`` resource creates and manages a shovel.
+// The ``Shovel`` resource creates and manages a dynamic shovel.
 //
 // ## Example Usage
 //
@@ -78,7 +78,7 @@ import (
 type Shovel struct {
 	pulumi.CustomResourceState
 
-	// The settings of the shovel. The structure is
+	// The settings of the dynamic shovel. The structure is
 	// described below.
 	Info ShovelInfoOutput `pulumi:"info"`
 	// The shovel name.
@@ -122,7 +122,7 @@ func GetShovel(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Shovel resources.
 type shovelState struct {
-	// The settings of the shovel. The structure is
+	// The settings of the dynamic shovel. The structure is
 	// described below.
 	Info *ShovelInfo `pulumi:"info"`
 	// The shovel name.
@@ -132,7 +132,7 @@ type shovelState struct {
 }
 
 type ShovelState struct {
-	// The settings of the shovel. The structure is
+	// The settings of the dynamic shovel. The structure is
 	// described below.
 	Info ShovelInfoPtrInput
 	// The shovel name.
@@ -146,7 +146,7 @@ func (ShovelState) ElementType() reflect.Type {
 }
 
 type shovelArgs struct {
-	// The settings of the shovel. The structure is
+	// The settings of the dynamic shovel. The structure is
 	// described below.
 	Info ShovelInfo `pulumi:"info"`
 	// The shovel name.
@@ -157,7 +157,7 @@ type shovelArgs struct {
 
 // The set of arguments for constructing a Shovel resource.
 type ShovelArgs struct {
-	// The settings of the shovel. The structure is
+	// The settings of the dynamic shovel. The structure is
 	// described below.
 	Info ShovelInfoInput
 	// The shovel name.
