@@ -34,6 +34,9 @@ func GetInsecure(ctx *pulumi.Context) bool {
 func GetPassword(ctx *pulumi.Context) string {
 	return config.Get(ctx, "rabbitmq:password")
 }
+func GetProxy(ctx *pulumi.Context) string {
+	return config.Get(ctx, "rabbitmq:proxy")
+}
 func GetUsername(ctx *pulumi.Context) string {
 	return config.Get(ctx, "rabbitmq:username")
 }

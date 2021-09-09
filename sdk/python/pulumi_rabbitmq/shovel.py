@@ -20,7 +20,7 @@ class ShovelArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Shovel resource.
-        :param pulumi.Input['ShovelInfoArgs'] info: The settings of the shovel. The structure is
+        :param pulumi.Input['ShovelInfoArgs'] info: The settings of the dynamic shovel. The structure is
                described below.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
         :param pulumi.Input[str] name: The shovel name.
@@ -34,7 +34,7 @@ class ShovelArgs:
     @pulumi.getter
     def info(self) -> pulumi.Input['ShovelInfoArgs']:
         """
-        The settings of the shovel. The structure is
+        The settings of the dynamic shovel. The structure is
         described below.
         """
         return pulumi.get(self, "info")
@@ -76,7 +76,7 @@ class _ShovelState:
                  vhost: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Shovel resources.
-        :param pulumi.Input['ShovelInfoArgs'] info: The settings of the shovel. The structure is
+        :param pulumi.Input['ShovelInfoArgs'] info: The settings of the dynamic shovel. The structure is
                described below.
         :param pulumi.Input[str] name: The shovel name.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
@@ -92,7 +92,7 @@ class _ShovelState:
     @pulumi.getter
     def info(self) -> Optional[pulumi.Input['ShovelInfoArgs']]:
         """
-        The settings of the shovel. The structure is
+        The settings of the dynamic shovel. The structure is
         described below.
         """
         return pulumi.get(self, "info")
@@ -136,7 +136,7 @@ class Shovel(pulumi.CustomResource):
                  vhost: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The ``Shovel`` resource creates and manages a shovel.
+        The ``Shovel`` resource creates and manages a dynamic shovel.
 
         ## Example Usage
 
@@ -179,7 +179,7 @@ class Shovel(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['ShovelInfoArgs']] info: The settings of the shovel. The structure is
+        :param pulumi.Input[pulumi.InputType['ShovelInfoArgs']] info: The settings of the dynamic shovel. The structure is
                described below.
         :param pulumi.Input[str] name: The shovel name.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
@@ -191,7 +191,7 @@ class Shovel(pulumi.CustomResource):
                  args: ShovelArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The ``Shovel`` resource creates and manages a shovel.
+        The ``Shovel`` resource creates and manages a dynamic shovel.
 
         ## Example Usage
 
@@ -289,7 +289,7 @@ class Shovel(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['ShovelInfoArgs']] info: The settings of the shovel. The structure is
+        :param pulumi.Input[pulumi.InputType['ShovelInfoArgs']] info: The settings of the dynamic shovel. The structure is
                described below.
         :param pulumi.Input[str] name: The shovel name.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
@@ -307,7 +307,7 @@ class Shovel(pulumi.CustomResource):
     @pulumi.getter
     def info(self) -> pulumi.Output['outputs.ShovelInfo']:
         """
-        The settings of the shovel. The structure is
+        The settings of the dynamic shovel. The structure is
         described below.
         """
         return pulumi.get(self, "info")

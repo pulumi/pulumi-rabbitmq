@@ -26,15 +26,45 @@ export interface ExchangeSettings {
 }
 
 export interface FederationUpstreamDefinition {
+    /**
+     * Determines how the link should acknowledge messages. Valid values are `on-confirm`, `on-publish`, and `no-ack`. Default is `on-confirm`.
+     */
     ackMode?: pulumi.Input<string>;
+    /**
+     * The name of the upstream exchange.
+     */
     exchange?: pulumi.Input<string>;
+    /**
+     * The expiry time (in milliseconds) after which an upstream queue for a federated exchange may be deleted if a connection to the upstream is lost.
+     */
     expires?: pulumi.Input<number>;
+    /**
+     * Maximum number of federation links that messages can traverse before being dropped. Default is `1`.
+     */
     maxHops?: pulumi.Input<number>;
+    /**
+     * The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
+     */
     messageTtl?: pulumi.Input<number>;
+    /**
+     * Maximum number of unacknowledged messages that may be in flight over a federation link at one time. Default is `1000`.
+     */
     prefetchCount?: pulumi.Input<number>;
+    /**
+     * The name of the upstream queue.
+     */
     queue?: pulumi.Input<string>;
+    /**
+     * Time in seconds to wait after a network link goes down before attempting reconnection. Default is `5`.
+     */
     reconnectDelay?: pulumi.Input<number>;
+    /**
+     * Determines how federation should interact with the validated user-id feature. Default is `false`.
+     */
     trustUserId?: pulumi.Input<boolean>;
+    /**
+     * The AMQP URI(s) for the upstream. Note that the URI may contain sensitive information, such as a password.
+     */
     uri: pulumi.Input<string>;
 }
 
@@ -100,32 +130,60 @@ export interface QueueSettings {
 
 export interface ShovelInfo {
     /**
-     * Determines how the shovel should acknowledge messages.
+     * Determines how the shovel should acknowledge messages. Possible values are: `on-confirm`, `on-publish` and `no-ack`.
      * Defaults to `on-confirm`.
      */
     ackMode?: pulumi.Input<string>;
     /**
-     * Whether to amqp shovel headers.
-     * Defaults to `false`.
+     * Whether to add `x-shovelled` headers to shovelled messages.
+     *
+     * @deprecated use destination_add_forward_headers instead
      */
     addForwardHeaders?: pulumi.Input<boolean>;
     /**
-     * Determines when (if ever) the shovel should delete itself .
-     * Defaults to `never`.
+     * Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+     *
+     * @deprecated use source_delete_after instead
      */
     deleteAfter?: pulumi.Input<string>;
     /**
+     * Whether to add `x-shovelled` headers to shovelled messages.
+     */
+    destinationAddForwardHeaders?: pulumi.Input<boolean>;
+    destinationAddTimestampHeader?: pulumi.Input<boolean>;
+    /**
+     * The AMQP 1.0 destination link address.
+     */
+    destinationAddress?: pulumi.Input<string>;
+    /**
+     * Application properties to set when shovelling messages.
+     */
+    destinationApplicationProperties?: pulumi.Input<string>;
+    /**
      * The exchange to which messages should be published.
-     * Either this or destinationQueue must be specified but not both.
+     * Either this or `destinationQueue` must be specified but not both.
      */
     destinationExchange?: pulumi.Input<string>;
     /**
-     * The routing key when using destination_exchange.
+     * The routing key when using `destinationExchange`.
      */
     destinationExchangeKey?: pulumi.Input<string>;
     /**
+     * Properties to overwrite when shovelling messages.
+     */
+    destinationProperties?: pulumi.Input<string>;
+    /**
+     * The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
+     * Defaults to `amqp091`.
+     */
+    destinationProtocol?: pulumi.Input<string>;
+    /**
+     * A map of properties to overwrite when shovelling messages.
+     */
+    destinationPublishProperties?: pulumi.Input<string>;
+    /**
      * The queue to which messages should be published.
-     * Either this or destinationExchange must be specified but not both.
+     * Either this or `destinationExchange` must be specified but not both.
      */
     destinationQueue?: pulumi.Input<string>;
     /**
@@ -134,7 +192,8 @@ export interface ShovelInfo {
     destinationUri: pulumi.Input<string>;
     /**
      * The maximum number of unacknowledged messages copied over a shovel at any one time.
-     * Defaults to `1000`.
+     *
+     * @deprecated use source_prefetch_count instead
      */
     prefetchCount?: pulumi.Input<number>;
     /**
@@ -143,17 +202,34 @@ export interface ShovelInfo {
      */
     reconnectDelay?: pulumi.Input<number>;
     /**
+     * The AMQP 1.0 source link address.
+     */
+    sourceAddress?: pulumi.Input<string>;
+    /**
+     * Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+     */
+    sourceDeleteAfter?: pulumi.Input<string>;
+    /**
      * The exchange from which to consume.
-     * Either this or sourceQueue must be specified but not both.
+     * Either this or `sourceQueue` must be specified but not both.
      */
     sourceExchange?: pulumi.Input<string>;
     /**
-     * The routing key when using source_exchange.
+     * The routing key when using `sourceExchange`.
      */
     sourceExchangeKey?: pulumi.Input<string>;
     /**
+     * The maximum number of unacknowledged messages copied over a shovel at any one time.
+     */
+    sourcePrefetchCount?: pulumi.Input<number>;
+    /**
+     * The protocol (`amqp091` or `amqp10`) to use when connecting to the source.
+     * Defaults to `amqp091`.
+     */
+    sourceProtocol?: pulumi.Input<string>;
+    /**
      * The queue from which to consume.
-     * Either this or sourceExchange must be specified but not both.
+     * Either this or `sourceExchange` must be specified but not both.
      */
     sourceQueue?: pulumi.Input<string>;
     /**

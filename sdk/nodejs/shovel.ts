@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * The ``rabbitmq.Shovel`` resource creates and manages a shovel.
+ * The ``rabbitmq.Shovel`` resource creates and manages a dynamic shovel.
  *
  * ## Example Usage
  *
@@ -79,7 +79,7 @@ export class Shovel extends pulumi.CustomResource {
     }
 
     /**
-     * The settings of the shovel. The structure is
+     * The settings of the dynamic shovel. The structure is
      * described below.
      */
     public readonly info!: pulumi.Output<outputs.ShovelInfo>;
@@ -132,7 +132,7 @@ export class Shovel extends pulumi.CustomResource {
  */
 export interface ShovelState {
     /**
-     * The settings of the shovel. The structure is
+     * The settings of the dynamic shovel. The structure is
      * described below.
      */
     readonly info?: pulumi.Input<inputs.ShovelInfo>;
@@ -151,7 +151,7 @@ export interface ShovelState {
  */
 export interface ShovelArgs {
     /**
-     * The settings of the shovel. The structure is
+     * The settings of the dynamic shovel. The structure is
      * described below.
      */
     readonly info: pulumi.Input<inputs.ShovelInfo>;

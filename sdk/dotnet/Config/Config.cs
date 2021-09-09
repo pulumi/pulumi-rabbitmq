@@ -20,6 +20,8 @@ namespace Pulumi.RabbitMQ
 
         public static string? Password { get; set; } = __config.Get("password");
 
+        public static string? Proxy { get; set; } = __config.Get("proxy");
+
         public static string? Username { get; set; } = __config.Get("username");
 
     }

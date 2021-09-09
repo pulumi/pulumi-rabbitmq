@@ -12,4 +12,5 @@ export let clientkeyFile: string | undefined = __config.get("clientkeyFile");
 export let endpoint: string | undefined = __config.get("endpoint");
 export let insecure: boolean | undefined = __config.getObject<boolean>("insecure") || <any>utilities.getEnvBoolean("RABBITMQ_INSECURE");
 export let password: string | undefined = __config.get("password");
+export let proxy: string | undefined = __config.get("proxy");
 export let username: string | undefined = __config.get("username");

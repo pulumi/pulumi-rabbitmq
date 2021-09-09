@@ -20,6 +20,9 @@ class FederationUpstreamArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FederationUpstream resource.
+        :param pulumi.Input['FederationUpstreamDefinitionArgs'] definition: The configuration of the federation upstream. The structure is described below.
+        :param pulumi.Input[str] vhost: The vhost to create the resource in.
+        :param pulumi.Input[str] name: The name of the federation upstream.
         """
         pulumi.set(__self__, "definition", definition)
         pulumi.set(__self__, "vhost", vhost)
@@ -29,6 +32,9 @@ class FederationUpstreamArgs:
     @property
     @pulumi.getter
     def definition(self) -> pulumi.Input['FederationUpstreamDefinitionArgs']:
+        """
+        The configuration of the federation upstream. The structure is described below.
+        """
         return pulumi.get(self, "definition")
 
     @definition.setter
@@ -38,6 +44,9 @@ class FederationUpstreamArgs:
     @property
     @pulumi.getter
     def vhost(self) -> pulumi.Input[str]:
+        """
+        The vhost to create the resource in.
+        """
         return pulumi.get(self, "vhost")
 
     @vhost.setter
@@ -47,6 +56,9 @@ class FederationUpstreamArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the federation upstream.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -63,6 +75,10 @@ class _FederationUpstreamState:
                  vhost: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FederationUpstream resources.
+        :param pulumi.Input[str] component: Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
+        :param pulumi.Input['FederationUpstreamDefinitionArgs'] definition: The configuration of the federation upstream. The structure is described below.
+        :param pulumi.Input[str] name: The name of the federation upstream.
+        :param pulumi.Input[str] vhost: The vhost to create the resource in.
         """
         if component is not None:
             pulumi.set(__self__, "component", component)
@@ -76,6 +92,9 @@ class _FederationUpstreamState:
     @property
     @pulumi.getter
     def component(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
+        """
         return pulumi.get(self, "component")
 
     @component.setter
@@ -85,6 +104,9 @@ class _FederationUpstreamState:
     @property
     @pulumi.getter
     def definition(self) -> Optional[pulumi.Input['FederationUpstreamDefinitionArgs']]:
+        """
+        The configuration of the federation upstream. The structure is described below.
+        """
         return pulumi.get(self, "definition")
 
     @definition.setter
@@ -94,6 +116,9 @@ class _FederationUpstreamState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the federation upstream.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -103,6 +128,9 @@ class _FederationUpstreamState:
     @property
     @pulumi.getter
     def vhost(self) -> Optional[pulumi.Input[str]]:
+        """
+        The vhost to create the resource in.
+        """
         return pulumi.get(self, "vhost")
 
     @vhost.setter
@@ -120,9 +148,66 @@ class FederationUpstream(pulumi.CustomResource):
                  vhost: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a FederationUpstream resource with the given unique name, props, and options.
+        The ``FederationUpstream`` resource creates and manages a federation upstream parameter.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test = rabbitmq.VHost("test")
+        guest = rabbitmq.Permissions("guest",
+            user="guest",
+            vhost=test.name,
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                write=".*",
+                read=".*",
+            ))
+        # downstream exchange
+        foo_exchange = rabbitmq.Exchange("fooExchange",
+            vhost=guest.vhost,
+            settings=rabbitmq.ExchangeSettingsArgs(
+                type="topic",
+                durable=True,
+            ))
+        # upstream broker
+        foo_federation_upstream = rabbitmq.FederationUpstream("fooFederationUpstream",
+            vhost=guest.vhost,
+            definition=rabbitmq.FederationUpstreamDefinitionArgs(
+                uri="amqp://guest:guest@upstream-server-name:5672/%2f",
+                prefetch_count=1000,
+                reconnect_delay=5,
+                ack_mode="on-confirm",
+                trust_user_id=False,
+                max_hops=1,
+            ))
+        foo_policy = rabbitmq.Policy("fooPolicy",
+            vhost=guest.vhost,
+            policy=rabbitmq.PolicyPolicyArgs(
+                pattern=foo_exchange.name.apply(lambda name: f"(^{name}$)"),
+                priority=1,
+                apply_to="exchanges",
+                definition={
+                    "federation-upstream": foo_federation_upstream.name,
+                },
+            ))
+        ```
+
+        ## Import
+
+        A Federation upstream can be imported using the resource `id` which is composed of `name@vhost`, e.g.
+
+        ```sh
+         $ pulumi import rabbitmq:index/federationUpstream:FederationUpstream foo foo@test
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['FederationUpstreamDefinitionArgs']] definition: The configuration of the federation upstream. The structure is described below.
+        :param pulumi.Input[str] name: The name of the federation upstream.
+        :param pulumi.Input[str] vhost: The vhost to create the resource in.
         """
         ...
     @overload
@@ -131,7 +216,61 @@ class FederationUpstream(pulumi.CustomResource):
                  args: FederationUpstreamArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a FederationUpstream resource with the given unique name, props, and options.
+        The ``FederationUpstream`` resource creates and manages a federation upstream parameter.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test = rabbitmq.VHost("test")
+        guest = rabbitmq.Permissions("guest",
+            user="guest",
+            vhost=test.name,
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                write=".*",
+                read=".*",
+            ))
+        # downstream exchange
+        foo_exchange = rabbitmq.Exchange("fooExchange",
+            vhost=guest.vhost,
+            settings=rabbitmq.ExchangeSettingsArgs(
+                type="topic",
+                durable=True,
+            ))
+        # upstream broker
+        foo_federation_upstream = rabbitmq.FederationUpstream("fooFederationUpstream",
+            vhost=guest.vhost,
+            definition=rabbitmq.FederationUpstreamDefinitionArgs(
+                uri="amqp://guest:guest@upstream-server-name:5672/%2f",
+                prefetch_count=1000,
+                reconnect_delay=5,
+                ack_mode="on-confirm",
+                trust_user_id=False,
+                max_hops=1,
+            ))
+        foo_policy = rabbitmq.Policy("fooPolicy",
+            vhost=guest.vhost,
+            policy=rabbitmq.PolicyPolicyArgs(
+                pattern=foo_exchange.name.apply(lambda name: f"(^{name}$)"),
+                priority=1,
+                apply_to="exchanges",
+                definition={
+                    "federation-upstream": foo_federation_upstream.name,
+                },
+            ))
+        ```
+
+        ## Import
+
+        A Federation upstream can be imported using the resource `id` which is composed of `name@vhost`, e.g.
+
+        ```sh
+         $ pulumi import rabbitmq:index/federationUpstream:FederationUpstream foo foo@test
+        ```
+
         :param str resource_name: The name of the resource.
         :param FederationUpstreamArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -191,6 +330,10 @@ class FederationUpstream(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] component: Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
+        :param pulumi.Input[pulumi.InputType['FederationUpstreamDefinitionArgs']] definition: The configuration of the federation upstream. The structure is described below.
+        :param pulumi.Input[str] name: The name of the federation upstream.
+        :param pulumi.Input[str] vhost: The vhost to create the resource in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -205,20 +348,32 @@ class FederationUpstream(pulumi.CustomResource):
     @property
     @pulumi.getter
     def component(self) -> pulumi.Output[str]:
+        """
+        Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
+        """
         return pulumi.get(self, "component")
 
     @property
     @pulumi.getter
     def definition(self) -> pulumi.Output['outputs.FederationUpstreamDefinition']:
+        """
+        The configuration of the federation upstream. The structure is described below.
+        """
         return pulumi.get(self, "definition")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        The name of the federation upstream.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def vhost(self) -> pulumi.Output[str]:
+        """
+        The vhost to create the resource in.
+        """
         return pulumi.get(self, "vhost")
 

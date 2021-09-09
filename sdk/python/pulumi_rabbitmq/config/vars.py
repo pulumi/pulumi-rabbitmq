@@ -15,6 +15,7 @@ __all__ = [
     'endpoint',
     'insecure',
     'password',
+    'proxy',
     'username',
 ]
 
@@ -31,6 +32,8 @@ endpoint = __config__.get('endpoint')
 insecure = __config__.get('insecure') or _utilities.get_env_bool('RABBITMQ_INSECURE')
 
 password = __config__.get('password')
+
+proxy = __config__.get('proxy')
 
 username = __config__.get('username')
 

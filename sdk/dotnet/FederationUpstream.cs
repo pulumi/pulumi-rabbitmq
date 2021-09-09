@@ -9,18 +9,108 @@ using Pulumi.Serialization;
 
 namespace Pulumi.RabbitMQ
 {
+    /// <summary>
+    /// The ``rabbitmq.FederationUpstream`` resource creates and manages a federation upstream parameter.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using RabbitMQ = Pulumi.RabbitMQ;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new RabbitMQ.VHost("test", new RabbitMQ.VHostArgs
+    ///         {
+    ///         });
+    ///         var guest = new RabbitMQ.Permissions("guest", new RabbitMQ.PermissionsArgs
+    ///         {
+    ///             User = "guest",
+    ///             Vhost = test.Name,
+    ///             Permissions = new RabbitMQ.Inputs.PermissionsPermissionsArgs
+    ///             {
+    ///                 Configure = ".*",
+    ///                 Write = ".*",
+    ///                 Read = ".*",
+    ///             },
+    ///         });
+    ///         // downstream exchange
+    ///         var fooExchange = new RabbitMQ.Exchange("fooExchange", new RabbitMQ.ExchangeArgs
+    ///         {
+    ///             Vhost = guest.Vhost,
+    ///             Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
+    ///             {
+    ///                 Type = "topic",
+    ///                 Durable = true,
+    ///             },
+    ///         });
+    ///         // upstream broker
+    ///         var fooFederationUpstream = new RabbitMQ.FederationUpstream("fooFederationUpstream", new RabbitMQ.FederationUpstreamArgs
+    ///         {
+    ///             Vhost = guest.Vhost,
+    ///             Definition = new RabbitMQ.Inputs.FederationUpstreamDefinitionArgs
+    ///             {
+    ///                 Uri = "amqp://guest:guest@upstream-server-name:5672/%2f",
+    ///                 PrefetchCount = 1000,
+    ///                 ReconnectDelay = 5,
+    ///                 AckMode = "on-confirm",
+    ///                 TrustUserId = false,
+    ///                 MaxHops = 1,
+    ///             },
+    ///         });
+    ///         var fooPolicy = new RabbitMQ.Policy("fooPolicy", new RabbitMQ.PolicyArgs
+    ///         {
+    ///             Vhost = guest.Vhost,
+    ///             Policy = new RabbitMQ.Inputs.PolicyPolicyArgs
+    ///             {
+    ///                 Pattern = fooExchange.Name.Apply(name =&gt; $"(^{name}$)"),
+    ///                 Priority = 1,
+    ///                 ApplyTo = "exchanges",
+    ///                 Definition = 
+    ///                 {
+    ///                     { "federation-upstream", fooFederationUpstream.Name },
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// A Federation upstream can be imported using the resource `id` which is composed of `name@vhost`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import rabbitmq:index/federationUpstream:FederationUpstream foo foo@test
+    /// ```
+    /// </summary>
     [RabbitMQResourceType("rabbitmq:index/federationUpstream:FederationUpstream")]
     public partial class FederationUpstream : Pulumi.CustomResource
     {
+        /// <summary>
+        /// Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
+        /// </summary>
         [Output("component")]
         public Output<string> Component { get; private set; } = null!;
 
+        /// <summary>
+        /// The configuration of the federation upstream. The structure is described below.
+        /// </summary>
         [Output("definition")]
         public Output<Outputs.FederationUpstreamDefinition> Definition { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the federation upstream.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// The vhost to create the resource in.
+        /// </summary>
         [Output("vhost")]
         public Output<string> Vhost { get; private set; } = null!;
 
@@ -70,12 +160,21 @@ namespace Pulumi.RabbitMQ
 
     public sealed class FederationUpstreamArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The configuration of the federation upstream. The structure is described below.
+        /// </summary>
         [Input("definition", required: true)]
         public Input<Inputs.FederationUpstreamDefinitionArgs> Definition { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the federation upstream.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The vhost to create the resource in.
+        /// </summary>
         [Input("vhost", required: true)]
         public Input<string> Vhost { get; set; } = null!;
 
@@ -86,15 +185,27 @@ namespace Pulumi.RabbitMQ
 
     public sealed class FederationUpstreamState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
+        /// </summary>
         [Input("component")]
         public Input<string>? Component { get; set; }
 
+        /// <summary>
+        /// The configuration of the federation upstream. The structure is described below.
+        /// </summary>
         [Input("definition")]
         public Input<Inputs.FederationUpstreamDefinitionGetArgs>? Definition { get; set; }
 
+        /// <summary>
+        /// The name of the federation upstream.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The vhost to create the resource in.
+        /// </summary>
         [Input("vhost")]
         public Input<string>? Vhost { get; set; }
 

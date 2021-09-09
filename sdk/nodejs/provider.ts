@@ -52,6 +52,7 @@ export class Provider extends pulumi.ProviderResource {
             inputs["endpoint"] = args ? args.endpoint : undefined;
             inputs["insecure"] = pulumi.output((args ? args.insecure : undefined) ?? <any>utilities.getEnvBoolean("RABBITMQ_INSECURE")).apply(JSON.stringify);
             inputs["password"] = args ? args.password : undefined;
+            inputs["proxy"] = args ? args.proxy : undefined;
             inputs["username"] = args ? args.username : undefined;
         }
         if (!opts.version) {
@@ -71,5 +72,6 @@ export interface ProviderArgs {
     readonly endpoint: pulumi.Input<string>;
     readonly insecure?: pulumi.Input<boolean>;
     readonly password: pulumi.Input<string>;
+    readonly proxy?: pulumi.Input<string>;
     readonly username: pulumi.Input<string>;
 }

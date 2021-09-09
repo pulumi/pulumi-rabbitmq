@@ -12,33 +12,63 @@ namespace Pulumi.RabbitMQ.Inputs
 
     public sealed class FederationUpstreamDefinitionGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Determines how the link should acknowledge messages. Valid values are `on-confirm`, `on-publish`, and `no-ack`. Default is `on-confirm`.
+        /// </summary>
         [Input("ackMode")]
         public Input<string>? AckMode { get; set; }
 
+        /// <summary>
+        /// The name of the upstream exchange.
+        /// </summary>
         [Input("exchange")]
         public Input<string>? Exchange { get; set; }
 
+        /// <summary>
+        /// The expiry time (in milliseconds) after which an upstream queue for a federated exchange may be deleted if a connection to the upstream is lost.
+        /// </summary>
         [Input("expires")]
         public Input<int>? Expires { get; set; }
 
+        /// <summary>
+        /// Maximum number of federation links that messages can traverse before being dropped. Default is `1`.
+        /// </summary>
         [Input("maxHops")]
         public Input<int>? MaxHops { get; set; }
 
+        /// <summary>
+        /// The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
+        /// </summary>
         [Input("messageTtl")]
         public Input<int>? MessageTtl { get; set; }
 
+        /// <summary>
+        /// Maximum number of unacknowledged messages that may be in flight over a federation link at one time. Default is `1000`.
+        /// </summary>
         [Input("prefetchCount")]
         public Input<int>? PrefetchCount { get; set; }
 
+        /// <summary>
+        /// The name of the upstream queue.
+        /// </summary>
         [Input("queue")]
         public Input<string>? Queue { get; set; }
 
+        /// <summary>
+        /// Time in seconds to wait after a network link goes down before attempting reconnection. Default is `5`.
+        /// </summary>
         [Input("reconnectDelay")]
         public Input<int>? ReconnectDelay { get; set; }
 
+        /// <summary>
+        /// Determines how federation should interact with the validated user-id feature. Default is `false`.
+        /// </summary>
         [Input("trustUserId")]
         public Input<bool>? TrustUserId { get; set; }
 
+        /// <summary>
+        /// The AMQP URI(s) for the upstream. Note that the URI may contain sensitive information, such as a password.
+        /// </summary>
         [Input("uri", required: true)]
         public Input<string> Uri { get; set; } = null!;
 
