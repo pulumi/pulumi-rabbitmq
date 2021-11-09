@@ -154,16 +154,16 @@ export interface QueueState {
     /**
      * The name of the queue.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The settings of the queue. The structure is
      * described below.
      */
-    readonly settings?: pulumi.Input<inputs.QueueSettings>;
+    settings?: pulumi.Input<inputs.QueueSettings>;
     /**
      * The vhost to create the resource in.
      */
-    readonly vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string>;
 }
 
 /**
@@ -173,14 +173,14 @@ export interface QueueArgs {
     /**
      * The name of the queue.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The settings of the queue. The structure is
      * described below.
      */
-    readonly settings: pulumi.Input<inputs.QueueSettings>;
+    settings: pulumi.Input<inputs.QueueSettings>;
     /**
      * The vhost to create the resource in.
      */
-    readonly vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string>;
 }

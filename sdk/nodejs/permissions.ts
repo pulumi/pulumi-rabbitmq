@@ -126,15 +126,15 @@ export interface PermissionsState {
      * The settings of the permissions. The structure is
      * described below.
      */
-    readonly permissions?: pulumi.Input<inputs.PermissionsPermissions>;
+    permissions?: pulumi.Input<inputs.PermissionsPermissions>;
     /**
      * The user to apply the permissions to.
      */
-    readonly user?: pulumi.Input<string>;
+    user?: pulumi.Input<string>;
     /**
      * The vhost to create the resource in.
      */
-    readonly vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string>;
 }
 
 /**
@@ -145,13 +145,13 @@ export interface PermissionsArgs {
      * The settings of the permissions. The structure is
      * described below.
      */
-    readonly permissions: pulumi.Input<inputs.PermissionsPermissions>;
+    permissions: pulumi.Input<inputs.PermissionsPermissions>;
     /**
      * The user to apply the permissions to.
      */
-    readonly user: pulumi.Input<string>;
+    user: pulumi.Input<string>;
     /**
      * The vhost to create the resource in.
      */
-    readonly vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string>;
 }

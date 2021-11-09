@@ -125,16 +125,16 @@ export interface ExchangeState {
     /**
      * The name of the exchange.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The settings of the exchange. The structure is
      * described below.
      */
-    readonly settings?: pulumi.Input<inputs.ExchangeSettings>;
+    settings?: pulumi.Input<inputs.ExchangeSettings>;
     /**
      * The vhost to create the resource in.
      */
-    readonly vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string>;
 }
 
 /**
@@ -144,14 +144,14 @@ export interface ExchangeArgs {
     /**
      * The name of the exchange.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The settings of the exchange. The structure is
      * described below.
      */
-    readonly settings: pulumi.Input<inputs.ExchangeSettings>;
+    settings: pulumi.Input<inputs.ExchangeSettings>;
     /**
      * The vhost to create the resource in.
      */
-    readonly vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string>;
 }

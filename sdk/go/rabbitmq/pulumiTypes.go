@@ -119,7 +119,7 @@ func (o ExchangeSettingsOutput) ToExchangeSettingsPtrOutput() ExchangeSettingsPt
 }
 
 func (o ExchangeSettingsOutput) ToExchangeSettingsPtrOutputWithContext(ctx context.Context) ExchangeSettingsPtrOutput {
-	return o.ApplyT(func(v ExchangeSettings) *ExchangeSettings {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ExchangeSettings) *ExchangeSettings {
 		return &v
 	}).(ExchangeSettingsPtrOutput)
 }
@@ -161,7 +161,13 @@ func (o ExchangeSettingsPtrOutput) ToExchangeSettingsPtrOutputWithContext(ctx co
 }
 
 func (o ExchangeSettingsPtrOutput) Elem() ExchangeSettingsOutput {
-	return o.ApplyT(func(v *ExchangeSettings) ExchangeSettings { return *v }).(ExchangeSettingsOutput)
+	return o.ApplyT(func(v *ExchangeSettings) ExchangeSettings {
+		if v != nil {
+			return *v
+		}
+		var ret ExchangeSettings
+		return ret
+	}).(ExchangeSettingsOutput)
 }
 
 // Additional key/value settings for the exchange.
@@ -335,7 +341,7 @@ func (o FederationUpstreamDefinitionOutput) ToFederationUpstreamDefinitionPtrOut
 }
 
 func (o FederationUpstreamDefinitionOutput) ToFederationUpstreamDefinitionPtrOutputWithContext(ctx context.Context) FederationUpstreamDefinitionPtrOutput {
-	return o.ApplyT(func(v FederationUpstreamDefinition) *FederationUpstreamDefinition {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v FederationUpstreamDefinition) *FederationUpstreamDefinition {
 		return &v
 	}).(FederationUpstreamDefinitionPtrOutput)
 }
@@ -405,7 +411,13 @@ func (o FederationUpstreamDefinitionPtrOutput) ToFederationUpstreamDefinitionPtr
 }
 
 func (o FederationUpstreamDefinitionPtrOutput) Elem() FederationUpstreamDefinitionOutput {
-	return o.ApplyT(func(v *FederationUpstreamDefinition) FederationUpstreamDefinition { return *v }).(FederationUpstreamDefinitionOutput)
+	return o.ApplyT(func(v *FederationUpstreamDefinition) FederationUpstreamDefinition {
+		if v != nil {
+			return *v
+		}
+		var ret FederationUpstreamDefinition
+		return ret
+	}).(FederationUpstreamDefinitionOutput)
 }
 
 // Determines how the link should acknowledge messages. Valid values are `on-confirm`, `on-publish`, and `no-ack`. Default is `on-confirm`.
@@ -609,7 +621,7 @@ func (o PermissionsPermissionsOutput) ToPermissionsPermissionsPtrOutput() Permis
 }
 
 func (o PermissionsPermissionsOutput) ToPermissionsPermissionsPtrOutputWithContext(ctx context.Context) PermissionsPermissionsPtrOutput {
-	return o.ApplyT(func(v PermissionsPermissions) *PermissionsPermissions {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PermissionsPermissions) *PermissionsPermissions {
 		return &v
 	}).(PermissionsPermissionsPtrOutput)
 }
@@ -644,7 +656,13 @@ func (o PermissionsPermissionsPtrOutput) ToPermissionsPermissionsPtrOutputWithCo
 }
 
 func (o PermissionsPermissionsPtrOutput) Elem() PermissionsPermissionsOutput {
-	return o.ApplyT(func(v *PermissionsPermissions) PermissionsPermissions { return *v }).(PermissionsPermissionsOutput)
+	return o.ApplyT(func(v *PermissionsPermissions) PermissionsPermissions {
+		if v != nil {
+			return *v
+		}
+		var ret PermissionsPermissions
+		return ret
+	}).(PermissionsPermissionsOutput)
 }
 
 // The "configure" ACL.
@@ -784,7 +802,7 @@ func (o PolicyPolicyOutput) ToPolicyPolicyPtrOutput() PolicyPolicyPtrOutput {
 }
 
 func (o PolicyPolicyOutput) ToPolicyPolicyPtrOutputWithContext(ctx context.Context) PolicyPolicyPtrOutput {
-	return o.ApplyT(func(v PolicyPolicy) *PolicyPolicy {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PolicyPolicy) *PolicyPolicy {
 		return &v
 	}).(PolicyPolicyPtrOutput)
 }
@@ -825,7 +843,13 @@ func (o PolicyPolicyPtrOutput) ToPolicyPolicyPtrOutputWithContext(ctx context.Co
 }
 
 func (o PolicyPolicyPtrOutput) Elem() PolicyPolicyOutput {
-	return o.ApplyT(func(v *PolicyPolicy) PolicyPolicy { return *v }).(PolicyPolicyOutput)
+	return o.ApplyT(func(v *PolicyPolicy) PolicyPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret PolicyPolicy
+		return ret
+	}).(PolicyPolicyOutput)
 }
 
 // Can either be "exchanges", "queues", or "all".
@@ -986,7 +1010,7 @@ func (o QueueSettingsOutput) ToQueueSettingsPtrOutput() QueueSettingsPtrOutput {
 }
 
 func (o QueueSettingsOutput) ToQueueSettingsPtrOutputWithContext(ctx context.Context) QueueSettingsPtrOutput {
-	return o.ApplyT(func(v QueueSettings) *QueueSettings {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v QueueSettings) *QueueSettings {
 		return &v
 	}).(QueueSettingsPtrOutput)
 }
@@ -1032,7 +1056,13 @@ func (o QueueSettingsPtrOutput) ToQueueSettingsPtrOutputWithContext(ctx context.
 }
 
 func (o QueueSettingsPtrOutput) Elem() QueueSettingsOutput {
-	return o.ApplyT(func(v *QueueSettings) QueueSettings { return *v }).(QueueSettingsOutput)
+	return o.ApplyT(func(v *QueueSettings) QueueSettings {
+		if v != nil {
+			return *v
+		}
+		var ret QueueSettings
+		return ret
+	}).(QueueSettingsOutput)
 }
 
 // Additional key/value settings for the queue.
@@ -1292,7 +1322,7 @@ func (o ShovelInfoOutput) ToShovelInfoPtrOutput() ShovelInfoPtrOutput {
 }
 
 func (o ShovelInfoOutput) ToShovelInfoPtrOutputWithContext(ctx context.Context) ShovelInfoPtrOutput {
-	return o.ApplyT(func(v ShovelInfo) *ShovelInfo {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ShovelInfo) *ShovelInfo {
 		return &v
 	}).(ShovelInfoPtrOutput)
 }
@@ -1445,7 +1475,13 @@ func (o ShovelInfoPtrOutput) ToShovelInfoPtrOutputWithContext(ctx context.Contex
 }
 
 func (o ShovelInfoPtrOutput) Elem() ShovelInfoOutput {
-	return o.ApplyT(func(v *ShovelInfo) ShovelInfo { return *v }).(ShovelInfoOutput)
+	return o.ApplyT(func(v *ShovelInfo) ShovelInfo {
+		if v != nil {
+			return *v
+		}
+		var ret ShovelInfo
+		return ret
+	}).(ShovelInfoOutput)
 }
 
 // Determines how the shovel should acknowledge messages. Possible values are: `on-confirm`, `on-publish` and `no-ack`.
@@ -1817,6 +1853,20 @@ func (o TopicPermissionsPermissionArrayOutput) Index(i pulumi.IntInput) TopicPer
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ExchangeSettingsInput)(nil)).Elem(), ExchangeSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExchangeSettingsPtrInput)(nil)).Elem(), ExchangeSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederationUpstreamDefinitionInput)(nil)).Elem(), FederationUpstreamDefinitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederationUpstreamDefinitionPtrInput)(nil)).Elem(), FederationUpstreamDefinitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PermissionsPermissionsInput)(nil)).Elem(), PermissionsPermissionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PermissionsPermissionsPtrInput)(nil)).Elem(), PermissionsPermissionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PolicyPolicyInput)(nil)).Elem(), PolicyPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PolicyPolicyPtrInput)(nil)).Elem(), PolicyPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QueueSettingsInput)(nil)).Elem(), QueueSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QueueSettingsPtrInput)(nil)).Elem(), QueueSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShovelInfoInput)(nil)).Elem(), ShovelInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShovelInfoPtrInput)(nil)).Elem(), ShovelInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TopicPermissionsPermissionInput)(nil)).Elem(), TopicPermissionsPermissionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TopicPermissionsPermissionArrayInput)(nil)).Elem(), TopicPermissionsPermissionArray{})
 	pulumi.RegisterOutputType(ExchangeSettingsOutput{})
 	pulumi.RegisterOutputType(ExchangeSettingsPtrOutput{})
 	pulumi.RegisterOutputType(FederationUpstreamDefinitionOutput{})

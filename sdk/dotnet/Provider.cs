@@ -18,6 +18,28 @@ namespace Pulumi.RabbitMQ
     [RabbitMQResourceType("pulumi:providers:rabbitmq")]
     public partial class Provider : Pulumi.ProviderResource
     {
+        [Output("cacertFile")]
+        public Output<string?> CacertFile { get; private set; } = null!;
+
+        [Output("clientcertFile")]
+        public Output<string?> ClientcertFile { get; private set; } = null!;
+
+        [Output("clientkeyFile")]
+        public Output<string?> ClientkeyFile { get; private set; } = null!;
+
+        [Output("endpoint")]
+        public Output<string> Endpoint { get; private set; } = null!;
+
+        [Output("password")]
+        public Output<string> Password { get; private set; } = null!;
+
+        [Output("proxy")]
+        public Output<string?> Proxy { get; private set; } = null!;
+
+        [Output("username")]
+        public Output<string> Username { get; private set; } = null!;
+
+
         /// <summary>
         /// Create a Provider resource with the given unique name, arguments, and options.
         /// </summary>

@@ -115,17 +115,17 @@ export interface UserState {
     /**
      * The name of the user.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The password of the user. The value of this argument
      * is plain-text so make sure to secure where this is defined.
      */
-    readonly password?: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
     /**
      * Which permission model to apply to the user. Valid
      * options are: management, policymaker, monitoring, and administrator.
      */
-    readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -135,15 +135,15 @@ export interface UserArgs {
     /**
      * The name of the user.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The password of the user. The value of this argument
      * is plain-text so make sure to secure where this is defined.
      */
-    readonly password: pulumi.Input<string>;
+    password: pulumi.Input<string>;
     /**
      * Which permission model to apply to the user. Valid
      * options are: management, policymaker, monitoring, and administrator.
      */
-    readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
 }

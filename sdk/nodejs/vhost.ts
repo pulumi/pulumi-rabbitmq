@@ -89,7 +89,7 @@ export interface VHostState {
     /**
      * The name of the vhost.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
 }
 
 /**
@@ -99,5 +99,5 @@ export interface VHostArgs {
     /**
      * The name of the vhost.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
 }

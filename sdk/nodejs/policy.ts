@@ -130,16 +130,16 @@ export interface PolicyState {
     /**
      * The name of the policy.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The settings of the policy. The structure is
      * described below.
      */
-    readonly policy?: pulumi.Input<inputs.PolicyPolicy>;
+    policy?: pulumi.Input<inputs.PolicyPolicy>;
     /**
      * The vhost to create the resource in.
      */
-    readonly vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string>;
 }
 
 /**
@@ -149,14 +149,14 @@ export interface PolicyArgs {
     /**
      * The name of the policy.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The settings of the policy. The structure is
      * described below.
      */
-    readonly policy: pulumi.Input<inputs.PolicyPolicy>;
+    policy: pulumi.Input<inputs.PolicyPolicy>;
     /**
      * The vhost to create the resource in.
      */
-    readonly vhost: pulumi.Input<string>;
+    vhost: pulumi.Input<string>;
 }

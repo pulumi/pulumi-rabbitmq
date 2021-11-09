@@ -4,13 +4,70 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-let __config = new pulumi.Config("rabbitmq");
+declare var exports: any;
+const __config = new pulumi.Config("rabbitmq");
 
-export let cacertFile: string | undefined = __config.get("cacertFile") || utilities.getEnv("RABBITMQ_CACERT");
-export let clientcertFile: string | undefined = __config.get("clientcertFile");
-export let clientkeyFile: string | undefined = __config.get("clientkeyFile");
-export let endpoint: string | undefined = __config.get("endpoint");
-export let insecure: boolean | undefined = __config.getObject<boolean>("insecure") || <any>utilities.getEnvBoolean("RABBITMQ_INSECURE");
-export let password: string | undefined = __config.get("password");
-export let proxy: string | undefined = __config.get("proxy");
-export let username: string | undefined = __config.get("username");
+export declare const cacertFile: string | undefined;
+Object.defineProperty(exports, "cacertFile", {
+    get() {
+        return __config.get("cacertFile") ?? utilities.getEnv("RABBITMQ_CACERT");
+    },
+    enumerable: true,
+});
+
+export declare const clientcertFile: string | undefined;
+Object.defineProperty(exports, "clientcertFile", {
+    get() {
+        return __config.get("clientcertFile");
+    },
+    enumerable: true,
+});
+
+export declare const clientkeyFile: string | undefined;
+Object.defineProperty(exports, "clientkeyFile", {
+    get() {
+        return __config.get("clientkeyFile");
+    },
+    enumerable: true,
+});
+
+export declare const endpoint: string | undefined;
+Object.defineProperty(exports, "endpoint", {
+    get() {
+        return __config.get("endpoint");
+    },
+    enumerable: true,
+});
+
+export declare const insecure: boolean | undefined;
+Object.defineProperty(exports, "insecure", {
+    get() {
+        return __config.getObject<boolean>("insecure") ?? <any>utilities.getEnvBoolean("RABBITMQ_INSECURE");
+    },
+    enumerable: true,
+});
+
+export declare const password: string | undefined;
+Object.defineProperty(exports, "password", {
+    get() {
+        return __config.get("password");
+    },
+    enumerable: true,
+});
+
+export declare const proxy: string | undefined;
+Object.defineProperty(exports, "proxy", {
+    get() {
+        return __config.get("proxy");
+    },
+    enumerable: true,
+});
+
+export declare const username: string | undefined;
+Object.defineProperty(exports, "username", {
+    get() {
+        return __config.get("username");
+    },
+    enumerable: true,
+});
+

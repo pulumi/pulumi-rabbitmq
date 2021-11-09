@@ -30,7 +30,7 @@ import (
 // 			return err
 // 		}
 // 		guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
-// 			Permissions: &rabbitmq.PermissionsPermissionsArgs{
+// 			Permissions: &PermissionsPermissionsArgs{
 // 				Configure: pulumi.String(".*"),
 // 				Read:      pulumi.String(".*"),
 // 				Write:     pulumi.String(".*"),
@@ -42,7 +42,7 @@ import (
 // 			return err
 // 		}
 // 		_, err = rabbitmq.NewExchange(ctx, "testExchange", &rabbitmq.ExchangeArgs{
-// 			Settings: &rabbitmq.ExchangeSettingsArgs{
+// 			Settings: &ExchangeSettingsArgs{
 // 				AutoDelete: pulumi.Bool(true),
 // 				Durable:    pulumi.Bool(false),
 // 				Type:       pulumi.String("fanout"),
@@ -220,7 +220,7 @@ type ExchangeArrayInput interface {
 type ExchangeArray []ExchangeInput
 
 func (ExchangeArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*Exchange)(nil))
+	return reflect.TypeOf((*[]*Exchange)(nil)).Elem()
 }
 
 func (i ExchangeArray) ToExchangeArrayOutput() ExchangeArrayOutput {
@@ -245,7 +245,7 @@ type ExchangeMapInput interface {
 type ExchangeMap map[string]ExchangeInput
 
 func (ExchangeMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*Exchange)(nil))
+	return reflect.TypeOf((*map[string]*Exchange)(nil)).Elem()
 }
 
 func (i ExchangeMap) ToExchangeMapOutput() ExchangeMapOutput {
@@ -256,9 +256,7 @@ func (i ExchangeMap) ToExchangeMapOutputWithContext(ctx context.Context) Exchang
 	return pulumi.ToOutputWithContext(ctx, i).(ExchangeMapOutput)
 }
 
-type ExchangeOutput struct {
-	*pulumi.OutputState
-}
+type ExchangeOutput struct{ *pulumi.OutputState }
 
 func (ExchangeOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Exchange)(nil))
@@ -277,14 +275,12 @@ func (o ExchangeOutput) ToExchangePtrOutput() ExchangePtrOutput {
 }
 
 func (o ExchangeOutput) ToExchangePtrOutputWithContext(ctx context.Context) ExchangePtrOutput {
-	return o.ApplyT(func(v Exchange) *Exchange {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Exchange) *Exchange {
 		return &v
 	}).(ExchangePtrOutput)
 }
 
-type ExchangePtrOutput struct {
-	*pulumi.OutputState
-}
+type ExchangePtrOutput struct{ *pulumi.OutputState }
 
 func (ExchangePtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Exchange)(nil))
@@ -296,6 +292,16 @@ func (o ExchangePtrOutput) ToExchangePtrOutput() ExchangePtrOutput {
 
 func (o ExchangePtrOutput) ToExchangePtrOutputWithContext(ctx context.Context) ExchangePtrOutput {
 	return o
+}
+
+func (o ExchangePtrOutput) Elem() ExchangeOutput {
+	return o.ApplyT(func(v *Exchange) Exchange {
+		if v != nil {
+			return *v
+		}
+		var ret Exchange
+		return ret
+	}).(ExchangeOutput)
 }
 
 type ExchangeArrayOutput struct{ *pulumi.OutputState }
@@ -339,6 +345,10 @@ func (o ExchangeMapOutput) MapIndex(k pulumi.StringInput) ExchangeOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ExchangeInput)(nil)).Elem(), &Exchange{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExchangePtrInput)(nil)).Elem(), &Exchange{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExchangeArrayInput)(nil)).Elem(), ExchangeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExchangeMapInput)(nil)).Elem(), ExchangeMap{})
 	pulumi.RegisterOutputType(ExchangeOutput{})
 	pulumi.RegisterOutputType(ExchangePtrOutput{})
 	pulumi.RegisterOutputType(ExchangeArrayOutput{})
