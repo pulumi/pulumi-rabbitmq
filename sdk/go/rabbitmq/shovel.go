@@ -30,7 +30,7 @@ import (
 // 			return err
 // 		}
 // 		testExchange, err := rabbitmq.NewExchange(ctx, "testExchange", &rabbitmq.ExchangeArgs{
-// 			Settings: &rabbitmq.ExchangeSettingsArgs{
+// 			Settings: &ExchangeSettingsArgs{
 // 				AutoDelete: pulumi.Bool(true),
 // 				Durable:    pulumi.Bool(false),
 // 				Type:       pulumi.String("fanout"),
@@ -41,7 +41,7 @@ import (
 // 			return err
 // 		}
 // 		testQueue, err := rabbitmq.NewQueue(ctx, "testQueue", &rabbitmq.QueueArgs{
-// 			Settings: &rabbitmq.QueueSettingsArgs{
+// 			Settings: &QueueSettingsArgs{
 // 				AutoDelete: pulumi.Bool(true),
 // 				Durable:    pulumi.Bool(false),
 // 			},
@@ -51,7 +51,7 @@ import (
 // 			return err
 // 		}
 // 		_, err = rabbitmq.NewShovel(ctx, "shovelTest", &rabbitmq.ShovelArgs{
-// 			Info: &rabbitmq.ShovelInfoArgs{
+// 			Info: &ShovelInfoArgs{
 // 				DestinationQueue:  testQueue.Name,
 // 				DestinationUri:    pulumi.String("amqp:///test"),
 // 				SourceExchange:    testExchange.Name,
@@ -232,7 +232,7 @@ type ShovelArrayInput interface {
 type ShovelArray []ShovelInput
 
 func (ShovelArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*Shovel)(nil))
+	return reflect.TypeOf((*[]*Shovel)(nil)).Elem()
 }
 
 func (i ShovelArray) ToShovelArrayOutput() ShovelArrayOutput {
@@ -257,7 +257,7 @@ type ShovelMapInput interface {
 type ShovelMap map[string]ShovelInput
 
 func (ShovelMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*Shovel)(nil))
+	return reflect.TypeOf((*map[string]*Shovel)(nil)).Elem()
 }
 
 func (i ShovelMap) ToShovelMapOutput() ShovelMapOutput {
@@ -268,9 +268,7 @@ func (i ShovelMap) ToShovelMapOutputWithContext(ctx context.Context) ShovelMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(ShovelMapOutput)
 }
 
-type ShovelOutput struct {
-	*pulumi.OutputState
-}
+type ShovelOutput struct{ *pulumi.OutputState }
 
 func (ShovelOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Shovel)(nil))
@@ -289,14 +287,12 @@ func (o ShovelOutput) ToShovelPtrOutput() ShovelPtrOutput {
 }
 
 func (o ShovelOutput) ToShovelPtrOutputWithContext(ctx context.Context) ShovelPtrOutput {
-	return o.ApplyT(func(v Shovel) *Shovel {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Shovel) *Shovel {
 		return &v
 	}).(ShovelPtrOutput)
 }
 
-type ShovelPtrOutput struct {
-	*pulumi.OutputState
-}
+type ShovelPtrOutput struct{ *pulumi.OutputState }
 
 func (ShovelPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Shovel)(nil))
@@ -308,6 +304,16 @@ func (o ShovelPtrOutput) ToShovelPtrOutput() ShovelPtrOutput {
 
 func (o ShovelPtrOutput) ToShovelPtrOutputWithContext(ctx context.Context) ShovelPtrOutput {
 	return o
+}
+
+func (o ShovelPtrOutput) Elem() ShovelOutput {
+	return o.ApplyT(func(v *Shovel) Shovel {
+		if v != nil {
+			return *v
+		}
+		var ret Shovel
+		return ret
+	}).(ShovelOutput)
 }
 
 type ShovelArrayOutput struct{ *pulumi.OutputState }
@@ -351,6 +357,10 @@ func (o ShovelMapOutput) MapIndex(k pulumi.StringInput) ShovelOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ShovelInput)(nil)).Elem(), &Shovel{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShovelPtrInput)(nil)).Elem(), &Shovel{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShovelArrayInput)(nil)).Elem(), ShovelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ShovelMapInput)(nil)).Elem(), ShovelMap{})
 	pulumi.RegisterOutputType(ShovelOutput{})
 	pulumi.RegisterOutputType(ShovelPtrOutput{})
 	pulumi.RegisterOutputType(ShovelArrayOutput{})

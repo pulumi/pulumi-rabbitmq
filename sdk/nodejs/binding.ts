@@ -174,32 +174,32 @@ export interface BindingState {
     /**
      * Additional key/value arguments for the binding.
      */
-    readonly arguments?: pulumi.Input<{[key: string]: any}>;
-    readonly argumentsJson?: pulumi.Input<string>;
+    arguments?: pulumi.Input<{[key: string]: any}>;
+    argumentsJson?: pulumi.Input<string>;
     /**
      * The destination queue or exchange.
      */
-    readonly destination?: pulumi.Input<string>;
+    destination?: pulumi.Input<string>;
     /**
      * The type of destination (queue or exchange).
      */
-    readonly destinationType?: pulumi.Input<string>;
+    destinationType?: pulumi.Input<string>;
     /**
      * A unique key to refer to the binding.
      */
-    readonly propertiesKey?: pulumi.Input<string>;
+    propertiesKey?: pulumi.Input<string>;
     /**
      * A routing key for the binding.
      */
-    readonly routingKey?: pulumi.Input<string>;
+    routingKey?: pulumi.Input<string>;
     /**
      * The source exchange.
      */
-    readonly source?: pulumi.Input<string>;
+    source?: pulumi.Input<string>;
     /**
      * The vhost to create the resource in.
      */
-    readonly vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string>;
 }
 
 /**
@@ -209,26 +209,26 @@ export interface BindingArgs {
     /**
      * Additional key/value arguments for the binding.
      */
-    readonly arguments?: pulumi.Input<{[key: string]: any}>;
-    readonly argumentsJson?: pulumi.Input<string>;
+    arguments?: pulumi.Input<{[key: string]: any}>;
+    argumentsJson?: pulumi.Input<string>;
     /**
      * The destination queue or exchange.
      */
-    readonly destination: pulumi.Input<string>;
+    destination: pulumi.Input<string>;
     /**
      * The type of destination (queue or exchange).
      */
-    readonly destinationType: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
     /**
      * A routing key for the binding.
      */
-    readonly routingKey?: pulumi.Input<string>;
+    routingKey?: pulumi.Input<string>;
     /**
      * The source exchange.
      */
-    readonly source: pulumi.Input<string>;
+    source: pulumi.Input<string>;
     /**
      * The vhost to create the resource in.
      */
-    readonly vhost: pulumi.Input<string>;
+    vhost: pulumi.Input<string>;
 }

@@ -34,7 +34,7 @@ import (
 // 		guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
 // 			User:  pulumi.String("guest"),
 // 			Vhost: test.Name,
-// 			Permissions: &rabbitmq.PermissionsPermissionsArgs{
+// 			Permissions: &PermissionsPermissionsArgs{
 // 				Configure: pulumi.String(".*"),
 // 				Write:     pulumi.String(".*"),
 // 				Read:      pulumi.String(".*"),
@@ -45,7 +45,7 @@ import (
 // 		}
 // 		fooExchange, err := rabbitmq.NewExchange(ctx, "fooExchange", &rabbitmq.ExchangeArgs{
 // 			Vhost: guest.Vhost,
-// 			Settings: &rabbitmq.ExchangeSettingsArgs{
+// 			Settings: &ExchangeSettingsArgs{
 // 				Type:    pulumi.String("topic"),
 // 				Durable: pulumi.Bool(true),
 // 			},
@@ -55,7 +55,7 @@ import (
 // 		}
 // 		fooFederationUpstream, err := rabbitmq.NewFederationUpstream(ctx, "fooFederationUpstream", &rabbitmq.FederationUpstreamArgs{
 // 			Vhost: guest.Vhost,
-// 			Definition: &rabbitmq.FederationUpstreamDefinitionArgs{
+// 			Definition: &FederationUpstreamDefinitionArgs{
 // 				Uri:            pulumi.String(fmt.Sprintf("%v%v%v", "amqp://guest:guest@upstream-server-name:5672/", "%", "2f")),
 // 				PrefetchCount:  pulumi.Int(1000),
 // 				ReconnectDelay: pulumi.Int(5),
@@ -69,13 +69,13 @@ import (
 // 		}
 // 		_, err = rabbitmq.NewPolicy(ctx, "fooPolicy", &rabbitmq.PolicyArgs{
 // 			Vhost: guest.Vhost,
-// 			Policy: &rabbitmq.PolicyPolicyArgs{
+// 			Policy: &PolicyPolicyArgs{
 // 				Pattern: fooExchange.Name.ApplyT(func(name string) (string, error) {
 // 					return fmt.Sprintf("%v%v%v%v", "(^", name, "$", ")"), nil
 // 				}).(pulumi.StringOutput),
 // 				Priority: pulumi.Int(1),
 // 				ApplyTo:  pulumi.String("exchanges"),
-// 				Definition: pulumi.StringMap{
+// 				Definition: pulumi.AnyMap{
 // 					"federation-upstream": fooFederationUpstream.Name,
 // 				},
 // 			},
@@ -253,7 +253,7 @@ type FederationUpstreamArrayInput interface {
 type FederationUpstreamArray []FederationUpstreamInput
 
 func (FederationUpstreamArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FederationUpstream)(nil))
+	return reflect.TypeOf((*[]*FederationUpstream)(nil)).Elem()
 }
 
 func (i FederationUpstreamArray) ToFederationUpstreamArrayOutput() FederationUpstreamArrayOutput {
@@ -278,7 +278,7 @@ type FederationUpstreamMapInput interface {
 type FederationUpstreamMap map[string]FederationUpstreamInput
 
 func (FederationUpstreamMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FederationUpstream)(nil))
+	return reflect.TypeOf((*map[string]*FederationUpstream)(nil)).Elem()
 }
 
 func (i FederationUpstreamMap) ToFederationUpstreamMapOutput() FederationUpstreamMapOutput {
@@ -289,9 +289,7 @@ func (i FederationUpstreamMap) ToFederationUpstreamMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(FederationUpstreamMapOutput)
 }
 
-type FederationUpstreamOutput struct {
-	*pulumi.OutputState
-}
+type FederationUpstreamOutput struct{ *pulumi.OutputState }
 
 func (FederationUpstreamOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*FederationUpstream)(nil))
@@ -310,14 +308,12 @@ func (o FederationUpstreamOutput) ToFederationUpstreamPtrOutput() FederationUpst
 }
 
 func (o FederationUpstreamOutput) ToFederationUpstreamPtrOutputWithContext(ctx context.Context) FederationUpstreamPtrOutput {
-	return o.ApplyT(func(v FederationUpstream) *FederationUpstream {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v FederationUpstream) *FederationUpstream {
 		return &v
 	}).(FederationUpstreamPtrOutput)
 }
 
-type FederationUpstreamPtrOutput struct {
-	*pulumi.OutputState
-}
+type FederationUpstreamPtrOutput struct{ *pulumi.OutputState }
 
 func (FederationUpstreamPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**FederationUpstream)(nil))
@@ -329,6 +325,16 @@ func (o FederationUpstreamPtrOutput) ToFederationUpstreamPtrOutput() FederationU
 
 func (o FederationUpstreamPtrOutput) ToFederationUpstreamPtrOutputWithContext(ctx context.Context) FederationUpstreamPtrOutput {
 	return o
+}
+
+func (o FederationUpstreamPtrOutput) Elem() FederationUpstreamOutput {
+	return o.ApplyT(func(v *FederationUpstream) FederationUpstream {
+		if v != nil {
+			return *v
+		}
+		var ret FederationUpstream
+		return ret
+	}).(FederationUpstreamOutput)
 }
 
 type FederationUpstreamArrayOutput struct{ *pulumi.OutputState }
@@ -372,6 +378,10 @@ func (o FederationUpstreamMapOutput) MapIndex(k pulumi.StringInput) FederationUp
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FederationUpstreamInput)(nil)).Elem(), &FederationUpstream{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederationUpstreamPtrInput)(nil)).Elem(), &FederationUpstream{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederationUpstreamArrayInput)(nil)).Elem(), FederationUpstreamArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederationUpstreamMapInput)(nil)).Elem(), FederationUpstreamMap{})
 	pulumi.RegisterOutputType(FederationUpstreamOutput{})
 	pulumi.RegisterOutputType(FederationUpstreamPtrOutput{})
 	pulumi.RegisterOutputType(FederationUpstreamArrayOutput{})

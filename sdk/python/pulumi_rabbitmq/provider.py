@@ -209,3 +209,38 @@ class Provider(pulumi.ProviderResource):
             __props__,
             opts)
 
+    @property
+    @pulumi.getter(name="cacertFile")
+    def cacert_file(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "cacert_file")
+
+    @property
+    @pulumi.getter(name="clientcertFile")
+    def clientcert_file(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "clientcert_file")
+
+    @property
+    @pulumi.getter(name="clientkeyFile")
+    def clientkey_file(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "clientkey_file")
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "endpoint")
+
+    @property
+    @pulumi.getter
+    def password(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def proxy(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "proxy")
+
+    @property
+    @pulumi.getter
+    def username(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "username")
+

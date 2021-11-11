@@ -25,6 +25,13 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === Provider.__pulumiType;
     }
 
+    public readonly cacertFile!: pulumi.Output<string | undefined>;
+    public readonly clientcertFile!: pulumi.Output<string | undefined>;
+    public readonly clientkeyFile!: pulumi.Output<string | undefined>;
+    public readonly endpoint!: pulumi.Output<string>;
+    public readonly password!: pulumi.Output<string>;
+    public readonly proxy!: pulumi.Output<string | undefined>;
+    public readonly username!: pulumi.Output<string>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -66,12 +73,12 @@ export class Provider extends pulumi.ProviderResource {
  * The set of arguments for constructing a Provider resource.
  */
 export interface ProviderArgs {
-    readonly cacertFile?: pulumi.Input<string>;
-    readonly clientcertFile?: pulumi.Input<string>;
-    readonly clientkeyFile?: pulumi.Input<string>;
-    readonly endpoint: pulumi.Input<string>;
-    readonly insecure?: pulumi.Input<boolean>;
-    readonly password: pulumi.Input<string>;
-    readonly proxy?: pulumi.Input<string>;
-    readonly username: pulumi.Input<string>;
+    cacertFile?: pulumi.Input<string>;
+    clientcertFile?: pulumi.Input<string>;
+    clientkeyFile?: pulumi.Input<string>;
+    endpoint: pulumi.Input<string>;
+    insecure?: pulumi.Input<boolean>;
+    password: pulumi.Input<string>;
+    proxy?: pulumi.Input<string>;
+    username: pulumi.Input<string>;
 }

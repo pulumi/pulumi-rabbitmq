@@ -252,3 +252,4 @@ export interface TopicPermissionsPermission {
      */
     write: string;
 }
+

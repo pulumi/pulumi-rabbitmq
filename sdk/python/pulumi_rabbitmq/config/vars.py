@@ -8,32 +8,41 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
-__all__ = [
-    'cacert_file',
-    'clientcert_file',
-    'clientkey_file',
-    'endpoint',
-    'insecure',
-    'password',
-    'proxy',
-    'username',
-]
+import types
 
 __config__ = pulumi.Config('rabbitmq')
 
-cacert_file = __config__.get('cacertFile') or _utilities.get_env('RABBITMQ_CACERT')
 
-clientcert_file = __config__.get('clientcertFile')
+class _ExportableConfig(types.ModuleType):
+    @property
+    def cacert_file(self) -> Optional[str]:
+        return __config__.get('cacertFile') or _utilities.get_env('RABBITMQ_CACERT')
 
-clientkey_file = __config__.get('clientkeyFile')
+    @property
+    def clientcert_file(self) -> Optional[str]:
+        return __config__.get('clientcertFile')
 
-endpoint = __config__.get('endpoint')
+    @property
+    def clientkey_file(self) -> Optional[str]:
+        return __config__.get('clientkeyFile')
 
-insecure = __config__.get('insecure') or _utilities.get_env_bool('RABBITMQ_INSECURE')
+    @property
+    def endpoint(self) -> Optional[str]:
+        return __config__.get('endpoint')
 
-password = __config__.get('password')
+    @property
+    def insecure(self) -> Optional[bool]:
+        return __config__.get_bool('insecure') or _utilities.get_env_bool('RABBITMQ_INSECURE')
 
-proxy = __config__.get('proxy')
+    @property
+    def password(self) -> Optional[str]:
+        return __config__.get('password')
 
-username = __config__.get('username')
+    @property
+    def proxy(self) -> Optional[str]:
+        return __config__.get('proxy')
+
+    @property
+    def username(self) -> Optional[str]:
+        return __config__.get('username')
 
