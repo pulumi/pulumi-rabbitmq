@@ -1350,6 +1350,7 @@
             }
         },
         "go": {
+            "generateExtraInputTypes": true,
             "generateResourceContainerTypes": true,
             "importBasePath": "github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
         },

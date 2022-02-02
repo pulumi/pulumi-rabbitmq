@@ -55,6 +55,7 @@ setup(name='pulumi_rabbitmq',
       package_data={
           'pulumi_rabbitmq': [
               'py.typed',
+              'pulumi-plugin.json',
           ]
       },
       install_requires=[

@@ -42,7 +42,7 @@ Object.defineProperty(exports, "endpoint", {
 export declare const insecure: boolean | undefined;
 Object.defineProperty(exports, "insecure", {
     get() {
-        return __config.getObject<boolean>("insecure") ?? <any>utilities.getEnvBoolean("RABBITMQ_INSECURE");
+        return __config.getObject<boolean>("insecure") ?? utilities.getEnvBoolean("RABBITMQ_INSECURE");
     },
     enumerable: true,
 });

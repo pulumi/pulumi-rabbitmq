@@ -41,7 +41,7 @@ export class Provider extends pulumi.ProviderResource {
      * @param opts A bag of options that control this resource's behavior.
      */
     constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
             if ((!args || args.endpoint === undefined) && !opts.urn) {
@@ -53,19 +53,17 @@ export class Provider extends pulumi.ProviderResource {
             if ((!args || args.username === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            inputs["cacertFile"] = (args ? args.cacertFile : undefined) ?? utilities.getEnv("RABBITMQ_CACERT");
-            inputs["clientcertFile"] = args ? args.clientcertFile : undefined;
-            inputs["clientkeyFile"] = args ? args.clientkeyFile : undefined;
-            inputs["endpoint"] = args ? args.endpoint : undefined;
-            inputs["insecure"] = pulumi.output((args ? args.insecure : undefined) ?? <any>utilities.getEnvBoolean("RABBITMQ_INSECURE")).apply(JSON.stringify);
-            inputs["password"] = args ? args.password : undefined;
-            inputs["proxy"] = args ? args.proxy : undefined;
-            inputs["username"] = args ? args.username : undefined;
+            resourceInputs["cacertFile"] = (args ? args.cacertFile : undefined) ?? utilities.getEnv("RABBITMQ_CACERT");
+            resourceInputs["clientcertFile"] = args ? args.clientcertFile : undefined;
+            resourceInputs["clientkeyFile"] = args ? args.clientkeyFile : undefined;
+            resourceInputs["endpoint"] = args ? args.endpoint : undefined;
+            resourceInputs["insecure"] = pulumi.output((args ? args.insecure : undefined) ?? utilities.getEnvBoolean("RABBITMQ_INSECURE")).apply(JSON.stringify);
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["proxy"] = args ? args.proxy : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Provider.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }
 

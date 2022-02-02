@@ -66,19 +66,17 @@ export class VHost extends pulumi.CustomResource {
      */
     constructor(name: string, args?: VHostArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VHostArgs | VHostState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VHostState | undefined;
-            inputs["name"] = state ? state.name : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
         } else {
             const args = argsOrState as VHostArgs | undefined;
-            inputs["name"] = args ? args.name : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VHost.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VHost.__pulumiType, name, resourceInputs, opts);
     }
 }
 
