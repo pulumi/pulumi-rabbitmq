@@ -119,14 +119,14 @@ export class FederationUpstream extends pulumi.CustomResource {
      */
     constructor(name: string, args: FederationUpstreamArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FederationUpstreamArgs | FederationUpstreamState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FederationUpstreamState | undefined;
-            inputs["component"] = state ? state.component : undefined;
-            inputs["definition"] = state ? state.definition : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vhost"] = state ? state.vhost : undefined;
+            resourceInputs["component"] = state ? state.component : undefined;
+            resourceInputs["definition"] = state ? state.definition : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vhost"] = state ? state.vhost : undefined;
         } else {
             const args = argsOrState as FederationUpstreamArgs | undefined;
             if ((!args || args.definition === undefined) && !opts.urn) {
@@ -135,15 +135,13 @@ export class FederationUpstream extends pulumi.CustomResource {
             if ((!args || args.vhost === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'vhost'");
             }
-            inputs["definition"] = args ? args.definition : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vhost"] = args ? args.vhost : undefined;
-            inputs["component"] = undefined /*out*/;
+            resourceInputs["definition"] = args ? args.definition : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vhost"] = args ? args.vhost : undefined;
+            resourceInputs["component"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FederationUpstream.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FederationUpstream.__pulumiType, name, resourceInputs, opts);
     }
 }
 

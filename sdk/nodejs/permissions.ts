@@ -92,13 +92,13 @@ export class Permissions extends pulumi.CustomResource {
      */
     constructor(name: string, args: PermissionsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: PermissionsArgs | PermissionsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PermissionsState | undefined;
-            inputs["permissions"] = state ? state.permissions : undefined;
-            inputs["user"] = state ? state.user : undefined;
-            inputs["vhost"] = state ? state.vhost : undefined;
+            resourceInputs["permissions"] = state ? state.permissions : undefined;
+            resourceInputs["user"] = state ? state.user : undefined;
+            resourceInputs["vhost"] = state ? state.vhost : undefined;
         } else {
             const args = argsOrState as PermissionsArgs | undefined;
             if ((!args || args.permissions === undefined) && !opts.urn) {
@@ -107,14 +107,12 @@ export class Permissions extends pulumi.CustomResource {
             if ((!args || args.user === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'user'");
             }
-            inputs["permissions"] = args ? args.permissions : undefined;
-            inputs["user"] = args ? args.user : undefined;
-            inputs["vhost"] = args ? args.vhost : undefined;
+            resourceInputs["permissions"] = args ? args.permissions : undefined;
+            resourceInputs["user"] = args ? args.user : undefined;
+            resourceInputs["vhost"] = args ? args.vhost : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Permissions.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Permissions.__pulumiType, name, resourceInputs, opts);
     }
 }
 

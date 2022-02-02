@@ -178,7 +178,7 @@ type ShovelInput interface {
 }
 
 func (*Shovel) ElementType() reflect.Type {
-	return reflect.TypeOf((*Shovel)(nil))
+	return reflect.TypeOf((**Shovel)(nil)).Elem()
 }
 
 func (i *Shovel) ToShovelOutput() ShovelOutput {
@@ -187,35 +187,6 @@ func (i *Shovel) ToShovelOutput() ShovelOutput {
 
 func (i *Shovel) ToShovelOutputWithContext(ctx context.Context) ShovelOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ShovelOutput)
-}
-
-func (i *Shovel) ToShovelPtrOutput() ShovelPtrOutput {
-	return i.ToShovelPtrOutputWithContext(context.Background())
-}
-
-func (i *Shovel) ToShovelPtrOutputWithContext(ctx context.Context) ShovelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ShovelPtrOutput)
-}
-
-type ShovelPtrInput interface {
-	pulumi.Input
-
-	ToShovelPtrOutput() ShovelPtrOutput
-	ToShovelPtrOutputWithContext(ctx context.Context) ShovelPtrOutput
-}
-
-type shovelPtrType ShovelArgs
-
-func (*shovelPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**Shovel)(nil))
-}
-
-func (i *shovelPtrType) ToShovelPtrOutput() ShovelPtrOutput {
-	return i.ToShovelPtrOutputWithContext(context.Background())
-}
-
-func (i *shovelPtrType) ToShovelPtrOutputWithContext(ctx context.Context) ShovelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ShovelPtrOutput)
 }
 
 // ShovelArrayInput is an input type that accepts ShovelArray and ShovelArrayOutput values.
@@ -271,7 +242,7 @@ func (i ShovelMap) ToShovelMapOutputWithContext(ctx context.Context) ShovelMapOu
 type ShovelOutput struct{ *pulumi.OutputState }
 
 func (ShovelOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Shovel)(nil))
+	return reflect.TypeOf((**Shovel)(nil)).Elem()
 }
 
 func (o ShovelOutput) ToShovelOutput() ShovelOutput {
@@ -282,44 +253,10 @@ func (o ShovelOutput) ToShovelOutputWithContext(ctx context.Context) ShovelOutpu
 	return o
 }
 
-func (o ShovelOutput) ToShovelPtrOutput() ShovelPtrOutput {
-	return o.ToShovelPtrOutputWithContext(context.Background())
-}
-
-func (o ShovelOutput) ToShovelPtrOutputWithContext(ctx context.Context) ShovelPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v Shovel) *Shovel {
-		return &v
-	}).(ShovelPtrOutput)
-}
-
-type ShovelPtrOutput struct{ *pulumi.OutputState }
-
-func (ShovelPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**Shovel)(nil))
-}
-
-func (o ShovelPtrOutput) ToShovelPtrOutput() ShovelPtrOutput {
-	return o
-}
-
-func (o ShovelPtrOutput) ToShovelPtrOutputWithContext(ctx context.Context) ShovelPtrOutput {
-	return o
-}
-
-func (o ShovelPtrOutput) Elem() ShovelOutput {
-	return o.ApplyT(func(v *Shovel) Shovel {
-		if v != nil {
-			return *v
-		}
-		var ret Shovel
-		return ret
-	}).(ShovelOutput)
-}
-
 type ShovelArrayOutput struct{ *pulumi.OutputState }
 
 func (ShovelArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Shovel)(nil))
+	return reflect.TypeOf((*[]*Shovel)(nil)).Elem()
 }
 
 func (o ShovelArrayOutput) ToShovelArrayOutput() ShovelArrayOutput {
@@ -331,15 +268,15 @@ func (o ShovelArrayOutput) ToShovelArrayOutputWithContext(ctx context.Context) S
 }
 
 func (o ShovelArrayOutput) Index(i pulumi.IntInput) ShovelOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Shovel {
-		return vs[0].([]Shovel)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Shovel {
+		return vs[0].([]*Shovel)[vs[1].(int)]
 	}).(ShovelOutput)
 }
 
 type ShovelMapOutput struct{ *pulumi.OutputState }
 
 func (ShovelMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]Shovel)(nil))
+	return reflect.TypeOf((*map[string]*Shovel)(nil)).Elem()
 }
 
 func (o ShovelMapOutput) ToShovelMapOutput() ShovelMapOutput {
@@ -351,18 +288,16 @@ func (o ShovelMapOutput) ToShovelMapOutputWithContext(ctx context.Context) Shove
 }
 
 func (o ShovelMapOutput) MapIndex(k pulumi.StringInput) ShovelOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) Shovel {
-		return vs[0].(map[string]Shovel)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Shovel {
+		return vs[0].(map[string]*Shovel)[vs[1].(string)]
 	}).(ShovelOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ShovelInput)(nil)).Elem(), &Shovel{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ShovelPtrInput)(nil)).Elem(), &Shovel{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ShovelArrayInput)(nil)).Elem(), ShovelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ShovelMapInput)(nil)).Elem(), ShovelMap{})
 	pulumi.RegisterOutputType(ShovelOutput{})
-	pulumi.RegisterOutputType(ShovelPtrOutput{})
 	pulumi.RegisterOutputType(ShovelArrayOutput{})
 	pulumi.RegisterOutputType(ShovelMapOutput{})
 }

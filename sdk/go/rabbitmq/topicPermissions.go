@@ -170,7 +170,7 @@ type TopicPermissionsInput interface {
 }
 
 func (*TopicPermissions) ElementType() reflect.Type {
-	return reflect.TypeOf((*TopicPermissions)(nil))
+	return reflect.TypeOf((**TopicPermissions)(nil)).Elem()
 }
 
 func (i *TopicPermissions) ToTopicPermissionsOutput() TopicPermissionsOutput {
@@ -179,35 +179,6 @@ func (i *TopicPermissions) ToTopicPermissionsOutput() TopicPermissionsOutput {
 
 func (i *TopicPermissions) ToTopicPermissionsOutputWithContext(ctx context.Context) TopicPermissionsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TopicPermissionsOutput)
-}
-
-func (i *TopicPermissions) ToTopicPermissionsPtrOutput() TopicPermissionsPtrOutput {
-	return i.ToTopicPermissionsPtrOutputWithContext(context.Background())
-}
-
-func (i *TopicPermissions) ToTopicPermissionsPtrOutputWithContext(ctx context.Context) TopicPermissionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TopicPermissionsPtrOutput)
-}
-
-type TopicPermissionsPtrInput interface {
-	pulumi.Input
-
-	ToTopicPermissionsPtrOutput() TopicPermissionsPtrOutput
-	ToTopicPermissionsPtrOutputWithContext(ctx context.Context) TopicPermissionsPtrOutput
-}
-
-type topicPermissionsPtrType TopicPermissionsArgs
-
-func (*topicPermissionsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**TopicPermissions)(nil))
-}
-
-func (i *topicPermissionsPtrType) ToTopicPermissionsPtrOutput() TopicPermissionsPtrOutput {
-	return i.ToTopicPermissionsPtrOutputWithContext(context.Background())
-}
-
-func (i *topicPermissionsPtrType) ToTopicPermissionsPtrOutputWithContext(ctx context.Context) TopicPermissionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TopicPermissionsPtrOutput)
 }
 
 // TopicPermissionsArrayInput is an input type that accepts TopicPermissionsArray and TopicPermissionsArrayOutput values.
@@ -263,7 +234,7 @@ func (i TopicPermissionsMap) ToTopicPermissionsMapOutputWithContext(ctx context.
 type TopicPermissionsOutput struct{ *pulumi.OutputState }
 
 func (TopicPermissionsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TopicPermissions)(nil))
+	return reflect.TypeOf((**TopicPermissions)(nil)).Elem()
 }
 
 func (o TopicPermissionsOutput) ToTopicPermissionsOutput() TopicPermissionsOutput {
@@ -274,44 +245,10 @@ func (o TopicPermissionsOutput) ToTopicPermissionsOutputWithContext(ctx context.
 	return o
 }
 
-func (o TopicPermissionsOutput) ToTopicPermissionsPtrOutput() TopicPermissionsPtrOutput {
-	return o.ToTopicPermissionsPtrOutputWithContext(context.Background())
-}
-
-func (o TopicPermissionsOutput) ToTopicPermissionsPtrOutputWithContext(ctx context.Context) TopicPermissionsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v TopicPermissions) *TopicPermissions {
-		return &v
-	}).(TopicPermissionsPtrOutput)
-}
-
-type TopicPermissionsPtrOutput struct{ *pulumi.OutputState }
-
-func (TopicPermissionsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**TopicPermissions)(nil))
-}
-
-func (o TopicPermissionsPtrOutput) ToTopicPermissionsPtrOutput() TopicPermissionsPtrOutput {
-	return o
-}
-
-func (o TopicPermissionsPtrOutput) ToTopicPermissionsPtrOutputWithContext(ctx context.Context) TopicPermissionsPtrOutput {
-	return o
-}
-
-func (o TopicPermissionsPtrOutput) Elem() TopicPermissionsOutput {
-	return o.ApplyT(func(v *TopicPermissions) TopicPermissions {
-		if v != nil {
-			return *v
-		}
-		var ret TopicPermissions
-		return ret
-	}).(TopicPermissionsOutput)
-}
-
 type TopicPermissionsArrayOutput struct{ *pulumi.OutputState }
 
 func (TopicPermissionsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]TopicPermissions)(nil))
+	return reflect.TypeOf((*[]*TopicPermissions)(nil)).Elem()
 }
 
 func (o TopicPermissionsArrayOutput) ToTopicPermissionsArrayOutput() TopicPermissionsArrayOutput {
@@ -323,15 +260,15 @@ func (o TopicPermissionsArrayOutput) ToTopicPermissionsArrayOutputWithContext(ct
 }
 
 func (o TopicPermissionsArrayOutput) Index(i pulumi.IntInput) TopicPermissionsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TopicPermissions {
-		return vs[0].([]TopicPermissions)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *TopicPermissions {
+		return vs[0].([]*TopicPermissions)[vs[1].(int)]
 	}).(TopicPermissionsOutput)
 }
 
 type TopicPermissionsMapOutput struct{ *pulumi.OutputState }
 
 func (TopicPermissionsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]TopicPermissions)(nil))
+	return reflect.TypeOf((*map[string]*TopicPermissions)(nil)).Elem()
 }
 
 func (o TopicPermissionsMapOutput) ToTopicPermissionsMapOutput() TopicPermissionsMapOutput {
@@ -343,18 +280,16 @@ func (o TopicPermissionsMapOutput) ToTopicPermissionsMapOutputWithContext(ctx co
 }
 
 func (o TopicPermissionsMapOutput) MapIndex(k pulumi.StringInput) TopicPermissionsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) TopicPermissions {
-		return vs[0].(map[string]TopicPermissions)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *TopicPermissions {
+		return vs[0].(map[string]*TopicPermissions)[vs[1].(string)]
 	}).(TopicPermissionsOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicPermissionsInput)(nil)).Elem(), &TopicPermissions{})
-	pulumi.RegisterInputType(reflect.TypeOf((*TopicPermissionsPtrInput)(nil)).Elem(), &TopicPermissions{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicPermissionsArrayInput)(nil)).Elem(), TopicPermissionsArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicPermissionsMapInput)(nil)).Elem(), TopicPermissionsMap{})
 	pulumi.RegisterOutputType(TopicPermissionsOutput{})
-	pulumi.RegisterOutputType(TopicPermissionsPtrOutput{})
 	pulumi.RegisterOutputType(TopicPermissionsArrayOutput{})
 	pulumi.RegisterOutputType(TopicPermissionsMapOutput{})
 }
