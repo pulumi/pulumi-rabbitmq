@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  *     vhost: guest.vhost,
  *     settings: {
  *         type: "topic",
- *         durable: "true",
+ *         durable: true,
  *     },
  * });
  * // upstream broker
