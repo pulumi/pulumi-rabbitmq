@@ -245,6 +245,22 @@ func (o TopicPermissionsOutput) ToTopicPermissionsOutputWithContext(ctx context.
 	return o
 }
 
+// The settings of the permissions. The structure is
+// described below.
+func (o TopicPermissionsOutput) Permissions() TopicPermissionsPermissionArrayOutput {
+	return o.ApplyT(func(v *TopicPermissions) TopicPermissionsPermissionArrayOutput { return v.Permissions }).(TopicPermissionsPermissionArrayOutput)
+}
+
+// The user to apply the permissions to.
+func (o TopicPermissionsOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v *TopicPermissions) pulumi.StringOutput { return v.User }).(pulumi.StringOutput)
+}
+
+// The vhost to create the resource in.
+func (o TopicPermissionsOutput) Vhost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TopicPermissions) pulumi.StringPtrOutput { return v.Vhost }).(pulumi.StringPtrOutput)
+}
+
 type TopicPermissionsArrayOutput struct{ *pulumi.OutputState }
 
 func (TopicPermissionsArrayOutput) ElementType() reflect.Type {

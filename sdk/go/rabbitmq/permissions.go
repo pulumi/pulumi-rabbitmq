@@ -243,6 +243,22 @@ func (o PermissionsOutput) ToPermissionsOutputWithContext(ctx context.Context) P
 	return o
 }
 
+// The settings of the permissions. The structure is
+// described below.
+func (o PermissionsOutput) Permissions() PermissionsPermissionsOutput {
+	return o.ApplyT(func(v *Permissions) PermissionsPermissionsOutput { return v.Permissions }).(PermissionsPermissionsOutput)
+}
+
+// The user to apply the permissions to.
+func (o PermissionsOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v *Permissions) pulumi.StringOutput { return v.User }).(pulumi.StringOutput)
+}
+
+// The vhost to create the resource in.
+func (o PermissionsOutput) Vhost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Permissions) pulumi.StringPtrOutput { return v.Vhost }).(pulumi.StringPtrOutput)
+}
+
 type PermissionsArrayOutput struct{ *pulumi.OutputState }
 
 func (PermissionsArrayOutput) ElementType() reflect.Type {

@@ -246,6 +246,22 @@ func (o PolicyOutput) ToPolicyOutputWithContext(ctx context.Context) PolicyOutpu
 	return o
 }
 
+// The name of the policy.
+func (o PolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The settings of the policy. The structure is
+// described below.
+func (o PolicyOutput) Policy() PolicyPolicyOutput {
+	return o.ApplyT(func(v *Policy) PolicyPolicyOutput { return v.Policy }).(PolicyPolicyOutput)
+}
+
+// The vhost to create the resource in.
+func (o PolicyOutput) Vhost() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.Vhost }).(pulumi.StringOutput)
+}
+
 type PolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (PolicyArrayOutput) ElementType() reflect.Type {

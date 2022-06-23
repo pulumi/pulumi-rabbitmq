@@ -72,7 +72,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		cfg := config.New(ctx, "")
-// 		arguments := fmt.Sprintf("%v%v%v%v", "{\n", "  \"x-message-ttl\": 5000\n", "}\n", "\n")
+// 		arguments := fmt.Sprintf("{\n  \"x-message-ttl\": 5000\n}\n\n")
 // 		if param := cfg.Get("arguments"); param != "" {
 // 			arguments = param
 // 		}
@@ -288,6 +288,22 @@ func (o QueueOutput) ToQueueOutput() QueueOutput {
 
 func (o QueueOutput) ToQueueOutputWithContext(ctx context.Context) QueueOutput {
 	return o
+}
+
+// The name of the queue.
+func (o QueueOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Queue) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The settings of the queue. The structure is
+// described below.
+func (o QueueOutput) Settings() QueueSettingsOutput {
+	return o.ApplyT(func(v *Queue) QueueSettingsOutput { return v.Settings }).(QueueSettingsOutput)
+}
+
+// The vhost to create the resource in.
+func (o QueueOutput) Vhost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Queue) pulumi.StringPtrOutput { return v.Vhost }).(pulumi.StringPtrOutput)
 }
 
 type QueueArrayOutput struct{ *pulumi.OutputState }

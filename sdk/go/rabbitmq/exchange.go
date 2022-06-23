@@ -241,6 +241,22 @@ func (o ExchangeOutput) ToExchangeOutputWithContext(ctx context.Context) Exchang
 	return o
 }
 
+// The name of the exchange.
+func (o ExchangeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Exchange) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The settings of the exchange. The structure is
+// described below.
+func (o ExchangeOutput) Settings() ExchangeSettingsOutput {
+	return o.ApplyT(func(v *Exchange) ExchangeSettingsOutput { return v.Settings }).(ExchangeSettingsOutput)
+}
+
+// The vhost to create the resource in.
+func (o ExchangeOutput) Vhost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Exchange) pulumi.StringPtrOutput { return v.Vhost }).(pulumi.StringPtrOutput)
+}
+
 type ExchangeArrayOutput struct{ *pulumi.OutputState }
 
 func (ExchangeArrayOutput) ElementType() reflect.Type {

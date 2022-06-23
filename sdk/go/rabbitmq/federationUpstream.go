@@ -56,7 +56,7 @@ import (
 // 		fooFederationUpstream, err := rabbitmq.NewFederationUpstream(ctx, "fooFederationUpstream", &rabbitmq.FederationUpstreamArgs{
 // 			Vhost: guest.Vhost,
 // 			Definition: &FederationUpstreamDefinitionArgs{
-// 				Uri:            pulumi.String(fmt.Sprintf("%v%v%v", "amqp://guest:guest@upstream-server-name:5672/", "%", "2f")),
+// 				Uri:            pulumi.String(fmt.Sprintf("amqp://guest:guest@upstream-server-name:5672/%v2f", "%")),
 // 				PrefetchCount:  pulumi.Int(1000),
 // 				ReconnectDelay: pulumi.Int(5),
 // 				AckMode:        pulumi.String("on-confirm"),
@@ -71,7 +71,7 @@ import (
 // 			Vhost: guest.Vhost,
 // 			Policy: &PolicyPolicyArgs{
 // 				Pattern: fooExchange.Name.ApplyT(func(name string) (string, error) {
-// 					return fmt.Sprintf("%v%v%v%v", "(^", name, "$", ")"), nil
+// 					return fmt.Sprintf("(^%v$)", name), nil
 // 				}).(pulumi.StringOutput),
 // 				Priority: pulumi.Int(1),
 // 				ApplyTo:  pulumi.String("exchanges"),
@@ -272,6 +272,26 @@ func (o FederationUpstreamOutput) ToFederationUpstreamOutput() FederationUpstrea
 
 func (o FederationUpstreamOutput) ToFederationUpstreamOutputWithContext(ctx context.Context) FederationUpstreamOutput {
 	return o
+}
+
+// Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
+func (o FederationUpstreamOutput) Component() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederationUpstream) pulumi.StringOutput { return v.Component }).(pulumi.StringOutput)
+}
+
+// The configuration of the federation upstream. The structure is described below.
+func (o FederationUpstreamOutput) Definition() FederationUpstreamDefinitionOutput {
+	return o.ApplyT(func(v *FederationUpstream) FederationUpstreamDefinitionOutput { return v.Definition }).(FederationUpstreamDefinitionOutput)
+}
+
+// The name of the federation upstream.
+func (o FederationUpstreamOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederationUpstream) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The vhost to create the resource in.
+func (o FederationUpstreamOutput) Vhost() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederationUpstream) pulumi.StringOutput { return v.Vhost }).(pulumi.StringOutput)
 }
 
 type FederationUpstreamArrayOutput struct{ *pulumi.OutputState }

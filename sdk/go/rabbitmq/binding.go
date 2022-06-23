@@ -307,6 +307,45 @@ func (o BindingOutput) ToBindingOutputWithContext(ctx context.Context) BindingOu
 	return o
 }
 
+// Additional key/value arguments for the binding.
+func (o BindingOutput) Arguments() pulumi.MapOutput {
+	return o.ApplyT(func(v *Binding) pulumi.MapOutput { return v.Arguments }).(pulumi.MapOutput)
+}
+
+func (o BindingOutput) ArgumentsJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Binding) pulumi.StringPtrOutput { return v.ArgumentsJson }).(pulumi.StringPtrOutput)
+}
+
+// The destination queue or exchange.
+func (o BindingOutput) Destination() pulumi.StringOutput {
+	return o.ApplyT(func(v *Binding) pulumi.StringOutput { return v.Destination }).(pulumi.StringOutput)
+}
+
+// The type of destination (queue or exchange).
+func (o BindingOutput) DestinationType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Binding) pulumi.StringOutput { return v.DestinationType }).(pulumi.StringOutput)
+}
+
+// A unique key to refer to the binding.
+func (o BindingOutput) PropertiesKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *Binding) pulumi.StringOutput { return v.PropertiesKey }).(pulumi.StringOutput)
+}
+
+// A routing key for the binding.
+func (o BindingOutput) RoutingKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Binding) pulumi.StringPtrOutput { return v.RoutingKey }).(pulumi.StringPtrOutput)
+}
+
+// The source exchange.
+func (o BindingOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v *Binding) pulumi.StringOutput { return v.Source }).(pulumi.StringOutput)
+}
+
+// The vhost to create the resource in.
+func (o BindingOutput) Vhost() pulumi.StringOutput {
+	return o.ApplyT(func(v *Binding) pulumi.StringOutput { return v.Vhost }).(pulumi.StringOutput)
+}
+
 type BindingArrayOutput struct{ *pulumi.OutputState }
 
 func (BindingArrayOutput) ElementType() reflect.Type {

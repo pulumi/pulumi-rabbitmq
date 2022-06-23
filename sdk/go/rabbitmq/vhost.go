@@ -187,6 +187,11 @@ func (o VHostOutput) ToVHostOutputWithContext(ctx context.Context) VHostOutput {
 	return o
 }
 
+// The name of the vhost.
+func (o VHostOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VHost) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
 type VHostArrayOutput struct{ *pulumi.OutputState }
 
 func (VHostArrayOutput) ElementType() reflect.Type {

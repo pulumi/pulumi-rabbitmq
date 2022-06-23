@@ -8,55 +8,6 @@ import * as utilities from "./utilities";
 /**
  * The ``rabbitmq.FederationUpstream`` resource creates and manages a federation upstream parameter.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as rabbitmq from "@pulumi/rabbitmq";
- *
- * const test = new rabbitmq.VHost("test", {});
- * const guest = new rabbitmq.Permissions("guest", {
- *     user: "guest",
- *     vhost: test.name,
- *     permissions: {
- *         configure: ".*",
- *         write: ".*",
- *         read: ".*",
- *     },
- * });
- * // downstream exchange
- * const fooExchange = new rabbitmq.Exchange("fooExchange", {
- *     vhost: guest.vhost,
- *     settings: {
- *         type: "topic",
- *         durable: true,
- *     },
- * });
- * // upstream broker
- * const fooFederationUpstream = new rabbitmq.FederationUpstream("fooFederationUpstream", {
- *     vhost: guest.vhost,
- *     definition: {
- *         uri: `amqp://guest:guest@upstream-server-name:5672/%2f`,
- *         prefetchCount: 1000,
- *         reconnectDelay: 5,
- *         ackMode: "on-confirm",
- *         trustUserId: false,
- *         maxHops: 1,
- *     },
- * });
- * const fooPolicy = new rabbitmq.Policy("fooPolicy", {
- *     vhost: guest.vhost,
- *     policy: {
- *         pattern: pulumi.interpolate`(^${fooExchange.name}$)`,
- *         priority: 1,
- *         applyTo: "exchanges",
- *         definition: {
- *             "federation-upstream": fooFederationUpstream.name,
- *         },
- *     },
- * });
- * ```
- *
  * ## Import
  *
  * A Federation upstream can be imported using the resource `id` which is composed of `name@vhost`, e.g.

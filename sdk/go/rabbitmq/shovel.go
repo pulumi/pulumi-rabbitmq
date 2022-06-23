@@ -253,6 +253,22 @@ func (o ShovelOutput) ToShovelOutputWithContext(ctx context.Context) ShovelOutpu
 	return o
 }
 
+// The settings of the dynamic shovel. The structure is
+// described below.
+func (o ShovelOutput) Info() ShovelInfoOutput {
+	return o.ApplyT(func(v *Shovel) ShovelInfoOutput { return v.Info }).(ShovelInfoOutput)
+}
+
+// The shovel name.
+func (o ShovelOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Shovel) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The vhost to create the resource in.
+func (o ShovelOutput) Vhost() pulumi.StringOutput {
+	return o.ApplyT(func(v *Shovel) pulumi.StringOutput { return v.Vhost }).(pulumi.StringOutput)
+}
+
 type ShovelArrayOutput struct{ *pulumi.OutputState }
 
 func (ShovelArrayOutput) ElementType() reflect.Type {
