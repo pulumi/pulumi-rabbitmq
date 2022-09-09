@@ -18,25 +18,23 @@ namespace Pulumi.RabbitMQ
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using RabbitMQ = Pulumi.RabbitMQ;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new RabbitMQ.User("test", new()
     ///     {
-    ///         var test = new RabbitMQ.User("test", new RabbitMQ.UserArgs
+    ///         Password = "foobar",
+    ///         Tags = new[]
     ///         {
-    ///             Password = "foobar",
-    ///             Tags = 
-    ///             {
-    ///                 "administrator",
-    ///                 "management",
-    ///             },
-    ///         });
-    ///     }
+    ///             "administrator",
+    ///             "management",
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -48,7 +46,7 @@ namespace Pulumi.RabbitMQ
     /// ```
     /// </summary>
     [RabbitMQResourceType("rabbitmq:index/user:User")]
-    public partial class User : Pulumi.CustomResource
+    public partial class User : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the user.
@@ -114,7 +112,7 @@ namespace Pulumi.RabbitMQ
         }
     }
 
-    public sealed class UserArgs : Pulumi.ResourceArgs
+    public sealed class UserArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the user.
@@ -145,9 +143,10 @@ namespace Pulumi.RabbitMQ
         public UserArgs()
         {
         }
+        public static new UserArgs Empty => new UserArgs();
     }
 
-    public sealed class UserState : Pulumi.ResourceArgs
+    public sealed class UserState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the user.
@@ -178,5 +177,6 @@ namespace Pulumi.RabbitMQ
         public UserState()
         {
         }
+        public static new UserState Empty => new UserState();
     }
 }

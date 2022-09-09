@@ -15,40 +15,38 @@ namespace Pulumi.RabbitMQ
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using RabbitMQ = Pulumi.RabbitMQ;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var testVHost = new RabbitMQ.VHost("testVHost", new RabbitMQ.VHostArgs
-    ///         {
-    ///         });
-    ///         var guest = new RabbitMQ.Permissions("guest", new RabbitMQ.PermissionsArgs
-    ///         {
-    ///             Permissions = new RabbitMQ.Inputs.PermissionsPermissionsArgs
-    ///             {
-    ///                 Configure = ".*",
-    ///                 Read = ".*",
-    ///                 Write = ".*",
-    ///             },
-    ///             User = "guest",
-    ///             Vhost = testVHost.Name,
-    ///         });
-    ///         var testExchange = new RabbitMQ.Exchange("testExchange", new RabbitMQ.ExchangeArgs
-    ///         {
-    ///             Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
-    ///             {
-    ///                 AutoDelete = true,
-    ///                 Durable = false,
-    ///                 Type = "fanout",
-    ///             },
-    ///             Vhost = guest.Vhost,
-    ///         });
-    ///     }
+    ///     var testVHost = new RabbitMQ.VHost("testVHost");
     /// 
-    /// }
+    ///     var guest = new RabbitMQ.Permissions("guest", new()
+    ///     {
+    ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
+    ///         {
+    ///             Configure = ".*",
+    ///             Read = ".*",
+    ///             Write = ".*",
+    ///         },
+    ///         User = "guest",
+    ///         Vhost = testVHost.Name,
+    ///     });
+    /// 
+    ///     var testExchange = new RabbitMQ.Exchange("testExchange", new()
+    ///     {
+    ///         Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
+    ///         {
+    ///             AutoDelete = true,
+    ///             Durable = false,
+    ///             Type = "fanout",
+    ///         },
+    ///         Vhost = guest.Vhost,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -62,7 +60,7 @@ namespace Pulumi.RabbitMQ
     /// ```
     /// </summary>
     [RabbitMQResourceType("rabbitmq:index/exchange:Exchange")]
-    public partial class Exchange : Pulumi.CustomResource
+    public partial class Exchange : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the exchange.
@@ -127,7 +125,7 @@ namespace Pulumi.RabbitMQ
         }
     }
 
-    public sealed class ExchangeArgs : Pulumi.ResourceArgs
+    public sealed class ExchangeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the exchange.
@@ -151,9 +149,10 @@ namespace Pulumi.RabbitMQ
         public ExchangeArgs()
         {
         }
+        public static new ExchangeArgs Empty => new ExchangeArgs();
     }
 
-    public sealed class ExchangeState : Pulumi.ResourceArgs
+    public sealed class ExchangeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the exchange.
@@ -177,5 +176,6 @@ namespace Pulumi.RabbitMQ
         public ExchangeState()
         {
         }
+        public static new ExchangeState Empty => new ExchangeState();
     }
 }

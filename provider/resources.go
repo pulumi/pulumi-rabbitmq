@@ -19,10 +19,9 @@ import (
 	"path/filepath"
 	"unicode"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/pulumi/pulumi-rabbitmq/provider/v3/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
+	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 	"github.com/terraform-providers/terraform-provider-rabbitmq/rabbitmq"
 )
@@ -53,8 +52,16 @@ func makeResource(mod string, res string) tokens.Type {
 	return makeType(mod+"/"+fn, res)
 }
 
+// makeDataSource manufactures a standard resource token given a module and resource name.  It
+// automatically uses the main package and names the file by simply lower casing the data source's
+// first character.
+func makeDataSource(mod string, res string) tokens.ModuleMember {
+	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
+	return makeMember(mod+"/"+fn, res)
+}
+
 func Provider() tfbridge.ProviderInfo {
-	p := shimv1.NewProvider(rabbitmq.Provider().(*schema.Provider))
+	p := shimv2.NewProvider(rabbitmq.Provider())
 	prov := tfbridge.ProviderInfo{
 		P:           p,
 		Name:        "rabbitmq",
@@ -110,8 +117,18 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 			"rabbitmq_shovel": {Tok: makeResource(mainMod, "Shovel")},
+			"rabbitmq_operator_policy": {
+				Tok: makeResource(mainMod, "OperatorPolicy"),
+				Docs: &tfbridge.DocInfo{
+					Source: "operator-policy.html.markdown",
+				},
+			},
 		},
-		DataSources: map[string]*tfbridge.DataSourceInfo{},
+		DataSources: map[string]*tfbridge.DataSourceInfo{
+			"rabbitmq_exchange": {Tok: makeDataSource(mainMod, "getExchange")},
+			"rabbitmq_user":     {Tok: makeDataSource(mainMod, "getUser")},
+			"rabbitmq_vhost":    {Tok: makeDataSource(mainMod, "getVHost")},
+		},
 
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{

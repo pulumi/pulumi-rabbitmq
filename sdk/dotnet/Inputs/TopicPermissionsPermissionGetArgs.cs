@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.RabbitMQ.Inputs
 {
 
-    public sealed class TopicPermissionsPermissionGetArgs : Pulumi.ResourceArgs
+    public sealed class TopicPermissionsPermissionGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The exchange to set the permissions for.
@@ -33,5 +33,6 @@ namespace Pulumi.RabbitMQ.Inputs
         public TopicPermissionsPermissionGetArgs()
         {
         }
+        public static new TopicPermissionsPermissionGetArgs Empty => new TopicPermissionsPermissionGetArgs();
     }
 }

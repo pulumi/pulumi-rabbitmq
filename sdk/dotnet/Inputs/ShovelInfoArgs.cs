@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.RabbitMQ.Inputs
 {
 
-    public sealed class ShovelInfoArgs : Pulumi.ResourceArgs
+    public sealed class ShovelInfoArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Determines how the shovel should acknowledge messages. Possible values are: `on-confirm`, `on-publish` and `no-ack`.
@@ -164,5 +164,6 @@ namespace Pulumi.RabbitMQ.Inputs
         public ShovelInfoArgs()
         {
         }
+        public static new ShovelInfoArgs Empty => new ShovelInfoArgs();
     }
 }

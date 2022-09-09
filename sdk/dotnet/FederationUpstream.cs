@@ -15,68 +15,68 @@ namespace Pulumi.RabbitMQ
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using RabbitMQ = Pulumi.RabbitMQ;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var test = new RabbitMQ.VHost("test", new RabbitMQ.VHostArgs
-    ///         {
-    ///         });
-    ///         var guest = new RabbitMQ.Permissions("guest", new RabbitMQ.PermissionsArgs
-    ///         {
-    ///             User = "guest",
-    ///             Vhost = test.Name,
-    ///             Permissions = new RabbitMQ.Inputs.PermissionsPermissionsArgs
-    ///             {
-    ///                 Configure = ".*",
-    ///                 Write = ".*",
-    ///                 Read = ".*",
-    ///             },
-    ///         });
-    ///         // downstream exchange
-    ///         var fooExchange = new RabbitMQ.Exchange("fooExchange", new RabbitMQ.ExchangeArgs
-    ///         {
-    ///             Vhost = guest.Vhost,
-    ///             Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
-    ///             {
-    ///                 Type = "topic",
-    ///                 Durable = true,
-    ///             },
-    ///         });
-    ///         // upstream broker
-    ///         var fooFederationUpstream = new RabbitMQ.FederationUpstream("fooFederationUpstream", new RabbitMQ.FederationUpstreamArgs
-    ///         {
-    ///             Vhost = guest.Vhost,
-    ///             Definition = new RabbitMQ.Inputs.FederationUpstreamDefinitionArgs
-    ///             {
-    ///                 Uri = "amqp://guest:guest@upstream-server-name:5672/%2f",
-    ///                 PrefetchCount = 1000,
-    ///                 ReconnectDelay = 5,
-    ///                 AckMode = "on-confirm",
-    ///                 TrustUserId = false,
-    ///                 MaxHops = 1,
-    ///             },
-    ///         });
-    ///         var fooPolicy = new RabbitMQ.Policy("fooPolicy", new RabbitMQ.PolicyArgs
-    ///         {
-    ///             Vhost = guest.Vhost,
-    ///             Policy = new RabbitMQ.Inputs.PolicyPolicyArgs
-    ///             {
-    ///                 Pattern = fooExchange.Name.Apply(name =&gt; $"(^{name}$)"),
-    ///                 Priority = 1,
-    ///                 ApplyTo = "exchanges",
-    ///                 Definition = 
-    ///                 {
-    ///                     { "federation-upstream", fooFederationUpstream.Name },
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
+    ///     var test = new RabbitMQ.VHost("test");
     /// 
-    /// }
+    ///     var guest = new RabbitMQ.Permissions("guest", new()
+    ///     {
+    ///         User = "guest",
+    ///         Vhost = test.Name,
+    ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
+    ///         {
+    ///             Configure = ".*",
+    ///             Write = ".*",
+    ///             Read = ".*",
+    ///         },
+    ///     });
+    /// 
+    ///     // downstream exchange
+    ///     var fooExchange = new RabbitMQ.Exchange("fooExchange", new()
+    ///     {
+    ///         Vhost = guest.Vhost,
+    ///         Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
+    ///         {
+    ///             Type = "topic",
+    ///             Durable = true,
+    ///         },
+    ///     });
+    /// 
+    ///     // upstream broker
+    ///     var fooFederationUpstream = new RabbitMQ.FederationUpstream("fooFederationUpstream", new()
+    ///     {
+    ///         Vhost = guest.Vhost,
+    ///         Definition = new RabbitMQ.Inputs.FederationUpstreamDefinitionArgs
+    ///         {
+    ///             Uri = "amqp://guest:guest@upstream-server-name:5672/%2f",
+    ///             PrefetchCount = 1000,
+    ///             ReconnectDelay = 5,
+    ///             AckMode = "on-confirm",
+    ///             TrustUserId = false,
+    ///             MaxHops = 1,
+    ///         },
+    ///     });
+    /// 
+    ///     var fooPolicy = new RabbitMQ.Policy("fooPolicy", new()
+    ///     {
+    ///         Vhost = guest.Vhost,
+    ///         PolicyBlock = new RabbitMQ.Inputs.PolicyPolicyArgs
+    ///         {
+    ///             Pattern = fooExchange.Name.Apply(name =&gt; $"(^{name}$)"),
+    ///             Priority = 1,
+    ///             ApplyTo = "exchanges",
+    ///             Definition = 
+    ///             {
+    ///                 { "federation-upstream", fooFederationUpstream.Name },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -88,7 +88,7 @@ namespace Pulumi.RabbitMQ
     /// ```
     /// </summary>
     [RabbitMQResourceType("rabbitmq:index/federationUpstream:FederationUpstream")]
-    public partial class FederationUpstream : Pulumi.CustomResource
+    public partial class FederationUpstream : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
@@ -158,7 +158,7 @@ namespace Pulumi.RabbitMQ
         }
     }
 
-    public sealed class FederationUpstreamArgs : Pulumi.ResourceArgs
+    public sealed class FederationUpstreamArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The configuration of the federation upstream. The structure is described below.
@@ -181,9 +181,10 @@ namespace Pulumi.RabbitMQ
         public FederationUpstreamArgs()
         {
         }
+        public static new FederationUpstreamArgs Empty => new FederationUpstreamArgs();
     }
 
-    public sealed class FederationUpstreamState : Pulumi.ResourceArgs
+    public sealed class FederationUpstreamState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
@@ -212,5 +213,6 @@ namespace Pulumi.RabbitMQ
         public FederationUpstreamState()
         {
         }
+        public static new FederationUpstreamState Empty => new FederationUpstreamState();
     }
 }

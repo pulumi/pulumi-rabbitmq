@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.RabbitMQ.Inputs
 {
 
-    public sealed class QueueSettingsArgs : Pulumi.ResourceArgs
+    public sealed class QueueSettingsArgs : global::Pulumi.ResourceArgs
     {
         [Input("arguments")]
         private InputMap<object>? _arguments;
@@ -51,5 +51,6 @@ namespace Pulumi.RabbitMQ.Inputs
         public QueueSettingsArgs()
         {
         }
+        public static new QueueSettingsArgs Empty => new QueueSettingsArgs();
     }
 }

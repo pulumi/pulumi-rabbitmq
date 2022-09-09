@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.RabbitMQ.Inputs
 {
 
-    public sealed class ExchangeSettingsGetArgs : Pulumi.ResourceArgs
+    public sealed class ExchangeSettingsGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("arguments")]
         private InputMap<object>? _arguments;
@@ -47,5 +47,6 @@ namespace Pulumi.RabbitMQ.Inputs
         public ExchangeSettingsGetArgs()
         {
         }
+        public static new ExchangeSettingsGetArgs Empty => new ExchangeSettingsGetArgs();
     }
 }

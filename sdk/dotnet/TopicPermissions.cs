@@ -16,41 +16,39 @@ namespace Pulumi.RabbitMQ
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using RabbitMQ = Pulumi.RabbitMQ;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var testVHost = new RabbitMQ.VHost("testVHost", new RabbitMQ.VHostArgs
-    ///         {
-    ///         });
-    ///         var testUser = new RabbitMQ.User("testUser", new RabbitMQ.UserArgs
-    ///         {
-    ///             Password = "foobar",
-    ///             Tags = 
-    ///             {
-    ///                 "administrator",
-    ///             },
-    ///         });
-    ///         var testTopicPermissions = new RabbitMQ.TopicPermissions("testTopicPermissions", new RabbitMQ.TopicPermissionsArgs
-    ///         {
-    ///             Permissions = 
-    ///             {
-    ///                 new RabbitMQ.Inputs.TopicPermissionsPermissionArgs
-    ///                 {
-    ///                     Exchange = "amq.topic",
-    ///                     Read = ".*",
-    ///                     Write = ".*",
-    ///                 },
-    ///             },
-    ///             User = testUser.Name,
-    ///             Vhost = testVHost.Name,
-    ///         });
-    ///     }
+    ///     var testVHost = new RabbitMQ.VHost("testVHost");
     /// 
-    /// }
+    ///     var testUser = new RabbitMQ.User("testUser", new()
+    ///     {
+    ///         Password = "foobar",
+    ///         Tags = new[]
+    ///         {
+    ///             "administrator",
+    ///         },
+    ///     });
+    /// 
+    ///     var testTopicPermissions = new RabbitMQ.TopicPermissions("testTopicPermissions", new()
+    ///     {
+    ///         Permissions = new[]
+    ///         {
+    ///             new RabbitMQ.Inputs.TopicPermissionsPermissionArgs
+    ///             {
+    ///                 Exchange = "amq.topic",
+    ///                 Read = ".*",
+    ///                 Write = ".*",
+    ///             },
+    ///         },
+    ///         User = testUser.Name,
+    ///         Vhost = testVHost.Name,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -64,7 +62,7 @@ namespace Pulumi.RabbitMQ
     /// ```
     /// </summary>
     [RabbitMQResourceType("rabbitmq:index/topicPermissions:TopicPermissions")]
-    public partial class TopicPermissions : Pulumi.CustomResource
+    public partial class TopicPermissions : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The settings of the permissions. The structure is
@@ -129,7 +127,7 @@ namespace Pulumi.RabbitMQ
         }
     }
 
-    public sealed class TopicPermissionsArgs : Pulumi.ResourceArgs
+    public sealed class TopicPermissionsArgs : global::Pulumi.ResourceArgs
     {
         [Input("permissions", required: true)]
         private InputList<Inputs.TopicPermissionsPermissionArgs>? _permissions;
@@ -159,9 +157,10 @@ namespace Pulumi.RabbitMQ
         public TopicPermissionsArgs()
         {
         }
+        public static new TopicPermissionsArgs Empty => new TopicPermissionsArgs();
     }
 
-    public sealed class TopicPermissionsState : Pulumi.ResourceArgs
+    public sealed class TopicPermissionsState : global::Pulumi.ResourceArgs
     {
         [Input("permissions")]
         private InputList<Inputs.TopicPermissionsPermissionGetArgs>? _permissions;
@@ -191,5 +190,6 @@ namespace Pulumi.RabbitMQ
         public TopicPermissionsState()
         {
         }
+        public static new TopicPermissionsState Empty => new TopicPermissionsState();
     }
 }

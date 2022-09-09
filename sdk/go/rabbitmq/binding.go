@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The ``Binding`` resource creates and manages a binding relationship
+// The “Binding“ resource creates and manages a binding relationship
 // between a queue an exchange.
 //
 // ## Example Usage
@@ -20,72 +20,77 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
-// 			Permissions: &PermissionsPermissionsArgs{
-// 				Configure: pulumi.String(".*"),
-// 				Read:      pulumi.String(".*"),
-// 				Write:     pulumi.String(".*"),
-// 			},
-// 			User:  pulumi.String("guest"),
-// 			Vhost: testVHost.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		testExchange, err := rabbitmq.NewExchange(ctx, "testExchange", &rabbitmq.ExchangeArgs{
-// 			Settings: &ExchangeSettingsArgs{
-// 				AutoDelete: pulumi.Bool(true),
-// 				Durable:    pulumi.Bool(false),
-// 				Type:       pulumi.String("fanout"),
-// 			},
-// 			Vhost: guest.Vhost,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		testQueue, err := rabbitmq.NewQueue(ctx, "testQueue", &rabbitmq.QueueArgs{
-// 			Settings: &QueueSettingsArgs{
-// 				AutoDelete: pulumi.Bool(false),
-// 				Durable:    pulumi.Bool(true),
-// 			},
-// 			Vhost: guest.Vhost,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = rabbitmq.NewBinding(ctx, "testBinding", &rabbitmq.BindingArgs{
-// 			Destination:     testQueue.Name,
-// 			DestinationType: pulumi.String("queue"),
-// 			RoutingKey:      pulumi.String("#"),
-// 			Source:          testExchange.Name,
-// 			Vhost:           testVHost.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
+//			if err != nil {
+//				return err
+//			}
+//			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
+//				Permissions: &PermissionsPermissionsArgs{
+//					Configure: pulumi.String(".*"),
+//					Read:      pulumi.String(".*"),
+//					Write:     pulumi.String(".*"),
+//				},
+//				User:  pulumi.String("guest"),
+//				Vhost: testVHost.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testExchange, err := rabbitmq.NewExchange(ctx, "testExchange", &rabbitmq.ExchangeArgs{
+//				Settings: &ExchangeSettingsArgs{
+//					AutoDelete: pulumi.Bool(true),
+//					Durable:    pulumi.Bool(false),
+//					Type:       pulumi.String("fanout"),
+//				},
+//				Vhost: guest.Vhost,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testQueue, err := rabbitmq.NewQueue(ctx, "testQueue", &rabbitmq.QueueArgs{
+//				Settings: &QueueSettingsArgs{
+//					AutoDelete: pulumi.Bool(false),
+//					Durable:    pulumi.Bool(true),
+//				},
+//				Vhost: guest.Vhost,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rabbitmq.NewBinding(ctx, "testBinding", &rabbitmq.BindingArgs{
+//				Destination:     testQueue.Name,
+//				DestinationType: pulumi.String("queue"),
+//				RoutingKey:      pulumi.String("#"),
+//				Source:          testExchange.Name,
+//				Vhost:           testVHost.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
 // Bindings can be imported using the `id` which is composed of
 //
-//  `vhost/source/destination/destination_type/properties_key`. E.g.
+//	`vhost/source/destination/destination_type/properties_key`. E.g.
 //
 // ```sh
-//  $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23
+//
+//	$ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23
+//
 // ```
 type Binding struct {
 	pulumi.CustomResourceState
@@ -246,7 +251,7 @@ func (i *Binding) ToBindingOutputWithContext(ctx context.Context) BindingOutput 
 // BindingArrayInput is an input type that accepts BindingArray and BindingArrayOutput values.
 // You can construct a concrete instance of `BindingArrayInput` via:
 //
-//          BindingArray{ BindingArgs{...} }
+//	BindingArray{ BindingArgs{...} }
 type BindingArrayInput interface {
 	pulumi.Input
 
@@ -271,7 +276,7 @@ func (i BindingArray) ToBindingArrayOutputWithContext(ctx context.Context) Bindi
 // BindingMapInput is an input type that accepts BindingMap and BindingMapOutput values.
 // You can construct a concrete instance of `BindingMapInput` via:
 //
-//          BindingMap{ "key": BindingArgs{...} }
+//	BindingMap{ "key": BindingArgs{...} }
 type BindingMapInput interface {
 	pulumi.Input
 
@@ -305,6 +310,45 @@ func (o BindingOutput) ToBindingOutput() BindingOutput {
 
 func (o BindingOutput) ToBindingOutputWithContext(ctx context.Context) BindingOutput {
 	return o
+}
+
+// Additional key/value arguments for the binding.
+func (o BindingOutput) Arguments() pulumi.MapOutput {
+	return o.ApplyT(func(v *Binding) pulumi.MapOutput { return v.Arguments }).(pulumi.MapOutput)
+}
+
+func (o BindingOutput) ArgumentsJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Binding) pulumi.StringPtrOutput { return v.ArgumentsJson }).(pulumi.StringPtrOutput)
+}
+
+// The destination queue or exchange.
+func (o BindingOutput) Destination() pulumi.StringOutput {
+	return o.ApplyT(func(v *Binding) pulumi.StringOutput { return v.Destination }).(pulumi.StringOutput)
+}
+
+// The type of destination (queue or exchange).
+func (o BindingOutput) DestinationType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Binding) pulumi.StringOutput { return v.DestinationType }).(pulumi.StringOutput)
+}
+
+// A unique key to refer to the binding.
+func (o BindingOutput) PropertiesKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *Binding) pulumi.StringOutput { return v.PropertiesKey }).(pulumi.StringOutput)
+}
+
+// A routing key for the binding.
+func (o BindingOutput) RoutingKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Binding) pulumi.StringPtrOutput { return v.RoutingKey }).(pulumi.StringPtrOutput)
+}
+
+// The source exchange.
+func (o BindingOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v *Binding) pulumi.StringOutput { return v.Source }).(pulumi.StringOutput)
+}
+
+// The vhost to create the resource in.
+func (o BindingOutput) Vhost() pulumi.StringOutput {
+	return o.ApplyT(func(v *Binding) pulumi.StringOutput { return v.Vhost }).(pulumi.StringOutput)
 }
 
 type BindingArrayOutput struct{ *pulumi.OutputState }

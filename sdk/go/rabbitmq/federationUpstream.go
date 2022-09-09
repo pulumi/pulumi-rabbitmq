@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The ``FederationUpstream`` resource creates and manages a federation upstream parameter.
+// The “FederationUpstream“ resource creates and manages a federation upstream parameter.
 //
 // ## Example Usage
 //
@@ -19,73 +19,76 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		test, err := rabbitmq.NewVHost(ctx, "test", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
-// 			User:  pulumi.String("guest"),
-// 			Vhost: test.Name,
-// 			Permissions: &PermissionsPermissionsArgs{
-// 				Configure: pulumi.String(".*"),
-// 				Write:     pulumi.String(".*"),
-// 				Read:      pulumi.String(".*"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		fooExchange, err := rabbitmq.NewExchange(ctx, "fooExchange", &rabbitmq.ExchangeArgs{
-// 			Vhost: guest.Vhost,
-// 			Settings: &ExchangeSettingsArgs{
-// 				Type:    pulumi.String("topic"),
-// 				Durable: pulumi.Bool(true),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		fooFederationUpstream, err := rabbitmq.NewFederationUpstream(ctx, "fooFederationUpstream", &rabbitmq.FederationUpstreamArgs{
-// 			Vhost: guest.Vhost,
-// 			Definition: &FederationUpstreamDefinitionArgs{
-// 				Uri:            pulumi.String(fmt.Sprintf("%v%v%v", "amqp://guest:guest@upstream-server-name:5672/", "%", "2f")),
-// 				PrefetchCount:  pulumi.Int(1000),
-// 				ReconnectDelay: pulumi.Int(5),
-// 				AckMode:        pulumi.String("on-confirm"),
-// 				TrustUserId:    pulumi.Bool(false),
-// 				MaxHops:        pulumi.Int(1),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = rabbitmq.NewPolicy(ctx, "fooPolicy", &rabbitmq.PolicyArgs{
-// 			Vhost: guest.Vhost,
-// 			Policy: &PolicyPolicyArgs{
-// 				Pattern: fooExchange.Name.ApplyT(func(name string) (string, error) {
-// 					return fmt.Sprintf("%v%v%v%v", "(^", name, "$", ")"), nil
-// 				}).(pulumi.StringOutput),
-// 				Priority: pulumi.Int(1),
-// 				ApplyTo:  pulumi.String("exchanges"),
-// 				Definition: pulumi.AnyMap{
-// 					"federation-upstream": fooFederationUpstream.Name,
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			test, err := rabbitmq.NewVHost(ctx, "test", nil)
+//			if err != nil {
+//				return err
+//			}
+//			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
+//				User:  pulumi.String("guest"),
+//				Vhost: test.Name,
+//				Permissions: &PermissionsPermissionsArgs{
+//					Configure: pulumi.String(".*"),
+//					Write:     pulumi.String(".*"),
+//					Read:      pulumi.String(".*"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooExchange, err := rabbitmq.NewExchange(ctx, "fooExchange", &rabbitmq.ExchangeArgs{
+//				Vhost: guest.Vhost,
+//				Settings: &ExchangeSettingsArgs{
+//					Type:    pulumi.String("topic"),
+//					Durable: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooFederationUpstream, err := rabbitmq.NewFederationUpstream(ctx, "fooFederationUpstream", &rabbitmq.FederationUpstreamArgs{
+//				Vhost: guest.Vhost,
+//				Definition: &FederationUpstreamDefinitionArgs{
+//					Uri:            pulumi.String(fmt.Sprintf("amqp://guest:guest@upstream-server-name:5672/%v2f", "%")),
+//					PrefetchCount:  pulumi.Int(1000),
+//					ReconnectDelay: pulumi.Int(5),
+//					AckMode:        pulumi.String("on-confirm"),
+//					TrustUserId:    pulumi.Bool(false),
+//					MaxHops:        pulumi.Int(1),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rabbitmq.NewPolicy(ctx, "fooPolicy", &rabbitmq.PolicyArgs{
+//				Vhost: guest.Vhost,
+//				Policy: &PolicyPolicyArgs{
+//					Pattern: fooExchange.Name.ApplyT(func(name string) (string, error) {
+//						return fmt.Sprintf("(^%v$)", name), nil
+//					}).(pulumi.StringOutput),
+//					Priority: pulumi.Int(1),
+//					ApplyTo:  pulumi.String("exchanges"),
+//					Definition: pulumi.AnyMap{
+//						"federation-upstream": fooFederationUpstream.Name,
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -93,7 +96,9 @@ import (
 // A Federation upstream can be imported using the resource `id` which is composed of `name@vhost`, e.g.
 //
 // ```sh
-//  $ pulumi import rabbitmq:index/federationUpstream:FederationUpstream foo foo@test
+//
+//	$ pulumi import rabbitmq:index/federationUpstream:FederationUpstream foo foo@test
+//
 // ```
 type FederationUpstream struct {
 	pulumi.CustomResourceState
@@ -213,7 +218,7 @@ func (i *FederationUpstream) ToFederationUpstreamOutputWithContext(ctx context.C
 // FederationUpstreamArrayInput is an input type that accepts FederationUpstreamArray and FederationUpstreamArrayOutput values.
 // You can construct a concrete instance of `FederationUpstreamArrayInput` via:
 //
-//          FederationUpstreamArray{ FederationUpstreamArgs{...} }
+//	FederationUpstreamArray{ FederationUpstreamArgs{...} }
 type FederationUpstreamArrayInput interface {
 	pulumi.Input
 
@@ -238,7 +243,7 @@ func (i FederationUpstreamArray) ToFederationUpstreamArrayOutputWithContext(ctx 
 // FederationUpstreamMapInput is an input type that accepts FederationUpstreamMap and FederationUpstreamMapOutput values.
 // You can construct a concrete instance of `FederationUpstreamMapInput` via:
 //
-//          FederationUpstreamMap{ "key": FederationUpstreamArgs{...} }
+//	FederationUpstreamMap{ "key": FederationUpstreamArgs{...} }
 type FederationUpstreamMapInput interface {
 	pulumi.Input
 
@@ -272,6 +277,26 @@ func (o FederationUpstreamOutput) ToFederationUpstreamOutput() FederationUpstrea
 
 func (o FederationUpstreamOutput) ToFederationUpstreamOutputWithContext(ctx context.Context) FederationUpstreamOutput {
 	return o
+}
+
+// Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
+func (o FederationUpstreamOutput) Component() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederationUpstream) pulumi.StringOutput { return v.Component }).(pulumi.StringOutput)
+}
+
+// The configuration of the federation upstream. The structure is described below.
+func (o FederationUpstreamOutput) Definition() FederationUpstreamDefinitionOutput {
+	return o.ApplyT(func(v *FederationUpstream) FederationUpstreamDefinitionOutput { return v.Definition }).(FederationUpstreamDefinitionOutput)
+}
+
+// The name of the federation upstream.
+func (o FederationUpstreamOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederationUpstream) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The vhost to create the resource in.
+func (o FederationUpstreamOutput) Vhost() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederationUpstream) pulumi.StringOutput { return v.Vhost }).(pulumi.StringOutput)
 }
 
 type FederationUpstreamArrayOutput struct{ *pulumi.OutputState }

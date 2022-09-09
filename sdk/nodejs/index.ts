@@ -8,6 +8,10 @@ import * as utilities from "./utilities";
 export * from "./binding";
 export * from "./exchange";
 export * from "./federationUpstream";
+export * from "./getExchange";
+export * from "./getUser";
+export * from "./getVHost";
+export * from "./operatorPolicy";
 export * from "./permissions";
 export * from "./policy";
 export * from "./provider";
@@ -30,6 +34,7 @@ export {
 import { Binding } from "./binding";
 import { Exchange } from "./exchange";
 import { FederationUpstream } from "./federationUpstream";
+import { OperatorPolicy } from "./operatorPolicy";
 import { Permissions } from "./permissions";
 import { Policy } from "./policy";
 import { Queue } from "./queue";
@@ -48,6 +53,8 @@ const _module = {
                 return new Exchange(name, <any>undefined, { urn })
             case "rabbitmq:index/federationUpstream:FederationUpstream":
                 return new FederationUpstream(name, <any>undefined, { urn })
+            case "rabbitmq:index/operatorPolicy:OperatorPolicy":
+                return new OperatorPolicy(name, <any>undefined, { urn })
             case "rabbitmq:index/permissions:Permissions":
                 return new Permissions(name, <any>undefined, { urn })
             case "rabbitmq:index/policy:Policy":
@@ -70,6 +77,7 @@ const _module = {
 pulumi.runtime.registerResourceModule("rabbitmq", "index/binding", _module)
 pulumi.runtime.registerResourceModule("rabbitmq", "index/exchange", _module)
 pulumi.runtime.registerResourceModule("rabbitmq", "index/federationUpstream", _module)
+pulumi.runtime.registerResourceModule("rabbitmq", "index/operatorPolicy", _module)
 pulumi.runtime.registerResourceModule("rabbitmq", "index/permissions", _module)
 pulumi.runtime.registerResourceModule("rabbitmq", "index/policy", _module)
 pulumi.runtime.registerResourceModule("rabbitmq", "index/queue", _module)

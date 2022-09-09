@@ -26,6 +26,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Exchange{}
 	case "rabbitmq:index/federationUpstream:FederationUpstream":
 		r = &FederationUpstream{}
+	case "rabbitmq:index/operatorPolicy:OperatorPolicy":
+		r = &OperatorPolicy{}
 	case "rabbitmq:index/permissions:Permissions":
 		r = &Permissions{}
 	case "rabbitmq:index/policy:Policy":
@@ -81,6 +83,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"rabbitmq",
 		"index/federationUpstream",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"rabbitmq",
+		"index/operatorPolicy",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

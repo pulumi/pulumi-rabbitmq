@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.RabbitMQ.Inputs
 {
 
-    public sealed class FederationUpstreamDefinitionGetArgs : Pulumi.ResourceArgs
+    public sealed class FederationUpstreamDefinitionGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Determines how the link should acknowledge messages. Valid values are `on-confirm`, `on-publish`, and `no-ack`. Default is `on-confirm`.
@@ -75,5 +75,6 @@ namespace Pulumi.RabbitMQ.Inputs
         public FederationUpstreamDefinitionGetArgs()
         {
         }
+        public static new FederationUpstreamDefinitionGetArgs Empty => new FederationUpstreamDefinitionGetArgs();
     }
 }

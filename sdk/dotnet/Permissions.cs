@@ -16,38 +16,36 @@ namespace Pulumi.RabbitMQ
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using RabbitMQ = Pulumi.RabbitMQ;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var testVHost = new RabbitMQ.VHost("testVHost", new RabbitMQ.VHostArgs
-    ///         {
-    ///         });
-    ///         var testUser = new RabbitMQ.User("testUser", new RabbitMQ.UserArgs
-    ///         {
-    ///             Password = "foobar",
-    ///             Tags = 
-    ///             {
-    ///                 "administrator",
-    ///             },
-    ///         });
-    ///         var testPermissions = new RabbitMQ.Permissions("testPermissions", new RabbitMQ.PermissionsArgs
-    ///         {
-    ///             Permissions = new RabbitMQ.Inputs.PermissionsPermissionsArgs
-    ///             {
-    ///                 Configure = ".*",
-    ///                 Read = ".*",
-    ///                 Write = ".*",
-    ///             },
-    ///             User = testUser.Name,
-    ///             Vhost = testVHost.Name,
-    ///         });
-    ///     }
+    ///     var testVHost = new RabbitMQ.VHost("testVHost");
     /// 
-    /// }
+    ///     var testUser = new RabbitMQ.User("testUser", new()
+    ///     {
+    ///         Password = "foobar",
+    ///         Tags = new[]
+    ///         {
+    ///             "administrator",
+    ///         },
+    ///     });
+    /// 
+    ///     var testPermissions = new RabbitMQ.Permissions("testPermissions", new()
+    ///     {
+    ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
+    ///         {
+    ///             Configure = ".*",
+    ///             Read = ".*",
+    ///             Write = ".*",
+    ///         },
+    ///         User = testUser.Name,
+    ///         Vhost = testVHost.Name,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -61,7 +59,7 @@ namespace Pulumi.RabbitMQ
     /// ```
     /// </summary>
     [RabbitMQResourceType("rabbitmq:index/permissions:Permissions")]
-    public partial class Permissions : Pulumi.CustomResource
+    public partial class Permissions : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The settings of the permissions. The structure is
@@ -126,7 +124,7 @@ namespace Pulumi.RabbitMQ
         }
     }
 
-    public sealed class PermissionsArgs : Pulumi.ResourceArgs
+    public sealed class PermissionsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The settings of the permissions. The structure is
@@ -150,9 +148,10 @@ namespace Pulumi.RabbitMQ
         public PermissionsArgs()
         {
         }
+        public static new PermissionsArgs Empty => new PermissionsArgs();
     }
 
-    public sealed class PermissionsState : Pulumi.ResourceArgs
+    public sealed class PermissionsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The settings of the permissions. The structure is
@@ -176,5 +175,6 @@ namespace Pulumi.RabbitMQ
         public PermissionsState()
         {
         }
+        public static new PermissionsState Empty => new PermissionsState();
     }
 }

@@ -15,50 +15,49 @@ namespace Pulumi.RabbitMQ
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using RabbitMQ = Pulumi.RabbitMQ;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var testVHost = new RabbitMQ.VHost("testVHost", new RabbitMQ.VHostArgs
-    ///         {
-    ///         });
-    ///         var testExchange = new RabbitMQ.Exchange("testExchange", new RabbitMQ.ExchangeArgs
-    ///         {
-    ///             Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
-    ///             {
-    ///                 AutoDelete = true,
-    ///                 Durable = false,
-    ///                 Type = "fanout",
-    ///             },
-    ///             Vhost = testVHost.Name,
-    ///         });
-    ///         var testQueue = new RabbitMQ.Queue("testQueue", new RabbitMQ.QueueArgs
-    ///         {
-    ///             Settings = new RabbitMQ.Inputs.QueueSettingsArgs
-    ///             {
-    ///                 AutoDelete = true,
-    ///                 Durable = false,
-    ///             },
-    ///             Vhost = testVHost.Name,
-    ///         });
-    ///         var shovelTest = new RabbitMQ.Shovel("shovelTest", new RabbitMQ.ShovelArgs
-    ///         {
-    ///             Info = new RabbitMQ.Inputs.ShovelInfoArgs
-    ///             {
-    ///                 DestinationQueue = testQueue.Name,
-    ///                 DestinationUri = "amqp:///test",
-    ///                 SourceExchange = testExchange.Name,
-    ///                 SourceExchangeKey = "test",
-    ///                 SourceUri = "amqp:///test",
-    ///             },
-    ///             Vhost = testVHost.Name,
-    ///         });
-    ///     }
+    ///     var testVHost = new RabbitMQ.VHost("testVHost");
     /// 
-    /// }
+    ///     var testExchange = new RabbitMQ.Exchange("testExchange", new()
+    ///     {
+    ///         Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
+    ///         {
+    ///             AutoDelete = true,
+    ///             Durable = false,
+    ///             Type = "fanout",
+    ///         },
+    ///         Vhost = testVHost.Name,
+    ///     });
+    /// 
+    ///     var testQueue = new RabbitMQ.Queue("testQueue", new()
+    ///     {
+    ///         Settings = new RabbitMQ.Inputs.QueueSettingsArgs
+    ///         {
+    ///             AutoDelete = true,
+    ///             Durable = false,
+    ///         },
+    ///         Vhost = testVHost.Name,
+    ///     });
+    /// 
+    ///     var shovelTest = new RabbitMQ.Shovel("shovelTest", new()
+    ///     {
+    ///         Info = new RabbitMQ.Inputs.ShovelInfoArgs
+    ///         {
+    ///             DestinationQueue = testQueue.Name,
+    ///             DestinationUri = "amqp:///test",
+    ///             SourceExchange = testExchange.Name,
+    ///             SourceExchangeKey = "test",
+    ///             SourceUri = "amqp:///test",
+    ///         },
+    ///         Vhost = testVHost.Name,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -70,7 +69,7 @@ namespace Pulumi.RabbitMQ
     /// ```
     /// </summary>
     [RabbitMQResourceType("rabbitmq:index/shovel:Shovel")]
-    public partial class Shovel : Pulumi.CustomResource
+    public partial class Shovel : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The settings of the dynamic shovel. The structure is
@@ -135,7 +134,7 @@ namespace Pulumi.RabbitMQ
         }
     }
 
-    public sealed class ShovelArgs : Pulumi.ResourceArgs
+    public sealed class ShovelArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The settings of the dynamic shovel. The structure is
@@ -159,9 +158,10 @@ namespace Pulumi.RabbitMQ
         public ShovelArgs()
         {
         }
+        public static new ShovelArgs Empty => new ShovelArgs();
     }
 
-    public sealed class ShovelState : Pulumi.ResourceArgs
+    public sealed class ShovelState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The settings of the dynamic shovel. The structure is
@@ -185,5 +185,6 @@ namespace Pulumi.RabbitMQ
         public ShovelState()
         {
         }
+        public static new ShovelState Empty => new ShovelState();
     }
 }
