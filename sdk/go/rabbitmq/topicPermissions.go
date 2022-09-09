@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The ``TopicPermissions`` resource creates and manages a user's set of
+// The “TopicPermissions“ resource creates and manages a user's set of
 // topic permissions.
 //
 // ## Example Usage
@@ -20,52 +20,57 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		testUser, err := rabbitmq.NewUser(ctx, "testUser", &rabbitmq.UserArgs{
-// 			Password: pulumi.String("foobar"),
-// 			Tags: pulumi.StringArray{
-// 				pulumi.String("administrator"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = rabbitmq.NewTopicPermissions(ctx, "testTopicPermissions", &rabbitmq.TopicPermissionsArgs{
-// 			Permissions: TopicPermissionsPermissionArray{
-// 				&TopicPermissionsPermissionArgs{
-// 					Exchange: pulumi.String("amq.topic"),
-// 					Read:     pulumi.String(".*"),
-// 					Write:    pulumi.String(".*"),
-// 				},
-// 			},
-// 			User:  testUser.Name,
-// 			Vhost: testVHost.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
+//			if err != nil {
+//				return err
+//			}
+//			testUser, err := rabbitmq.NewUser(ctx, "testUser", &rabbitmq.UserArgs{
+//				Password: pulumi.String("foobar"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("administrator"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rabbitmq.NewTopicPermissions(ctx, "testTopicPermissions", &rabbitmq.TopicPermissionsArgs{
+//				Permissions: TopicPermissionsPermissionArray{
+//					&TopicPermissionsPermissionArgs{
+//						Exchange: pulumi.String("amq.topic"),
+//						Read:     pulumi.String(".*"),
+//						Write:    pulumi.String(".*"),
+//					},
+//				},
+//				User:  testUser.Name,
+//				Vhost: testVHost.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
-// Permissions can be imported using the `id` which is composed of
+// # Permissions can be imported using the `id` which is composed of
 //
 // `user@vhost`. E.g.
 //
 // ```sh
-//  $ pulumi import rabbitmq:index/topicPermissions:TopicPermissions test user@vhost
+//
+//	$ pulumi import rabbitmq:index/topicPermissions:TopicPermissions test user@vhost
+//
 // ```
 type TopicPermissions struct {
 	pulumi.CustomResourceState
@@ -184,7 +189,7 @@ func (i *TopicPermissions) ToTopicPermissionsOutputWithContext(ctx context.Conte
 // TopicPermissionsArrayInput is an input type that accepts TopicPermissionsArray and TopicPermissionsArrayOutput values.
 // You can construct a concrete instance of `TopicPermissionsArrayInput` via:
 //
-//          TopicPermissionsArray{ TopicPermissionsArgs{...} }
+//	TopicPermissionsArray{ TopicPermissionsArgs{...} }
 type TopicPermissionsArrayInput interface {
 	pulumi.Input
 
@@ -209,7 +214,7 @@ func (i TopicPermissionsArray) ToTopicPermissionsArrayOutputWithContext(ctx cont
 // TopicPermissionsMapInput is an input type that accepts TopicPermissionsMap and TopicPermissionsMapOutput values.
 // You can construct a concrete instance of `TopicPermissionsMapInput` via:
 //
-//          TopicPermissionsMap{ "key": TopicPermissionsArgs{...} }
+//	TopicPermissionsMap{ "key": TopicPermissionsArgs{...} }
 type TopicPermissionsMapInput interface {
 	pulumi.Input
 
@@ -243,6 +248,22 @@ func (o TopicPermissionsOutput) ToTopicPermissionsOutput() TopicPermissionsOutpu
 
 func (o TopicPermissionsOutput) ToTopicPermissionsOutputWithContext(ctx context.Context) TopicPermissionsOutput {
 	return o
+}
+
+// The settings of the permissions. The structure is
+// described below.
+func (o TopicPermissionsOutput) Permissions() TopicPermissionsPermissionArrayOutput {
+	return o.ApplyT(func(v *TopicPermissions) TopicPermissionsPermissionArrayOutput { return v.Permissions }).(TopicPermissionsPermissionArrayOutput)
+}
+
+// The user to apply the permissions to.
+func (o TopicPermissionsOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v *TopicPermissions) pulumi.StringOutput { return v.User }).(pulumi.StringOutput)
+}
+
+// The vhost to create the resource in.
+func (o TopicPermissionsOutput) Vhost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TopicPermissions) pulumi.StringPtrOutput { return v.Vhost }).(pulumi.StringPtrOutput)
 }
 
 type TopicPermissionsArrayOutput struct{ *pulumi.OutputState }

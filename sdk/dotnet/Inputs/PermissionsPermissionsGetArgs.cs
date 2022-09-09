@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.RabbitMQ.Inputs
 {
 
-    public sealed class PermissionsPermissionsGetArgs : Pulumi.ResourceArgs
+    public sealed class PermissionsPermissionsGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The "configure" ACL.
@@ -33,5 +33,6 @@ namespace Pulumi.RabbitMQ.Inputs
         public PermissionsPermissionsGetArgs()
         {
         }
+        public static new PermissionsPermissionsGetArgs Empty => new PermissionsPermissionsGetArgs();
     }
 }

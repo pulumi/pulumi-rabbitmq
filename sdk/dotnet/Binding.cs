@@ -16,57 +16,57 @@ namespace Pulumi.RabbitMQ
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using RabbitMQ = Pulumi.RabbitMQ;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var testVHost = new RabbitMQ.VHost("testVHost", new RabbitMQ.VHostArgs
-    ///         {
-    ///         });
-    ///         var guest = new RabbitMQ.Permissions("guest", new RabbitMQ.PermissionsArgs
-    ///         {
-    ///             Permissions = new RabbitMQ.Inputs.PermissionsPermissionsArgs
-    ///             {
-    ///                 Configure = ".*",
-    ///                 Read = ".*",
-    ///                 Write = ".*",
-    ///             },
-    ///             User = "guest",
-    ///             Vhost = testVHost.Name,
-    ///         });
-    ///         var testExchange = new RabbitMQ.Exchange("testExchange", new RabbitMQ.ExchangeArgs
-    ///         {
-    ///             Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
-    ///             {
-    ///                 AutoDelete = true,
-    ///                 Durable = false,
-    ///                 Type = "fanout",
-    ///             },
-    ///             Vhost = guest.Vhost,
-    ///         });
-    ///         var testQueue = new RabbitMQ.Queue("testQueue", new RabbitMQ.QueueArgs
-    ///         {
-    ///             Settings = new RabbitMQ.Inputs.QueueSettingsArgs
-    ///             {
-    ///                 AutoDelete = false,
-    ///                 Durable = true,
-    ///             },
-    ///             Vhost = guest.Vhost,
-    ///         });
-    ///         var testBinding = new RabbitMQ.Binding("testBinding", new RabbitMQ.BindingArgs
-    ///         {
-    ///             Destination = testQueue.Name,
-    ///             DestinationType = "queue",
-    ///             RoutingKey = "#",
-    ///             Source = testExchange.Name,
-    ///             Vhost = testVHost.Name,
-    ///         });
-    ///     }
+    ///     var testVHost = new RabbitMQ.VHost("testVHost");
     /// 
-    /// }
+    ///     var guest = new RabbitMQ.Permissions("guest", new()
+    ///     {
+    ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
+    ///         {
+    ///             Configure = ".*",
+    ///             Read = ".*",
+    ///             Write = ".*",
+    ///         },
+    ///         User = "guest",
+    ///         Vhost = testVHost.Name,
+    ///     });
+    /// 
+    ///     var testExchange = new RabbitMQ.Exchange("testExchange", new()
+    ///     {
+    ///         Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
+    ///         {
+    ///             AutoDelete = true,
+    ///             Durable = false,
+    ///             Type = "fanout",
+    ///         },
+    ///         Vhost = guest.Vhost,
+    ///     });
+    /// 
+    ///     var testQueue = new RabbitMQ.Queue("testQueue", new()
+    ///     {
+    ///         Settings = new RabbitMQ.Inputs.QueueSettingsArgs
+    ///         {
+    ///             AutoDelete = false,
+    ///             Durable = true,
+    ///         },
+    ///         Vhost = guest.Vhost,
+    ///     });
+    /// 
+    ///     var testBinding = new RabbitMQ.Binding("testBinding", new()
+    ///     {
+    ///         Destination = testQueue.Name,
+    ///         DestinationType = "queue",
+    ///         RoutingKey = "#",
+    ///         Source = testExchange.Name,
+    ///         Vhost = testVHost.Name,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -80,7 +80,7 @@ namespace Pulumi.RabbitMQ
     /// ```
     /// </summary>
     [RabbitMQResourceType("rabbitmq:index/binding:Binding")]
-    public partial class Binding : Pulumi.CustomResource
+    public partial class Binding : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Additional key/value arguments for the binding.
@@ -171,7 +171,7 @@ namespace Pulumi.RabbitMQ
         }
     }
 
-    public sealed class BindingArgs : Pulumi.ResourceArgs
+    public sealed class BindingArgs : global::Pulumi.ResourceArgs
     {
         [Input("arguments")]
         private InputMap<object>? _arguments;
@@ -221,9 +221,10 @@ namespace Pulumi.RabbitMQ
         public BindingArgs()
         {
         }
+        public static new BindingArgs Empty => new BindingArgs();
     }
 
-    public sealed class BindingState : Pulumi.ResourceArgs
+    public sealed class BindingState : global::Pulumi.ResourceArgs
     {
         [Input("arguments")]
         private InputMap<object>? _arguments;
@@ -279,5 +280,6 @@ namespace Pulumi.RabbitMQ
         public BindingState()
         {
         }
+        public static new BindingState Empty => new BindingState();
     }
 }

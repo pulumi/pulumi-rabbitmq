@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The ``Exchange`` resource creates and manages an exchange.
+// The “Exchange“ resource creates and manages an exchange.
 //
 // ## Example Usage
 //
@@ -19,52 +19,57 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
-// 			Permissions: &PermissionsPermissionsArgs{
-// 				Configure: pulumi.String(".*"),
-// 				Read:      pulumi.String(".*"),
-// 				Write:     pulumi.String(".*"),
-// 			},
-// 			User:  pulumi.String("guest"),
-// 			Vhost: testVHost.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = rabbitmq.NewExchange(ctx, "testExchange", &rabbitmq.ExchangeArgs{
-// 			Settings: &ExchangeSettingsArgs{
-// 				AutoDelete: pulumi.Bool(true),
-// 				Durable:    pulumi.Bool(false),
-// 				Type:       pulumi.String("fanout"),
-// 			},
-// 			Vhost: guest.Vhost,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
+//			if err != nil {
+//				return err
+//			}
+//			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
+//				Permissions: &PermissionsPermissionsArgs{
+//					Configure: pulumi.String(".*"),
+//					Read:      pulumi.String(".*"),
+//					Write:     pulumi.String(".*"),
+//				},
+//				User:  pulumi.String("guest"),
+//				Vhost: testVHost.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rabbitmq.NewExchange(ctx, "testExchange", &rabbitmq.ExchangeArgs{
+//				Settings: &ExchangeSettingsArgs{
+//					AutoDelete: pulumi.Bool(true),
+//					Durable:    pulumi.Bool(false),
+//					Type:       pulumi.String("fanout"),
+//				},
+//				Vhost: guest.Vhost,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
-// Exchanges can be imported using the `id` which is composed of
+// # Exchanges can be imported using the `id` which is composed of
 //
 // `name@vhost`. E.g.
 //
 // ```sh
-//  $ pulumi import rabbitmq:index/exchange:Exchange test test@vhost
+//
+//	$ pulumi import rabbitmq:index/exchange:Exchange test test@vhost
+//
 // ```
 type Exchange struct {
 	pulumi.CustomResourceState
@@ -180,7 +185,7 @@ func (i *Exchange) ToExchangeOutputWithContext(ctx context.Context) ExchangeOutp
 // ExchangeArrayInput is an input type that accepts ExchangeArray and ExchangeArrayOutput values.
 // You can construct a concrete instance of `ExchangeArrayInput` via:
 //
-//          ExchangeArray{ ExchangeArgs{...} }
+//	ExchangeArray{ ExchangeArgs{...} }
 type ExchangeArrayInput interface {
 	pulumi.Input
 
@@ -205,7 +210,7 @@ func (i ExchangeArray) ToExchangeArrayOutputWithContext(ctx context.Context) Exc
 // ExchangeMapInput is an input type that accepts ExchangeMap and ExchangeMapOutput values.
 // You can construct a concrete instance of `ExchangeMapInput` via:
 //
-//          ExchangeMap{ "key": ExchangeArgs{...} }
+//	ExchangeMap{ "key": ExchangeArgs{...} }
 type ExchangeMapInput interface {
 	pulumi.Input
 
@@ -239,6 +244,22 @@ func (o ExchangeOutput) ToExchangeOutput() ExchangeOutput {
 
 func (o ExchangeOutput) ToExchangeOutputWithContext(ctx context.Context) ExchangeOutput {
 	return o
+}
+
+// The name of the exchange.
+func (o ExchangeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Exchange) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The settings of the exchange. The structure is
+// described below.
+func (o ExchangeOutput) Settings() ExchangeSettingsOutput {
+	return o.ApplyT(func(v *Exchange) ExchangeSettingsOutput { return v.Settings }).(ExchangeSettingsOutput)
+}
+
+// The vhost to create the resource in.
+func (o ExchangeOutput) Vhost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Exchange) pulumi.StringPtrOutput { return v.Vhost }).(pulumi.StringPtrOutput)
 }
 
 type ExchangeArrayOutput struct{ *pulumi.OutputState }

@@ -16,44 +16,42 @@ namespace Pulumi.RabbitMQ
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using RabbitMQ = Pulumi.RabbitMQ;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var testVHost = new RabbitMQ.VHost("testVHost", new RabbitMQ.VHostArgs
-    ///         {
-    ///         });
-    ///         var guest = new RabbitMQ.Permissions("guest", new RabbitMQ.PermissionsArgs
-    ///         {
-    ///             Permissions = new RabbitMQ.Inputs.PermissionsPermissionsArgs
-    ///             {
-    ///                 Configure = ".*",
-    ///                 Read = ".*",
-    ///                 Write = ".*",
-    ///             },
-    ///             User = "guest",
-    ///             Vhost = testVHost.Name,
-    ///         });
-    ///         var testPolicy = new RabbitMQ.Policy("testPolicy", new RabbitMQ.PolicyArgs
-    ///         {
-    ///             Policy = new RabbitMQ.Inputs.PolicyPolicyArgs
-    ///             {
-    ///                 ApplyTo = "all",
-    ///                 Definition = 
-    ///                 {
-    ///                     { "ha-mode", "all" },
-    ///                 },
-    ///                 Pattern = ".*",
-    ///                 Priority = 0,
-    ///             },
-    ///             Vhost = guest.Vhost,
-    ///         });
-    ///     }
+    ///     var testVHost = new RabbitMQ.VHost("testVHost");
     /// 
-    /// }
+    ///     var guest = new RabbitMQ.Permissions("guest", new()
+    ///     {
+    ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
+    ///         {
+    ///             Configure = ".*",
+    ///             Read = ".*",
+    ///             Write = ".*",
+    ///         },
+    ///         User = "guest",
+    ///         Vhost = testVHost.Name,
+    ///     });
+    /// 
+    ///     var testPolicy = new RabbitMQ.Policy("testPolicy", new()
+    ///     {
+    ///         PolicyBlock = new RabbitMQ.Inputs.PolicyPolicyArgs
+    ///         {
+    ///             ApplyTo = "all",
+    ///             Definition = 
+    ///             {
+    ///                 { "ha-mode", "all" },
+    ///             },
+    ///             Pattern = ".*",
+    ///             Priority = 0,
+    ///         },
+    ///         Vhost = guest.Vhost,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -65,7 +63,7 @@ namespace Pulumi.RabbitMQ
     /// ```
     /// </summary>
     [RabbitMQResourceType("rabbitmq:index/policy:Policy")]
-    public partial class Policy : Pulumi.CustomResource
+    public partial class Policy : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the policy.
@@ -130,7 +128,7 @@ namespace Pulumi.RabbitMQ
         }
     }
 
-    public sealed class PolicyArgs : Pulumi.ResourceArgs
+    public sealed class PolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the policy.
@@ -154,9 +152,10 @@ namespace Pulumi.RabbitMQ
         public PolicyArgs()
         {
         }
+        public static new PolicyArgs Empty => new PolicyArgs();
     }
 
-    public sealed class PolicyState : Pulumi.ResourceArgs
+    public sealed class PolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the policy.
@@ -180,5 +179,6 @@ namespace Pulumi.RabbitMQ
         public PolicyState()
         {
         }
+        public static new PolicyState Empty => new PolicyState();
     }
 }

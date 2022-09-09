@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The ``Policy`` resource creates and manages policies for exchanges
+// The “Policy“ resource creates and manages policies for exchanges
 // and queues.
 //
 // ## Example Usage
@@ -20,45 +20,48 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
-// 			Permissions: &PermissionsPermissionsArgs{
-// 				Configure: pulumi.String(".*"),
-// 				Read:      pulumi.String(".*"),
-// 				Write:     pulumi.String(".*"),
-// 			},
-// 			User:  pulumi.String("guest"),
-// 			Vhost: testVHost.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = rabbitmq.NewPolicy(ctx, "testPolicy", &rabbitmq.PolicyArgs{
-// 			Policy: &PolicyPolicyArgs{
-// 				ApplyTo: pulumi.String("all"),
-// 				Definition: pulumi.AnyMap{
-// 					"ha-mode": pulumi.Any("all"),
-// 				},
-// 				Pattern:  pulumi.String(".*"),
-// 				Priority: pulumi.Int(0),
-// 			},
-// 			Vhost: guest.Vhost,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
+//			if err != nil {
+//				return err
+//			}
+//			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
+//				Permissions: &PermissionsPermissionsArgs{
+//					Configure: pulumi.String(".*"),
+//					Read:      pulumi.String(".*"),
+//					Write:     pulumi.String(".*"),
+//				},
+//				User:  pulumi.String("guest"),
+//				Vhost: testVHost.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rabbitmq.NewPolicy(ctx, "testPolicy", &rabbitmq.PolicyArgs{
+//				Policy: &PolicyPolicyArgs{
+//					ApplyTo: pulumi.String("all"),
+//					Definition: pulumi.AnyMap{
+//						"ha-mode": pulumi.Any("all"),
+//					},
+//					Pattern:  pulumi.String(".*"),
+//					Priority: pulumi.Int(0),
+//				},
+//				Vhost: guest.Vhost,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -66,7 +69,9 @@ import (
 // Policies can be imported using the `id` which is composed of `name@vhost`. E.g.
 //
 // ```sh
-//  $ pulumi import rabbitmq:index/policy:Policy test name@vhost
+//
+//	$ pulumi import rabbitmq:index/policy:Policy test name@vhost
+//
 // ```
 type Policy struct {
 	pulumi.CustomResourceState
@@ -185,7 +190,7 @@ func (i *Policy) ToPolicyOutputWithContext(ctx context.Context) PolicyOutput {
 // PolicyArrayInput is an input type that accepts PolicyArray and PolicyArrayOutput values.
 // You can construct a concrete instance of `PolicyArrayInput` via:
 //
-//          PolicyArray{ PolicyArgs{...} }
+//	PolicyArray{ PolicyArgs{...} }
 type PolicyArrayInput interface {
 	pulumi.Input
 
@@ -210,7 +215,7 @@ func (i PolicyArray) ToPolicyArrayOutputWithContext(ctx context.Context) PolicyA
 // PolicyMapInput is an input type that accepts PolicyMap and PolicyMapOutput values.
 // You can construct a concrete instance of `PolicyMapInput` via:
 //
-//          PolicyMap{ "key": PolicyArgs{...} }
+//	PolicyMap{ "key": PolicyArgs{...} }
 type PolicyMapInput interface {
 	pulumi.Input
 
@@ -244,6 +249,22 @@ func (o PolicyOutput) ToPolicyOutput() PolicyOutput {
 
 func (o PolicyOutput) ToPolicyOutputWithContext(ctx context.Context) PolicyOutput {
 	return o
+}
+
+// The name of the policy.
+func (o PolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The settings of the policy. The structure is
+// described below.
+func (o PolicyOutput) Policy() PolicyPolicyOutput {
+	return o.ApplyT(func(v *Policy) PolicyPolicyOutput { return v.Policy }).(PolicyPolicyOutput)
+}
+
+// The vhost to create the resource in.
+func (o PolicyOutput) Vhost() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.Vhost }).(pulumi.StringOutput)
 }
 
 type PolicyArrayOutput struct{ *pulumi.OutputState }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.RabbitMQ.Inputs
 {
 
-    public sealed class PolicyPolicyGetArgs : Pulumi.ResourceArgs
+    public sealed class PolicyPolicyGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Can either be "exchanges", "queues", or "all".
@@ -46,5 +46,6 @@ namespace Pulumi.RabbitMQ.Inputs
         public PolicyPolicyGetArgs()
         {
         }
+        public static new PolicyPolicyGetArgs Empty => new PolicyPolicyGetArgs();
     }
 }

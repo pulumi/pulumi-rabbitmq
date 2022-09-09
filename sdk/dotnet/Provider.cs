@@ -16,7 +16,7 @@ namespace Pulumi.RabbitMQ
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
     [RabbitMQResourceType("pulumi:providers:rabbitmq")]
-    public partial class Provider : Pulumi.ProviderResource
+    public partial class Provider : global::Pulumi.ProviderResource
     {
         [Output("cacertFile")]
         public Output<string?> CacertFile { get; private set; } = null!;
@@ -65,7 +65,7 @@ namespace Pulumi.RabbitMQ
         }
     }
 
-    public sealed class ProviderArgs : Pulumi.ResourceArgs
+    public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
         [Input("cacertFile")]
         public Input<string>? CacertFile { get; set; }
@@ -96,5 +96,6 @@ namespace Pulumi.RabbitMQ
             CacertFile = Utilities.GetEnv("RABBITMQ_CACERT");
             Insecure = Utilities.GetEnvBoolean("RABBITMQ_INSECURE");
         }
+        public static new ProviderArgs Empty => new ProviderArgs();
     }
 }

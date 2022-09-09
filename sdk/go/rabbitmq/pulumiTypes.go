@@ -26,7 +26,7 @@ type ExchangeSettings struct {
 // ExchangeSettingsInput is an input type that accepts ExchangeSettingsArgs and ExchangeSettingsOutput values.
 // You can construct a concrete instance of `ExchangeSettingsInput` via:
 //
-//          ExchangeSettingsArgs{...}
+//	ExchangeSettingsArgs{...}
 type ExchangeSettingsInput interface {
 	pulumi.Input
 
@@ -70,11 +70,11 @@ func (i ExchangeSettingsArgs) ToExchangeSettingsPtrOutputWithContext(ctx context
 // ExchangeSettingsPtrInput is an input type that accepts ExchangeSettingsArgs, ExchangeSettingsPtr and ExchangeSettingsPtrOutput values.
 // You can construct a concrete instance of `ExchangeSettingsPtrInput` via:
 //
-//          ExchangeSettingsArgs{...}
+//	        ExchangeSettingsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ExchangeSettingsPtrInput interface {
 	pulumi.Input
 
@@ -238,7 +238,7 @@ type FederationUpstreamDefinition struct {
 // FederationUpstreamDefinitionInput is an input type that accepts FederationUpstreamDefinitionArgs and FederationUpstreamDefinitionOutput values.
 // You can construct a concrete instance of `FederationUpstreamDefinitionInput` via:
 //
-//          FederationUpstreamDefinitionArgs{...}
+//	FederationUpstreamDefinitionArgs{...}
 type FederationUpstreamDefinitionInput interface {
 	pulumi.Input
 
@@ -292,11 +292,11 @@ func (i FederationUpstreamDefinitionArgs) ToFederationUpstreamDefinitionPtrOutpu
 // FederationUpstreamDefinitionPtrInput is an input type that accepts FederationUpstreamDefinitionArgs, FederationUpstreamDefinitionPtr and FederationUpstreamDefinitionPtrOutput values.
 // You can construct a concrete instance of `FederationUpstreamDefinitionPtrInput` via:
 //
-//          FederationUpstreamDefinitionArgs{...}
+//	        FederationUpstreamDefinitionArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type FederationUpstreamDefinitionPtrInput interface {
 	pulumi.Input
 
@@ -520,6 +520,204 @@ func (o FederationUpstreamDefinitionPtrOutput) Uri() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type OperatorPolicyPolicy struct {
+	// Can be "queues".
+	ApplyTo string `pulumi:"applyTo"`
+	// Key/value pairs of the operator policy definition. See the
+	// RabbitMQ documentation for definition references and examples.
+	Definition map[string]interface{} `pulumi:"definition"`
+	// A pattern to match an exchange or queue name.
+	Pattern string `pulumi:"pattern"`
+	// The policy with the greater priority is applied first.
+	Priority int `pulumi:"priority"`
+}
+
+// OperatorPolicyPolicyInput is an input type that accepts OperatorPolicyPolicyArgs and OperatorPolicyPolicyOutput values.
+// You can construct a concrete instance of `OperatorPolicyPolicyInput` via:
+//
+//	OperatorPolicyPolicyArgs{...}
+type OperatorPolicyPolicyInput interface {
+	pulumi.Input
+
+	ToOperatorPolicyPolicyOutput() OperatorPolicyPolicyOutput
+	ToOperatorPolicyPolicyOutputWithContext(context.Context) OperatorPolicyPolicyOutput
+}
+
+type OperatorPolicyPolicyArgs struct {
+	// Can be "queues".
+	ApplyTo pulumi.StringInput `pulumi:"applyTo"`
+	// Key/value pairs of the operator policy definition. See the
+	// RabbitMQ documentation for definition references and examples.
+	Definition pulumi.MapInput `pulumi:"definition"`
+	// A pattern to match an exchange or queue name.
+	Pattern pulumi.StringInput `pulumi:"pattern"`
+	// The policy with the greater priority is applied first.
+	Priority pulumi.IntInput `pulumi:"priority"`
+}
+
+func (OperatorPolicyPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OperatorPolicyPolicy)(nil)).Elem()
+}
+
+func (i OperatorPolicyPolicyArgs) ToOperatorPolicyPolicyOutput() OperatorPolicyPolicyOutput {
+	return i.ToOperatorPolicyPolicyOutputWithContext(context.Background())
+}
+
+func (i OperatorPolicyPolicyArgs) ToOperatorPolicyPolicyOutputWithContext(ctx context.Context) OperatorPolicyPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OperatorPolicyPolicyOutput)
+}
+
+func (i OperatorPolicyPolicyArgs) ToOperatorPolicyPolicyPtrOutput() OperatorPolicyPolicyPtrOutput {
+	return i.ToOperatorPolicyPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i OperatorPolicyPolicyArgs) ToOperatorPolicyPolicyPtrOutputWithContext(ctx context.Context) OperatorPolicyPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OperatorPolicyPolicyOutput).ToOperatorPolicyPolicyPtrOutputWithContext(ctx)
+}
+
+// OperatorPolicyPolicyPtrInput is an input type that accepts OperatorPolicyPolicyArgs, OperatorPolicyPolicyPtr and OperatorPolicyPolicyPtrOutput values.
+// You can construct a concrete instance of `OperatorPolicyPolicyPtrInput` via:
+//
+//	        OperatorPolicyPolicyArgs{...}
+//
+//	or:
+//
+//	        nil
+type OperatorPolicyPolicyPtrInput interface {
+	pulumi.Input
+
+	ToOperatorPolicyPolicyPtrOutput() OperatorPolicyPolicyPtrOutput
+	ToOperatorPolicyPolicyPtrOutputWithContext(context.Context) OperatorPolicyPolicyPtrOutput
+}
+
+type operatorPolicyPolicyPtrType OperatorPolicyPolicyArgs
+
+func OperatorPolicyPolicyPtr(v *OperatorPolicyPolicyArgs) OperatorPolicyPolicyPtrInput {
+	return (*operatorPolicyPolicyPtrType)(v)
+}
+
+func (*operatorPolicyPolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**OperatorPolicyPolicy)(nil)).Elem()
+}
+
+func (i *operatorPolicyPolicyPtrType) ToOperatorPolicyPolicyPtrOutput() OperatorPolicyPolicyPtrOutput {
+	return i.ToOperatorPolicyPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *operatorPolicyPolicyPtrType) ToOperatorPolicyPolicyPtrOutputWithContext(ctx context.Context) OperatorPolicyPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OperatorPolicyPolicyPtrOutput)
+}
+
+type OperatorPolicyPolicyOutput struct{ *pulumi.OutputState }
+
+func (OperatorPolicyPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OperatorPolicyPolicy)(nil)).Elem()
+}
+
+func (o OperatorPolicyPolicyOutput) ToOperatorPolicyPolicyOutput() OperatorPolicyPolicyOutput {
+	return o
+}
+
+func (o OperatorPolicyPolicyOutput) ToOperatorPolicyPolicyOutputWithContext(ctx context.Context) OperatorPolicyPolicyOutput {
+	return o
+}
+
+func (o OperatorPolicyPolicyOutput) ToOperatorPolicyPolicyPtrOutput() OperatorPolicyPolicyPtrOutput {
+	return o.ToOperatorPolicyPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o OperatorPolicyPolicyOutput) ToOperatorPolicyPolicyPtrOutputWithContext(ctx context.Context) OperatorPolicyPolicyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v OperatorPolicyPolicy) *OperatorPolicyPolicy {
+		return &v
+	}).(OperatorPolicyPolicyPtrOutput)
+}
+
+// Can be "queues".
+func (o OperatorPolicyPolicyOutput) ApplyTo() pulumi.StringOutput {
+	return o.ApplyT(func(v OperatorPolicyPolicy) string { return v.ApplyTo }).(pulumi.StringOutput)
+}
+
+// Key/value pairs of the operator policy definition. See the
+// RabbitMQ documentation for definition references and examples.
+func (o OperatorPolicyPolicyOutput) Definition() pulumi.MapOutput {
+	return o.ApplyT(func(v OperatorPolicyPolicy) map[string]interface{} { return v.Definition }).(pulumi.MapOutput)
+}
+
+// A pattern to match an exchange or queue name.
+func (o OperatorPolicyPolicyOutput) Pattern() pulumi.StringOutput {
+	return o.ApplyT(func(v OperatorPolicyPolicy) string { return v.Pattern }).(pulumi.StringOutput)
+}
+
+// The policy with the greater priority is applied first.
+func (o OperatorPolicyPolicyOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v OperatorPolicyPolicy) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+type OperatorPolicyPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (OperatorPolicyPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OperatorPolicyPolicy)(nil)).Elem()
+}
+
+func (o OperatorPolicyPolicyPtrOutput) ToOperatorPolicyPolicyPtrOutput() OperatorPolicyPolicyPtrOutput {
+	return o
+}
+
+func (o OperatorPolicyPolicyPtrOutput) ToOperatorPolicyPolicyPtrOutputWithContext(ctx context.Context) OperatorPolicyPolicyPtrOutput {
+	return o
+}
+
+func (o OperatorPolicyPolicyPtrOutput) Elem() OperatorPolicyPolicyOutput {
+	return o.ApplyT(func(v *OperatorPolicyPolicy) OperatorPolicyPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret OperatorPolicyPolicy
+		return ret
+	}).(OperatorPolicyPolicyOutput)
+}
+
+// Can be "queues".
+func (o OperatorPolicyPolicyPtrOutput) ApplyTo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OperatorPolicyPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ApplyTo
+	}).(pulumi.StringPtrOutput)
+}
+
+// Key/value pairs of the operator policy definition. See the
+// RabbitMQ documentation for definition references and examples.
+func (o OperatorPolicyPolicyPtrOutput) Definition() pulumi.MapOutput {
+	return o.ApplyT(func(v *OperatorPolicyPolicy) map[string]interface{} {
+		if v == nil {
+			return nil
+		}
+		return v.Definition
+	}).(pulumi.MapOutput)
+}
+
+// A pattern to match an exchange or queue name.
+func (o OperatorPolicyPolicyPtrOutput) Pattern() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OperatorPolicyPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Pattern
+	}).(pulumi.StringPtrOutput)
+}
+
+// The policy with the greater priority is applied first.
+func (o OperatorPolicyPolicyPtrOutput) Priority() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *OperatorPolicyPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Priority
+	}).(pulumi.IntPtrOutput)
+}
+
 type PermissionsPermissions struct {
 	// The "configure" ACL.
 	Configure string `pulumi:"configure"`
@@ -532,7 +730,7 @@ type PermissionsPermissions struct {
 // PermissionsPermissionsInput is an input type that accepts PermissionsPermissionsArgs and PermissionsPermissionsOutput values.
 // You can construct a concrete instance of `PermissionsPermissionsInput` via:
 //
-//          PermissionsPermissionsArgs{...}
+//	PermissionsPermissionsArgs{...}
 type PermissionsPermissionsInput interface {
 	pulumi.Input
 
@@ -572,11 +770,11 @@ func (i PermissionsPermissionsArgs) ToPermissionsPermissionsPtrOutputWithContext
 // PermissionsPermissionsPtrInput is an input type that accepts PermissionsPermissionsArgs, PermissionsPermissionsPtr and PermissionsPermissionsPtrOutput values.
 // You can construct a concrete instance of `PermissionsPermissionsPtrInput` via:
 //
-//          PermissionsPermissionsArgs{...}
+//	        PermissionsPermissionsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type PermissionsPermissionsPtrInput interface {
 	pulumi.Input
 
@@ -710,7 +908,7 @@ type PolicyPolicy struct {
 // PolicyPolicyInput is an input type that accepts PolicyPolicyArgs and PolicyPolicyOutput values.
 // You can construct a concrete instance of `PolicyPolicyInput` via:
 //
-//          PolicyPolicyArgs{...}
+//	PolicyPolicyArgs{...}
 type PolicyPolicyInput interface {
 	pulumi.Input
 
@@ -753,11 +951,11 @@ func (i PolicyPolicyArgs) ToPolicyPolicyPtrOutputWithContext(ctx context.Context
 // PolicyPolicyPtrInput is an input type that accepts PolicyPolicyArgs, PolicyPolicyPtr and PolicyPolicyPtrOutput values.
 // You can construct a concrete instance of `PolicyPolicyPtrInput` via:
 //
-//          PolicyPolicyArgs{...}
+//	        PolicyPolicyArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type PolicyPolicyPtrInput interface {
 	pulumi.Input
 
@@ -913,7 +1111,7 @@ type QueueSettings struct {
 // QueueSettingsInput is an input type that accepts QueueSettingsArgs and QueueSettingsOutput values.
 // You can construct a concrete instance of `QueueSettingsInput` via:
 //
-//          QueueSettingsArgs{...}
+//	QueueSettingsArgs{...}
 type QueueSettingsInput interface {
 	pulumi.Input
 
@@ -961,11 +1159,11 @@ func (i QueueSettingsArgs) ToQueueSettingsPtrOutputWithContext(ctx context.Conte
 // QueueSettingsPtrInput is an input type that accepts QueueSettingsArgs, QueueSettingsPtr and QueueSettingsPtrOutput values.
 // You can construct a concrete instance of `QueueSettingsPtrInput` via:
 //
-//          QueueSettingsArgs{...}
+//	        QueueSettingsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type QueueSettingsPtrInput interface {
 	pulumi.Input
 
@@ -1178,7 +1376,7 @@ type ShovelInfo struct {
 // ShovelInfoInput is an input type that accepts ShovelInfoArgs and ShovelInfoOutput values.
 // You can construct a concrete instance of `ShovelInfoInput` via:
 //
-//          ShovelInfoArgs{...}
+//	ShovelInfoArgs{...}
 type ShovelInfoInput interface {
 	pulumi.Input
 
@@ -1273,11 +1471,11 @@ func (i ShovelInfoArgs) ToShovelInfoPtrOutputWithContext(ctx context.Context) Sh
 // ShovelInfoPtrInput is an input type that accepts ShovelInfoArgs, ShovelInfoPtr and ShovelInfoPtrOutput values.
 // You can construct a concrete instance of `ShovelInfoPtrInput` via:
 //
-//          ShovelInfoArgs{...}
+//	        ShovelInfoArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ShovelInfoPtrInput interface {
 	pulumi.Input
 
@@ -1749,7 +1947,7 @@ type TopicPermissionsPermission struct {
 // TopicPermissionsPermissionInput is an input type that accepts TopicPermissionsPermissionArgs and TopicPermissionsPermissionOutput values.
 // You can construct a concrete instance of `TopicPermissionsPermissionInput` via:
 //
-//          TopicPermissionsPermissionArgs{...}
+//	TopicPermissionsPermissionArgs{...}
 type TopicPermissionsPermissionInput interface {
 	pulumi.Input
 
@@ -1781,7 +1979,7 @@ func (i TopicPermissionsPermissionArgs) ToTopicPermissionsPermissionOutputWithCo
 // TopicPermissionsPermissionArrayInput is an input type that accepts TopicPermissionsPermissionArray and TopicPermissionsPermissionArrayOutput values.
 // You can construct a concrete instance of `TopicPermissionsPermissionArrayInput` via:
 //
-//          TopicPermissionsPermissionArray{ TopicPermissionsPermissionArgs{...} }
+//	TopicPermissionsPermissionArray{ TopicPermissionsPermissionArgs{...} }
 type TopicPermissionsPermissionArrayInput interface {
 	pulumi.Input
 
@@ -1852,11 +2050,125 @@ func (o TopicPermissionsPermissionArrayOutput) Index(i pulumi.IntInput) TopicPer
 	}).(TopicPermissionsPermissionOutput)
 }
 
+type GetExchangeSetting struct {
+	Arguments  map[string]interface{} `pulumi:"arguments"`
+	AutoDelete *bool                  `pulumi:"autoDelete"`
+	Durable    *bool                  `pulumi:"durable"`
+	Type       string                 `pulumi:"type"`
+}
+
+// GetExchangeSettingInput is an input type that accepts GetExchangeSettingArgs and GetExchangeSettingOutput values.
+// You can construct a concrete instance of `GetExchangeSettingInput` via:
+//
+//	GetExchangeSettingArgs{...}
+type GetExchangeSettingInput interface {
+	pulumi.Input
+
+	ToGetExchangeSettingOutput() GetExchangeSettingOutput
+	ToGetExchangeSettingOutputWithContext(context.Context) GetExchangeSettingOutput
+}
+
+type GetExchangeSettingArgs struct {
+	Arguments  pulumi.MapInput     `pulumi:"arguments"`
+	AutoDelete pulumi.BoolPtrInput `pulumi:"autoDelete"`
+	Durable    pulumi.BoolPtrInput `pulumi:"durable"`
+	Type       pulumi.StringInput  `pulumi:"type"`
+}
+
+func (GetExchangeSettingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetExchangeSetting)(nil)).Elem()
+}
+
+func (i GetExchangeSettingArgs) ToGetExchangeSettingOutput() GetExchangeSettingOutput {
+	return i.ToGetExchangeSettingOutputWithContext(context.Background())
+}
+
+func (i GetExchangeSettingArgs) ToGetExchangeSettingOutputWithContext(ctx context.Context) GetExchangeSettingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetExchangeSettingOutput)
+}
+
+// GetExchangeSettingArrayInput is an input type that accepts GetExchangeSettingArray and GetExchangeSettingArrayOutput values.
+// You can construct a concrete instance of `GetExchangeSettingArrayInput` via:
+//
+//	GetExchangeSettingArray{ GetExchangeSettingArgs{...} }
+type GetExchangeSettingArrayInput interface {
+	pulumi.Input
+
+	ToGetExchangeSettingArrayOutput() GetExchangeSettingArrayOutput
+	ToGetExchangeSettingArrayOutputWithContext(context.Context) GetExchangeSettingArrayOutput
+}
+
+type GetExchangeSettingArray []GetExchangeSettingInput
+
+func (GetExchangeSettingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetExchangeSetting)(nil)).Elem()
+}
+
+func (i GetExchangeSettingArray) ToGetExchangeSettingArrayOutput() GetExchangeSettingArrayOutput {
+	return i.ToGetExchangeSettingArrayOutputWithContext(context.Background())
+}
+
+func (i GetExchangeSettingArray) ToGetExchangeSettingArrayOutputWithContext(ctx context.Context) GetExchangeSettingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetExchangeSettingArrayOutput)
+}
+
+type GetExchangeSettingOutput struct{ *pulumi.OutputState }
+
+func (GetExchangeSettingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetExchangeSetting)(nil)).Elem()
+}
+
+func (o GetExchangeSettingOutput) ToGetExchangeSettingOutput() GetExchangeSettingOutput {
+	return o
+}
+
+func (o GetExchangeSettingOutput) ToGetExchangeSettingOutputWithContext(ctx context.Context) GetExchangeSettingOutput {
+	return o
+}
+
+func (o GetExchangeSettingOutput) Arguments() pulumi.MapOutput {
+	return o.ApplyT(func(v GetExchangeSetting) map[string]interface{} { return v.Arguments }).(pulumi.MapOutput)
+}
+
+func (o GetExchangeSettingOutput) AutoDelete() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetExchangeSetting) *bool { return v.AutoDelete }).(pulumi.BoolPtrOutput)
+}
+
+func (o GetExchangeSettingOutput) Durable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetExchangeSetting) *bool { return v.Durable }).(pulumi.BoolPtrOutput)
+}
+
+func (o GetExchangeSettingOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetExchangeSetting) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetExchangeSettingArrayOutput struct{ *pulumi.OutputState }
+
+func (GetExchangeSettingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetExchangeSetting)(nil)).Elem()
+}
+
+func (o GetExchangeSettingArrayOutput) ToGetExchangeSettingArrayOutput() GetExchangeSettingArrayOutput {
+	return o
+}
+
+func (o GetExchangeSettingArrayOutput) ToGetExchangeSettingArrayOutputWithContext(ctx context.Context) GetExchangeSettingArrayOutput {
+	return o
+}
+
+func (o GetExchangeSettingArrayOutput) Index(i pulumi.IntInput) GetExchangeSettingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetExchangeSetting {
+		return vs[0].([]GetExchangeSetting)[vs[1].(int)]
+	}).(GetExchangeSettingOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ExchangeSettingsInput)(nil)).Elem(), ExchangeSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExchangeSettingsPtrInput)(nil)).Elem(), ExchangeSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederationUpstreamDefinitionInput)(nil)).Elem(), FederationUpstreamDefinitionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederationUpstreamDefinitionPtrInput)(nil)).Elem(), FederationUpstreamDefinitionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OperatorPolicyPolicyInput)(nil)).Elem(), OperatorPolicyPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OperatorPolicyPolicyPtrInput)(nil)).Elem(), OperatorPolicyPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PermissionsPermissionsInput)(nil)).Elem(), PermissionsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PermissionsPermissionsPtrInput)(nil)).Elem(), PermissionsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyPolicyInput)(nil)).Elem(), PolicyPolicyArgs{})
@@ -1867,10 +2179,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ShovelInfoPtrInput)(nil)).Elem(), ShovelInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicPermissionsPermissionInput)(nil)).Elem(), TopicPermissionsPermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicPermissionsPermissionArrayInput)(nil)).Elem(), TopicPermissionsPermissionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetExchangeSettingInput)(nil)).Elem(), GetExchangeSettingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetExchangeSettingArrayInput)(nil)).Elem(), GetExchangeSettingArray{})
 	pulumi.RegisterOutputType(ExchangeSettingsOutput{})
 	pulumi.RegisterOutputType(ExchangeSettingsPtrOutput{})
 	pulumi.RegisterOutputType(FederationUpstreamDefinitionOutput{})
 	pulumi.RegisterOutputType(FederationUpstreamDefinitionPtrOutput{})
+	pulumi.RegisterOutputType(OperatorPolicyPolicyOutput{})
+	pulumi.RegisterOutputType(OperatorPolicyPolicyPtrOutput{})
 	pulumi.RegisterOutputType(PermissionsPermissionsOutput{})
 	pulumi.RegisterOutputType(PermissionsPermissionsPtrOutput{})
 	pulumi.RegisterOutputType(PolicyPolicyOutput{})
@@ -1881,4 +2197,6 @@ func init() {
 	pulumi.RegisterOutputType(ShovelInfoPtrOutput{})
 	pulumi.RegisterOutputType(TopicPermissionsPermissionOutput{})
 	pulumi.RegisterOutputType(TopicPermissionsPermissionArrayOutput{})
+	pulumi.RegisterOutputType(GetExchangeSettingOutput{})
+	pulumi.RegisterOutputType(GetExchangeSettingArrayOutput{})
 }

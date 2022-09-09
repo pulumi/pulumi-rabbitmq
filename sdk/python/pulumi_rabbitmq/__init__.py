@@ -8,6 +8,10 @@ import typing
 from .binding import *
 from .exchange import *
 from .federation_upstream import *
+from .get_exchange import *
+from .get_user import *
+from .get_v_host import *
+from .operator_policy import *
 from .permissions import *
 from .policy import *
 from .provider import *
@@ -51,6 +55,14 @@ _utilities.register(
   "fqn": "pulumi_rabbitmq",
   "classes": {
    "rabbitmq:index/federationUpstream:FederationUpstream": "FederationUpstream"
+  }
+ },
+ {
+  "pkg": "rabbitmq",
+  "mod": "index/operatorPolicy",
+  "fqn": "pulumi_rabbitmq",
+  "classes": {
+   "rabbitmq:index/operatorPolicy:OperatorPolicy": "OperatorPolicy"
   }
  },
  {

@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The ``VHost`` resource creates and manages a vhost.
+// The “VHost“ resource creates and manages a vhost.
 //
 // ## Example Usage
 //
@@ -18,19 +18,22 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := rabbitmq.NewVHost(ctx, "myVhost", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := rabbitmq.NewVHost(ctx, "myVhost", nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -38,7 +41,9 @@ import (
 // Vhosts can be imported using the `name`, e.g.
 //
 // ```sh
-//  $ pulumi import rabbitmq:index/vHost:VHost my_vhost my_vhost
+//
+//	$ pulumi import rabbitmq:index/vHost:VHost my_vhost my_vhost
+//
 // ```
 type VHost struct {
 	pulumi.CustomResourceState
@@ -126,7 +131,7 @@ func (i *VHost) ToVHostOutputWithContext(ctx context.Context) VHostOutput {
 // VHostArrayInput is an input type that accepts VHostArray and VHostArrayOutput values.
 // You can construct a concrete instance of `VHostArrayInput` via:
 //
-//          VHostArray{ VHostArgs{...} }
+//	VHostArray{ VHostArgs{...} }
 type VHostArrayInput interface {
 	pulumi.Input
 
@@ -151,7 +156,7 @@ func (i VHostArray) ToVHostArrayOutputWithContext(ctx context.Context) VHostArra
 // VHostMapInput is an input type that accepts VHostMap and VHostMapOutput values.
 // You can construct a concrete instance of `VHostMapInput` via:
 //
-//          VHostMap{ "key": VHostArgs{...} }
+//	VHostMap{ "key": VHostArgs{...} }
 type VHostMapInput interface {
 	pulumi.Input
 
@@ -185,6 +190,11 @@ func (o VHostOutput) ToVHostOutput() VHostOutput {
 
 func (o VHostOutput) ToVHostOutputWithContext(ctx context.Context) VHostOutput {
 	return o
+}
+
+// The name of the vhost.
+func (o VHostOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *VHost) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 type VHostArrayOutput struct{ *pulumi.OutputState }

@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The ``Shovel`` resource creates and manages a dynamic shovel.
+// The “Shovel“ resource creates and manages a dynamic shovel.
 //
 // ## Example Usage
 //
@@ -19,53 +19,56 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		testExchange, err := rabbitmq.NewExchange(ctx, "testExchange", &rabbitmq.ExchangeArgs{
-// 			Settings: &ExchangeSettingsArgs{
-// 				AutoDelete: pulumi.Bool(true),
-// 				Durable:    pulumi.Bool(false),
-// 				Type:       pulumi.String("fanout"),
-// 			},
-// 			Vhost: testVHost.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		testQueue, err := rabbitmq.NewQueue(ctx, "testQueue", &rabbitmq.QueueArgs{
-// 			Settings: &QueueSettingsArgs{
-// 				AutoDelete: pulumi.Bool(true),
-// 				Durable:    pulumi.Bool(false),
-// 			},
-// 			Vhost: testVHost.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = rabbitmq.NewShovel(ctx, "shovelTest", &rabbitmq.ShovelArgs{
-// 			Info: &ShovelInfoArgs{
-// 				DestinationQueue:  testQueue.Name,
-// 				DestinationUri:    pulumi.String("amqp:///test"),
-// 				SourceExchange:    testExchange.Name,
-// 				SourceExchangeKey: pulumi.String("test"),
-// 				SourceUri:         pulumi.String("amqp:///test"),
-// 			},
-// 			Vhost: testVHost.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
+//			if err != nil {
+//				return err
+//			}
+//			testExchange, err := rabbitmq.NewExchange(ctx, "testExchange", &rabbitmq.ExchangeArgs{
+//				Settings: &ExchangeSettingsArgs{
+//					AutoDelete: pulumi.Bool(true),
+//					Durable:    pulumi.Bool(false),
+//					Type:       pulumi.String("fanout"),
+//				},
+//				Vhost: testVHost.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testQueue, err := rabbitmq.NewQueue(ctx, "testQueue", &rabbitmq.QueueArgs{
+//				Settings: &QueueSettingsArgs{
+//					AutoDelete: pulumi.Bool(true),
+//					Durable:    pulumi.Bool(false),
+//				},
+//				Vhost: testVHost.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rabbitmq.NewShovel(ctx, "shovelTest", &rabbitmq.ShovelArgs{
+//				Info: &ShovelInfoArgs{
+//					DestinationQueue:  testQueue.Name,
+//					DestinationUri:    pulumi.String("amqp:///test"),
+//					SourceExchange:    testExchange.Name,
+//					SourceExchangeKey: pulumi.String("test"),
+//					SourceUri:         pulumi.String("amqp:///test"),
+//				},
+//				Vhost: testVHost.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -73,7 +76,9 @@ import (
 // Shovels can be imported using the `name` and `vhost` E.g.
 //
 // ```sh
-//  $ pulumi import rabbitmq:index/shovel:Shovel test shovelTest@test
+//
+//	$ pulumi import rabbitmq:index/shovel:Shovel test shovelTest@test
+//
 // ```
 type Shovel struct {
 	pulumi.CustomResourceState
@@ -192,7 +197,7 @@ func (i *Shovel) ToShovelOutputWithContext(ctx context.Context) ShovelOutput {
 // ShovelArrayInput is an input type that accepts ShovelArray and ShovelArrayOutput values.
 // You can construct a concrete instance of `ShovelArrayInput` via:
 //
-//          ShovelArray{ ShovelArgs{...} }
+//	ShovelArray{ ShovelArgs{...} }
 type ShovelArrayInput interface {
 	pulumi.Input
 
@@ -217,7 +222,7 @@ func (i ShovelArray) ToShovelArrayOutputWithContext(ctx context.Context) ShovelA
 // ShovelMapInput is an input type that accepts ShovelMap and ShovelMapOutput values.
 // You can construct a concrete instance of `ShovelMapInput` via:
 //
-//          ShovelMap{ "key": ShovelArgs{...} }
+//	ShovelMap{ "key": ShovelArgs{...} }
 type ShovelMapInput interface {
 	pulumi.Input
 
@@ -251,6 +256,22 @@ func (o ShovelOutput) ToShovelOutput() ShovelOutput {
 
 func (o ShovelOutput) ToShovelOutputWithContext(ctx context.Context) ShovelOutput {
 	return o
+}
+
+// The settings of the dynamic shovel. The structure is
+// described below.
+func (o ShovelOutput) Info() ShovelInfoOutput {
+	return o.ApplyT(func(v *Shovel) ShovelInfoOutput { return v.Info }).(ShovelInfoOutput)
+}
+
+// The shovel name.
+func (o ShovelOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Shovel) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The vhost to create the resource in.
+func (o ShovelOutput) Vhost() pulumi.StringOutput {
+	return o.ApplyT(func(v *Shovel) pulumi.StringOutput { return v.Vhost }).(pulumi.StringOutput)
 }
 
 type ShovelArrayOutput struct{ *pulumi.OutputState }

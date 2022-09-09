@@ -15,19 +15,15 @@ namespace Pulumi.RabbitMQ
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using RabbitMQ = Pulumi.RabbitMQ;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var myVhost = new RabbitMQ.VHost("myVhost", new RabbitMQ.VHostArgs
-    ///         {
-    ///         });
-    ///     }
+    ///     var myVhost = new RabbitMQ.VHost("myVhost");
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -39,7 +35,7 @@ namespace Pulumi.RabbitMQ
     /// ```
     /// </summary>
     [RabbitMQResourceType("rabbitmq:index/vHost:VHost")]
-    public partial class VHost : Pulumi.CustomResource
+    public partial class VHost : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the vhost.
@@ -91,7 +87,7 @@ namespace Pulumi.RabbitMQ
         }
     }
 
-    public sealed class VHostArgs : Pulumi.ResourceArgs
+    public sealed class VHostArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the vhost.
@@ -102,9 +98,10 @@ namespace Pulumi.RabbitMQ
         public VHostArgs()
         {
         }
+        public static new VHostArgs Empty => new VHostArgs();
     }
 
-    public sealed class VHostState : Pulumi.ResourceArgs
+    public sealed class VHostState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the vhost.
@@ -115,5 +112,6 @@ namespace Pulumi.RabbitMQ
         public VHostState()
         {
         }
+        public static new VHostState Empty => new VHostState();
     }
 }

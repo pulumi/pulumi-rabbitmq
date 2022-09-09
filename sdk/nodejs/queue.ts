@@ -15,22 +15,25 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
  *
- * const testVHost = new rabbitmq.VHost("test", {});
+ * const testVHost = new rabbitmq.VHost("testVHost", {});
  * const guest = new rabbitmq.Permissions("guest", {
- *     permissions: {
- *         configure: ".*",
- *         read: ".*",
- *         write: ".*",
- *     },
  *     user: "guest",
  *     vhost: testVHost.name,
- * });
- * const testQueue = new rabbitmq.Queue("test", {
- *     settings: {
- *         autoDelete: true,
- *         durable: false,
+ *     permissions: {
+ *         configure: ".*",
+ *         write: ".*",
+ *         read: ".*",
  *     },
+ * });
+ * const testQueue = new rabbitmq.Queue("testQueue", {
  *     vhost: guest.vhost,
+ *     settings: {
+ *         durable: false,
+ *         autoDelete: true,
+ *         arguments: {
+ *             "x-queue-type": "quorum",
+ *         },
+ *     },
  * });
  * ```
  * ### Example With JSON Arguments

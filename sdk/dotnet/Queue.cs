@@ -16,83 +16,83 @@ namespace Pulumi.RabbitMQ
     /// ### Basic Example
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using RabbitMQ = Pulumi.RabbitMQ;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var testVHost = new RabbitMQ.VHost("testVHost", new RabbitMQ.VHostArgs
-    ///         {
-    ///         });
-    ///         var guest = new RabbitMQ.Permissions("guest", new RabbitMQ.PermissionsArgs
-    ///         {
-    ///             Permissions = new RabbitMQ.Inputs.PermissionsPermissionsArgs
-    ///             {
-    ///                 Configure = ".*",
-    ///                 Read = ".*",
-    ///                 Write = ".*",
-    ///             },
-    ///             User = "guest",
-    ///             Vhost = testVHost.Name,
-    ///         });
-    ///         var testQueue = new RabbitMQ.Queue("testQueue", new RabbitMQ.QueueArgs
-    ///         {
-    ///             Settings = new RabbitMQ.Inputs.QueueSettingsArgs
-    ///             {
-    ///                 AutoDelete = true,
-    ///                 Durable = false,
-    ///             },
-    ///             Vhost = guest.Vhost,
-    ///         });
-    ///     }
+    ///     var testVHost = new RabbitMQ.VHost("testVHost");
     /// 
-    /// }
+    ///     var guest = new RabbitMQ.Permissions("guest", new()
+    ///     {
+    ///         User = "guest",
+    ///         Vhost = testVHost.Name,
+    ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
+    ///         {
+    ///             Configure = ".*",
+    ///             Write = ".*",
+    ///             Read = ".*",
+    ///         },
+    ///     });
+    /// 
+    ///     var testQueue = new RabbitMQ.Queue("testQueue", new()
+    ///     {
+    ///         Vhost = guest.Vhost,
+    ///         Settings = new RabbitMQ.Inputs.QueueSettingsArgs
+    ///         {
+    ///             Durable = false,
+    ///             AutoDelete = true,
+    ///             Arguments = 
+    ///             {
+    ///                 { "x-queue-type", "quorum" },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### Example With JSON Arguments
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using RabbitMQ = Pulumi.RabbitMQ;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var config = new Config();
-    ///         var arguments = config.Get("arguments") ?? @"{
+    ///     var config = new Config();
+    ///     var arguments = config.Get("arguments") ?? @"{
     ///   ""x-message-ttl"": 5000
     /// }
     /// 
     /// ";
-    ///         var testVHost = new RabbitMQ.VHost("testVHost", new RabbitMQ.VHostArgs
-    ///         {
-    ///         });
-    ///         var guest = new RabbitMQ.Permissions("guest", new RabbitMQ.PermissionsArgs
-    ///         {
-    ///             Permissions = new RabbitMQ.Inputs.PermissionsPermissionsArgs
-    ///             {
-    ///                 Configure = ".*",
-    ///                 Read = ".*",
-    ///                 Write = ".*",
-    ///             },
-    ///             User = "guest",
-    ///             Vhost = testVHost.Name,
-    ///         });
-    ///         var testQueue = new RabbitMQ.Queue("testQueue", new RabbitMQ.QueueArgs
-    ///         {
-    ///             Settings = new RabbitMQ.Inputs.QueueSettingsArgs
-    ///             {
-    ///                 ArgumentsJson = arguments,
-    ///                 AutoDelete = true,
-    ///                 Durable = false,
-    ///             },
-    ///             Vhost = guest.Vhost,
-    ///         });
-    ///     }
+    ///     var testVHost = new RabbitMQ.VHost("testVHost");
     /// 
-    /// }
+    ///     var guest = new RabbitMQ.Permissions("guest", new()
+    ///     {
+    ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
+    ///         {
+    ///             Configure = ".*",
+    ///             Read = ".*",
+    ///             Write = ".*",
+    ///         },
+    ///         User = "guest",
+    ///         Vhost = testVHost.Name,
+    ///     });
+    /// 
+    ///     var testQueue = new RabbitMQ.Queue("testQueue", new()
+    ///     {
+    ///         Settings = new RabbitMQ.Inputs.QueueSettingsArgs
+    ///         {
+    ///             ArgumentsJson = arguments,
+    ///             AutoDelete = true,
+    ///             Durable = false,
+    ///         },
+    ///         Vhost = guest.Vhost,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -104,7 +104,7 @@ namespace Pulumi.RabbitMQ
     /// ```
     /// </summary>
     [RabbitMQResourceType("rabbitmq:index/queue:Queue")]
-    public partial class Queue : Pulumi.CustomResource
+    public partial class Queue : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the queue.
@@ -169,7 +169,7 @@ namespace Pulumi.RabbitMQ
         }
     }
 
-    public sealed class QueueArgs : Pulumi.ResourceArgs
+    public sealed class QueueArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the queue.
@@ -193,9 +193,10 @@ namespace Pulumi.RabbitMQ
         public QueueArgs()
         {
         }
+        public static new QueueArgs Empty => new QueueArgs();
     }
 
-    public sealed class QueueState : Pulumi.ResourceArgs
+    public sealed class QueueState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the queue.
@@ -219,5 +220,6 @@ namespace Pulumi.RabbitMQ
         public QueueState()
         {
         }
+        public static new QueueState Empty => new QueueState();
     }
 }

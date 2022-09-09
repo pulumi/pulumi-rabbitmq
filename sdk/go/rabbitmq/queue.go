@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The ``Queue`` resource creates and manages a queue.
+// The “Queue“ resource creates and manages a queue.
 //
 // ## Example Usage
 // ### Basic Example
@@ -20,41 +20,47 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
-// 			Permissions: &PermissionsPermissionsArgs{
-// 				Configure: pulumi.String(".*"),
-// 				Read:      pulumi.String(".*"),
-// 				Write:     pulumi.String(".*"),
-// 			},
-// 			User:  pulumi.String("guest"),
-// 			Vhost: testVHost.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = rabbitmq.NewQueue(ctx, "testQueue", &rabbitmq.QueueArgs{
-// 			Settings: &QueueSettingsArgs{
-// 				AutoDelete: pulumi.Bool(true),
-// 				Durable:    pulumi.Bool(false),
-// 			},
-// 			Vhost: guest.Vhost,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
+//			if err != nil {
+//				return err
+//			}
+//			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
+//				User:  pulumi.String("guest"),
+//				Vhost: testVHost.Name,
+//				Permissions: &PermissionsPermissionsArgs{
+//					Configure: pulumi.String(".*"),
+//					Write:     pulumi.String(".*"),
+//					Read:      pulumi.String(".*"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rabbitmq.NewQueue(ctx, "testQueue", &rabbitmq.QueueArgs{
+//				Vhost: guest.Vhost,
+//				Settings: &QueueSettingsArgs{
+//					Durable:    pulumi.Bool(false),
+//					AutoDelete: pulumi.Bool(true),
+//					Arguments: pulumi.AnyMap{
+//						"x-queue-type": pulumi.Any("quorum"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Example With JSON Arguments
 //
@@ -62,50 +68,53 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		cfg := config.New(ctx, "")
-// 		arguments := fmt.Sprintf("%v%v%v%v", "{\n", "  \"x-message-ttl\": 5000\n", "}\n", "\n")
-// 		if param := cfg.Get("arguments"); param != "" {
-// 			arguments = param
-// 		}
-// 		testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
-// 			Permissions: &PermissionsPermissionsArgs{
-// 				Configure: pulumi.String(".*"),
-// 				Read:      pulumi.String(".*"),
-// 				Write:     pulumi.String(".*"),
-// 			},
-// 			User:  pulumi.String("guest"),
-// 			Vhost: testVHost.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = rabbitmq.NewQueue(ctx, "testQueue", &rabbitmq.QueueArgs{
-// 			Settings: &QueueSettingsArgs{
-// 				ArgumentsJson: pulumi.String(arguments),
-// 				AutoDelete:    pulumi.Bool(true),
-// 				Durable:       pulumi.Bool(false),
-// 			},
-// 			Vhost: guest.Vhost,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cfg := config.New(ctx, "")
+//			arguments := fmt.Sprintf("{\n  \"x-message-ttl\": 5000\n}\n\n")
+//			if param := cfg.Get("arguments"); param != "" {
+//				arguments = param
+//			}
+//			testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
+//			if err != nil {
+//				return err
+//			}
+//			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
+//				Permissions: &PermissionsPermissionsArgs{
+//					Configure: pulumi.String(".*"),
+//					Read:      pulumi.String(".*"),
+//					Write:     pulumi.String(".*"),
+//				},
+//				User:  pulumi.String("guest"),
+//				Vhost: testVHost.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rabbitmq.NewQueue(ctx, "testQueue", &rabbitmq.QueueArgs{
+//				Settings: &QueueSettingsArgs{
+//					ArgumentsJson: pulumi.String(arguments),
+//					AutoDelete:    pulumi.Bool(true),
+//					Durable:       pulumi.Bool(false),
+//				},
+//				Vhost: guest.Vhost,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -113,7 +122,9 @@ import (
 // Queues can be imported using the `id` which is composed of `name@vhost`. E.g.
 //
 // ```sh
-//  $ pulumi import rabbitmq:index/queue:Queue test name@vhost
+//
+//	$ pulumi import rabbitmq:index/queue:Queue test name@vhost
+//
 // ```
 type Queue struct {
 	pulumi.CustomResourceState
@@ -229,7 +240,7 @@ func (i *Queue) ToQueueOutputWithContext(ctx context.Context) QueueOutput {
 // QueueArrayInput is an input type that accepts QueueArray and QueueArrayOutput values.
 // You can construct a concrete instance of `QueueArrayInput` via:
 //
-//          QueueArray{ QueueArgs{...} }
+//	QueueArray{ QueueArgs{...} }
 type QueueArrayInput interface {
 	pulumi.Input
 
@@ -254,7 +265,7 @@ func (i QueueArray) ToQueueArrayOutputWithContext(ctx context.Context) QueueArra
 // QueueMapInput is an input type that accepts QueueMap and QueueMapOutput values.
 // You can construct a concrete instance of `QueueMapInput` via:
 //
-//          QueueMap{ "key": QueueArgs{...} }
+//	QueueMap{ "key": QueueArgs{...} }
 type QueueMapInput interface {
 	pulumi.Input
 
@@ -288,6 +299,22 @@ func (o QueueOutput) ToQueueOutput() QueueOutput {
 
 func (o QueueOutput) ToQueueOutputWithContext(ctx context.Context) QueueOutput {
 	return o
+}
+
+// The name of the queue.
+func (o QueueOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Queue) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The settings of the queue. The structure is
+// described below.
+func (o QueueOutput) Settings() QueueSettingsOutput {
+	return o.ApplyT(func(v *Queue) QueueSettingsOutput { return v.Settings }).(QueueSettingsOutput)
+}
+
+// The vhost to create the resource in.
+func (o QueueOutput) Vhost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Queue) pulumi.StringPtrOutput { return v.Vhost }).(pulumi.StringPtrOutput)
 }
 
 type QueueArrayOutput struct{ *pulumi.OutputState }

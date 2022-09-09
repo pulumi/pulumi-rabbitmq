@@ -68,6 +68,26 @@ export interface FederationUpstreamDefinition {
     uri: pulumi.Input<string>;
 }
 
+export interface OperatorPolicyPolicy {
+    /**
+     * Can be "queues".
+     */
+    applyTo: pulumi.Input<string>;
+    /**
+     * Key/value pairs of the operator policy definition. See the
+     * RabbitMQ documentation for definition references and examples.
+     */
+    definition: pulumi.Input<{[key: string]: any}>;
+    /**
+     * A pattern to match an exchange or queue name.
+     */
+    pattern: pulumi.Input<string>;
+    /**
+     * The policy with the greater priority is applied first.
+     */
+    priority: pulumi.Input<number>;
+}
+
 export interface PermissionsPermissions {
     /**
      * The "configure" ACL.
