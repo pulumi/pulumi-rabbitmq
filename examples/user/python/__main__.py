@@ -4,7 +4,7 @@ import pulumi_rabbitmq as rabbitmq
 
 password = random.RandomPassword("my-password",
                                     length=30,
-                                    special="true")
+                                    special=True)
 
 user = rabbitmq.User("my-python-user",
                         password=password.result)
