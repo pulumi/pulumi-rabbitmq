@@ -2,15 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export function getExchange(args: GetExchangeArgs, opts?: pulumi.InvokeOptions): Promise<GetExchangeResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("rabbitmq:index/getExchange:getExchange", {
         "name": args.name,
         "vhost": args.vhost,
@@ -34,9 +32,8 @@ export interface GetExchangeResult {
     readonly settings: outputs.GetExchangeSetting[];
     readonly vhost?: string;
 }
-
 export function getExchangeOutput(args: GetExchangeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetExchangeResult> {
-    return pulumi.output(args).apply(a => getExchange(a, opts))
+    return pulumi.output(args).apply((a: any) => getExchange(a, opts))
 }
 
 /**

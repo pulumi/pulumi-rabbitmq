@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
  *
- * const testVHost = new rabbitmq.VHost("test", {});
+ * const testVHost = new rabbitmq.VHost("testVHost", {});
  * const guest = new rabbitmq.Permissions("guest", {
  *     permissions: {
  *         configure: ".*",
@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  *     user: "guest",
  *     vhost: testVHost.name,
  * });
- * const testExchange = new rabbitmq.Exchange("test", {
+ * const testExchange = new rabbitmq.Exchange("testExchange", {
  *     settings: {
  *         autoDelete: true,
  *         durable: false,
@@ -32,14 +32,14 @@ import * as utilities from "./utilities";
  *     },
  *     vhost: guest.vhost,
  * });
- * const testQueue = new rabbitmq.Queue("test", {
+ * const testQueue = new rabbitmq.Queue("testQueue", {
  *     settings: {
  *         autoDelete: false,
  *         durable: true,
  *     },
  *     vhost: guest.vhost,
  * });
- * const testBinding = new rabbitmq.Binding("test", {
+ * const testBinding = new rabbitmq.Binding("testBinding", {
  *     destination: testQueue.name,
  *     destinationType: "queue",
  *     routingKey: "#",

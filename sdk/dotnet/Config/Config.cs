@@ -30,7 +30,7 @@ namespace Pulumi.RabbitMQ
             }
         }
 
-        private static readonly Pulumi.Config __config = new Pulumi.Config("rabbitmq");
+        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("rabbitmq");
 
         private static readonly __Value<string?> _cacertFile = new __Value<string?>(() => __config.Get("cacertFile") ?? Utilities.GetEnv("RABBITMQ_CACERT"));
         public static string? CacertFile

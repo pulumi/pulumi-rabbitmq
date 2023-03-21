@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -35,7 +35,7 @@ import (
 //			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
 //				User:  pulumi.String("guest"),
 //				Vhost: testVHost.Name,
-//				Permissions: &PermissionsPermissionsArgs{
+//				Permissions: &rabbitmq.PermissionsPermissionsArgs{
 //					Configure: pulumi.String(".*"),
 //					Write:     pulumi.String(".*"),
 //					Read:      pulumi.String(".*"),
@@ -46,7 +46,7 @@ import (
 //			}
 //			_, err = rabbitmq.NewQueue(ctx, "testQueue", &rabbitmq.QueueArgs{
 //				Vhost: guest.Vhost,
-//				Settings: &QueueSettingsArgs{
+//				Settings: &rabbitmq.QueueSettingsArgs{
 //					Durable:    pulumi.Bool(false),
 //					AutoDelete: pulumi.Bool(true),
 //					Arguments: pulumi.AnyMap{
@@ -69,8 +69,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi-rabbitmq/sdk/go/rabbitmq"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
@@ -80,7 +78,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			cfg := config.New(ctx, "")
-//			arguments := fmt.Sprintf("{\n  \"x-message-ttl\": 5000\n}\n\n")
+//			arguments := "{\n  \"x-message-ttl\": 5000\n}\n\n"
 //			if param := cfg.Get("arguments"); param != "" {
 //				arguments = param
 //			}
@@ -89,7 +87,7 @@ import (
 //				return err
 //			}
 //			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
-//				Permissions: &PermissionsPermissionsArgs{
+//				Permissions: &rabbitmq.PermissionsPermissionsArgs{
 //					Configure: pulumi.String(".*"),
 //					Read:      pulumi.String(".*"),
 //					Write:     pulumi.String(".*"),
@@ -101,7 +99,7 @@ import (
 //				return err
 //			}
 //			_, err = rabbitmq.NewQueue(ctx, "testQueue", &rabbitmq.QueueArgs{
-//				Settings: &QueueSettingsArgs{
+//				Settings: &rabbitmq.QueueSettingsArgs{
 //					ArgumentsJson: pulumi.String(arguments),
 //					AutoDelete:    pulumi.Bool(true),
 //					Durable:       pulumi.Bool(false),

@@ -12,10 +12,10 @@ namespace Pulumi.RabbitMQ
     public static class GetExchange
     {
         public static Task<GetExchangeResult> InvokeAsync(GetExchangeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetExchangeResult>("rabbitmq:index/getExchange:getExchange", args ?? new GetExchangeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetExchangeResult>("rabbitmq:index/getExchange:getExchange", args ?? new GetExchangeArgs(), options.WithDefaults());
 
         public static Output<GetExchangeResult> Invoke(GetExchangeInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetExchangeResult>("rabbitmq:index/getExchange:getExchange", args ?? new GetExchangeInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetExchangeResult>("rabbitmq:index/getExchange:getExchange", args ?? new GetExchangeInvokeArgs(), options.WithDefaults());
     }
 
 

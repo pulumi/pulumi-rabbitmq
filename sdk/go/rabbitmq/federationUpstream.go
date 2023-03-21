@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -36,7 +36,7 @@ import (
 //			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
 //				User:  pulumi.String("guest"),
 //				Vhost: test.Name,
-//				Permissions: &PermissionsPermissionsArgs{
+//				Permissions: &rabbitmq.PermissionsPermissionsArgs{
 //					Configure: pulumi.String(".*"),
 //					Write:     pulumi.String(".*"),
 //					Read:      pulumi.String(".*"),
@@ -47,7 +47,7 @@ import (
 //			}
 //			fooExchange, err := rabbitmq.NewExchange(ctx, "fooExchange", &rabbitmq.ExchangeArgs{
 //				Vhost: guest.Vhost,
-//				Settings: &ExchangeSettingsArgs{
+//				Settings: &rabbitmq.ExchangeSettingsArgs{
 //					Type:    pulumi.String("topic"),
 //					Durable: pulumi.Bool(true),
 //				},
@@ -57,8 +57,8 @@ import (
 //			}
 //			fooFederationUpstream, err := rabbitmq.NewFederationUpstream(ctx, "fooFederationUpstream", &rabbitmq.FederationUpstreamArgs{
 //				Vhost: guest.Vhost,
-//				Definition: &FederationUpstreamDefinitionArgs{
-//					Uri:            pulumi.String(fmt.Sprintf("amqp://guest:guest@upstream-server-name:5672/%v2f", "%")),
+//				Definition: &rabbitmq.FederationUpstreamDefinitionArgs{
+//					Uri:            pulumi.String("amqp://guest:guest@upstream-server-name:5672/%2f"),
 //					PrefetchCount:  pulumi.Int(1000),
 //					ReconnectDelay: pulumi.Int(5),
 //					AckMode:        pulumi.String("on-confirm"),
@@ -71,7 +71,7 @@ import (
 //			}
 //			_, err = rabbitmq.NewPolicy(ctx, "fooPolicy", &rabbitmq.PolicyArgs{
 //				Vhost: guest.Vhost,
-//				Policy: &PolicyPolicyArgs{
+//				Policy: &rabbitmq.PolicyPolicyArgs{
 //					Pattern: fooExchange.Name.ApplyT(func(name string) (string, error) {
 //						return fmt.Sprintf("(^%v$)", name), nil
 //					}).(pulumi.StringOutput),

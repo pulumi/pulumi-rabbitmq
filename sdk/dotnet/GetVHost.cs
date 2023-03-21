@@ -12,10 +12,10 @@ namespace Pulumi.RabbitMQ
     public static class GetVHost
     {
         public static Task<GetVHostResult> InvokeAsync(GetVHostArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVHostResult>("rabbitmq:index/getVHost:getVHost", args ?? new GetVHostArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetVHostResult>("rabbitmq:index/getVHost:getVHost", args ?? new GetVHostArgs(), options.WithDefaults());
 
         public static Output<GetVHostResult> Invoke(GetVHostInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetVHostResult>("rabbitmq:index/getVHost:getVHost", args ?? new GetVHostInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetVHostResult>("rabbitmq:index/getVHost:getVHost", args ?? new GetVHostInvokeArgs(), options.WithDefaults());
     }
 
 

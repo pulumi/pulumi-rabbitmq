@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -14,8 +15,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
  *
- * const testVHost = new rabbitmq.VHost("test", {});
- * const testExchange = new rabbitmq.Exchange("test", {
+ * const testVHost = new rabbitmq.VHost("testVHost", {});
+ * const testExchange = new rabbitmq.Exchange("testExchange", {
  *     settings: {
  *         autoDelete: true,
  *         durable: false,
@@ -23,7 +24,7 @@ import * as utilities from "./utilities";
  *     },
  *     vhost: testVHost.name,
  * });
- * const testQueue = new rabbitmq.Queue("test", {
+ * const testQueue = new rabbitmq.Queue("testQueue", {
  *     settings: {
  *         autoDelete: true,
  *         durable: false,

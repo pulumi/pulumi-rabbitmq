@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -36,7 +37,7 @@ import * as utilities from "./utilities";
  * const fooFederationUpstream = new rabbitmq.FederationUpstream("fooFederationUpstream", {
  *     vhost: guest.vhost,
  *     definition: {
- *         uri: `amqp://guest:guest@upstream-server-name:5672/%2f`,
+ *         uri: "amqp://guest:guest@upstream-server-name:5672/%2f",
  *         prefetchCount: 1000,
  *         reconnectDelay: 5,
  *         ackMode: "on-confirm",
