@@ -19,11 +19,11 @@ import (
 	"path/filepath"
 	"unicode"
 
+	"github.com/cyrilgdn/terraform-provider-rabbitmq/rabbitmq"
 	"github.com/pulumi/pulumi-rabbitmq/provider/v3/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/terraform-providers/terraform-provider-rabbitmq/rabbitmq"
 )
 
 // all of the token components used below.
@@ -63,13 +63,14 @@ func makeDataSource(mod string, res string) tokens.ModuleMember {
 func Provider() tfbridge.ProviderInfo {
 	p := shimv2.NewProvider(rabbitmq.Provider())
 	prov := tfbridge.ProviderInfo{
-		P:           p,
-		Name:        "rabbitmq",
-		Description: "A Pulumi package for creating and managing RabbitMQ resources.",
-		Keywords:    []string{"pulumi", "rabbitmq"},
-		License:     "Apache-2.0",
-		Homepage:    "https://pulumi.io",
-		Repository:  "https://github.com/pulumi/pulumi-rabbitmq",
+		P:                p,
+		Name:             "rabbitmq",
+		Description:      "A Pulumi package for creating and managing RabbitMQ resources.",
+		Keywords:         []string{"pulumi", "rabbitmq"},
+		License:          "Apache-2.0",
+		Homepage:         "https://pulumi.io",
+		Repository:       "https://github.com/pulumi/pulumi-rabbitmq",
+		UpstreamRepoPath: "./upstream",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"insecure": {
 				Default: &tfbridge.DefaultInfo{
