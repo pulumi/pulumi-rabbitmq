@@ -20,7 +20,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-rabbitmq/sdk/go/rabbitmq"
+//	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
