@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -15,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
  *
- * const testVHost = new rabbitmq.VHost("test", {});
+ * const testVHost = new rabbitmq.VHost("testVHost", {});
  * const guest = new rabbitmq.Permissions("guest", {
  *     permissions: {
  *         configure: ".*",
@@ -25,7 +26,7 @@ import * as utilities from "./utilities";
  *     user: "guest",
  *     vhost: testVHost.name,
  * });
- * const testPolicy = new rabbitmq.Policy("test", {
+ * const testPolicy = new rabbitmq.Policy("testPolicy", {
  *     policy: {
  *         applyTo: "all",
  *         definition: {

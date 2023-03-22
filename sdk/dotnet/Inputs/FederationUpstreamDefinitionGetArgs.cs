@@ -66,11 +66,21 @@ namespace Pulumi.RabbitMQ.Inputs
         [Input("trustUserId")]
         public Input<bool>? TrustUserId { get; set; }
 
+        [Input("uri", required: true)]
+        private Input<string>? _uri;
+
         /// <summary>
         /// The AMQP URI(s) for the upstream. Note that the URI may contain sensitive information, such as a password.
         /// </summary>
-        [Input("uri", required: true)]
-        public Input<string> Uri { get; set; } = null!;
+        public Input<string>? Uri
+        {
+            get => _uri;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _uri = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public FederationUpstreamDefinitionGetArgs()
         {

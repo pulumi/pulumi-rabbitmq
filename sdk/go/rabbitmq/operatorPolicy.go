@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -32,7 +32,7 @@ import (
 //				return err
 //			}
 //			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
-//				Permissions: &PermissionsPermissionsArgs{
+//				Permissions: &rabbitmq.PermissionsPermissionsArgs{
 //					Configure: pulumi.String(".*"),
 //					Read:      pulumi.String(".*"),
 //					Write:     pulumi.String(".*"),
@@ -44,7 +44,7 @@ import (
 //				return err
 //			}
 //			_, err = rabbitmq.NewOperatorPolicy(ctx, "testOperatorPolicy", &rabbitmq.OperatorPolicyArgs{
-//				Policy: &OperatorPolicyPolicyArgs{
+//				Policy: &rabbitmq.OperatorPolicyPolicyArgs{
 //					ApplyTo: pulumi.String("queues"),
 //					Definition: pulumi.AnyMap{
 //						"expires":     pulumi.Any(1800000),

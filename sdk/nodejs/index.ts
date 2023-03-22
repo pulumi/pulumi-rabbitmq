@@ -5,21 +5,81 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export * from "./binding";
-export * from "./exchange";
-export * from "./federationUpstream";
-export * from "./getExchange";
-export * from "./getUser";
-export * from "./getVHost";
-export * from "./operatorPolicy";
-export * from "./permissions";
-export * from "./policy";
-export * from "./provider";
-export * from "./queue";
-export * from "./shovel";
-export * from "./topicPermissions";
-export * from "./user";
-export * from "./vhost";
+export { BindingArgs, BindingState } from "./binding";
+export type Binding = import("./binding").Binding;
+export const Binding: typeof import("./binding").Binding = null as any;
+utilities.lazyLoad(exports, ["Binding"], () => require("./binding"));
+
+export { ExchangeArgs, ExchangeState } from "./exchange";
+export type Exchange = import("./exchange").Exchange;
+export const Exchange: typeof import("./exchange").Exchange = null as any;
+utilities.lazyLoad(exports, ["Exchange"], () => require("./exchange"));
+
+export { FederationUpstreamArgs, FederationUpstreamState } from "./federationUpstream";
+export type FederationUpstream = import("./federationUpstream").FederationUpstream;
+export const FederationUpstream: typeof import("./federationUpstream").FederationUpstream = null as any;
+utilities.lazyLoad(exports, ["FederationUpstream"], () => require("./federationUpstream"));
+
+export { GetExchangeArgs, GetExchangeResult, GetExchangeOutputArgs } from "./getExchange";
+export const getExchange: typeof import("./getExchange").getExchange = null as any;
+export const getExchangeOutput: typeof import("./getExchange").getExchangeOutput = null as any;
+utilities.lazyLoad(exports, ["getExchange","getExchangeOutput"], () => require("./getExchange"));
+
+export { GetUserArgs, GetUserResult, GetUserOutputArgs } from "./getUser";
+export const getUser: typeof import("./getUser").getUser = null as any;
+export const getUserOutput: typeof import("./getUser").getUserOutput = null as any;
+utilities.lazyLoad(exports, ["getUser","getUserOutput"], () => require("./getUser"));
+
+export { GetVHostArgs, GetVHostResult, GetVHostOutputArgs } from "./getVHost";
+export const getVHost: typeof import("./getVHost").getVHost = null as any;
+export const getVHostOutput: typeof import("./getVHost").getVHostOutput = null as any;
+utilities.lazyLoad(exports, ["getVHost","getVHostOutput"], () => require("./getVHost"));
+
+export { OperatorPolicyArgs, OperatorPolicyState } from "./operatorPolicy";
+export type OperatorPolicy = import("./operatorPolicy").OperatorPolicy;
+export const OperatorPolicy: typeof import("./operatorPolicy").OperatorPolicy = null as any;
+utilities.lazyLoad(exports, ["OperatorPolicy"], () => require("./operatorPolicy"));
+
+export { PermissionsArgs, PermissionsState } from "./permissions";
+export type Permissions = import("./permissions").Permissions;
+export const Permissions: typeof import("./permissions").Permissions = null as any;
+utilities.lazyLoad(exports, ["Permissions"], () => require("./permissions"));
+
+export { PolicyArgs, PolicyState } from "./policy";
+export type Policy = import("./policy").Policy;
+export const Policy: typeof import("./policy").Policy = null as any;
+utilities.lazyLoad(exports, ["Policy"], () => require("./policy"));
+
+export { ProviderArgs } from "./provider";
+export type Provider = import("./provider").Provider;
+export const Provider: typeof import("./provider").Provider = null as any;
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+
+export { QueueArgs, QueueState } from "./queue";
+export type Queue = import("./queue").Queue;
+export const Queue: typeof import("./queue").Queue = null as any;
+utilities.lazyLoad(exports, ["Queue"], () => require("./queue"));
+
+export { ShovelArgs, ShovelState } from "./shovel";
+export type Shovel = import("./shovel").Shovel;
+export const Shovel: typeof import("./shovel").Shovel = null as any;
+utilities.lazyLoad(exports, ["Shovel"], () => require("./shovel"));
+
+export { TopicPermissionsArgs, TopicPermissionsState } from "./topicPermissions";
+export type TopicPermissions = import("./topicPermissions").TopicPermissions;
+export const TopicPermissions: typeof import("./topicPermissions").TopicPermissions = null as any;
+utilities.lazyLoad(exports, ["TopicPermissions"], () => require("./topicPermissions"));
+
+export { UserArgs, UserState } from "./user";
+export type User = import("./user").User;
+export const User: typeof import("./user").User = null as any;
+utilities.lazyLoad(exports, ["User"], () => require("./user"));
+
+export { VHostArgs, VHostState } from "./vhost";
+export type VHost = import("./vhost").VHost;
+export const VHost: typeof import("./vhost").VHost = null as any;
+utilities.lazyLoad(exports, ["VHost"], () => require("./vhost"));
+
 
 // Export sub-modules:
 import * as config from "./config";
@@ -29,19 +89,6 @@ export {
     config,
     types,
 };
-
-// Import resources to register:
-import { Binding } from "./binding";
-import { Exchange } from "./exchange";
-import { FederationUpstream } from "./federationUpstream";
-import { OperatorPolicy } from "./operatorPolicy";
-import { Permissions } from "./permissions";
-import { Policy } from "./policy";
-import { Queue } from "./queue";
-import { Shovel } from "./shovel";
-import { TopicPermissions } from "./topicPermissions";
-import { User } from "./user";
-import { VHost } from "./vhost";
 
 const _module = {
     version: utilities.getVersion(),
@@ -85,9 +132,6 @@ pulumi.runtime.registerResourceModule("rabbitmq", "index/shovel", _module)
 pulumi.runtime.registerResourceModule("rabbitmq", "index/topicPermissions", _module)
 pulumi.runtime.registerResourceModule("rabbitmq", "index/user", _module)
 pulumi.runtime.registerResourceModule("rabbitmq", "index/vHost", _module)
-
-import { Provider } from "./provider";
-
 pulumi.runtime.registerResourcePackage("rabbitmq", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

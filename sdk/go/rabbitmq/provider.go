@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -43,10 +43,10 @@ func NewProvider(ctx *pulumi.Context,
 	if args.Username == nil {
 		return nil, errors.New("invalid value for required argument 'Username'")
 	}
-	if isZero(args.CacertFile) {
+	if args.CacertFile == nil {
 		args.CacertFile = pulumi.StringPtr(getEnvOrDefault("", nil, "RABBITMQ_CACERT").(string))
 	}
-	if isZero(args.Insecure) {
+	if args.Insecure == nil {
 		args.Insecure = pulumi.BoolPtr(getEnvOrDefault(false, parseEnvBool, "RABBITMQ_INSECURE").(bool))
 	}
 	var resource Provider

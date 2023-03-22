@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -42,8 +42,8 @@ import (
 //				return err
 //			}
 //			_, err = rabbitmq.NewTopicPermissions(ctx, "testTopicPermissions", &rabbitmq.TopicPermissionsArgs{
-//				Permissions: TopicPermissionsPermissionArray{
-//					&TopicPermissionsPermissionArgs{
+//				Permissions: rabbitmq.TopicPermissionsPermissionArray{
+//					&rabbitmq.TopicPermissionsPermissionArgs{
 //						Exchange: pulumi.String("amq.topic"),
 //						Read:     pulumi.String(".*"),
 //						Write:    pulumi.String(".*"),

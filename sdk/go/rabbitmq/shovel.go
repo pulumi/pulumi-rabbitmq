@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -32,7 +32,7 @@ import (
 //				return err
 //			}
 //			testExchange, err := rabbitmq.NewExchange(ctx, "testExchange", &rabbitmq.ExchangeArgs{
-//				Settings: &ExchangeSettingsArgs{
+//				Settings: &rabbitmq.ExchangeSettingsArgs{
 //					AutoDelete: pulumi.Bool(true),
 //					Durable:    pulumi.Bool(false),
 //					Type:       pulumi.String("fanout"),
@@ -43,7 +43,7 @@ import (
 //				return err
 //			}
 //			testQueue, err := rabbitmq.NewQueue(ctx, "testQueue", &rabbitmq.QueueArgs{
-//				Settings: &QueueSettingsArgs{
+//				Settings: &rabbitmq.QueueSettingsArgs{
 //					AutoDelete: pulumi.Bool(true),
 //					Durable:    pulumi.Bool(false),
 //				},
@@ -53,7 +53,7 @@ import (
 //				return err
 //			}
 //			_, err = rabbitmq.NewShovel(ctx, "shovelTest", &rabbitmq.ShovelArgs{
-//				Info: &ShovelInfoArgs{
+//				Info: &rabbitmq.ShovelInfoArgs{
 //					DestinationQueue:  testQueue.Name,
 //					DestinationUri:    pulumi.String("amqp:///test"),
 //					SourceExchange:    testExchange.Name,
