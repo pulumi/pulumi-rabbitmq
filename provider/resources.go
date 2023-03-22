@@ -126,9 +126,18 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"rabbitmq_exchange": {Tok: makeDataSource(mainMod, "getExchange")},
-			"rabbitmq_user":     {Tok: makeDataSource(mainMod, "getUser")},
-			"rabbitmq_vhost":    {Tok: makeDataSource(mainMod, "getVHost")},
+			"rabbitmq_exchange": {
+				Tok:  makeDataSource(mainMod, "getExchange"),
+				Docs: noDocs,
+			},
+			"rabbitmq_user": {
+				Tok:  makeDataSource(mainMod, "getUser"),
+				Docs: noDocs,
+			},
+			"rabbitmq_vhost": {
+				Tok:  makeDataSource(mainMod, "getVHost"),
+				Docs: noDocs,
+			},
 		},
 
 		JavaScript: &tfbridge.JavaScriptInfo{
@@ -168,3 +177,5 @@ func Provider() tfbridge.ProviderInfo {
 
 	return prov
 }
+
+var noDocs = &tfbridge.DocInfo{Markdown: []byte{' '}}
