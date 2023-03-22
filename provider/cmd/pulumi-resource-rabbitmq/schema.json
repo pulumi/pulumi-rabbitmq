@@ -1410,8 +1410,7 @@
             "inputProperties": {
                 "info": {
                     "$ref": "#/types/rabbitmq:index/ShovelInfo:ShovelInfo",
-                    "description": "The settings of the dynamic shovel. The structure is\ndescribed below.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The settings of the dynamic shovel. The structure is\ndescribed below.\n"
                 },
                 "name": {
                     "type": "string",
@@ -1433,8 +1432,7 @@
                 "properties": {
                     "info": {
                         "$ref": "#/types/rabbitmq:index/ShovelInfo:ShovelInfo",
-                        "description": "The settings of the dynamic shovel. The structure is\ndescribed below.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The settings of the dynamic shovel. The structure is\ndescribed below.\n"
                     },
                     "name": {
                         "type": "string",
