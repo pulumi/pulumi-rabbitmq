@@ -80,12 +80,16 @@ public final class FederationUpstreamDefinitionArgs extends com.pulumi.resources
     /**
      * The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
      * 
+     * Applicable to Federated Queues Only
+     * 
      */
     @Import(name="messageTtl")
     private @Nullable Output<Integer> messageTtl;
 
     /**
      * @return The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
+     * 
+     * Applicable to Federated Queues Only
      * 
      */
     public Optional<Output<Integer>> messageTtl() {
@@ -110,12 +114,16 @@ public final class FederationUpstreamDefinitionArgs extends com.pulumi.resources
     /**
      * The name of the upstream queue.
      * 
+     * Consult the RabbitMQ [Federation Reference](https://www.rabbitmq.com/federation-reference.html) documentation for detailed information and guidance on setting these values.
+     * 
      */
     @Import(name="queue")
     private @Nullable Output<String> queue;
 
     /**
      * @return The name of the upstream queue.
+     * 
+     * Consult the RabbitMQ [Federation Reference](https://www.rabbitmq.com/federation-reference.html) documentation for detailed information and guidance on setting these values.
      * 
      */
     public Optional<Output<String>> queue() {
@@ -140,12 +148,16 @@ public final class FederationUpstreamDefinitionArgs extends com.pulumi.resources
     /**
      * Determines how federation should interact with the validated user-id feature. Default is `false`.
      * 
+     * Applicable to Federated Exchanges Only
+     * 
      */
     @Import(name="trustUserId")
     private @Nullable Output<Boolean> trustUserId;
 
     /**
      * @return Determines how federation should interact with the validated user-id feature. Default is `false`.
+     * 
+     * Applicable to Federated Exchanges Only
      * 
      */
     public Optional<Output<Boolean>> trustUserId() {
@@ -287,6 +299,8 @@ public final class FederationUpstreamDefinitionArgs extends com.pulumi.resources
         /**
          * @param messageTtl The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
          * 
+         * Applicable to Federated Queues Only
+         * 
          * @return builder
          * 
          */
@@ -297,6 +311,8 @@ public final class FederationUpstreamDefinitionArgs extends com.pulumi.resources
 
         /**
          * @param messageTtl The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
+         * 
+         * Applicable to Federated Queues Only
          * 
          * @return builder
          * 
@@ -329,6 +345,8 @@ public final class FederationUpstreamDefinitionArgs extends com.pulumi.resources
         /**
          * @param queue The name of the upstream queue.
          * 
+         * Consult the RabbitMQ [Federation Reference](https://www.rabbitmq.com/federation-reference.html) documentation for detailed information and guidance on setting these values.
+         * 
          * @return builder
          * 
          */
@@ -339,6 +357,8 @@ public final class FederationUpstreamDefinitionArgs extends com.pulumi.resources
 
         /**
          * @param queue The name of the upstream queue.
+         * 
+         * Consult the RabbitMQ [Federation Reference](https://www.rabbitmq.com/federation-reference.html) documentation for detailed information and guidance on setting these values.
          * 
          * @return builder
          * 
@@ -371,6 +391,8 @@ public final class FederationUpstreamDefinitionArgs extends com.pulumi.resources
         /**
          * @param trustUserId Determines how federation should interact with the validated user-id feature. Default is `false`.
          * 
+         * Applicable to Federated Exchanges Only
+         * 
          * @return builder
          * 
          */
@@ -381,6 +403,8 @@ public final class FederationUpstreamDefinitionArgs extends com.pulumi.resources
 
         /**
          * @param trustUserId Determines how federation should interact with the validated user-id feature. Default is `false`.
+         * 
+         * Applicable to Federated Exchanges Only
          * 
          * @return builder
          * 

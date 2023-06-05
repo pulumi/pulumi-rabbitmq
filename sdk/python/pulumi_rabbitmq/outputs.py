@@ -143,10 +143,16 @@ class FederationUpstreamDefinition(dict):
         :param int expires: The expiry time (in milliseconds) after which an upstream queue for a federated exchange may be deleted if a connection to the upstream is lost.
         :param int max_hops: Maximum number of federation links that messages can traverse before being dropped. Default is `1`.
         :param int message_ttl: The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
+               
+               Applicable to Federated Queues Only
         :param int prefetch_count: Maximum number of unacknowledged messages that may be in flight over a federation link at one time. Default is `1000`.
         :param str queue: The name of the upstream queue.
+               
+               Consult the RabbitMQ [Federation Reference](https://www.rabbitmq.com/federation-reference.html) documentation for detailed information and guidance on setting these values.
         :param int reconnect_delay: Time in seconds to wait after a network link goes down before attempting reconnection. Default is `5`.
         :param bool trust_user_id: Determines how federation should interact with the validated user-id feature. Default is `false`.
+               
+               Applicable to Federated Exchanges Only
         """
         pulumi.set(__self__, "uri", uri)
         if ack_mode is not None:
@@ -213,6 +219,8 @@ class FederationUpstreamDefinition(dict):
     def message_ttl(self) -> Optional[int]:
         """
         The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
+
+        Applicable to Federated Queues Only
         """
         return pulumi.get(self, "message_ttl")
 
@@ -229,6 +237,8 @@ class FederationUpstreamDefinition(dict):
     def queue(self) -> Optional[str]:
         """
         The name of the upstream queue.
+
+        Consult the RabbitMQ [Federation Reference](https://www.rabbitmq.com/federation-reference.html) documentation for detailed information and guidance on setting these values.
         """
         return pulumi.get(self, "queue")
 
@@ -245,6 +255,8 @@ class FederationUpstreamDefinition(dict):
     def trust_user_id(self) -> Optional[bool]:
         """
         Determines how federation should interact with the validated user-id feature. Default is `false`.
+
+        Applicable to Federated Exchanges Only
         """
         return pulumi.get(self, "trust_user_id")
 
@@ -619,6 +631,8 @@ class ShovelInfo(dict):
                Either this or `destination_queue` must be specified but not both.
         :param str destination_exchange_key: The routing key when using `destination_exchange`.
         :param str destination_properties: Properties to overwrite when shovelling messages.
+               
+               For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
         :param str destination_protocol: The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
                Defaults to `amqp091`.
         :param str destination_publish_properties: A map of properties to overwrite when shovelling messages.
@@ -777,6 +791,8 @@ class ShovelInfo(dict):
     def destination_properties(self) -> Optional[str]:
         """
         Properties to overwrite when shovelling messages.
+
+        For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
         """
         return pulumi.get(self, "destination_properties")
 

@@ -38,6 +38,7 @@ def readme():
 
 
 setup(name='pulumi_rabbitmq',
+      python_requires='>=3.7',
       version=VERSION,
       description="A Pulumi package for creating and managing RabbitMQ resources.",
       long_description=readme(),

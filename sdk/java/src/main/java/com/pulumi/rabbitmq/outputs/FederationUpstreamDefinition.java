@@ -36,6 +36,8 @@ public final class FederationUpstreamDefinition {
     /**
      * @return The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
      * 
+     * Applicable to Federated Queues Only
+     * 
      */
     private @Nullable Integer messageTtl;
     /**
@@ -46,6 +48,8 @@ public final class FederationUpstreamDefinition {
     /**
      * @return The name of the upstream queue.
      * 
+     * Consult the RabbitMQ [Federation Reference](https://www.rabbitmq.com/federation-reference.html) documentation for detailed information and guidance on setting these values.
+     * 
      */
     private @Nullable String queue;
     /**
@@ -55,6 +59,8 @@ public final class FederationUpstreamDefinition {
     private @Nullable Integer reconnectDelay;
     /**
      * @return Determines how federation should interact with the validated user-id feature. Default is `false`.
+     * 
+     * Applicable to Federated Exchanges Only
      * 
      */
     private @Nullable Boolean trustUserId;
@@ -96,6 +102,8 @@ public final class FederationUpstreamDefinition {
     /**
      * @return The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
      * 
+     * Applicable to Federated Queues Only
+     * 
      */
     public Optional<Integer> messageTtl() {
         return Optional.ofNullable(this.messageTtl);
@@ -110,6 +118,8 @@ public final class FederationUpstreamDefinition {
     /**
      * @return The name of the upstream queue.
      * 
+     * Consult the RabbitMQ [Federation Reference](https://www.rabbitmq.com/federation-reference.html) documentation for detailed information and guidance on setting these values.
+     * 
      */
     public Optional<String> queue() {
         return Optional.ofNullable(this.queue);
@@ -123,6 +133,8 @@ public final class FederationUpstreamDefinition {
     }
     /**
      * @return Determines how federation should interact with the validated user-id feature. Default is `false`.
+     * 
+     * Applicable to Federated Exchanges Only
      * 
      */
     public Optional<Boolean> trustUserId() {

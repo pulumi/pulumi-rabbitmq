@@ -50,6 +50,8 @@ namespace Pulumi.RabbitMQ.Outputs
         public readonly string? DestinationExchangeKey;
         /// <summary>
         /// Properties to overwrite when shovelling messages.
+        /// 
+        /// For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
         /// </summary>
         public readonly string? DestinationProperties;
         /// <summary>

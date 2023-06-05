@@ -45,6 +45,8 @@ export interface FederationUpstreamDefinition {
     maxHops?: number;
     /**
      * The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
+     *
+     * Applicable to Federated Queues Only
      */
     messageTtl?: number;
     /**
@@ -53,6 +55,8 @@ export interface FederationUpstreamDefinition {
     prefetchCount?: number;
     /**
      * The name of the upstream queue.
+     *
+     * Consult the RabbitMQ [Federation Reference](https://www.rabbitmq.com/federation-reference.html) documentation for detailed information and guidance on setting these values.
      */
     queue?: string;
     /**
@@ -61,6 +65,8 @@ export interface FederationUpstreamDefinition {
     reconnectDelay?: number;
     /**
      * Determines how federation should interact with the validated user-id feature. Default is `false`.
+     *
+     * Applicable to Federated Exchanges Only
      */
     trustUserId?: boolean;
     /**
@@ -198,6 +204,8 @@ export interface ShovelInfo {
     destinationExchangeKey?: string;
     /**
      * Properties to overwrite when shovelling messages.
+     *
+     * For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
      */
     destinationProperties?: string;
     /**

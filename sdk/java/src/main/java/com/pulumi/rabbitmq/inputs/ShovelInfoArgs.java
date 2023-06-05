@@ -167,12 +167,16 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Properties to overwrite when shovelling messages.
      * 
+     * For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
+     * 
      */
     @Import(name="destinationProperties")
     private @Nullable Output<String> destinationProperties;
 
     /**
      * @return Properties to overwrite when shovelling messages.
+     * 
+     * For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
      * 
      */
     public Optional<Output<String>> destinationProperties() {
@@ -656,6 +660,8 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param destinationProperties Properties to overwrite when shovelling messages.
          * 
+         * For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
+         * 
          * @return builder
          * 
          */
@@ -666,6 +672,8 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param destinationProperties Properties to overwrite when shovelling messages.
+         * 
+         * For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
          * 
          * @return builder
          * 
