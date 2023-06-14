@@ -13,7 +13,11 @@ func GetCacertFile(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "RABBITMQ_CACERT").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "RABBITMQ_CACERT"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 func GetClientcertFile(ctx *pulumi.Context) string {
 	return config.Get(ctx, "rabbitmq:clientcertFile")
@@ -29,7 +33,11 @@ func GetInsecure(ctx *pulumi.Context) bool {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault(false, parseEnvBool, "RABBITMQ_INSECURE").(bool)
+	var value bool
+	if d := getEnvOrDefault(nil, parseEnvBool, "RABBITMQ_INSECURE"); d != nil {
+		value = d.(bool)
+	}
+	return value
 }
 func GetPassword(ctx *pulumi.Context) string {
 	return config.Get(ctx, "rabbitmq:password")

@@ -67,6 +67,8 @@ public final class ShovelInfo {
     /**
      * @return Properties to overwrite when shovelling messages.
      * 
+     * For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
+     * 
      */
     private @Nullable String destinationProperties;
     /**
@@ -222,6 +224,8 @@ public final class ShovelInfo {
     }
     /**
      * @return Properties to overwrite when shovelling messages.
+     * 
+     * For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
      * 
      */
     public Optional<String> destinationProperties() {

@@ -67,6 +67,8 @@ namespace Pulumi.RabbitMQ.Inputs
 
         /// <summary>
         /// Properties to overwrite when shovelling messages.
+        /// 
+        /// For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
         /// </summary>
         [Input("destinationProperties")]
         public Input<string>? DestinationProperties { get; set; }

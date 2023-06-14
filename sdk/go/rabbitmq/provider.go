@@ -44,10 +44,14 @@ func NewProvider(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Username'")
 	}
 	if args.CacertFile == nil {
-		args.CacertFile = pulumi.StringPtr(getEnvOrDefault("", nil, "RABBITMQ_CACERT").(string))
+		if d := getEnvOrDefault(nil, nil, "RABBITMQ_CACERT"); d != nil {
+			args.CacertFile = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.Insecure == nil {
-		args.Insecure = pulumi.BoolPtr(getEnvOrDefault(false, parseEnvBool, "RABBITMQ_INSECURE").(bool))
+		if d := getEnvOrDefault(nil, parseEnvBool, "RABBITMQ_INSECURE"); d != nil {
+			args.Insecure = pulumi.BoolPtr(d.(bool))
+		}
 	}
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:rabbitmq", name, args, &resource, opts...)

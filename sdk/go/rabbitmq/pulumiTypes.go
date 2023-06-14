@@ -222,14 +222,20 @@ type FederationUpstreamDefinition struct {
 	// Maximum number of federation links that messages can traverse before being dropped. Default is `1`.
 	MaxHops *int `pulumi:"maxHops"`
 	// The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
+	//
+	// Applicable to Federated Queues Only
 	MessageTtl *int `pulumi:"messageTtl"`
 	// Maximum number of unacknowledged messages that may be in flight over a federation link at one time. Default is `1000`.
 	PrefetchCount *int `pulumi:"prefetchCount"`
 	// The name of the upstream queue.
+	//
+	// Consult the RabbitMQ [Federation Reference](https://www.rabbitmq.com/federation-reference.html) documentation for detailed information and guidance on setting these values.
 	Queue *string `pulumi:"queue"`
 	// Time in seconds to wait after a network link goes down before attempting reconnection. Default is `5`.
 	ReconnectDelay *int `pulumi:"reconnectDelay"`
 	// Determines how federation should interact with the validated user-id feature. Default is `false`.
+	//
+	// Applicable to Federated Exchanges Only
 	TrustUserId *bool `pulumi:"trustUserId"`
 	// The AMQP URI(s) for the upstream. Note that the URI may contain sensitive information, such as a password.
 	Uri string `pulumi:"uri"`
@@ -256,14 +262,20 @@ type FederationUpstreamDefinitionArgs struct {
 	// Maximum number of federation links that messages can traverse before being dropped. Default is `1`.
 	MaxHops pulumi.IntPtrInput `pulumi:"maxHops"`
 	// The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
+	//
+	// Applicable to Federated Queues Only
 	MessageTtl pulumi.IntPtrInput `pulumi:"messageTtl"`
 	// Maximum number of unacknowledged messages that may be in flight over a federation link at one time. Default is `1000`.
 	PrefetchCount pulumi.IntPtrInput `pulumi:"prefetchCount"`
 	// The name of the upstream queue.
+	//
+	// Consult the RabbitMQ [Federation Reference](https://www.rabbitmq.com/federation-reference.html) documentation for detailed information and guidance on setting these values.
 	Queue pulumi.StringPtrInput `pulumi:"queue"`
 	// Time in seconds to wait after a network link goes down before attempting reconnection. Default is `5`.
 	ReconnectDelay pulumi.IntPtrInput `pulumi:"reconnectDelay"`
 	// Determines how federation should interact with the validated user-id feature. Default is `false`.
+	//
+	// Applicable to Federated Exchanges Only
 	TrustUserId pulumi.BoolPtrInput `pulumi:"trustUserId"`
 	// The AMQP URI(s) for the upstream. Note that the URI may contain sensitive information, such as a password.
 	Uri pulumi.StringInput `pulumi:"uri"`
@@ -367,6 +379,8 @@ func (o FederationUpstreamDefinitionOutput) MaxHops() pulumi.IntPtrOutput {
 }
 
 // The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
+//
+// Applicable to Federated Queues Only
 func (o FederationUpstreamDefinitionOutput) MessageTtl() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v FederationUpstreamDefinition) *int { return v.MessageTtl }).(pulumi.IntPtrOutput)
 }
@@ -377,6 +391,8 @@ func (o FederationUpstreamDefinitionOutput) PrefetchCount() pulumi.IntPtrOutput 
 }
 
 // The name of the upstream queue.
+//
+// Consult the RabbitMQ [Federation Reference](https://www.rabbitmq.com/federation-reference.html) documentation for detailed information and guidance on setting these values.
 func (o FederationUpstreamDefinitionOutput) Queue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederationUpstreamDefinition) *string { return v.Queue }).(pulumi.StringPtrOutput)
 }
@@ -387,6 +403,8 @@ func (o FederationUpstreamDefinitionOutput) ReconnectDelay() pulumi.IntPtrOutput
 }
 
 // Determines how federation should interact with the validated user-id feature. Default is `false`.
+//
+// Applicable to Federated Exchanges Only
 func (o FederationUpstreamDefinitionOutput) TrustUserId() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v FederationUpstreamDefinition) *bool { return v.TrustUserId }).(pulumi.BoolPtrOutput)
 }
@@ -461,6 +479,8 @@ func (o FederationUpstreamDefinitionPtrOutput) MaxHops() pulumi.IntPtrOutput {
 }
 
 // The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
+//
+// Applicable to Federated Queues Only
 func (o FederationUpstreamDefinitionPtrOutput) MessageTtl() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *FederationUpstreamDefinition) *int {
 		if v == nil {
@@ -481,6 +501,8 @@ func (o FederationUpstreamDefinitionPtrOutput) PrefetchCount() pulumi.IntPtrOutp
 }
 
 // The name of the upstream queue.
+//
+// Consult the RabbitMQ [Federation Reference](https://www.rabbitmq.com/federation-reference.html) documentation for detailed information and guidance on setting these values.
 func (o FederationUpstreamDefinitionPtrOutput) Queue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FederationUpstreamDefinition) *string {
 		if v == nil {
@@ -501,6 +523,8 @@ func (o FederationUpstreamDefinitionPtrOutput) ReconnectDelay() pulumi.IntPtrOut
 }
 
 // Determines how federation should interact with the validated user-id feature. Default is `false`.
+//
+// Applicable to Federated Exchanges Only
 func (o FederationUpstreamDefinitionPtrOutput) TrustUserId() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *FederationUpstreamDefinition) *bool {
 		if v == nil {
@@ -1334,6 +1358,8 @@ type ShovelInfo struct {
 	// The routing key when using `destinationExchange`.
 	DestinationExchangeKey *string `pulumi:"destinationExchangeKey"`
 	// Properties to overwrite when shovelling messages.
+	//
+	// For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
 	DestinationProperties *string `pulumi:"destinationProperties"`
 	// The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
 	// Defaults to `amqp091`.
@@ -1409,6 +1435,8 @@ type ShovelInfoArgs struct {
 	// The routing key when using `destinationExchange`.
 	DestinationExchangeKey pulumi.StringPtrInput `pulumi:"destinationExchangeKey"`
 	// Properties to overwrite when shovelling messages.
+	//
+	// For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
 	DestinationProperties pulumi.StringPtrInput `pulumi:"destinationProperties"`
 	// The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
 	// Defaults to `amqp091`.
@@ -1576,6 +1604,8 @@ func (o ShovelInfoOutput) DestinationExchangeKey() pulumi.StringPtrOutput {
 }
 
 // Properties to overwrite when shovelling messages.
+//
+// For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
 func (o ShovelInfoOutput) DestinationProperties() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ShovelInfo) *string { return v.DestinationProperties }).(pulumi.StringPtrOutput)
 }
@@ -1778,6 +1808,8 @@ func (o ShovelInfoPtrOutput) DestinationExchangeKey() pulumi.StringPtrOutput {
 }
 
 // Properties to overwrite when shovelling messages.
+//
+// For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
 func (o ShovelInfoPtrOutput) DestinationProperties() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ShovelInfo) *string {
 		if v == nil {

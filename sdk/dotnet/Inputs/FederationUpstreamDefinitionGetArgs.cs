@@ -38,6 +38,8 @@ namespace Pulumi.RabbitMQ.Inputs
 
         /// <summary>
         /// The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
+        /// 
+        /// Applicable to Federated Queues Only
         /// </summary>
         [Input("messageTtl")]
         public Input<int>? MessageTtl { get; set; }
@@ -50,6 +52,8 @@ namespace Pulumi.RabbitMQ.Inputs
 
         /// <summary>
         /// The name of the upstream queue.
+        /// 
+        /// Consult the RabbitMQ [Federation Reference](https://www.rabbitmq.com/federation-reference.html) documentation for detailed information and guidance on setting these values.
         /// </summary>
         [Input("queue")]
         public Input<string>? Queue { get; set; }
@@ -62,6 +66,8 @@ namespace Pulumi.RabbitMQ.Inputs
 
         /// <summary>
         /// Determines how federation should interact with the validated user-id feature. Default is `false`.
+        /// 
+        /// Applicable to Federated Exchanges Only
         /// </summary>
         [Input("trustUserId")]
         public Input<bool>? TrustUserId { get; set; }

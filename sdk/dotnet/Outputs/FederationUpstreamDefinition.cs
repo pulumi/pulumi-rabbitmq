@@ -31,6 +31,8 @@ namespace Pulumi.RabbitMQ.Outputs
         public readonly int? MaxHops;
         /// <summary>
         /// The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
+        /// 
+        /// Applicable to Federated Queues Only
         /// </summary>
         public readonly int? MessageTtl;
         /// <summary>
@@ -39,6 +41,8 @@ namespace Pulumi.RabbitMQ.Outputs
         public readonly int? PrefetchCount;
         /// <summary>
         /// The name of the upstream queue.
+        /// 
+        /// Consult the RabbitMQ [Federation Reference](https://www.rabbitmq.com/federation-reference.html) documentation for detailed information and guidance on setting these values.
         /// </summary>
         public readonly string? Queue;
         /// <summary>
@@ -47,6 +51,8 @@ namespace Pulumi.RabbitMQ.Outputs
         public readonly int? ReconnectDelay;
         /// <summary>
         /// Determines how federation should interact with the validated user-id feature. Default is `false`.
+        /// 
+        /// Applicable to Federated Exchanges Only
         /// </summary>
         public readonly bool? TrustUserId;
         /// <summary>
