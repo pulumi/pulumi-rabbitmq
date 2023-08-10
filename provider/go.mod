@@ -1,6 +1,6 @@
 module github.com/pulumi/pulumi-rabbitmq/provider/v3
 
-go 1.19
+go 1.20
 
 replace (
 	github.com/cyrilgdn/terraform-provider-rabbitmq => ../upstream
