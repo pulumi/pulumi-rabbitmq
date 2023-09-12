@@ -70,9 +70,9 @@ def get_user(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('rabbitmq:index/getUser:getUser', __args__, opts=opts, typ=GetUserResult).value
 
     return AwaitableGetUserResult(
-        id=__ret__.id,
-        name=__ret__.name,
-        tags=__ret__.tags)
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        tags=pulumi.get(__ret__, 'tags'))
 
 
 @_utilities.lift_output_func(get_user)

@@ -730,6 +730,9 @@ class ShovelInfo(dict):
         """
         Whether to add `x-shovelled` headers to shovelled messages.
         """
+        warnings.warn("""use destination_add_forward_headers instead""", DeprecationWarning)
+        pulumi.log.warn("""add_forward_headers is deprecated: use destination_add_forward_headers instead""")
+
         return pulumi.get(self, "add_forward_headers")
 
     @property
@@ -738,6 +741,9 @@ class ShovelInfo(dict):
         """
         Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
         """
+        warnings.warn("""use source_delete_after instead""", DeprecationWarning)
+        pulumi.log.warn("""delete_after is deprecated: use source_delete_after instead""")
+
         return pulumi.get(self, "delete_after")
 
     @property
@@ -828,6 +834,9 @@ class ShovelInfo(dict):
         """
         The maximum number of unacknowledged messages copied over a shovel at any one time.
         """
+        warnings.warn("""use source_prefetch_count instead""", DeprecationWarning)
+        pulumi.log.warn("""prefetch_count is deprecated: use source_prefetch_count instead""")
+
         return pulumi.get(self, "prefetch_count")
 
     @property

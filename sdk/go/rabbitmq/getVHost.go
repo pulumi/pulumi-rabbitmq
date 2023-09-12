@@ -7,10 +7,13 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupVHost(ctx *pulumi.Context, args *LookupVHostArgs, opts ...pulumi.InvokeOption) (*LookupVHostResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVHostResult
 	err := ctx.Invoke("rabbitmq:index/getVHost:getVHost", args, &rv, opts...)
 	if err != nil {
@@ -65,6 +68,12 @@ func (o LookupVHostResultOutput) ToLookupVHostResultOutput() LookupVHostResultOu
 
 func (o LookupVHostResultOutput) ToLookupVHostResultOutputWithContext(ctx context.Context) LookupVHostResultOutput {
 	return o
+}
+
+func (o LookupVHostResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupVHostResult] {
+	return pulumix.Output[LookupVHostResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupVHostResultOutput) Id() pulumi.StringOutput {

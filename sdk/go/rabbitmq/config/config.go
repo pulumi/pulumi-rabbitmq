@@ -4,9 +4,12 @@
 package config
 
 import (
+	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
+
+var _ = internal.GetEnvOrDefault
 
 func GetCacertFile(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "rabbitmq:cacertFile")
@@ -14,7 +17,7 @@ func GetCacertFile(ctx *pulumi.Context) string {
 		return v
 	}
 	var value string
-	if d := getEnvOrDefault(nil, nil, "RABBITMQ_CACERT"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "RABBITMQ_CACERT"); d != nil {
 		value = d.(string)
 	}
 	return value
@@ -34,7 +37,7 @@ func GetInsecure(ctx *pulumi.Context) bool {
 		return v
 	}
 	var value bool
-	if d := getEnvOrDefault(nil, parseEnvBool, "RABBITMQ_INSECURE"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, internal.ParseEnvBool, "RABBITMQ_INSECURE"); d != nil {
 		value = d.(bool)
 	}
 	return value
