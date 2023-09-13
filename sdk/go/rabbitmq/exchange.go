@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The “Exchange“ resource creates and manages an exchange.
@@ -93,6 +95,7 @@ func NewExchange(ctx *pulumi.Context,
 	if args.Settings == nil {
 		return nil, errors.New("invalid value for required argument 'Settings'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Exchange
 	err := ctx.RegisterResource("rabbitmq:index/exchange:Exchange", name, args, &resource, opts...)
 	if err != nil {
@@ -182,6 +185,12 @@ func (i *Exchange) ToExchangeOutputWithContext(ctx context.Context) ExchangeOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ExchangeOutput)
 }
 
+func (i *Exchange) ToOutput(ctx context.Context) pulumix.Output[*Exchange] {
+	return pulumix.Output[*Exchange]{
+		OutputState: i.ToExchangeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ExchangeArrayInput is an input type that accepts ExchangeArray and ExchangeArrayOutput values.
 // You can construct a concrete instance of `ExchangeArrayInput` via:
 //
@@ -205,6 +214,12 @@ func (i ExchangeArray) ToExchangeArrayOutput() ExchangeArrayOutput {
 
 func (i ExchangeArray) ToExchangeArrayOutputWithContext(ctx context.Context) ExchangeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ExchangeArrayOutput)
+}
+
+func (i ExchangeArray) ToOutput(ctx context.Context) pulumix.Output[[]*Exchange] {
+	return pulumix.Output[[]*Exchange]{
+		OutputState: i.ToExchangeArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ExchangeMapInput is an input type that accepts ExchangeMap and ExchangeMapOutput values.
@@ -232,6 +247,12 @@ func (i ExchangeMap) ToExchangeMapOutputWithContext(ctx context.Context) Exchang
 	return pulumi.ToOutputWithContext(ctx, i).(ExchangeMapOutput)
 }
 
+func (i ExchangeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Exchange] {
+	return pulumix.Output[map[string]*Exchange]{
+		OutputState: i.ToExchangeMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExchangeOutput struct{ *pulumi.OutputState }
 
 func (ExchangeOutput) ElementType() reflect.Type {
@@ -244,6 +265,12 @@ func (o ExchangeOutput) ToExchangeOutput() ExchangeOutput {
 
 func (o ExchangeOutput) ToExchangeOutputWithContext(ctx context.Context) ExchangeOutput {
 	return o
+}
+
+func (o ExchangeOutput) ToOutput(ctx context.Context) pulumix.Output[*Exchange] {
+	return pulumix.Output[*Exchange]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The name of the exchange.
@@ -276,6 +303,12 @@ func (o ExchangeArrayOutput) ToExchangeArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o ExchangeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Exchange] {
+	return pulumix.Output[[]*Exchange]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ExchangeArrayOutput) Index(i pulumi.IntInput) ExchangeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Exchange {
 		return vs[0].([]*Exchange)[vs[1].(int)]
@@ -294,6 +327,12 @@ func (o ExchangeMapOutput) ToExchangeMapOutput() ExchangeMapOutput {
 
 func (o ExchangeMapOutput) ToExchangeMapOutputWithContext(ctx context.Context) ExchangeMapOutput {
 	return o
+}
+
+func (o ExchangeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Exchange] {
+	return pulumix.Output[map[string]*Exchange]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExchangeMapOutput) MapIndex(k pulumi.StringInput) ExchangeOutput {

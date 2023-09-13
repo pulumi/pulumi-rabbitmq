@@ -82,10 +82,10 @@ def get_exchange(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('rabbitmq:index/getExchange:getExchange', __args__, opts=opts, typ=GetExchangeResult).value
 
     return AwaitableGetExchangeResult(
-        id=__ret__.id,
-        name=__ret__.name,
-        settings=__ret__.settings,
-        vhost=__ret__.vhost)
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        settings=pulumi.get(__ret__, 'settings'),
+        vhost=pulumi.get(__ret__, 'vhost'))
 
 
 @_utilities.lift_output_func(get_exchange)
