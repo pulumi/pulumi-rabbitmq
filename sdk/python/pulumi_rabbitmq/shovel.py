@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -26,10 +26,23 @@ class ShovelArgs:
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
         :param pulumi.Input[str] name: The shovel name.
         """
-        pulumi.set(__self__, "info", info)
-        pulumi.set(__self__, "vhost", vhost)
+        ShovelArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            info=info,
+            vhost=vhost,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             info: pulumi.Input['ShovelInfoArgs'],
+             vhost: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("info", info)
+        _setter("vhost", vhost)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter
@@ -82,12 +95,25 @@ class _ShovelState:
         :param pulumi.Input[str] name: The shovel name.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
         """
+        _ShovelState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            info=info,
+            name=name,
+            vhost=vhost,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             info: Optional[pulumi.Input['ShovelInfoArgs']] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             vhost: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if info is not None:
-            pulumi.set(__self__, "info", info)
+            _setter("info", info)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if vhost is not None:
-            pulumi.set(__self__, "vhost", vhost)
+            _setter("vhost", vhost)
 
     @property
     @pulumi.getter
@@ -243,6 +269,10 @@ class Shovel(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ShovelArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -260,6 +290,11 @@ class Shovel(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ShovelArgs.__new__(ShovelArgs)
 
+            if info is not None and not isinstance(info, ShovelInfoArgs):
+                info = info or {}
+                def _setter(key, value):
+                    info[key] = value
+                ShovelInfoArgs._configure(_setter, **info)
             if info is None and not opts.urn:
                 raise TypeError("Missing required property 'info'")
             __props__.__dict__["info"] = info
