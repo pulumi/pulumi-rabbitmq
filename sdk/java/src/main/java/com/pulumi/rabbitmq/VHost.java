@@ -58,7 +58,7 @@ public class VHost extends com.pulumi.resources.CustomResource {
      * The name of the vhost.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**

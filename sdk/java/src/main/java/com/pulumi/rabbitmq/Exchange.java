@@ -87,7 +87,7 @@ public class Exchange extends com.pulumi.resources.CustomResource {
      * The name of the exchange.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -102,7 +102,7 @@ public class Exchange extends com.pulumi.resources.CustomResource {
      * described below.
      * 
      */
-    @Export(name="settings", type=ExchangeSettings.class, parameters={})
+    @Export(name="settings", refs={ExchangeSettings.class}, tree="[0]")
     private Output<ExchangeSettings> settings;
 
     /**
@@ -117,7 +117,7 @@ public class Exchange extends com.pulumi.resources.CustomResource {
      * The vhost to create the resource in.
      * 
      */
-    @Export(name="vhost", type=String.class, parameters={})
+    @Export(name="vhost", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> vhost;
 
     /**

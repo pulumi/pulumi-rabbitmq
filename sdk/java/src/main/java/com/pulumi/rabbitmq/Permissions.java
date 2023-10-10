@@ -84,7 +84,7 @@ public class Permissions extends com.pulumi.resources.CustomResource {
      * described below.
      * 
      */
-    @Export(name="permissions", type=PermissionsPermissions.class, parameters={})
+    @Export(name="permissions", refs={PermissionsPermissions.class}, tree="[0]")
     private Output<PermissionsPermissions> permissions;
 
     /**
@@ -99,7 +99,7 @@ public class Permissions extends com.pulumi.resources.CustomResource {
      * The user to apply the permissions to.
      * 
      */
-    @Export(name="user", type=String.class, parameters={})
+    @Export(name="user", refs={String.class}, tree="[0]")
     private Output<String> user;
 
     /**
@@ -113,7 +113,7 @@ public class Permissions extends com.pulumi.resources.CustomResource {
      * The vhost to create the resource in.
      * 
      */
-    @Export(name="vhost", type=String.class, parameters={})
+    @Export(name="vhost", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> vhost;
 
     /**

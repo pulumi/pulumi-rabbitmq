@@ -88,7 +88,7 @@ public class OperatorPolicy extends com.pulumi.resources.CustomResource {
      * The name of the operator policy.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -103,7 +103,7 @@ public class OperatorPolicy extends com.pulumi.resources.CustomResource {
      * described below.
      * 
      */
-    @Export(name="policy", type=OperatorPolicyPolicy.class, parameters={})
+    @Export(name="policy", refs={OperatorPolicyPolicy.class}, tree="[0]")
     private Output<OperatorPolicyPolicy> policy;
 
     /**
@@ -118,7 +118,7 @@ public class OperatorPolicy extends com.pulumi.resources.CustomResource {
      * The vhost to create the resource in.
      * 
      */
-    @Export(name="vhost", type=String.class, parameters={})
+    @Export(name="vhost", refs={String.class}, tree="[0]")
     private Output<String> vhost;
 
     /**

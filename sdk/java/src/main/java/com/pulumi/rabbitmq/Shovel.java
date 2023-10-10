@@ -97,7 +97,7 @@ public class Shovel extends com.pulumi.resources.CustomResource {
      * described below.
      * 
      */
-    @Export(name="info", type=ShovelInfo.class, parameters={})
+    @Export(name="info", refs={ShovelInfo.class}, tree="[0]")
     private Output<ShovelInfo> info;
 
     /**
@@ -112,7 +112,7 @@ public class Shovel extends com.pulumi.resources.CustomResource {
      * The shovel name.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -126,7 +126,7 @@ public class Shovel extends com.pulumi.resources.CustomResource {
      * The vhost to create the resource in.
      * 
      */
-    @Export(name="vhost", type=String.class, parameters={})
+    @Export(name="vhost", refs={String.class}, tree="[0]")
     private Output<String> vhost;
 
     /**

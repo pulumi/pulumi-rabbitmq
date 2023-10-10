@@ -110,7 +110,7 @@ public class Binding extends com.pulumi.resources.CustomResource {
      * Additional key/value arguments for the binding.
      * 
      */
-    @Export(name="arguments", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="arguments", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> arguments;
 
     /**
@@ -120,7 +120,7 @@ public class Binding extends com.pulumi.resources.CustomResource {
     public Output<Optional<Map<String,Object>>> arguments() {
         return Codegen.optional(this.arguments);
     }
-    @Export(name="argumentsJson", type=String.class, parameters={})
+    @Export(name="argumentsJson", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> argumentsJson;
 
     public Output<Optional<String>> argumentsJson() {
@@ -130,7 +130,7 @@ public class Binding extends com.pulumi.resources.CustomResource {
      * The destination queue or exchange.
      * 
      */
-    @Export(name="destination", type=String.class, parameters={})
+    @Export(name="destination", refs={String.class}, tree="[0]")
     private Output<String> destination;
 
     /**
@@ -144,7 +144,7 @@ public class Binding extends com.pulumi.resources.CustomResource {
      * The type of destination (queue or exchange).
      * 
      */
-    @Export(name="destinationType", type=String.class, parameters={})
+    @Export(name="destinationType", refs={String.class}, tree="[0]")
     private Output<String> destinationType;
 
     /**
@@ -158,7 +158,7 @@ public class Binding extends com.pulumi.resources.CustomResource {
      * A unique key to refer to the binding.
      * 
      */
-    @Export(name="propertiesKey", type=String.class, parameters={})
+    @Export(name="propertiesKey", refs={String.class}, tree="[0]")
     private Output<String> propertiesKey;
 
     /**
@@ -172,7 +172,7 @@ public class Binding extends com.pulumi.resources.CustomResource {
      * A routing key for the binding.
      * 
      */
-    @Export(name="routingKey", type=String.class, parameters={})
+    @Export(name="routingKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> routingKey;
 
     /**
@@ -186,7 +186,7 @@ public class Binding extends com.pulumi.resources.CustomResource {
      * The source exchange.
      * 
      */
-    @Export(name="source", type=String.class, parameters={})
+    @Export(name="source", refs={String.class}, tree="[0]")
     private Output<String> source;
 
     /**
@@ -200,7 +200,7 @@ public class Binding extends com.pulumi.resources.CustomResource {
      * The vhost to create the resource in.
      * 
      */
-    @Export(name="vhost", type=String.class, parameters={})
+    @Export(name="vhost", refs={String.class}, tree="[0]")
     private Output<String> vhost;
 
     /**
