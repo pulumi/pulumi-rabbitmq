@@ -69,7 +69,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * The name of the user.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -84,7 +84,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * is plain-text so make sure to secure where this is defined.
      * 
      */
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output<String> password;
 
     /**
@@ -100,7 +100,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * options are: management, policymaker, monitoring, and administrator.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**

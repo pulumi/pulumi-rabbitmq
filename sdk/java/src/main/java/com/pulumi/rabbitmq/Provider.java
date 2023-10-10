@@ -22,43 +22,43 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="pulumi:providers:rabbitmq")
 public class Provider extends com.pulumi.resources.ProviderResource {
-    @Export(name="cacertFile", type=String.class, parameters={})
+    @Export(name="cacertFile", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> cacertFile;
 
     public Output<Optional<String>> cacertFile() {
         return Codegen.optional(this.cacertFile);
     }
-    @Export(name="clientcertFile", type=String.class, parameters={})
+    @Export(name="clientcertFile", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientcertFile;
 
     public Output<Optional<String>> clientcertFile() {
         return Codegen.optional(this.clientcertFile);
     }
-    @Export(name="clientkeyFile", type=String.class, parameters={})
+    @Export(name="clientkeyFile", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientkeyFile;
 
     public Output<Optional<String>> clientkeyFile() {
         return Codegen.optional(this.clientkeyFile);
     }
-    @Export(name="endpoint", type=String.class, parameters={})
+    @Export(name="endpoint", refs={String.class}, tree="[0]")
     private Output<String> endpoint;
 
     public Output<String> endpoint() {
         return this.endpoint;
     }
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output<String> password;
 
     public Output<String> password() {
         return this.password;
     }
-    @Export(name="proxy", type=String.class, parameters={})
+    @Export(name="proxy", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> proxy;
 
     public Output<Optional<String>> proxy() {
         return Codegen.optional(this.proxy);
     }
-    @Export(name="username", type=String.class, parameters={})
+    @Export(name="username", refs={String.class}, tree="[0]")
     private Output<String> username;
 
     public Output<String> username() {

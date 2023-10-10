@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -26,10 +26,23 @@ class PolicyArgs:
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
         :param pulumi.Input[str] name: The name of the policy.
         """
-        pulumi.set(__self__, "policy", policy)
-        pulumi.set(__self__, "vhost", vhost)
+        PolicyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            policy=policy,
+            vhost=vhost,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             policy: pulumi.Input['PolicyPolicyArgs'],
+             vhost: pulumi.Input[str],
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("policy", policy)
+        _setter("vhost", vhost)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter
@@ -82,12 +95,25 @@ class _PolicyState:
                described below.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
         """
+        _PolicyState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            policy=policy,
+            vhost=vhost,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: Optional[pulumi.Input[str]] = None,
+             policy: Optional[pulumi.Input['PolicyPolicyArgs']] = None,
+             vhost: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if policy is not None:
-            pulumi.set(__self__, "policy", policy)
+            _setter("policy", policy)
         if vhost is not None:
-            pulumi.set(__self__, "vhost", vhost)
+            _setter("vhost", vhost)
 
     @property
     @pulumi.getter
@@ -237,6 +263,10 @@ class Policy(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            PolicyArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -255,6 +285,11 @@ class Policy(pulumi.CustomResource):
             __props__ = PolicyArgs.__new__(PolicyArgs)
 
             __props__.__dict__["name"] = name
+            if policy is not None and not isinstance(policy, PolicyPolicyArgs):
+                policy = policy or {}
+                def _setter(key, value):
+                    policy[key] = value
+                PolicyPolicyArgs._configure(_setter, **policy)
             if policy is None and not opts.urn:
                 raise TypeError("Missing required property 'policy'")
             __props__.__dict__["policy"] = policy

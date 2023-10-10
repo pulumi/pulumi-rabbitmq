@@ -111,7 +111,7 @@ public class FederationUpstream extends com.pulumi.resources.CustomResource {
      * Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
      * 
      */
-    @Export(name="component", type=String.class, parameters={})
+    @Export(name="component", refs={String.class}, tree="[0]")
     private Output<String> component;
 
     /**
@@ -125,7 +125,7 @@ public class FederationUpstream extends com.pulumi.resources.CustomResource {
      * The configuration of the federation upstream. The structure is described below.
      * 
      */
-    @Export(name="definition", type=FederationUpstreamDefinition.class, parameters={})
+    @Export(name="definition", refs={FederationUpstreamDefinition.class}, tree="[0]")
     private Output<FederationUpstreamDefinition> definition;
 
     /**
@@ -139,7 +139,7 @@ public class FederationUpstream extends com.pulumi.resources.CustomResource {
      * The name of the federation upstream.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -153,7 +153,7 @@ public class FederationUpstream extends com.pulumi.resources.CustomResource {
      * The vhost to create the resource in.
      * 
      */
-    @Export(name="vhost", type=String.class, parameters={})
+    @Export(name="vhost", refs={String.class}, tree="[0]")
     private Output<String> vhost;
 
     /**
