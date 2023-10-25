@@ -9,6 +9,40 @@ import * as utilities from "./utilities";
 /**
  * The ``rabbitmq.Shovel`` resource creates and manages a dynamic shovel.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as rabbitmq from "@pulumi/rabbitmq";
+ *
+ * const testVHost = new rabbitmq.VHost("testVHost", {});
+ * const testExchange = new rabbitmq.Exchange("testExchange", {
+ *     settings: {
+ *         autoDelete: true,
+ *         durable: false,
+ *         type: "fanout",
+ *     },
+ *     vhost: testVHost.name,
+ * });
+ * const testQueue = new rabbitmq.Queue("testQueue", {
+ *     settings: {
+ *         autoDelete: true,
+ *         durable: false,
+ *     },
+ *     vhost: testVHost.name,
+ * });
+ * const shovelTest = new rabbitmq.Shovel("shovelTest", {
+ *     info: {
+ *         destinationQueue: testQueue.name,
+ *         destinationUri: "amqp:///test",
+ *         sourceExchange: testExchange.name,
+ *         sourceExchangeKey: "test",
+ *         sourceUri: "amqp:///test",
+ *     },
+ *     vhost: testVHost.name,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Shovels can be imported using the `name` and `vhost` E.g.

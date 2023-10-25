@@ -9,6 +9,36 @@ import * as utilities from "./utilities";
 /**
  * The ``rabbitmq.OperatorPolicy`` resource creates and manages operator policies for queues.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as rabbitmq from "@pulumi/rabbitmq";
+ *
+ * const testVHost = new rabbitmq.VHost("testVHost", {});
+ * const guest = new rabbitmq.Permissions("guest", {
+ *     permissions: {
+ *         configure: ".*",
+ *         read: ".*",
+ *         write: ".*",
+ *     },
+ *     user: "guest",
+ *     vhost: testVHost.name,
+ * });
+ * const testOperatorPolicy = new rabbitmq.OperatorPolicy("testOperatorPolicy", {
+ *     policy: {
+ *         applyTo: "queues",
+ *         definition: {
+ *             expires: 1800000,
+ *             "message-ttl": 3600000,
+ *         },
+ *         pattern: ".*",
+ *         priority: 0,
+ *     },
+ *     vhost: guest.vhost,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Operator policies can be imported using the `id` which is composed of `name@vhost`. E.g.

@@ -172,6 +172,30 @@ class Exchange(pulumi.CustomResource):
         """
         The ``Exchange`` resource creates and manages an exchange.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        guest = rabbitmq.Permissions("guest",
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
+            user="guest",
+            vhost=test_v_host.name)
+        test_exchange = rabbitmq.Exchange("testExchange",
+            settings=rabbitmq.ExchangeSettingsArgs(
+                auto_delete=True,
+                durable=False,
+                type="fanout",
+            ),
+            vhost=guest.vhost)
+        ```
+
         ## Import
 
         Exchanges can be imported using the `id` which is composed of
@@ -197,6 +221,30 @@ class Exchange(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The ``Exchange`` resource creates and manages an exchange.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        guest = rabbitmq.Permissions("guest",
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
+            user="guest",
+            vhost=test_v_host.name)
+        test_exchange = rabbitmq.Exchange("testExchange",
+            settings=rabbitmq.ExchangeSettingsArgs(
+                auto_delete=True,
+                durable=False,
+                type="fanout",
+            ),
+            vhost=guest.vhost)
+        ```
 
         ## Import
 

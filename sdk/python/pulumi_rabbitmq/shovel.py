@@ -173,6 +173,37 @@ class Shovel(pulumi.CustomResource):
         """
         The ``Shovel`` resource creates and manages a dynamic shovel.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        test_exchange = rabbitmq.Exchange("testExchange",
+            settings=rabbitmq.ExchangeSettingsArgs(
+                auto_delete=True,
+                durable=False,
+                type="fanout",
+            ),
+            vhost=test_v_host.name)
+        test_queue = rabbitmq.Queue("testQueue",
+            settings=rabbitmq.QueueSettingsArgs(
+                auto_delete=True,
+                durable=False,
+            ),
+            vhost=test_v_host.name)
+        shovel_test = rabbitmq.Shovel("shovelTest",
+            info=rabbitmq.ShovelInfoArgs(
+                destination_queue=test_queue.name,
+                destination_uri="amqp:///test",
+                source_exchange=test_exchange.name,
+                source_exchange_key="test",
+                source_uri="amqp:///test",
+            ),
+            vhost=test_v_host.name)
+        ```
+
         ## Import
 
         Shovels can be imported using the `name` and `vhost` E.g.
@@ -196,6 +227,37 @@ class Shovel(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The ``Shovel`` resource creates and manages a dynamic shovel.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        test_exchange = rabbitmq.Exchange("testExchange",
+            settings=rabbitmq.ExchangeSettingsArgs(
+                auto_delete=True,
+                durable=False,
+                type="fanout",
+            ),
+            vhost=test_v_host.name)
+        test_queue = rabbitmq.Queue("testQueue",
+            settings=rabbitmq.QueueSettingsArgs(
+                auto_delete=True,
+                durable=False,
+            ),
+            vhost=test_v_host.name)
+        shovel_test = rabbitmq.Shovel("shovelTest",
+            info=rabbitmq.ShovelInfoArgs(
+                destination_queue=test_queue.name,
+                destination_uri="amqp:///test",
+                source_exchange=test_exchange.name,
+                source_exchange_key="test",
+                source_uri="amqp:///test",
+            ),
+            vhost=test_v_host.name)
+        ```
 
         ## Import
 

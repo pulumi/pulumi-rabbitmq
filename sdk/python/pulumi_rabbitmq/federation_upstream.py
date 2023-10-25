@@ -187,6 +187,51 @@ class FederationUpstream(pulumi.CustomResource):
         """
         The ``FederationUpstream`` resource creates and manages a federation upstream parameter.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test = rabbitmq.VHost("test")
+        guest = rabbitmq.Permissions("guest",
+            user="guest",
+            vhost=test.name,
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                write=".*",
+                read=".*",
+            ))
+        # downstream exchange
+        foo_exchange = rabbitmq.Exchange("fooExchange",
+            vhost=guest.vhost,
+            settings=rabbitmq.ExchangeSettingsArgs(
+                type="topic",
+                durable=True,
+            ))
+        # upstream broker
+        foo_federation_upstream = rabbitmq.FederationUpstream("fooFederationUpstream",
+            vhost=guest.vhost,
+            definition=rabbitmq.FederationUpstreamDefinitionArgs(
+                uri="amqp://guest:guest@upstream-server-name:5672/%2f",
+                prefetch_count=1000,
+                reconnect_delay=5,
+                ack_mode="on-confirm",
+                trust_user_id=False,
+                max_hops=1,
+            ))
+        foo_policy = rabbitmq.Policy("fooPolicy",
+            vhost=guest.vhost,
+            policy=rabbitmq.PolicyPolicyArgs(
+                pattern=foo_exchange.name.apply(lambda name: f"(^{name}$)"),
+                priority=1,
+                apply_to="exchanges",
+                definition={
+                    "federation-upstream": foo_federation_upstream.name,
+                },
+            ))
+        ```
+
         ## Import
 
         A Federation upstream can be imported using the resource `id` which is composed of `name@vhost`, e.g.
@@ -209,6 +254,51 @@ class FederationUpstream(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The ``FederationUpstream`` resource creates and manages a federation upstream parameter.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test = rabbitmq.VHost("test")
+        guest = rabbitmq.Permissions("guest",
+            user="guest",
+            vhost=test.name,
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                write=".*",
+                read=".*",
+            ))
+        # downstream exchange
+        foo_exchange = rabbitmq.Exchange("fooExchange",
+            vhost=guest.vhost,
+            settings=rabbitmq.ExchangeSettingsArgs(
+                type="topic",
+                durable=True,
+            ))
+        # upstream broker
+        foo_federation_upstream = rabbitmq.FederationUpstream("fooFederationUpstream",
+            vhost=guest.vhost,
+            definition=rabbitmq.FederationUpstreamDefinitionArgs(
+                uri="amqp://guest:guest@upstream-server-name:5672/%2f",
+                prefetch_count=1000,
+                reconnect_delay=5,
+                ack_mode="on-confirm",
+                trust_user_id=False,
+                max_hops=1,
+            ))
+        foo_policy = rabbitmq.Policy("fooPolicy",
+            vhost=guest.vhost,
+            policy=rabbitmq.PolicyPolicyArgs(
+                pattern=foo_exchange.name.apply(lambda name: f"(^{name}$)"),
+                priority=1,
+                apply_to="exchanges",
+                definition={
+                    "federation-upstream": foo_federation_upstream.name,
+                },
+            ))
+        ```
 
         ## Import
 

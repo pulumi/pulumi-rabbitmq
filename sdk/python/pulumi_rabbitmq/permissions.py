@@ -174,6 +174,26 @@ class Permissions(pulumi.CustomResource):
         The ``Permissions`` resource creates and manages a user's set of
         permissions.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        test_user = rabbitmq.User("testUser",
+            password="foobar",
+            tags=["administrator"])
+        test_permissions = rabbitmq.Permissions("testPermissions",
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
+            user=test_user.name,
+            vhost=test_v_host.name)
+        ```
+
         ## Import
 
         Permissions can be imported using the `id` which is composed of
@@ -200,6 +220,26 @@ class Permissions(pulumi.CustomResource):
         """
         The ``Permissions`` resource creates and manages a user's set of
         permissions.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        test_user = rabbitmq.User("testUser",
+            password="foobar",
+            tags=["administrator"])
+        test_permissions = rabbitmq.Permissions("testPermissions",
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
+            user=test_user.name,
+            vhost=test_v_host.name)
+        ```
 
         ## Import
 

@@ -91,6 +91,15 @@ class VHost(pulumi.CustomResource):
         """
         The ``VHost`` resource creates and manages a vhost.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        my_vhost = rabbitmq.VHost("myVhost")
+        ```
+
         ## Import
 
         Vhosts can be imported using the `name`, e.g.
@@ -111,6 +120,15 @@ class VHost(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The ``VHost`` resource creates and manages a vhost.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        my_vhost = rabbitmq.VHost("myVhost")
+        ```
 
         ## Import
 
