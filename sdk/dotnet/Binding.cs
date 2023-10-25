@@ -13,6 +13,63 @@ namespace Pulumi.RabbitMQ
     /// The ``rabbitmq.Binding`` resource creates and manages a binding relationship
     /// between a queue an exchange.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using RabbitMQ = Pulumi.RabbitMQ;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testVHost = new RabbitMQ.VHost("testVHost");
+    /// 
+    ///     var guest = new RabbitMQ.Permissions("guest", new()
+    ///     {
+    ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
+    ///         {
+    ///             Configure = ".*",
+    ///             Read = ".*",
+    ///             Write = ".*",
+    ///         },
+    ///         User = "guest",
+    ///         Vhost = testVHost.Name,
+    ///     });
+    /// 
+    ///     var testExchange = new RabbitMQ.Exchange("testExchange", new()
+    ///     {
+    ///         Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
+    ///         {
+    ///             AutoDelete = true,
+    ///             Durable = false,
+    ///             Type = "fanout",
+    ///         },
+    ///         Vhost = guest.Vhost,
+    ///     });
+    /// 
+    ///     var testQueue = new RabbitMQ.Queue("testQueue", new()
+    ///     {
+    ///         Settings = new RabbitMQ.Inputs.QueueSettingsArgs
+    ///         {
+    ///             AutoDelete = false,
+    ///             Durable = true,
+    ///         },
+    ///         Vhost = guest.Vhost,
+    ///     });
+    /// 
+    ///     var testBinding = new RabbitMQ.Binding("testBinding", new()
+    ///     {
+    ///         Destination = testQueue.Name,
+    ///         DestinationType = "queue",
+    ///         RoutingKey = "#",
+    ///         Source = testExchange.Name,
+    ///         Vhost = testVHost.Name,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Bindings can be imported using the `id` which is composed of

@@ -173,6 +173,62 @@ class Queue(pulumi.CustomResource):
         The ``Queue`` resource creates and manages a queue.
 
         ## Example Usage
+        ### Basic Example
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        guest = rabbitmq.Permissions("guest",
+            user="guest",
+            vhost=test_v_host.name,
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                write=".*",
+                read=".*",
+            ))
+        test_queue = rabbitmq.Queue("testQueue",
+            vhost=guest.vhost,
+            settings=rabbitmq.QueueSettingsArgs(
+                durable=False,
+                auto_delete=True,
+                arguments={
+                    "x-queue-type": "quorum",
+                },
+            ))
+        ```
+        ### Example With JSON Arguments
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        config = pulumi.Config()
+        arguments = config.get("arguments")
+        if arguments is None:
+            arguments = \"\"\"{
+          "x-message-ttl": 5000
+        }
+
+        \"\"\"
+        test_v_host = rabbitmq.VHost("testVHost")
+        guest = rabbitmq.Permissions("guest",
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
+            user="guest",
+            vhost=test_v_host.name)
+        test_queue = rabbitmq.Queue("testQueue",
+            settings=rabbitmq.QueueSettingsArgs(
+                arguments_json=arguments,
+                auto_delete=True,
+                durable=False,
+            ),
+            vhost=guest.vhost)
+        ```
 
         ## Import
 
@@ -199,6 +255,62 @@ class Queue(pulumi.CustomResource):
         The ``Queue`` resource creates and manages a queue.
 
         ## Example Usage
+        ### Basic Example
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        guest = rabbitmq.Permissions("guest",
+            user="guest",
+            vhost=test_v_host.name,
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                write=".*",
+                read=".*",
+            ))
+        test_queue = rabbitmq.Queue("testQueue",
+            vhost=guest.vhost,
+            settings=rabbitmq.QueueSettingsArgs(
+                durable=False,
+                auto_delete=True,
+                arguments={
+                    "x-queue-type": "quorum",
+                },
+            ))
+        ```
+        ### Example With JSON Arguments
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        config = pulumi.Config()
+        arguments = config.get("arguments")
+        if arguments is None:
+            arguments = \"\"\"{
+          "x-message-ttl": 5000
+        }
+
+        \"\"\"
+        test_v_host = rabbitmq.VHost("testVHost")
+        guest = rabbitmq.Permissions("guest",
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
+            user="guest",
+            vhost=test_v_host.name)
+        test_queue = rabbitmq.Queue("testQueue",
+            settings=rabbitmq.QueueSettingsArgs(
+                arguments_json=arguments,
+                auto_delete=True,
+                durable=False,
+            ),
+            vhost=guest.vhost)
+        ```
 
         ## Import
 

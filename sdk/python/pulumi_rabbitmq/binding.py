@@ -342,6 +342,42 @@ class Binding(pulumi.CustomResource):
         The ``Binding`` resource creates and manages a binding relationship
         between a queue an exchange.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        guest = rabbitmq.Permissions("guest",
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
+            user="guest",
+            vhost=test_v_host.name)
+        test_exchange = rabbitmq.Exchange("testExchange",
+            settings=rabbitmq.ExchangeSettingsArgs(
+                auto_delete=True,
+                durable=False,
+                type="fanout",
+            ),
+            vhost=guest.vhost)
+        test_queue = rabbitmq.Queue("testQueue",
+            settings=rabbitmq.QueueSettingsArgs(
+                auto_delete=False,
+                durable=True,
+            ),
+            vhost=guest.vhost)
+        test_binding = rabbitmq.Binding("testBinding",
+            destination=test_queue.name,
+            destination_type="queue",
+            routing_key="#",
+            source=test_exchange.name,
+            vhost=test_v_host.name)
+        ```
+
         ## Import
 
         Bindings can be imported using the `id` which is composed of
@@ -370,6 +406,42 @@ class Binding(pulumi.CustomResource):
         """
         The ``Binding`` resource creates and manages a binding relationship
         between a queue an exchange.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        guest = rabbitmq.Permissions("guest",
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
+            user="guest",
+            vhost=test_v_host.name)
+        test_exchange = rabbitmq.Exchange("testExchange",
+            settings=rabbitmq.ExchangeSettingsArgs(
+                auto_delete=True,
+                durable=False,
+                type="fanout",
+            ),
+            vhost=guest.vhost)
+        test_queue = rabbitmq.Queue("testQueue",
+            settings=rabbitmq.QueueSettingsArgs(
+                auto_delete=False,
+                durable=True,
+            ),
+            vhost=guest.vhost)
+        test_binding = rabbitmq.Binding("testBinding",
+            destination=test_queue.name,
+            destination_type="queue",
+            routing_key="#",
+            source=test_exchange.name,
+            vhost=test_v_host.name)
+        ```
 
         ## Import
 

@@ -12,6 +12,21 @@ namespace Pulumi.RabbitMQ
     /// <summary>
     /// The ``rabbitmq.VHost`` resource creates and manages a vhost.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using RabbitMQ = Pulumi.RabbitMQ;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myVhost = new RabbitMQ.VHost("myVhost");
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Vhosts can be imported using the `name`, e.g.

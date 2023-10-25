@@ -15,6 +15,53 @@ import (
 
 // The “Exchange“ resource creates and manages an exchange.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
+//			if err != nil {
+//				return err
+//			}
+//			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
+//				Permissions: &rabbitmq.PermissionsPermissionsArgs{
+//					Configure: pulumi.String(".*"),
+//					Read:      pulumi.String(".*"),
+//					Write:     pulumi.String(".*"),
+//				},
+//				User:  pulumi.String("guest"),
+//				Vhost: testVHost.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rabbitmq.NewExchange(ctx, "testExchange", &rabbitmq.ExchangeArgs{
+//				Settings: &rabbitmq.ExchangeSettingsArgs{
+//					AutoDelete: pulumi.Bool(true),
+//					Durable:    pulumi.Bool(false),
+//					Type:       pulumi.String("fanout"),
+//				},
+//				Vhost: guest.Vhost,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // # Exchanges can be imported using the `id` which is composed of

@@ -15,6 +15,29 @@ namespace Pulumi.RabbitMQ
     /// &gt; **Note:** All arguments including username and password will be stored in the raw state as plain-text.
     /// [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using RabbitMQ = Pulumi.RabbitMQ;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new RabbitMQ.User("test", new()
+    ///     {
+    ///         Password = "foobar",
+    ///         Tags = new[]
+    ///         {
+    ///             "administrator",
+    ///             "management",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Users can be imported using the `name`, e.g.

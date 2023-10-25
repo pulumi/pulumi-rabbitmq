@@ -173,6 +173,34 @@ class OperatorPolicy(pulumi.CustomResource):
         """
         The ``OperatorPolicy`` resource creates and manages operator policies for queues.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        guest = rabbitmq.Permissions("guest",
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
+            user="guest",
+            vhost=test_v_host.name)
+        test_operator_policy = rabbitmq.OperatorPolicy("testOperatorPolicy",
+            policy=rabbitmq.OperatorPolicyPolicyArgs(
+                apply_to="queues",
+                definition={
+                    "expires": 1800000,
+                    "message-ttl": 3600000,
+                },
+                pattern=".*",
+                priority=0,
+            ),
+            vhost=guest.vhost)
+        ```
+
         ## Import
 
         Operator policies can be imported using the `id` which is composed of `name@vhost`. E.g.
@@ -196,6 +224,34 @@ class OperatorPolicy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The ``OperatorPolicy`` resource creates and manages operator policies for queues.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        guest = rabbitmq.Permissions("guest",
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
+            user="guest",
+            vhost=test_v_host.name)
+        test_operator_policy = rabbitmq.OperatorPolicy("testOperatorPolicy",
+            policy=rabbitmq.OperatorPolicyPolicyArgs(
+                apply_to="queues",
+                definition={
+                    "expires": 1800000,
+                    "message-ttl": 3600000,
+                },
+                pattern=".*",
+                priority=0,
+            ),
+            vhost=guest.vhost)
+        ```
 
         ## Import
 

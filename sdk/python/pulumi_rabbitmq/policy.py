@@ -174,6 +174,33 @@ class Policy(pulumi.CustomResource):
         The ``Policy`` resource creates and manages policies for exchanges
         and queues.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        guest = rabbitmq.Permissions("guest",
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
+            user="guest",
+            vhost=test_v_host.name)
+        test_policy = rabbitmq.Policy("testPolicy",
+            policy=rabbitmq.PolicyPolicyArgs(
+                apply_to="all",
+                definition={
+                    "ha-mode": "all",
+                },
+                pattern=".*",
+                priority=0,
+            ),
+            vhost=guest.vhost)
+        ```
+
         ## Import
 
         Policies can be imported using the `id` which is composed of `name@vhost`. E.g.
@@ -198,6 +225,33 @@ class Policy(pulumi.CustomResource):
         """
         The ``Policy`` resource creates and manages policies for exchanges
         and queues.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_rabbitmq as rabbitmq
+
+        test_v_host = rabbitmq.VHost("testVHost")
+        guest = rabbitmq.Permissions("guest",
+            permissions=rabbitmq.PermissionsPermissionsArgs(
+                configure=".*",
+                read=".*",
+                write=".*",
+            ),
+            user="guest",
+            vhost=test_v_host.name)
+        test_policy = rabbitmq.Policy("testPolicy",
+            policy=rabbitmq.PolicyPolicyArgs(
+                apply_to="all",
+                definition={
+                    "ha-mode": "all",
+                },
+                pattern=".*",
+                priority=0,
+            ),
+            vhost=guest.vhost)
+        ```
 
         ## Import
 

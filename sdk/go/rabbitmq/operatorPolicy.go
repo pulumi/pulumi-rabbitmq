@@ -15,6 +15,57 @@ import (
 
 // The “OperatorPolicy“ resource creates and manages operator policies for queues.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
+//			if err != nil {
+//				return err
+//			}
+//			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
+//				Permissions: &rabbitmq.PermissionsPermissionsArgs{
+//					Configure: pulumi.String(".*"),
+//					Read:      pulumi.String(".*"),
+//					Write:     pulumi.String(".*"),
+//				},
+//				User:  pulumi.String("guest"),
+//				Vhost: testVHost.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rabbitmq.NewOperatorPolicy(ctx, "testOperatorPolicy", &rabbitmq.OperatorPolicyArgs{
+//				Policy: &rabbitmq.OperatorPolicyPolicyArgs{
+//					ApplyTo: pulumi.String("queues"),
+//					Definition: pulumi.Map{
+//						"expires":     pulumi.Any(1800000),
+//						"message-ttl": pulumi.Any(3600000),
+//					},
+//					Pattern:  pulumi.String(".*"),
+//					Priority: pulumi.Int(0),
+//				},
+//				Vhost: guest.Vhost,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Operator policies can be imported using the `id` which is composed of `name@vhost`. E.g.

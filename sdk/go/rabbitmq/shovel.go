@@ -15,6 +15,64 @@ import (
 
 // The “Shovel“ resource creates and manages a dynamic shovel.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
+//			if err != nil {
+//				return err
+//			}
+//			testExchange, err := rabbitmq.NewExchange(ctx, "testExchange", &rabbitmq.ExchangeArgs{
+//				Settings: &rabbitmq.ExchangeSettingsArgs{
+//					AutoDelete: pulumi.Bool(true),
+//					Durable:    pulumi.Bool(false),
+//					Type:       pulumi.String("fanout"),
+//				},
+//				Vhost: testVHost.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testQueue, err := rabbitmq.NewQueue(ctx, "testQueue", &rabbitmq.QueueArgs{
+//				Settings: &rabbitmq.QueueSettingsArgs{
+//					AutoDelete: pulumi.Bool(true),
+//					Durable:    pulumi.Bool(false),
+//				},
+//				Vhost: testVHost.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rabbitmq.NewShovel(ctx, "shovelTest", &rabbitmq.ShovelArgs{
+//				Info: &rabbitmq.ShovelInfoArgs{
+//					DestinationQueue:  testQueue.Name,
+//					DestinationUri:    pulumi.String("amqp:///test"),
+//					SourceExchange:    testExchange.Name,
+//					SourceExchangeKey: pulumi.String("test"),
+//					SourceUri:         pulumi.String("amqp:///test"),
+//				},
+//				Vhost: testVHost.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Shovels can be imported using the `name` and `vhost` E.g.

@@ -13,6 +13,48 @@ namespace Pulumi.RabbitMQ
     /// The ``rabbitmq.Policy`` resource creates and manages policies for exchanges
     /// and queues.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using RabbitMQ = Pulumi.RabbitMQ;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testVHost = new RabbitMQ.VHost("testVHost");
+    /// 
+    ///     var guest = new RabbitMQ.Permissions("guest", new()
+    ///     {
+    ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
+    ///         {
+    ///             Configure = ".*",
+    ///             Read = ".*",
+    ///             Write = ".*",
+    ///         },
+    ///         User = "guest",
+    ///         Vhost = testVHost.Name,
+    ///     });
+    /// 
+    ///     var testPolicy = new RabbitMQ.Policy("testPolicy", new()
+    ///     {
+    ///         PolicyBlock = new RabbitMQ.Inputs.PolicyPolicyArgs
+    ///         {
+    ///             ApplyTo = "all",
+    ///             Definition = 
+    ///             {
+    ///                 { "ha-mode", "all" },
+    ///             },
+    ///             Pattern = ".*",
+    ///             Priority = 0,
+    ///         },
+    ///         Vhost = guest.Vhost,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Policies can be imported using the `id` which is composed of `name@vhost`. E.g.

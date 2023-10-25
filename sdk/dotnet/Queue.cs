@@ -13,6 +13,89 @@ namespace Pulumi.RabbitMQ
     /// The ``rabbitmq.Queue`` resource creates and manages a queue.
     /// 
     /// ## Example Usage
+    /// ### Basic Example
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using RabbitMQ = Pulumi.RabbitMQ;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testVHost = new RabbitMQ.VHost("testVHost");
+    /// 
+    ///     var guest = new RabbitMQ.Permissions("guest", new()
+    ///     {
+    ///         User = "guest",
+    ///         Vhost = testVHost.Name,
+    ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
+    ///         {
+    ///             Configure = ".*",
+    ///             Write = ".*",
+    ///             Read = ".*",
+    ///         },
+    ///     });
+    /// 
+    ///     var testQueue = new RabbitMQ.Queue("testQueue", new()
+    ///     {
+    ///         Vhost = guest.Vhost,
+    ///         Settings = new RabbitMQ.Inputs.QueueSettingsArgs
+    ///         {
+    ///             Durable = false,
+    ///             AutoDelete = true,
+    ///             Arguments = 
+    ///             {
+    ///                 { "x-queue-type", "quorum" },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Example With JSON Arguments
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using RabbitMQ = Pulumi.RabbitMQ;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Config();
+    ///     var arguments = config.Get("arguments") ?? @"{
+    ///   ""x-message-ttl"": 5000
+    /// }
+    /// 
+    /// ";
+    ///     var testVHost = new RabbitMQ.VHost("testVHost");
+    /// 
+    ///     var guest = new RabbitMQ.Permissions("guest", new()
+    ///     {
+    ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
+    ///         {
+    ///             Configure = ".*",
+    ///             Read = ".*",
+    ///             Write = ".*",
+    ///         },
+    ///         User = "guest",
+    ///         Vhost = testVHost.Name,
+    ///     });
+    /// 
+    ///     var testQueue = new RabbitMQ.Queue("testQueue", new()
+    ///     {
+    ///         Settings = new RabbitMQ.Inputs.QueueSettingsArgs
+    ///         {
+    ///             ArgumentsJson = arguments,
+    ///             AutoDelete = true,
+    ///             Durable = false,
+    ///         },
+    ///         Vhost = guest.Vhost,
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 
