@@ -35,10 +35,14 @@ class QueueArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             settings: pulumi.Input['QueueSettingsArgs'],
+             settings: Optional[pulumi.Input['QueueSettingsArgs']] = None,
              name: Optional[pulumi.Input[str]] = None,
              vhost: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if settings is None:
+            raise TypeError("Missing 'settings' argument")
+
         _setter("settings", settings)
         if name is not None:
             _setter("name", name)
@@ -108,7 +112,9 @@ class _QueueState:
              name: Optional[pulumi.Input[str]] = None,
              settings: Optional[pulumi.Input['QueueSettingsArgs']] = None,
              vhost: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if name is not None:
             _setter("name", name)
         if settings is not None:
@@ -167,62 +173,6 @@ class Queue(pulumi.CustomResource):
         The ``Queue`` resource creates and manages a queue.
 
         ## Example Usage
-        ### Basic Example
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        test_v_host = rabbitmq.VHost("testVHost")
-        guest = rabbitmq.Permissions("guest",
-            user="guest",
-            vhost=test_v_host.name,
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                write=".*",
-                read=".*",
-            ))
-        test_queue = rabbitmq.Queue("testQueue",
-            vhost=guest.vhost,
-            settings=rabbitmq.QueueSettingsArgs(
-                durable=False,
-                auto_delete=True,
-                arguments={
-                    "x-queue-type": "quorum",
-                },
-            ))
-        ```
-        ### Example With JSON Arguments
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        config = pulumi.Config()
-        arguments = config.get("arguments")
-        if arguments is None:
-            arguments = \"\"\"{
-          "x-message-ttl": 5000
-        }
-
-        \"\"\"
-        test_v_host = rabbitmq.VHost("testVHost")
-        guest = rabbitmq.Permissions("guest",
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                read=".*",
-                write=".*",
-            ),
-            user="guest",
-            vhost=test_v_host.name)
-        test_queue = rabbitmq.Queue("testQueue",
-            settings=rabbitmq.QueueSettingsArgs(
-                arguments_json=arguments,
-                auto_delete=True,
-                durable=False,
-            ),
-            vhost=guest.vhost)
-        ```
 
         ## Import
 
@@ -249,62 +199,6 @@ class Queue(pulumi.CustomResource):
         The ``Queue`` resource creates and manages a queue.
 
         ## Example Usage
-        ### Basic Example
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        test_v_host = rabbitmq.VHost("testVHost")
-        guest = rabbitmq.Permissions("guest",
-            user="guest",
-            vhost=test_v_host.name,
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                write=".*",
-                read=".*",
-            ))
-        test_queue = rabbitmq.Queue("testQueue",
-            vhost=guest.vhost,
-            settings=rabbitmq.QueueSettingsArgs(
-                durable=False,
-                auto_delete=True,
-                arguments={
-                    "x-queue-type": "quorum",
-                },
-            ))
-        ```
-        ### Example With JSON Arguments
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        config = pulumi.Config()
-        arguments = config.get("arguments")
-        if arguments is None:
-            arguments = \"\"\"{
-          "x-message-ttl": 5000
-        }
-
-        \"\"\"
-        test_v_host = rabbitmq.VHost("testVHost")
-        guest = rabbitmq.Permissions("guest",
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                read=".*",
-                write=".*",
-            ),
-            user="guest",
-            vhost=test_v_host.name)
-        test_queue = rabbitmq.Queue("testQueue",
-            settings=rabbitmq.QueueSettingsArgs(
-                arguments_json=arguments,
-                auto_delete=True,
-                durable=False,
-            ),
-            vhost=guest.vhost)
-        ```
 
         ## Import
 
@@ -346,11 +240,7 @@ class Queue(pulumi.CustomResource):
             __props__ = QueueArgs.__new__(QueueArgs)
 
             __props__.__dict__["name"] = name
-            if settings is not None and not isinstance(settings, QueueSettingsArgs):
-                settings = settings or {}
-                def _setter(key, value):
-                    settings[key] = value
-                QueueSettingsArgs._configure(_setter, **settings)
+            settings = _utilities.configure(settings, QueueSettingsArgs, True)
             if settings is None and not opts.urn:
                 raise TypeError("Missing required property 'settings'")
             __props__.__dict__["settings"] = settings

@@ -35,10 +35,16 @@ class TopicPermissionsArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             permissions: pulumi.Input[Sequence[pulumi.Input['TopicPermissionsPermissionArgs']]],
-             user: pulumi.Input[str],
+             permissions: Optional[pulumi.Input[Sequence[pulumi.Input['TopicPermissionsPermissionArgs']]]] = None,
+             user: Optional[pulumi.Input[str]] = None,
              vhost: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if permissions is None:
+            raise TypeError("Missing 'permissions' argument")
+        if user is None:
+            raise TypeError("Missing 'user' argument")
+
         _setter("permissions", permissions)
         _setter("user", user)
         if vhost is not None:
@@ -107,7 +113,9 @@ class _TopicPermissionsState:
              permissions: Optional[pulumi.Input[Sequence[pulumi.Input['TopicPermissionsPermissionArgs']]]] = None,
              user: Optional[pulumi.Input[str]] = None,
              vhost: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if permissions is not None:
             _setter("permissions", permissions)
         if user is not None:
@@ -166,26 +174,6 @@ class TopicPermissions(pulumi.CustomResource):
         The ``TopicPermissions`` resource creates and manages a user's set of
         topic permissions.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        test_v_host = rabbitmq.VHost("testVHost")
-        test_user = rabbitmq.User("testUser",
-            password="foobar",
-            tags=["administrator"])
-        test_topic_permissions = rabbitmq.TopicPermissions("testTopicPermissions",
-            permissions=[rabbitmq.TopicPermissionsPermissionArgs(
-                exchange="amq.topic",
-                read=".*",
-                write=".*",
-            )],
-            user=test_user.name,
-            vhost=test_v_host.name)
-        ```
-
         ## Import
 
         Permissions can be imported using the `id` which is composed of
@@ -212,26 +200,6 @@ class TopicPermissions(pulumi.CustomResource):
         """
         The ``TopicPermissions`` resource creates and manages a user's set of
         topic permissions.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        test_v_host = rabbitmq.VHost("testVHost")
-        test_user = rabbitmq.User("testUser",
-            password="foobar",
-            tags=["administrator"])
-        test_topic_permissions = rabbitmq.TopicPermissions("testTopicPermissions",
-            permissions=[rabbitmq.TopicPermissionsPermissionArgs(
-                exchange="amq.topic",
-                read=".*",
-                write=".*",
-            )],
-            user=test_user.name,
-            vhost=test_v_host.name)
-        ```
 
         ## Import
 

@@ -7,15 +7,6 @@ import * as utilities from "./utilities";
 /**
  * The ``rabbitmq.VHost`` resource creates and manages a vhost.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as rabbitmq from "@pulumi/rabbitmq";
- *
- * const myVhost = new rabbitmq.VHost("myVhost", {});
- * ```
- *
  * ## Import
  *
  * Vhosts can be imported using the `name`, e.g.

@@ -63,11 +63,17 @@ class ExchangeSettings(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             type: str,
+             type: Optional[str] = None,
              arguments: Optional[Mapping[str, Any]] = None,
              auto_delete: Optional[bool] = None,
              durable: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+        if auto_delete is None and 'autoDelete' in kwargs:
+            auto_delete = kwargs['autoDelete']
+
         _setter("type", type)
         if arguments is not None:
             _setter("arguments", arguments)
@@ -185,7 +191,7 @@ class FederationUpstreamDefinition(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             uri: str,
+             uri: Optional[str] = None,
              ack_mode: Optional[str] = None,
              exchange: Optional[str] = None,
              expires: Optional[int] = None,
@@ -195,7 +201,23 @@ class FederationUpstreamDefinition(dict):
              queue: Optional[str] = None,
              reconnect_delay: Optional[int] = None,
              trust_user_id: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if uri is None:
+            raise TypeError("Missing 'uri' argument")
+        if ack_mode is None and 'ackMode' in kwargs:
+            ack_mode = kwargs['ackMode']
+        if max_hops is None and 'maxHops' in kwargs:
+            max_hops = kwargs['maxHops']
+        if message_ttl is None and 'messageTtl' in kwargs:
+            message_ttl = kwargs['messageTtl']
+        if prefetch_count is None and 'prefetchCount' in kwargs:
+            prefetch_count = kwargs['prefetchCount']
+        if reconnect_delay is None and 'reconnectDelay' in kwargs:
+            reconnect_delay = kwargs['reconnectDelay']
+        if trust_user_id is None and 'trustUserId' in kwargs:
+            trust_user_id = kwargs['trustUserId']
+
         _setter("uri", uri)
         if ack_mode is not None:
             _setter("ack_mode", ack_mode)
@@ -344,11 +366,23 @@ class OperatorPolicyPolicy(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             apply_to: str,
-             definition: Mapping[str, Any],
-             pattern: str,
-             priority: int,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             apply_to: Optional[str] = None,
+             definition: Optional[Mapping[str, Any]] = None,
+             pattern: Optional[str] = None,
+             priority: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if apply_to is None and 'applyTo' in kwargs:
+            apply_to = kwargs['applyTo']
+        if apply_to is None:
+            raise TypeError("Missing 'apply_to' argument")
+        if definition is None:
+            raise TypeError("Missing 'definition' argument")
+        if pattern is None:
+            raise TypeError("Missing 'pattern' argument")
+        if priority is None:
+            raise TypeError("Missing 'priority' argument")
+
         _setter("apply_to", apply_to)
         _setter("definition", definition)
         _setter("pattern", pattern)
@@ -408,10 +442,18 @@ class PermissionsPermissions(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             configure: str,
-             read: str,
-             write: str,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             configure: Optional[str] = None,
+             read: Optional[str] = None,
+             write: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if configure is None:
+            raise TypeError("Missing 'configure' argument")
+        if read is None:
+            raise TypeError("Missing 'read' argument")
+        if write is None:
+            raise TypeError("Missing 'write' argument")
+
         _setter("configure", configure)
         _setter("read", read)
         _setter("write", write)
@@ -482,11 +524,23 @@ class PolicyPolicy(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             apply_to: str,
-             definition: Mapping[str, Any],
-             pattern: str,
-             priority: int,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             apply_to: Optional[str] = None,
+             definition: Optional[Mapping[str, Any]] = None,
+             pattern: Optional[str] = None,
+             priority: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if apply_to is None and 'applyTo' in kwargs:
+            apply_to = kwargs['applyTo']
+        if apply_to is None:
+            raise TypeError("Missing 'apply_to' argument")
+        if definition is None:
+            raise TypeError("Missing 'definition' argument")
+        if pattern is None:
+            raise TypeError("Missing 'pattern' argument")
+        if priority is None:
+            raise TypeError("Missing 'priority' argument")
+
         _setter("apply_to", apply_to)
         _setter("definition", definition)
         _setter("pattern", pattern)
@@ -578,7 +632,13 @@ class QueueSettings(dict):
              arguments_json: Optional[str] = None,
              auto_delete: Optional[bool] = None,
              durable: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if arguments_json is None and 'argumentsJson' in kwargs:
+            arguments_json = kwargs['argumentsJson']
+        if auto_delete is None and 'autoDelete' in kwargs:
+            auto_delete = kwargs['autoDelete']
+
         if arguments is not None:
             _setter("arguments", arguments)
         if arguments_json is not None:
@@ -782,8 +842,8 @@ class ShovelInfo(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             destination_uri: str,
-             source_uri: str,
+             destination_uri: Optional[str] = None,
+             source_uri: Optional[str] = None,
              ack_mode: Optional[str] = None,
              add_forward_headers: Optional[bool] = None,
              delete_after: Optional[str] = None,
@@ -806,7 +866,61 @@ class ShovelInfo(dict):
              source_prefetch_count: Optional[int] = None,
              source_protocol: Optional[str] = None,
              source_queue: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if destination_uri is None and 'destinationUri' in kwargs:
+            destination_uri = kwargs['destinationUri']
+        if destination_uri is None:
+            raise TypeError("Missing 'destination_uri' argument")
+        if source_uri is None and 'sourceUri' in kwargs:
+            source_uri = kwargs['sourceUri']
+        if source_uri is None:
+            raise TypeError("Missing 'source_uri' argument")
+        if ack_mode is None and 'ackMode' in kwargs:
+            ack_mode = kwargs['ackMode']
+        if add_forward_headers is None and 'addForwardHeaders' in kwargs:
+            add_forward_headers = kwargs['addForwardHeaders']
+        if delete_after is None and 'deleteAfter' in kwargs:
+            delete_after = kwargs['deleteAfter']
+        if destination_add_forward_headers is None and 'destinationAddForwardHeaders' in kwargs:
+            destination_add_forward_headers = kwargs['destinationAddForwardHeaders']
+        if destination_add_timestamp_header is None and 'destinationAddTimestampHeader' in kwargs:
+            destination_add_timestamp_header = kwargs['destinationAddTimestampHeader']
+        if destination_address is None and 'destinationAddress' in kwargs:
+            destination_address = kwargs['destinationAddress']
+        if destination_application_properties is None and 'destinationApplicationProperties' in kwargs:
+            destination_application_properties = kwargs['destinationApplicationProperties']
+        if destination_exchange is None and 'destinationExchange' in kwargs:
+            destination_exchange = kwargs['destinationExchange']
+        if destination_exchange_key is None and 'destinationExchangeKey' in kwargs:
+            destination_exchange_key = kwargs['destinationExchangeKey']
+        if destination_properties is None and 'destinationProperties' in kwargs:
+            destination_properties = kwargs['destinationProperties']
+        if destination_protocol is None and 'destinationProtocol' in kwargs:
+            destination_protocol = kwargs['destinationProtocol']
+        if destination_publish_properties is None and 'destinationPublishProperties' in kwargs:
+            destination_publish_properties = kwargs['destinationPublishProperties']
+        if destination_queue is None and 'destinationQueue' in kwargs:
+            destination_queue = kwargs['destinationQueue']
+        if prefetch_count is None and 'prefetchCount' in kwargs:
+            prefetch_count = kwargs['prefetchCount']
+        if reconnect_delay is None and 'reconnectDelay' in kwargs:
+            reconnect_delay = kwargs['reconnectDelay']
+        if source_address is None and 'sourceAddress' in kwargs:
+            source_address = kwargs['sourceAddress']
+        if source_delete_after is None and 'sourceDeleteAfter' in kwargs:
+            source_delete_after = kwargs['sourceDeleteAfter']
+        if source_exchange is None and 'sourceExchange' in kwargs:
+            source_exchange = kwargs['sourceExchange']
+        if source_exchange_key is None and 'sourceExchangeKey' in kwargs:
+            source_exchange_key = kwargs['sourceExchangeKey']
+        if source_prefetch_count is None and 'sourcePrefetchCount' in kwargs:
+            source_prefetch_count = kwargs['sourcePrefetchCount']
+        if source_protocol is None and 'sourceProtocol' in kwargs:
+            source_protocol = kwargs['sourceProtocol']
+        if source_queue is None and 'sourceQueue' in kwargs:
+            source_queue = kwargs['sourceQueue']
+
         _setter("destination_uri", destination_uri)
         _setter("source_uri", source_uri)
         if ack_mode is not None:
@@ -1083,10 +1197,18 @@ class TopicPermissionsPermission(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             exchange: str,
-             read: str,
-             write: str,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             exchange: Optional[str] = None,
+             read: Optional[str] = None,
+             write: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if exchange is None:
+            raise TypeError("Missing 'exchange' argument")
+        if read is None:
+            raise TypeError("Missing 'read' argument")
+        if write is None:
+            raise TypeError("Missing 'write' argument")
+
         _setter("exchange", exchange)
         _setter("read", read)
         _setter("write", write)
@@ -1133,11 +1255,17 @@ class GetExchangeSettingResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             type: str,
+             type: Optional[str] = None,
              arguments: Optional[Mapping[str, Any]] = None,
              auto_delete: Optional[bool] = None,
              durable: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+        if auto_delete is None and 'autoDelete' in kwargs:
+            auto_delete = kwargs['autoDelete']
+
         _setter("type", type)
         if arguments is not None:
             _setter("arguments", arguments)

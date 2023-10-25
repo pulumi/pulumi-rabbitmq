@@ -12,55 +12,6 @@ namespace Pulumi.RabbitMQ
     /// <summary>
     /// The ``rabbitmq.Shovel`` resource creates and manages a dynamic shovel.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using RabbitMQ = Pulumi.RabbitMQ;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var testVHost = new RabbitMQ.VHost("testVHost");
-    /// 
-    ///     var testExchange = new RabbitMQ.Exchange("testExchange", new()
-    ///     {
-    ///         Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
-    ///         {
-    ///             AutoDelete = true,
-    ///             Durable = false,
-    ///             Type = "fanout",
-    ///         },
-    ///         Vhost = testVHost.Name,
-    ///     });
-    /// 
-    ///     var testQueue = new RabbitMQ.Queue("testQueue", new()
-    ///     {
-    ///         Settings = new RabbitMQ.Inputs.QueueSettingsArgs
-    ///         {
-    ///             AutoDelete = true,
-    ///             Durable = false,
-    ///         },
-    ///         Vhost = testVHost.Name,
-    ///     });
-    /// 
-    ///     var shovelTest = new RabbitMQ.Shovel("shovelTest", new()
-    ///     {
-    ///         Info = new RabbitMQ.Inputs.ShovelInfoArgs
-    ///         {
-    ///             DestinationQueue = testQueue.Name,
-    ///             DestinationUri = "amqp:///test",
-    ///             SourceExchange = testExchange.Name,
-    ///             SourceExchangeKey = "test",
-    ///             SourceUri = "amqp:///test",
-    ///         },
-    ///         Vhost = testVHost.Name,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Shovels can be imported using the `name` and `vhost` E.g.

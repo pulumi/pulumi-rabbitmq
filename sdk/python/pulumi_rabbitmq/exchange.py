@@ -35,10 +35,14 @@ class ExchangeArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             settings: pulumi.Input['ExchangeSettingsArgs'],
+             settings: Optional[pulumi.Input['ExchangeSettingsArgs']] = None,
              name: Optional[pulumi.Input[str]] = None,
              vhost: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if settings is None:
+            raise TypeError("Missing 'settings' argument")
+
         _setter("settings", settings)
         if name is not None:
             _setter("name", name)
@@ -108,7 +112,9 @@ class _ExchangeState:
              name: Optional[pulumi.Input[str]] = None,
              settings: Optional[pulumi.Input['ExchangeSettingsArgs']] = None,
              vhost: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if name is not None:
             _setter("name", name)
         if settings is not None:
@@ -166,30 +172,6 @@ class Exchange(pulumi.CustomResource):
         """
         The ``Exchange`` resource creates and manages an exchange.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        test_v_host = rabbitmq.VHost("testVHost")
-        guest = rabbitmq.Permissions("guest",
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                read=".*",
-                write=".*",
-            ),
-            user="guest",
-            vhost=test_v_host.name)
-        test_exchange = rabbitmq.Exchange("testExchange",
-            settings=rabbitmq.ExchangeSettingsArgs(
-                auto_delete=True,
-                durable=False,
-                type="fanout",
-            ),
-            vhost=guest.vhost)
-        ```
-
         ## Import
 
         Exchanges can be imported using the `id` which is composed of
@@ -215,30 +197,6 @@ class Exchange(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The ``Exchange`` resource creates and manages an exchange.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        test_v_host = rabbitmq.VHost("testVHost")
-        guest = rabbitmq.Permissions("guest",
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                read=".*",
-                write=".*",
-            ),
-            user="guest",
-            vhost=test_v_host.name)
-        test_exchange = rabbitmq.Exchange("testExchange",
-            settings=rabbitmq.ExchangeSettingsArgs(
-                auto_delete=True,
-                durable=False,
-                type="fanout",
-            ),
-            vhost=guest.vhost)
-        ```
 
         ## Import
 
@@ -282,11 +240,7 @@ class Exchange(pulumi.CustomResource):
             __props__ = ExchangeArgs.__new__(ExchangeArgs)
 
             __props__.__dict__["name"] = name
-            if settings is not None and not isinstance(settings, ExchangeSettingsArgs):
-                settings = settings or {}
-                def _setter(key, value):
-                    settings[key] = value
-                ExchangeSettingsArgs._configure(_setter, **settings)
+            settings = _utilities.configure(settings, ExchangeSettingsArgs, True)
             if settings is None and not opts.urn:
                 raise TypeError("Missing required property 'settings'")
             __props__.__dict__["settings"] = settings

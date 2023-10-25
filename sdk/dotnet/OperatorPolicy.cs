@@ -12,49 +12,6 @@ namespace Pulumi.RabbitMQ
     /// <summary>
     /// The ``rabbitmq.OperatorPolicy`` resource creates and manages operator policies for queues.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using RabbitMQ = Pulumi.RabbitMQ;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var testVHost = new RabbitMQ.VHost("testVHost");
-    /// 
-    ///     var guest = new RabbitMQ.Permissions("guest", new()
-    ///     {
-    ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
-    ///         {
-    ///             Configure = ".*",
-    ///             Read = ".*",
-    ///             Write = ".*",
-    ///         },
-    ///         User = "guest",
-    ///         Vhost = testVHost.Name,
-    ///     });
-    /// 
-    ///     var testOperatorPolicy = new RabbitMQ.OperatorPolicy("testOperatorPolicy", new()
-    ///     {
-    ///         Policy = new RabbitMQ.Inputs.OperatorPolicyPolicyArgs
-    ///         {
-    ///             ApplyTo = "queues",
-    ///             Definition = 
-    ///             {
-    ///                 { "expires", 1800000 },
-    ///                 { "message-ttl", 3600000 },
-    ///             },
-    ///             Pattern = ".*",
-    ///             Priority = 0,
-    ///         },
-    ///         Vhost = guest.Vhost,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Operator policies can be imported using the `id` which is composed of `name@vhost`. E.g.

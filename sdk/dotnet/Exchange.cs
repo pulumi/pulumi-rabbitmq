@@ -12,44 +12,6 @@ namespace Pulumi.RabbitMQ
     /// <summary>
     /// The ``rabbitmq.Exchange`` resource creates and manages an exchange.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using RabbitMQ = Pulumi.RabbitMQ;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var testVHost = new RabbitMQ.VHost("testVHost");
-    /// 
-    ///     var guest = new RabbitMQ.Permissions("guest", new()
-    ///     {
-    ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
-    ///         {
-    ///             Configure = ".*",
-    ///             Read = ".*",
-    ///             Write = ".*",
-    ///         },
-    ///         User = "guest",
-    ///         Vhost = testVHost.Name,
-    ///     });
-    /// 
-    ///     var testExchange = new RabbitMQ.Exchange("testExchange", new()
-    ///     {
-    ///         Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
-    ///         {
-    ///             AutoDelete = true,
-    ///             Durable = false,
-    ///             Type = "fanout",
-    ///         },
-    ///         Vhost = guest.Vhost,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Exchanges can be imported using the `id` which is composed of
