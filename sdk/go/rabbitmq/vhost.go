@@ -14,30 +14,6 @@ import (
 
 // The “VHost“ resource creates and manages a vhost.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rabbitmq.NewVHost(ctx, "myVhost", nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // Vhosts can be imported using the `name`, e.g.

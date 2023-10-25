@@ -10,64 +10,6 @@ import * as utilities from "./utilities";
  * The ``rabbitmq.Queue`` resource creates and manages a queue.
  *
  * ## Example Usage
- * ### Basic Example
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as rabbitmq from "@pulumi/rabbitmq";
- *
- * const testVHost = new rabbitmq.VHost("testVHost", {});
- * const guest = new rabbitmq.Permissions("guest", {
- *     user: "guest",
- *     vhost: testVHost.name,
- *     permissions: {
- *         configure: ".*",
- *         write: ".*",
- *         read: ".*",
- *     },
- * });
- * const testQueue = new rabbitmq.Queue("testQueue", {
- *     vhost: guest.vhost,
- *     settings: {
- *         durable: false,
- *         autoDelete: true,
- *         arguments: {
- *             "x-queue-type": "quorum",
- *         },
- *     },
- * });
- * ```
- * ### Example With JSON Arguments
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as rabbitmq from "@pulumi/rabbitmq";
- *
- * const config = new pulumi.Config();
- * const arguments = config.get("arguments") || `{
- *   "x-message-ttl": 5000
- * }
- *
- * `;
- * const testVHost = new rabbitmq.VHost("testVHost", {});
- * const guest = new rabbitmq.Permissions("guest", {
- *     permissions: {
- *         configure: ".*",
- *         read: ".*",
- *         write: ".*",
- *     },
- *     user: "guest",
- *     vhost: testVHost.name,
- * });
- * const testQueue = new rabbitmq.Queue("testQueue", {
- *     settings: {
- *         argumentsJson: arguments,
- *         autoDelete: true,
- *         durable: false,
- *     },
- *     vhost: guest.vhost,
- * });
- * ```
  *
  * ## Import
  *

@@ -10,35 +10,6 @@ import * as utilities from "./utilities";
  * The ``rabbitmq.Policy`` resource creates and manages policies for exchanges
  * and queues.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as rabbitmq from "@pulumi/rabbitmq";
- *
- * const testVHost = new rabbitmq.VHost("testVHost", {});
- * const guest = new rabbitmq.Permissions("guest", {
- *     permissions: {
- *         configure: ".*",
- *         read: ".*",
- *         write: ".*",
- *     },
- *     user: "guest",
- *     vhost: testVHost.name,
- * });
- * const testPolicy = new rabbitmq.Policy("testPolicy", {
- *     policy: {
- *         applyTo: "all",
- *         definition: {
- *             "ha-mode": "all",
- *         },
- *         pattern: ".*",
- *         priority: 0,
- *     },
- *     vhost: guest.vhost,
- * });
- * ```
- *
  * ## Import
  *
  * Policies can be imported using the `id` which is composed of `name@vhost`. E.g.

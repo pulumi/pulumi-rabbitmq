@@ -39,15 +39,29 @@ class ProviderArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             endpoint: pulumi.Input[str],
-             password: pulumi.Input[str],
-             username: pulumi.Input[str],
+             endpoint: Optional[pulumi.Input[str]] = None,
+             password: Optional[pulumi.Input[str]] = None,
+             username: Optional[pulumi.Input[str]] = None,
              cacert_file: Optional[pulumi.Input[str]] = None,
              clientcert_file: Optional[pulumi.Input[str]] = None,
              clientkey_file: Optional[pulumi.Input[str]] = None,
              insecure: Optional[pulumi.Input[bool]] = None,
              proxy: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if endpoint is None:
+            raise TypeError("Missing 'endpoint' argument")
+        if password is None:
+            raise TypeError("Missing 'password' argument")
+        if username is None:
+            raise TypeError("Missing 'username' argument")
+        if cacert_file is None and 'cacertFile' in kwargs:
+            cacert_file = kwargs['cacertFile']
+        if clientcert_file is None and 'clientcertFile' in kwargs:
+            clientcert_file = kwargs['clientcertFile']
+        if clientkey_file is None and 'clientkeyFile' in kwargs:
+            clientkey_file = kwargs['clientkeyFile']
+
         _setter("endpoint", endpoint)
         _setter("password", password)
         _setter("username", username)

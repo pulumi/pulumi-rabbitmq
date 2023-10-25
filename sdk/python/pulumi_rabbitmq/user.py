@@ -34,10 +34,14 @@ class UserArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             password: pulumi.Input[str],
+             password: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
              tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if password is None:
+            raise TypeError("Missing 'password' argument")
+
         _setter("password", password)
         if name is not None:
             _setter("name", name)
@@ -109,7 +113,9 @@ class _UserState:
              name: Optional[pulumi.Input[str]] = None,
              password: Optional[pulumi.Input[str]] = None,
              tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if name is not None:
             _setter("name", name)
         if password is not None:
@@ -171,20 +177,6 @@ class User(pulumi.CustomResource):
         > **Note:** All arguments including username and password will be stored in the raw state as plain-text.
         [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        test = rabbitmq.User("test",
-            password="foobar",
-            tags=[
-                "administrator",
-                "management",
-            ])
-        ```
-
         ## Import
 
         Users can be imported using the `name`, e.g.
@@ -212,20 +204,6 @@ class User(pulumi.CustomResource):
 
         > **Note:** All arguments including username and password will be stored in the raw state as plain-text.
         [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        test = rabbitmq.User("test",
-            password="foobar",
-            tags=[
-                "administrator",
-                "management",
-            ])
-        ```
 
         ## Import
 

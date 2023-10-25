@@ -34,10 +34,16 @@ class FederationUpstreamArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             definition: pulumi.Input['FederationUpstreamDefinitionArgs'],
-             vhost: pulumi.Input[str],
+             definition: Optional[pulumi.Input['FederationUpstreamDefinitionArgs']] = None,
+             vhost: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if definition is None:
+            raise TypeError("Missing 'definition' argument")
+        if vhost is None:
+            raise TypeError("Missing 'vhost' argument")
+
         _setter("definition", definition)
         _setter("vhost", vhost)
         if name is not None:
@@ -108,7 +114,9 @@ class _FederationUpstreamState:
              definition: Optional[pulumi.Input['FederationUpstreamDefinitionArgs']] = None,
              name: Optional[pulumi.Input[str]] = None,
              vhost: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if component is not None:
             _setter("component", component)
         if definition is not None:
@@ -179,51 +187,6 @@ class FederationUpstream(pulumi.CustomResource):
         """
         The ``FederationUpstream`` resource creates and manages a federation upstream parameter.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        test = rabbitmq.VHost("test")
-        guest = rabbitmq.Permissions("guest",
-            user="guest",
-            vhost=test.name,
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                write=".*",
-                read=".*",
-            ))
-        # downstream exchange
-        foo_exchange = rabbitmq.Exchange("fooExchange",
-            vhost=guest.vhost,
-            settings=rabbitmq.ExchangeSettingsArgs(
-                type="topic",
-                durable=True,
-            ))
-        # upstream broker
-        foo_federation_upstream = rabbitmq.FederationUpstream("fooFederationUpstream",
-            vhost=guest.vhost,
-            definition=rabbitmq.FederationUpstreamDefinitionArgs(
-                uri="amqp://guest:guest@upstream-server-name:5672/%2f",
-                prefetch_count=1000,
-                reconnect_delay=5,
-                ack_mode="on-confirm",
-                trust_user_id=False,
-                max_hops=1,
-            ))
-        foo_policy = rabbitmq.Policy("fooPolicy",
-            vhost=guest.vhost,
-            policy=rabbitmq.PolicyPolicyArgs(
-                pattern=foo_exchange.name.apply(lambda name: f"(^{name}$)"),
-                priority=1,
-                apply_to="exchanges",
-                definition={
-                    "federation-upstream": foo_federation_upstream.name,
-                },
-            ))
-        ```
-
         ## Import
 
         A Federation upstream can be imported using the resource `id` which is composed of `name@vhost`, e.g.
@@ -246,51 +209,6 @@ class FederationUpstream(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The ``FederationUpstream`` resource creates and manages a federation upstream parameter.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        test = rabbitmq.VHost("test")
-        guest = rabbitmq.Permissions("guest",
-            user="guest",
-            vhost=test.name,
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                write=".*",
-                read=".*",
-            ))
-        # downstream exchange
-        foo_exchange = rabbitmq.Exchange("fooExchange",
-            vhost=guest.vhost,
-            settings=rabbitmq.ExchangeSettingsArgs(
-                type="topic",
-                durable=True,
-            ))
-        # upstream broker
-        foo_federation_upstream = rabbitmq.FederationUpstream("fooFederationUpstream",
-            vhost=guest.vhost,
-            definition=rabbitmq.FederationUpstreamDefinitionArgs(
-                uri="amqp://guest:guest@upstream-server-name:5672/%2f",
-                prefetch_count=1000,
-                reconnect_delay=5,
-                ack_mode="on-confirm",
-                trust_user_id=False,
-                max_hops=1,
-            ))
-        foo_policy = rabbitmq.Policy("fooPolicy",
-            vhost=guest.vhost,
-            policy=rabbitmq.PolicyPolicyArgs(
-                pattern=foo_exchange.name.apply(lambda name: f"(^{name}$)"),
-                priority=1,
-                apply_to="exchanges",
-                definition={
-                    "federation-upstream": foo_federation_upstream.name,
-                },
-            ))
-        ```
 
         ## Import
 
@@ -331,11 +249,7 @@ class FederationUpstream(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FederationUpstreamArgs.__new__(FederationUpstreamArgs)
 
-            if definition is not None and not isinstance(definition, FederationUpstreamDefinitionArgs):
-                definition = definition or {}
-                def _setter(key, value):
-                    definition[key] = value
-                FederationUpstreamDefinitionArgs._configure(_setter, **definition)
+            definition = _utilities.configure(definition, FederationUpstreamDefinitionArgs, True)
             if definition is None and not opts.urn:
                 raise TypeError("Missing required property 'definition'")
             __props__.__dict__["definition"] = definition

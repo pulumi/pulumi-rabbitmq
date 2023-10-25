@@ -10,28 +10,6 @@ import * as utilities from "./utilities";
  * The ``rabbitmq.TopicPermissions`` resource creates and manages a user's set of
  * topic permissions.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as rabbitmq from "@pulumi/rabbitmq";
- *
- * const testVHost = new rabbitmq.VHost("testVHost", {});
- * const testUser = new rabbitmq.User("testUser", {
- *     password: "foobar",
- *     tags: ["administrator"],
- * });
- * const testTopicPermissions = new rabbitmq.TopicPermissions("testTopicPermissions", {
- *     permissions: [{
- *         exchange: "amq.topic",
- *         read: ".*",
- *         write: ".*",
- *     }],
- *     user: testUser.name,
- *     vhost: testVHost.name,
- * });
- * ```
- *
  * ## Import
  *
  * Permissions can be imported using the `id` which is composed of

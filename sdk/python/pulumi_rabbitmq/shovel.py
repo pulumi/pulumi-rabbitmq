@@ -35,10 +35,16 @@ class ShovelArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             info: pulumi.Input['ShovelInfoArgs'],
-             vhost: pulumi.Input[str],
+             info: Optional[pulumi.Input['ShovelInfoArgs']] = None,
+             vhost: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if info is None:
+            raise TypeError("Missing 'info' argument")
+        if vhost is None:
+            raise TypeError("Missing 'vhost' argument")
+
         _setter("info", info)
         _setter("vhost", vhost)
         if name is not None:
@@ -107,7 +113,9 @@ class _ShovelState:
              info: Optional[pulumi.Input['ShovelInfoArgs']] = None,
              name: Optional[pulumi.Input[str]] = None,
              vhost: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if info is not None:
             _setter("info", info)
         if name is not None:
@@ -165,37 +173,6 @@ class Shovel(pulumi.CustomResource):
         """
         The ``Shovel`` resource creates and manages a dynamic shovel.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        test_v_host = rabbitmq.VHost("testVHost")
-        test_exchange = rabbitmq.Exchange("testExchange",
-            settings=rabbitmq.ExchangeSettingsArgs(
-                auto_delete=True,
-                durable=False,
-                type="fanout",
-            ),
-            vhost=test_v_host.name)
-        test_queue = rabbitmq.Queue("testQueue",
-            settings=rabbitmq.QueueSettingsArgs(
-                auto_delete=True,
-                durable=False,
-            ),
-            vhost=test_v_host.name)
-        shovel_test = rabbitmq.Shovel("shovelTest",
-            info=rabbitmq.ShovelInfoArgs(
-                destination_queue=test_queue.name,
-                destination_uri="amqp:///test",
-                source_exchange=test_exchange.name,
-                source_exchange_key="test",
-                source_uri="amqp:///test",
-            ),
-            vhost=test_v_host.name)
-        ```
-
         ## Import
 
         Shovels can be imported using the `name` and `vhost` E.g.
@@ -219,37 +196,6 @@ class Shovel(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The ``Shovel`` resource creates and manages a dynamic shovel.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        test_v_host = rabbitmq.VHost("testVHost")
-        test_exchange = rabbitmq.Exchange("testExchange",
-            settings=rabbitmq.ExchangeSettingsArgs(
-                auto_delete=True,
-                durable=False,
-                type="fanout",
-            ),
-            vhost=test_v_host.name)
-        test_queue = rabbitmq.Queue("testQueue",
-            settings=rabbitmq.QueueSettingsArgs(
-                auto_delete=True,
-                durable=False,
-            ),
-            vhost=test_v_host.name)
-        shovel_test = rabbitmq.Shovel("shovelTest",
-            info=rabbitmq.ShovelInfoArgs(
-                destination_queue=test_queue.name,
-                destination_uri="amqp:///test",
-                source_exchange=test_exchange.name,
-                source_exchange_key="test",
-                source_uri="amqp:///test",
-            ),
-            vhost=test_v_host.name)
-        ```
 
         ## Import
 
@@ -290,11 +236,7 @@ class Shovel(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ShovelArgs.__new__(ShovelArgs)
 
-            if info is not None and not isinstance(info, ShovelInfoArgs):
-                info = info or {}
-                def _setter(key, value):
-                    info[key] = value
-                ShovelInfoArgs._configure(_setter, **info)
+            info = _utilities.configure(info, ShovelInfoArgs, True)
             if info is None and not opts.urn:
                 raise TypeError("Missing required property 'info'")
             __props__.__dict__["info"] = info

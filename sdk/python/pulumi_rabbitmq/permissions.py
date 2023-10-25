@@ -35,10 +35,16 @@ class PermissionsArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             permissions: pulumi.Input['PermissionsPermissionsArgs'],
-             user: pulumi.Input[str],
+             permissions: Optional[pulumi.Input['PermissionsPermissionsArgs']] = None,
+             user: Optional[pulumi.Input[str]] = None,
              vhost: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if permissions is None:
+            raise TypeError("Missing 'permissions' argument")
+        if user is None:
+            raise TypeError("Missing 'user' argument")
+
         _setter("permissions", permissions)
         _setter("user", user)
         if vhost is not None:
@@ -107,7 +113,9 @@ class _PermissionsState:
              permissions: Optional[pulumi.Input['PermissionsPermissionsArgs']] = None,
              user: Optional[pulumi.Input[str]] = None,
              vhost: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if permissions is not None:
             _setter("permissions", permissions)
         if user is not None:
@@ -166,26 +174,6 @@ class Permissions(pulumi.CustomResource):
         The ``Permissions`` resource creates and manages a user's set of
         permissions.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        test_v_host = rabbitmq.VHost("testVHost")
-        test_user = rabbitmq.User("testUser",
-            password="foobar",
-            tags=["administrator"])
-        test_permissions = rabbitmq.Permissions("testPermissions",
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                read=".*",
-                write=".*",
-            ),
-            user=test_user.name,
-            vhost=test_v_host.name)
-        ```
-
         ## Import
 
         Permissions can be imported using the `id` which is composed of
@@ -212,26 +200,6 @@ class Permissions(pulumi.CustomResource):
         """
         The ``Permissions`` resource creates and manages a user's set of
         permissions.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        test_v_host = rabbitmq.VHost("testVHost")
-        test_user = rabbitmq.User("testUser",
-            password="foobar",
-            tags=["administrator"])
-        test_permissions = rabbitmq.Permissions("testPermissions",
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                read=".*",
-                write=".*",
-            ),
-            user=test_user.name,
-            vhost=test_v_host.name)
-        ```
 
         ## Import
 
@@ -274,11 +242,7 @@ class Permissions(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = PermissionsArgs.__new__(PermissionsArgs)
 
-            if permissions is not None and not isinstance(permissions, PermissionsPermissionsArgs):
-                permissions = permissions or {}
-                def _setter(key, value):
-                    permissions[key] = value
-                PermissionsPermissionsArgs._configure(_setter, **permissions)
+            permissions = _utilities.configure(permissions, PermissionsPermissionsArgs, True)
             if permissions is None and not opts.urn:
                 raise TypeError("Missing required property 'permissions'")
             __props__.__dict__["permissions"] = permissions

@@ -10,28 +10,6 @@ import * as utilities from "./utilities";
  * The ``rabbitmq.Permissions`` resource creates and manages a user's set of
  * permissions.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as rabbitmq from "@pulumi/rabbitmq";
- *
- * const testVHost = new rabbitmq.VHost("testVHost", {});
- * const testUser = new rabbitmq.User("testUser", {
- *     password: "foobar",
- *     tags: ["administrator"],
- * });
- * const testPermissions = new rabbitmq.Permissions("testPermissions", {
- *     permissions: {
- *         configure: ".*",
- *         read: ".*",
- *         write: ".*",
- *     },
- *     user: testUser.name,
- *     vhost: testVHost.name,
- * });
- * ```
- *
  * ## Import
  *
  * Permissions can be imported using the `id` which is composed of

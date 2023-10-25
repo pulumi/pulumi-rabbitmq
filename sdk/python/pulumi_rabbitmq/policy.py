@@ -35,10 +35,16 @@ class PolicyArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             policy: pulumi.Input['PolicyPolicyArgs'],
-             vhost: pulumi.Input[str],
+             policy: Optional[pulumi.Input['PolicyPolicyArgs']] = None,
+             vhost: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if policy is None:
+            raise TypeError("Missing 'policy' argument")
+        if vhost is None:
+            raise TypeError("Missing 'vhost' argument")
+
         _setter("policy", policy)
         _setter("vhost", vhost)
         if name is not None:
@@ -107,7 +113,9 @@ class _PolicyState:
              name: Optional[pulumi.Input[str]] = None,
              policy: Optional[pulumi.Input['PolicyPolicyArgs']] = None,
              vhost: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if name is not None:
             _setter("name", name)
         if policy is not None:
@@ -166,33 +174,6 @@ class Policy(pulumi.CustomResource):
         The ``Policy`` resource creates and manages policies for exchanges
         and queues.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        test_v_host = rabbitmq.VHost("testVHost")
-        guest = rabbitmq.Permissions("guest",
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                read=".*",
-                write=".*",
-            ),
-            user="guest",
-            vhost=test_v_host.name)
-        test_policy = rabbitmq.Policy("testPolicy",
-            policy=rabbitmq.PolicyPolicyArgs(
-                apply_to="all",
-                definition={
-                    "ha-mode": "all",
-                },
-                pattern=".*",
-                priority=0,
-            ),
-            vhost=guest.vhost)
-        ```
-
         ## Import
 
         Policies can be imported using the `id` which is composed of `name@vhost`. E.g.
@@ -217,33 +198,6 @@ class Policy(pulumi.CustomResource):
         """
         The ``Policy`` resource creates and manages policies for exchanges
         and queues.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        test_v_host = rabbitmq.VHost("testVHost")
-        guest = rabbitmq.Permissions("guest",
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                read=".*",
-                write=".*",
-            ),
-            user="guest",
-            vhost=test_v_host.name)
-        test_policy = rabbitmq.Policy("testPolicy",
-            policy=rabbitmq.PolicyPolicyArgs(
-                apply_to="all",
-                definition={
-                    "ha-mode": "all",
-                },
-                pattern=".*",
-                priority=0,
-            ),
-            vhost=guest.vhost)
-        ```
 
         ## Import
 
@@ -285,11 +239,7 @@ class Policy(pulumi.CustomResource):
             __props__ = PolicyArgs.__new__(PolicyArgs)
 
             __props__.__dict__["name"] = name
-            if policy is not None and not isinstance(policy, PolicyPolicyArgs):
-                policy = policy or {}
-                def _setter(key, value):
-                    policy[key] = value
-                PolicyPolicyArgs._configure(_setter, **policy)
+            policy = _utilities.configure(policy, PolicyPolicyArgs, True)
             if policy is None and not opts.urn:
                 raise TypeError("Missing required property 'policy'")
             __props__.__dict__["policy"] = policy

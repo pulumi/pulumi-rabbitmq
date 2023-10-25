@@ -9,32 +9,6 @@ import * as utilities from "./utilities";
 /**
  * The ``rabbitmq.Exchange`` resource creates and manages an exchange.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as rabbitmq from "@pulumi/rabbitmq";
- *
- * const testVHost = new rabbitmq.VHost("testVHost", {});
- * const guest = new rabbitmq.Permissions("guest", {
- *     permissions: {
- *         configure: ".*",
- *         read: ".*",
- *         write: ".*",
- *     },
- *     user: "guest",
- *     vhost: testVHost.name,
- * });
- * const testExchange = new rabbitmq.Exchange("testExchange", {
- *     settings: {
- *         autoDelete: true,
- *         durable: false,
- *         type: "fanout",
- *     },
- *     vhost: guest.vhost,
- * });
- * ```
- *
  * ## Import
  *
  * Exchanges can be imported using the `id` which is composed of

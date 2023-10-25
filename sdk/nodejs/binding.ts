@@ -8,46 +8,6 @@ import * as utilities from "./utilities";
  * The ``rabbitmq.Binding`` resource creates and manages a binding relationship
  * between a queue an exchange.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as rabbitmq from "@pulumi/rabbitmq";
- *
- * const testVHost = new rabbitmq.VHost("testVHost", {});
- * const guest = new rabbitmq.Permissions("guest", {
- *     permissions: {
- *         configure: ".*",
- *         read: ".*",
- *         write: ".*",
- *     },
- *     user: "guest",
- *     vhost: testVHost.name,
- * });
- * const testExchange = new rabbitmq.Exchange("testExchange", {
- *     settings: {
- *         autoDelete: true,
- *         durable: false,
- *         type: "fanout",
- *     },
- *     vhost: guest.vhost,
- * });
- * const testQueue = new rabbitmq.Queue("testQueue", {
- *     settings: {
- *         autoDelete: false,
- *         durable: true,
- *     },
- *     vhost: guest.vhost,
- * });
- * const testBinding = new rabbitmq.Binding("testBinding", {
- *     destination: testQueue.name,
- *     destinationType: "queue",
- *     routingKey: "#",
- *     source: testExchange.name,
- *     vhost: testVHost.name,
- * });
- * ```
- *
  * ## Import
  *
  * Bindings can be imported using the `id` which is composed of

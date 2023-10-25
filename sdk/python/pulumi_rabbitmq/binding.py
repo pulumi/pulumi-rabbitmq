@@ -43,14 +43,30 @@ class BindingArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             destination: pulumi.Input[str],
-             destination_type: pulumi.Input[str],
-             source: pulumi.Input[str],
-             vhost: pulumi.Input[str],
+             destination: Optional[pulumi.Input[str]] = None,
+             destination_type: Optional[pulumi.Input[str]] = None,
+             source: Optional[pulumi.Input[str]] = None,
+             vhost: Optional[pulumi.Input[str]] = None,
              arguments: Optional[pulumi.Input[Mapping[str, Any]]] = None,
              arguments_json: Optional[pulumi.Input[str]] = None,
              routing_key: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if destination is None:
+            raise TypeError("Missing 'destination' argument")
+        if destination_type is None and 'destinationType' in kwargs:
+            destination_type = kwargs['destinationType']
+        if destination_type is None:
+            raise TypeError("Missing 'destination_type' argument")
+        if source is None:
+            raise TypeError("Missing 'source' argument")
+        if vhost is None:
+            raise TypeError("Missing 'vhost' argument")
+        if arguments_json is None and 'argumentsJson' in kwargs:
+            arguments_json = kwargs['argumentsJson']
+        if routing_key is None and 'routingKey' in kwargs:
+            routing_key = kwargs['routingKey']
+
         _setter("destination", destination)
         _setter("destination_type", destination_type)
         _setter("source", source)
@@ -187,7 +203,17 @@ class _BindingState:
              routing_key: Optional[pulumi.Input[str]] = None,
              source: Optional[pulumi.Input[str]] = None,
              vhost: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if arguments_json is None and 'argumentsJson' in kwargs:
+            arguments_json = kwargs['argumentsJson']
+        if destination_type is None and 'destinationType' in kwargs:
+            destination_type = kwargs['destinationType']
+        if properties_key is None and 'propertiesKey' in kwargs:
+            properties_key = kwargs['propertiesKey']
+        if routing_key is None and 'routingKey' in kwargs:
+            routing_key = kwargs['routingKey']
+
         if arguments is not None:
             _setter("arguments", arguments)
         if arguments_json is not None:
@@ -316,42 +342,6 @@ class Binding(pulumi.CustomResource):
         The ``Binding`` resource creates and manages a binding relationship
         between a queue an exchange.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        test_v_host = rabbitmq.VHost("testVHost")
-        guest = rabbitmq.Permissions("guest",
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                read=".*",
-                write=".*",
-            ),
-            user="guest",
-            vhost=test_v_host.name)
-        test_exchange = rabbitmq.Exchange("testExchange",
-            settings=rabbitmq.ExchangeSettingsArgs(
-                auto_delete=True,
-                durable=False,
-                type="fanout",
-            ),
-            vhost=guest.vhost)
-        test_queue = rabbitmq.Queue("testQueue",
-            settings=rabbitmq.QueueSettingsArgs(
-                auto_delete=False,
-                durable=True,
-            ),
-            vhost=guest.vhost)
-        test_binding = rabbitmq.Binding("testBinding",
-            destination=test_queue.name,
-            destination_type="queue",
-            routing_key="#",
-            source=test_exchange.name,
-            vhost=test_v_host.name)
-        ```
-
         ## Import
 
         Bindings can be imported using the `id` which is composed of
@@ -380,42 +370,6 @@ class Binding(pulumi.CustomResource):
         """
         The ``Binding`` resource creates and manages a binding relationship
         between a queue an exchange.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_rabbitmq as rabbitmq
-
-        test_v_host = rabbitmq.VHost("testVHost")
-        guest = rabbitmq.Permissions("guest",
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                read=".*",
-                write=".*",
-            ),
-            user="guest",
-            vhost=test_v_host.name)
-        test_exchange = rabbitmq.Exchange("testExchange",
-            settings=rabbitmq.ExchangeSettingsArgs(
-                auto_delete=True,
-                durable=False,
-                type="fanout",
-            ),
-            vhost=guest.vhost)
-        test_queue = rabbitmq.Queue("testQueue",
-            settings=rabbitmq.QueueSettingsArgs(
-                auto_delete=False,
-                durable=True,
-            ),
-            vhost=guest.vhost)
-        test_binding = rabbitmq.Binding("testBinding",
-            destination=test_queue.name,
-            destination_type="queue",
-            routing_key="#",
-            source=test_exchange.name,
-            vhost=test_v_host.name)
-        ```
 
         ## Import
 
