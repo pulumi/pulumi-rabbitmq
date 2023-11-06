@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -53,13 +53,34 @@ class ExchangeSettings(dict):
         :param bool durable: Whether the exchange survives server restarts.
                Defaults to `false`.
         """
-        pulumi.set(__self__, "type", type)
+        ExchangeSettings._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            type=type,
+            arguments=arguments,
+            auto_delete=auto_delete,
+            durable=durable,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             type: Optional[str] = None,
+             arguments: Optional[Mapping[str, Any]] = None,
+             auto_delete: Optional[bool] = None,
+             durable: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+        if auto_delete is None and 'autoDelete' in kwargs:
+            auto_delete = kwargs['autoDelete']
+
+        _setter("type", type)
         if arguments is not None:
-            pulumi.set(__self__, "arguments", arguments)
+            _setter("arguments", arguments)
         if auto_delete is not None:
-            pulumi.set(__self__, "auto_delete", auto_delete)
+            _setter("auto_delete", auto_delete)
         if durable is not None:
-            pulumi.set(__self__, "durable", durable)
+            _setter("durable", durable)
 
     @property
     @pulumi.getter
@@ -154,25 +175,68 @@ class FederationUpstreamDefinition(dict):
                
                Applicable to Federated Exchanges Only
         """
-        pulumi.set(__self__, "uri", uri)
+        FederationUpstreamDefinition._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            uri=uri,
+            ack_mode=ack_mode,
+            exchange=exchange,
+            expires=expires,
+            max_hops=max_hops,
+            message_ttl=message_ttl,
+            prefetch_count=prefetch_count,
+            queue=queue,
+            reconnect_delay=reconnect_delay,
+            trust_user_id=trust_user_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             uri: Optional[str] = None,
+             ack_mode: Optional[str] = None,
+             exchange: Optional[str] = None,
+             expires: Optional[int] = None,
+             max_hops: Optional[int] = None,
+             message_ttl: Optional[int] = None,
+             prefetch_count: Optional[int] = None,
+             queue: Optional[str] = None,
+             reconnect_delay: Optional[int] = None,
+             trust_user_id: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if uri is None:
+            raise TypeError("Missing 'uri' argument")
+        if ack_mode is None and 'ackMode' in kwargs:
+            ack_mode = kwargs['ackMode']
+        if max_hops is None and 'maxHops' in kwargs:
+            max_hops = kwargs['maxHops']
+        if message_ttl is None and 'messageTtl' in kwargs:
+            message_ttl = kwargs['messageTtl']
+        if prefetch_count is None and 'prefetchCount' in kwargs:
+            prefetch_count = kwargs['prefetchCount']
+        if reconnect_delay is None and 'reconnectDelay' in kwargs:
+            reconnect_delay = kwargs['reconnectDelay']
+        if trust_user_id is None and 'trustUserId' in kwargs:
+            trust_user_id = kwargs['trustUserId']
+
+        _setter("uri", uri)
         if ack_mode is not None:
-            pulumi.set(__self__, "ack_mode", ack_mode)
+            _setter("ack_mode", ack_mode)
         if exchange is not None:
-            pulumi.set(__self__, "exchange", exchange)
+            _setter("exchange", exchange)
         if expires is not None:
-            pulumi.set(__self__, "expires", expires)
+            _setter("expires", expires)
         if max_hops is not None:
-            pulumi.set(__self__, "max_hops", max_hops)
+            _setter("max_hops", max_hops)
         if message_ttl is not None:
-            pulumi.set(__self__, "message_ttl", message_ttl)
+            _setter("message_ttl", message_ttl)
         if prefetch_count is not None:
-            pulumi.set(__self__, "prefetch_count", prefetch_count)
+            _setter("prefetch_count", prefetch_count)
         if queue is not None:
-            pulumi.set(__self__, "queue", queue)
+            _setter("queue", queue)
         if reconnect_delay is not None:
-            pulumi.set(__self__, "reconnect_delay", reconnect_delay)
+            _setter("reconnect_delay", reconnect_delay)
         if trust_user_id is not None:
-            pulumi.set(__self__, "trust_user_id", trust_user_id)
+            _setter("trust_user_id", trust_user_id)
 
     @property
     @pulumi.getter
@@ -292,10 +356,37 @@ class OperatorPolicyPolicy(dict):
         :param str pattern: A pattern to match an exchange or queue name.
         :param int priority: The policy with the greater priority is applied first.
         """
-        pulumi.set(__self__, "apply_to", apply_to)
-        pulumi.set(__self__, "definition", definition)
-        pulumi.set(__self__, "pattern", pattern)
-        pulumi.set(__self__, "priority", priority)
+        OperatorPolicyPolicy._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            apply_to=apply_to,
+            definition=definition,
+            pattern=pattern,
+            priority=priority,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             apply_to: Optional[str] = None,
+             definition: Optional[Mapping[str, Any]] = None,
+             pattern: Optional[str] = None,
+             priority: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if apply_to is None and 'applyTo' in kwargs:
+            apply_to = kwargs['applyTo']
+        if apply_to is None:
+            raise TypeError("Missing 'apply_to' argument")
+        if definition is None:
+            raise TypeError("Missing 'definition' argument")
+        if pattern is None:
+            raise TypeError("Missing 'pattern' argument")
+        if priority is None:
+            raise TypeError("Missing 'priority' argument")
+
+        _setter("apply_to", apply_to)
+        _setter("definition", definition)
+        _setter("pattern", pattern)
+        _setter("priority", priority)
 
     @property
     @pulumi.getter(name="applyTo")
@@ -342,9 +433,30 @@ class PermissionsPermissions(dict):
         :param str read: The "read" ACL.
         :param str write: The "write" ACL.
         """
-        pulumi.set(__self__, "configure", configure)
-        pulumi.set(__self__, "read", read)
-        pulumi.set(__self__, "write", write)
+        PermissionsPermissions._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            configure=configure,
+            read=read,
+            write=write,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             configure: Optional[str] = None,
+             read: Optional[str] = None,
+             write: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if configure is None:
+            raise TypeError("Missing 'configure' argument")
+        if read is None:
+            raise TypeError("Missing 'read' argument")
+        if write is None:
+            raise TypeError("Missing 'write' argument")
+
+        _setter("configure", configure)
+        _setter("read", read)
+        _setter("write", write)
 
     @property
     @pulumi.getter
@@ -402,10 +514,37 @@ class PolicyPolicy(dict):
         :param str pattern: A pattern to match an exchange or queue name.
         :param int priority: The policy with the greater priority is applied first.
         """
-        pulumi.set(__self__, "apply_to", apply_to)
-        pulumi.set(__self__, "definition", definition)
-        pulumi.set(__self__, "pattern", pattern)
-        pulumi.set(__self__, "priority", priority)
+        PolicyPolicy._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            apply_to=apply_to,
+            definition=definition,
+            pattern=pattern,
+            priority=priority,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             apply_to: Optional[str] = None,
+             definition: Optional[Mapping[str, Any]] = None,
+             pattern: Optional[str] = None,
+             priority: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if apply_to is None and 'applyTo' in kwargs:
+            apply_to = kwargs['applyTo']
+        if apply_to is None:
+            raise TypeError("Missing 'apply_to' argument")
+        if definition is None:
+            raise TypeError("Missing 'definition' argument")
+        if pattern is None:
+            raise TypeError("Missing 'pattern' argument")
+        if priority is None:
+            raise TypeError("Missing 'priority' argument")
+
+        _setter("apply_to", apply_to)
+        _setter("definition", definition)
+        _setter("pattern", pattern)
+        _setter("priority", priority)
 
     @property
     @pulumi.getter(name="applyTo")
@@ -479,14 +618,35 @@ class QueueSettings(dict):
         :param bool durable: Whether the queue survives server restarts.
                Defaults to `false`.
         """
+        QueueSettings._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            arguments=arguments,
+            arguments_json=arguments_json,
+            auto_delete=auto_delete,
+            durable=durable,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             arguments: Optional[Mapping[str, Any]] = None,
+             arguments_json: Optional[str] = None,
+             auto_delete: Optional[bool] = None,
+             durable: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if arguments_json is None and 'argumentsJson' in kwargs:
+            arguments_json = kwargs['argumentsJson']
+        if auto_delete is None and 'autoDelete' in kwargs:
+            auto_delete = kwargs['autoDelete']
+
         if arguments is not None:
-            pulumi.set(__self__, "arguments", arguments)
+            _setter("arguments", arguments)
         if arguments_json is not None:
-            pulumi.set(__self__, "arguments_json", arguments_json)
+            _setter("arguments_json", arguments_json)
         if auto_delete is not None:
-            pulumi.set(__self__, "auto_delete", auto_delete)
+            _setter("auto_delete", auto_delete)
         if durable is not None:
-            pulumi.set(__self__, "durable", durable)
+            _setter("durable", durable)
 
     @property
     @pulumi.getter
@@ -652,52 +812,161 @@ class ShovelInfo(dict):
         :param str source_queue: The queue from which to consume.
                Either this or `source_exchange` must be specified but not both.
         """
-        pulumi.set(__self__, "destination_uri", destination_uri)
-        pulumi.set(__self__, "source_uri", source_uri)
+        ShovelInfo._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            destination_uri=destination_uri,
+            source_uri=source_uri,
+            ack_mode=ack_mode,
+            add_forward_headers=add_forward_headers,
+            delete_after=delete_after,
+            destination_add_forward_headers=destination_add_forward_headers,
+            destination_add_timestamp_header=destination_add_timestamp_header,
+            destination_address=destination_address,
+            destination_application_properties=destination_application_properties,
+            destination_exchange=destination_exchange,
+            destination_exchange_key=destination_exchange_key,
+            destination_properties=destination_properties,
+            destination_protocol=destination_protocol,
+            destination_publish_properties=destination_publish_properties,
+            destination_queue=destination_queue,
+            prefetch_count=prefetch_count,
+            reconnect_delay=reconnect_delay,
+            source_address=source_address,
+            source_delete_after=source_delete_after,
+            source_exchange=source_exchange,
+            source_exchange_key=source_exchange_key,
+            source_prefetch_count=source_prefetch_count,
+            source_protocol=source_protocol,
+            source_queue=source_queue,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             destination_uri: Optional[str] = None,
+             source_uri: Optional[str] = None,
+             ack_mode: Optional[str] = None,
+             add_forward_headers: Optional[bool] = None,
+             delete_after: Optional[str] = None,
+             destination_add_forward_headers: Optional[bool] = None,
+             destination_add_timestamp_header: Optional[bool] = None,
+             destination_address: Optional[str] = None,
+             destination_application_properties: Optional[str] = None,
+             destination_exchange: Optional[str] = None,
+             destination_exchange_key: Optional[str] = None,
+             destination_properties: Optional[str] = None,
+             destination_protocol: Optional[str] = None,
+             destination_publish_properties: Optional[str] = None,
+             destination_queue: Optional[str] = None,
+             prefetch_count: Optional[int] = None,
+             reconnect_delay: Optional[int] = None,
+             source_address: Optional[str] = None,
+             source_delete_after: Optional[str] = None,
+             source_exchange: Optional[str] = None,
+             source_exchange_key: Optional[str] = None,
+             source_prefetch_count: Optional[int] = None,
+             source_protocol: Optional[str] = None,
+             source_queue: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if destination_uri is None and 'destinationUri' in kwargs:
+            destination_uri = kwargs['destinationUri']
+        if destination_uri is None:
+            raise TypeError("Missing 'destination_uri' argument")
+        if source_uri is None and 'sourceUri' in kwargs:
+            source_uri = kwargs['sourceUri']
+        if source_uri is None:
+            raise TypeError("Missing 'source_uri' argument")
+        if ack_mode is None and 'ackMode' in kwargs:
+            ack_mode = kwargs['ackMode']
+        if add_forward_headers is None and 'addForwardHeaders' in kwargs:
+            add_forward_headers = kwargs['addForwardHeaders']
+        if delete_after is None and 'deleteAfter' in kwargs:
+            delete_after = kwargs['deleteAfter']
+        if destination_add_forward_headers is None and 'destinationAddForwardHeaders' in kwargs:
+            destination_add_forward_headers = kwargs['destinationAddForwardHeaders']
+        if destination_add_timestamp_header is None and 'destinationAddTimestampHeader' in kwargs:
+            destination_add_timestamp_header = kwargs['destinationAddTimestampHeader']
+        if destination_address is None and 'destinationAddress' in kwargs:
+            destination_address = kwargs['destinationAddress']
+        if destination_application_properties is None and 'destinationApplicationProperties' in kwargs:
+            destination_application_properties = kwargs['destinationApplicationProperties']
+        if destination_exchange is None and 'destinationExchange' in kwargs:
+            destination_exchange = kwargs['destinationExchange']
+        if destination_exchange_key is None and 'destinationExchangeKey' in kwargs:
+            destination_exchange_key = kwargs['destinationExchangeKey']
+        if destination_properties is None and 'destinationProperties' in kwargs:
+            destination_properties = kwargs['destinationProperties']
+        if destination_protocol is None and 'destinationProtocol' in kwargs:
+            destination_protocol = kwargs['destinationProtocol']
+        if destination_publish_properties is None and 'destinationPublishProperties' in kwargs:
+            destination_publish_properties = kwargs['destinationPublishProperties']
+        if destination_queue is None and 'destinationQueue' in kwargs:
+            destination_queue = kwargs['destinationQueue']
+        if prefetch_count is None and 'prefetchCount' in kwargs:
+            prefetch_count = kwargs['prefetchCount']
+        if reconnect_delay is None and 'reconnectDelay' in kwargs:
+            reconnect_delay = kwargs['reconnectDelay']
+        if source_address is None and 'sourceAddress' in kwargs:
+            source_address = kwargs['sourceAddress']
+        if source_delete_after is None and 'sourceDeleteAfter' in kwargs:
+            source_delete_after = kwargs['sourceDeleteAfter']
+        if source_exchange is None and 'sourceExchange' in kwargs:
+            source_exchange = kwargs['sourceExchange']
+        if source_exchange_key is None and 'sourceExchangeKey' in kwargs:
+            source_exchange_key = kwargs['sourceExchangeKey']
+        if source_prefetch_count is None and 'sourcePrefetchCount' in kwargs:
+            source_prefetch_count = kwargs['sourcePrefetchCount']
+        if source_protocol is None and 'sourceProtocol' in kwargs:
+            source_protocol = kwargs['sourceProtocol']
+        if source_queue is None and 'sourceQueue' in kwargs:
+            source_queue = kwargs['sourceQueue']
+
+        _setter("destination_uri", destination_uri)
+        _setter("source_uri", source_uri)
         if ack_mode is not None:
-            pulumi.set(__self__, "ack_mode", ack_mode)
+            _setter("ack_mode", ack_mode)
         if add_forward_headers is not None:
-            pulumi.set(__self__, "add_forward_headers", add_forward_headers)
+            _setter("add_forward_headers", add_forward_headers)
         if delete_after is not None:
-            pulumi.set(__self__, "delete_after", delete_after)
+            _setter("delete_after", delete_after)
         if destination_add_forward_headers is not None:
-            pulumi.set(__self__, "destination_add_forward_headers", destination_add_forward_headers)
+            _setter("destination_add_forward_headers", destination_add_forward_headers)
         if destination_add_timestamp_header is not None:
-            pulumi.set(__self__, "destination_add_timestamp_header", destination_add_timestamp_header)
+            _setter("destination_add_timestamp_header", destination_add_timestamp_header)
         if destination_address is not None:
-            pulumi.set(__self__, "destination_address", destination_address)
+            _setter("destination_address", destination_address)
         if destination_application_properties is not None:
-            pulumi.set(__self__, "destination_application_properties", destination_application_properties)
+            _setter("destination_application_properties", destination_application_properties)
         if destination_exchange is not None:
-            pulumi.set(__self__, "destination_exchange", destination_exchange)
+            _setter("destination_exchange", destination_exchange)
         if destination_exchange_key is not None:
-            pulumi.set(__self__, "destination_exchange_key", destination_exchange_key)
+            _setter("destination_exchange_key", destination_exchange_key)
         if destination_properties is not None:
-            pulumi.set(__self__, "destination_properties", destination_properties)
+            _setter("destination_properties", destination_properties)
         if destination_protocol is not None:
-            pulumi.set(__self__, "destination_protocol", destination_protocol)
+            _setter("destination_protocol", destination_protocol)
         if destination_publish_properties is not None:
-            pulumi.set(__self__, "destination_publish_properties", destination_publish_properties)
+            _setter("destination_publish_properties", destination_publish_properties)
         if destination_queue is not None:
-            pulumi.set(__self__, "destination_queue", destination_queue)
+            _setter("destination_queue", destination_queue)
         if prefetch_count is not None:
-            pulumi.set(__self__, "prefetch_count", prefetch_count)
+            _setter("prefetch_count", prefetch_count)
         if reconnect_delay is not None:
-            pulumi.set(__self__, "reconnect_delay", reconnect_delay)
+            _setter("reconnect_delay", reconnect_delay)
         if source_address is not None:
-            pulumi.set(__self__, "source_address", source_address)
+            _setter("source_address", source_address)
         if source_delete_after is not None:
-            pulumi.set(__self__, "source_delete_after", source_delete_after)
+            _setter("source_delete_after", source_delete_after)
         if source_exchange is not None:
-            pulumi.set(__self__, "source_exchange", source_exchange)
+            _setter("source_exchange", source_exchange)
         if source_exchange_key is not None:
-            pulumi.set(__self__, "source_exchange_key", source_exchange_key)
+            _setter("source_exchange_key", source_exchange_key)
         if source_prefetch_count is not None:
-            pulumi.set(__self__, "source_prefetch_count", source_prefetch_count)
+            _setter("source_prefetch_count", source_prefetch_count)
         if source_protocol is not None:
-            pulumi.set(__self__, "source_protocol", source_protocol)
+            _setter("source_protocol", source_protocol)
         if source_queue is not None:
-            pulumi.set(__self__, "source_queue", source_queue)
+            _setter("source_queue", source_queue)
 
     @property
     @pulumi.getter(name="destinationUri")
@@ -919,9 +1188,30 @@ class TopicPermissionsPermission(dict):
         :param str read: The "read" ACL.
         :param str write: The "write" ACL.
         """
-        pulumi.set(__self__, "exchange", exchange)
-        pulumi.set(__self__, "read", read)
-        pulumi.set(__self__, "write", write)
+        TopicPermissionsPermission._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            exchange=exchange,
+            read=read,
+            write=write,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             exchange: Optional[str] = None,
+             read: Optional[str] = None,
+             write: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if exchange is None:
+            raise TypeError("Missing 'exchange' argument")
+        if read is None:
+            raise TypeError("Missing 'read' argument")
+        if write is None:
+            raise TypeError("Missing 'write' argument")
+
+        _setter("exchange", exchange)
+        _setter("read", read)
+        _setter("write", write)
 
     @property
     @pulumi.getter
@@ -955,13 +1245,34 @@ class GetExchangeSettingResult(dict):
                  arguments: Optional[Mapping[str, Any]] = None,
                  auto_delete: Optional[bool] = None,
                  durable: Optional[bool] = None):
-        pulumi.set(__self__, "type", type)
+        GetExchangeSettingResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            type=type,
+            arguments=arguments,
+            auto_delete=auto_delete,
+            durable=durable,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             type: Optional[str] = None,
+             arguments: Optional[Mapping[str, Any]] = None,
+             auto_delete: Optional[bool] = None,
+             durable: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+        if auto_delete is None and 'autoDelete' in kwargs:
+            auto_delete = kwargs['autoDelete']
+
+        _setter("type", type)
         if arguments is not None:
-            pulumi.set(__self__, "arguments", arguments)
+            _setter("arguments", arguments)
         if auto_delete is not None:
-            pulumi.set(__self__, "auto_delete", auto_delete)
+            _setter("auto_delete", auto_delete)
         if durable is not None:
-            pulumi.set(__self__, "durable", durable)
+            _setter("durable", durable)
 
     @property
     @pulumi.getter

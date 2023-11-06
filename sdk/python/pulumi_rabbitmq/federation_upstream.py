@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -25,10 +25,29 @@ class FederationUpstreamArgs:
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
         :param pulumi.Input[str] name: The name of the federation upstream.
         """
-        pulumi.set(__self__, "definition", definition)
-        pulumi.set(__self__, "vhost", vhost)
+        FederationUpstreamArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            definition=definition,
+            vhost=vhost,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             definition: Optional[pulumi.Input['FederationUpstreamDefinitionArgs']] = None,
+             vhost: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if definition is None:
+            raise TypeError("Missing 'definition' argument")
+        if vhost is None:
+            raise TypeError("Missing 'vhost' argument")
+
+        _setter("definition", definition)
+        _setter("vhost", vhost)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter
@@ -81,14 +100,31 @@ class _FederationUpstreamState:
         :param pulumi.Input[str] name: The name of the federation upstream.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
         """
+        _FederationUpstreamState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            component=component,
+            definition=definition,
+            name=name,
+            vhost=vhost,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             component: Optional[pulumi.Input[str]] = None,
+             definition: Optional[pulumi.Input['FederationUpstreamDefinitionArgs']] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             vhost: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if component is not None:
-            pulumi.set(__self__, "component", component)
+            _setter("component", component)
         if definition is not None:
-            pulumi.set(__self__, "definition", definition)
+            _setter("definition", definition)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if vhost is not None:
-            pulumi.set(__self__, "vhost", vhost)
+            _setter("vhost", vhost)
 
     @property
     @pulumi.getter
@@ -282,6 +318,10 @@ class FederationUpstream(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            FederationUpstreamArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -299,6 +339,11 @@ class FederationUpstream(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FederationUpstreamArgs.__new__(FederationUpstreamArgs)
 
+            if definition is not None and not isinstance(definition, FederationUpstreamDefinitionArgs):
+                definition = definition or {}
+                def _setter(key, value):
+                    definition[key] = value
+                FederationUpstreamDefinitionArgs._configure(_setter, **definition)
             if definition is None and not opts.urn:
                 raise TypeError("Missing required property 'definition'")
             __props__.__dict__["definition"] = definition

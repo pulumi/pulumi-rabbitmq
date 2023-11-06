@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['BindingArgs', 'Binding']
@@ -30,16 +30,53 @@ class BindingArgs:
         :param pulumi.Input[Mapping[str, Any]] arguments: Additional key/value arguments for the binding.
         :param pulumi.Input[str] routing_key: A routing key for the binding.
         """
-        pulumi.set(__self__, "destination", destination)
-        pulumi.set(__self__, "destination_type", destination_type)
-        pulumi.set(__self__, "source", source)
-        pulumi.set(__self__, "vhost", vhost)
+        BindingArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            destination=destination,
+            destination_type=destination_type,
+            source=source,
+            vhost=vhost,
+            arguments=arguments,
+            arguments_json=arguments_json,
+            routing_key=routing_key,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             destination: Optional[pulumi.Input[str]] = None,
+             destination_type: Optional[pulumi.Input[str]] = None,
+             source: Optional[pulumi.Input[str]] = None,
+             vhost: Optional[pulumi.Input[str]] = None,
+             arguments: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             arguments_json: Optional[pulumi.Input[str]] = None,
+             routing_key: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if destination is None:
+            raise TypeError("Missing 'destination' argument")
+        if destination_type is None and 'destinationType' in kwargs:
+            destination_type = kwargs['destinationType']
+        if destination_type is None:
+            raise TypeError("Missing 'destination_type' argument")
+        if source is None:
+            raise TypeError("Missing 'source' argument")
+        if vhost is None:
+            raise TypeError("Missing 'vhost' argument")
+        if arguments_json is None and 'argumentsJson' in kwargs:
+            arguments_json = kwargs['argumentsJson']
+        if routing_key is None and 'routingKey' in kwargs:
+            routing_key = kwargs['routingKey']
+
+        _setter("destination", destination)
+        _setter("destination_type", destination_type)
+        _setter("source", source)
+        _setter("vhost", vhost)
         if arguments is not None:
-            pulumi.set(__self__, "arguments", arguments)
+            _setter("arguments", arguments)
         if arguments_json is not None:
-            pulumi.set(__self__, "arguments_json", arguments_json)
+            _setter("arguments_json", arguments_json)
         if routing_key is not None:
-            pulumi.set(__self__, "routing_key", routing_key)
+            _setter("routing_key", routing_key)
 
     @property
     @pulumi.getter
@@ -144,22 +181,55 @@ class _BindingState:
         :param pulumi.Input[str] source: The source exchange.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
         """
+        _BindingState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            arguments=arguments,
+            arguments_json=arguments_json,
+            destination=destination,
+            destination_type=destination_type,
+            properties_key=properties_key,
+            routing_key=routing_key,
+            source=source,
+            vhost=vhost,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             arguments: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             arguments_json: Optional[pulumi.Input[str]] = None,
+             destination: Optional[pulumi.Input[str]] = None,
+             destination_type: Optional[pulumi.Input[str]] = None,
+             properties_key: Optional[pulumi.Input[str]] = None,
+             routing_key: Optional[pulumi.Input[str]] = None,
+             source: Optional[pulumi.Input[str]] = None,
+             vhost: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if arguments_json is None and 'argumentsJson' in kwargs:
+            arguments_json = kwargs['argumentsJson']
+        if destination_type is None and 'destinationType' in kwargs:
+            destination_type = kwargs['destinationType']
+        if properties_key is None and 'propertiesKey' in kwargs:
+            properties_key = kwargs['propertiesKey']
+        if routing_key is None and 'routingKey' in kwargs:
+            routing_key = kwargs['routingKey']
+
         if arguments is not None:
-            pulumi.set(__self__, "arguments", arguments)
+            _setter("arguments", arguments)
         if arguments_json is not None:
-            pulumi.set(__self__, "arguments_json", arguments_json)
+            _setter("arguments_json", arguments_json)
         if destination is not None:
-            pulumi.set(__self__, "destination", destination)
+            _setter("destination", destination)
         if destination_type is not None:
-            pulumi.set(__self__, "destination_type", destination_type)
+            _setter("destination_type", destination_type)
         if properties_key is not None:
-            pulumi.set(__self__, "properties_key", properties_key)
+            _setter("properties_key", properties_key)
         if routing_key is not None:
-            pulumi.set(__self__, "routing_key", routing_key)
+            _setter("routing_key", routing_key)
         if source is not None:
-            pulumi.set(__self__, "source", source)
+            _setter("source", source)
         if vhost is not None:
-            pulumi.set(__self__, "vhost", vhost)
+            _setter("vhost", vhost)
 
     @property
     @pulumi.getter
@@ -393,6 +463,10 @@ class Binding(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            BindingArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

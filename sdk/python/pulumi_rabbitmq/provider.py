@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ProviderArgs', 'Provider']
@@ -25,23 +25,60 @@ class ProviderArgs:
         """
         The set of arguments for constructing a Provider resource.
         """
-        pulumi.set(__self__, "endpoint", endpoint)
-        pulumi.set(__self__, "password", password)
-        pulumi.set(__self__, "username", username)
+        ProviderArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            endpoint=endpoint,
+            password=password,
+            username=username,
+            cacert_file=cacert_file,
+            clientcert_file=clientcert_file,
+            clientkey_file=clientkey_file,
+            insecure=insecure,
+            proxy=proxy,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             endpoint: Optional[pulumi.Input[str]] = None,
+             password: Optional[pulumi.Input[str]] = None,
+             username: Optional[pulumi.Input[str]] = None,
+             cacert_file: Optional[pulumi.Input[str]] = None,
+             clientcert_file: Optional[pulumi.Input[str]] = None,
+             clientkey_file: Optional[pulumi.Input[str]] = None,
+             insecure: Optional[pulumi.Input[bool]] = None,
+             proxy: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if endpoint is None:
+            raise TypeError("Missing 'endpoint' argument")
+        if password is None:
+            raise TypeError("Missing 'password' argument")
+        if username is None:
+            raise TypeError("Missing 'username' argument")
+        if cacert_file is None and 'cacertFile' in kwargs:
+            cacert_file = kwargs['cacertFile']
+        if clientcert_file is None and 'clientcertFile' in kwargs:
+            clientcert_file = kwargs['clientcertFile']
+        if clientkey_file is None and 'clientkeyFile' in kwargs:
+            clientkey_file = kwargs['clientkeyFile']
+
+        _setter("endpoint", endpoint)
+        _setter("password", password)
+        _setter("username", username)
         if cacert_file is None:
             cacert_file = _utilities.get_env('RABBITMQ_CACERT')
         if cacert_file is not None:
-            pulumi.set(__self__, "cacert_file", cacert_file)
+            _setter("cacert_file", cacert_file)
         if clientcert_file is not None:
-            pulumi.set(__self__, "clientcert_file", clientcert_file)
+            _setter("clientcert_file", clientcert_file)
         if clientkey_file is not None:
-            pulumi.set(__self__, "clientkey_file", clientkey_file)
+            _setter("clientkey_file", clientkey_file)
         if insecure is None:
             insecure = _utilities.get_env_bool('RABBITMQ_INSECURE')
         if insecure is not None:
-            pulumi.set(__self__, "insecure", insecure)
+            _setter("insecure", insecure)
         if proxy is not None:
-            pulumi.set(__self__, "proxy", proxy)
+            _setter("proxy", proxy)
 
     @property
     @pulumi.getter
@@ -161,6 +198,10 @@ class Provider(pulumi.ProviderResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ProviderArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

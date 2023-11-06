@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -26,11 +26,28 @@ class ExchangeArgs:
         :param pulumi.Input[str] name: The name of the exchange.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
         """
-        pulumi.set(__self__, "settings", settings)
+        ExchangeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            settings=settings,
+            name=name,
+            vhost=vhost,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             settings: Optional[pulumi.Input['ExchangeSettingsArgs']] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             vhost: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if settings is None:
+            raise TypeError("Missing 'settings' argument")
+
+        _setter("settings", settings)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if vhost is not None:
-            pulumi.set(__self__, "vhost", vhost)
+            _setter("vhost", vhost)
 
     @property
     @pulumi.getter
@@ -83,12 +100,27 @@ class _ExchangeState:
                described below.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
         """
+        _ExchangeState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            settings=settings,
+            vhost=vhost,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: Optional[pulumi.Input[str]] = None,
+             settings: Optional[pulumi.Input['ExchangeSettingsArgs']] = None,
+             vhost: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if settings is not None:
-            pulumi.set(__self__, "settings", settings)
+            _setter("settings", settings)
         if vhost is not None:
-            pulumi.set(__self__, "vhost", vhost)
+            _setter("vhost", vhost)
 
     @property
     @pulumi.getter
@@ -234,6 +266,10 @@ class Exchange(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ExchangeArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -252,6 +288,11 @@ class Exchange(pulumi.CustomResource):
             __props__ = ExchangeArgs.__new__(ExchangeArgs)
 
             __props__.__dict__["name"] = name
+            if settings is not None and not isinstance(settings, ExchangeSettingsArgs):
+                settings = settings or {}
+                def _setter(key, value):
+                    settings[key] = value
+                ExchangeSettingsArgs._configure(_setter, **settings)
             if settings is None and not opts.urn:
                 raise TypeError("Missing required property 'settings'")
             __props__.__dict__["settings"] = settings
