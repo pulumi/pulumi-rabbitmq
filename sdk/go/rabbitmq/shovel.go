@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The “Shovel“ resource creates and manages a dynamic shovel.
@@ -197,12 +196,6 @@ func (i *Shovel) ToShovelOutputWithContext(ctx context.Context) ShovelOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ShovelOutput)
 }
 
-func (i *Shovel) ToOutput(ctx context.Context) pulumix.Output[*Shovel] {
-	return pulumix.Output[*Shovel]{
-		OutputState: i.ToShovelOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ShovelArrayInput is an input type that accepts ShovelArray and ShovelArrayOutput values.
 // You can construct a concrete instance of `ShovelArrayInput` via:
 //
@@ -226,12 +219,6 @@ func (i ShovelArray) ToShovelArrayOutput() ShovelArrayOutput {
 
 func (i ShovelArray) ToShovelArrayOutputWithContext(ctx context.Context) ShovelArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ShovelArrayOutput)
-}
-
-func (i ShovelArray) ToOutput(ctx context.Context) pulumix.Output[[]*Shovel] {
-	return pulumix.Output[[]*Shovel]{
-		OutputState: i.ToShovelArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ShovelMapInput is an input type that accepts ShovelMap and ShovelMapOutput values.
@@ -259,12 +246,6 @@ func (i ShovelMap) ToShovelMapOutputWithContext(ctx context.Context) ShovelMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(ShovelMapOutput)
 }
 
-func (i ShovelMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Shovel] {
-	return pulumix.Output[map[string]*Shovel]{
-		OutputState: i.ToShovelMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ShovelOutput struct{ *pulumi.OutputState }
 
 func (ShovelOutput) ElementType() reflect.Type {
@@ -277,12 +258,6 @@ func (o ShovelOutput) ToShovelOutput() ShovelOutput {
 
 func (o ShovelOutput) ToShovelOutputWithContext(ctx context.Context) ShovelOutput {
 	return o
-}
-
-func (o ShovelOutput) ToOutput(ctx context.Context) pulumix.Output[*Shovel] {
-	return pulumix.Output[*Shovel]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The settings of the dynamic shovel. The structure is
@@ -315,12 +290,6 @@ func (o ShovelArrayOutput) ToShovelArrayOutputWithContext(ctx context.Context) S
 	return o
 }
 
-func (o ShovelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Shovel] {
-	return pulumix.Output[[]*Shovel]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ShovelArrayOutput) Index(i pulumi.IntInput) ShovelOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Shovel {
 		return vs[0].([]*Shovel)[vs[1].(int)]
@@ -339,12 +308,6 @@ func (o ShovelMapOutput) ToShovelMapOutput() ShovelMapOutput {
 
 func (o ShovelMapOutput) ToShovelMapOutputWithContext(ctx context.Context) ShovelMapOutput {
 	return o
-}
-
-func (o ShovelMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Shovel] {
-	return pulumix.Output[map[string]*Shovel]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ShovelMapOutput) MapIndex(k pulumi.StringInput) ShovelOutput {
