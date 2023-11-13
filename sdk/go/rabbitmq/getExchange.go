@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupExchange(ctx *pulumi.Context, args *LookupExchangeArgs, opts ...pulumi.InvokeOption) (*LookupExchangeResult, error) {
@@ -72,12 +71,6 @@ func (o LookupExchangeResultOutput) ToLookupExchangeResultOutput() LookupExchang
 
 func (o LookupExchangeResultOutput) ToLookupExchangeResultOutputWithContext(ctx context.Context) LookupExchangeResultOutput {
 	return o
-}
-
-func (o LookupExchangeResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupExchangeResult] {
-	return pulumix.Output[LookupExchangeResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupExchangeResultOutput) Id() pulumi.StringOutput {

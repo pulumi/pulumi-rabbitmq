@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The “FederationUpstream“ resource creates and manages a federation upstream parameter.
@@ -218,12 +217,6 @@ func (i *FederationUpstream) ToFederationUpstreamOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(FederationUpstreamOutput)
 }
 
-func (i *FederationUpstream) ToOutput(ctx context.Context) pulumix.Output[*FederationUpstream] {
-	return pulumix.Output[*FederationUpstream]{
-		OutputState: i.ToFederationUpstreamOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FederationUpstreamArrayInput is an input type that accepts FederationUpstreamArray and FederationUpstreamArrayOutput values.
 // You can construct a concrete instance of `FederationUpstreamArrayInput` via:
 //
@@ -247,12 +240,6 @@ func (i FederationUpstreamArray) ToFederationUpstreamArrayOutput() FederationUps
 
 func (i FederationUpstreamArray) ToFederationUpstreamArrayOutputWithContext(ctx context.Context) FederationUpstreamArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FederationUpstreamArrayOutput)
-}
-
-func (i FederationUpstreamArray) ToOutput(ctx context.Context) pulumix.Output[[]*FederationUpstream] {
-	return pulumix.Output[[]*FederationUpstream]{
-		OutputState: i.ToFederationUpstreamArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // FederationUpstreamMapInput is an input type that accepts FederationUpstreamMap and FederationUpstreamMapOutput values.
@@ -280,12 +267,6 @@ func (i FederationUpstreamMap) ToFederationUpstreamMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(FederationUpstreamMapOutput)
 }
 
-func (i FederationUpstreamMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FederationUpstream] {
-	return pulumix.Output[map[string]*FederationUpstream]{
-		OutputState: i.ToFederationUpstreamMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FederationUpstreamOutput struct{ *pulumi.OutputState }
 
 func (FederationUpstreamOutput) ElementType() reflect.Type {
@@ -298,12 +279,6 @@ func (o FederationUpstreamOutput) ToFederationUpstreamOutput() FederationUpstrea
 
 func (o FederationUpstreamOutput) ToFederationUpstreamOutputWithContext(ctx context.Context) FederationUpstreamOutput {
 	return o
-}
-
-func (o FederationUpstreamOutput) ToOutput(ctx context.Context) pulumix.Output[*FederationUpstream] {
-	return pulumix.Output[*FederationUpstream]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
@@ -340,12 +315,6 @@ func (o FederationUpstreamArrayOutput) ToFederationUpstreamArrayOutputWithContex
 	return o
 }
 
-func (o FederationUpstreamArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FederationUpstream] {
-	return pulumix.Output[[]*FederationUpstream]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FederationUpstreamArrayOutput) Index(i pulumi.IntInput) FederationUpstreamOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FederationUpstream {
 		return vs[0].([]*FederationUpstream)[vs[1].(int)]
@@ -364,12 +333,6 @@ func (o FederationUpstreamMapOutput) ToFederationUpstreamMapOutput() FederationU
 
 func (o FederationUpstreamMapOutput) ToFederationUpstreamMapOutputWithContext(ctx context.Context) FederationUpstreamMapOutput {
 	return o
-}
-
-func (o FederationUpstreamMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FederationUpstream] {
-	return pulumix.Output[map[string]*FederationUpstream]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FederationUpstreamMapOutput) MapIndex(k pulumi.StringInput) FederationUpstreamOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The “TopicPermissions“ resource creates and manages a user's set of
@@ -189,12 +188,6 @@ func (i *TopicPermissions) ToTopicPermissionsOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(TopicPermissionsOutput)
 }
 
-func (i *TopicPermissions) ToOutput(ctx context.Context) pulumix.Output[*TopicPermissions] {
-	return pulumix.Output[*TopicPermissions]{
-		OutputState: i.ToTopicPermissionsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // TopicPermissionsArrayInput is an input type that accepts TopicPermissionsArray and TopicPermissionsArrayOutput values.
 // You can construct a concrete instance of `TopicPermissionsArrayInput` via:
 //
@@ -218,12 +211,6 @@ func (i TopicPermissionsArray) ToTopicPermissionsArrayOutput() TopicPermissionsA
 
 func (i TopicPermissionsArray) ToTopicPermissionsArrayOutputWithContext(ctx context.Context) TopicPermissionsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TopicPermissionsArrayOutput)
-}
-
-func (i TopicPermissionsArray) ToOutput(ctx context.Context) pulumix.Output[[]*TopicPermissions] {
-	return pulumix.Output[[]*TopicPermissions]{
-		OutputState: i.ToTopicPermissionsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // TopicPermissionsMapInput is an input type that accepts TopicPermissionsMap and TopicPermissionsMapOutput values.
@@ -251,12 +238,6 @@ func (i TopicPermissionsMap) ToTopicPermissionsMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(TopicPermissionsMapOutput)
 }
 
-func (i TopicPermissionsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*TopicPermissions] {
-	return pulumix.Output[map[string]*TopicPermissions]{
-		OutputState: i.ToTopicPermissionsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type TopicPermissionsOutput struct{ *pulumi.OutputState }
 
 func (TopicPermissionsOutput) ElementType() reflect.Type {
@@ -269,12 +250,6 @@ func (o TopicPermissionsOutput) ToTopicPermissionsOutput() TopicPermissionsOutpu
 
 func (o TopicPermissionsOutput) ToTopicPermissionsOutputWithContext(ctx context.Context) TopicPermissionsOutput {
 	return o
-}
-
-func (o TopicPermissionsOutput) ToOutput(ctx context.Context) pulumix.Output[*TopicPermissions] {
-	return pulumix.Output[*TopicPermissions]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The settings of the permissions. The structure is
@@ -307,12 +282,6 @@ func (o TopicPermissionsArrayOutput) ToTopicPermissionsArrayOutputWithContext(ct
 	return o
 }
 
-func (o TopicPermissionsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*TopicPermissions] {
-	return pulumix.Output[[]*TopicPermissions]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o TopicPermissionsArrayOutput) Index(i pulumi.IntInput) TopicPermissionsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *TopicPermissions {
 		return vs[0].([]*TopicPermissions)[vs[1].(int)]
@@ -331,12 +300,6 @@ func (o TopicPermissionsMapOutput) ToTopicPermissionsMapOutput() TopicPermission
 
 func (o TopicPermissionsMapOutput) ToTopicPermissionsMapOutputWithContext(ctx context.Context) TopicPermissionsMapOutput {
 	return o
-}
-
-func (o TopicPermissionsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*TopicPermissions] {
-	return pulumix.Output[map[string]*TopicPermissions]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o TopicPermissionsMapOutput) MapIndex(k pulumi.StringInput) TopicPermissionsOutput {
