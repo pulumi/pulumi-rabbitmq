@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -63,12 +62,6 @@ func (i ExchangeSettingsArgs) ToExchangeSettingsOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(ExchangeSettingsOutput)
 }
 
-func (i ExchangeSettingsArgs) ToOutput(ctx context.Context) pulumix.Output[ExchangeSettings] {
-	return pulumix.Output[ExchangeSettings]{
-		OutputState: i.ToExchangeSettingsOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i ExchangeSettingsArgs) ToExchangeSettingsPtrOutput() ExchangeSettingsPtrOutput {
 	return i.ToExchangeSettingsPtrOutputWithContext(context.Background())
 }
@@ -110,12 +103,6 @@ func (i *exchangeSettingsPtrType) ToExchangeSettingsPtrOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(ExchangeSettingsPtrOutput)
 }
 
-func (i *exchangeSettingsPtrType) ToOutput(ctx context.Context) pulumix.Output[*ExchangeSettings] {
-	return pulumix.Output[*ExchangeSettings]{
-		OutputState: i.ToExchangeSettingsPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ExchangeSettingsOutput struct{ *pulumi.OutputState }
 
 func (ExchangeSettingsOutput) ElementType() reflect.Type {
@@ -138,12 +125,6 @@ func (o ExchangeSettingsOutput) ToExchangeSettingsPtrOutputWithContext(ctx conte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ExchangeSettings) *ExchangeSettings {
 		return &v
 	}).(ExchangeSettingsPtrOutput)
-}
-
-func (o ExchangeSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[ExchangeSettings] {
-	return pulumix.Output[ExchangeSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Additional key/value settings for the exchange.
@@ -180,12 +161,6 @@ func (o ExchangeSettingsPtrOutput) ToExchangeSettingsPtrOutput() ExchangeSetting
 
 func (o ExchangeSettingsPtrOutput) ToExchangeSettingsPtrOutputWithContext(ctx context.Context) ExchangeSettingsPtrOutput {
 	return o
-}
-
-func (o ExchangeSettingsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ExchangeSettings] {
-	return pulumix.Output[*ExchangeSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ExchangeSettingsPtrOutput) Elem() ExchangeSettingsOutput {
@@ -321,12 +296,6 @@ func (i FederationUpstreamDefinitionArgs) ToFederationUpstreamDefinitionOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(FederationUpstreamDefinitionOutput)
 }
 
-func (i FederationUpstreamDefinitionArgs) ToOutput(ctx context.Context) pulumix.Output[FederationUpstreamDefinition] {
-	return pulumix.Output[FederationUpstreamDefinition]{
-		OutputState: i.ToFederationUpstreamDefinitionOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i FederationUpstreamDefinitionArgs) ToFederationUpstreamDefinitionPtrOutput() FederationUpstreamDefinitionPtrOutput {
 	return i.ToFederationUpstreamDefinitionPtrOutputWithContext(context.Background())
 }
@@ -368,12 +337,6 @@ func (i *federationUpstreamDefinitionPtrType) ToFederationUpstreamDefinitionPtrO
 	return pulumi.ToOutputWithContext(ctx, i).(FederationUpstreamDefinitionPtrOutput)
 }
 
-func (i *federationUpstreamDefinitionPtrType) ToOutput(ctx context.Context) pulumix.Output[*FederationUpstreamDefinition] {
-	return pulumix.Output[*FederationUpstreamDefinition]{
-		OutputState: i.ToFederationUpstreamDefinitionPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FederationUpstreamDefinitionOutput struct{ *pulumi.OutputState }
 
 func (FederationUpstreamDefinitionOutput) ElementType() reflect.Type {
@@ -396,12 +359,6 @@ func (o FederationUpstreamDefinitionOutput) ToFederationUpstreamDefinitionPtrOut
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v FederationUpstreamDefinition) *FederationUpstreamDefinition {
 		return &v
 	}).(FederationUpstreamDefinitionPtrOutput)
-}
-
-func (o FederationUpstreamDefinitionOutput) ToOutput(ctx context.Context) pulumix.Output[FederationUpstreamDefinition] {
-	return pulumix.Output[FederationUpstreamDefinition]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Determines how the link should acknowledge messages. Valid values are `on-confirm`, `on-publish`, and `no-ack`. Default is `on-confirm`.
@@ -472,12 +429,6 @@ func (o FederationUpstreamDefinitionPtrOutput) ToFederationUpstreamDefinitionPtr
 
 func (o FederationUpstreamDefinitionPtrOutput) ToFederationUpstreamDefinitionPtrOutputWithContext(ctx context.Context) FederationUpstreamDefinitionPtrOutput {
 	return o
-}
-
-func (o FederationUpstreamDefinitionPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*FederationUpstreamDefinition] {
-	return pulumix.Output[*FederationUpstreamDefinition]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FederationUpstreamDefinitionPtrOutput) Elem() FederationUpstreamDefinitionOutput {
@@ -643,12 +594,6 @@ func (i OperatorPolicyPolicyArgs) ToOperatorPolicyPolicyOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(OperatorPolicyPolicyOutput)
 }
 
-func (i OperatorPolicyPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[OperatorPolicyPolicy] {
-	return pulumix.Output[OperatorPolicyPolicy]{
-		OutputState: i.ToOperatorPolicyPolicyOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i OperatorPolicyPolicyArgs) ToOperatorPolicyPolicyPtrOutput() OperatorPolicyPolicyPtrOutput {
 	return i.ToOperatorPolicyPolicyPtrOutputWithContext(context.Background())
 }
@@ -690,12 +635,6 @@ func (i *operatorPolicyPolicyPtrType) ToOperatorPolicyPolicyPtrOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(OperatorPolicyPolicyPtrOutput)
 }
 
-func (i *operatorPolicyPolicyPtrType) ToOutput(ctx context.Context) pulumix.Output[*OperatorPolicyPolicy] {
-	return pulumix.Output[*OperatorPolicyPolicy]{
-		OutputState: i.ToOperatorPolicyPolicyPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type OperatorPolicyPolicyOutput struct{ *pulumi.OutputState }
 
 func (OperatorPolicyPolicyOutput) ElementType() reflect.Type {
@@ -718,12 +657,6 @@ func (o OperatorPolicyPolicyOutput) ToOperatorPolicyPolicyPtrOutputWithContext(c
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v OperatorPolicyPolicy) *OperatorPolicyPolicy {
 		return &v
 	}).(OperatorPolicyPolicyPtrOutput)
-}
-
-func (o OperatorPolicyPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[OperatorPolicyPolicy] {
-	return pulumix.Output[OperatorPolicyPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Can be "queues".
@@ -759,12 +692,6 @@ func (o OperatorPolicyPolicyPtrOutput) ToOperatorPolicyPolicyPtrOutput() Operato
 
 func (o OperatorPolicyPolicyPtrOutput) ToOperatorPolicyPolicyPtrOutputWithContext(ctx context.Context) OperatorPolicyPolicyPtrOutput {
 	return o
-}
-
-func (o OperatorPolicyPolicyPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*OperatorPolicyPolicy] {
-	return pulumix.Output[*OperatorPolicyPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o OperatorPolicyPolicyPtrOutput) Elem() OperatorPolicyPolicyOutput {
@@ -859,12 +786,6 @@ func (i PermissionsPermissionsArgs) ToPermissionsPermissionsOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(PermissionsPermissionsOutput)
 }
 
-func (i PermissionsPermissionsArgs) ToOutput(ctx context.Context) pulumix.Output[PermissionsPermissions] {
-	return pulumix.Output[PermissionsPermissions]{
-		OutputState: i.ToPermissionsPermissionsOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i PermissionsPermissionsArgs) ToPermissionsPermissionsPtrOutput() PermissionsPermissionsPtrOutput {
 	return i.ToPermissionsPermissionsPtrOutputWithContext(context.Background())
 }
@@ -906,12 +827,6 @@ func (i *permissionsPermissionsPtrType) ToPermissionsPermissionsPtrOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(PermissionsPermissionsPtrOutput)
 }
 
-func (i *permissionsPermissionsPtrType) ToOutput(ctx context.Context) pulumix.Output[*PermissionsPermissions] {
-	return pulumix.Output[*PermissionsPermissions]{
-		OutputState: i.ToPermissionsPermissionsPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type PermissionsPermissionsOutput struct{ *pulumi.OutputState }
 
 func (PermissionsPermissionsOutput) ElementType() reflect.Type {
@@ -934,12 +849,6 @@ func (o PermissionsPermissionsOutput) ToPermissionsPermissionsPtrOutputWithConte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v PermissionsPermissions) *PermissionsPermissions {
 		return &v
 	}).(PermissionsPermissionsPtrOutput)
-}
-
-func (o PermissionsPermissionsOutput) ToOutput(ctx context.Context) pulumix.Output[PermissionsPermissions] {
-	return pulumix.Output[PermissionsPermissions]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The "configure" ACL.
@@ -969,12 +878,6 @@ func (o PermissionsPermissionsPtrOutput) ToPermissionsPermissionsPtrOutput() Per
 
 func (o PermissionsPermissionsPtrOutput) ToPermissionsPermissionsPtrOutputWithContext(ctx context.Context) PermissionsPermissionsPtrOutput {
 	return o
-}
-
-func (o PermissionsPermissionsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*PermissionsPermissions] {
-	return pulumix.Output[*PermissionsPermissions]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o PermissionsPermissionsPtrOutput) Elem() PermissionsPermissionsOutput {
@@ -1064,12 +967,6 @@ func (i PolicyPolicyArgs) ToPolicyPolicyOutputWithContext(ctx context.Context) P
 	return pulumi.ToOutputWithContext(ctx, i).(PolicyPolicyOutput)
 }
 
-func (i PolicyPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[PolicyPolicy] {
-	return pulumix.Output[PolicyPolicy]{
-		OutputState: i.ToPolicyPolicyOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i PolicyPolicyArgs) ToPolicyPolicyPtrOutput() PolicyPolicyPtrOutput {
 	return i.ToPolicyPolicyPtrOutputWithContext(context.Background())
 }
@@ -1111,12 +1008,6 @@ func (i *policyPolicyPtrType) ToPolicyPolicyPtrOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(PolicyPolicyPtrOutput)
 }
 
-func (i *policyPolicyPtrType) ToOutput(ctx context.Context) pulumix.Output[*PolicyPolicy] {
-	return pulumix.Output[*PolicyPolicy]{
-		OutputState: i.ToPolicyPolicyPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type PolicyPolicyOutput struct{ *pulumi.OutputState }
 
 func (PolicyPolicyOutput) ElementType() reflect.Type {
@@ -1139,12 +1030,6 @@ func (o PolicyPolicyOutput) ToPolicyPolicyPtrOutputWithContext(ctx context.Conte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v PolicyPolicy) *PolicyPolicy {
 		return &v
 	}).(PolicyPolicyPtrOutput)
-}
-
-func (o PolicyPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[PolicyPolicy] {
-	return pulumix.Output[PolicyPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Can either be "exchanges", "queues", or "all".
@@ -1180,12 +1065,6 @@ func (o PolicyPolicyPtrOutput) ToPolicyPolicyPtrOutput() PolicyPolicyPtrOutput {
 
 func (o PolicyPolicyPtrOutput) ToPolicyPolicyPtrOutputWithContext(ctx context.Context) PolicyPolicyPtrOutput {
 	return o
-}
-
-func (o PolicyPolicyPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*PolicyPolicy] {
-	return pulumix.Output[*PolicyPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o PolicyPolicyPtrOutput) Elem() PolicyPolicyOutput {
@@ -1296,12 +1175,6 @@ func (i QueueSettingsArgs) ToQueueSettingsOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(QueueSettingsOutput)
 }
 
-func (i QueueSettingsArgs) ToOutput(ctx context.Context) pulumix.Output[QueueSettings] {
-	return pulumix.Output[QueueSettings]{
-		OutputState: i.ToQueueSettingsOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i QueueSettingsArgs) ToQueueSettingsPtrOutput() QueueSettingsPtrOutput {
 	return i.ToQueueSettingsPtrOutputWithContext(context.Background())
 }
@@ -1343,12 +1216,6 @@ func (i *queueSettingsPtrType) ToQueueSettingsPtrOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(QueueSettingsPtrOutput)
 }
 
-func (i *queueSettingsPtrType) ToOutput(ctx context.Context) pulumix.Output[*QueueSettings] {
-	return pulumix.Output[*QueueSettings]{
-		OutputState: i.ToQueueSettingsPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type QueueSettingsOutput struct{ *pulumi.OutputState }
 
 func (QueueSettingsOutput) ElementType() reflect.Type {
@@ -1371,12 +1238,6 @@ func (o QueueSettingsOutput) ToQueueSettingsPtrOutputWithContext(ctx context.Con
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v QueueSettings) *QueueSettings {
 		return &v
 	}).(QueueSettingsPtrOutput)
-}
-
-func (o QueueSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[QueueSettings] {
-	return pulumix.Output[QueueSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Additional key/value settings for the queue.
@@ -1417,12 +1278,6 @@ func (o QueueSettingsPtrOutput) ToQueueSettingsPtrOutput() QueueSettingsPtrOutpu
 
 func (o QueueSettingsPtrOutput) ToQueueSettingsPtrOutputWithContext(ctx context.Context) QueueSettingsPtrOutput {
 	return o
-}
-
-func (o QueueSettingsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*QueueSettings] {
-	return pulumix.Output[*QueueSettings]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o QueueSettingsPtrOutput) Elem() QueueSettingsOutput {
@@ -1636,12 +1491,6 @@ func (i ShovelInfoArgs) ToShovelInfoOutputWithContext(ctx context.Context) Shove
 	return pulumi.ToOutputWithContext(ctx, i).(ShovelInfoOutput)
 }
 
-func (i ShovelInfoArgs) ToOutput(ctx context.Context) pulumix.Output[ShovelInfo] {
-	return pulumix.Output[ShovelInfo]{
-		OutputState: i.ToShovelInfoOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i ShovelInfoArgs) ToShovelInfoPtrOutput() ShovelInfoPtrOutput {
 	return i.ToShovelInfoPtrOutputWithContext(context.Background())
 }
@@ -1683,12 +1532,6 @@ func (i *shovelInfoPtrType) ToShovelInfoPtrOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(ShovelInfoPtrOutput)
 }
 
-func (i *shovelInfoPtrType) ToOutput(ctx context.Context) pulumix.Output[*ShovelInfo] {
-	return pulumix.Output[*ShovelInfo]{
-		OutputState: i.ToShovelInfoPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ShovelInfoOutput struct{ *pulumi.OutputState }
 
 func (ShovelInfoOutput) ElementType() reflect.Type {
@@ -1711,12 +1554,6 @@ func (o ShovelInfoOutput) ToShovelInfoPtrOutputWithContext(ctx context.Context) 
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ShovelInfo) *ShovelInfo {
 		return &v
 	}).(ShovelInfoPtrOutput)
-}
-
-func (o ShovelInfoOutput) ToOutput(ctx context.Context) pulumix.Output[ShovelInfo] {
-	return pulumix.Output[ShovelInfo]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Determines how the shovel should acknowledge messages. Possible values are: `on-confirm`, `on-publish` and `no-ack`.
@@ -1866,12 +1703,6 @@ func (o ShovelInfoPtrOutput) ToShovelInfoPtrOutput() ShovelInfoPtrOutput {
 
 func (o ShovelInfoPtrOutput) ToShovelInfoPtrOutputWithContext(ctx context.Context) ShovelInfoPtrOutput {
 	return o
-}
-
-func (o ShovelInfoPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ShovelInfo] {
-	return pulumix.Output[*ShovelInfo]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ShovelInfoPtrOutput) Elem() ShovelInfoOutput {
@@ -2180,12 +2011,6 @@ func (i TopicPermissionsPermissionArgs) ToTopicPermissionsPermissionOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(TopicPermissionsPermissionOutput)
 }
 
-func (i TopicPermissionsPermissionArgs) ToOutput(ctx context.Context) pulumix.Output[TopicPermissionsPermission] {
-	return pulumix.Output[TopicPermissionsPermission]{
-		OutputState: i.ToTopicPermissionsPermissionOutputWithContext(ctx).OutputState,
-	}
-}
-
 // TopicPermissionsPermissionArrayInput is an input type that accepts TopicPermissionsPermissionArray and TopicPermissionsPermissionArrayOutput values.
 // You can construct a concrete instance of `TopicPermissionsPermissionArrayInput` via:
 //
@@ -2211,12 +2036,6 @@ func (i TopicPermissionsPermissionArray) ToTopicPermissionsPermissionArrayOutput
 	return pulumi.ToOutputWithContext(ctx, i).(TopicPermissionsPermissionArrayOutput)
 }
 
-func (i TopicPermissionsPermissionArray) ToOutput(ctx context.Context) pulumix.Output[[]TopicPermissionsPermission] {
-	return pulumix.Output[[]TopicPermissionsPermission]{
-		OutputState: i.ToTopicPermissionsPermissionArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type TopicPermissionsPermissionOutput struct{ *pulumi.OutputState }
 
 func (TopicPermissionsPermissionOutput) ElementType() reflect.Type {
@@ -2229,12 +2048,6 @@ func (o TopicPermissionsPermissionOutput) ToTopicPermissionsPermissionOutput() T
 
 func (o TopicPermissionsPermissionOutput) ToTopicPermissionsPermissionOutputWithContext(ctx context.Context) TopicPermissionsPermissionOutput {
 	return o
-}
-
-func (o TopicPermissionsPermissionOutput) ToOutput(ctx context.Context) pulumix.Output[TopicPermissionsPermission] {
-	return pulumix.Output[TopicPermissionsPermission]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The exchange to set the permissions for.
@@ -2264,12 +2077,6 @@ func (o TopicPermissionsPermissionArrayOutput) ToTopicPermissionsPermissionArray
 
 func (o TopicPermissionsPermissionArrayOutput) ToTopicPermissionsPermissionArrayOutputWithContext(ctx context.Context) TopicPermissionsPermissionArrayOutput {
 	return o
-}
-
-func (o TopicPermissionsPermissionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]TopicPermissionsPermission] {
-	return pulumix.Output[[]TopicPermissionsPermission]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o TopicPermissionsPermissionArrayOutput) Index(i pulumi.IntInput) TopicPermissionsPermissionOutput {
@@ -2315,12 +2122,6 @@ func (i GetExchangeSettingArgs) ToGetExchangeSettingOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetExchangeSettingOutput)
 }
 
-func (i GetExchangeSettingArgs) ToOutput(ctx context.Context) pulumix.Output[GetExchangeSetting] {
-	return pulumix.Output[GetExchangeSetting]{
-		OutputState: i.ToGetExchangeSettingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetExchangeSettingArrayInput is an input type that accepts GetExchangeSettingArray and GetExchangeSettingArrayOutput values.
 // You can construct a concrete instance of `GetExchangeSettingArrayInput` via:
 //
@@ -2346,12 +2147,6 @@ func (i GetExchangeSettingArray) ToGetExchangeSettingArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GetExchangeSettingArrayOutput)
 }
 
-func (i GetExchangeSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]GetExchangeSetting] {
-	return pulumix.Output[[]GetExchangeSetting]{
-		OutputState: i.ToGetExchangeSettingArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetExchangeSettingOutput struct{ *pulumi.OutputState }
 
 func (GetExchangeSettingOutput) ElementType() reflect.Type {
@@ -2364,12 +2159,6 @@ func (o GetExchangeSettingOutput) ToGetExchangeSettingOutput() GetExchangeSettin
 
 func (o GetExchangeSettingOutput) ToGetExchangeSettingOutputWithContext(ctx context.Context) GetExchangeSettingOutput {
 	return o
-}
-
-func (o GetExchangeSettingOutput) ToOutput(ctx context.Context) pulumix.Output[GetExchangeSetting] {
-	return pulumix.Output[GetExchangeSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetExchangeSettingOutput) Arguments() pulumi.MapOutput {
@@ -2400,12 +2189,6 @@ func (o GetExchangeSettingArrayOutput) ToGetExchangeSettingArrayOutput() GetExch
 
 func (o GetExchangeSettingArrayOutput) ToGetExchangeSettingArrayOutputWithContext(ctx context.Context) GetExchangeSettingArrayOutput {
 	return o
-}
-
-func (o GetExchangeSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetExchangeSetting] {
-	return pulumix.Output[[]GetExchangeSetting]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetExchangeSettingArrayOutput) Index(i pulumi.IntInput) GetExchangeSettingOutput {
