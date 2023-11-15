@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The “OperatorPolicy“ resource creates and manages operator policies for queues.
@@ -190,12 +189,6 @@ func (i *OperatorPolicy) ToOperatorPolicyOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(OperatorPolicyOutput)
 }
 
-func (i *OperatorPolicy) ToOutput(ctx context.Context) pulumix.Output[*OperatorPolicy] {
-	return pulumix.Output[*OperatorPolicy]{
-		OutputState: i.ToOperatorPolicyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // OperatorPolicyArrayInput is an input type that accepts OperatorPolicyArray and OperatorPolicyArrayOutput values.
 // You can construct a concrete instance of `OperatorPolicyArrayInput` via:
 //
@@ -219,12 +212,6 @@ func (i OperatorPolicyArray) ToOperatorPolicyArrayOutput() OperatorPolicyArrayOu
 
 func (i OperatorPolicyArray) ToOperatorPolicyArrayOutputWithContext(ctx context.Context) OperatorPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OperatorPolicyArrayOutput)
-}
-
-func (i OperatorPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*OperatorPolicy] {
-	return pulumix.Output[[]*OperatorPolicy]{
-		OutputState: i.ToOperatorPolicyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // OperatorPolicyMapInput is an input type that accepts OperatorPolicyMap and OperatorPolicyMapOutput values.
@@ -252,12 +239,6 @@ func (i OperatorPolicyMap) ToOperatorPolicyMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(OperatorPolicyMapOutput)
 }
 
-func (i OperatorPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*OperatorPolicy] {
-	return pulumix.Output[map[string]*OperatorPolicy]{
-		OutputState: i.ToOperatorPolicyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type OperatorPolicyOutput struct{ *pulumi.OutputState }
 
 func (OperatorPolicyOutput) ElementType() reflect.Type {
@@ -270,12 +251,6 @@ func (o OperatorPolicyOutput) ToOperatorPolicyOutput() OperatorPolicyOutput {
 
 func (o OperatorPolicyOutput) ToOperatorPolicyOutputWithContext(ctx context.Context) OperatorPolicyOutput {
 	return o
-}
-
-func (o OperatorPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*OperatorPolicy] {
-	return pulumix.Output[*OperatorPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The name of the operator policy.
@@ -308,12 +283,6 @@ func (o OperatorPolicyArrayOutput) ToOperatorPolicyArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o OperatorPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*OperatorPolicy] {
-	return pulumix.Output[[]*OperatorPolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o OperatorPolicyArrayOutput) Index(i pulumi.IntInput) OperatorPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OperatorPolicy {
 		return vs[0].([]*OperatorPolicy)[vs[1].(int)]
@@ -332,12 +301,6 @@ func (o OperatorPolicyMapOutput) ToOperatorPolicyMapOutput() OperatorPolicyMapOu
 
 func (o OperatorPolicyMapOutput) ToOperatorPolicyMapOutputWithContext(ctx context.Context) OperatorPolicyMapOutput {
 	return o
-}
-
-func (o OperatorPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*OperatorPolicy] {
-	return pulumix.Output[map[string]*OperatorPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o OperatorPolicyMapOutput) MapIndex(k pulumi.StringInput) OperatorPolicyOutput {
