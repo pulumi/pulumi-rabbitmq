@@ -78,12 +78,12 @@ public final class GetExchangeResult {
             return this;
         }
         public GetExchangeResult build() {
-            final var o = new GetExchangeResult();
-            o.id = id;
-            o.name = name;
-            o.settings = settings;
-            o.vhost = vhost;
-            return o;
+            final var _resultValue = new GetExchangeResult();
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.settings = settings;
+            _resultValue.vhost = vhost;
+            return _resultValue;
         }
     }
 }

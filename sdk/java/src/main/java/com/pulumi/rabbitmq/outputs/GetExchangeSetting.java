@@ -76,12 +76,12 @@ public final class GetExchangeSetting {
             return this;
         }
         public GetExchangeSetting build() {
-            final var o = new GetExchangeSetting();
-            o.arguments = arguments;
-            o.autoDelete = autoDelete;
-            o.durable = durable;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetExchangeSetting();
+            _resultValue.arguments = arguments;
+            _resultValue.autoDelete = autoDelete;
+            _resultValue.durable = durable;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

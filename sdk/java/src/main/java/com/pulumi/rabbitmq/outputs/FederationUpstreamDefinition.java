@@ -233,18 +233,18 @@ public final class FederationUpstreamDefinition {
             return this;
         }
         public FederationUpstreamDefinition build() {
-            final var o = new FederationUpstreamDefinition();
-            o.ackMode = ackMode;
-            o.exchange = exchange;
-            o.expires = expires;
-            o.maxHops = maxHops;
-            o.messageTtl = messageTtl;
-            o.prefetchCount = prefetchCount;
-            o.queue = queue;
-            o.reconnectDelay = reconnectDelay;
-            o.trustUserId = trustUserId;
-            o.uri = uri;
-            return o;
+            final var _resultValue = new FederationUpstreamDefinition();
+            _resultValue.ackMode = ackMode;
+            _resultValue.exchange = exchange;
+            _resultValue.expires = expires;
+            _resultValue.maxHops = maxHops;
+            _resultValue.messageTtl = messageTtl;
+            _resultValue.prefetchCount = prefetchCount;
+            _resultValue.queue = queue;
+            _resultValue.reconnectDelay = reconnectDelay;
+            _resultValue.trustUserId = trustUserId;
+            _resultValue.uri = uri;
+            return _resultValue;
         }
     }
 }

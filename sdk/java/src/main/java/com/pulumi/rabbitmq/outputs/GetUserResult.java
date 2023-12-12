@@ -64,11 +64,11 @@ public final class GetUserResult {
             return tags(List.of(tags));
         }
         public GetUserResult build() {
-            final var o = new GetUserResult();
-            o.id = id;
-            o.name = name;
-            o.tags = tags;
-            return o;
+            final var _resultValue = new GetUserResult();
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.tags = tags;
+            return _resultValue;
         }
     }
 }
