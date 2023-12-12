@@ -108,12 +108,12 @@ public final class PolicyPolicy {
             return this;
         }
         public PolicyPolicy build() {
-            final var o = new PolicyPolicy();
-            o.applyTo = applyTo;
-            o.definition = definition;
-            o.pattern = pattern;
-            o.priority = priority;
-            return o;
+            final var _resultValue = new PolicyPolicy();
+            _resultValue.applyTo = applyTo;
+            _resultValue.definition = definition;
+            _resultValue.pattern = pattern;
+            _resultValue.priority = priority;
+            return _resultValue;
         }
     }
 }

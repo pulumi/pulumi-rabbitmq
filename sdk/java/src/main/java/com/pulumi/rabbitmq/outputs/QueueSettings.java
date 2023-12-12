@@ -120,12 +120,12 @@ public final class QueueSettings {
             return this;
         }
         public QueueSettings build() {
-            final var o = new QueueSettings();
-            o.arguments = arguments;
-            o.argumentsJson = argumentsJson;
-            o.autoDelete = autoDelete;
-            o.durable = durable;
-            return o;
+            final var _resultValue = new QueueSettings();
+            _resultValue.arguments = arguments;
+            _resultValue.argumentsJson = argumentsJson;
+            _resultValue.autoDelete = autoDelete;
+            _resultValue.durable = durable;
+            return _resultValue;
         }
     }
 }

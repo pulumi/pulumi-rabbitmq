@@ -49,10 +49,10 @@ public final class GetVHostResult {
             return this;
         }
         public GetVHostResult build() {
-            final var o = new GetVHostResult();
-            o.id = id;
-            o.name = name;
-            return o;
+            final var _resultValue = new GetVHostResult();
+            _resultValue.id = id;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

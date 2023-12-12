@@ -84,11 +84,11 @@ public final class TopicPermissionsPermission {
             return this;
         }
         public TopicPermissionsPermission build() {
-            final var o = new TopicPermissionsPermission();
-            o.exchange = exchange;
-            o.read = read;
-            o.write = write;
-            return o;
+            final var _resultValue = new TopicPermissionsPermission();
+            _resultValue.exchange = exchange;
+            _resultValue.read = read;
+            _resultValue.write = write;
+            return _resultValue;
         }
     }
 }

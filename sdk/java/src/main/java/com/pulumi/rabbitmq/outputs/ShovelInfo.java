@@ -523,32 +523,32 @@ public final class ShovelInfo {
             return this;
         }
         public ShovelInfo build() {
-            final var o = new ShovelInfo();
-            o.ackMode = ackMode;
-            o.addForwardHeaders = addForwardHeaders;
-            o.deleteAfter = deleteAfter;
-            o.destinationAddForwardHeaders = destinationAddForwardHeaders;
-            o.destinationAddTimestampHeader = destinationAddTimestampHeader;
-            o.destinationAddress = destinationAddress;
-            o.destinationApplicationProperties = destinationApplicationProperties;
-            o.destinationExchange = destinationExchange;
-            o.destinationExchangeKey = destinationExchangeKey;
-            o.destinationProperties = destinationProperties;
-            o.destinationProtocol = destinationProtocol;
-            o.destinationPublishProperties = destinationPublishProperties;
-            o.destinationQueue = destinationQueue;
-            o.destinationUri = destinationUri;
-            o.prefetchCount = prefetchCount;
-            o.reconnectDelay = reconnectDelay;
-            o.sourceAddress = sourceAddress;
-            o.sourceDeleteAfter = sourceDeleteAfter;
-            o.sourceExchange = sourceExchange;
-            o.sourceExchangeKey = sourceExchangeKey;
-            o.sourcePrefetchCount = sourcePrefetchCount;
-            o.sourceProtocol = sourceProtocol;
-            o.sourceQueue = sourceQueue;
-            o.sourceUri = sourceUri;
-            return o;
+            final var _resultValue = new ShovelInfo();
+            _resultValue.ackMode = ackMode;
+            _resultValue.addForwardHeaders = addForwardHeaders;
+            _resultValue.deleteAfter = deleteAfter;
+            _resultValue.destinationAddForwardHeaders = destinationAddForwardHeaders;
+            _resultValue.destinationAddTimestampHeader = destinationAddTimestampHeader;
+            _resultValue.destinationAddress = destinationAddress;
+            _resultValue.destinationApplicationProperties = destinationApplicationProperties;
+            _resultValue.destinationExchange = destinationExchange;
+            _resultValue.destinationExchangeKey = destinationExchangeKey;
+            _resultValue.destinationProperties = destinationProperties;
+            _resultValue.destinationProtocol = destinationProtocol;
+            _resultValue.destinationPublishProperties = destinationPublishProperties;
+            _resultValue.destinationQueue = destinationQueue;
+            _resultValue.destinationUri = destinationUri;
+            _resultValue.prefetchCount = prefetchCount;
+            _resultValue.reconnectDelay = reconnectDelay;
+            _resultValue.sourceAddress = sourceAddress;
+            _resultValue.sourceDeleteAfter = sourceDeleteAfter;
+            _resultValue.sourceExchange = sourceExchange;
+            _resultValue.sourceExchangeKey = sourceExchangeKey;
+            _resultValue.sourcePrefetchCount = sourcePrefetchCount;
+            _resultValue.sourceProtocol = sourceProtocol;
+            _resultValue.sourceQueue = sourceQueue;
+            _resultValue.sourceUri = sourceUri;
+            return _resultValue;
         }
     }
 }

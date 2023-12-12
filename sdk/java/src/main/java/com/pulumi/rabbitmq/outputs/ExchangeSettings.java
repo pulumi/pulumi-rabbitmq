@@ -112,12 +112,12 @@ public final class ExchangeSettings {
             return this;
         }
         public ExchangeSettings build() {
-            final var o = new ExchangeSettings();
-            o.arguments = arguments;
-            o.autoDelete = autoDelete;
-            o.durable = durable;
-            o.type = type;
-            return o;
+            final var _resultValue = new ExchangeSettings();
+            _resultValue.arguments = arguments;
+            _resultValue.autoDelete = autoDelete;
+            _resultValue.durable = durable;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

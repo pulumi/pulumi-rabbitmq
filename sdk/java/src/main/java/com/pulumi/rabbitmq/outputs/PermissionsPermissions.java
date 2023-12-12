@@ -84,11 +84,11 @@ public final class PermissionsPermissions {
             return this;
         }
         public PermissionsPermissions build() {
-            final var o = new PermissionsPermissions();
-            o.configure = configure;
-            o.read = read;
-            o.write = write;
-            return o;
+            final var _resultValue = new PermissionsPermissions();
+            _resultValue.configure = configure;
+            _resultValue.read = read;
+            _resultValue.write = write;
+            return _resultValue;
         }
     }
 }

@@ -108,12 +108,12 @@ public final class OperatorPolicyPolicy {
             return this;
         }
         public OperatorPolicyPolicy build() {
-            final var o = new OperatorPolicyPolicy();
-            o.applyTo = applyTo;
-            o.definition = definition;
-            o.pattern = pattern;
-            o.priority = priority;
-            return o;
+            final var _resultValue = new OperatorPolicyPolicy();
+            _resultValue.applyTo = applyTo;
+            _resultValue.definition = definition;
+            _resultValue.pattern = pattern;
+            _resultValue.priority = priority;
+            return _resultValue;
         }
     }
 }
