@@ -4,6 +4,7 @@
 package com.pulumi.rabbitmq.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -184,52 +185,64 @@ public final class FederationUpstreamDefinition {
 
         @CustomType.Setter
         public Builder ackMode(@Nullable String ackMode) {
+
             this.ackMode = ackMode;
             return this;
         }
         @CustomType.Setter
         public Builder exchange(@Nullable String exchange) {
+
             this.exchange = exchange;
             return this;
         }
         @CustomType.Setter
         public Builder expires(@Nullable Integer expires) {
+
             this.expires = expires;
             return this;
         }
         @CustomType.Setter
         public Builder maxHops(@Nullable Integer maxHops) {
+
             this.maxHops = maxHops;
             return this;
         }
         @CustomType.Setter
         public Builder messageTtl(@Nullable Integer messageTtl) {
+
             this.messageTtl = messageTtl;
             return this;
         }
         @CustomType.Setter
         public Builder prefetchCount(@Nullable Integer prefetchCount) {
+
             this.prefetchCount = prefetchCount;
             return this;
         }
         @CustomType.Setter
         public Builder queue(@Nullable String queue) {
+
             this.queue = queue;
             return this;
         }
         @CustomType.Setter
         public Builder reconnectDelay(@Nullable Integer reconnectDelay) {
+
             this.reconnectDelay = reconnectDelay;
             return this;
         }
         @CustomType.Setter
         public Builder trustUserId(@Nullable Boolean trustUserId) {
+
             this.trustUserId = trustUserId;
             return this;
         }
         @CustomType.Setter
         public Builder uri(String uri) {
-            this.uri = Objects.requireNonNull(uri);
+            if (uri == null) {
+              throw new MissingRequiredPropertyException("FederationUpstreamDefinition", "uri");
+            }
+            this.uri = uri;
             return this;
         }
         public FederationUpstreamDefinition build() {

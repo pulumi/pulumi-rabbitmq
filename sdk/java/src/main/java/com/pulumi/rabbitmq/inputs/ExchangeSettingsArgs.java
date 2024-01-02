@@ -5,6 +5,7 @@ package com.pulumi.rabbitmq.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -198,7 +199,9 @@ public final class ExchangeSettingsArgs extends com.pulumi.resources.ResourceArg
         }
 
         public ExchangeSettingsArgs build() {
-            $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
+            if ($.type == null) {
+                throw new MissingRequiredPropertyException("ExchangeSettingsArgs", "type");
+            }
             return $;
         }
     }

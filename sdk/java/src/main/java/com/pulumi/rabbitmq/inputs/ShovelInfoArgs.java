@@ -5,6 +5,7 @@ package com.pulumi.rabbitmq.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -997,8 +998,12 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public ShovelInfoArgs build() {
-            $.destinationUri = Objects.requireNonNull($.destinationUri, "expected parameter 'destinationUri' to be non-null");
-            $.sourceUri = Objects.requireNonNull($.sourceUri, "expected parameter 'sourceUri' to be non-null");
+            if ($.destinationUri == null) {
+                throw new MissingRequiredPropertyException("ShovelInfoArgs", "destinationUri");
+            }
+            if ($.sourceUri == null) {
+                throw new MissingRequiredPropertyException("ShovelInfoArgs", "sourceUri");
+            }
             return $;
         }
     }

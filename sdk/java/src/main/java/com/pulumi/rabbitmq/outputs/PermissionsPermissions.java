@@ -4,6 +4,7 @@
 package com.pulumi.rabbitmq.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -70,17 +71,26 @@ public final class PermissionsPermissions {
 
         @CustomType.Setter
         public Builder configure(String configure) {
-            this.configure = Objects.requireNonNull(configure);
+            if (configure == null) {
+              throw new MissingRequiredPropertyException("PermissionsPermissions", "configure");
+            }
+            this.configure = configure;
             return this;
         }
         @CustomType.Setter
         public Builder read(String read) {
-            this.read = Objects.requireNonNull(read);
+            if (read == null) {
+              throw new MissingRequiredPropertyException("PermissionsPermissions", "read");
+            }
+            this.read = read;
             return this;
         }
         @CustomType.Setter
         public Builder write(String write) {
-            this.write = Objects.requireNonNull(write);
+            if (write == null) {
+              throw new MissingRequiredPropertyException("PermissionsPermissions", "write");
+            }
+            this.write = write;
             return this;
         }
         public PermissionsPermissions build() {

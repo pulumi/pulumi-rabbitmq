@@ -4,6 +4,7 @@
 package com.pulumi.rabbitmq.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.String;
@@ -89,22 +90,34 @@ public final class PolicyPolicy {
 
         @CustomType.Setter
         public Builder applyTo(String applyTo) {
-            this.applyTo = Objects.requireNonNull(applyTo);
+            if (applyTo == null) {
+              throw new MissingRequiredPropertyException("PolicyPolicy", "applyTo");
+            }
+            this.applyTo = applyTo;
             return this;
         }
         @CustomType.Setter
         public Builder definition(Map<String,Object> definition) {
-            this.definition = Objects.requireNonNull(definition);
+            if (definition == null) {
+              throw new MissingRequiredPropertyException("PolicyPolicy", "definition");
+            }
+            this.definition = definition;
             return this;
         }
         @CustomType.Setter
         public Builder pattern(String pattern) {
-            this.pattern = Objects.requireNonNull(pattern);
+            if (pattern == null) {
+              throw new MissingRequiredPropertyException("PolicyPolicy", "pattern");
+            }
+            this.pattern = pattern;
             return this;
         }
         @CustomType.Setter
         public Builder priority(Integer priority) {
-            this.priority = Objects.requireNonNull(priority);
+            if (priority == null) {
+              throw new MissingRequiredPropertyException("PolicyPolicy", "priority");
+            }
+            this.priority = priority;
             return this;
         }
         public PolicyPolicy build() {

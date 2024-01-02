@@ -4,6 +4,7 @@
 package com.pulumi.rabbitmq.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -404,122 +405,150 @@ public final class ShovelInfo {
 
         @CustomType.Setter
         public Builder ackMode(@Nullable String ackMode) {
+
             this.ackMode = ackMode;
             return this;
         }
         @CustomType.Setter
         public Builder addForwardHeaders(@Nullable Boolean addForwardHeaders) {
+
             this.addForwardHeaders = addForwardHeaders;
             return this;
         }
         @CustomType.Setter
         public Builder deleteAfter(@Nullable String deleteAfter) {
+
             this.deleteAfter = deleteAfter;
             return this;
         }
         @CustomType.Setter
         public Builder destinationAddForwardHeaders(@Nullable Boolean destinationAddForwardHeaders) {
+
             this.destinationAddForwardHeaders = destinationAddForwardHeaders;
             return this;
         }
         @CustomType.Setter
         public Builder destinationAddTimestampHeader(@Nullable Boolean destinationAddTimestampHeader) {
+
             this.destinationAddTimestampHeader = destinationAddTimestampHeader;
             return this;
         }
         @CustomType.Setter
         public Builder destinationAddress(@Nullable String destinationAddress) {
+
             this.destinationAddress = destinationAddress;
             return this;
         }
         @CustomType.Setter
         public Builder destinationApplicationProperties(@Nullable String destinationApplicationProperties) {
+
             this.destinationApplicationProperties = destinationApplicationProperties;
             return this;
         }
         @CustomType.Setter
         public Builder destinationExchange(@Nullable String destinationExchange) {
+
             this.destinationExchange = destinationExchange;
             return this;
         }
         @CustomType.Setter
         public Builder destinationExchangeKey(@Nullable String destinationExchangeKey) {
+
             this.destinationExchangeKey = destinationExchangeKey;
             return this;
         }
         @CustomType.Setter
         public Builder destinationProperties(@Nullable String destinationProperties) {
+
             this.destinationProperties = destinationProperties;
             return this;
         }
         @CustomType.Setter
         public Builder destinationProtocol(@Nullable String destinationProtocol) {
+
             this.destinationProtocol = destinationProtocol;
             return this;
         }
         @CustomType.Setter
         public Builder destinationPublishProperties(@Nullable String destinationPublishProperties) {
+
             this.destinationPublishProperties = destinationPublishProperties;
             return this;
         }
         @CustomType.Setter
         public Builder destinationQueue(@Nullable String destinationQueue) {
+
             this.destinationQueue = destinationQueue;
             return this;
         }
         @CustomType.Setter
         public Builder destinationUri(String destinationUri) {
-            this.destinationUri = Objects.requireNonNull(destinationUri);
+            if (destinationUri == null) {
+              throw new MissingRequiredPropertyException("ShovelInfo", "destinationUri");
+            }
+            this.destinationUri = destinationUri;
             return this;
         }
         @CustomType.Setter
         public Builder prefetchCount(@Nullable Integer prefetchCount) {
+
             this.prefetchCount = prefetchCount;
             return this;
         }
         @CustomType.Setter
         public Builder reconnectDelay(@Nullable Integer reconnectDelay) {
+
             this.reconnectDelay = reconnectDelay;
             return this;
         }
         @CustomType.Setter
         public Builder sourceAddress(@Nullable String sourceAddress) {
+
             this.sourceAddress = sourceAddress;
             return this;
         }
         @CustomType.Setter
         public Builder sourceDeleteAfter(@Nullable String sourceDeleteAfter) {
+
             this.sourceDeleteAfter = sourceDeleteAfter;
             return this;
         }
         @CustomType.Setter
         public Builder sourceExchange(@Nullable String sourceExchange) {
+
             this.sourceExchange = sourceExchange;
             return this;
         }
         @CustomType.Setter
         public Builder sourceExchangeKey(@Nullable String sourceExchangeKey) {
+
             this.sourceExchangeKey = sourceExchangeKey;
             return this;
         }
         @CustomType.Setter
         public Builder sourcePrefetchCount(@Nullable Integer sourcePrefetchCount) {
+
             this.sourcePrefetchCount = sourcePrefetchCount;
             return this;
         }
         @CustomType.Setter
         public Builder sourceProtocol(@Nullable String sourceProtocol) {
+
             this.sourceProtocol = sourceProtocol;
             return this;
         }
         @CustomType.Setter
         public Builder sourceQueue(@Nullable String sourceQueue) {
+
             this.sourceQueue = sourceQueue;
             return this;
         }
         @CustomType.Setter
         public Builder sourceUri(String sourceUri) {
-            this.sourceUri = Objects.requireNonNull(sourceUri);
+            if (sourceUri == null) {
+              throw new MissingRequiredPropertyException("ShovelInfo", "sourceUri");
+            }
+            this.sourceUri = sourceUri;
             return this;
         }
         public ShovelInfo build() {
