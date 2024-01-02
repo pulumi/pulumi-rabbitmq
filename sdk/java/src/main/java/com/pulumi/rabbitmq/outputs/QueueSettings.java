@@ -101,21 +101,25 @@ public final class QueueSettings {
 
         @CustomType.Setter
         public Builder arguments(@Nullable Map<String,Object> arguments) {
+
             this.arguments = arguments;
             return this;
         }
         @CustomType.Setter
         public Builder argumentsJson(@Nullable String argumentsJson) {
+
             this.argumentsJson = argumentsJson;
             return this;
         }
         @CustomType.Setter
         public Builder autoDelete(@Nullable Boolean autoDelete) {
+
             this.autoDelete = autoDelete;
             return this;
         }
         @CustomType.Setter
         public Builder durable(@Nullable Boolean durable) {
+
             this.durable = durable;
             return this;
         }

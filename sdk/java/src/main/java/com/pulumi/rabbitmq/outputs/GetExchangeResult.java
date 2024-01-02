@@ -4,6 +4,7 @@
 package com.pulumi.rabbitmq.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.rabbitmq.outputs.GetExchangeSetting;
 import java.lang.String;
 import java.util.List;
@@ -56,17 +57,26 @@ public final class GetExchangeResult {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetExchangeResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetExchangeResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder settings(List<GetExchangeSetting> settings) {
-            this.settings = Objects.requireNonNull(settings);
+            if (settings == null) {
+              throw new MissingRequiredPropertyException("GetExchangeResult", "settings");
+            }
+            this.settings = settings;
             return this;
         }
         public Builder settings(GetExchangeSetting... settings) {
@@ -74,6 +84,7 @@ public final class GetExchangeResult {
         }
         @CustomType.Setter
         public Builder vhost(@Nullable String vhost) {
+
             this.vhost = vhost;
             return this;
         }

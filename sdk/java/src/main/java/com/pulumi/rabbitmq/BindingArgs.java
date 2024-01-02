@@ -5,6 +5,7 @@ package com.pulumi.rabbitmq;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
@@ -280,10 +281,18 @@ public final class BindingArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public BindingArgs build() {
-            $.destination = Objects.requireNonNull($.destination, "expected parameter 'destination' to be non-null");
-            $.destinationType = Objects.requireNonNull($.destinationType, "expected parameter 'destinationType' to be non-null");
-            $.source = Objects.requireNonNull($.source, "expected parameter 'source' to be non-null");
-            $.vhost = Objects.requireNonNull($.vhost, "expected parameter 'vhost' to be non-null");
+            if ($.destination == null) {
+                throw new MissingRequiredPropertyException("BindingArgs", "destination");
+            }
+            if ($.destinationType == null) {
+                throw new MissingRequiredPropertyException("BindingArgs", "destinationType");
+            }
+            if ($.source == null) {
+                throw new MissingRequiredPropertyException("BindingArgs", "source");
+            }
+            if ($.vhost == null) {
+                throw new MissingRequiredPropertyException("BindingArgs", "vhost");
+            }
             return $;
         }
     }
