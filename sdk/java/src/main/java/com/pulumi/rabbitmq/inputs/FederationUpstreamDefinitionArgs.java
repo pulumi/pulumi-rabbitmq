@@ -5,6 +5,7 @@ package com.pulumi.rabbitmq.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -435,7 +436,9 @@ public final class FederationUpstreamDefinitionArgs extends com.pulumi.resources
         }
 
         public FederationUpstreamDefinitionArgs build() {
-            $.uri = Objects.requireNonNull($.uri, "expected parameter 'uri' to be non-null");
+            if ($.uri == null) {
+                throw new MissingRequiredPropertyException("FederationUpstreamDefinitionArgs", "uri");
+            }
             return $;
         }
     }

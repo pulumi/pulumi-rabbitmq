@@ -5,6 +5,7 @@ package com.pulumi.rabbitmq.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.String;
@@ -192,10 +193,18 @@ public final class OperatorPolicyPolicyArgs extends com.pulumi.resources.Resourc
         }
 
         public OperatorPolicyPolicyArgs build() {
-            $.applyTo = Objects.requireNonNull($.applyTo, "expected parameter 'applyTo' to be non-null");
-            $.definition = Objects.requireNonNull($.definition, "expected parameter 'definition' to be non-null");
-            $.pattern = Objects.requireNonNull($.pattern, "expected parameter 'pattern' to be non-null");
-            $.priority = Objects.requireNonNull($.priority, "expected parameter 'priority' to be non-null");
+            if ($.applyTo == null) {
+                throw new MissingRequiredPropertyException("OperatorPolicyPolicyArgs", "applyTo");
+            }
+            if ($.definition == null) {
+                throw new MissingRequiredPropertyException("OperatorPolicyPolicyArgs", "definition");
+            }
+            if ($.pattern == null) {
+                throw new MissingRequiredPropertyException("OperatorPolicyPolicyArgs", "pattern");
+            }
+            if ($.priority == null) {
+                throw new MissingRequiredPropertyException("OperatorPolicyPolicyArgs", "priority");
+            }
             return $;
         }
     }

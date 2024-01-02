@@ -5,6 +5,7 @@ package com.pulumi.rabbitmq;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.rabbitmq.inputs.FederationUpstreamDefinitionArgs;
 import java.lang.String;
 import java.util.Objects;
@@ -151,8 +152,12 @@ public final class FederationUpstreamArgs extends com.pulumi.resources.ResourceA
         }
 
         public FederationUpstreamArgs build() {
-            $.definition = Objects.requireNonNull($.definition, "expected parameter 'definition' to be non-null");
-            $.vhost = Objects.requireNonNull($.vhost, "expected parameter 'vhost' to be non-null");
+            if ($.definition == null) {
+                throw new MissingRequiredPropertyException("FederationUpstreamArgs", "definition");
+            }
+            if ($.vhost == null) {
+                throw new MissingRequiredPropertyException("FederationUpstreamArgs", "vhost");
+            }
             return $;
         }
     }

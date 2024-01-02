@@ -5,6 +5,7 @@ package com.pulumi.rabbitmq;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.rabbitmq.inputs.OperatorPolicyPolicyArgs;
 import java.lang.String;
 import java.util.Objects;
@@ -155,8 +156,12 @@ public final class OperatorPolicyArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         public OperatorPolicyArgs build() {
-            $.policy = Objects.requireNonNull($.policy, "expected parameter 'policy' to be non-null");
-            $.vhost = Objects.requireNonNull($.vhost, "expected parameter 'vhost' to be non-null");
+            if ($.policy == null) {
+                throw new MissingRequiredPropertyException("OperatorPolicyArgs", "policy");
+            }
+            if ($.vhost == null) {
+                throw new MissingRequiredPropertyException("OperatorPolicyArgs", "vhost");
+            }
             return $;
         }
     }

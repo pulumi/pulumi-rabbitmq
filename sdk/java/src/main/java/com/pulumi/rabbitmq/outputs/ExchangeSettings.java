@@ -4,6 +4,7 @@
 package com.pulumi.rabbitmq.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -93,22 +94,28 @@ public final class ExchangeSettings {
 
         @CustomType.Setter
         public Builder arguments(@Nullable Map<String,Object> arguments) {
+
             this.arguments = arguments;
             return this;
         }
         @CustomType.Setter
         public Builder autoDelete(@Nullable Boolean autoDelete) {
+
             this.autoDelete = autoDelete;
             return this;
         }
         @CustomType.Setter
         public Builder durable(@Nullable Boolean durable) {
+
             this.durable = durable;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("ExchangeSettings", "type");
+            }
+            this.type = type;
             return this;
         }
         public ExchangeSettings build() {

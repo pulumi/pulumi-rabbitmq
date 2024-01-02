@@ -5,6 +5,7 @@ package com.pulumi.rabbitmq;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.rabbitmq.inputs.PermissionsPermissionsArgs;
 import java.lang.String;
 import java.util.Objects;
@@ -155,8 +156,12 @@ public final class PermissionsArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public PermissionsArgs build() {
-            $.permissions = Objects.requireNonNull($.permissions, "expected parameter 'permissions' to be non-null");
-            $.user = Objects.requireNonNull($.user, "expected parameter 'user' to be non-null");
+            if ($.permissions == null) {
+                throw new MissingRequiredPropertyException("PermissionsArgs", "permissions");
+            }
+            if ($.user == null) {
+                throw new MissingRequiredPropertyException("PermissionsArgs", "user");
+            }
             return $;
         }
     }
