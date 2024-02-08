@@ -169,10 +169,12 @@ class Policy(pulumi.CustomResource):
 
         ## Import
 
-        Policies can be imported using the `id` which is composed of `name@vhost`. E.g.
+        Policies can be imported using the `id` which is composed of `name@vhost`.
+
+         E.g.
 
         ```sh
-         $ pulumi import rabbitmq:index/policy:Policy test name@vhost
+        $ pulumi import rabbitmq:index/policy:Policy test name@vhost
         ```
 
         :param str resource_name: The name of the resource.
@@ -221,10 +223,12 @@ class Policy(pulumi.CustomResource):
 
         ## Import
 
-        Policies can be imported using the `id` which is composed of `name@vhost`. E.g.
+        Policies can be imported using the `id` which is composed of `name@vhost`.
+
+         E.g.
 
         ```sh
-         $ pulumi import rabbitmq:index/policy:Policy test name@vhost
+        $ pulumi import rabbitmq:index/policy:Policy test name@vhost
         ```
 
         :param str resource_name: The name of the resource.

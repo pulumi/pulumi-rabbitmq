@@ -74,12 +74,12 @@ import (
 //
 // ## Import
 //
-// Shovels can be imported using the `name` and `vhost` E.g.
+// Shovels can be imported using the `name` and `vhost`
+//
+//	E.g.
 //
 // ```sh
-//
-//	$ pulumi import rabbitmq:index/shovel:Shovel test shovelTest@test
-//
+// $ pulumi import rabbitmq:index/shovel:Shovel test shovelTest@test
 // ```
 type Shovel struct {
 	pulumi.CustomResourceState

@@ -64,12 +64,12 @@ import (
 //
 // # Permissions can be imported using the `id` which is composed of
 //
-// `user@vhost`. E.g.
+// `user@vhost`.
+//
+//	E.g.
 //
 // ```sh
-//
-//	$ pulumi import rabbitmq:index/permissions:Permissions test user@vhost
-//
+// $ pulumi import rabbitmq:index/permissions:Permissions test user@vhost
 // ```
 type Permissions struct {
 	pulumi.CustomResourceState
