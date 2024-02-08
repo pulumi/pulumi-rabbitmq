@@ -65,12 +65,12 @@ import (
 //
 // # Exchanges can be imported using the `id` which is composed of
 //
-// `name@vhost`. E.g.
+// `name@vhost`.
+//
+//	E.g.
 //
 // ```sh
-//
-//	$ pulumi import rabbitmq:index/exchange:Exchange test test@vhost
-//
+// $ pulumi import rabbitmq:index/exchange:Exchange test test@vhost
 // ```
 type Exchange struct {
 	pulumi.CustomResourceState

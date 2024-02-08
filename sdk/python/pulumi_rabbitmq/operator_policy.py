@@ -169,10 +169,12 @@ class OperatorPolicy(pulumi.CustomResource):
 
         ## Import
 
-        Operator policies can be imported using the `id` which is composed of `name@vhost`. E.g.
+        Operator policies can be imported using the `id` which is composed of `name@vhost`.
+
+         E.g.
 
         ```sh
-         $ pulumi import rabbitmq:index/operatorPolicy:OperatorPolicy test name@vhost
+        $ pulumi import rabbitmq:index/operatorPolicy:OperatorPolicy test name@vhost
         ```
 
         :param str resource_name: The name of the resource.
@@ -221,10 +223,12 @@ class OperatorPolicy(pulumi.CustomResource):
 
         ## Import
 
-        Operator policies can be imported using the `id` which is composed of `name@vhost`. E.g.
+        Operator policies can be imported using the `id` which is composed of `name@vhost`.
+
+         E.g.
 
         ```sh
-         $ pulumi import rabbitmq:index/operatorPolicy:OperatorPolicy test name@vhost
+        $ pulumi import rabbitmq:index/operatorPolicy:OperatorPolicy test name@vhost
         ```
 
         :param str resource_name: The name of the resource.
