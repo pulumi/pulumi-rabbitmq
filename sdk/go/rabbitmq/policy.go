@@ -67,12 +67,12 @@ import (
 //
 // ## Import
 //
-// Policies can be imported using the `id` which is composed of `name@vhost`. E.g.
+// Policies can be imported using the `id` which is composed of `name@vhost`.
+//
+//	E.g.
 //
 // ```sh
-//
-//	$ pulumi import rabbitmq:index/policy:Policy test name@vhost
-//
+// $ pulumi import rabbitmq:index/policy:Policy test name@vhost
 // ```
 type Policy struct {
 	pulumi.CustomResourceState

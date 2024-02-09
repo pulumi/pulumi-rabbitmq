@@ -83,7 +83,7 @@ class VHost(pulumi.CustomResource):
         Vhosts can be imported using the `name`, e.g.
 
         ```sh
-         $ pulumi import rabbitmq:index/vHost:VHost my_vhost my_vhost
+        $ pulumi import rabbitmq:index/vHost:VHost my_vhost my_vhost
         ```
 
         :param str resource_name: The name of the resource.
@@ -113,7 +113,7 @@ class VHost(pulumi.CustomResource):
         Vhosts can be imported using the `name`, e.g.
 
         ```sh
-         $ pulumi import rabbitmq:index/vHost:VHost my_vhost my_vhost
+        $ pulumi import rabbitmq:index/vHost:VHost my_vhost my_vhost
         ```
 
         :param str resource_name: The name of the resource.

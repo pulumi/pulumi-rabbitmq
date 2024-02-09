@@ -203,7 +203,7 @@ class Queue(pulumi.CustomResource):
         Queues can be imported using the `id` which is composed of `name@vhost`. E.g.
 
         ```sh
-         $ pulumi import rabbitmq:index/queue:Queue test name@vhost
+        $ pulumi import rabbitmq:index/queue:Queue test name@vhost
         ```
 
         :param str resource_name: The name of the resource.
@@ -285,7 +285,7 @@ class Queue(pulumi.CustomResource):
         Queues can be imported using the `id` which is composed of `name@vhost`. E.g.
 
         ```sh
-         $ pulumi import rabbitmq:index/queue:Queue test name@vhost
+        $ pulumi import rabbitmq:index/queue:Queue test name@vhost
         ```
 
         :param str resource_name: The name of the resource.
