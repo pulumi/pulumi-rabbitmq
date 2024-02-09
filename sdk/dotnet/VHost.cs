@@ -32,7 +32,7 @@ namespace Pulumi.RabbitMQ
     /// Vhosts can be imported using the `name`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import rabbitmq:index/vHost:VHost my_vhost my_vhost
+    /// $ pulumi import rabbitmq:index/vHost:VHost my_vhost my_vhost
     /// ```
     /// </summary>
     [RabbitMQResourceType("rabbitmq:index/vHost:VHost")]

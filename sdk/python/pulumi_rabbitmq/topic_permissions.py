@@ -164,10 +164,12 @@ class TopicPermissions(pulumi.CustomResource):
 
         Permissions can be imported using the `id` which is composed of
 
-        `user@vhost`. E.g.
+        `user@vhost`.
+
+         E.g.
 
         ```sh
-         $ pulumi import rabbitmq:index/topicPermissions:TopicPermissions test user@vhost
+        $ pulumi import rabbitmq:index/topicPermissions:TopicPermissions test user@vhost
         ```
 
         :param str resource_name: The name of the resource.
@@ -211,10 +213,12 @@ class TopicPermissions(pulumi.CustomResource):
 
         Permissions can be imported using the `id` which is composed of
 
-        `user@vhost`. E.g.
+        `user@vhost`.
+
+         E.g.
 
         ```sh
-         $ pulumi import rabbitmq:index/topicPermissions:TopicPermissions test user@vhost
+        $ pulumi import rabbitmq:index/topicPermissions:TopicPermissions test user@vhost
         ```
 
         :param str resource_name: The name of the resource.

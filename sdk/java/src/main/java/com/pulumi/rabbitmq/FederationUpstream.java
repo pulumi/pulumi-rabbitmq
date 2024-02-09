@@ -101,7 +101,7 @@ import javax.annotation.Nullable;
  * A Federation upstream can be imported using the resource `id` which is composed of `name@vhost`, e.g.
  * 
  * ```sh
- *  $ pulumi import rabbitmq:index/federationUpstream:FederationUpstream foo foo@test
+ * $ pulumi import rabbitmq:index/federationUpstream:FederationUpstream foo foo@test
  * ```
  * 
  */

@@ -52,9 +52,7 @@ import (
 // Users can be imported using the `name`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import rabbitmq:index/user:User test mctest
-//
+// $ pulumi import rabbitmq:index/user:User test mctest
 // ```
 type User struct {
 	pulumi.CustomResourceState

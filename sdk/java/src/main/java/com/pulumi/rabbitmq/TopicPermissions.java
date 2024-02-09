@@ -71,10 +71,12 @@ import javax.annotation.Nullable;
  * 
  * Permissions can be imported using the `id` which is composed of
  * 
- * `user@vhost`. E.g.
+ * `user@vhost`.
+ * 
+ *  E.g.
  * 
  * ```sh
- *  $ pulumi import rabbitmq:index/topicPermissions:TopicPermissions test user@vhost
+ * $ pulumi import rabbitmq:index/topicPermissions:TopicPermissions test user@vhost
  * ```
  * 
  */
