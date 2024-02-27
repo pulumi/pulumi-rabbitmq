@@ -46,6 +46,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// downstream exchange
 //			fooExchange, err := rabbitmq.NewExchange(ctx, "fooExchange", &rabbitmq.ExchangeArgs{
 //				Vhost: guest.Vhost,
 //				Settings: &rabbitmq.ExchangeSettingsArgs{
@@ -56,6 +57,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// upstream broker
 //			fooFederationUpstream, err := rabbitmq.NewFederationUpstream(ctx, "fooFederationUpstream", &rabbitmq.FederationUpstreamArgs{
 //				Vhost: guest.Vhost,
 //				Definition: &rabbitmq.FederationUpstreamDefinitionArgs{
