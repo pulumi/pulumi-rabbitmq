@@ -18,6 +18,8 @@ import javax.annotation.Nullable;
  * The ``rabbitmq.Shovel`` resource creates and manages a dynamic shovel.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -80,12 +82,13 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Shovels can be imported using the `name` and `vhost`
  * 
- *  E.g.
+ * E.g.
  * 
  * ```sh
  * $ pulumi import rabbitmq:index/shovel:Shovel test shovelTest@test

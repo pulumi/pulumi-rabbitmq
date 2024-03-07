@@ -18,6 +18,8 @@ import javax.annotation.Nullable;
  * The ``rabbitmq.FederationUpstream`` resource creates and manages a federation upstream parameter.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -95,6 +97,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 

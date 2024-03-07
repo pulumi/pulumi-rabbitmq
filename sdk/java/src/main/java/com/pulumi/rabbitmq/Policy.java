@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
  * and queues.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -70,12 +72,13 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Policies can be imported using the `id` which is composed of `name@vhost`.
  * 
- *  E.g.
+ * E.g.
  * 
  * ```sh
  * $ pulumi import rabbitmq:index/policy:Policy test name@vhost

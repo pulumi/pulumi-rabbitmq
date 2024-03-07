@@ -142,6 +142,7 @@ class Permissions(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -159,14 +160,13 @@ class Permissions(pulumi.CustomResource):
             user=test_user.name,
             vhost=test_v_host.name)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Permissions can be imported using the `id` which is composed of
+        Permissions can be imported using the `id` which is composed of  `user@vhost`.
 
-        `user@vhost`.
-
-         E.g.
+        E.g.
 
         ```sh
         $ pulumi import rabbitmq:index/permissions:Permissions test user@vhost
@@ -191,6 +191,7 @@ class Permissions(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -208,14 +209,13 @@ class Permissions(pulumi.CustomResource):
             user=test_user.name,
             vhost=test_v_host.name)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Permissions can be imported using the `id` which is composed of
+        Permissions can be imported using the `id` which is composed of  `user@vhost`.
 
-        `user@vhost`.
-
-         E.g.
+        E.g.
 
         ```sh
         $ pulumi import rabbitmq:index/permissions:Permissions test user@vhost

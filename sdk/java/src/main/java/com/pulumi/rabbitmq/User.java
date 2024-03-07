@@ -22,6 +22,8 @@ import javax.annotation.Nullable;
  * [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -53,6 +55,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 

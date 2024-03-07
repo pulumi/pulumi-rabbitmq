@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
  * between a queue an exchange.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -92,15 +94,16 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Bindings can be imported using the `id` which is composed of
- * 
- *  `vhost/source/destination/destination_type/properties_key`. E.g.
+ *   `vhost/source/destination/destination_type/properties_key`. E.g.
  * 
  * ```sh
- *  $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23
+ * $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%!
+ * (MISSING)```
  * ```
  * 
  */

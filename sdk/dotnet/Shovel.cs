@@ -14,6 +14,7 @@ namespace Pulumi.RabbitMQ
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -60,12 +61,13 @@ namespace Pulumi.RabbitMQ
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Shovels can be imported using the `name` and `vhost`
     /// 
-    ///  E.g.
+    /// E.g.
     /// 
     /// ```sh
     /// $ pulumi import rabbitmq:index/shovel:Shovel test shovelTest@test

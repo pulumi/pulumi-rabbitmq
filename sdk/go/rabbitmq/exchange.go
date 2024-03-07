@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -60,14 +61,13 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Exchanges can be imported using the `id` which is composed of
+// Exchanges can be imported using the `id` which is composed of  `name@vhost`.
 //
-// `name@vhost`.
-//
-//	E.g.
+// E.g.
 //
 // ```sh
 // $ pulumi import rabbitmq:index/exchange:Exchange test test@vhost

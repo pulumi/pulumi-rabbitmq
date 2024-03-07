@@ -15,6 +15,7 @@ namespace Pulumi.RabbitMQ
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -54,12 +55,13 @@ namespace Pulumi.RabbitMQ
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Policies can be imported using the `id` which is composed of `name@vhost`.
     /// 
-    ///  E.g.
+    /// E.g.
     /// 
     /// ```sh
     /// $ pulumi import rabbitmq:index/policy:Policy test name@vhost
