@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
  * The ``rabbitmq.Exchange`` resource creates and manages an exchange.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -69,14 +71,13 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
- * Exchanges can be imported using the `id` which is composed of
+ * Exchanges can be imported using the `id` which is composed of  `name@vhost`.
  * 
- * `name@vhost`.
- * 
- *  E.g.
+ * E.g.
  * 
  * ```sh
  * $ pulumi import rabbitmq:index/exchange:Exchange test test@vhost

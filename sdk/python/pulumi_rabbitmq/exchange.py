@@ -142,6 +142,7 @@ class Exchange(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -163,14 +164,13 @@ class Exchange(pulumi.CustomResource):
             ),
             vhost=guest.vhost)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Exchanges can be imported using the `id` which is composed of
+        Exchanges can be imported using the `id` which is composed of  `name@vhost`.
 
-        `name@vhost`.
-
-         E.g.
+        E.g.
 
         ```sh
         $ pulumi import rabbitmq:index/exchange:Exchange test test@vhost
@@ -194,6 +194,7 @@ class Exchange(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -215,14 +216,13 @@ class Exchange(pulumi.CustomResource):
             ),
             vhost=guest.vhost)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        Exchanges can be imported using the `id` which is composed of
+        Exchanges can be imported using the `id` which is composed of  `name@vhost`.
 
-        `name@vhost`.
-
-         E.g.
+        E.g.
 
         ```sh
         $ pulumi import rabbitmq:index/exchange:Exchange test test@vhost

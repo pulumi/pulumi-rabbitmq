@@ -141,6 +141,7 @@ class Shovel(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -169,12 +170,13 @@ class Shovel(pulumi.CustomResource):
             ),
             vhost=test_v_host.name)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Shovels can be imported using the `name` and `vhost`
 
-         E.g.
+        E.g.
 
         ```sh
         $ pulumi import rabbitmq:index/shovel:Shovel test shovelTest@test
@@ -198,6 +200,7 @@ class Shovel(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -226,12 +229,13 @@ class Shovel(pulumi.CustomResource):
             ),
             vhost=test_v_host.name)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Shovels can be imported using the `name` and `vhost`
 
-         E.g.
+        E.g.
 
         ```sh
         $ pulumi import rabbitmq:index/shovel:Shovel test shovelTest@test

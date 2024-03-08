@@ -141,6 +141,7 @@ class OperatorPolicy(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -166,12 +167,13 @@ class OperatorPolicy(pulumi.CustomResource):
             ),
             vhost=guest.vhost)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Operator policies can be imported using the `id` which is composed of `name@vhost`.
 
-         E.g.
+        E.g.
 
         ```sh
         $ pulumi import rabbitmq:index/operatorPolicy:OperatorPolicy test name@vhost
@@ -195,6 +197,7 @@ class OperatorPolicy(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -220,12 +223,13 @@ class OperatorPolicy(pulumi.CustomResource):
             ),
             vhost=guest.vhost)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Operator policies can be imported using the `id` which is composed of `name@vhost`.
 
-         E.g.
+        E.g.
 
         ```sh
         $ pulumi import rabbitmq:index/operatorPolicy:OperatorPolicy test name@vhost

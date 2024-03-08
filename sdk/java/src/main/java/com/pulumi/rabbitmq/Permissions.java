@@ -20,6 +20,8 @@ import javax.annotation.Nullable;
  * permissions.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -65,14 +67,13 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
- * Permissions can be imported using the `id` which is composed of
+ * Permissions can be imported using the `id` which is composed of  `user@vhost`.
  * 
- * `user@vhost`.
- * 
- *  E.g.
+ * E.g.
  * 
  * ```sh
  * $ pulumi import rabbitmq:index/permissions:Permissions test user@vhost
