@@ -17,6 +17,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -61,14 +62,13 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// # Permissions can be imported using the `id` which is composed of
+// Permissions can be imported using the `id` which is composed of  `user@vhost`.
 //
-// `user@vhost`.
-//
-//	E.g.
+// E.g.
 //
 // ```sh
 // $ pulumi import rabbitmq:index/topicPermissions:TopicPermissions test user@vhost

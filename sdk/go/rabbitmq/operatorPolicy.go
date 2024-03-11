@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -64,12 +65,13 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Operator policies can be imported using the `id` which is composed of `name@vhost`.
 //
-//	E.g.
+// E.g.
 //
 // ```sh
 // $ pulumi import rabbitmq:index/operatorPolicy:OperatorPolicy test name@vhost

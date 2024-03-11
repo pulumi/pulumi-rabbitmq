@@ -147,6 +147,7 @@ class User(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -158,6 +159,7 @@ class User(pulumi.CustomResource):
                 "management",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -189,6 +191,7 @@ class User(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -200,6 +203,7 @@ class User(pulumi.CustomResource):
                 "management",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
