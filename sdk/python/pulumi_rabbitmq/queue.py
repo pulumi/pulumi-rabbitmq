@@ -141,8 +141,10 @@ class Queue(pulumi.CustomResource):
         The ``Queue`` resource creates and manages a queue.
 
         ## Example Usage
+
         ### Basic Example
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -166,8 +168,11 @@ class Queue(pulumi.CustomResource):
                 },
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Example With JSON Arguments
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -197,6 +202,7 @@ class Queue(pulumi.CustomResource):
             ),
             vhost=guest.vhost)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -223,8 +229,10 @@ class Queue(pulumi.CustomResource):
         The ``Queue`` resource creates and manages a queue.
 
         ## Example Usage
+
         ### Basic Example
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -248,8 +256,11 @@ class Queue(pulumi.CustomResource):
                 },
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Example With JSON Arguments
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -279,6 +290,7 @@ class Queue(pulumi.CustomResource):
             ),
             vhost=guest.vhost)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 

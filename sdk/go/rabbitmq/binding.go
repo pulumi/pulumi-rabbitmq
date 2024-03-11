@@ -17,6 +17,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -81,6 +82,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -89,9 +91,8 @@ import (
 //	`vhost/source/destination/destination_type/properties_key`. E.g.
 //
 // ```sh
-//
-//	$ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23
-//
+// $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%!
+// (MISSING)```
 // ```
 type Binding struct {
 	pulumi.CustomResourceState

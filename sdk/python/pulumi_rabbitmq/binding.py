@@ -274,6 +274,7 @@ class Binding(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -307,15 +308,16 @@ class Binding(pulumi.CustomResource):
             source=test_exchange.name,
             vhost=test_v_host.name)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Bindings can be imported using the `id` which is composed of
-
-         `vhost/source/destination/destination_type/properties_key`. E.g.
+          `vhost/source/destination/destination_type/properties_key`. E.g.
 
         ```sh
-         $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23
+        $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%!
+        (MISSING)```
         ```
 
         :param str resource_name: The name of the resource.
@@ -339,6 +341,7 @@ class Binding(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -372,15 +375,16 @@ class Binding(pulumi.CustomResource):
             source=test_exchange.name,
             vhost=test_v_host.name)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Bindings can be imported using the `id` which is composed of
-
-         `vhost/source/destination/destination_type/properties_key`. E.g.
+          `vhost/source/destination/destination_type/properties_key`. E.g.
 
         ```sh
-         $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23
+        $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%!
+        (MISSING)```
         ```
 
         :param str resource_name: The name of the resource.

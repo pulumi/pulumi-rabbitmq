@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -71,12 +72,13 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Shovels can be imported using the `name` and `vhost`
 //
-//	E.g.
+// E.g.
 //
 // ```sh
 // $ pulumi import rabbitmq:index/shovel:Shovel test shovelTest@test

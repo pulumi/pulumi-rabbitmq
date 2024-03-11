@@ -15,8 +15,10 @@ import (
 // The “Queue“ resource creates and manages a queue.
 //
 // ## Example Usage
+//
 // ### Basic Example
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -63,8 +65,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Example With JSON Arguments
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -115,6 +120,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

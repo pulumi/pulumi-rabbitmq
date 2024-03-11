@@ -10,6 +10,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
@@ -47,15 +48,16 @@ import * as utilities from "./utilities";
  *     vhost: testVHost.name,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Bindings can be imported using the `id` which is composed of
- *
- *  `vhost/source/destination/destination_type/properties_key`. E.g.
+ *   `vhost/source/destination/destination_type/properties_key`. E.g.
  *
  * ```sh
- *  $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23
+ * $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%!
+ * (MISSING)```
  * ```
  */
 export class Binding extends pulumi.CustomResource {

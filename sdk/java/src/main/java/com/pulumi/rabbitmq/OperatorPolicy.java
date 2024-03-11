@@ -18,6 +18,8 @@ import javax.annotation.Nullable;
  * The ``rabbitmq.OperatorPolicy`` resource creates and manages operator policies for queues.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -72,12 +74,13 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Operator policies can be imported using the `id` which is composed of `name@vhost`.
  * 
- *  E.g.
+ * E.g.
  * 
  * ```sh
  * $ pulumi import rabbitmq:index/operatorPolicy:OperatorPolicy test name@vhost

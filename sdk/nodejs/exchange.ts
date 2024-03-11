@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
@@ -34,14 +35,13 @@ import * as utilities from "./utilities";
  *     vhost: guest.vhost,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * Exchanges can be imported using the `id` which is composed of
+ * Exchanges can be imported using the `id` which is composed of  `name@vhost`.
  *
- * `name@vhost`.
- *
- *  E.g.
+ * E.g.
  *
  * ```sh
  * $ pulumi import rabbitmq:index/exchange:Exchange test test@vhost
