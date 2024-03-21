@@ -1342,11 +1342,11 @@ type ShovelInfo struct {
 	AckMode *string `pulumi:"ackMode"`
 	// Whether to add `x-shovelled` headers to shovelled messages.
 	//
-	// Deprecated: use destination_add_forward_headers instead
+	// Deprecated: use destinationAddForwardHeaders instead
 	AddForwardHeaders *bool `pulumi:"addForwardHeaders"`
 	// Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
 	//
-	// Deprecated: use source_delete_after instead
+	// Deprecated: use sourceDeleteAfter instead
 	DeleteAfter *string `pulumi:"deleteAfter"`
 	// Whether to add `x-shovelled` headers to shovelled messages.
 	DestinationAddForwardHeaders  *bool `pulumi:"destinationAddForwardHeaders"`
@@ -1376,7 +1376,7 @@ type ShovelInfo struct {
 	DestinationUri string `pulumi:"destinationUri"`
 	// The maximum number of unacknowledged messages copied over a shovel at any one time.
 	//
-	// Deprecated: use source_prefetch_count instead
+	// Deprecated: use sourcePrefetchCount instead
 	PrefetchCount *int `pulumi:"prefetchCount"`
 	// The duration in seconds to reconnect to a broker after disconnected.
 	// Defaults to `1`.
@@ -1419,11 +1419,11 @@ type ShovelInfoArgs struct {
 	AckMode pulumi.StringPtrInput `pulumi:"ackMode"`
 	// Whether to add `x-shovelled` headers to shovelled messages.
 	//
-	// Deprecated: use destination_add_forward_headers instead
+	// Deprecated: use destinationAddForwardHeaders instead
 	AddForwardHeaders pulumi.BoolPtrInput `pulumi:"addForwardHeaders"`
 	// Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
 	//
-	// Deprecated: use source_delete_after instead
+	// Deprecated: use sourceDeleteAfter instead
 	DeleteAfter pulumi.StringPtrInput `pulumi:"deleteAfter"`
 	// Whether to add `x-shovelled` headers to shovelled messages.
 	DestinationAddForwardHeaders  pulumi.BoolPtrInput `pulumi:"destinationAddForwardHeaders"`
@@ -1453,7 +1453,7 @@ type ShovelInfoArgs struct {
 	DestinationUri pulumi.StringInput `pulumi:"destinationUri"`
 	// The maximum number of unacknowledged messages copied over a shovel at any one time.
 	//
-	// Deprecated: use source_prefetch_count instead
+	// Deprecated: use sourcePrefetchCount instead
 	PrefetchCount pulumi.IntPtrInput `pulumi:"prefetchCount"`
 	// The duration in seconds to reconnect to a broker after disconnected.
 	// Defaults to `1`.
@@ -1564,14 +1564,14 @@ func (o ShovelInfoOutput) AckMode() pulumi.StringPtrOutput {
 
 // Whether to add `x-shovelled` headers to shovelled messages.
 //
-// Deprecated: use destination_add_forward_headers instead
+// Deprecated: use destinationAddForwardHeaders instead
 func (o ShovelInfoOutput) AddForwardHeaders() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ShovelInfo) *bool { return v.AddForwardHeaders }).(pulumi.BoolPtrOutput)
 }
 
 // Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
 //
-// Deprecated: use source_delete_after instead
+// Deprecated: use sourceDeleteAfter instead
 func (o ShovelInfoOutput) DeleteAfter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ShovelInfo) *string { return v.DeleteAfter }).(pulumi.StringPtrOutput)
 }
@@ -1637,7 +1637,7 @@ func (o ShovelInfoOutput) DestinationUri() pulumi.StringOutput {
 
 // The maximum number of unacknowledged messages copied over a shovel at any one time.
 //
-// Deprecated: use source_prefetch_count instead
+// Deprecated: use sourcePrefetchCount instead
 func (o ShovelInfoOutput) PrefetchCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ShovelInfo) *int { return v.PrefetchCount }).(pulumi.IntPtrOutput)
 }
@@ -1728,7 +1728,7 @@ func (o ShovelInfoPtrOutput) AckMode() pulumi.StringPtrOutput {
 
 // Whether to add `x-shovelled` headers to shovelled messages.
 //
-// Deprecated: use destination_add_forward_headers instead
+// Deprecated: use destinationAddForwardHeaders instead
 func (o ShovelInfoPtrOutput) AddForwardHeaders() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ShovelInfo) *bool {
 		if v == nil {
@@ -1740,7 +1740,7 @@ func (o ShovelInfoPtrOutput) AddForwardHeaders() pulumi.BoolPtrOutput {
 
 // Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
 //
-// Deprecated: use source_delete_after instead
+// Deprecated: use sourceDeleteAfter instead
 func (o ShovelInfoPtrOutput) DeleteAfter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ShovelInfo) *string {
 		if v == nil {
@@ -1866,7 +1866,7 @@ func (o ShovelInfoPtrOutput) DestinationUri() pulumi.StringPtrOutput {
 
 // The maximum number of unacknowledged messages copied over a shovel at any one time.
 //
-// Deprecated: use source_prefetch_count instead
+// Deprecated: use sourcePrefetchCount instead
 func (o ShovelInfoPtrOutput) PrefetchCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ShovelInfo) *int {
 		if v == nil {
