@@ -164,13 +164,13 @@ export interface ShovelInfo {
     /**
      * Whether to add `x-shovelled` headers to shovelled messages.
      *
-     * @deprecated use destination_add_forward_headers instead
+     * @deprecated use destinationAddForwardHeaders instead
      */
     addForwardHeaders?: pulumi.Input<boolean>;
     /**
      * Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
      *
-     * @deprecated use source_delete_after instead
+     * @deprecated use sourceDeleteAfter instead
      */
     deleteAfter?: pulumi.Input<string>;
     /**
@@ -222,7 +222,7 @@ export interface ShovelInfo {
     /**
      * The maximum number of unacknowledged messages copied over a shovel at any one time.
      *
-     * @deprecated use source_prefetch_count instead
+     * @deprecated use sourcePrefetchCount instead
      */
     prefetchCount?: pulumi.Input<number>;
     /**
