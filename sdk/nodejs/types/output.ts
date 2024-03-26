@@ -171,13 +171,13 @@ export interface ShovelInfo {
     /**
      * Whether to add `x-shovelled` headers to shovelled messages.
      *
-     * @deprecated use destinationAddForwardHeaders instead
+     * @deprecated use destination_add_forward_headers instead
      */
     addForwardHeaders?: boolean;
     /**
      * Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
      *
-     * @deprecated use sourceDeleteAfter instead
+     * @deprecated use source_delete_after instead
      */
     deleteAfter?: string;
     /**
@@ -229,7 +229,7 @@ export interface ShovelInfo {
     /**
      * The maximum number of unacknowledged messages copied over a shovel at any one time.
      *
-     * @deprecated use sourcePrefetchCount instead
+     * @deprecated use source_prefetch_count instead
      */
     prefetchCount?: number;
     /**
