@@ -64,6 +64,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
+ *         // downstream exchange
  *         var fooExchange = new Exchange(&#34;fooExchange&#34;, ExchangeArgs.builder()        
  *             .vhost(guest.vhost())
  *             .settings(ExchangeSettingsArgs.builder()
@@ -72,6 +73,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
+ *         // upstream broker
  *         var fooFederationUpstream = new FederationUpstream(&#34;fooFederationUpstream&#34;, FederationUpstreamArgs.builder()        
  *             .vhost(guest.vhost())
  *             .definition(FederationUpstreamDefinitionArgs.builder()
