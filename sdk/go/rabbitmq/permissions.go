@@ -18,48 +18,6 @@ import (
 // ## Example Usage
 //
 // <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
-//			if err != nil {
-//				return err
-//			}
-//			testUser, err := rabbitmq.NewUser(ctx, "testUser", &rabbitmq.UserArgs{
-//				Password: pulumi.String("foobar"),
-//				Tags: pulumi.StringArray{
-//					pulumi.String("administrator"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = rabbitmq.NewPermissions(ctx, "testPermissions", &rabbitmq.PermissionsArgs{
-//				Permissions: &rabbitmq.PermissionsPermissionsArgs{
-//					Configure: pulumi.String(".*"),
-//					Read:      pulumi.String(".*"),
-//					Write:     pulumi.String(".*"),
-//				},
-//				User:  testUser.Name,
-//				Vhost: testVHost.Name,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 // <!--End PulumiCodeChooser -->
 //
 // ## Import
