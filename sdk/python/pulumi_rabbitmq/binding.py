@@ -316,8 +316,7 @@ class Binding(pulumi.CustomResource):
           `vhost/source/destination/destination_type/properties_key`. E.g.
 
         ```sh
-        $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%!
-        (MISSING)```
+        $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23
         ```
 
         :param str resource_name: The name of the resource.
@@ -383,8 +382,7 @@ class Binding(pulumi.CustomResource):
           `vhost/source/destination/destination_type/properties_key`. E.g.
 
         ```sh
-        $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%!
-        (MISSING)```
+        $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23
         ```
 
         :param str resource_name: The name of the resource.
