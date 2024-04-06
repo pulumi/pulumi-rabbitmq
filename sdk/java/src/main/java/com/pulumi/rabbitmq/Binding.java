@@ -102,8 +102,7 @@ import javax.annotation.Nullable;
  *   `vhost/source/destination/destination_type/properties_key`. E.g.
  * 
  * ```sh
- * $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%!
- * (MISSING)```
+ * $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23
  * ```
  * 
  */
