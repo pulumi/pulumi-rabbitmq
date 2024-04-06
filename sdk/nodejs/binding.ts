@@ -56,8 +56,7 @@ import * as utilities from "./utilities";
  *   `vhost/source/destination/destination_type/properties_key`. E.g.
  *
  * ```sh
- * $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%!
- * (MISSING)```
+ * $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23
  * ```
  */
 export class Binding extends pulumi.CustomResource {
