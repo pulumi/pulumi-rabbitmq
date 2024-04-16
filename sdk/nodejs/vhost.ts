@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
  *
- * const myVhost = new rabbitmq.VHost("myVhost", {});
+ * const myVhost = new rabbitmq.VHost("my_vhost", {name: "my_vhost"});
  * ```
  * <!--End PulumiCodeChooser -->
  *

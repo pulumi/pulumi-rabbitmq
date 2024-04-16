@@ -146,29 +146,32 @@ class Shovel(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        test_v_host = rabbitmq.VHost("testVHost")
-        test_exchange = rabbitmq.Exchange("testExchange",
+        test = rabbitmq.VHost("test", name="test")
+        test_exchange = rabbitmq.Exchange("test",
+            name="test_exchange",
+            vhost=test.name,
             settings=rabbitmq.ExchangeSettingsArgs(
-                auto_delete=True,
-                durable=False,
                 type="fanout",
-            ),
-            vhost=test_v_host.name)
-        test_queue = rabbitmq.Queue("testQueue",
-            settings=rabbitmq.QueueSettingsArgs(
-                auto_delete=True,
                 durable=False,
-            ),
-            vhost=test_v_host.name)
+                auto_delete=True,
+            ))
+        test_queue = rabbitmq.Queue("test",
+            name="test_queue",
+            vhost=test.name,
+            settings=rabbitmq.QueueSettingsArgs(
+                durable=False,
+                auto_delete=True,
+            ))
         shovel_test = rabbitmq.Shovel("shovelTest",
+            name="shovelTest",
+            vhost=test.name,
             info=rabbitmq.ShovelInfoArgs(
-                destination_queue=test_queue.name,
-                destination_uri="amqp:///test",
+                source_uri="amqp:///test",
                 source_exchange=test_exchange.name,
                 source_exchange_key="test",
-                source_uri="amqp:///test",
-            ),
-            vhost=test_v_host.name)
+                destination_uri="amqp:///test",
+                destination_queue=test_queue.name,
+            ))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -205,29 +208,32 @@ class Shovel(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        test_v_host = rabbitmq.VHost("testVHost")
-        test_exchange = rabbitmq.Exchange("testExchange",
+        test = rabbitmq.VHost("test", name="test")
+        test_exchange = rabbitmq.Exchange("test",
+            name="test_exchange",
+            vhost=test.name,
             settings=rabbitmq.ExchangeSettingsArgs(
-                auto_delete=True,
-                durable=False,
                 type="fanout",
-            ),
-            vhost=test_v_host.name)
-        test_queue = rabbitmq.Queue("testQueue",
-            settings=rabbitmq.QueueSettingsArgs(
-                auto_delete=True,
                 durable=False,
-            ),
-            vhost=test_v_host.name)
+                auto_delete=True,
+            ))
+        test_queue = rabbitmq.Queue("test",
+            name="test_queue",
+            vhost=test.name,
+            settings=rabbitmq.QueueSettingsArgs(
+                durable=False,
+                auto_delete=True,
+            ))
         shovel_test = rabbitmq.Shovel("shovelTest",
+            name="shovelTest",
+            vhost=test.name,
             info=rabbitmq.ShovelInfoArgs(
-                destination_queue=test_queue.name,
-                destination_uri="amqp:///test",
+                source_uri="amqp:///test",
                 source_exchange=test_exchange.name,
                 source_exchange_key="test",
-                source_uri="amqp:///test",
-            ),
-            vhost=test_v_host.name)
+                destination_uri="amqp:///test",
+                destination_queue=test_queue.name,
+            ))
         ```
         <!--End PulumiCodeChooser -->
 

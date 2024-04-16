@@ -25,12 +25,15 @@ namespace Pulumi.RabbitMQ
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testVHost = new RabbitMQ.VHost("testVHost");
+    ///     var test = new RabbitMQ.VHost("test", new()
+    ///     {
+    ///         Name = "test",
+    ///     });
     /// 
     ///     var guest = new RabbitMQ.Permissions("guest", new()
     ///     {
     ///         User = "guest",
-    ///         Vhost = testVHost.Name,
+    ///         Vhost = test.Name,
     ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
     ///         {
     ///             Configure = ".*",
@@ -39,8 +42,9 @@ namespace Pulumi.RabbitMQ
     ///         },
     ///     });
     /// 
-    ///     var testQueue = new RabbitMQ.Queue("testQueue", new()
+    ///     var testQueue = new RabbitMQ.Queue("test", new()
     ///     {
+    ///         Name = "test",
     ///         Vhost = guest.Vhost,
     ///         Settings = new RabbitMQ.Inputs.QueueSettingsArgs
     ///         {
@@ -72,31 +76,34 @@ namespace Pulumi.RabbitMQ
     ///     var arguments = config.Get("arguments") ?? @"{
     ///   ""x-message-ttl"": 5000
     /// }
-    /// 
     /// ";
-    ///     var testVHost = new RabbitMQ.VHost("testVHost");
+    ///     var test = new RabbitMQ.VHost("test", new()
+    ///     {
+    ///         Name = "test",
+    ///     });
     /// 
     ///     var guest = new RabbitMQ.Permissions("guest", new()
     ///     {
+    ///         User = "guest",
+    ///         Vhost = test.Name,
     ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
     ///         {
     ///             Configure = ".*",
-    ///             Read = ".*",
     ///             Write = ".*",
+    ///             Read = ".*",
     ///         },
-    ///         User = "guest",
-    ///         Vhost = testVHost.Name,
     ///     });
     /// 
-    ///     var testQueue = new RabbitMQ.Queue("testQueue", new()
+    ///     var testQueue = new RabbitMQ.Queue("test", new()
     ///     {
+    ///         Name = "test",
+    ///         Vhost = guest.Vhost,
     ///         Settings = new RabbitMQ.Inputs.QueueSettingsArgs
     ///         {
-    ///             ArgumentsJson = arguments,
-    ///             AutoDelete = true,
     ///             Durable = false,
+    ///             AutoDelete = true,
+    ///             ArgumentsJson = arguments,
     ///         },
-    ///         Vhost = guest.Vhost,
     ///     });
     /// 
     /// });

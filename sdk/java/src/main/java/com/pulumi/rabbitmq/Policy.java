@@ -28,6 +28,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.rabbitmq.VHost;
+ * import com.pulumi.rabbitmq.VHostArgs;
  * import com.pulumi.rabbitmq.Permissions;
  * import com.pulumi.rabbitmq.PermissionsArgs;
  * import com.pulumi.rabbitmq.inputs.PermissionsPermissionsArgs;
@@ -47,26 +48,29 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testVHost = new VHost(&#34;testVHost&#34;);
+ *         var test = new VHost(&#34;test&#34;, VHostArgs.builder()        
+ *             .name(&#34;test&#34;)
+ *             .build());
  * 
  *         var guest = new Permissions(&#34;guest&#34;, PermissionsArgs.builder()        
+ *             .user(&#34;guest&#34;)
+ *             .vhost(test.name())
  *             .permissions(PermissionsPermissionsArgs.builder()
  *                 .configure(&#34;.*&#34;)
- *                 .read(&#34;.*&#34;)
  *                 .write(&#34;.*&#34;)
+ *                 .read(&#34;.*&#34;)
  *                 .build())
- *             .user(&#34;guest&#34;)
- *             .vhost(testVHost.name())
  *             .build());
  * 
  *         var testPolicy = new Policy(&#34;testPolicy&#34;, PolicyArgs.builder()        
+ *             .name(&#34;test&#34;)
+ *             .vhost(guest.vhost())
  *             .policy(PolicyPolicyArgs.builder()
- *                 .applyTo(&#34;all&#34;)
- *                 .definition(Map.of(&#34;ha-mode&#34;, &#34;all&#34;))
  *                 .pattern(&#34;.*&#34;)
  *                 .priority(0)
+ *                 .applyTo(&#34;all&#34;)
+ *                 .definition(Map.of(&#34;ha-mode&#34;, &#34;all&#34;))
  *                 .build())
- *             .vhost(guest.vhost())
  *             .build());
  * 
  *     }

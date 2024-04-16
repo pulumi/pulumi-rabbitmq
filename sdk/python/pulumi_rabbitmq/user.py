@@ -153,6 +153,7 @@ class User(pulumi.CustomResource):
         import pulumi_rabbitmq as rabbitmq
 
         test = rabbitmq.User("test",
+            name="mctest",
             password="foobar",
             tags=[
                 "administrator",
@@ -197,6 +198,7 @@ class User(pulumi.CustomResource):
         import pulumi_rabbitmq as rabbitmq
 
         test = rabbitmq.User("test",
+            name="mctest",
             password="foobar",
             tags=[
                 "administrator",

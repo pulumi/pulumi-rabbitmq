@@ -29,40 +29,45 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
-//			if err != nil {
-//				return err
-//			}
-//			testExchange, err := rabbitmq.NewExchange(ctx, "testExchange", &rabbitmq.ExchangeArgs{
-//				Settings: &rabbitmq.ExchangeSettingsArgs{
-//					AutoDelete: pulumi.Bool(true),
-//					Durable:    pulumi.Bool(false),
-//					Type:       pulumi.String("fanout"),
-//				},
-//				Vhost: testVHost.Name,
+//			test, err := rabbitmq.NewVHost(ctx, "test", &rabbitmq.VHostArgs{
+//				Name: pulumi.String("test"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			testQueue, err := rabbitmq.NewQueue(ctx, "testQueue", &rabbitmq.QueueArgs{
-//				Settings: &rabbitmq.QueueSettingsArgs{
-//					AutoDelete: pulumi.Bool(true),
+//			testExchange, err := rabbitmq.NewExchange(ctx, "test", &rabbitmq.ExchangeArgs{
+//				Name:  pulumi.String("test_exchange"),
+//				Vhost: test.Name,
+//				Settings: &rabbitmq.ExchangeSettingsArgs{
+//					Type:       pulumi.String("fanout"),
 //					Durable:    pulumi.Bool(false),
+//					AutoDelete: pulumi.Bool(true),
 //				},
-//				Vhost: testVHost.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testQueue, err := rabbitmq.NewQueue(ctx, "test", &rabbitmq.QueueArgs{
+//				Name:  pulumi.String("test_queue"),
+//				Vhost: test.Name,
+//				Settings: &rabbitmq.QueueSettingsArgs{
+//					Durable:    pulumi.Bool(false),
+//					AutoDelete: pulumi.Bool(true),
+//				},
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = rabbitmq.NewShovel(ctx, "shovelTest", &rabbitmq.ShovelArgs{
+//				Name:  pulumi.String("shovelTest"),
+//				Vhost: test.Name,
 //				Info: &rabbitmq.ShovelInfoArgs{
-//					DestinationQueue:  testQueue.Name,
-//					DestinationUri:    pulumi.String("amqp:///test"),
+//					SourceUri:         pulumi.String("amqp:///test"),
 //					SourceExchange:    testExchange.Name,
 //					SourceExchangeKey: pulumi.String("test"),
-//					SourceUri:         pulumi.String("amqp:///test"),
+//					DestinationUri:    pulumi.String("amqp:///test"),
+//					DestinationQueue:  testQueue.Name,
 //				},
-//				Vhost: testVHost.Name,
 //			})
 //			if err != nil {
 //				return err

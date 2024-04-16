@@ -147,22 +147,23 @@ class Exchange(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        test_v_host = rabbitmq.VHost("testVHost")
+        test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
+            user="guest",
+            vhost=test.name,
             permissions=rabbitmq.PermissionsPermissionsArgs(
                 configure=".*",
-                read=".*",
                 write=".*",
-            ),
-            user="guest",
-            vhost=test_v_host.name)
-        test_exchange = rabbitmq.Exchange("testExchange",
+                read=".*",
+            ))
+        test_exchange = rabbitmq.Exchange("test",
+            name="test",
+            vhost=guest.vhost,
             settings=rabbitmq.ExchangeSettingsArgs(
-                auto_delete=True,
-                durable=False,
                 type="fanout",
-            ),
-            vhost=guest.vhost)
+                durable=False,
+                auto_delete=True,
+            ))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -199,22 +200,23 @@ class Exchange(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        test_v_host = rabbitmq.VHost("testVHost")
+        test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
+            user="guest",
+            vhost=test.name,
             permissions=rabbitmq.PermissionsPermissionsArgs(
                 configure=".*",
-                read=".*",
                 write=".*",
-            ),
-            user="guest",
-            vhost=test_v_host.name)
-        test_exchange = rabbitmq.Exchange("testExchange",
+                read=".*",
+            ))
+        test_exchange = rabbitmq.Exchange("test",
+            name="test",
+            vhost=guest.vhost,
             settings=rabbitmq.ExchangeSettingsArgs(
-                auto_delete=True,
-                durable=False,
                 type="fanout",
-            ),
-            vhost=guest.vhost)
+                durable=False,
+                auto_delete=True,
+            ))
         ```
         <!--End PulumiCodeChooser -->
 

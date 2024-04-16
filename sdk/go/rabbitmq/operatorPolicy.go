@@ -29,33 +29,36 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
-//			if err != nil {
-//				return err
-//			}
-//			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
-//				Permissions: &rabbitmq.PermissionsPermissionsArgs{
-//					Configure: pulumi.String(".*"),
-//					Read:      pulumi.String(".*"),
-//					Write:     pulumi.String(".*"),
-//				},
-//				User:  pulumi.String("guest"),
-//				Vhost: testVHost.Name,
+//			test, err := rabbitmq.NewVHost(ctx, "test", &rabbitmq.VHostArgs{
+//				Name: pulumi.String("test"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = rabbitmq.NewOperatorPolicy(ctx, "testOperatorPolicy", &rabbitmq.OperatorPolicyArgs{
+//			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
+//				User:  pulumi.String("guest"),
+//				Vhost: test.Name,
+//				Permissions: &rabbitmq.PermissionsPermissionsArgs{
+//					Configure: pulumi.String(".*"),
+//					Write:     pulumi.String(".*"),
+//					Read:      pulumi.String(".*"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rabbitmq.NewOperatorPolicy(ctx, "test", &rabbitmq.OperatorPolicyArgs{
+//				Name:  pulumi.String("test"),
+//				Vhost: guest.Vhost,
 //				Policy: &rabbitmq.OperatorPolicyPolicyArgs{
-//					ApplyTo: pulumi.String("queues"),
-//					Definition: pulumi.Map{
-//						"expires":     pulumi.Any(1800000),
-//						"message-ttl": pulumi.Any(3600000),
-//					},
 //					Pattern:  pulumi.String(".*"),
 //					Priority: pulumi.Int(0),
+//					ApplyTo:  pulumi.String("queues"),
+//					Definition: pulumi.Map{
+//						"message-ttl": pulumi.Any(3600000),
+//						"expires":     pulumi.Any(1800000),
+//					},
 //				},
-//				Vhost: guest.Vhost,
 //			})
 //			if err != nil {
 //				return err

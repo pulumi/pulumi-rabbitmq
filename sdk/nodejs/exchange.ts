@@ -16,23 +16,24 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
  *
- * const testVHost = new rabbitmq.VHost("testVHost", {});
+ * const test = new rabbitmq.VHost("test", {name: "test"});
  * const guest = new rabbitmq.Permissions("guest", {
+ *     user: "guest",
+ *     vhost: test.name,
  *     permissions: {
  *         configure: ".*",
- *         read: ".*",
  *         write: ".*",
+ *         read: ".*",
  *     },
- *     user: "guest",
- *     vhost: testVHost.name,
  * });
- * const testExchange = new rabbitmq.Exchange("testExchange", {
- *     settings: {
- *         autoDelete: true,
- *         durable: false,
- *         type: "fanout",
- *     },
+ * const testExchange = new rabbitmq.Exchange("test", {
+ *     name: "test",
  *     vhost: guest.vhost,
+ *     settings: {
+ *         type: "fanout",
+ *         durable: false,
+ *         autoDelete: true,
+ *     },
  * });
  * ```
  * <!--End PulumiCodeChooser -->

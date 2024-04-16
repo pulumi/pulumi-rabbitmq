@@ -17,26 +17,27 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
  *
- * const testVHost = new rabbitmq.VHost("testVHost", {});
+ * const test = new rabbitmq.VHost("test", {name: "test"});
  * const guest = new rabbitmq.Permissions("guest", {
+ *     user: "guest",
+ *     vhost: test.name,
  *     permissions: {
  *         configure: ".*",
- *         read: ".*",
  *         write: ".*",
+ *         read: ".*",
  *     },
- *     user: "guest",
- *     vhost: testVHost.name,
  * });
- * const testPolicy = new rabbitmq.Policy("testPolicy", {
+ * const testPolicy = new rabbitmq.Policy("test", {
+ *     name: "test",
+ *     vhost: guest.vhost,
  *     policy: {
+ *         pattern: ".*",
+ *         priority: 0,
  *         applyTo: "all",
  *         definition: {
  *             "ha-mode": "all",
  *         },
- *         pattern: ".*",
- *         priority: 0,
  *     },
- *     vhost: guest.vhost,
  * });
  * ```
  * <!--End PulumiCodeChooser -->

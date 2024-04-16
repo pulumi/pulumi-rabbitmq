@@ -28,6 +28,7 @@ namespace Pulumi.RabbitMQ
     /// {
     ///     var test = new RabbitMQ.User("test", new()
     ///     {
+    ///         Name = "mctest",
     ///         Password = "foobar",
     ///         Tags = new[]
     ///         {

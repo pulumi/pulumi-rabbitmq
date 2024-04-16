@@ -33,6 +33,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := rabbitmq.NewUser(ctx, "test", &rabbitmq.UserArgs{
+//				Name:     pulumi.String("mctest"),
 //				Password: pulumi.String("foobar"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("administrator"),

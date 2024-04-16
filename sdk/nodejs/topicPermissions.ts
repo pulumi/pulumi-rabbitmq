@@ -17,19 +17,20 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
  *
- * const testVHost = new rabbitmq.VHost("testVHost", {});
- * const testUser = new rabbitmq.User("testUser", {
+ * const test = new rabbitmq.VHost("test", {name: "test"});
+ * const testUser = new rabbitmq.User("test", {
+ *     name: "mctest",
  *     password: "foobar",
  *     tags: ["administrator"],
  * });
- * const testTopicPermissions = new rabbitmq.TopicPermissions("testTopicPermissions", {
+ * const testTopicPermissions = new rabbitmq.TopicPermissions("test", {
+ *     user: testUser.name,
+ *     vhost: test.name,
  *     permissions: [{
  *         exchange: "amq.topic",
- *         read: ".*",
  *         write: ".*",
+ *         read: ".*",
  *     }],
- *     user: testUser.name,
- *     vhost: testVHost.name,
  * });
  * ```
  * <!--End PulumiCodeChooser -->

@@ -16,27 +16,28 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
  *
- * const testVHost = new rabbitmq.VHost("testVHost", {});
+ * const test = new rabbitmq.VHost("test", {name: "test"});
  * const guest = new rabbitmq.Permissions("guest", {
+ *     user: "guest",
+ *     vhost: test.name,
  *     permissions: {
  *         configure: ".*",
- *         read: ".*",
  *         write: ".*",
+ *         read: ".*",
  *     },
- *     user: "guest",
- *     vhost: testVHost.name,
  * });
- * const testOperatorPolicy = new rabbitmq.OperatorPolicy("testOperatorPolicy", {
+ * const testOperatorPolicy = new rabbitmq.OperatorPolicy("test", {
+ *     name: "test",
+ *     vhost: guest.vhost,
  *     policy: {
- *         applyTo: "queues",
- *         definition: {
- *             expires: 1800000,
- *             "message-ttl": 3600000,
- *         },
  *         pattern: ".*",
  *         priority: 0,
+ *         applyTo: "queues",
+ *         definition: {
+ *             "message-ttl": 3600000,
+ *             expires: 1800000,
+ *         },
  *     },
- *     vhost: guest.vhost,
  * });
  * ```
  * <!--End PulumiCodeChooser -->

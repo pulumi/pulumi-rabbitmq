@@ -16,31 +16,34 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
  *
- * const testVHost = new rabbitmq.VHost("testVHost", {});
- * const testExchange = new rabbitmq.Exchange("testExchange", {
+ * const test = new rabbitmq.VHost("test", {name: "test"});
+ * const testExchange = new rabbitmq.Exchange("test", {
+ *     name: "test_exchange",
+ *     vhost: test.name,
  *     settings: {
- *         autoDelete: true,
- *         durable: false,
  *         type: "fanout",
- *     },
- *     vhost: testVHost.name,
- * });
- * const testQueue = new rabbitmq.Queue("testQueue", {
- *     settings: {
- *         autoDelete: true,
  *         durable: false,
+ *         autoDelete: true,
  *     },
- *     vhost: testVHost.name,
+ * });
+ * const testQueue = new rabbitmq.Queue("test", {
+ *     name: "test_queue",
+ *     vhost: test.name,
+ *     settings: {
+ *         durable: false,
+ *         autoDelete: true,
+ *     },
  * });
  * const shovelTest = new rabbitmq.Shovel("shovelTest", {
+ *     name: "shovelTest",
+ *     vhost: test.name,
  *     info: {
- *         destinationQueue: testQueue.name,
- *         destinationUri: "amqp:///test",
+ *         sourceUri: "amqp:///test",
  *         sourceExchange: testExchange.name,
  *         sourceExchangeKey: "test",
- *         sourceUri: "amqp:///test",
+ *         destinationUri: "amqp:///test",
+ *         destinationQueue: testQueue.name,
  *     },
- *     vhost: testVHost.name,
  * });
  * ```
  * <!--End PulumiCodeChooser -->

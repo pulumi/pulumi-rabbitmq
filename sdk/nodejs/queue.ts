@@ -18,17 +18,18 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
  *
- * const testVHost = new rabbitmq.VHost("testVHost", {});
+ * const test = new rabbitmq.VHost("test", {name: "test"});
  * const guest = new rabbitmq.Permissions("guest", {
  *     user: "guest",
- *     vhost: testVHost.name,
+ *     vhost: test.name,
  *     permissions: {
  *         configure: ".*",
  *         write: ".*",
  *         read: ".*",
  *     },
  * });
- * const testQueue = new rabbitmq.Queue("testQueue", {
+ * const testQueue = new rabbitmq.Queue("test", {
+ *     name: "test",
  *     vhost: guest.vhost,
  *     settings: {
  *         durable: false,
@@ -52,25 +53,25 @@ import * as utilities from "./utilities";
  * const arguments = config.get("arguments") || `{
  *   "x-message-ttl": 5000
  * }
- *
  * `;
- * const testVHost = new rabbitmq.VHost("testVHost", {});
+ * const test = new rabbitmq.VHost("test", {name: "test"});
  * const guest = new rabbitmq.Permissions("guest", {
+ *     user: "guest",
+ *     vhost: test.name,
  *     permissions: {
  *         configure: ".*",
- *         read: ".*",
  *         write: ".*",
+ *         read: ".*",
  *     },
- *     user: "guest",
- *     vhost: testVHost.name,
  * });
- * const testQueue = new rabbitmq.Queue("testQueue", {
- *     settings: {
- *         argumentsJson: arguments,
- *         autoDelete: true,
- *         durable: false,
- *     },
+ * const testQueue = new rabbitmq.Queue("test", {
+ *     name: "test",
  *     vhost: guest.vhost,
+ *     settings: {
+ *         durable: false,
+ *         autoDelete: true,
+ *         argumentsJson: arguments,
+ *     },
  * });
  * ```
  * <!--End PulumiCodeChooser -->
