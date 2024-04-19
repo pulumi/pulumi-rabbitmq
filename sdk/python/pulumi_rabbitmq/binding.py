@@ -274,7 +274,6 @@ class Binding(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -308,7 +307,6 @@ class Binding(pulumi.CustomResource):
             source=test_exchange.name,
             vhost=test_v_host.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -340,7 +338,6 @@ class Binding(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -374,7 +371,6 @@ class Binding(pulumi.CustomResource):
             source=test_exchange.name,
             vhost=test_v_host.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

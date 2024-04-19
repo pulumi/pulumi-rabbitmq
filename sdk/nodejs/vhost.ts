@@ -9,14 +9,12 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
  *
  * const myVhost = new rabbitmq.VHost("myVhost", {});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
