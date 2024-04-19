@@ -29,6 +29,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.rabbitmq.VHost;
+ * import com.pulumi.rabbitmq.VHostArgs;
  * import com.pulumi.rabbitmq.User;
  * import com.pulumi.rabbitmq.UserArgs;
  * import com.pulumi.rabbitmq.Permissions;
@@ -47,21 +48,24 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testVHost = new VHost(&#34;testVHost&#34;);
+ *         var test = new VHost(&#34;test&#34;, VHostArgs.builder()        
+ *             .name(&#34;test&#34;)
+ *             .build());
  * 
  *         var testUser = new User(&#34;testUser&#34;, UserArgs.builder()        
+ *             .name(&#34;mctest&#34;)
  *             .password(&#34;foobar&#34;)
  *             .tags(&#34;administrator&#34;)
  *             .build());
  * 
  *         var testPermissions = new Permissions(&#34;testPermissions&#34;, PermissionsArgs.builder()        
+ *             .user(testUser.name())
+ *             .vhost(test.name())
  *             .permissions(PermissionsPermissionsArgs.builder()
  *                 .configure(&#34;.*&#34;)
- *                 .read(&#34;.*&#34;)
  *                 .write(&#34;.*&#34;)
+ *                 .read(&#34;.*&#34;)
  *                 .build())
- *             .user(testUser.name())
- *             .vhost(testVHost.name())
  *             .build());
  * 
  *     }

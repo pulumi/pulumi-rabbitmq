@@ -23,40 +23,46 @@ namespace Pulumi.RabbitMQ
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testVHost = new RabbitMQ.VHost("testVHost");
-    /// 
-    ///     var testExchange = new RabbitMQ.Exchange("testExchange", new()
+    ///     var test = new RabbitMQ.VHost("test", new()
     ///     {
-    ///         Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
-    ///         {
-    ///             AutoDelete = true,
-    ///             Durable = false,
-    ///             Type = "fanout",
-    ///         },
-    ///         Vhost = testVHost.Name,
+    ///         Name = "test",
     ///     });
     /// 
-    ///     var testQueue = new RabbitMQ.Queue("testQueue", new()
+    ///     var testExchange = new RabbitMQ.Exchange("test", new()
     ///     {
+    ///         Name = "test_exchange",
+    ///         Vhost = test.Name,
+    ///         Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
+    ///         {
+    ///             Type = "fanout",
+    ///             Durable = false,
+    ///             AutoDelete = true,
+    ///         },
+    ///     });
+    /// 
+    ///     var testQueue = new RabbitMQ.Queue("test", new()
+    ///     {
+    ///         Name = "test_queue",
+    ///         Vhost = test.Name,
     ///         Settings = new RabbitMQ.Inputs.QueueSettingsArgs
     ///         {
-    ///             AutoDelete = true,
     ///             Durable = false,
+    ///             AutoDelete = true,
     ///         },
-    ///         Vhost = testVHost.Name,
     ///     });
     /// 
     ///     var shovelTest = new RabbitMQ.Shovel("shovelTest", new()
     ///     {
+    ///         Name = "shovelTest",
+    ///         Vhost = test.Name,
     ///         Info = new RabbitMQ.Inputs.ShovelInfoArgs
     ///         {
-    ///             DestinationQueue = testQueue.Name,
-    ///             DestinationUri = "amqp:///test",
+    ///             SourceUri = "amqp:///test",
     ///             SourceExchange = testExchange.Name,
     ///             SourceExchangeKey = "test",
-    ///             SourceUri = "amqp:///test",
+    ///             DestinationUri = "amqp:///test",
+    ///             DestinationQueue = testQueue.Name,
     ///         },
-    ///         Vhost = testVHost.Name,
     ///     });
     /// 
     /// });

@@ -26,6 +26,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.rabbitmq.VHost;
+ * import com.pulumi.rabbitmq.VHostArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -39,7 +40,9 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var myVhost = new VHost(&#34;myVhost&#34;);
+ *         var myVhost = new VHost(&#34;myVhost&#34;, VHostArgs.builder()        
+ *             .name(&#34;my_vhost&#34;)
+ *             .build());
  * 
  *     }
  * }

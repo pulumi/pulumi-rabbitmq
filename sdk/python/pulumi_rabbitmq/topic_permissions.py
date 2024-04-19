@@ -147,18 +147,19 @@ class TopicPermissions(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        test_v_host = rabbitmq.VHost("testVHost")
-        test_user = rabbitmq.User("testUser",
+        test = rabbitmq.VHost("test", name="test")
+        test_user = rabbitmq.User("test",
+            name="mctest",
             password="foobar",
             tags=["administrator"])
-        test_topic_permissions = rabbitmq.TopicPermissions("testTopicPermissions",
+        test_topic_permissions = rabbitmq.TopicPermissions("test",
+            user=test_user.name,
+            vhost=test.name,
             permissions=[rabbitmq.TopicPermissionsPermissionArgs(
                 exchange="amq.topic",
-                read=".*",
                 write=".*",
-            )],
-            user=test_user.name,
-            vhost=test_v_host.name)
+                read=".*",
+            )])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -196,18 +197,19 @@ class TopicPermissions(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        test_v_host = rabbitmq.VHost("testVHost")
-        test_user = rabbitmq.User("testUser",
+        test = rabbitmq.VHost("test", name="test")
+        test_user = rabbitmq.User("test",
+            name="mctest",
             password="foobar",
             tags=["administrator"])
-        test_topic_permissions = rabbitmq.TopicPermissions("testTopicPermissions",
+        test_topic_permissions = rabbitmq.TopicPermissions("test",
+            user=test_user.name,
+            vhost=test.name,
             permissions=[rabbitmq.TopicPermissionsPermissionArgs(
                 exchange="amq.topic",
-                read=".*",
                 write=".*",
-            )],
-            user=test_user.name,
-            vhost=test_v_host.name)
+                read=".*",
+            )])
         ```
         <!--End PulumiCodeChooser -->
 

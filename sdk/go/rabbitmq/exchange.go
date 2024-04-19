@@ -29,29 +29,32 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
-//			if err != nil {
-//				return err
-//			}
-//			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
-//				Permissions: &rabbitmq.PermissionsPermissionsArgs{
-//					Configure: pulumi.String(".*"),
-//					Read:      pulumi.String(".*"),
-//					Write:     pulumi.String(".*"),
-//				},
-//				User:  pulumi.String("guest"),
-//				Vhost: testVHost.Name,
+//			test, err := rabbitmq.NewVHost(ctx, "test", &rabbitmq.VHostArgs{
+//				Name: pulumi.String("test"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = rabbitmq.NewExchange(ctx, "testExchange", &rabbitmq.ExchangeArgs{
-//				Settings: &rabbitmq.ExchangeSettingsArgs{
-//					AutoDelete: pulumi.Bool(true),
-//					Durable:    pulumi.Bool(false),
-//					Type:       pulumi.String("fanout"),
+//			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
+//				User:  pulumi.String("guest"),
+//				Vhost: test.Name,
+//				Permissions: &rabbitmq.PermissionsPermissionsArgs{
+//					Configure: pulumi.String(".*"),
+//					Write:     pulumi.String(".*"),
+//					Read:      pulumi.String(".*"),
 //				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rabbitmq.NewExchange(ctx, "test", &rabbitmq.ExchangeArgs{
+//				Name:  pulumi.String("test"),
 //				Vhost: guest.Vhost,
+//				Settings: &rabbitmq.ExchangeSettingsArgs{
+//					Type:       pulumi.String("fanout"),
+//					Durable:    pulumi.Bool(false),
+//					AutoDelete: pulumi.Bool(true),
+//				},
 //			})
 //			if err != nil {
 //				return err

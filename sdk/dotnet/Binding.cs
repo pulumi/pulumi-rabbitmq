@@ -24,48 +24,53 @@ namespace Pulumi.RabbitMQ
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testVHost = new RabbitMQ.VHost("testVHost");
+    ///     var test = new RabbitMQ.VHost("test", new()
+    ///     {
+    ///         Name = "test",
+    ///     });
     /// 
     ///     var guest = new RabbitMQ.Permissions("guest", new()
     ///     {
+    ///         User = "guest",
+    ///         Vhost = test.Name,
     ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
     ///         {
     ///             Configure = ".*",
-    ///             Read = ".*",
     ///             Write = ".*",
+    ///             Read = ".*",
     ///         },
-    ///         User = "guest",
-    ///         Vhost = testVHost.Name,
     ///     });
     /// 
-    ///     var testExchange = new RabbitMQ.Exchange("testExchange", new()
+    ///     var testExchange = new RabbitMQ.Exchange("test", new()
     ///     {
+    ///         Name = "test",
+    ///         Vhost = guest.Vhost,
     ///         Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
     ///         {
-    ///             AutoDelete = true,
-    ///             Durable = false,
     ///             Type = "fanout",
+    ///             Durable = false,
+    ///             AutoDelete = true,
     ///         },
-    ///         Vhost = guest.Vhost,
     ///     });
     /// 
-    ///     var testQueue = new RabbitMQ.Queue("testQueue", new()
+    ///     var testQueue = new RabbitMQ.Queue("test", new()
     ///     {
+    ///         Name = "test",
+    ///         Vhost = guest.Vhost,
     ///         Settings = new RabbitMQ.Inputs.QueueSettingsArgs
     ///         {
-    ///             AutoDelete = false,
     ///             Durable = true,
+    ///             AutoDelete = false,
     ///         },
-    ///         Vhost = guest.Vhost,
     ///     });
     /// 
-    ///     var testBinding = new RabbitMQ.Binding("testBinding", new()
+    ///     var testBinding = new RabbitMQ.Binding("test", new()
     ///     {
+    ///         Source = testExchange.Name,
+    ///         Vhost = test.Name,
     ///         Destination = testQueue.Name,
     ///         DestinationType = "queue",
     ///         RoutingKey = "#",
-    ///         Source = testExchange.Name,
-    ///         Vhost = testVHost.Name,
     ///     });
     /// 
     /// });

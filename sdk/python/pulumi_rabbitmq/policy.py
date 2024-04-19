@@ -147,25 +147,26 @@ class Policy(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        test_v_host = rabbitmq.VHost("testVHost")
+        test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
+            user="guest",
+            vhost=test.name,
             permissions=rabbitmq.PermissionsPermissionsArgs(
                 configure=".*",
-                read=".*",
                 write=".*",
-            ),
-            user="guest",
-            vhost=test_v_host.name)
-        test_policy = rabbitmq.Policy("testPolicy",
+                read=".*",
+            ))
+        test_policy = rabbitmq.Policy("test",
+            name="test",
+            vhost=guest.vhost,
             policy=rabbitmq.PolicyPolicyArgs(
+                pattern=".*",
+                priority=0,
                 apply_to="all",
                 definition={
                     "ha-mode": "all",
                 },
-                pattern=".*",
-                priority=0,
-            ),
-            vhost=guest.vhost)
+            ))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -203,25 +204,26 @@ class Policy(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        test_v_host = rabbitmq.VHost("testVHost")
+        test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
+            user="guest",
+            vhost=test.name,
             permissions=rabbitmq.PermissionsPermissionsArgs(
                 configure=".*",
-                read=".*",
                 write=".*",
-            ),
-            user="guest",
-            vhost=test_v_host.name)
-        test_policy = rabbitmq.Policy("testPolicy",
+                read=".*",
+            ))
+        test_policy = rabbitmq.Policy("test",
+            name="test",
+            vhost=guest.vhost,
             policy=rabbitmq.PolicyPolicyArgs(
+                pattern=".*",
+                priority=0,
                 apply_to="all",
                 definition={
                     "ha-mode": "all",
                 },
-                pattern=".*",
-                priority=0,
-            ),
-            vhost=guest.vhost)
+            ))
         ```
         <!--End PulumiCodeChooser -->
 

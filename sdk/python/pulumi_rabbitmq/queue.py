@@ -149,16 +149,17 @@ class Queue(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        test_v_host = rabbitmq.VHost("testVHost")
+        test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
             user="guest",
-            vhost=test_v_host.name,
+            vhost=test.name,
             permissions=rabbitmq.PermissionsPermissionsArgs(
                 configure=".*",
                 write=".*",
                 read=".*",
             ))
-        test_queue = rabbitmq.Queue("testQueue",
+        test_queue = rabbitmq.Queue("test",
+            name="test",
             vhost=guest.vhost,
             settings=rabbitmq.QueueSettingsArgs(
                 durable=False,
@@ -183,24 +184,24 @@ class Queue(pulumi.CustomResource):
             arguments = \"\"\"{
           "x-message-ttl": 5000
         }
-
         \"\"\"
-        test_v_host = rabbitmq.VHost("testVHost")
+        test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
+            user="guest",
+            vhost=test.name,
             permissions=rabbitmq.PermissionsPermissionsArgs(
                 configure=".*",
-                read=".*",
                 write=".*",
-            ),
-            user="guest",
-            vhost=test_v_host.name)
-        test_queue = rabbitmq.Queue("testQueue",
+                read=".*",
+            ))
+        test_queue = rabbitmq.Queue("test",
+            name="test",
+            vhost=guest.vhost,
             settings=rabbitmq.QueueSettingsArgs(
-                arguments_json=arguments,
-                auto_delete=True,
                 durable=False,
-            ),
-            vhost=guest.vhost)
+                auto_delete=True,
+                arguments_json=arguments,
+            ))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -237,16 +238,17 @@ class Queue(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        test_v_host = rabbitmq.VHost("testVHost")
+        test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
             user="guest",
-            vhost=test_v_host.name,
+            vhost=test.name,
             permissions=rabbitmq.PermissionsPermissionsArgs(
                 configure=".*",
                 write=".*",
                 read=".*",
             ))
-        test_queue = rabbitmq.Queue("testQueue",
+        test_queue = rabbitmq.Queue("test",
+            name="test",
             vhost=guest.vhost,
             settings=rabbitmq.QueueSettingsArgs(
                 durable=False,
@@ -271,24 +273,24 @@ class Queue(pulumi.CustomResource):
             arguments = \"\"\"{
           "x-message-ttl": 5000
         }
-
         \"\"\"
-        test_v_host = rabbitmq.VHost("testVHost")
+        test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
+            user="guest",
+            vhost=test.name,
             permissions=rabbitmq.PermissionsPermissionsArgs(
                 configure=".*",
-                read=".*",
                 write=".*",
-            ),
-            user="guest",
-            vhost=test_v_host.name)
-        test_queue = rabbitmq.Queue("testQueue",
+                read=".*",
+            ))
+        test_queue = rabbitmq.Queue("test",
+            name="test",
+            vhost=guest.vhost,
             settings=rabbitmq.QueueSettingsArgs(
-                arguments_json=arguments,
-                auto_delete=True,
                 durable=False,
-            ),
-            vhost=guest.vhost)
+                auto_delete=True,
+                arguments_json=arguments,
+            ))
         ```
         <!--End PulumiCodeChooser -->
 

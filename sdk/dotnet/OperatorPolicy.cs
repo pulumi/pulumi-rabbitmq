@@ -23,34 +23,38 @@ namespace Pulumi.RabbitMQ
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testVHost = new RabbitMQ.VHost("testVHost");
+    ///     var test = new RabbitMQ.VHost("test", new()
+    ///     {
+    ///         Name = "test",
+    ///     });
     /// 
     ///     var guest = new RabbitMQ.Permissions("guest", new()
     ///     {
+    ///         User = "guest",
+    ///         Vhost = test.Name,
     ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
     ///         {
     ///             Configure = ".*",
-    ///             Read = ".*",
     ///             Write = ".*",
+    ///             Read = ".*",
     ///         },
-    ///         User = "guest",
-    ///         Vhost = testVHost.Name,
     ///     });
     /// 
-    ///     var testOperatorPolicy = new RabbitMQ.OperatorPolicy("testOperatorPolicy", new()
+    ///     var testOperatorPolicy = new RabbitMQ.OperatorPolicy("test", new()
     ///     {
+    ///         Name = "test",
+    ///         Vhost = guest.Vhost,
     ///         Policy = new RabbitMQ.Inputs.OperatorPolicyPolicyArgs
     ///         {
+    ///             Pattern = ".*",
+    ///             Priority = 0,
     ///             ApplyTo = "queues",
     ///             Definition = 
     ///             {
-    ///                 { "expires", 1800000 },
     ///                 { "message-ttl", 3600000 },
+    ///                 { "expires", 1800000 },
     ///             },
-    ///             Pattern = ".*",
-    ///             Priority = 0,
     ///         },
-    ///         Vhost = guest.Vhost,
     ///     });
     /// 
     /// });

@@ -28,7 +28,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rabbitmq.NewVHost(ctx, "myVhost", nil)
+//			_, err := rabbitmq.NewVHost(ctx, "my_vhost", &rabbitmq.VHostArgs{
+//				Name: pulumi.String("my_vhost"),
+//			})
 //			if err != nil {
 //				return err
 //			}

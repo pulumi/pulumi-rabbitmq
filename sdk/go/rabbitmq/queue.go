@@ -31,13 +31,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
+//			test, err := rabbitmq.NewVHost(ctx, "test", &rabbitmq.VHostArgs{
+//				Name: pulumi.String("test"),
+//			})
 //			if err != nil {
 //				return err
 //			}
 //			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
 //				User:  pulumi.String("guest"),
-//				Vhost: testVHost.Name,
+//				Vhost: test.Name,
 //				Permissions: &rabbitmq.PermissionsPermissionsArgs{
 //					Configure: pulumi.String(".*"),
 //					Write:     pulumi.String(".*"),
@@ -47,7 +49,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = rabbitmq.NewQueue(ctx, "testQueue", &rabbitmq.QueueArgs{
+//			_, err = rabbitmq.NewQueue(ctx, "test", &rabbitmq.QueueArgs{
+//				Name:  pulumi.String("test"),
 //				Vhost: guest.Vhost,
 //				Settings: &rabbitmq.QueueSettingsArgs{
 //					Durable:    pulumi.Bool(false),
@@ -84,33 +87,36 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			cfg := config.New(ctx, "")
-//			arguments := "{\n  \"x-message-ttl\": 5000\n}\n\n"
+//			arguments := "{\n  \"x-message-ttl\": 5000\n}\n"
 //			if param := cfg.Get("arguments"); param != "" {
 //				arguments = param
 //			}
-//			testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
-//			if err != nil {
-//				return err
-//			}
-//			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
-//				Permissions: &rabbitmq.PermissionsPermissionsArgs{
-//					Configure: pulumi.String(".*"),
-//					Read:      pulumi.String(".*"),
-//					Write:     pulumi.String(".*"),
-//				},
-//				User:  pulumi.String("guest"),
-//				Vhost: testVHost.Name,
+//			test, err := rabbitmq.NewVHost(ctx, "test", &rabbitmq.VHostArgs{
+//				Name: pulumi.String("test"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = rabbitmq.NewQueue(ctx, "testQueue", &rabbitmq.QueueArgs{
-//				Settings: &rabbitmq.QueueSettingsArgs{
-//					ArgumentsJson: pulumi.String(arguments),
-//					AutoDelete:    pulumi.Bool(true),
-//					Durable:       pulumi.Bool(false),
+//			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
+//				User:  pulumi.String("guest"),
+//				Vhost: test.Name,
+//				Permissions: &rabbitmq.PermissionsPermissionsArgs{
+//					Configure: pulumi.String(".*"),
+//					Write:     pulumi.String(".*"),
+//					Read:      pulumi.String(".*"),
 //				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rabbitmq.NewQueue(ctx, "test", &rabbitmq.QueueArgs{
+//				Name:  pulumi.String("test"),
 //				Vhost: guest.Vhost,
+//				Settings: &rabbitmq.QueueSettingsArgs{
+//					Durable:       pulumi.Bool(false),
+//					AutoDelete:    pulumi.Bool(true),
+//					ArgumentsJson: pulumi.String(arguments),
+//				},
 //			})
 //			if err != nil {
 //				return err

@@ -158,7 +158,7 @@ class FederationUpstream(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        test = rabbitmq.VHost("test")
+        test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
             user="guest",
             vhost=test.name,
@@ -168,14 +168,16 @@ class FederationUpstream(pulumi.CustomResource):
                 read=".*",
             ))
         # downstream exchange
-        foo_exchange = rabbitmq.Exchange("fooExchange",
+        foo = rabbitmq.Exchange("foo",
+            name="foo",
             vhost=guest.vhost,
             settings=rabbitmq.ExchangeSettingsArgs(
                 type="topic",
                 durable=True,
             ))
         # upstream broker
-        foo_federation_upstream = rabbitmq.FederationUpstream("fooFederationUpstream",
+        foo_federation_upstream = rabbitmq.FederationUpstream("foo",
+            name="foo",
             vhost=guest.vhost,
             definition=rabbitmq.FederationUpstreamDefinitionArgs(
                 uri="amqp://guest:guest@upstream-server-name:5672/%2f",
@@ -185,10 +187,11 @@ class FederationUpstream(pulumi.CustomResource):
                 trust_user_id=False,
                 max_hops=1,
             ))
-        foo_policy = rabbitmq.Policy("fooPolicy",
+        foo_policy = rabbitmq.Policy("foo",
+            name="foo",
             vhost=guest.vhost,
             policy=rabbitmq.PolicyPolicyArgs(
-                pattern=foo_exchange.name.apply(lambda name: f"(^{name}$)"),
+                pattern=foo.name.apply(lambda name: f"(^{name}$)"),
                 priority=1,
                 apply_to="exchanges",
                 definition={
@@ -228,7 +231,7 @@ class FederationUpstream(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        test = rabbitmq.VHost("test")
+        test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
             user="guest",
             vhost=test.name,
@@ -238,14 +241,16 @@ class FederationUpstream(pulumi.CustomResource):
                 read=".*",
             ))
         # downstream exchange
-        foo_exchange = rabbitmq.Exchange("fooExchange",
+        foo = rabbitmq.Exchange("foo",
+            name="foo",
             vhost=guest.vhost,
             settings=rabbitmq.ExchangeSettingsArgs(
                 type="topic",
                 durable=True,
             ))
         # upstream broker
-        foo_federation_upstream = rabbitmq.FederationUpstream("fooFederationUpstream",
+        foo_federation_upstream = rabbitmq.FederationUpstream("foo",
+            name="foo",
             vhost=guest.vhost,
             definition=rabbitmq.FederationUpstreamDefinitionArgs(
                 uri="amqp://guest:guest@upstream-server-name:5672/%2f",
@@ -255,10 +260,11 @@ class FederationUpstream(pulumi.CustomResource):
                 trust_user_id=False,
                 max_hops=1,
             ))
-        foo_policy = rabbitmq.Policy("fooPolicy",
+        foo_policy = rabbitmq.Policy("foo",
+            name="foo",
             vhost=guest.vhost,
             policy=rabbitmq.PolicyPolicyArgs(
-                pattern=foo_exchange.name.apply(lambda name: f"(^{name}$)"),
+                pattern=foo.name.apply(lambda name: f"(^{name}$)"),
                 priority=1,
                 apply_to="exchanges",
                 definition={

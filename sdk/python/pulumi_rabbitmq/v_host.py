@@ -76,7 +76,7 @@ class VHost(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        my_vhost = rabbitmq.VHost("myVhost")
+        my_vhost = rabbitmq.VHost("my_vhost", name="my_vhost")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -108,7 +108,7 @@ class VHost(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        my_vhost = rabbitmq.VHost("myVhost")
+        my_vhost = rabbitmq.VHost("my_vhost", name="my_vhost")
         ```
         <!--End PulumiCodeChooser -->
 

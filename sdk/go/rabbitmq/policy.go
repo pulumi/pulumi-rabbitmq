@@ -30,32 +30,35 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
-//			if err != nil {
-//				return err
-//			}
-//			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
-//				Permissions: &rabbitmq.PermissionsPermissionsArgs{
-//					Configure: pulumi.String(".*"),
-//					Read:      pulumi.String(".*"),
-//					Write:     pulumi.String(".*"),
-//				},
-//				User:  pulumi.String("guest"),
-//				Vhost: testVHost.Name,
+//			test, err := rabbitmq.NewVHost(ctx, "test", &rabbitmq.VHostArgs{
+//				Name: pulumi.String("test"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = rabbitmq.NewPolicy(ctx, "testPolicy", &rabbitmq.PolicyArgs{
+//			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
+//				User:  pulumi.String("guest"),
+//				Vhost: test.Name,
+//				Permissions: &rabbitmq.PermissionsPermissionsArgs{
+//					Configure: pulumi.String(".*"),
+//					Write:     pulumi.String(".*"),
+//					Read:      pulumi.String(".*"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rabbitmq.NewPolicy(ctx, "test", &rabbitmq.PolicyArgs{
+//				Name:  pulumi.String("test"),
+//				Vhost: guest.Vhost,
 //				Policy: &rabbitmq.PolicyPolicyArgs{
-//					ApplyTo: pulumi.String("all"),
+//					Pattern:  pulumi.String(".*"),
+//					Priority: pulumi.Int(0),
+//					ApplyTo:  pulumi.String("all"),
 //					Definition: pulumi.Map{
 //						"ha-mode": pulumi.Any("all"),
 //					},
-//					Pattern:  pulumi.String(".*"),
-//					Priority: pulumi.Int(0),
 //				},
-//				Vhost: guest.Vhost,
 //			})
 //			if err != nil {
 //				return err

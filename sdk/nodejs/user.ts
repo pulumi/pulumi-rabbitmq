@@ -18,6 +18,7 @@ import * as utilities from "./utilities";
  * import * as rabbitmq from "@pulumi/rabbitmq";
  *
  * const test = new rabbitmq.User("test", {
+ *     name: "mctest",
  *     password: "foobar",
  *     tags: [
  *         "administrator",

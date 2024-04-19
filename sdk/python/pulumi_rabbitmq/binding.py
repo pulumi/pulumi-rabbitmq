@@ -279,34 +279,36 @@ class Binding(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        test_v_host = rabbitmq.VHost("testVHost")
+        test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
+            user="guest",
+            vhost=test.name,
             permissions=rabbitmq.PermissionsPermissionsArgs(
                 configure=".*",
-                read=".*",
                 write=".*",
-            ),
-            user="guest",
-            vhost=test_v_host.name)
-        test_exchange = rabbitmq.Exchange("testExchange",
+                read=".*",
+            ))
+        test_exchange = rabbitmq.Exchange("test",
+            name="test",
+            vhost=guest.vhost,
             settings=rabbitmq.ExchangeSettingsArgs(
-                auto_delete=True,
-                durable=False,
                 type="fanout",
-            ),
-            vhost=guest.vhost)
-        test_queue = rabbitmq.Queue("testQueue",
+                durable=False,
+                auto_delete=True,
+            ))
+        test_queue = rabbitmq.Queue("test",
+            name="test",
+            vhost=guest.vhost,
             settings=rabbitmq.QueueSettingsArgs(
-                auto_delete=False,
                 durable=True,
-            ),
-            vhost=guest.vhost)
-        test_binding = rabbitmq.Binding("testBinding",
+                auto_delete=False,
+            ))
+        test_binding = rabbitmq.Binding("test",
+            source=test_exchange.name,
+            vhost=test.name,
             destination=test_queue.name,
             destination_type="queue",
-            routing_key="#",
-            source=test_exchange.name,
-            vhost=test_v_host.name)
+            routing_key="#")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -345,34 +347,36 @@ class Binding(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        test_v_host = rabbitmq.VHost("testVHost")
+        test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
+            user="guest",
+            vhost=test.name,
             permissions=rabbitmq.PermissionsPermissionsArgs(
                 configure=".*",
-                read=".*",
                 write=".*",
-            ),
-            user="guest",
-            vhost=test_v_host.name)
-        test_exchange = rabbitmq.Exchange("testExchange",
+                read=".*",
+            ))
+        test_exchange = rabbitmq.Exchange("test",
+            name="test",
+            vhost=guest.vhost,
             settings=rabbitmq.ExchangeSettingsArgs(
-                auto_delete=True,
-                durable=False,
                 type="fanout",
-            ),
-            vhost=guest.vhost)
-        test_queue = rabbitmq.Queue("testQueue",
+                durable=False,
+                auto_delete=True,
+            ))
+        test_queue = rabbitmq.Queue("test",
+            name="test",
+            vhost=guest.vhost,
             settings=rabbitmq.QueueSettingsArgs(
-                auto_delete=False,
                 durable=True,
-            ),
-            vhost=guest.vhost)
-        test_binding = rabbitmq.Binding("testBinding",
+                auto_delete=False,
+            ))
+        test_binding = rabbitmq.Binding("test",
+            source=test_exchange.name,
+            vhost=test.name,
             destination=test_queue.name,
             destination_type="queue",
-            routing_key="#",
-            source=test_exchange.name,
-            vhost=test_v_host.name)
+            routing_key="#")
         ```
         <!--End PulumiCodeChooser -->
 

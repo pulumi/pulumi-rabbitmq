@@ -23,7 +23,10 @@ namespace Pulumi.RabbitMQ
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new RabbitMQ.VHost("test");
+    ///     var test = new RabbitMQ.VHost("test", new()
+    ///     {
+    ///         Name = "test",
+    ///     });
     /// 
     ///     var guest = new RabbitMQ.Permissions("guest", new()
     ///     {
@@ -38,8 +41,9 @@ namespace Pulumi.RabbitMQ
     ///     });
     /// 
     ///     // downstream exchange
-    ///     var fooExchange = new RabbitMQ.Exchange("fooExchange", new()
+    ///     var foo = new RabbitMQ.Exchange("foo", new()
     ///     {
+    ///         Name = "foo",
     ///         Vhost = guest.Vhost,
     ///         Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
     ///         {
@@ -49,8 +53,9 @@ namespace Pulumi.RabbitMQ
     ///     });
     /// 
     ///     // upstream broker
-    ///     var fooFederationUpstream = new RabbitMQ.FederationUpstream("fooFederationUpstream", new()
+    ///     var fooFederationUpstream = new RabbitMQ.FederationUpstream("foo", new()
     ///     {
+    ///         Name = "foo",
     ///         Vhost = guest.Vhost,
     ///         Definition = new RabbitMQ.Inputs.FederationUpstreamDefinitionArgs
     ///         {
@@ -63,12 +68,13 @@ namespace Pulumi.RabbitMQ
     ///         },
     ///     });
     /// 
-    ///     var fooPolicy = new RabbitMQ.Policy("fooPolicy", new()
+    ///     var fooPolicy = new RabbitMQ.Policy("foo", new()
     ///     {
+    ///         Name = "foo",
     ///         Vhost = guest.Vhost,
     ///         PolicyBlock = new RabbitMQ.Inputs.PolicyPolicyArgs
     ///         {
-    ///             Pattern = fooExchange.Name.Apply(name =&gt; $"(^{name}$)"),
+    ///             Pattern = foo.Name.Apply(name =&gt; $"(^{name}$)"),
     ///             Priority = 1,
     ///             ApplyTo = "exchanges",
     ///             Definition = 

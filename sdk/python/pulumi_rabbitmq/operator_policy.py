@@ -146,26 +146,27 @@ class OperatorPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        test_v_host = rabbitmq.VHost("testVHost")
+        test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
+            user="guest",
+            vhost=test.name,
             permissions=rabbitmq.PermissionsPermissionsArgs(
                 configure=".*",
-                read=".*",
                 write=".*",
-            ),
-            user="guest",
-            vhost=test_v_host.name)
-        test_operator_policy = rabbitmq.OperatorPolicy("testOperatorPolicy",
+                read=".*",
+            ))
+        test_operator_policy = rabbitmq.OperatorPolicy("test",
+            name="test",
+            vhost=guest.vhost,
             policy=rabbitmq.OperatorPolicyPolicyArgs(
-                apply_to="queues",
-                definition={
-                    "expires": 1800000,
-                    "message-ttl": 3600000,
-                },
                 pattern=".*",
                 priority=0,
-            ),
-            vhost=guest.vhost)
+                apply_to="queues",
+                definition={
+                    "message-ttl": 3600000,
+                    "expires": 1800000,
+                },
+            ))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -202,26 +203,27 @@ class OperatorPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        test_v_host = rabbitmq.VHost("testVHost")
+        test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
+            user="guest",
+            vhost=test.name,
             permissions=rabbitmq.PermissionsPermissionsArgs(
                 configure=".*",
-                read=".*",
                 write=".*",
-            ),
-            user="guest",
-            vhost=test_v_host.name)
-        test_operator_policy = rabbitmq.OperatorPolicy("testOperatorPolicy",
+                read=".*",
+            ))
+        test_operator_policy = rabbitmq.OperatorPolicy("test",
+            name="test",
+            vhost=guest.vhost,
             policy=rabbitmq.OperatorPolicyPolicyArgs(
-                apply_to="queues",
-                definition={
-                    "expires": 1800000,
-                    "message-ttl": 3600000,
-                },
                 pattern=".*",
                 priority=0,
-            ),
-            vhost=guest.vhost)
+                apply_to="queues",
+                definition={
+                    "message-ttl": 3600000,
+                    "expires": 1800000,
+                },
+            ))
         ```
         <!--End PulumiCodeChooser -->
 

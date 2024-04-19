@@ -27,6 +27,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.rabbitmq.VHost;
+ * import com.pulumi.rabbitmq.VHostArgs;
  * import com.pulumi.rabbitmq.Permissions;
  * import com.pulumi.rabbitmq.PermissionsArgs;
  * import com.pulumi.rabbitmq.inputs.PermissionsPermissionsArgs;
@@ -52,7 +53,9 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new VHost(&#34;test&#34;);
+ *         var test = new VHost(&#34;test&#34;, VHostArgs.builder()        
+ *             .name(&#34;test&#34;)
+ *             .build());
  * 
  *         var guest = new Permissions(&#34;guest&#34;, PermissionsArgs.builder()        
  *             .user(&#34;guest&#34;)
@@ -65,7 +68,8 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // downstream exchange
- *         var fooExchange = new Exchange(&#34;fooExchange&#34;, ExchangeArgs.builder()        
+ *         var foo = new Exchange(&#34;foo&#34;, ExchangeArgs.builder()        
+ *             .name(&#34;foo&#34;)
  *             .vhost(guest.vhost())
  *             .settings(ExchangeSettingsArgs.builder()
  *                 .type(&#34;topic&#34;)
@@ -75,6 +79,7 @@ import javax.annotation.Nullable;
  * 
  *         // upstream broker
  *         var fooFederationUpstream = new FederationUpstream(&#34;fooFederationUpstream&#34;, FederationUpstreamArgs.builder()        
+ *             .name(&#34;foo&#34;)
  *             .vhost(guest.vhost())
  *             .definition(FederationUpstreamDefinitionArgs.builder()
  *                 .uri(&#34;amqp://guest:guest@upstream-server-name:5672/%2f&#34;)
@@ -87,9 +92,10 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var fooPolicy = new Policy(&#34;fooPolicy&#34;, PolicyArgs.builder()        
+ *             .name(&#34;foo&#34;)
  *             .vhost(guest.vhost())
  *             .policy(PolicyPolicyArgs.builder()
- *                 .pattern(fooExchange.name().applyValue(name -&gt; String.format(&#34;(^%s$)&#34;, name)))
+ *                 .pattern(foo.name().applyValue(name -&gt; String.format(&#34;(^%s$)&#34;, name)))
  *                 .priority(1)
  *                 .applyTo(&#34;exchanges&#34;)
  *                 .definition(Map.of(&#34;federation-upstream&#34;, fooFederationUpstream.name()))

@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
  *
- * const test = new rabbitmq.VHost("test", {});
+ * const test = new rabbitmq.VHost("test", {name: "test"});
  * const guest = new rabbitmq.Permissions("guest", {
  *     user: "guest",
  *     vhost: test.name,
@@ -27,7 +27,8 @@ import * as utilities from "./utilities";
  *     },
  * });
  * // downstream exchange
- * const fooExchange = new rabbitmq.Exchange("fooExchange", {
+ * const foo = new rabbitmq.Exchange("foo", {
+ *     name: "foo",
  *     vhost: guest.vhost,
  *     settings: {
  *         type: "topic",
@@ -35,7 +36,8 @@ import * as utilities from "./utilities";
  *     },
  * });
  * // upstream broker
- * const fooFederationUpstream = new rabbitmq.FederationUpstream("fooFederationUpstream", {
+ * const fooFederationUpstream = new rabbitmq.FederationUpstream("foo", {
+ *     name: "foo",
  *     vhost: guest.vhost,
  *     definition: {
  *         uri: "amqp://guest:guest@upstream-server-name:5672/%2f",
@@ -46,10 +48,11 @@ import * as utilities from "./utilities";
  *         maxHops: 1,
  *     },
  * });
- * const fooPolicy = new rabbitmq.Policy("fooPolicy", {
+ * const fooPolicy = new rabbitmq.Policy("foo", {
+ *     name: "foo",
  *     vhost: guest.vhost,
  *     policy: {
- *         pattern: pulumi.interpolate`(^${fooExchange.name}$)`,
+ *         pattern: pulumi.interpolate`(^${foo.name}$)`,
  *         priority: 1,
  *         applyTo: "exchanges",
  *         definition: {

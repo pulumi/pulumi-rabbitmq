@@ -46,6 +46,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new User(&#34;test&#34;, UserArgs.builder()        
+ *             .name(&#34;mctest&#34;)
  *             .password(&#34;foobar&#34;)
  *             .tags(            
  *                 &#34;administrator&#34;,

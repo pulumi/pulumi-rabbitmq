@@ -24,10 +24,14 @@ namespace Pulumi.RabbitMQ
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testVHost = new RabbitMQ.VHost("testVHost");
-    /// 
-    ///     var testUser = new RabbitMQ.User("testUser", new()
+    ///     var test = new RabbitMQ.VHost("test", new()
     ///     {
+    ///         Name = "test",
+    ///     });
+    /// 
+    ///     var testUser = new RabbitMQ.User("test", new()
+    ///     {
+    ///         Name = "mctest",
     ///         Password = "foobar",
     ///         Tags = new[]
     ///         {
@@ -35,19 +39,19 @@ namespace Pulumi.RabbitMQ
     ///         },
     ///     });
     /// 
-    ///     var testTopicPermissions = new RabbitMQ.TopicPermissions("testTopicPermissions", new()
+    ///     var testTopicPermissions = new RabbitMQ.TopicPermissions("test", new()
     ///     {
+    ///         User = testUser.Name,
+    ///         Vhost = test.Name,
     ///         Permissions = new[]
     ///         {
     ///             new RabbitMQ.Inputs.TopicPermissionsPermissionArgs
     ///             {
     ///                 Exchange = "amq.topic",
-    ///                 Read = ".*",
     ///                 Write = ".*",
+    ///                 Read = ".*",
     ///             },
     ///         },
-    ///         User = testUser.Name,
-    ///         Vhost = testVHost.Name,
     ///     });
     /// 
     /// });

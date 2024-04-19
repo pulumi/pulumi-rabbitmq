@@ -30,11 +30,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testVHost, err := rabbitmq.NewVHost(ctx, "testVHost", nil)
+//			test, err := rabbitmq.NewVHost(ctx, "test", &rabbitmq.VHostArgs{
+//				Name: pulumi.String("test"),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			testUser, err := rabbitmq.NewUser(ctx, "testUser", &rabbitmq.UserArgs{
+//			testUser, err := rabbitmq.NewUser(ctx, "test", &rabbitmq.UserArgs{
+//				Name:     pulumi.String("mctest"),
 //				Password: pulumi.String("foobar"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("administrator"),
@@ -43,14 +46,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = rabbitmq.NewPermissions(ctx, "testPermissions", &rabbitmq.PermissionsArgs{
+//			_, err = rabbitmq.NewPermissions(ctx, "test", &rabbitmq.PermissionsArgs{
+//				User:  testUser.Name,
+//				Vhost: test.Name,
 //				Permissions: &rabbitmq.PermissionsPermissionsArgs{
 //					Configure: pulumi.String(".*"),
-//					Read:      pulumi.String(".*"),
 //					Write:     pulumi.String(".*"),
+//					Read:      pulumi.String(".*"),
 //				},
-//				User:  testUser.Name,
-//				Vhost: testVHost.Name,
 //			})
 //			if err != nil {
 //				return err

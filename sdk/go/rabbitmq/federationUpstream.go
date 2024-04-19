@@ -31,7 +31,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			test, err := rabbitmq.NewVHost(ctx, "test", nil)
+//			test, err := rabbitmq.NewVHost(ctx, "test", &rabbitmq.VHostArgs{
+//				Name: pulumi.String("test"),
+//			})
 //			if err != nil {
 //				return err
 //			}
@@ -48,7 +50,8 @@ import (
 //				return err
 //			}
 //			// downstream exchange
-//			fooExchange, err := rabbitmq.NewExchange(ctx, "fooExchange", &rabbitmq.ExchangeArgs{
+//			foo, err := rabbitmq.NewExchange(ctx, "foo", &rabbitmq.ExchangeArgs{
+//				Name:  pulumi.String("foo"),
 //				Vhost: guest.Vhost,
 //				Settings: &rabbitmq.ExchangeSettingsArgs{
 //					Type:    pulumi.String("topic"),
@@ -59,7 +62,8 @@ import (
 //				return err
 //			}
 //			// upstream broker
-//			fooFederationUpstream, err := rabbitmq.NewFederationUpstream(ctx, "fooFederationUpstream", &rabbitmq.FederationUpstreamArgs{
+//			fooFederationUpstream, err := rabbitmq.NewFederationUpstream(ctx, "foo", &rabbitmq.FederationUpstreamArgs{
+//				Name:  pulumi.String("foo"),
 //				Vhost: guest.Vhost,
 //				Definition: &rabbitmq.FederationUpstreamDefinitionArgs{
 //					Uri:            pulumi.String("amqp://guest:guest@upstream-server-name:5672/%2f"),
@@ -73,10 +77,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = rabbitmq.NewPolicy(ctx, "fooPolicy", &rabbitmq.PolicyArgs{
+//			_, err = rabbitmq.NewPolicy(ctx, "foo", &rabbitmq.PolicyArgs{
+//				Name:  pulumi.String("foo"),
 //				Vhost: guest.Vhost,
 //				Policy: &rabbitmq.PolicyPolicyArgs{
-//					Pattern: fooExchange.Name.ApplyT(func(name string) (string, error) {
+//					Pattern: foo.Name.ApplyT(func(name string) (string, error) {
 //						return fmt.Sprintf("(^%v$)", name), nil
 //					}).(pulumi.StringOutput),
 //					Priority: pulumi.Int(1),

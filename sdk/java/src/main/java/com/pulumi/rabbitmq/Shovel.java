@@ -27,6 +27,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.rabbitmq.VHost;
+ * import com.pulumi.rabbitmq.VHostArgs;
  * import com.pulumi.rabbitmq.Exchange;
  * import com.pulumi.rabbitmq.ExchangeArgs;
  * import com.pulumi.rabbitmq.inputs.ExchangeSettingsArgs;
@@ -49,34 +50,39 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testVHost = new VHost(&#34;testVHost&#34;);
+ *         var test = new VHost(&#34;test&#34;, VHostArgs.builder()        
+ *             .name(&#34;test&#34;)
+ *             .build());
  * 
  *         var testExchange = new Exchange(&#34;testExchange&#34;, ExchangeArgs.builder()        
+ *             .name(&#34;test_exchange&#34;)
+ *             .vhost(test.name())
  *             .settings(ExchangeSettingsArgs.builder()
- *                 .autoDelete(true)
- *                 .durable(false)
  *                 .type(&#34;fanout&#34;)
+ *                 .durable(false)
+ *                 .autoDelete(true)
  *                 .build())
- *             .vhost(testVHost.name())
  *             .build());
  * 
  *         var testQueue = new Queue(&#34;testQueue&#34;, QueueArgs.builder()        
+ *             .name(&#34;test_queue&#34;)
+ *             .vhost(test.name())
  *             .settings(QueueSettingsArgs.builder()
- *                 .autoDelete(true)
  *                 .durable(false)
+ *                 .autoDelete(true)
  *                 .build())
- *             .vhost(testVHost.name())
  *             .build());
  * 
  *         var shovelTest = new Shovel(&#34;shovelTest&#34;, ShovelArgs.builder()        
+ *             .name(&#34;shovelTest&#34;)
+ *             .vhost(test.name())
  *             .info(ShovelInfoArgs.builder()
- *                 .destinationQueue(testQueue.name())
- *                 .destinationUri(&#34;amqp:///test&#34;)
+ *                 .sourceUri(&#34;amqp:///test&#34;)
  *                 .sourceExchange(testExchange.name())
  *                 .sourceExchangeKey(&#34;test&#34;)
- *                 .sourceUri(&#34;amqp:///test&#34;)
+ *                 .destinationUri(&#34;amqp:///test&#34;)
+ *                 .destinationQueue(testQueue.name())
  *                 .build())
- *             .vhost(testVHost.name())
  *             .build());
  * 
  *     }
