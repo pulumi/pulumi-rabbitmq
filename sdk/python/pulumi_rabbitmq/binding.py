@@ -274,7 +274,6 @@ class Binding(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -310,7 +309,6 @@ class Binding(pulumi.CustomResource):
             destination_type="queue",
             routing_key="#")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -342,7 +340,6 @@ class Binding(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -378,7 +375,6 @@ class Binding(pulumi.CustomResource):
             destination_type="queue",
             routing_key="#")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
