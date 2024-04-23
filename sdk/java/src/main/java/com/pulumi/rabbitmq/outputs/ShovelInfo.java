@@ -14,15 +14,8 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ShovelInfo {
-    /**
-     * @return Determines how the shovel should acknowledge messages. Possible values are: `on-confirm`, `on-publish` and `no-ack`.
-     * Defaults to `on-confirm`.
-     * 
-     */
     private @Nullable String ackMode;
     /**
-     * @return Whether to add `x-shovelled` headers to shovelled messages.
-     * 
      * @deprecated
      * use destination_add_forward_headers instead
      * 
@@ -30,141 +23,45 @@ public final class ShovelInfo {
     @Deprecated /* use destination_add_forward_headers instead */
     private @Nullable Boolean addForwardHeaders;
     /**
-     * @return Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
-     * 
      * @deprecated
      * use source_delete_after instead
      * 
      */
     @Deprecated /* use source_delete_after instead */
     private @Nullable String deleteAfter;
-    /**
-     * @return Whether to add `x-shovelled` headers to shovelled messages.
-     * 
-     */
     private @Nullable Boolean destinationAddForwardHeaders;
     private @Nullable Boolean destinationAddTimestampHeader;
-    /**
-     * @return The AMQP 1.0 destination link address.
-     * 
-     */
     private @Nullable String destinationAddress;
-    /**
-     * @return Application properties to set when shovelling messages.
-     * 
-     */
     private @Nullable String destinationApplicationProperties;
-    /**
-     * @return The exchange to which messages should be published.
-     * Either this or `destination_queue` must be specified but not both.
-     * 
-     */
     private @Nullable String destinationExchange;
-    /**
-     * @return The routing key when using `destination_exchange`.
-     * 
-     */
     private @Nullable String destinationExchangeKey;
-    /**
-     * @return Properties to overwrite when shovelling messages.
-     * 
-     * For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
-     * 
-     */
     private @Nullable String destinationProperties;
-    /**
-     * @return The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
-     * Defaults to `amqp091`.
-     * 
-     */
     private @Nullable String destinationProtocol;
-    /**
-     * @return A map of properties to overwrite when shovelling messages.
-     * 
-     */
     private @Nullable String destinationPublishProperties;
-    /**
-     * @return The queue to which messages should be published.
-     * Either this or `destination_exchange` must be specified but not both.
-     * 
-     */
     private @Nullable String destinationQueue;
-    /**
-     * @return The amqp uri for the destination .
-     * 
-     */
     private String destinationUri;
     /**
-     * @return The maximum number of unacknowledged messages copied over a shovel at any one time.
-     * 
      * @deprecated
      * use source_prefetch_count instead
      * 
      */
     @Deprecated /* use source_prefetch_count instead */
     private @Nullable Integer prefetchCount;
-    /**
-     * @return The duration in seconds to reconnect to a broker after disconnected.
-     * Defaults to `1`.
-     * 
-     */
     private @Nullable Integer reconnectDelay;
-    /**
-     * @return The AMQP 1.0 source link address.
-     * 
-     */
     private @Nullable String sourceAddress;
-    /**
-     * @return Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
-     * 
-     */
     private @Nullable String sourceDeleteAfter;
-    /**
-     * @return The exchange from which to consume.
-     * Either this or `source_queue` must be specified but not both.
-     * 
-     */
     private @Nullable String sourceExchange;
-    /**
-     * @return The routing key when using `source_exchange`.
-     * 
-     */
     private @Nullable String sourceExchangeKey;
-    /**
-     * @return The maximum number of unacknowledged messages copied over a shovel at any one time.
-     * 
-     */
     private @Nullable Integer sourcePrefetchCount;
-    /**
-     * @return The protocol (`amqp091` or `amqp10`) to use when connecting to the source.
-     * Defaults to `amqp091`.
-     * 
-     */
     private @Nullable String sourceProtocol;
-    /**
-     * @return The queue from which to consume.
-     * Either this or `source_exchange` must be specified but not both.
-     * 
-     */
     private @Nullable String sourceQueue;
-    /**
-     * @return The amqp uri for the source.
-     * 
-     */
     private String sourceUri;
 
     private ShovelInfo() {}
-    /**
-     * @return Determines how the shovel should acknowledge messages. Possible values are: `on-confirm`, `on-publish` and `no-ack`.
-     * Defaults to `on-confirm`.
-     * 
-     */
     public Optional<String> ackMode() {
         return Optional.ofNullable(this.ackMode);
     }
     /**
-     * @return Whether to add `x-shovelled` headers to shovelled messages.
-     * 
      * @deprecated
      * use destination_add_forward_headers instead
      * 
@@ -174,8 +71,6 @@ public final class ShovelInfo {
         return Optional.ofNullable(this.addForwardHeaders);
     }
     /**
-     * @return Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
-     * 
      * @deprecated
      * use source_delete_after instead
      * 
@@ -184,87 +79,40 @@ public final class ShovelInfo {
     public Optional<String> deleteAfter() {
         return Optional.ofNullable(this.deleteAfter);
     }
-    /**
-     * @return Whether to add `x-shovelled` headers to shovelled messages.
-     * 
-     */
     public Optional<Boolean> destinationAddForwardHeaders() {
         return Optional.ofNullable(this.destinationAddForwardHeaders);
     }
     public Optional<Boolean> destinationAddTimestampHeader() {
         return Optional.ofNullable(this.destinationAddTimestampHeader);
     }
-    /**
-     * @return The AMQP 1.0 destination link address.
-     * 
-     */
     public Optional<String> destinationAddress() {
         return Optional.ofNullable(this.destinationAddress);
     }
-    /**
-     * @return Application properties to set when shovelling messages.
-     * 
-     */
     public Optional<String> destinationApplicationProperties() {
         return Optional.ofNullable(this.destinationApplicationProperties);
     }
-    /**
-     * @return The exchange to which messages should be published.
-     * Either this or `destination_queue` must be specified but not both.
-     * 
-     */
     public Optional<String> destinationExchange() {
         return Optional.ofNullable(this.destinationExchange);
     }
-    /**
-     * @return The routing key when using `destination_exchange`.
-     * 
-     */
     public Optional<String> destinationExchangeKey() {
         return Optional.ofNullable(this.destinationExchangeKey);
     }
-    /**
-     * @return Properties to overwrite when shovelling messages.
-     * 
-     * For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
-     * 
-     */
     public Optional<String> destinationProperties() {
         return Optional.ofNullable(this.destinationProperties);
     }
-    /**
-     * @return The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
-     * Defaults to `amqp091`.
-     * 
-     */
     public Optional<String> destinationProtocol() {
         return Optional.ofNullable(this.destinationProtocol);
     }
-    /**
-     * @return A map of properties to overwrite when shovelling messages.
-     * 
-     */
     public Optional<String> destinationPublishProperties() {
         return Optional.ofNullable(this.destinationPublishProperties);
     }
-    /**
-     * @return The queue to which messages should be published.
-     * Either this or `destination_exchange` must be specified but not both.
-     * 
-     */
     public Optional<String> destinationQueue() {
         return Optional.ofNullable(this.destinationQueue);
     }
-    /**
-     * @return The amqp uri for the destination .
-     * 
-     */
     public String destinationUri() {
         return this.destinationUri;
     }
     /**
-     * @return The maximum number of unacknowledged messages copied over a shovel at any one time.
-     * 
      * @deprecated
      * use source_prefetch_count instead
      * 
@@ -273,70 +121,30 @@ public final class ShovelInfo {
     public Optional<Integer> prefetchCount() {
         return Optional.ofNullable(this.prefetchCount);
     }
-    /**
-     * @return The duration in seconds to reconnect to a broker after disconnected.
-     * Defaults to `1`.
-     * 
-     */
     public Optional<Integer> reconnectDelay() {
         return Optional.ofNullable(this.reconnectDelay);
     }
-    /**
-     * @return The AMQP 1.0 source link address.
-     * 
-     */
     public Optional<String> sourceAddress() {
         return Optional.ofNullable(this.sourceAddress);
     }
-    /**
-     * @return Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
-     * 
-     */
     public Optional<String> sourceDeleteAfter() {
         return Optional.ofNullable(this.sourceDeleteAfter);
     }
-    /**
-     * @return The exchange from which to consume.
-     * Either this or `source_queue` must be specified but not both.
-     * 
-     */
     public Optional<String> sourceExchange() {
         return Optional.ofNullable(this.sourceExchange);
     }
-    /**
-     * @return The routing key when using `source_exchange`.
-     * 
-     */
     public Optional<String> sourceExchangeKey() {
         return Optional.ofNullable(this.sourceExchangeKey);
     }
-    /**
-     * @return The maximum number of unacknowledged messages copied over a shovel at any one time.
-     * 
-     */
     public Optional<Integer> sourcePrefetchCount() {
         return Optional.ofNullable(this.sourcePrefetchCount);
     }
-    /**
-     * @return The protocol (`amqp091` or `amqp10`) to use when connecting to the source.
-     * Defaults to `amqp091`.
-     * 
-     */
     public Optional<String> sourceProtocol() {
         return Optional.ofNullable(this.sourceProtocol);
     }
-    /**
-     * @return The queue from which to consume.
-     * Either this or `source_exchange` must be specified but not both.
-     * 
-     */
     public Optional<String> sourceQueue() {
         return Optional.ofNullable(this.sourceQueue);
     }
-    /**
-     * @return The amqp uri for the source.
-     * 
-     */
     public String sourceUri() {
         return this.sourceUri;
     }

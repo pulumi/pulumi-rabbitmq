@@ -142,7 +142,6 @@ class Permissions(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -161,7 +160,6 @@ class Permissions(pulumi.CustomResource):
                 read=".*",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -192,7 +190,6 @@ class Permissions(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -211,7 +208,6 @@ class Permissions(pulumi.CustomResource):
                 read=".*",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
