@@ -142,7 +142,6 @@ class Exchange(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -165,7 +164,6 @@ class Exchange(pulumi.CustomResource):
                 auto_delete=True,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -195,7 +193,6 @@ class Exchange(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
@@ -218,7 +215,6 @@ class Exchange(pulumi.CustomResource):
                 auto_delete=True,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

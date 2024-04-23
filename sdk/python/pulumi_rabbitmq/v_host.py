@@ -71,14 +71,12 @@ class VHost(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
         my_vhost = rabbitmq.VHost("my_vhost", name="my_vhost")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -103,14 +101,12 @@ class VHost(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
         my_vhost = rabbitmq.VHost("my_vhost", name="my_vhost")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
