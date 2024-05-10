@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,39 +50,40 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new VHost(&#34;test&#34;, VHostArgs.builder()        
- *             .name(&#34;test&#34;)
+ *         var test = new VHost("test", VHostArgs.builder()        
+ *             .name("test")
  *             .build());
  * 
- *         var testUser = new User(&#34;testUser&#34;, UserArgs.builder()        
- *             .name(&#34;mctest&#34;)
- *             .password(&#34;foobar&#34;)
- *             .tags(&#34;administrator&#34;)
+ *         var testUser = new User("testUser", UserArgs.builder()        
+ *             .name("mctest")
+ *             .password("foobar")
+ *             .tags("administrator")
  *             .build());
  * 
- *         var testTopicPermissions = new TopicPermissions(&#34;testTopicPermissions&#34;, TopicPermissionsArgs.builder()        
+ *         var testTopicPermissions = new TopicPermissions("testTopicPermissions", TopicPermissionsArgs.builder()        
  *             .user(testUser.name())
  *             .vhost(test.name())
  *             .permissions(TopicPermissionsPermissionArgs.builder()
- *                 .exchange(&#34;amq.topic&#34;)
- *                 .write(&#34;.*&#34;)
- *                 .read(&#34;.*&#34;)
+ *                 .exchange("amq.topic")
+ *                 .write(".*")
+ *                 .read(".*")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
- * Permissions can be imported using the `id` which is composed of  `user@vhost`.
+ * Permissions can be imported using the `id` which is composed of  `user{@literal @}vhost`.
  * 
  * E.g.
  * 
  * ```sh
- * $ pulumi import rabbitmq:index/topicPermissions:TopicPermissions test user@vhost
+ * $ pulumi import rabbitmq:index/topicPermissions:TopicPermissions test user{@literal @}vhost
  * ```
  * 
  */

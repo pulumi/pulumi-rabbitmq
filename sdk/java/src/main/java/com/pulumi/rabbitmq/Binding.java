@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -55,32 +56,32 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new VHost(&#34;test&#34;, VHostArgs.builder()        
- *             .name(&#34;test&#34;)
+ *         var test = new VHost("test", VHostArgs.builder()        
+ *             .name("test")
  *             .build());
  * 
- *         var guest = new Permissions(&#34;guest&#34;, PermissionsArgs.builder()        
- *             .user(&#34;guest&#34;)
+ *         var guest = new Permissions("guest", PermissionsArgs.builder()        
+ *             .user("guest")
  *             .vhost(test.name())
  *             .permissions(PermissionsPermissionsArgs.builder()
- *                 .configure(&#34;.*&#34;)
- *                 .write(&#34;.*&#34;)
- *                 .read(&#34;.*&#34;)
+ *                 .configure(".*")
+ *                 .write(".*")
+ *                 .read(".*")
  *                 .build())
  *             .build());
  * 
- *         var testExchange = new Exchange(&#34;testExchange&#34;, ExchangeArgs.builder()        
- *             .name(&#34;test&#34;)
+ *         var testExchange = new Exchange("testExchange", ExchangeArgs.builder()        
+ *             .name("test")
  *             .vhost(guest.vhost())
  *             .settings(ExchangeSettingsArgs.builder()
- *                 .type(&#34;fanout&#34;)
+ *                 .type("fanout")
  *                 .durable(false)
  *                 .autoDelete(true)
  *                 .build())
  *             .build());
  * 
- *         var testQueue = new Queue(&#34;testQueue&#34;, QueueArgs.builder()        
- *             .name(&#34;test&#34;)
+ *         var testQueue = new Queue("testQueue", QueueArgs.builder()        
+ *             .name("test")
  *             .vhost(guest.vhost())
  *             .settings(QueueSettingsArgs.builder()
  *                 .durable(true)
@@ -88,17 +89,18 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         var testBinding = new Binding(&#34;testBinding&#34;, BindingArgs.builder()        
+ *         var testBinding = new Binding("testBinding", BindingArgs.builder()        
  *             .source(testExchange.name())
  *             .vhost(test.name())
  *             .destination(testQueue.name())
- *             .destinationType(&#34;queue&#34;)
- *             .routingKey(&#34;#&#34;)
+ *             .destinationType("queue")
+ *             .routingKey("#")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

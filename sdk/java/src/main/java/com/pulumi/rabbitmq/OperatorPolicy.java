@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,47 +48,48 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new VHost(&#34;test&#34;, VHostArgs.builder()        
- *             .name(&#34;test&#34;)
+ *         var test = new VHost("test", VHostArgs.builder()        
+ *             .name("test")
  *             .build());
  * 
- *         var guest = new Permissions(&#34;guest&#34;, PermissionsArgs.builder()        
- *             .user(&#34;guest&#34;)
+ *         var guest = new Permissions("guest", PermissionsArgs.builder()        
+ *             .user("guest")
  *             .vhost(test.name())
  *             .permissions(PermissionsPermissionsArgs.builder()
- *                 .configure(&#34;.*&#34;)
- *                 .write(&#34;.*&#34;)
- *                 .read(&#34;.*&#34;)
+ *                 .configure(".*")
+ *                 .write(".*")
+ *                 .read(".*")
  *                 .build())
  *             .build());
  * 
- *         var testOperatorPolicy = new OperatorPolicy(&#34;testOperatorPolicy&#34;, OperatorPolicyArgs.builder()        
- *             .name(&#34;test&#34;)
+ *         var testOperatorPolicy = new OperatorPolicy("testOperatorPolicy", OperatorPolicyArgs.builder()        
+ *             .name("test")
  *             .vhost(guest.vhost())
  *             .policy(OperatorPolicyPolicyArgs.builder()
- *                 .pattern(&#34;.*&#34;)
+ *                 .pattern(".*")
  *                 .priority(0)
- *                 .applyTo(&#34;queues&#34;)
+ *                 .applyTo("queues")
  *                 .definition(Map.ofEntries(
- *                     Map.entry(&#34;message-ttl&#34;, 3600000),
- *                     Map.entry(&#34;expires&#34;, 1800000)
+ *                     Map.entry("message-ttl", 3600000),
+ *                     Map.entry("expires", 1800000)
  *                 ))
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
- * Operator policies can be imported using the `id` which is composed of `name@vhost`.
+ * Operator policies can be imported using the `id` which is composed of `name{@literal @}vhost`.
  * 
  * E.g.
  * 
  * ```sh
- * $ pulumi import rabbitmq:index/operatorPolicy:OperatorPolicy test name@vhost
+ * $ pulumi import rabbitmq:index/operatorPolicy:OperatorPolicy test name{@literal @}vhost
  * ```
  * 
  */

@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ### Basic Example
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -50,39 +51,41 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new VHost(&#34;test&#34;, VHostArgs.builder()        
- *             .name(&#34;test&#34;)
+ *         var test = new VHost("test", VHostArgs.builder()        
+ *             .name("test")
  *             .build());
  * 
- *         var guest = new Permissions(&#34;guest&#34;, PermissionsArgs.builder()        
- *             .user(&#34;guest&#34;)
+ *         var guest = new Permissions("guest", PermissionsArgs.builder()        
+ *             .user("guest")
  *             .vhost(test.name())
  *             .permissions(PermissionsPermissionsArgs.builder()
- *                 .configure(&#34;.*&#34;)
- *                 .write(&#34;.*&#34;)
- *                 .read(&#34;.*&#34;)
+ *                 .configure(".*")
+ *                 .write(".*")
+ *                 .read(".*")
  *                 .build())
  *             .build());
  * 
- *         var testQueue = new Queue(&#34;testQueue&#34;, QueueArgs.builder()        
- *             .name(&#34;test&#34;)
+ *         var testQueue = new Queue("testQueue", QueueArgs.builder()        
+ *             .name("test")
  *             .vhost(guest.vhost())
  *             .settings(QueueSettingsArgs.builder()
  *                 .durable(false)
  *                 .autoDelete(true)
- *                 .arguments(Map.of(&#34;x-queue-type&#34;, &#34;quorum&#34;))
+ *                 .arguments(Map.of("x-queue-type", "quorum"))
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example With JSON Arguments
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -110,27 +113,27 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var config = ctx.config();
- *         final var arguments = config.get(&#34;arguments&#34;).orElse(&#34;&#34;&#34;
+ *         final var arguments = config.get("arguments").orElse("""
  * {
- *   &#34;x-message-ttl&#34;: 5000
+ *   "x-message-ttl": 5000
  * }
- *         &#34;&#34;&#34;);
- *         var test = new VHost(&#34;test&#34;, VHostArgs.builder()        
- *             .name(&#34;test&#34;)
+ *         """);
+ *         var test = new VHost("test", VHostArgs.builder()        
+ *             .name("test")
  *             .build());
  * 
- *         var guest = new Permissions(&#34;guest&#34;, PermissionsArgs.builder()        
- *             .user(&#34;guest&#34;)
+ *         var guest = new Permissions("guest", PermissionsArgs.builder()        
+ *             .user("guest")
  *             .vhost(test.name())
  *             .permissions(PermissionsPermissionsArgs.builder()
- *                 .configure(&#34;.*&#34;)
- *                 .write(&#34;.*&#34;)
- *                 .read(&#34;.*&#34;)
+ *                 .configure(".*")
+ *                 .write(".*")
+ *                 .read(".*")
  *                 .build())
  *             .build());
  * 
- *         var testQueue = new Queue(&#34;testQueue&#34;, QueueArgs.builder()        
- *             .name(&#34;test&#34;)
+ *         var testQueue = new Queue("testQueue", QueueArgs.builder()        
+ *             .name("test")
  *             .vhost(guest.vhost())
  *             .settings(QueueSettingsArgs.builder()
  *                 .durable(false)
@@ -141,15 +144,16 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
- * Queues can be imported using the `id` which is composed of `name@vhost`. E.g.
+ * Queues can be imported using the `id` which is composed of `name{@literal @}vhost`. E.g.
  * 
  * ```sh
- * $ pulumi import rabbitmq:index/queue:Queue test name@vhost
+ * $ pulumi import rabbitmq:index/queue:Queue test name{@literal @}vhost
  * ```
  * 
  */
