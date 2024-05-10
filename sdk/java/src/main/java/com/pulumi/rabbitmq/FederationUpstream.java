@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -53,66 +54,67 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new VHost(&#34;test&#34;, VHostArgs.builder()        
- *             .name(&#34;test&#34;)
+ *         var test = new VHost("test", VHostArgs.builder()        
+ *             .name("test")
  *             .build());
  * 
- *         var guest = new Permissions(&#34;guest&#34;, PermissionsArgs.builder()        
- *             .user(&#34;guest&#34;)
+ *         var guest = new Permissions("guest", PermissionsArgs.builder()        
+ *             .user("guest")
  *             .vhost(test.name())
  *             .permissions(PermissionsPermissionsArgs.builder()
- *                 .configure(&#34;.*&#34;)
- *                 .write(&#34;.*&#34;)
- *                 .read(&#34;.*&#34;)
+ *                 .configure(".*")
+ *                 .write(".*")
+ *                 .read(".*")
  *                 .build())
  *             .build());
  * 
  *         // downstream exchange
- *         var foo = new Exchange(&#34;foo&#34;, ExchangeArgs.builder()        
- *             .name(&#34;foo&#34;)
+ *         var foo = new Exchange("foo", ExchangeArgs.builder()        
+ *             .name("foo")
  *             .vhost(guest.vhost())
  *             .settings(ExchangeSettingsArgs.builder()
- *                 .type(&#34;topic&#34;)
- *                 .durable(&#34;true&#34;)
+ *                 .type("topic")
+ *                 .durable("true")
  *                 .build())
  *             .build());
  * 
  *         // upstream broker
- *         var fooFederationUpstream = new FederationUpstream(&#34;fooFederationUpstream&#34;, FederationUpstreamArgs.builder()        
- *             .name(&#34;foo&#34;)
+ *         var fooFederationUpstream = new FederationUpstream("fooFederationUpstream", FederationUpstreamArgs.builder()        
+ *             .name("foo")
  *             .vhost(guest.vhost())
  *             .definition(FederationUpstreamDefinitionArgs.builder()
- *                 .uri(&#34;amqp://guest:guest@upstream-server-name:5672/%2f&#34;)
+ *                 .uri("amqp://guest:guest{@literal @}upstream-server-name:5672/%2f")
  *                 .prefetchCount(1000)
  *                 .reconnectDelay(5)
- *                 .ackMode(&#34;on-confirm&#34;)
+ *                 .ackMode("on-confirm")
  *                 .trustUserId(false)
  *                 .maxHops(1)
  *                 .build())
  *             .build());
  * 
- *         var fooPolicy = new Policy(&#34;fooPolicy&#34;, PolicyArgs.builder()        
- *             .name(&#34;foo&#34;)
+ *         var fooPolicy = new Policy("fooPolicy", PolicyArgs.builder()        
+ *             .name("foo")
  *             .vhost(guest.vhost())
  *             .policy(PolicyPolicyArgs.builder()
- *                 .pattern(foo.name().applyValue(name -&gt; String.format(&#34;(^%s$)&#34;, name)))
+ *                 .pattern(foo.name().applyValue(name -> String.format("(^%s$)", name)))
  *                 .priority(1)
- *                 .applyTo(&#34;exchanges&#34;)
- *                 .definition(Map.of(&#34;federation-upstream&#34;, fooFederationUpstream.name()))
+ *                 .applyTo("exchanges")
+ *                 .definition(Map.of("federation-upstream", fooFederationUpstream.name()))
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
- * A Federation upstream can be imported using the resource `id` which is composed of `name@vhost`, e.g.
+ * A Federation upstream can be imported using the resource `id` which is composed of `name{@literal @}vhost`, e.g.
  * 
  * ```sh
- * $ pulumi import rabbitmq:index/federationUpstream:FederationUpstream foo foo@test
+ * $ pulumi import rabbitmq:index/federationUpstream:FederationUpstream foo foo{@literal @}test
  * ```
  * 
  */

@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -50,22 +51,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new VHost(&#34;test&#34;, VHostArgs.builder()        
- *             .name(&#34;test&#34;)
+ *         var test = new VHost("test", VHostArgs.builder()        
+ *             .name("test")
  *             .build());
  * 
- *         var testExchange = new Exchange(&#34;testExchange&#34;, ExchangeArgs.builder()        
- *             .name(&#34;test_exchange&#34;)
+ *         var testExchange = new Exchange("testExchange", ExchangeArgs.builder()        
+ *             .name("test_exchange")
  *             .vhost(test.name())
  *             .settings(ExchangeSettingsArgs.builder()
- *                 .type(&#34;fanout&#34;)
+ *                 .type("fanout")
  *                 .durable(false)
  *                 .autoDelete(true)
  *                 .build())
  *             .build());
  * 
- *         var testQueue = new Queue(&#34;testQueue&#34;, QueueArgs.builder()        
- *             .name(&#34;test_queue&#34;)
+ *         var testQueue = new Queue("testQueue", QueueArgs.builder()        
+ *             .name("test_queue")
  *             .vhost(test.name())
  *             .settings(QueueSettingsArgs.builder()
  *                 .durable(false)
@@ -73,21 +74,22 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         var shovelTest = new Shovel(&#34;shovelTest&#34;, ShovelArgs.builder()        
- *             .name(&#34;shovelTest&#34;)
+ *         var shovelTest = new Shovel("shovelTest", ShovelArgs.builder()        
+ *             .name("shovelTest")
  *             .vhost(test.name())
  *             .info(ShovelInfoArgs.builder()
- *                 .sourceUri(&#34;amqp:///test&#34;)
+ *                 .sourceUri("amqp:///test")
  *                 .sourceExchange(testExchange.name())
- *                 .sourceExchangeKey(&#34;test&#34;)
- *                 .destinationUri(&#34;amqp:///test&#34;)
+ *                 .sourceExchangeKey("test")
+ *                 .destinationUri("amqp:///test")
  *                 .destinationQueue(testQueue.name())
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -97,7 +99,7 @@ import javax.annotation.Nullable;
  * E.g.
  * 
  * ```sh
- * $ pulumi import rabbitmq:index/shovel:Shovel test shovelTest@test
+ * $ pulumi import rabbitmq:index/shovel:Shovel test shovelTest{@literal @}test
  * ```
  * 
  */

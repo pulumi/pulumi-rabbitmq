@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,44 +49,45 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new VHost(&#34;test&#34;, VHostArgs.builder()        
- *             .name(&#34;test&#34;)
+ *         var test = new VHost("test", VHostArgs.builder()        
+ *             .name("test")
  *             .build());
  * 
- *         var guest = new Permissions(&#34;guest&#34;, PermissionsArgs.builder()        
- *             .user(&#34;guest&#34;)
+ *         var guest = new Permissions("guest", PermissionsArgs.builder()        
+ *             .user("guest")
  *             .vhost(test.name())
  *             .permissions(PermissionsPermissionsArgs.builder()
- *                 .configure(&#34;.*&#34;)
- *                 .write(&#34;.*&#34;)
- *                 .read(&#34;.*&#34;)
+ *                 .configure(".*")
+ *                 .write(".*")
+ *                 .read(".*")
  *                 .build())
  *             .build());
  * 
- *         var testPolicy = new Policy(&#34;testPolicy&#34;, PolicyArgs.builder()        
- *             .name(&#34;test&#34;)
+ *         var testPolicy = new Policy("testPolicy", PolicyArgs.builder()        
+ *             .name("test")
  *             .vhost(guest.vhost())
  *             .policy(PolicyPolicyArgs.builder()
- *                 .pattern(&#34;.*&#34;)
+ *                 .pattern(".*")
  *                 .priority(0)
- *                 .applyTo(&#34;all&#34;)
- *                 .definition(Map.of(&#34;ha-mode&#34;, &#34;all&#34;))
+ *                 .applyTo("all")
+ *                 .definition(Map.of("ha-mode", "all"))
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
- * Policies can be imported using the `id` which is composed of `name@vhost`.
+ * Policies can be imported using the `id` which is composed of `name{@literal @}vhost`.
  * 
  * E.g.
  * 
  * ```sh
- * $ pulumi import rabbitmq:index/policy:Policy test name@vhost
+ * $ pulumi import rabbitmq:index/policy:Policy test name{@literal @}vhost
  * ```
  * 
  */
