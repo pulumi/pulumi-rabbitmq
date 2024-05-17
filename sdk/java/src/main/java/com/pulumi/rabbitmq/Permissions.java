@@ -49,17 +49,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new VHost("test", VHostArgs.builder()        
+ *         var test = new VHost("test", VHostArgs.builder()
  *             .name("test")
  *             .build());
  * 
- *         var testUser = new User("testUser", UserArgs.builder()        
+ *         var testUser = new User("testUser", UserArgs.builder()
  *             .name("mctest")
  *             .password("foobar")
  *             .tags("administrator")
  *             .build());
  * 
- *         var testPermissions = new Permissions("testPermissions", PermissionsArgs.builder()        
+ *         var testPermissions = new Permissions("testPermissions", PermissionsArgs.builder()
  *             .user(testUser.name())
  *             .vhost(test.name())
  *             .permissions(PermissionsPermissionsArgs.builder()
