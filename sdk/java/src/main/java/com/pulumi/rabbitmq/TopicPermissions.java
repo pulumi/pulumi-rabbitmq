@@ -50,17 +50,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new VHost("test", VHostArgs.builder()        
+ *         var test = new VHost("test", VHostArgs.builder()
  *             .name("test")
  *             .build());
  * 
- *         var testUser = new User("testUser", UserArgs.builder()        
+ *         var testUser = new User("testUser", UserArgs.builder()
  *             .name("mctest")
  *             .password("foobar")
  *             .tags("administrator")
  *             .build());
  * 
- *         var testTopicPermissions = new TopicPermissions("testTopicPermissions", TopicPermissionsArgs.builder()        
+ *         var testTopicPermissions = new TopicPermissions("testTopicPermissions", TopicPermissionsArgs.builder()
  *             .user(testUser.name())
  *             .vhost(test.name())
  *             .permissions(TopicPermissionsPermissionArgs.builder()
