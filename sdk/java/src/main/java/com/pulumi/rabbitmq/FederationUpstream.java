@@ -54,11 +54,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new VHost("test", VHostArgs.builder()        
+ *         var test = new VHost("test", VHostArgs.builder()
  *             .name("test")
  *             .build());
  * 
- *         var guest = new Permissions("guest", PermissionsArgs.builder()        
+ *         var guest = new Permissions("guest", PermissionsArgs.builder()
  *             .user("guest")
  *             .vhost(test.name())
  *             .permissions(PermissionsPermissionsArgs.builder()
@@ -69,7 +69,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // downstream exchange
- *         var foo = new Exchange("foo", ExchangeArgs.builder()        
+ *         var foo = new Exchange("foo", ExchangeArgs.builder()
  *             .name("foo")
  *             .vhost(guest.vhost())
  *             .settings(ExchangeSettingsArgs.builder()
@@ -79,7 +79,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // upstream broker
- *         var fooFederationUpstream = new FederationUpstream("fooFederationUpstream", FederationUpstreamArgs.builder()        
+ *         var fooFederationUpstream = new FederationUpstream("fooFederationUpstream", FederationUpstreamArgs.builder()
  *             .name("foo")
  *             .vhost(guest.vhost())
  *             .definition(FederationUpstreamDefinitionArgs.builder()
@@ -92,7 +92,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         var fooPolicy = new Policy("fooPolicy", PolicyArgs.builder()        
+ *         var fooPolicy = new Policy("fooPolicy", PolicyArgs.builder()
  *             .name("foo")
  *             .vhost(guest.vhost())
  *             .policy(PolicyPolicyArgs.builder()
