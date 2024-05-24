@@ -56,11 +56,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new VHost("test", VHostArgs.builder()        
+ *         var test = new VHost("test", VHostArgs.builder()
  *             .name("test")
  *             .build());
  * 
- *         var guest = new Permissions("guest", PermissionsArgs.builder()        
+ *         var guest = new Permissions("guest", PermissionsArgs.builder()
  *             .user("guest")
  *             .vhost(test.name())
  *             .permissions(PermissionsPermissionsArgs.builder()
@@ -70,7 +70,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         var testExchange = new Exchange("testExchange", ExchangeArgs.builder()        
+ *         var testExchange = new Exchange("testExchange", ExchangeArgs.builder()
  *             .name("test")
  *             .vhost(guest.vhost())
  *             .settings(ExchangeSettingsArgs.builder()
@@ -80,7 +80,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         var testQueue = new Queue("testQueue", QueueArgs.builder()        
+ *         var testQueue = new Queue("testQueue", QueueArgs.builder()
  *             .name("test")
  *             .vhost(guest.vhost())
  *             .settings(QueueSettingsArgs.builder()
@@ -89,7 +89,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         var testBinding = new Binding("testBinding", BindingArgs.builder()        
+ *         var testBinding = new Binding("testBinding", BindingArgs.builder()
  *             .source(testExchange.name())
  *             .vhost(test.name())
  *             .destination(testQueue.name())

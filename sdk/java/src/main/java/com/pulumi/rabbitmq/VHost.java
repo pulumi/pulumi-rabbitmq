@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var myVhost = new VHost("myVhost", VHostArgs.builder()        
+ *         var myVhost = new VHost("myVhost", VHostArgs.builder()
  *             .name("my_vhost")
  *             .build());
  * 

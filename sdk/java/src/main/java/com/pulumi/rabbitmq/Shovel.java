@@ -51,11 +51,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new VHost("test", VHostArgs.builder()        
+ *         var test = new VHost("test", VHostArgs.builder()
  *             .name("test")
  *             .build());
  * 
- *         var testExchange = new Exchange("testExchange", ExchangeArgs.builder()        
+ *         var testExchange = new Exchange("testExchange", ExchangeArgs.builder()
  *             .name("test_exchange")
  *             .vhost(test.name())
  *             .settings(ExchangeSettingsArgs.builder()
@@ -65,7 +65,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         var testQueue = new Queue("testQueue", QueueArgs.builder()        
+ *         var testQueue = new Queue("testQueue", QueueArgs.builder()
  *             .name("test_queue")
  *             .vhost(test.name())
  *             .settings(QueueSettingsArgs.builder()
@@ -74,7 +74,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         var shovelTest = new Shovel("shovelTest", ShovelArgs.builder()        
+ *         var shovelTest = new Shovel("shovelTest", ShovelArgs.builder()
  *             .name("shovelTest")
  *             .vhost(test.name())
  *             .info(ShovelInfoArgs.builder()
