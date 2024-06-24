@@ -657,10 +657,8 @@ class ShovelInfoArgs:
 
     @property
     @pulumi.getter(name="addForwardHeaders")
+    @_utilities.deprecated("""use destination_add_forward_headers instead""")
     def add_forward_headers(self) -> Optional[pulumi.Input[bool]]:
-        warnings.warn("""use destination_add_forward_headers instead""", DeprecationWarning)
-        pulumi.log.warn("""add_forward_headers is deprecated: use destination_add_forward_headers instead""")
-
         return pulumi.get(self, "add_forward_headers")
 
     @add_forward_headers.setter
@@ -669,10 +667,8 @@ class ShovelInfoArgs:
 
     @property
     @pulumi.getter(name="deleteAfter")
+    @_utilities.deprecated("""use source_delete_after instead""")
     def delete_after(self) -> Optional[pulumi.Input[str]]:
-        warnings.warn("""use source_delete_after instead""", DeprecationWarning)
-        pulumi.log.warn("""delete_after is deprecated: use source_delete_after instead""")
-
         return pulumi.get(self, "delete_after")
 
     @delete_after.setter
@@ -771,10 +767,8 @@ class ShovelInfoArgs:
 
     @property
     @pulumi.getter(name="prefetchCount")
+    @_utilities.deprecated("""use source_prefetch_count instead""")
     def prefetch_count(self) -> Optional[pulumi.Input[int]]:
-        warnings.warn("""use source_prefetch_count instead""", DeprecationWarning)
-        pulumi.log.warn("""prefetch_count is deprecated: use source_prefetch_count instead""")
-
         return pulumi.get(self, "prefetch_count")
 
     @prefetch_count.setter
