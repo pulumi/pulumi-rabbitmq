@@ -289,20 +289,24 @@
             "properties": {
                 "ackMode": {
                     "type": "string",
+                    "description": "Determines how the shovel should acknowledge messages. Possible values are: `on-confirm`, `on-publish` and `no-ack`.\nDefaults to `on-confirm`.\n",
                     "willReplaceOnChanges": true
                 },
                 "addForwardHeaders": {
                     "type": "boolean",
+                    "description": "Whether to add `x-shovelled` headers to shovelled messages.\n",
                     "deprecationMessage": "use destination_add_forward_headers instead",
                     "willReplaceOnChanges": true
                 },
                 "deleteAfter": {
                     "type": "string",
+                    "description": "Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.\n",
                     "deprecationMessage": "use source_delete_after instead",
                     "willReplaceOnChanges": true
                 },
                 "destinationAddForwardHeaders": {
                     "type": "boolean",
+                    "description": "Whether to add `x-shovelled` headers to shovelled messages.\n",
                     "willReplaceOnChanges": true
                 },
                 "destinationAddTimestampHeader": {
@@ -311,79 +315,98 @@
                 },
                 "destinationAddress": {
                     "type": "string",
+                    "description": "The AMQP 1.0 destination link address.\n",
                     "willReplaceOnChanges": true
                 },
                 "destinationApplicationProperties": {
                     "type": "string",
+                    "description": "Application properties to set when shovelling messages.\n",
                     "willReplaceOnChanges": true
                 },
                 "destinationExchange": {
                     "type": "string",
+                    "description": "The exchange to which messages should be published.\nEither this or `destination_queue` must be specified but not both.\n",
                     "willReplaceOnChanges": true
                 },
                 "destinationExchangeKey": {
                     "type": "string",
+                    "description": "The routing key when using `destination_exchange`.\n",
                     "willReplaceOnChanges": true
                 },
                 "destinationProperties": {
                     "type": "string",
+                    "description": "Properties to overwrite when shovelling messages.\n\nFor more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).\n",
                     "willReplaceOnChanges": true
                 },
                 "destinationProtocol": {
                     "type": "string",
+                    "description": "The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.\nDefaults to `amqp091`.\n",
                     "willReplaceOnChanges": true
                 },
                 "destinationPublishProperties": {
                     "type": "string",
+                    "description": "A map of properties to overwrite when shovelling messages.\n",
                     "willReplaceOnChanges": true
                 },
                 "destinationQueue": {
                     "type": "string",
+                    "description": "The queue to which messages should be published.\nEither this or `destination_exchange` must be specified but not both.\n",
                     "willReplaceOnChanges": true
                 },
                 "destinationUri": {
                     "type": "string",
+                    "description": "The amqp uri for the destination .\n",
                     "willReplaceOnChanges": true
                 },
                 "prefetchCount": {
                     "type": "integer",
+                    "description": "The maximum number of unacknowledged messages copied over a shovel at any one time.\n",
                     "deprecationMessage": "use source_prefetch_count instead",
                     "willReplaceOnChanges": true
                 },
                 "reconnectDelay": {
                     "type": "integer",
+                    "description": "The duration in seconds to reconnect to a broker after disconnected.\nDefaults to `1`.\n",
                     "willReplaceOnChanges": true
                 },
                 "sourceAddress": {
                     "type": "string",
+                    "description": "The AMQP 1.0 source link address.\n",
                     "willReplaceOnChanges": true
                 },
                 "sourceDeleteAfter": {
                     "type": "string",
+                    "description": "Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.\n",
                     "willReplaceOnChanges": true
                 },
                 "sourceExchange": {
                     "type": "string",
+                    "description": "The exchange from which to consume.\nEither this or `source_queue` must be specified but not both.\n",
                     "willReplaceOnChanges": true
                 },
                 "sourceExchangeKey": {
                     "type": "string",
+                    "description": "The routing key when using `source_exchange`.\n",
                     "willReplaceOnChanges": true
                 },
                 "sourcePrefetchCount": {
                     "type": "integer",
+                    "description": "The maximum number of unacknowledged messages copied over a shovel at any one time.\n",
                     "willReplaceOnChanges": true
                 },
                 "sourceProtocol": {
                     "type": "string",
+                    "description": "The protocol (`amqp091` or `amqp10`) to use when connecting to the source.\nDefaults to `amqp091`.\n",
                     "willReplaceOnChanges": true
                 },
                 "sourceQueue": {
                     "type": "string",
+                    "description": "The queue from which to consume.\nEither this or `source_exchange` must be specified but not both.\n",
                     "willReplaceOnChanges": true
                 },
                 "sourceUri": {
                     "type": "string",
+                    "description": "The amqp uri for the source.\n",
                     "willReplaceOnChanges": true
                 }
             },
