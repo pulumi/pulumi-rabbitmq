@@ -572,6 +572,41 @@ class ShovelInfoArgs:
                  source_prefetch_count: Optional[pulumi.Input[int]] = None,
                  source_protocol: Optional[pulumi.Input[str]] = None,
                  source_queue: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] destination_uri: The amqp uri for the destination .
+        :param pulumi.Input[str] source_uri: The amqp uri for the source.
+        :param pulumi.Input[str] ack_mode: Determines how the shovel should acknowledge messages. Possible values are: `on-confirm`, `on-publish` and `no-ack`.
+               Defaults to `on-confirm`.
+        :param pulumi.Input[bool] add_forward_headers: Whether to add `x-shovelled` headers to shovelled messages.
+        :param pulumi.Input[str] delete_after: Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+        :param pulumi.Input[bool] destination_add_forward_headers: Whether to add `x-shovelled` headers to shovelled messages.
+        :param pulumi.Input[str] destination_address: The AMQP 1.0 destination link address.
+        :param pulumi.Input[str] destination_application_properties: Application properties to set when shovelling messages.
+        :param pulumi.Input[str] destination_exchange: The exchange to which messages should be published.
+               Either this or `destination_queue` must be specified but not both.
+        :param pulumi.Input[str] destination_exchange_key: The routing key when using `destination_exchange`.
+        :param pulumi.Input[str] destination_properties: Properties to overwrite when shovelling messages.
+               
+               For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
+        :param pulumi.Input[str] destination_protocol: The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
+               Defaults to `amqp091`.
+        :param pulumi.Input[str] destination_publish_properties: A map of properties to overwrite when shovelling messages.
+        :param pulumi.Input[str] destination_queue: The queue to which messages should be published.
+               Either this or `destination_exchange` must be specified but not both.
+        :param pulumi.Input[int] prefetch_count: The maximum number of unacknowledged messages copied over a shovel at any one time.
+        :param pulumi.Input[int] reconnect_delay: The duration in seconds to reconnect to a broker after disconnected.
+               Defaults to `1`.
+        :param pulumi.Input[str] source_address: The AMQP 1.0 source link address.
+        :param pulumi.Input[str] source_delete_after: Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+        :param pulumi.Input[str] source_exchange: The exchange from which to consume.
+               Either this or `source_queue` must be specified but not both.
+        :param pulumi.Input[str] source_exchange_key: The routing key when using `source_exchange`.
+        :param pulumi.Input[int] source_prefetch_count: The maximum number of unacknowledged messages copied over a shovel at any one time.
+        :param pulumi.Input[str] source_protocol: The protocol (`amqp091` or `amqp10`) to use when connecting to the source.
+               Defaults to `amqp091`.
+        :param pulumi.Input[str] source_queue: The queue from which to consume.
+               Either this or `source_exchange` must be specified but not both.
+        """
         pulumi.set(__self__, "destination_uri", destination_uri)
         pulumi.set(__self__, "source_uri", source_uri)
         if ack_mode is not None:
@@ -631,6 +666,9 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="destinationUri")
     def destination_uri(self) -> pulumi.Input[str]:
+        """
+        The amqp uri for the destination .
+        """
         return pulumi.get(self, "destination_uri")
 
     @destination_uri.setter
@@ -640,6 +678,9 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="sourceUri")
     def source_uri(self) -> pulumi.Input[str]:
+        """
+        The amqp uri for the source.
+        """
         return pulumi.get(self, "source_uri")
 
     @source_uri.setter
@@ -649,6 +690,10 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="ackMode")
     def ack_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Determines how the shovel should acknowledge messages. Possible values are: `on-confirm`, `on-publish` and `no-ack`.
+        Defaults to `on-confirm`.
+        """
         return pulumi.get(self, "ack_mode")
 
     @ack_mode.setter
@@ -659,6 +704,9 @@ class ShovelInfoArgs:
     @pulumi.getter(name="addForwardHeaders")
     @_utilities.deprecated("""use destination_add_forward_headers instead""")
     def add_forward_headers(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to add `x-shovelled` headers to shovelled messages.
+        """
         return pulumi.get(self, "add_forward_headers")
 
     @add_forward_headers.setter
@@ -669,6 +717,9 @@ class ShovelInfoArgs:
     @pulumi.getter(name="deleteAfter")
     @_utilities.deprecated("""use source_delete_after instead""")
     def delete_after(self) -> Optional[pulumi.Input[str]]:
+        """
+        Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+        """
         return pulumi.get(self, "delete_after")
 
     @delete_after.setter
@@ -678,6 +729,9 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="destinationAddForwardHeaders")
     def destination_add_forward_headers(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to add `x-shovelled` headers to shovelled messages.
+        """
         return pulumi.get(self, "destination_add_forward_headers")
 
     @destination_add_forward_headers.setter
@@ -696,6 +750,9 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="destinationAddress")
     def destination_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The AMQP 1.0 destination link address.
+        """
         return pulumi.get(self, "destination_address")
 
     @destination_address.setter
@@ -705,6 +762,9 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="destinationApplicationProperties")
     def destination_application_properties(self) -> Optional[pulumi.Input[str]]:
+        """
+        Application properties to set when shovelling messages.
+        """
         return pulumi.get(self, "destination_application_properties")
 
     @destination_application_properties.setter
@@ -714,6 +774,10 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="destinationExchange")
     def destination_exchange(self) -> Optional[pulumi.Input[str]]:
+        """
+        The exchange to which messages should be published.
+        Either this or `destination_queue` must be specified but not both.
+        """
         return pulumi.get(self, "destination_exchange")
 
     @destination_exchange.setter
@@ -723,6 +787,9 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="destinationExchangeKey")
     def destination_exchange_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The routing key when using `destination_exchange`.
+        """
         return pulumi.get(self, "destination_exchange_key")
 
     @destination_exchange_key.setter
@@ -732,6 +799,11 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="destinationProperties")
     def destination_properties(self) -> Optional[pulumi.Input[str]]:
+        """
+        Properties to overwrite when shovelling messages.
+
+        For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
+        """
         return pulumi.get(self, "destination_properties")
 
     @destination_properties.setter
@@ -741,6 +813,10 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="destinationProtocol")
     def destination_protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
+        Defaults to `amqp091`.
+        """
         return pulumi.get(self, "destination_protocol")
 
     @destination_protocol.setter
@@ -750,6 +826,9 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="destinationPublishProperties")
     def destination_publish_properties(self) -> Optional[pulumi.Input[str]]:
+        """
+        A map of properties to overwrite when shovelling messages.
+        """
         return pulumi.get(self, "destination_publish_properties")
 
     @destination_publish_properties.setter
@@ -759,6 +838,10 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="destinationQueue")
     def destination_queue(self) -> Optional[pulumi.Input[str]]:
+        """
+        The queue to which messages should be published.
+        Either this or `destination_exchange` must be specified but not both.
+        """
         return pulumi.get(self, "destination_queue")
 
     @destination_queue.setter
@@ -769,6 +852,9 @@ class ShovelInfoArgs:
     @pulumi.getter(name="prefetchCount")
     @_utilities.deprecated("""use source_prefetch_count instead""")
     def prefetch_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of unacknowledged messages copied over a shovel at any one time.
+        """
         return pulumi.get(self, "prefetch_count")
 
     @prefetch_count.setter
@@ -778,6 +864,10 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="reconnectDelay")
     def reconnect_delay(self) -> Optional[pulumi.Input[int]]:
+        """
+        The duration in seconds to reconnect to a broker after disconnected.
+        Defaults to `1`.
+        """
         return pulumi.get(self, "reconnect_delay")
 
     @reconnect_delay.setter
@@ -787,6 +877,9 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="sourceAddress")
     def source_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The AMQP 1.0 source link address.
+        """
         return pulumi.get(self, "source_address")
 
     @source_address.setter
@@ -796,6 +889,9 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="sourceDeleteAfter")
     def source_delete_after(self) -> Optional[pulumi.Input[str]]:
+        """
+        Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+        """
         return pulumi.get(self, "source_delete_after")
 
     @source_delete_after.setter
@@ -805,6 +901,10 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="sourceExchange")
     def source_exchange(self) -> Optional[pulumi.Input[str]]:
+        """
+        The exchange from which to consume.
+        Either this or `source_queue` must be specified but not both.
+        """
         return pulumi.get(self, "source_exchange")
 
     @source_exchange.setter
@@ -814,6 +914,9 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="sourceExchangeKey")
     def source_exchange_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The routing key when using `source_exchange`.
+        """
         return pulumi.get(self, "source_exchange_key")
 
     @source_exchange_key.setter
@@ -823,6 +926,9 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="sourcePrefetchCount")
     def source_prefetch_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of unacknowledged messages copied over a shovel at any one time.
+        """
         return pulumi.get(self, "source_prefetch_count")
 
     @source_prefetch_count.setter
@@ -832,6 +938,10 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="sourceProtocol")
     def source_protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        The protocol (`amqp091` or `amqp10`) to use when connecting to the source.
+        Defaults to `amqp091`.
+        """
         return pulumi.get(self, "source_protocol")
 
     @source_protocol.setter
@@ -841,6 +951,10 @@ class ShovelInfoArgs:
     @property
     @pulumi.getter(name="sourceQueue")
     def source_queue(self) -> Optional[pulumi.Input[str]]:
+        """
+        The queue from which to consume.
+        Either this or `source_exchange` must be specified but not both.
+        """
         return pulumi.get(self, "source_queue")
 
     @source_queue.setter
