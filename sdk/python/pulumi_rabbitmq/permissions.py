@@ -132,7 +132,7 @@ class Permissions(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 permissions: Optional[pulumi.Input[pulumi.InputType['PermissionsPermissionsArgs']]] = None,
+                 permissions: Optional[pulumi.Input[Union['PermissionsPermissionsArgs', 'PermissionsPermissionsArgsDict']]] = None,
                  user: Optional[pulumi.Input[str]] = None,
                  vhost: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -154,11 +154,11 @@ class Permissions(pulumi.CustomResource):
         test_permissions = rabbitmq.Permissions("test",
             user=test_user.name,
             vhost=test.name,
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                write=".*",
-                read=".*",
-            ))
+            permissions={
+                "configure": ".*",
+                "write": ".*",
+                "read": ".*",
+            })
         ```
 
         ## Import
@@ -173,7 +173,7 @@ class Permissions(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['PermissionsPermissionsArgs']] permissions: The settings of the permissions. The structure is
+        :param pulumi.Input[Union['PermissionsPermissionsArgs', 'PermissionsPermissionsArgsDict']] permissions: The settings of the permissions. The structure is
                described below.
         :param pulumi.Input[str] user: The user to apply the permissions to.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
@@ -202,11 +202,11 @@ class Permissions(pulumi.CustomResource):
         test_permissions = rabbitmq.Permissions("test",
             user=test_user.name,
             vhost=test.name,
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                write=".*",
-                read=".*",
-            ))
+            permissions={
+                "configure": ".*",
+                "write": ".*",
+                "read": ".*",
+            })
         ```
 
         ## Import
@@ -234,7 +234,7 @@ class Permissions(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 permissions: Optional[pulumi.Input[pulumi.InputType['PermissionsPermissionsArgs']]] = None,
+                 permissions: Optional[pulumi.Input[Union['PermissionsPermissionsArgs', 'PermissionsPermissionsArgsDict']]] = None,
                  user: Optional[pulumi.Input[str]] = None,
                  vhost: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -263,7 +263,7 @@ class Permissions(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            permissions: Optional[pulumi.Input[pulumi.InputType['PermissionsPermissionsArgs']]] = None,
+            permissions: Optional[pulumi.Input[Union['PermissionsPermissionsArgs', 'PermissionsPermissionsArgsDict']]] = None,
             user: Optional[pulumi.Input[str]] = None,
             vhost: Optional[pulumi.Input[str]] = None) -> 'Permissions':
         """
@@ -273,7 +273,7 @@ class Permissions(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['PermissionsPermissionsArgs']] permissions: The settings of the permissions. The structure is
+        :param pulumi.Input[Union['PermissionsPermissionsArgs', 'PermissionsPermissionsArgsDict']] permissions: The settings of the permissions. The structure is
                described below.
         :param pulumi.Input[str] user: The user to apply the permissions to.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.

@@ -138,7 +138,7 @@ public class TopicPermissions extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public TopicPermissions(String name) {
+    public TopicPermissions(java.lang.String name) {
         this(name, TopicPermissionsArgs.Empty);
     }
     /**
@@ -146,7 +146,7 @@ public class TopicPermissions extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public TopicPermissions(String name, TopicPermissionsArgs args) {
+    public TopicPermissions(java.lang.String name, TopicPermissionsArgs args) {
         this(name, args, null);
     }
     /**
@@ -155,15 +155,22 @@ public class TopicPermissions extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public TopicPermissions(String name, TopicPermissionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("rabbitmq:index/topicPermissions:TopicPermissions", name, args == null ? TopicPermissionsArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public TopicPermissions(java.lang.String name, TopicPermissionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("rabbitmq:index/topicPermissions:TopicPermissions", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private TopicPermissions(String name, Output<String> id, @Nullable TopicPermissionsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("rabbitmq:index/topicPermissions:TopicPermissions", name, state, makeResourceOptions(options, id));
+    private TopicPermissions(java.lang.String name, Output<java.lang.String> id, @Nullable TopicPermissionsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("rabbitmq:index/topicPermissions:TopicPermissions", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static TopicPermissionsArgs makeArgs(TopicPermissionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? TopicPermissionsArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -179,7 +186,7 @@ public class TopicPermissions extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static TopicPermissions get(String name, Output<String> id, @Nullable TopicPermissionsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static TopicPermissions get(java.lang.String name, Output<java.lang.String> id, @Nullable TopicPermissionsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new TopicPermissions(name, id, state, options);
     }
 }
