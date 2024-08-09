@@ -141,7 +141,7 @@ public class Exchange extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public Exchange(String name) {
+    public Exchange(java.lang.String name) {
         this(name, ExchangeArgs.Empty);
     }
     /**
@@ -149,7 +149,7 @@ public class Exchange extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Exchange(String name, ExchangeArgs args) {
+    public Exchange(java.lang.String name, ExchangeArgs args) {
         this(name, args, null);
     }
     /**
@@ -158,15 +158,22 @@ public class Exchange extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Exchange(String name, ExchangeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("rabbitmq:index/exchange:Exchange", name, args == null ? ExchangeArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public Exchange(java.lang.String name, ExchangeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("rabbitmq:index/exchange:Exchange", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private Exchange(String name, Output<String> id, @Nullable ExchangeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("rabbitmq:index/exchange:Exchange", name, state, makeResourceOptions(options, id));
+    private Exchange(java.lang.String name, Output<java.lang.String> id, @Nullable ExchangeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("rabbitmq:index/exchange:Exchange", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static ExchangeArgs makeArgs(ExchangeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ExchangeArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -182,7 +189,7 @@ public class Exchange extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static Exchange get(String name, Output<String> id, @Nullable ExchangeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static Exchange get(java.lang.String name, Output<java.lang.String> id, @Nullable ExchangeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new Exchange(name, id, state, options);
     }
 }

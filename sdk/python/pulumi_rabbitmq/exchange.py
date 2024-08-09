@@ -134,7 +134,7 @@ class Exchange(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 settings: Optional[pulumi.Input[pulumi.InputType['ExchangeSettingsArgs']]] = None,
+                 settings: Optional[pulumi.Input[Union['ExchangeSettingsArgs', 'ExchangeSettingsArgsDict']]] = None,
                  vhost: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -150,19 +150,19 @@ class Exchange(pulumi.CustomResource):
         guest = rabbitmq.Permissions("guest",
             user="guest",
             vhost=test.name,
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                write=".*",
-                read=".*",
-            ))
+            permissions={
+                "configure": ".*",
+                "write": ".*",
+                "read": ".*",
+            })
         test_exchange = rabbitmq.Exchange("test",
             name="test",
             vhost=guest.vhost,
-            settings=rabbitmq.ExchangeSettingsArgs(
-                type="fanout",
-                durable=False,
-                auto_delete=True,
-            ))
+            settings={
+                "type": "fanout",
+                "durable": False,
+                "auto_delete": True,
+            })
         ```
 
         ## Import
@@ -178,7 +178,7 @@ class Exchange(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the exchange.
-        :param pulumi.Input[pulumi.InputType['ExchangeSettingsArgs']] settings: The settings of the exchange. The structure is
+        :param pulumi.Input[Union['ExchangeSettingsArgs', 'ExchangeSettingsArgsDict']] settings: The settings of the exchange. The structure is
                described below.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
         """
@@ -201,19 +201,19 @@ class Exchange(pulumi.CustomResource):
         guest = rabbitmq.Permissions("guest",
             user="guest",
             vhost=test.name,
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                write=".*",
-                read=".*",
-            ))
+            permissions={
+                "configure": ".*",
+                "write": ".*",
+                "read": ".*",
+            })
         test_exchange = rabbitmq.Exchange("test",
             name="test",
             vhost=guest.vhost,
-            settings=rabbitmq.ExchangeSettingsArgs(
-                type="fanout",
-                durable=False,
-                auto_delete=True,
-            ))
+            settings={
+                "type": "fanout",
+                "durable": False,
+                "auto_delete": True,
+            })
         ```
 
         ## Import
@@ -242,7 +242,7 @@ class Exchange(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 settings: Optional[pulumi.Input[pulumi.InputType['ExchangeSettingsArgs']]] = None,
+                 settings: Optional[pulumi.Input[Union['ExchangeSettingsArgs', 'ExchangeSettingsArgsDict']]] = None,
                  vhost: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -269,7 +269,7 @@ class Exchange(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             name: Optional[pulumi.Input[str]] = None,
-            settings: Optional[pulumi.Input[pulumi.InputType['ExchangeSettingsArgs']]] = None,
+            settings: Optional[pulumi.Input[Union['ExchangeSettingsArgs', 'ExchangeSettingsArgsDict']]] = None,
             vhost: Optional[pulumi.Input[str]] = None) -> 'Exchange':
         """
         Get an existing Exchange resource's state with the given name, id, and optional extra
@@ -279,7 +279,7 @@ class Exchange(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the exchange.
-        :param pulumi.Input[pulumi.InputType['ExchangeSettingsArgs']] settings: The settings of the exchange. The structure is
+        :param pulumi.Input[Union['ExchangeSettingsArgs', 'ExchangeSettingsArgsDict']] settings: The settings of the exchange. The structure is
                described below.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
         """
