@@ -282,26 +282,26 @@ class Binding(pulumi.CustomResource):
         guest = rabbitmq.Permissions("guest",
             user="guest",
             vhost=test.name,
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                write=".*",
-                read=".*",
-            ))
+            permissions={
+                "configure": ".*",
+                "write": ".*",
+                "read": ".*",
+            })
         test_exchange = rabbitmq.Exchange("test",
             name="test",
             vhost=guest.vhost,
-            settings=rabbitmq.ExchangeSettingsArgs(
-                type="fanout",
-                durable=False,
-                auto_delete=True,
-            ))
+            settings={
+                "type": "fanout",
+                "durable": False,
+                "auto_delete": True,
+            })
         test_queue = rabbitmq.Queue("test",
             name="test",
             vhost=guest.vhost,
-            settings=rabbitmq.QueueSettingsArgs(
-                durable=True,
-                auto_delete=False,
-            ))
+            settings={
+                "durable": True,
+                "auto_delete": False,
+            })
         test_binding = rabbitmq.Binding("test",
             source=test_exchange.name,
             vhost=test.name,
@@ -348,26 +348,26 @@ class Binding(pulumi.CustomResource):
         guest = rabbitmq.Permissions("guest",
             user="guest",
             vhost=test.name,
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                write=".*",
-                read=".*",
-            ))
+            permissions={
+                "configure": ".*",
+                "write": ".*",
+                "read": ".*",
+            })
         test_exchange = rabbitmq.Exchange("test",
             name="test",
             vhost=guest.vhost,
-            settings=rabbitmq.ExchangeSettingsArgs(
-                type="fanout",
-                durable=False,
-                auto_delete=True,
-            ))
+            settings={
+                "type": "fanout",
+                "durable": False,
+                "auto_delete": True,
+            })
         test_queue = rabbitmq.Queue("test",
             name="test",
             vhost=guest.vhost,
-            settings=rabbitmq.QueueSettingsArgs(
-                durable=True,
-                auto_delete=False,
-            ))
+            settings={
+                "durable": True,
+                "auto_delete": False,
+            })
         test_binding = rabbitmq.Binding("test",
             source=test_exchange.name,
             vhost=test.name,

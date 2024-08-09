@@ -48,12 +48,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var test = new VHost("test", VHostArgs.builder()
  *             .name("test")
  *             .build());
@@ -83,7 +83,7 @@ import javax.annotation.Nullable;
  *             .name("foo")
  *             .vhost(guest.vhost())
  *             .definition(FederationUpstreamDefinitionArgs.builder()
- *                 .uri("amqp://guest:guest{@literal @}upstream-server-name:5672/%2f")
+ *                 .uri("amqp://guest:guest}{@literal @}{@code upstream-server-name:5672/%2f")
  *                 .prefetchCount(1000)
  *                 .reconnectDelay(5)
  *                 .ackMode("on-confirm")
@@ -103,8 +103,8 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
@@ -181,7 +181,7 @@ public class FederationUpstream extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public FederationUpstream(String name) {
+    public FederationUpstream(java.lang.String name) {
         this(name, FederationUpstreamArgs.Empty);
     }
     /**
@@ -189,7 +189,7 @@ public class FederationUpstream extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public FederationUpstream(String name, FederationUpstreamArgs args) {
+    public FederationUpstream(java.lang.String name, FederationUpstreamArgs args) {
         this(name, args, null);
     }
     /**
@@ -198,15 +198,22 @@ public class FederationUpstream extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public FederationUpstream(String name, FederationUpstreamArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("rabbitmq:index/federationUpstream:FederationUpstream", name, args == null ? FederationUpstreamArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public FederationUpstream(java.lang.String name, FederationUpstreamArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("rabbitmq:index/federationUpstream:FederationUpstream", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private FederationUpstream(String name, Output<String> id, @Nullable FederationUpstreamState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("rabbitmq:index/federationUpstream:FederationUpstream", name, state, makeResourceOptions(options, id));
+    private FederationUpstream(java.lang.String name, Output<java.lang.String> id, @Nullable FederationUpstreamState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("rabbitmq:index/federationUpstream:FederationUpstream", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static FederationUpstreamArgs makeArgs(FederationUpstreamArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? FederationUpstreamArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -222,7 +229,7 @@ public class FederationUpstream extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static FederationUpstream get(String name, Output<String> id, @Nullable FederationUpstreamState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static FederationUpstream get(java.lang.String name, Output<java.lang.String> id, @Nullable FederationUpstreamState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new FederationUpstream(name, id, state, options);
     }
 }

@@ -133,7 +133,7 @@ class Policy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 policy: Optional[pulumi.Input[pulumi.InputType['PolicyPolicyArgs']]] = None,
+                 policy: Optional[pulumi.Input[Union['PolicyPolicyArgs', 'PolicyPolicyArgsDict']]] = None,
                  vhost: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -150,22 +150,22 @@ class Policy(pulumi.CustomResource):
         guest = rabbitmq.Permissions("guest",
             user="guest",
             vhost=test.name,
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                write=".*",
-                read=".*",
-            ))
+            permissions={
+                "configure": ".*",
+                "write": ".*",
+                "read": ".*",
+            })
         test_policy = rabbitmq.Policy("test",
             name="test",
             vhost=guest.vhost,
-            policy=rabbitmq.PolicyPolicyArgs(
-                pattern=".*",
-                priority=0,
-                apply_to="all",
-                definition={
-                    "ha-mode": "all",
+            policy={
+                "pattern": ".*",
+                "priority": 0,
+                "apply_to": "all",
+                "definition": {
+                    "ha_mode": "all",
                 },
-            ))
+            })
         ```
 
         ## Import
@@ -181,7 +181,7 @@ class Policy(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the policy.
-        :param pulumi.Input[pulumi.InputType['PolicyPolicyArgs']] policy: The settings of the policy. The structure is
+        :param pulumi.Input[Union['PolicyPolicyArgs', 'PolicyPolicyArgsDict']] policy: The settings of the policy. The structure is
                described below.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
         """
@@ -205,22 +205,22 @@ class Policy(pulumi.CustomResource):
         guest = rabbitmq.Permissions("guest",
             user="guest",
             vhost=test.name,
-            permissions=rabbitmq.PermissionsPermissionsArgs(
-                configure=".*",
-                write=".*",
-                read=".*",
-            ))
+            permissions={
+                "configure": ".*",
+                "write": ".*",
+                "read": ".*",
+            })
         test_policy = rabbitmq.Policy("test",
             name="test",
             vhost=guest.vhost,
-            policy=rabbitmq.PolicyPolicyArgs(
-                pattern=".*",
-                priority=0,
-                apply_to="all",
-                definition={
-                    "ha-mode": "all",
+            policy={
+                "pattern": ".*",
+                "priority": 0,
+                "apply_to": "all",
+                "definition": {
+                    "ha_mode": "all",
                 },
-            ))
+            })
         ```
 
         ## Import
@@ -249,7 +249,7 @@ class Policy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 policy: Optional[pulumi.Input[pulumi.InputType['PolicyPolicyArgs']]] = None,
+                 policy: Optional[pulumi.Input[Union['PolicyPolicyArgs', 'PolicyPolicyArgsDict']]] = None,
                  vhost: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -278,7 +278,7 @@ class Policy(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             name: Optional[pulumi.Input[str]] = None,
-            policy: Optional[pulumi.Input[pulumi.InputType['PolicyPolicyArgs']]] = None,
+            policy: Optional[pulumi.Input[Union['PolicyPolicyArgs', 'PolicyPolicyArgsDict']]] = None,
             vhost: Optional[pulumi.Input[str]] = None) -> 'Policy':
         """
         Get an existing Policy resource's state with the given name, id, and optional extra
@@ -288,7 +288,7 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the policy.
-        :param pulumi.Input[pulumi.InputType['PolicyPolicyArgs']] policy: The settings of the policy. The structure is
+        :param pulumi.Input[Union['PolicyPolicyArgs', 'PolicyPolicyArgsDict']] policy: The settings of the policy. The structure is
                described below.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
         """

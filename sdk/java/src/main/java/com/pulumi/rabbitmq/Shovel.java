@@ -154,7 +154,7 @@ public class Shovel extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public Shovel(String name) {
+    public Shovel(java.lang.String name) {
         this(name, ShovelArgs.Empty);
     }
     /**
@@ -162,7 +162,7 @@ public class Shovel extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Shovel(String name, ShovelArgs args) {
+    public Shovel(java.lang.String name, ShovelArgs args) {
         this(name, args, null);
     }
     /**
@@ -171,15 +171,22 @@ public class Shovel extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Shovel(String name, ShovelArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("rabbitmq:index/shovel:Shovel", name, args == null ? ShovelArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public Shovel(java.lang.String name, ShovelArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("rabbitmq:index/shovel:Shovel", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private Shovel(String name, Output<String> id, @Nullable ShovelState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("rabbitmq:index/shovel:Shovel", name, state, makeResourceOptions(options, id));
+    private Shovel(java.lang.String name, Output<java.lang.String> id, @Nullable ShovelState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("rabbitmq:index/shovel:Shovel", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static ShovelArgs makeArgs(ShovelArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ShovelArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -195,7 +202,7 @@ public class Shovel extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static Shovel get(String name, Output<String> id, @Nullable ShovelState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static Shovel get(java.lang.String name, Output<java.lang.String> id, @Nullable ShovelState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new Shovel(name, id, state, options);
     }
 }
