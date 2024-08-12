@@ -132,7 +132,7 @@ class Shovel(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 info: Optional[pulumi.Input[pulumi.InputType['ShovelInfoArgs']]] = None,
+                 info: Optional[pulumi.Input[Union['ShovelInfoArgs', 'ShovelInfoArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vhost: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -149,28 +149,28 @@ class Shovel(pulumi.CustomResource):
         test_exchange = rabbitmq.Exchange("test",
             name="test_exchange",
             vhost=test.name,
-            settings=rabbitmq.ExchangeSettingsArgs(
-                type="fanout",
-                durable=False,
-                auto_delete=True,
-            ))
+            settings={
+                "type": "fanout",
+                "durable": False,
+                "auto_delete": True,
+            })
         test_queue = rabbitmq.Queue("test",
             name="test_queue",
             vhost=test.name,
-            settings=rabbitmq.QueueSettingsArgs(
-                durable=False,
-                auto_delete=True,
-            ))
+            settings={
+                "durable": False,
+                "auto_delete": True,
+            })
         shovel_test = rabbitmq.Shovel("shovelTest",
             name="shovelTest",
             vhost=test.name,
-            info=rabbitmq.ShovelInfoArgs(
-                source_uri="amqp:///test",
-                source_exchange=test_exchange.name,
-                source_exchange_key="test",
-                destination_uri="amqp:///test",
-                destination_queue=test_queue.name,
-            ))
+            info={
+                "source_uri": "amqp:///test",
+                "source_exchange": test_exchange.name,
+                "source_exchange_key": "test",
+                "destination_uri": "amqp:///test",
+                "destination_queue": test_queue.name,
+            })
         ```
 
         ## Import
@@ -185,7 +185,7 @@ class Shovel(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['ShovelInfoArgs']] info: The settings of the dynamic shovel. The structure is
+        :param pulumi.Input[Union['ShovelInfoArgs', 'ShovelInfoArgsDict']] info: The settings of the dynamic shovel. The structure is
                described below.
         :param pulumi.Input[str] name: The shovel name.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
@@ -209,28 +209,28 @@ class Shovel(pulumi.CustomResource):
         test_exchange = rabbitmq.Exchange("test",
             name="test_exchange",
             vhost=test.name,
-            settings=rabbitmq.ExchangeSettingsArgs(
-                type="fanout",
-                durable=False,
-                auto_delete=True,
-            ))
+            settings={
+                "type": "fanout",
+                "durable": False,
+                "auto_delete": True,
+            })
         test_queue = rabbitmq.Queue("test",
             name="test_queue",
             vhost=test.name,
-            settings=rabbitmq.QueueSettingsArgs(
-                durable=False,
-                auto_delete=True,
-            ))
+            settings={
+                "durable": False,
+                "auto_delete": True,
+            })
         shovel_test = rabbitmq.Shovel("shovelTest",
             name="shovelTest",
             vhost=test.name,
-            info=rabbitmq.ShovelInfoArgs(
-                source_uri="amqp:///test",
-                source_exchange=test_exchange.name,
-                source_exchange_key="test",
-                destination_uri="amqp:///test",
-                destination_queue=test_queue.name,
-            ))
+            info={
+                "source_uri": "amqp:///test",
+                "source_exchange": test_exchange.name,
+                "source_exchange_key": "test",
+                "destination_uri": "amqp:///test",
+                "destination_queue": test_queue.name,
+            })
         ```
 
         ## Import
@@ -258,7 +258,7 @@ class Shovel(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 info: Optional[pulumi.Input[pulumi.InputType['ShovelInfoArgs']]] = None,
+                 info: Optional[pulumi.Input[Union['ShovelInfoArgs', 'ShovelInfoArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vhost: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -287,7 +287,7 @@ class Shovel(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            info: Optional[pulumi.Input[pulumi.InputType['ShovelInfoArgs']]] = None,
+            info: Optional[pulumi.Input[Union['ShovelInfoArgs', 'ShovelInfoArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             vhost: Optional[pulumi.Input[str]] = None) -> 'Shovel':
         """
@@ -297,7 +297,7 @@ class Shovel(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['ShovelInfoArgs']] info: The settings of the dynamic shovel. The structure is
+        :param pulumi.Input[Union['ShovelInfoArgs', 'ShovelInfoArgsDict']] info: The settings of the dynamic shovel. The structure is
                described below.
         :param pulumi.Input[str] name: The shovel name.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
