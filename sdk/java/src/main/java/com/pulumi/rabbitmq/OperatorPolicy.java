@@ -144,7 +144,7 @@ public class OperatorPolicy extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public OperatorPolicy(String name) {
+    public OperatorPolicy(java.lang.String name) {
         this(name, OperatorPolicyArgs.Empty);
     }
     /**
@@ -152,7 +152,7 @@ public class OperatorPolicy extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public OperatorPolicy(String name, OperatorPolicyArgs args) {
+    public OperatorPolicy(java.lang.String name, OperatorPolicyArgs args) {
         this(name, args, null);
     }
     /**
@@ -161,15 +161,22 @@ public class OperatorPolicy extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public OperatorPolicy(String name, OperatorPolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("rabbitmq:index/operatorPolicy:OperatorPolicy", name, args == null ? OperatorPolicyArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public OperatorPolicy(java.lang.String name, OperatorPolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("rabbitmq:index/operatorPolicy:OperatorPolicy", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private OperatorPolicy(String name, Output<String> id, @Nullable OperatorPolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("rabbitmq:index/operatorPolicy:OperatorPolicy", name, state, makeResourceOptions(options, id));
+    private OperatorPolicy(java.lang.String name, Output<java.lang.String> id, @Nullable OperatorPolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("rabbitmq:index/operatorPolicy:OperatorPolicy", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static OperatorPolicyArgs makeArgs(OperatorPolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? OperatorPolicyArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -185,7 +192,7 @@ public class OperatorPolicy extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static OperatorPolicy get(String name, Output<String> id, @Nullable OperatorPolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static OperatorPolicy get(java.lang.String name, Output<java.lang.String> id, @Nullable OperatorPolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new OperatorPolicy(name, id, state, options);
     }
 }
