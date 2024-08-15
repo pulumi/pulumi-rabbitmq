@@ -9,7 +9,7 @@ export interface ExchangeSettings {
     /**
      * Additional key/value settings for the exchange.
      */
-    arguments?: pulumi.Input<{[key: string]: any}>;
+    arguments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Whether the exchange will self-delete when all
      * queues have finished using it.
@@ -84,7 +84,7 @@ export interface OperatorPolicyPolicy {
      * Key/value pairs of the operator policy definition. See the
      * RabbitMQ documentation for definition references and examples.
      */
-    definition: pulumi.Input<{[key: string]: any}>;
+    definition: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * A pattern to match an exchange or queue name.
      */
@@ -119,7 +119,7 @@ export interface PolicyPolicy {
      * Key/value pairs of the policy definition. See the
      * RabbitMQ documentation for definition references and examples.
      */
-    definition: pulumi.Input<{[key: string]: any}>;
+    definition: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * A pattern to match an exchange or queue name.
      */
@@ -136,7 +136,7 @@ export interface QueueSettings {
      * All values will be sent to RabbitMQ as a string. If you require non-string
      * values, use `argumentsJson`.
      */
-    arguments?: pulumi.Input<{[key: string]: any}>;
+    arguments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * A nested JSON string which contains additional
      * settings for the queue. This is useful for when the arguments contain

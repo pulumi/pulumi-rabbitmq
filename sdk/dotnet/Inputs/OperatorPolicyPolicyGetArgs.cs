@@ -19,15 +19,15 @@ namespace Pulumi.RabbitMQ.Inputs
         public Input<string> ApplyTo { get; set; } = null!;
 
         [Input("definition", required: true)]
-        private InputMap<object>? _definition;
+        private InputMap<string>? _definition;
 
         /// <summary>
         /// Key/value pairs of the operator policy definition. See the
         /// RabbitMQ documentation for definition references and examples.
         /// </summary>
-        public InputMap<object> Definition
+        public InputMap<string> Definition
         {
-            get => _definition ?? (_definition = new InputMap<object>());
+            get => _definition ?? (_definition = new InputMap<string>());
             set => _definition = value;
         }
 

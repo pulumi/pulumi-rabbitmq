@@ -54,8 +54,8 @@ import (
 //				Settings: &rabbitmq.QueueSettingsArgs{
 //					Durable:    pulumi.Bool(false),
 //					AutoDelete: pulumi.Bool(true),
-//					Arguments: pulumi.Map{
-//						"x-queue-type": pulumi.Any("quorum"),
+//					Arguments: pulumi.StringMap{
+//						"x-queue-type": pulumi.String("quorum"),
 //					},
 //				},
 //			})

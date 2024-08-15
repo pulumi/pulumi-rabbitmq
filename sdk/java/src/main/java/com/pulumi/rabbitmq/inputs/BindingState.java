@@ -5,7 +5,6 @@ package com.pulumi.rabbitmq.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -22,13 +21,13 @@ public final class BindingState extends com.pulumi.resources.ResourceArgs {
      * 
      */
     @Import(name="arguments")
-    private @Nullable Output<Map<String,Object>> arguments;
+    private @Nullable Output<Map<String,String>> arguments;
 
     /**
      * @return Additional key/value arguments for the binding.
      * 
      */
-    public Optional<Output<Map<String,Object>>> arguments() {
+    public Optional<Output<Map<String,String>>> arguments() {
         return Optional.ofNullable(this.arguments);
     }
 
@@ -166,7 +165,7 @@ public final class BindingState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder arguments(@Nullable Output<Map<String,Object>> arguments) {
+        public Builder arguments(@Nullable Output<Map<String,String>> arguments) {
             $.arguments = arguments;
             return this;
         }
@@ -177,7 +176,7 @@ public final class BindingState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder arguments(Map<String,Object> arguments) {
+        public Builder arguments(Map<String,String> arguments) {
             return arguments(Output.of(arguments));
         }
 

@@ -6,7 +6,6 @@ package com.pulumi.rabbitmq.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -19,7 +18,7 @@ public final class ExchangeSettings {
      * @return Additional key/value settings for the exchange.
      * 
      */
-    private @Nullable Map<String,Object> arguments;
+    private @Nullable Map<String,String> arguments;
     /**
      * @return Whether the exchange will self-delete when all
      * queues have finished using it.
@@ -43,7 +42,7 @@ public final class ExchangeSettings {
      * @return Additional key/value settings for the exchange.
      * 
      */
-    public Map<String,Object> arguments() {
+    public Map<String,String> arguments() {
         return this.arguments == null ? Map.of() : this.arguments;
     }
     /**
@@ -79,7 +78,7 @@ public final class ExchangeSettings {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable Map<String,Object> arguments;
+        private @Nullable Map<String,String> arguments;
         private @Nullable Boolean autoDelete;
         private @Nullable Boolean durable;
         private String type;
@@ -93,7 +92,7 @@ public final class ExchangeSettings {
         }
 
         @CustomType.Setter
-        public Builder arguments(@Nullable Map<String,Object> arguments) {
+        public Builder arguments(@Nullable Map<String,String> arguments) {
 
             this.arguments = arguments;
             return this;

@@ -54,8 +54,8 @@ import (
 //					Pattern:  pulumi.String(".*"),
 //					Priority: pulumi.Int(0),
 //					ApplyTo:  pulumi.String("all"),
-//					Definition: pulumi.Map{
-//						"ha-mode": pulumi.Any("all"),
+//					Definition: pulumi.StringMap{
+//						"ha-mode": pulumi.String("all"),
 //					},
 //				},
 //			})

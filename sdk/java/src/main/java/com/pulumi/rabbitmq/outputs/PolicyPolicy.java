@@ -6,7 +6,6 @@ package com.pulumi.rabbitmq.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -23,7 +22,7 @@ public final class PolicyPolicy {
      * RabbitMQ documentation for definition references and examples.
      * 
      */
-    private Map<String,Object> definition;
+    private Map<String,String> definition;
     /**
      * @return A pattern to match an exchange or queue name.
      * 
@@ -48,7 +47,7 @@ public final class PolicyPolicy {
      * RabbitMQ documentation for definition references and examples.
      * 
      */
-    public Map<String,Object> definition() {
+    public Map<String,String> definition() {
         return this.definition;
     }
     /**
@@ -76,7 +75,7 @@ public final class PolicyPolicy {
     @CustomType.Builder
     public static final class Builder {
         private String applyTo;
-        private Map<String,Object> definition;
+        private Map<String,String> definition;
         private String pattern;
         private Integer priority;
         public Builder() {}
@@ -97,7 +96,7 @@ public final class PolicyPolicy {
             return this;
         }
         @CustomType.Setter
-        public Builder definition(Map<String,Object> definition) {
+        public Builder definition(Map<String,String> definition) {
             if (definition == null) {
               throw new MissingRequiredPropertyException("PolicyPolicy", "definition");
             }

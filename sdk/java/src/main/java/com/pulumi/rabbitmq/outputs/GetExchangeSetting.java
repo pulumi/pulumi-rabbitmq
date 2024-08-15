@@ -6,7 +6,6 @@ package com.pulumi.rabbitmq.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -15,13 +14,13 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetExchangeSetting {
-    private @Nullable Map<String,Object> arguments;
+    private @Nullable Map<String,String> arguments;
     private @Nullable Boolean autoDelete;
     private @Nullable Boolean durable;
     private String type;
 
     private GetExchangeSetting() {}
-    public Map<String,Object> arguments() {
+    public Map<String,String> arguments() {
         return this.arguments == null ? Map.of() : this.arguments;
     }
     public Optional<Boolean> autoDelete() {
@@ -43,7 +42,7 @@ public final class GetExchangeSetting {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable Map<String,Object> arguments;
+        private @Nullable Map<String,String> arguments;
         private @Nullable Boolean autoDelete;
         private @Nullable Boolean durable;
         private String type;
@@ -57,7 +56,7 @@ public final class GetExchangeSetting {
         }
 
         @CustomType.Setter
-        public Builder arguments(@Nullable Map<String,Object> arguments) {
+        public Builder arguments(@Nullable Map<String,String> arguments) {
 
             this.arguments = arguments;
             return this;

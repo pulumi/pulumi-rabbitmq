@@ -5,7 +5,6 @@ package com.pulumi.rabbitmq.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -20,7 +19,7 @@ public final class QueueSettings {
      * values, use `arguments_json`.
      * 
      */
-    private @Nullable Map<String,Object> arguments;
+    private @Nullable Map<String,String> arguments;
     /**
      * @return A nested JSON string which contains additional
      * settings for the queue. This is useful for when the arguments contain
@@ -48,7 +47,7 @@ public final class QueueSettings {
      * values, use `arguments_json`.
      * 
      */
-    public Map<String,Object> arguments() {
+    public Map<String,String> arguments() {
         return this.arguments == null ? Map.of() : this.arguments;
     }
     /**
@@ -86,7 +85,7 @@ public final class QueueSettings {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable Map<String,Object> arguments;
+        private @Nullable Map<String,String> arguments;
         private @Nullable String argumentsJson;
         private @Nullable Boolean autoDelete;
         private @Nullable Boolean durable;
@@ -100,7 +99,7 @@ public final class QueueSettings {
         }
 
         @CustomType.Setter
-        public Builder arguments(@Nullable Map<String,Object> arguments) {
+        public Builder arguments(@Nullable Map<String,String> arguments) {
 
             this.arguments = arguments;
             return this;

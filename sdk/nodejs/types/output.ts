@@ -9,7 +9,7 @@ export interface ExchangeSettings {
     /**
      * Additional key/value settings for the exchange.
      */
-    arguments?: {[key: string]: any};
+    arguments?: {[key: string]: string};
     /**
      * Whether the exchange will self-delete when all
      * queues have finished using it.
@@ -76,7 +76,7 @@ export interface FederationUpstreamDefinition {
 }
 
 export interface GetExchangeSetting {
-    arguments?: {[key: string]: any};
+    arguments?: {[key: string]: string};
     autoDelete?: boolean;
     durable?: boolean;
     type: string;
@@ -91,7 +91,7 @@ export interface OperatorPolicyPolicy {
      * Key/value pairs of the operator policy definition. See the
      * RabbitMQ documentation for definition references and examples.
      */
-    definition: {[key: string]: any};
+    definition: {[key: string]: string};
     /**
      * A pattern to match an exchange or queue name.
      */
@@ -126,7 +126,7 @@ export interface PolicyPolicy {
      * Key/value pairs of the policy definition. See the
      * RabbitMQ documentation for definition references and examples.
      */
-    definition: {[key: string]: any};
+    definition: {[key: string]: string};
     /**
      * A pattern to match an exchange or queue name.
      */
@@ -143,7 +143,7 @@ export interface QueueSettings {
      * All values will be sent to RabbitMQ as a string. If you require non-string
      * values, use `argumentsJson`.
      */
-    arguments?: {[key: string]: any};
+    arguments?: {[key: string]: string};
     /**
      * A nested JSON string which contains additional
      * settings for the queue. This is useful for when the arguments contain

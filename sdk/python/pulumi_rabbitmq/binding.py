@@ -18,7 +18,7 @@ class BindingArgs:
                  destination_type: pulumi.Input[str],
                  source: pulumi.Input[str],
                  vhost: pulumi.Input[str],
-                 arguments: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 arguments: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  arguments_json: Optional[pulumi.Input[str]] = None,
                  routing_key: Optional[pulumi.Input[str]] = None):
         """
@@ -27,7 +27,7 @@ class BindingArgs:
         :param pulumi.Input[str] destination_type: The type of destination (queue or exchange).
         :param pulumi.Input[str] source: The source exchange.
         :param pulumi.Input[str] vhost: The vhost to create the resource in.
-        :param pulumi.Input[Mapping[str, Any]] arguments: Additional key/value arguments for the binding.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] arguments: Additional key/value arguments for the binding.
         :param pulumi.Input[str] routing_key: A routing key for the binding.
         """
         pulumi.set(__self__, "destination", destination)
@@ -91,14 +91,14 @@ class BindingArgs:
 
     @property
     @pulumi.getter
-    def arguments(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def arguments(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Additional key/value arguments for the binding.
         """
         return pulumi.get(self, "arguments")
 
     @arguments.setter
-    def arguments(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def arguments(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "arguments", value)
 
     @property
@@ -126,7 +126,7 @@ class BindingArgs:
 @pulumi.input_type
 class _BindingState:
     def __init__(__self__, *,
-                 arguments: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 arguments: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  arguments_json: Optional[pulumi.Input[str]] = None,
                  destination: Optional[pulumi.Input[str]] = None,
                  destination_type: Optional[pulumi.Input[str]] = None,
@@ -136,7 +136,7 @@ class _BindingState:
                  vhost: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Binding resources.
-        :param pulumi.Input[Mapping[str, Any]] arguments: Additional key/value arguments for the binding.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] arguments: Additional key/value arguments for the binding.
         :param pulumi.Input[str] destination: The destination queue or exchange.
         :param pulumi.Input[str] destination_type: The type of destination (queue or exchange).
         :param pulumi.Input[str] properties_key: A unique key to refer to the binding.
@@ -163,14 +163,14 @@ class _BindingState:
 
     @property
     @pulumi.getter
-    def arguments(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def arguments(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Additional key/value arguments for the binding.
         """
         return pulumi.get(self, "arguments")
 
     @arguments.setter
-    def arguments(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def arguments(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "arguments", value)
 
     @property
@@ -260,7 +260,7 @@ class Binding(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 arguments: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 arguments: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  arguments_json: Optional[pulumi.Input[str]] = None,
                  destination: Optional[pulumi.Input[str]] = None,
                  destination_type: Optional[pulumi.Input[str]] = None,
@@ -321,7 +321,7 @@ class Binding(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] arguments: Additional key/value arguments for the binding.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] arguments: Additional key/value arguments for the binding.
         :param pulumi.Input[str] destination: The destination queue or exchange.
         :param pulumi.Input[str] destination_type: The type of destination (queue or exchange).
         :param pulumi.Input[str] routing_key: A routing key for the binding.
@@ -400,7 +400,7 @@ class Binding(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 arguments: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 arguments: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  arguments_json: Optional[pulumi.Input[str]] = None,
                  destination: Optional[pulumi.Input[str]] = None,
                  destination_type: Optional[pulumi.Input[str]] = None,
@@ -442,7 +442,7 @@ class Binding(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            arguments: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            arguments: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             arguments_json: Optional[pulumi.Input[str]] = None,
             destination: Optional[pulumi.Input[str]] = None,
             destination_type: Optional[pulumi.Input[str]] = None,
@@ -457,7 +457,7 @@ class Binding(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] arguments: Additional key/value arguments for the binding.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] arguments: Additional key/value arguments for the binding.
         :param pulumi.Input[str] destination: The destination queue or exchange.
         :param pulumi.Input[str] destination_type: The type of destination (queue or exchange).
         :param pulumi.Input[str] properties_key: A unique key to refer to the binding.
@@ -481,7 +481,7 @@ class Binding(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def arguments(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def arguments(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         Additional key/value arguments for the binding.
         """

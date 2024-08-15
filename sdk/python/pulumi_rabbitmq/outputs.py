@@ -42,12 +42,12 @@ class ExchangeSettings(dict):
 
     def __init__(__self__, *,
                  type: str,
-                 arguments: Optional[Mapping[str, Any]] = None,
+                 arguments: Optional[Mapping[str, str]] = None,
                  auto_delete: Optional[bool] = None,
                  durable: Optional[bool] = None):
         """
         :param str type: The type of exchange.
-        :param Mapping[str, Any] arguments: Additional key/value settings for the exchange.
+        :param Mapping[str, str] arguments: Additional key/value settings for the exchange.
         :param bool auto_delete: Whether the exchange will self-delete when all
                queues have finished using it.
         :param bool durable: Whether the exchange survives server restarts.
@@ -71,7 +71,7 @@ class ExchangeSettings(dict):
 
     @property
     @pulumi.getter
-    def arguments(self) -> Optional[Mapping[str, Any]]:
+    def arguments(self) -> Optional[Mapping[str, str]]:
         """
         Additional key/value settings for the exchange.
         """
@@ -282,12 +282,12 @@ class OperatorPolicyPolicy(dict):
 
     def __init__(__self__, *,
                  apply_to: str,
-                 definition: Mapping[str, Any],
+                 definition: Mapping[str, str],
                  pattern: str,
                  priority: int):
         """
         :param str apply_to: Can be "queues".
-        :param Mapping[str, Any] definition: Key/value pairs of the operator policy definition. See the
+        :param Mapping[str, str] definition: Key/value pairs of the operator policy definition. See the
                RabbitMQ documentation for definition references and examples.
         :param str pattern: A pattern to match an exchange or queue name.
         :param int priority: The policy with the greater priority is applied first.
@@ -307,7 +307,7 @@ class OperatorPolicyPolicy(dict):
 
     @property
     @pulumi.getter
-    def definition(self) -> Mapping[str, Any]:
+    def definition(self) -> Mapping[str, str]:
         """
         Key/value pairs of the operator policy definition. See the
         RabbitMQ documentation for definition references and examples.
@@ -392,12 +392,12 @@ class PolicyPolicy(dict):
 
     def __init__(__self__, *,
                  apply_to: str,
-                 definition: Mapping[str, Any],
+                 definition: Mapping[str, str],
                  pattern: str,
                  priority: int):
         """
         :param str apply_to: Can either be "exchanges", "queues", or "all".
-        :param Mapping[str, Any] definition: Key/value pairs of the policy definition. See the
+        :param Mapping[str, str] definition: Key/value pairs of the policy definition. See the
                RabbitMQ documentation for definition references and examples.
         :param str pattern: A pattern to match an exchange or queue name.
         :param int priority: The policy with the greater priority is applied first.
@@ -417,7 +417,7 @@ class PolicyPolicy(dict):
 
     @property
     @pulumi.getter
-    def definition(self) -> Mapping[str, Any]:
+    def definition(self) -> Mapping[str, str]:
         """
         Key/value pairs of the policy definition. See the
         RabbitMQ documentation for definition references and examples.
@@ -463,12 +463,12 @@ class QueueSettings(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 arguments: Optional[Mapping[str, Any]] = None,
+                 arguments: Optional[Mapping[str, str]] = None,
                  arguments_json: Optional[str] = None,
                  auto_delete: Optional[bool] = None,
                  durable: Optional[bool] = None):
         """
-        :param Mapping[str, Any] arguments: Additional key/value settings for the queue.
+        :param Mapping[str, str] arguments: Additional key/value settings for the queue.
                All values will be sent to RabbitMQ as a string. If you require non-string
                values, use `arguments_json`.
         :param str arguments_json: A nested JSON string which contains additional
@@ -490,7 +490,7 @@ class QueueSettings(dict):
 
     @property
     @pulumi.getter
-    def arguments(self) -> Optional[Mapping[str, Any]]:
+    def arguments(self) -> Optional[Mapping[str, str]]:
         """
         Additional key/value settings for the queue.
         All values will be sent to RabbitMQ as a string. If you require non-string
@@ -946,7 +946,7 @@ class TopicPermissionsPermission(dict):
 class GetExchangeSettingResult(dict):
     def __init__(__self__, *,
                  type: str,
-                 arguments: Optional[Mapping[str, Any]] = None,
+                 arguments: Optional[Mapping[str, str]] = None,
                  auto_delete: Optional[bool] = None,
                  durable: Optional[bool] = None):
         pulumi.set(__self__, "type", type)
@@ -964,7 +964,7 @@ class GetExchangeSettingResult(dict):
 
     @property
     @pulumi.getter
-    def arguments(self) -> Optional[Mapping[str, Any]]:
+    def arguments(self) -> Optional[Mapping[str, str]]:
         return pulumi.get(self, "arguments")
 
     @property

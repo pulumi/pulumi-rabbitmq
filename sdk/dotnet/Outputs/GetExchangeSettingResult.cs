@@ -13,14 +13,14 @@ namespace Pulumi.RabbitMQ.Outputs
     [OutputType]
     public sealed class GetExchangeSettingResult
     {
-        public readonly ImmutableDictionary<string, object>? Arguments;
+        public readonly ImmutableDictionary<string, string>? Arguments;
         public readonly bool? AutoDelete;
         public readonly bool? Durable;
         public readonly string Type;
 
         [OutputConstructor]
         private GetExchangeSettingResult(
-            ImmutableDictionary<string, object>? arguments,
+            ImmutableDictionary<string, string>? arguments,
 
             bool? autoDelete,
 

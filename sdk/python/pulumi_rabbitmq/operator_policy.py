@@ -162,8 +162,8 @@ class OperatorPolicy(pulumi.CustomResource):
                 "priority": 0,
                 "apply_to": "queues",
                 "definition": {
-                    "message_ttl": 3600000,
-                    "expires": 1800000,
+                    "message_ttl": "3600000",
+                    "expires": "1800000",
                 },
             })
         ```
@@ -217,8 +217,8 @@ class OperatorPolicy(pulumi.CustomResource):
                 "priority": 0,
                 "apply_to": "queues",
                 "definition": {
-                    "message_ttl": 3600000,
-                    "expires": 1800000,
+                    "message_ttl": "3600000",
+                    "expires": "1800000",
                 },
             })
         ```

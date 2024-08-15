@@ -15,7 +15,7 @@ var _ = internal.GetEnvOrDefault
 
 type ExchangeSettings struct {
 	// Additional key/value settings for the exchange.
-	Arguments map[string]interface{} `pulumi:"arguments"`
+	Arguments map[string]string `pulumi:"arguments"`
 	// Whether the exchange will self-delete when all
 	// queues have finished using it.
 	AutoDelete *bool `pulumi:"autoDelete"`
@@ -39,7 +39,7 @@ type ExchangeSettingsInput interface {
 
 type ExchangeSettingsArgs struct {
 	// Additional key/value settings for the exchange.
-	Arguments pulumi.MapInput `pulumi:"arguments"`
+	Arguments pulumi.StringMapInput `pulumi:"arguments"`
 	// Whether the exchange will self-delete when all
 	// queues have finished using it.
 	AutoDelete pulumi.BoolPtrInput `pulumi:"autoDelete"`
@@ -128,8 +128,8 @@ func (o ExchangeSettingsOutput) ToExchangeSettingsPtrOutputWithContext(ctx conte
 }
 
 // Additional key/value settings for the exchange.
-func (o ExchangeSettingsOutput) Arguments() pulumi.MapOutput {
-	return o.ApplyT(func(v ExchangeSettings) map[string]interface{} { return v.Arguments }).(pulumi.MapOutput)
+func (o ExchangeSettingsOutput) Arguments() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ExchangeSettings) map[string]string { return v.Arguments }).(pulumi.StringMapOutput)
 }
 
 // Whether the exchange will self-delete when all
@@ -174,13 +174,13 @@ func (o ExchangeSettingsPtrOutput) Elem() ExchangeSettingsOutput {
 }
 
 // Additional key/value settings for the exchange.
-func (o ExchangeSettingsPtrOutput) Arguments() pulumi.MapOutput {
-	return o.ApplyT(func(v *ExchangeSettings) map[string]interface{} {
+func (o ExchangeSettingsPtrOutput) Arguments() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ExchangeSettings) map[string]string {
 		if v == nil {
 			return nil
 		}
 		return v.Arguments
-	}).(pulumi.MapOutput)
+	}).(pulumi.StringMapOutput)
 }
 
 // Whether the exchange will self-delete when all
@@ -552,7 +552,7 @@ type OperatorPolicyPolicy struct {
 	ApplyTo string `pulumi:"applyTo"`
 	// Key/value pairs of the operator policy definition. See the
 	// RabbitMQ documentation for definition references and examples.
-	Definition map[string]interface{} `pulumi:"definition"`
+	Definition map[string]string `pulumi:"definition"`
 	// A pattern to match an exchange or queue name.
 	Pattern string `pulumi:"pattern"`
 	// The policy with the greater priority is applied first.
@@ -575,7 +575,7 @@ type OperatorPolicyPolicyArgs struct {
 	ApplyTo pulumi.StringInput `pulumi:"applyTo"`
 	// Key/value pairs of the operator policy definition. See the
 	// RabbitMQ documentation for definition references and examples.
-	Definition pulumi.MapInput `pulumi:"definition"`
+	Definition pulumi.StringMapInput `pulumi:"definition"`
 	// A pattern to match an exchange or queue name.
 	Pattern pulumi.StringInput `pulumi:"pattern"`
 	// The policy with the greater priority is applied first.
@@ -666,8 +666,8 @@ func (o OperatorPolicyPolicyOutput) ApplyTo() pulumi.StringOutput {
 
 // Key/value pairs of the operator policy definition. See the
 // RabbitMQ documentation for definition references and examples.
-func (o OperatorPolicyPolicyOutput) Definition() pulumi.MapOutput {
-	return o.ApplyT(func(v OperatorPolicyPolicy) map[string]interface{} { return v.Definition }).(pulumi.MapOutput)
+func (o OperatorPolicyPolicyOutput) Definition() pulumi.StringMapOutput {
+	return o.ApplyT(func(v OperatorPolicyPolicy) map[string]string { return v.Definition }).(pulumi.StringMapOutput)
 }
 
 // A pattern to match an exchange or queue name.
@@ -716,13 +716,13 @@ func (o OperatorPolicyPolicyPtrOutput) ApplyTo() pulumi.StringPtrOutput {
 
 // Key/value pairs of the operator policy definition. See the
 // RabbitMQ documentation for definition references and examples.
-func (o OperatorPolicyPolicyPtrOutput) Definition() pulumi.MapOutput {
-	return o.ApplyT(func(v *OperatorPolicyPolicy) map[string]interface{} {
+func (o OperatorPolicyPolicyPtrOutput) Definition() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *OperatorPolicyPolicy) map[string]string {
 		if v == nil {
 			return nil
 		}
 		return v.Definition
-	}).(pulumi.MapOutput)
+	}).(pulumi.StringMapOutput)
 }
 
 // A pattern to match an exchange or queue name.
@@ -925,7 +925,7 @@ type PolicyPolicy struct {
 	ApplyTo string `pulumi:"applyTo"`
 	// Key/value pairs of the policy definition. See the
 	// RabbitMQ documentation for definition references and examples.
-	Definition map[string]interface{} `pulumi:"definition"`
+	Definition map[string]string `pulumi:"definition"`
 	// A pattern to match an exchange or queue name.
 	Pattern string `pulumi:"pattern"`
 	// The policy with the greater priority is applied first.
@@ -948,7 +948,7 @@ type PolicyPolicyArgs struct {
 	ApplyTo pulumi.StringInput `pulumi:"applyTo"`
 	// Key/value pairs of the policy definition. See the
 	// RabbitMQ documentation for definition references and examples.
-	Definition pulumi.MapInput `pulumi:"definition"`
+	Definition pulumi.StringMapInput `pulumi:"definition"`
 	// A pattern to match an exchange or queue name.
 	Pattern pulumi.StringInput `pulumi:"pattern"`
 	// The policy with the greater priority is applied first.
@@ -1039,8 +1039,8 @@ func (o PolicyPolicyOutput) ApplyTo() pulumi.StringOutput {
 
 // Key/value pairs of the policy definition. See the
 // RabbitMQ documentation for definition references and examples.
-func (o PolicyPolicyOutput) Definition() pulumi.MapOutput {
-	return o.ApplyT(func(v PolicyPolicy) map[string]interface{} { return v.Definition }).(pulumi.MapOutput)
+func (o PolicyPolicyOutput) Definition() pulumi.StringMapOutput {
+	return o.ApplyT(func(v PolicyPolicy) map[string]string { return v.Definition }).(pulumi.StringMapOutput)
 }
 
 // A pattern to match an exchange or queue name.
@@ -1089,13 +1089,13 @@ func (o PolicyPolicyPtrOutput) ApplyTo() pulumi.StringPtrOutput {
 
 // Key/value pairs of the policy definition. See the
 // RabbitMQ documentation for definition references and examples.
-func (o PolicyPolicyPtrOutput) Definition() pulumi.MapOutput {
-	return o.ApplyT(func(v *PolicyPolicy) map[string]interface{} {
+func (o PolicyPolicyPtrOutput) Definition() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *PolicyPolicy) map[string]string {
 		if v == nil {
 			return nil
 		}
 		return v.Definition
-	}).(pulumi.MapOutput)
+	}).(pulumi.StringMapOutput)
 }
 
 // A pattern to match an exchange or queue name.
@@ -1122,7 +1122,7 @@ type QueueSettings struct {
 	// Additional key/value settings for the queue.
 	// All values will be sent to RabbitMQ as a string. If you require non-string
 	// values, use `argumentsJson`.
-	Arguments map[string]interface{} `pulumi:"arguments"`
+	Arguments map[string]string `pulumi:"arguments"`
 	// A nested JSON string which contains additional
 	// settings for the queue. This is useful for when the arguments contain
 	// non-string values.
@@ -1150,7 +1150,7 @@ type QueueSettingsArgs struct {
 	// Additional key/value settings for the queue.
 	// All values will be sent to RabbitMQ as a string. If you require non-string
 	// values, use `argumentsJson`.
-	Arguments pulumi.MapInput `pulumi:"arguments"`
+	Arguments pulumi.StringMapInput `pulumi:"arguments"`
 	// A nested JSON string which contains additional
 	// settings for the queue. This is useful for when the arguments contain
 	// non-string values.
@@ -1243,8 +1243,8 @@ func (o QueueSettingsOutput) ToQueueSettingsPtrOutputWithContext(ctx context.Con
 // Additional key/value settings for the queue.
 // All values will be sent to RabbitMQ as a string. If you require non-string
 // values, use `argumentsJson`.
-func (o QueueSettingsOutput) Arguments() pulumi.MapOutput {
-	return o.ApplyT(func(v QueueSettings) map[string]interface{} { return v.Arguments }).(pulumi.MapOutput)
+func (o QueueSettingsOutput) Arguments() pulumi.StringMapOutput {
+	return o.ApplyT(func(v QueueSettings) map[string]string { return v.Arguments }).(pulumi.StringMapOutput)
 }
 
 // A nested JSON string which contains additional
@@ -1293,13 +1293,13 @@ func (o QueueSettingsPtrOutput) Elem() QueueSettingsOutput {
 // Additional key/value settings for the queue.
 // All values will be sent to RabbitMQ as a string. If you require non-string
 // values, use `argumentsJson`.
-func (o QueueSettingsPtrOutput) Arguments() pulumi.MapOutput {
-	return o.ApplyT(func(v *QueueSettings) map[string]interface{} {
+func (o QueueSettingsPtrOutput) Arguments() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *QueueSettings) map[string]string {
 		if v == nil {
 			return nil
 		}
 		return v.Arguments
-	}).(pulumi.MapOutput)
+	}).(pulumi.StringMapOutput)
 }
 
 // A nested JSON string which contains additional
@@ -2086,10 +2086,10 @@ func (o TopicPermissionsPermissionArrayOutput) Index(i pulumi.IntInput) TopicPer
 }
 
 type GetExchangeSetting struct {
-	Arguments  map[string]interface{} `pulumi:"arguments"`
-	AutoDelete *bool                  `pulumi:"autoDelete"`
-	Durable    *bool                  `pulumi:"durable"`
-	Type       string                 `pulumi:"type"`
+	Arguments  map[string]string `pulumi:"arguments"`
+	AutoDelete *bool             `pulumi:"autoDelete"`
+	Durable    *bool             `pulumi:"durable"`
+	Type       string            `pulumi:"type"`
 }
 
 // GetExchangeSettingInput is an input type that accepts GetExchangeSettingArgs and GetExchangeSettingOutput values.
@@ -2104,10 +2104,10 @@ type GetExchangeSettingInput interface {
 }
 
 type GetExchangeSettingArgs struct {
-	Arguments  pulumi.MapInput     `pulumi:"arguments"`
-	AutoDelete pulumi.BoolPtrInput `pulumi:"autoDelete"`
-	Durable    pulumi.BoolPtrInput `pulumi:"durable"`
-	Type       pulumi.StringInput  `pulumi:"type"`
+	Arguments  pulumi.StringMapInput `pulumi:"arguments"`
+	AutoDelete pulumi.BoolPtrInput   `pulumi:"autoDelete"`
+	Durable    pulumi.BoolPtrInput   `pulumi:"durable"`
+	Type       pulumi.StringInput    `pulumi:"type"`
 }
 
 func (GetExchangeSettingArgs) ElementType() reflect.Type {
@@ -2161,8 +2161,8 @@ func (o GetExchangeSettingOutput) ToGetExchangeSettingOutputWithContext(ctx cont
 	return o
 }
 
-func (o GetExchangeSettingOutput) Arguments() pulumi.MapOutput {
-	return o.ApplyT(func(v GetExchangeSetting) map[string]interface{} { return v.Arguments }).(pulumi.MapOutput)
+func (o GetExchangeSettingOutput) Arguments() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetExchangeSetting) map[string]string { return v.Arguments }).(pulumi.StringMapOutput)
 }
 
 func (o GetExchangeSettingOutput) AutoDelete() pulumi.BoolPtrOutput {

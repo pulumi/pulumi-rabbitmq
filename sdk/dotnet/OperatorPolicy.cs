@@ -50,8 +50,8 @@ namespace Pulumi.RabbitMQ
     ///             ApplyTo = "queues",
     ///             Definition = 
     ///             {
-    ///                 { "message-ttl", 3600000 },
-    ///                 { "expires", 1800000 },
+    ///                 { "message-ttl", "3600000" },
+    ///                 { "expires", "1800000" },
     ///             },
     ///         },
     ///     });

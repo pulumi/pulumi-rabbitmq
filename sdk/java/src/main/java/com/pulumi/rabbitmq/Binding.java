@@ -10,7 +10,6 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.rabbitmq.BindingArgs;
 import com.pulumi.rabbitmq.Utilities;
 import com.pulumi.rabbitmq.inputs.BindingState;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Optional;
@@ -119,14 +118,14 @@ public class Binding extends com.pulumi.resources.CustomResource {
      * Additional key/value arguments for the binding.
      * 
      */
-    @Export(name="arguments", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> arguments;
+    @Export(name="arguments", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> arguments;
 
     /**
      * @return Additional key/value arguments for the binding.
      * 
      */
-    public Output<Optional<Map<String,Object>>> arguments() {
+    public Output<Optional<Map<String,String>>> arguments() {
         return Codegen.optional(this.arguments);
     }
     @Export(name="argumentsJson", refs={String.class}, tree="[0]")

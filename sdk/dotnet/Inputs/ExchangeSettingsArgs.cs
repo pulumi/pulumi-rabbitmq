@@ -13,14 +13,14 @@ namespace Pulumi.RabbitMQ.Inputs
     public sealed class ExchangeSettingsArgs : global::Pulumi.ResourceArgs
     {
         [Input("arguments")]
-        private InputMap<object>? _arguments;
+        private InputMap<string>? _arguments;
 
         /// <summary>
         /// Additional key/value settings for the exchange.
         /// </summary>
-        public InputMap<object> Arguments
+        public InputMap<string> Arguments
         {
-            get => _arguments ?? (_arguments = new InputMap<object>());
+            get => _arguments ?? (_arguments = new InputMap<string>());
             set => _arguments = value;
         }
 
