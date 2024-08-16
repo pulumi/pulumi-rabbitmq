@@ -91,7 +91,7 @@ namespace Pulumi.RabbitMQ
         /// Additional key/value arguments for the binding.
         /// </summary>
         [Output("arguments")]
-        public Output<ImmutableDictionary<string, object>?> Arguments { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Arguments { get; private set; } = null!;
 
         [Output("argumentsJson")]
         public Output<string?> ArgumentsJson { get; private set; } = null!;
@@ -179,14 +179,14 @@ namespace Pulumi.RabbitMQ
     public sealed class BindingArgs : global::Pulumi.ResourceArgs
     {
         [Input("arguments")]
-        private InputMap<object>? _arguments;
+        private InputMap<string>? _arguments;
 
         /// <summary>
         /// Additional key/value arguments for the binding.
         /// </summary>
-        public InputMap<object> Arguments
+        public InputMap<string> Arguments
         {
-            get => _arguments ?? (_arguments = new InputMap<object>());
+            get => _arguments ?? (_arguments = new InputMap<string>());
             set => _arguments = value;
         }
 
@@ -232,14 +232,14 @@ namespace Pulumi.RabbitMQ
     public sealed class BindingState : global::Pulumi.ResourceArgs
     {
         [Input("arguments")]
-        private InputMap<object>? _arguments;
+        private InputMap<string>? _arguments;
 
         /// <summary>
         /// Additional key/value arguments for the binding.
         /// </summary>
-        public InputMap<object> Arguments
+        public InputMap<string> Arguments
         {
-            get => _arguments ?? (_arguments = new InputMap<object>());
+            get => _arguments ?? (_arguments = new InputMap<string>());
             set => _arguments = value;
         }
 

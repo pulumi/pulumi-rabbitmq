@@ -24,12 +24,12 @@ __all__ = [
 class ExchangeSettingsArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[str],
-                 arguments: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 arguments: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  auto_delete: Optional[pulumi.Input[bool]] = None,
                  durable: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[str] type: The type of exchange.
-        :param pulumi.Input[Mapping[str, Any]] arguments: Additional key/value settings for the exchange.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] arguments: Additional key/value settings for the exchange.
         :param pulumi.Input[bool] auto_delete: Whether the exchange will self-delete when all
                queues have finished using it.
         :param pulumi.Input[bool] durable: Whether the exchange survives server restarts.
@@ -57,14 +57,14 @@ class ExchangeSettingsArgs:
 
     @property
     @pulumi.getter
-    def arguments(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def arguments(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Additional key/value settings for the exchange.
         """
         return pulumi.get(self, "arguments")
 
     @arguments.setter
-    def arguments(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def arguments(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "arguments", value)
 
     @property
@@ -276,12 +276,12 @@ class FederationUpstreamDefinitionArgs:
 class OperatorPolicyPolicyArgs:
     def __init__(__self__, *,
                  apply_to: pulumi.Input[str],
-                 definition: pulumi.Input[Mapping[str, Any]],
+                 definition: pulumi.Input[Mapping[str, pulumi.Input[str]]],
                  pattern: pulumi.Input[str],
                  priority: pulumi.Input[int]):
         """
         :param pulumi.Input[str] apply_to: Can be "queues".
-        :param pulumi.Input[Mapping[str, Any]] definition: Key/value pairs of the operator policy definition. See the
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] definition: Key/value pairs of the operator policy definition. See the
                RabbitMQ documentation for definition references and examples.
         :param pulumi.Input[str] pattern: A pattern to match an exchange or queue name.
         :param pulumi.Input[int] priority: The policy with the greater priority is applied first.
@@ -305,7 +305,7 @@ class OperatorPolicyPolicyArgs:
 
     @property
     @pulumi.getter
-    def definition(self) -> pulumi.Input[Mapping[str, Any]]:
+    def definition(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
         """
         Key/value pairs of the operator policy definition. See the
         RabbitMQ documentation for definition references and examples.
@@ -313,7 +313,7 @@ class OperatorPolicyPolicyArgs:
         return pulumi.get(self, "definition")
 
     @definition.setter
-    def definition(self, value: pulumi.Input[Mapping[str, Any]]):
+    def definition(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
         pulumi.set(self, "definition", value)
 
     @property
@@ -397,12 +397,12 @@ class PermissionsPermissionsArgs:
 class PolicyPolicyArgs:
     def __init__(__self__, *,
                  apply_to: pulumi.Input[str],
-                 definition: pulumi.Input[Mapping[str, Any]],
+                 definition: pulumi.Input[Mapping[str, pulumi.Input[str]]],
                  pattern: pulumi.Input[str],
                  priority: pulumi.Input[int]):
         """
         :param pulumi.Input[str] apply_to: Can either be "exchanges", "queues", or "all".
-        :param pulumi.Input[Mapping[str, Any]] definition: Key/value pairs of the policy definition. See the
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] definition: Key/value pairs of the policy definition. See the
                RabbitMQ documentation for definition references and examples.
         :param pulumi.Input[str] pattern: A pattern to match an exchange or queue name.
         :param pulumi.Input[int] priority: The policy with the greater priority is applied first.
@@ -426,7 +426,7 @@ class PolicyPolicyArgs:
 
     @property
     @pulumi.getter
-    def definition(self) -> pulumi.Input[Mapping[str, Any]]:
+    def definition(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
         """
         Key/value pairs of the policy definition. See the
         RabbitMQ documentation for definition references and examples.
@@ -434,7 +434,7 @@ class PolicyPolicyArgs:
         return pulumi.get(self, "definition")
 
     @definition.setter
-    def definition(self, value: pulumi.Input[Mapping[str, Any]]):
+    def definition(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
         pulumi.set(self, "definition", value)
 
     @property
@@ -465,12 +465,12 @@ class PolicyPolicyArgs:
 @pulumi.input_type
 class QueueSettingsArgs:
     def __init__(__self__, *,
-                 arguments: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 arguments: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  arguments_json: Optional[pulumi.Input[str]] = None,
                  auto_delete: Optional[pulumi.Input[bool]] = None,
                  durable: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[Mapping[str, Any]] arguments: Additional key/value settings for the queue.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] arguments: Additional key/value settings for the queue.
                All values will be sent to RabbitMQ as a string. If you require non-string
                values, use `arguments_json`.
         :param pulumi.Input[str] arguments_json: A nested JSON string which contains additional
@@ -492,7 +492,7 @@ class QueueSettingsArgs:
 
     @property
     @pulumi.getter
-    def arguments(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def arguments(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Additional key/value settings for the queue.
         All values will be sent to RabbitMQ as a string. If you require non-string
@@ -501,7 +501,7 @@ class QueueSettingsArgs:
         return pulumi.get(self, "arguments")
 
     @arguments.setter
-    def arguments(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def arguments(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "arguments", value)
 
     @property

@@ -7,7 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -24,13 +23,13 @@ public final class ExchangeSettingsArgs extends com.pulumi.resources.ResourceArg
      * 
      */
     @Import(name="arguments")
-    private @Nullable Output<Map<String,Object>> arguments;
+    private @Nullable Output<Map<String,String>> arguments;
 
     /**
      * @return Additional key/value settings for the exchange.
      * 
      */
-    public Optional<Output<Map<String,Object>>> arguments() {
+    public Optional<Output<Map<String,String>>> arguments() {
         return Optional.ofNullable(this.arguments);
     }
 
@@ -116,7 +115,7 @@ public final class ExchangeSettingsArgs extends com.pulumi.resources.ResourceArg
          * @return builder
          * 
          */
-        public Builder arguments(@Nullable Output<Map<String,Object>> arguments) {
+        public Builder arguments(@Nullable Output<Map<String,String>> arguments) {
             $.arguments = arguments;
             return this;
         }
@@ -127,7 +126,7 @@ public final class ExchangeSettingsArgs extends com.pulumi.resources.ResourceArg
          * @return builder
          * 
          */
-        public Builder arguments(Map<String,Object> arguments) {
+        public Builder arguments(Map<String,String> arguments) {
             return arguments(Output.of(arguments));
         }
 

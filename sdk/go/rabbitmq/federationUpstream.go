@@ -85,7 +85,7 @@ import (
 //					}).(pulumi.StringOutput),
 //					Priority: pulumi.Int(1),
 //					ApplyTo:  pulumi.String("exchanges"),
-//					Definition: pulumi.Map{
+//					Definition: pulumi.StringMap{
 //						"federation-upstream": fooFederationUpstream.Name,
 //					},
 //				},
