@@ -99,7 +99,7 @@ type Binding struct {
 	pulumi.CustomResourceState
 
 	// Additional key/value arguments for the binding.
-	Arguments     pulumi.MapOutput       `pulumi:"arguments"`
+	Arguments     pulumi.StringMapOutput `pulumi:"arguments"`
 	ArgumentsJson pulumi.StringPtrOutput `pulumi:"argumentsJson"`
 	// The destination queue or exchange.
 	Destination pulumi.StringOutput `pulumi:"destination"`
@@ -158,8 +158,8 @@ func GetBinding(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Binding resources.
 type bindingState struct {
 	// Additional key/value arguments for the binding.
-	Arguments     map[string]interface{} `pulumi:"arguments"`
-	ArgumentsJson *string                `pulumi:"argumentsJson"`
+	Arguments     map[string]string `pulumi:"arguments"`
+	ArgumentsJson *string           `pulumi:"argumentsJson"`
 	// The destination queue or exchange.
 	Destination *string `pulumi:"destination"`
 	// The type of destination (queue or exchange).
@@ -176,7 +176,7 @@ type bindingState struct {
 
 type BindingState struct {
 	// Additional key/value arguments for the binding.
-	Arguments     pulumi.MapInput
+	Arguments     pulumi.StringMapInput
 	ArgumentsJson pulumi.StringPtrInput
 	// The destination queue or exchange.
 	Destination pulumi.StringPtrInput
@@ -198,8 +198,8 @@ func (BindingState) ElementType() reflect.Type {
 
 type bindingArgs struct {
 	// Additional key/value arguments for the binding.
-	Arguments     map[string]interface{} `pulumi:"arguments"`
-	ArgumentsJson *string                `pulumi:"argumentsJson"`
+	Arguments     map[string]string `pulumi:"arguments"`
+	ArgumentsJson *string           `pulumi:"argumentsJson"`
 	// The destination queue or exchange.
 	Destination string `pulumi:"destination"`
 	// The type of destination (queue or exchange).
@@ -215,7 +215,7 @@ type bindingArgs struct {
 // The set of arguments for constructing a Binding resource.
 type BindingArgs struct {
 	// Additional key/value arguments for the binding.
-	Arguments     pulumi.MapInput
+	Arguments     pulumi.StringMapInput
 	ArgumentsJson pulumi.StringPtrInput
 	// The destination queue or exchange.
 	Destination pulumi.StringInput
@@ -317,8 +317,8 @@ func (o BindingOutput) ToBindingOutputWithContext(ctx context.Context) BindingOu
 }
 
 // Additional key/value arguments for the binding.
-func (o BindingOutput) Arguments() pulumi.MapOutput {
-	return o.ApplyT(func(v *Binding) pulumi.MapOutput { return v.Arguments }).(pulumi.MapOutput)
+func (o BindingOutput) Arguments() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Binding) pulumi.StringMapOutput { return v.Arguments }).(pulumi.StringMapOutput)
 }
 
 func (o BindingOutput) ArgumentsJson() pulumi.StringPtrOutput {

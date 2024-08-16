@@ -33,8 +33,8 @@ import * as utilities from "./utilities";
  *         priority: 0,
  *         applyTo: "queues",
  *         definition: {
- *             "message-ttl": 3600000,
- *             expires: 1800000,
+ *             "message-ttl": "3600000",
+ *             expires: "1800000",
  *         },
  *     },
  * });

@@ -90,7 +90,7 @@ export class Binding extends pulumi.CustomResource {
     /**
      * Additional key/value arguments for the binding.
      */
-    public readonly arguments!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly arguments!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly argumentsJson!: pulumi.Output<string | undefined>;
     /**
      * The destination queue or exchange.
@@ -173,7 +173,7 @@ export interface BindingState {
     /**
      * Additional key/value arguments for the binding.
      */
-    arguments?: pulumi.Input<{[key: string]: any}>;
+    arguments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     argumentsJson?: pulumi.Input<string>;
     /**
      * The destination queue or exchange.
@@ -208,7 +208,7 @@ export interface BindingArgs {
     /**
      * Additional key/value arguments for the binding.
      */
-    arguments?: pulumi.Input<{[key: string]: any}>;
+    arguments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     argumentsJson?: pulumi.Input<string>;
     /**
      * The destination queue or exchange.

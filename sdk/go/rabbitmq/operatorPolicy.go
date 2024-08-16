@@ -53,9 +53,9 @@ import (
 //					Pattern:  pulumi.String(".*"),
 //					Priority: pulumi.Int(0),
 //					ApplyTo:  pulumi.String("queues"),
-//					Definition: pulumi.Map{
-//						"message-ttl": pulumi.Any(3600000),
-//						"expires":     pulumi.Any(1800000),
+//					Definition: pulumi.StringMap{
+//						"message-ttl": pulumi.String("3600000"),
+//						"expires":     pulumi.String("1800000"),
 //					},
 //				},
 //			})

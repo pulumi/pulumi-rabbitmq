@@ -21,7 +21,7 @@ namespace Pulumi.RabbitMQ.Outputs
         /// Key/value pairs of the policy definition. See the
         /// RabbitMQ documentation for definition references and examples.
         /// </summary>
-        public readonly ImmutableDictionary<string, object> Definition;
+        public readonly ImmutableDictionary<string, string> Definition;
         /// <summary>
         /// A pattern to match an exchange or queue name.
         /// </summary>
@@ -35,7 +35,7 @@ namespace Pulumi.RabbitMQ.Outputs
         private PolicyPolicy(
             string applyTo,
 
-            ImmutableDictionary<string, object> definition,
+            ImmutableDictionary<string, string> definition,
 
             string pattern,
 

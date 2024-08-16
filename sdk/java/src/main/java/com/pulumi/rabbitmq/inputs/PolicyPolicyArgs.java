@@ -7,7 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -38,14 +37,14 @@ public final class PolicyPolicyArgs extends com.pulumi.resources.ResourceArgs {
      * 
      */
     @Import(name="definition", required=true)
-    private Output<Map<String,Object>> definition;
+    private Output<Map<String,String>> definition;
 
     /**
      * @return Key/value pairs of the policy definition. See the
      * RabbitMQ documentation for definition references and examples.
      * 
      */
-    public Output<Map<String,Object>> definition() {
+    public Output<Map<String,String>> definition() {
         return this.definition;
     }
 
@@ -134,7 +133,7 @@ public final class PolicyPolicyArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder definition(Output<Map<String,Object>> definition) {
+        public Builder definition(Output<Map<String,String>> definition) {
             $.definition = definition;
             return this;
         }
@@ -146,7 +145,7 @@ public final class PolicyPolicyArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder definition(Map<String,Object> definition) {
+        public Builder definition(Map<String,String> definition) {
             return definition(Output.of(definition));
         }
 

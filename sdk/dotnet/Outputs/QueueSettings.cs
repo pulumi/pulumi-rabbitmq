@@ -18,7 +18,7 @@ namespace Pulumi.RabbitMQ.Outputs
         /// All values will be sent to RabbitMQ as a string. If you require non-string
         /// values, use `arguments_json`.
         /// </summary>
-        public readonly ImmutableDictionary<string, object>? Arguments;
+        public readonly ImmutableDictionary<string, string>? Arguments;
         /// <summary>
         /// A nested JSON string which contains additional
         /// settings for the queue. This is useful for when the arguments contain
@@ -38,7 +38,7 @@ namespace Pulumi.RabbitMQ.Outputs
 
         [OutputConstructor]
         private QueueSettings(
-            ImmutableDictionary<string, object>? arguments,
+            ImmutableDictionary<string, string>? arguments,
 
             string? argumentsJson,
 

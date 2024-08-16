@@ -16,7 +16,7 @@ namespace Pulumi.RabbitMQ.Outputs
         /// <summary>
         /// Additional key/value settings for the exchange.
         /// </summary>
-        public readonly ImmutableDictionary<string, object>? Arguments;
+        public readonly ImmutableDictionary<string, string>? Arguments;
         /// <summary>
         /// Whether the exchange will self-delete when all
         /// queues have finished using it.
@@ -34,7 +34,7 @@ namespace Pulumi.RabbitMQ.Outputs
 
         [OutputConstructor]
         private ExchangeSettings(
-            ImmutableDictionary<string, object>? arguments,
+            ImmutableDictionary<string, string>? arguments,
 
             bool? autoDelete,
 
