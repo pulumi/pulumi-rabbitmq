@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * The ``rabbitmq.Exchange`` resource creates and manages an exchange.
+ * The `rabbitmq.Exchange` resource creates and manages an exchange.
  * 
  * ## Example Usage
  * 

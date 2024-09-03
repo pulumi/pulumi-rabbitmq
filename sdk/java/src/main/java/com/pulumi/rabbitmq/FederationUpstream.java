@@ -15,7 +15,7 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * The ``rabbitmq.FederationUpstream`` resource creates and manages a federation upstream parameter.
+ * The `rabbitmq.FederationUpstream` resource creates and manages a federation upstream parameter.
  * 
  * ## Example Usage
  * 

@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The “OperatorPolicy“ resource creates and manages operator policies for queues.
+// The `OperatorPolicy` resource creates and manages operator policies for queues.
 //
 // ## Example Usage
 //

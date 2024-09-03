@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.RabbitMQ
 {
     /// <summary>
-    /// The ``rabbitmq.Queue`` resource creates and manages a queue.
+    /// The `rabbitmq.Queue` resource creates and manages a queue.
     /// 
     /// ## Example Usage
     /// 

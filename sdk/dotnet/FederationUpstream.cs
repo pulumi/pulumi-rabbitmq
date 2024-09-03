@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.RabbitMQ
 {
     /// <summary>
-    /// The ``rabbitmq.FederationUpstream`` resource creates and manages a federation upstream parameter.
+    /// The `rabbitmq.FederationUpstream` resource creates and manages a federation upstream parameter.
     /// 
     /// ## Example Usage
     /// 

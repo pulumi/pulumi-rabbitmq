@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.RabbitMQ
 {
     /// <summary>
-    /// The ``rabbitmq.Binding`` resource creates and manages a binding relationship
+    /// The `rabbitmq.Binding` resource creates and manages a binding relationship
     /// between a queue an exchange.
     /// 
     /// ## Example Usage
@@ -78,7 +78,7 @@ namespace Pulumi.RabbitMQ
     /// ## Import
     /// 
     /// Bindings can be imported using the `id` which is composed of
-    ///   `vhost/source/destination/destination_type/properties_key`. E.g.
+    /// `vhost/source/destination/destination_type/properties_key`. E.g.
     /// 
     /// ```sh
     /// $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23

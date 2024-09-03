@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The “FederationUpstream“ resource creates and manages a federation upstream parameter.
+// The `FederationUpstream` resource creates and manages a federation upstream parameter.
 //
 // ## Example Usage
 //

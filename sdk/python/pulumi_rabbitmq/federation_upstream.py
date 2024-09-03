@@ -149,7 +149,7 @@ class FederationUpstream(pulumi.CustomResource):
                  vhost: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The ``FederationUpstream`` resource creates and manages a federation upstream parameter.
+        The `FederationUpstream` resource creates and manages a federation upstream parameter.
 
         ## Example Usage
 
@@ -220,7 +220,7 @@ class FederationUpstream(pulumi.CustomResource):
                  args: FederationUpstreamArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The ``FederationUpstream`` resource creates and manages a federation upstream parameter.
+        The `FederationUpstream` resource creates and manages a federation upstream parameter.
 
         ## Example Usage
 

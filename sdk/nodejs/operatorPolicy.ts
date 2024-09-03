@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The ``rabbitmq.OperatorPolicy`` resource creates and manages operator policies for queues.
+ * The `rabbitmq.OperatorPolicy` resource creates and manages operator policies for queues.
  *
  * ## Example Usage
  *

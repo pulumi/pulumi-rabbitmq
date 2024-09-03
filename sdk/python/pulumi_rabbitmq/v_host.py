@@ -67,7 +67,7 @@ class VHost(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The ``VHost`` resource creates and manages a vhost.
+        The `VHost` resource creates and manages a vhost.
 
         ## Example Usage
 
@@ -97,7 +97,7 @@ class VHost(pulumi.CustomResource):
                  args: Optional[VHostArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The ``VHost`` resource creates and manages a vhost.
+        The `VHost` resource creates and manages a vhost.
 
         ## Example Usage
 

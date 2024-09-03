@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The ``rabbitmq.VHost`` resource creates and manages a vhost.
+ * The `rabbitmq.VHost` resource creates and manages a vhost.
  *
  * ## Example Usage
  *

@@ -15,7 +15,7 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * The ``rabbitmq.Shovel`` resource creates and manages a dynamic shovel.
+ * The `rabbitmq.Shovel` resource creates and manages a dynamic shovel.
  * 
  * ## Example Usage
  * 

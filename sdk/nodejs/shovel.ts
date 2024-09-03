@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The ``rabbitmq.Shovel`` resource creates and manages a dynamic shovel.
+ * The `rabbitmq.Shovel` resource creates and manages a dynamic shovel.
  *
  * ## Example Usage
  *

@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The “TopicPermissions“ resource creates and manages a user's set of
+// The `TopicPermissions` resource creates and manages a user's set of
 // topic permissions.
 //
 // ## Example Usage

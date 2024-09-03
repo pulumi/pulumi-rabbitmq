@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The ``rabbitmq.FederationUpstream`` resource creates and manages a federation upstream parameter.
+ * The `rabbitmq.FederationUpstream` resource creates and manages a federation upstream parameter.
  *
  * ## Example Usage
  *

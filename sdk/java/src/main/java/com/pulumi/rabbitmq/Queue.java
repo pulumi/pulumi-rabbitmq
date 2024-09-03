@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * The ``rabbitmq.Queue`` resource creates and manages a queue.
+ * The `rabbitmq.Queue` resource creates and manages a queue.
  * 
  * ## Example Usage
  * 

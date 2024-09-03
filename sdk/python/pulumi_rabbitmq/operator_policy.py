@@ -137,7 +137,7 @@ class OperatorPolicy(pulumi.CustomResource):
                  vhost: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The ``OperatorPolicy`` resource creates and manages operator policies for queues.
+        The `OperatorPolicy` resource creates and manages operator policies for queues.
 
         ## Example Usage
 
@@ -192,7 +192,7 @@ class OperatorPolicy(pulumi.CustomResource):
                  args: OperatorPolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The ``OperatorPolicy`` resource creates and manages operator policies for queues.
+        The `OperatorPolicy` resource creates and manages operator policies for queues.
 
         ## Example Usage
 

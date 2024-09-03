@@ -138,7 +138,7 @@ class Queue(pulumi.CustomResource):
                  vhost: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The ``Queue`` resource creates and manages a queue.
+        The `Queue` resource creates and manages a queue.
 
         ## Example Usage
 
@@ -223,7 +223,7 @@ class Queue(pulumi.CustomResource):
                  args: QueueArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The ``Queue`` resource creates and manages a queue.
+        The `Queue` resource creates and manages a queue.
 
         ## Example Usage
 

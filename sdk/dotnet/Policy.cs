@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.RabbitMQ
 {
     /// <summary>
-    /// The ``rabbitmq.Policy`` resource creates and manages policies for exchanges
+    /// The `rabbitmq.Policy` resource creates and manages policies for exchanges
     /// and queues.
     /// 
     /// ## Example Usage

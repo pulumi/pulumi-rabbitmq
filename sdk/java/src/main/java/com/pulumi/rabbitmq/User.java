@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * The ``rabbitmq.User`` resource creates and manages a user.
+ * The `rabbitmq.User` resource creates and manages a user.
  * 
  * &gt; **Note:** All arguments including username and password will be stored in the raw state as plain-text.
  * [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).

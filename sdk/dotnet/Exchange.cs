@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.RabbitMQ
 {
     /// <summary>
-    /// The ``rabbitmq.Exchange`` resource creates and manages an exchange.
+    /// The `rabbitmq.Exchange` resource creates and manages an exchange.
     /// 
     /// ## Example Usage
     /// 

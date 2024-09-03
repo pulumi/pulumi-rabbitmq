@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The “Queue“ resource creates and manages a queue.
+// The `Queue` resource creates and manages a queue.
 //
 // ## Example Usage
 //
