@@ -137,7 +137,7 @@ class Policy(pulumi.CustomResource):
                  vhost: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The ``Policy`` resource creates and manages policies for exchanges
+        The `Policy` resource creates and manages policies for exchanges
         and queues.
 
         ## Example Usage
@@ -192,7 +192,7 @@ class Policy(pulumi.CustomResource):
                  args: PolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The ``Policy`` resource creates and manages policies for exchanges
+        The `Policy` resource creates and manages policies for exchanges
         and queues.
 
         ## Example Usage

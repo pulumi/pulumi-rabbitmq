@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The “Exchange“ resource creates and manages an exchange.
+// The `Exchange` resource creates and manages an exchange.
 //
 // ## Example Usage
 //

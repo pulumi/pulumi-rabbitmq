@@ -14,7 +14,7 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * The ``rabbitmq.VHost`` resource creates and manages a vhost.
+ * The `rabbitmq.VHost` resource creates and manages a vhost.
  * 
  * ## Example Usage
  * 

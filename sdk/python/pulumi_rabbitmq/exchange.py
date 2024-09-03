@@ -138,7 +138,7 @@ class Exchange(pulumi.CustomResource):
                  vhost: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The ``Exchange`` resource creates and manages an exchange.
+        The `Exchange` resource creates and manages an exchange.
 
         ## Example Usage
 
@@ -189,7 +189,7 @@ class Exchange(pulumi.CustomResource):
                  args: ExchangeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The ``Exchange`` resource creates and manages an exchange.
+        The `Exchange` resource creates and manages an exchange.
 
         ## Example Usage
 

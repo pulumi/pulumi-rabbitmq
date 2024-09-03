@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The “VHost“ resource creates and manages a vhost.
+// The `VHost` resource creates and manages a vhost.
 //
 // ## Example Usage
 //

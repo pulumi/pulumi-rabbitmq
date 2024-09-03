@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * The ``rabbitmq.TopicPermissions`` resource creates and manages a user&#39;s set of
+ * The `rabbitmq.TopicPermissions` resource creates and manages a user&#39;s set of
  * topic permissions.
  * 
  * ## Example Usage

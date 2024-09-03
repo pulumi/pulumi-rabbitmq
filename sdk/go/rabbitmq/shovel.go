@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The “Shovel“ resource creates and manages a dynamic shovel.
+// The `Shovel` resource creates and manages a dynamic shovel.
 //
 // ## Example Usage
 //

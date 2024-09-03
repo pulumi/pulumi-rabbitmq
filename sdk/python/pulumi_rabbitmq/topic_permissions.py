@@ -137,7 +137,7 @@ class TopicPermissions(pulumi.CustomResource):
                  vhost: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The ``TopicPermissions`` resource creates and manages a user's set of
+        The `TopicPermissions` resource creates and manages a user's set of
         topic permissions.
 
         ## Example Usage
@@ -185,7 +185,7 @@ class TopicPermissions(pulumi.CustomResource):
                  args: TopicPermissionsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The ``TopicPermissions`` resource creates and manages a user's set of
+        The `TopicPermissions` resource creates and manages a user's set of
         topic permissions.
 
         ## Example Usage

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.RabbitMQ
 {
     /// <summary>
-    /// The ``rabbitmq.Shovel`` resource creates and manages a dynamic shovel.
+    /// The `rabbitmq.Shovel` resource creates and manages a dynamic shovel.
     /// 
     /// ## Example Usage
     /// 

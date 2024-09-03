@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * The ``rabbitmq.Permissions`` resource creates and manages a user&#39;s set of
+ * The `rabbitmq.Permissions` resource creates and manages a user&#39;s set of
  * permissions.
  * 
  * ## Example Usage

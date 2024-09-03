@@ -15,7 +15,7 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * The ``rabbitmq.Policy`` resource creates and manages policies for exchanges
+ * The `rabbitmq.Policy` resource creates and manages policies for exchanges
  * and queues.
  * 
  * ## Example Usage

@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The ``rabbitmq.Exchange`` resource creates and manages an exchange.
+ * The `rabbitmq.Exchange` resource creates and manages an exchange.
  *
  * ## Example Usage
  *

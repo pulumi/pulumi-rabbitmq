@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.RabbitMQ
 {
     /// <summary>
-    /// The ``rabbitmq.OperatorPolicy`` resource creates and manages operator policies for queues.
+    /// The `rabbitmq.OperatorPolicy` resource creates and manages operator policies for queues.
     /// 
     /// ## Example Usage
     /// 

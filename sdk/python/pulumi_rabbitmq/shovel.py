@@ -137,7 +137,7 @@ class Shovel(pulumi.CustomResource):
                  vhost: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The ``Shovel`` resource creates and manages a dynamic shovel.
+        The `Shovel` resource creates and manages a dynamic shovel.
 
         ## Example Usage
 
@@ -197,7 +197,7 @@ class Shovel(pulumi.CustomResource):
                  args: ShovelArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The ``Shovel`` resource creates and manages a dynamic shovel.
+        The `Shovel` resource creates and manages a dynamic shovel.
 
         ## Example Usage
 

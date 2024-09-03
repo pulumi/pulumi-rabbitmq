@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The ``rabbitmq.User`` resource creates and manages a user.
+ * The `rabbitmq.User` resource creates and manages a user.
  *
  * > **Note:** All arguments including username and password will be stored in the raw state as plain-text.
  * [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).

@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The “Policy“ resource creates and manages policies for exchanges
+// The `Policy` resource creates and manages policies for exchanges
 // and queues.
 //
 // ## Example Usage

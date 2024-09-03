@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The “Permissions“ resource creates and manages a user's set of
+// The `Permissions` resource creates and manages a user's set of
 // permissions.
 //
 // ## Example Usage
