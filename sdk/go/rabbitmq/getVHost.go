@@ -34,14 +34,20 @@ type LookupVHostResult struct {
 
 func LookupVHostOutput(ctx *pulumi.Context, args LookupVHostOutputArgs, opts ...pulumi.InvokeOption) LookupVHostResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupVHostResult, error) {
+		ApplyT(func(v interface{}) (LookupVHostResultOutput, error) {
 			args := v.(LookupVHostArgs)
-			r, err := LookupVHost(ctx, &args, opts...)
-			var s LookupVHostResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupVHostResult
+			secret, err := ctx.InvokePackageRaw("rabbitmq:index/getVHost:getVHost", args, &rv, "", opts...)
+			if err != nil {
+				return LookupVHostResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupVHostResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupVHostResultOutput), nil
+			}
+			return output, nil
 		}).(LookupVHostResultOutput)
 }
 

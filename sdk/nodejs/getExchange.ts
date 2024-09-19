@@ -7,7 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export function getExchange(args: GetExchangeArgs, opts?: pulumi.InvokeOptions): Promise<GetExchangeResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("rabbitmq:index/getExchange:getExchange", {
         "name": args.name,
@@ -33,7 +32,11 @@ export interface GetExchangeResult {
     readonly vhost?: string;
 }
 export function getExchangeOutput(args: GetExchangeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetExchangeResult> {
-    return pulumi.output(args).apply((a: any) => getExchange(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("rabbitmq:index/getExchange:getExchange", {
+        "name": args.name,
+        "vhost": args.vhost,
+    }, opts);
 }
 
 /**

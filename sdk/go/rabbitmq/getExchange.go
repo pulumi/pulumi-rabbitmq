@@ -37,14 +37,20 @@ type LookupExchangeResult struct {
 
 func LookupExchangeOutput(ctx *pulumi.Context, args LookupExchangeOutputArgs, opts ...pulumi.InvokeOption) LookupExchangeResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupExchangeResult, error) {
+		ApplyT(func(v interface{}) (LookupExchangeResultOutput, error) {
 			args := v.(LookupExchangeArgs)
-			r, err := LookupExchange(ctx, &args, opts...)
-			var s LookupExchangeResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupExchangeResult
+			secret, err := ctx.InvokePackageRaw("rabbitmq:index/getExchange:getExchange", args, &rv, "", opts...)
+			if err != nil {
+				return LookupExchangeResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupExchangeResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupExchangeResultOutput), nil
+			}
+			return output, nil
 		}).(LookupExchangeResultOutput)
 }
 
