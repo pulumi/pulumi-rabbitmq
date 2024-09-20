@@ -5,7 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getVHost(args: GetVHostArgs, opts?: pulumi.InvokeOptions): Promise<GetVHostResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("rabbitmq:index/getVHost:getVHost", {
         "name": args.name,
@@ -27,7 +26,10 @@ export interface GetVHostResult {
     readonly name: string;
 }
 export function getVHostOutput(args: GetVHostOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVHostResult> {
-    return pulumi.output(args).apply((a: any) => getVHost(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("rabbitmq:index/getVHost:getVHost", {
+        "name": args.name,
+    }, opts);
 }
 
 /**
