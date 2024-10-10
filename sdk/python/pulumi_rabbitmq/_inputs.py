@@ -4,21 +4,59 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
     'ExchangeSettingsArgs',
+    'ExchangeSettingsArgsDict',
     'FederationUpstreamDefinitionArgs',
+    'FederationUpstreamDefinitionArgsDict',
     'OperatorPolicyPolicyArgs',
+    'OperatorPolicyPolicyArgsDict',
     'PermissionsPermissionsArgs',
+    'PermissionsPermissionsArgsDict',
     'PolicyPolicyArgs',
+    'PolicyPolicyArgsDict',
     'QueueSettingsArgs',
+    'QueueSettingsArgsDict',
     'ShovelInfoArgs',
+    'ShovelInfoArgsDict',
     'TopicPermissionsPermissionArgs',
+    'TopicPermissionsPermissionArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class ExchangeSettingsArgsDict(TypedDict):
+        type: pulumi.Input[str]
+        """
+        The type of exchange.
+        """
+        arguments: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional key/value settings for the exchange.
+        """
+        auto_delete: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the exchange will self-delete when all
+        queues have finished using it.
+        """
+        durable: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the exchange survives server restarts.
+        Defaults to `false`.
+        """
+elif False:
+    ExchangeSettingsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ExchangeSettingsArgs:
@@ -93,6 +131,57 @@ class ExchangeSettingsArgs:
     def durable(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "durable", value)
 
+
+if not MYPY:
+    class FederationUpstreamDefinitionArgsDict(TypedDict):
+        uri: pulumi.Input[str]
+        """
+        The AMQP URI(s) for the upstream. Note that the URI may contain sensitive information, such as a password.
+        """
+        ack_mode: NotRequired[pulumi.Input[str]]
+        """
+        Determines how the link should acknowledge messages. Valid values are `on-confirm`, `on-publish`, and `no-ack`. Default is `on-confirm`.
+        """
+        exchange: NotRequired[pulumi.Input[str]]
+        """
+        The name of the upstream exchange.
+        """
+        expires: NotRequired[pulumi.Input[int]]
+        """
+        The expiry time (in milliseconds) after which an upstream queue for a federated exchange may be deleted if a connection to the upstream is lost.
+        """
+        max_hops: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of federation links that messages can traverse before being dropped. Default is `1`.
+        """
+        message_ttl: NotRequired[pulumi.Input[int]]
+        """
+        The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
+
+        Applicable to Federated Queues Only
+        """
+        prefetch_count: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of unacknowledged messages that may be in flight over a federation link at one time. Default is `1000`.
+        """
+        queue: NotRequired[pulumi.Input[str]]
+        """
+        The name of the upstream queue.
+
+        Consult the RabbitMQ [Federation Reference](https://www.rabbitmq.com/federation-reference.html) documentation for detailed information and guidance on setting these values.
+        """
+        reconnect_delay: NotRequired[pulumi.Input[int]]
+        """
+        Time in seconds to wait after a network link goes down before attempting reconnection. Default is `5`.
+        """
+        trust_user_id: NotRequired[pulumi.Input[bool]]
+        """
+        Determines how federation should interact with the validated user-id feature. Default is `false`.
+
+        Applicable to Federated Exchanges Only
+        """
+elif False:
+    FederationUpstreamDefinitionArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class FederationUpstreamDefinitionArgs:
@@ -272,6 +361,28 @@ class FederationUpstreamDefinitionArgs:
         pulumi.set(self, "trust_user_id", value)
 
 
+if not MYPY:
+    class OperatorPolicyPolicyArgsDict(TypedDict):
+        apply_to: pulumi.Input[str]
+        """
+        Can be "queues".
+        """
+        definition: pulumi.Input[Mapping[str, pulumi.Input[str]]]
+        """
+        Key/value pairs of the operator policy definition. See the
+        RabbitMQ documentation for definition references and examples.
+        """
+        pattern: pulumi.Input[str]
+        """
+        A pattern to match an exchange or queue name.
+        """
+        priority: pulumi.Input[int]
+        """
+        The policy with the greater priority is applied first.
+        """
+elif False:
+    OperatorPolicyPolicyArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class OperatorPolicyPolicyArgs:
     def __init__(__self__, *,
@@ -341,6 +452,23 @@ class OperatorPolicyPolicyArgs:
         pulumi.set(self, "priority", value)
 
 
+if not MYPY:
+    class PermissionsPermissionsArgsDict(TypedDict):
+        configure: pulumi.Input[str]
+        """
+        The "configure" ACL.
+        """
+        read: pulumi.Input[str]
+        """
+        The "read" ACL.
+        """
+        write: pulumi.Input[str]
+        """
+        The "write" ACL.
+        """
+elif False:
+    PermissionsPermissionsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class PermissionsPermissionsArgs:
     def __init__(__self__, *,
@@ -392,6 +520,28 @@ class PermissionsPermissionsArgs:
     def write(self, value: pulumi.Input[str]):
         pulumi.set(self, "write", value)
 
+
+if not MYPY:
+    class PolicyPolicyArgsDict(TypedDict):
+        apply_to: pulumi.Input[str]
+        """
+        Can either be "exchanges", "queues", or "all".
+        """
+        definition: pulumi.Input[Mapping[str, pulumi.Input[str]]]
+        """
+        Key/value pairs of the policy definition. See the
+        RabbitMQ documentation for definition references and examples.
+        """
+        pattern: pulumi.Input[str]
+        """
+        A pattern to match an exchange or queue name.
+        """
+        priority: pulumi.Input[int]
+        """
+        The policy with the greater priority is applied first.
+        """
+elif False:
+    PolicyPolicyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class PolicyPolicyArgs:
@@ -461,6 +611,33 @@ class PolicyPolicyArgs:
     def priority(self, value: pulumi.Input[int]):
         pulumi.set(self, "priority", value)
 
+
+if not MYPY:
+    class QueueSettingsArgsDict(TypedDict):
+        arguments: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional key/value settings for the queue.
+        All values will be sent to RabbitMQ as a string. If you require non-string
+        values, use `arguments_json`.
+        """
+        arguments_json: NotRequired[pulumi.Input[str]]
+        """
+        A nested JSON string which contains additional
+        settings for the queue. This is useful for when the arguments contain
+        non-string values.
+        """
+        auto_delete: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the queue will self-delete when all
+        consumers have unsubscribed.
+        """
+        durable: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the queue survives server restarts.
+        Defaults to `false`.
+        """
+elif False:
+    QueueSettingsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class QueueSettingsArgs:
@@ -544,6 +721,114 @@ class QueueSettingsArgs:
     def durable(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "durable", value)
 
+
+if not MYPY:
+    class ShovelInfoArgsDict(TypedDict):
+        destination_uri: pulumi.Input[str]
+        """
+        The amqp uri for the destination .
+        """
+        source_uri: pulumi.Input[str]
+        """
+        The amqp uri for the source.
+        """
+        ack_mode: NotRequired[pulumi.Input[str]]
+        """
+        Determines how the shovel should acknowledge messages. Possible values are: `on-confirm`, `on-publish` and `no-ack`.
+        Defaults to `on-confirm`.
+        """
+        add_forward_headers: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to add `x-shovelled` headers to shovelled messages.
+        """
+        delete_after: NotRequired[pulumi.Input[str]]
+        """
+        Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+        """
+        destination_add_forward_headers: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to add `x-shovelled` headers to shovelled messages.
+        """
+        destination_add_timestamp_header: NotRequired[pulumi.Input[bool]]
+        destination_address: NotRequired[pulumi.Input[str]]
+        """
+        The AMQP 1.0 destination link address.
+        """
+        destination_application_properties: NotRequired[pulumi.Input[str]]
+        """
+        Application properties to set when shovelling messages.
+        """
+        destination_exchange: NotRequired[pulumi.Input[str]]
+        """
+        The exchange to which messages should be published.
+        Either this or `destination_queue` must be specified but not both.
+        """
+        destination_exchange_key: NotRequired[pulumi.Input[str]]
+        """
+        The routing key when using `destination_exchange`.
+        """
+        destination_properties: NotRequired[pulumi.Input[str]]
+        """
+        Properties to overwrite when shovelling messages.
+
+        For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
+        """
+        destination_protocol: NotRequired[pulumi.Input[str]]
+        """
+        The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
+        Defaults to `amqp091`.
+        """
+        destination_publish_properties: NotRequired[pulumi.Input[str]]
+        """
+        A map of properties to overwrite when shovelling messages.
+        """
+        destination_queue: NotRequired[pulumi.Input[str]]
+        """
+        The queue to which messages should be published.
+        Either this or `destination_exchange` must be specified but not both.
+        """
+        prefetch_count: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of unacknowledged messages copied over a shovel at any one time.
+        """
+        reconnect_delay: NotRequired[pulumi.Input[int]]
+        """
+        The duration in seconds to reconnect to a broker after disconnected.
+        Defaults to `1`.
+        """
+        source_address: NotRequired[pulumi.Input[str]]
+        """
+        The AMQP 1.0 source link address.
+        """
+        source_delete_after: NotRequired[pulumi.Input[str]]
+        """
+        Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+        """
+        source_exchange: NotRequired[pulumi.Input[str]]
+        """
+        The exchange from which to consume.
+        Either this or `source_queue` must be specified but not both.
+        """
+        source_exchange_key: NotRequired[pulumi.Input[str]]
+        """
+        The routing key when using `source_exchange`.
+        """
+        source_prefetch_count: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of unacknowledged messages copied over a shovel at any one time.
+        """
+        source_protocol: NotRequired[pulumi.Input[str]]
+        """
+        The protocol (`amqp091` or `amqp10`) to use when connecting to the source.
+        Defaults to `amqp091`.
+        """
+        source_queue: NotRequired[pulumi.Input[str]]
+        """
+        The queue from which to consume.
+        Either this or `source_exchange` must be specified but not both.
+        """
+elif False:
+    ShovelInfoArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ShovelInfoArgs:
@@ -961,6 +1246,23 @@ class ShovelInfoArgs:
     def source_queue(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "source_queue", value)
 
+
+if not MYPY:
+    class TopicPermissionsPermissionArgsDict(TypedDict):
+        exchange: pulumi.Input[str]
+        """
+        The exchange to set the permissions for.
+        """
+        read: pulumi.Input[str]
+        """
+        The "read" ACL.
+        """
+        write: pulumi.Input[str]
+        """
+        The "write" ACL.
+        """
+elif False:
+    TopicPermissionsPermissionArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class TopicPermissionsPermissionArgs:
