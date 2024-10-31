@@ -199,7 +199,7 @@ class FederationUpstream(pulumi.CustomResource):
                 "priority": 1,
                 "apply_to": "exchanges",
                 "definition": {
-                    "federation_upstream": foo_federation_upstream.name,
+                    "federation-upstream": foo_federation_upstream.name,
                 },
             })
         ```
@@ -270,7 +270,7 @@ class FederationUpstream(pulumi.CustomResource):
                 "priority": 1,
                 "apply_to": "exchanges",
                 "definition": {
-                    "federation_upstream": foo_federation_upstream.name,
+                    "federation-upstream": foo_federation_upstream.name,
                 },
             })
         ```
