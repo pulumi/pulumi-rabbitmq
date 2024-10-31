@@ -168,7 +168,7 @@ class Policy(pulumi.CustomResource):
                 "priority": 0,
                 "apply_to": "all",
                 "definition": {
-                    "ha_mode": "all",
+                    "ha-mode": "all",
                 },
             })
         ```
@@ -223,7 +223,7 @@ class Policy(pulumi.CustomResource):
                 "priority": 0,
                 "apply_to": "all",
                 "definition": {
-                    "ha_mode": "all",
+                    "ha-mode": "all",
                 },
             })
         ```

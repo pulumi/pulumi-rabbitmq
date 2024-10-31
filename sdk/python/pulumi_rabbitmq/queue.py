@@ -169,7 +169,7 @@ class Queue(pulumi.CustomResource):
                 "durable": False,
                 "auto_delete": True,
                 "arguments": {
-                    "x_queue_type": "quorum",
+                    "x-queue-type": "quorum",
                 },
             })
         ```
@@ -254,7 +254,7 @@ class Queue(pulumi.CustomResource):
                 "durable": False,
                 "auto_delete": True,
                 "arguments": {
-                    "x_queue_type": "quorum",
+                    "x-queue-type": "quorum",
                 },
             })
         ```
