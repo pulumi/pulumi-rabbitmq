@@ -6,7 +6,7 @@ layout: package
 ---
 ## Installation
 
-The rabbitmq provider is available as a package in all Pulumi languages:
+The Rabbitmq provider is available as a package in all Pulumi languages:
 
 * JavaScript/TypeScript: [`@pulumi/rabbitmq`](https://www.npmjs.com/package/@pulumi/rabbitmq)
 * Python: [`pulumi-rabbitmq`](https://pypi.org/project/pulumi-rabbitmq/)
