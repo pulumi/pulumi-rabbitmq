@@ -25,7 +25,7 @@ export interface GetVHostResult {
     readonly id: string;
     readonly name: string;
 }
-export function getVHostOutput(args: GetVHostOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVHostResult> {
+export function getVHostOutput(args: GetVHostOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVHostResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("rabbitmq:index/getVHost:getVHost", {
         "name": args.name,
