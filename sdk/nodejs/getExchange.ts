@@ -31,7 +31,7 @@ export interface GetExchangeResult {
     readonly settings: outputs.GetExchangeSetting[];
     readonly vhost?: string;
 }
-export function getExchangeOutput(args: GetExchangeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetExchangeResult> {
+export function getExchangeOutput(args: GetExchangeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetExchangeResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("rabbitmq:index/getExchange:getExchange", {
         "name": args.name,
