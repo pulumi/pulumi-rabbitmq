@@ -69,13 +69,13 @@ def get_v_host(name: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'))
 def get_v_host_output(name: Optional[pulumi.Input[str]] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVHostResult]:
+                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVHostResult]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('rabbitmq:index/getVHost:getVHost', __args__, opts=opts, typ=GetVHostResult)
     return __ret__.apply(lambda __response__: GetVHostResult(
         id=pulumi.get(__response__, 'id'),

@@ -93,14 +93,14 @@ def get_exchange(name: Optional[str] = None,
         vhost=pulumi.get(__ret__, 'vhost'))
 def get_exchange_output(name: Optional[pulumi.Input[str]] = None,
                         vhost: Optional[pulumi.Input[Optional[str]]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetExchangeResult]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetExchangeResult]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['name'] = name
     __args__['vhost'] = vhost
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('rabbitmq:index/getExchange:getExchange', __args__, opts=opts, typ=GetExchangeResult)
     return __ret__.apply(lambda __response__: GetExchangeResult(
         id=pulumi.get(__response__, 'id'),
