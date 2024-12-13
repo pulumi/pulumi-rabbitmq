@@ -16,6 +16,9 @@ namespace Pulumi.RabbitMQ
 
         public static Output<GetExchangeResult> Invoke(GetExchangeInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetExchangeResult>("rabbitmq:index/getExchange:getExchange", args ?? new GetExchangeInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetExchangeResult> Invoke(GetExchangeInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetExchangeResult>("rabbitmq:index/getExchange:getExchange", args ?? new GetExchangeInvokeArgs(), options.WithDefaults());
     }
 
 
