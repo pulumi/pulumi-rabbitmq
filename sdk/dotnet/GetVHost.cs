@@ -16,6 +16,9 @@ namespace Pulumi.RabbitMQ
 
         public static Output<GetVHostResult> Invoke(GetVHostInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVHostResult>("rabbitmq:index/getVHost:getVHost", args ?? new GetVHostInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetVHostResult> Invoke(GetVHostInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetVHostResult>("rabbitmq:index/getVHost:getVHost", args ?? new GetVHostInvokeArgs(), options.WithDefaults());
     }
 
 
