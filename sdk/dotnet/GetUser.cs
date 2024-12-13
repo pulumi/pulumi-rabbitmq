@@ -16,6 +16,9 @@ namespace Pulumi.RabbitMQ
 
         public static Output<GetUserResult> Invoke(GetUserInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetUserResult>("rabbitmq:index/getUser:getUser", args ?? new GetUserInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetUserResult> Invoke(GetUserInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetUserResult>("rabbitmq:index/getUser:getUser", args ?? new GetUserInvokeArgs(), options.WithDefaults());
     }
 
 
