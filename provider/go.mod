@@ -11,7 +11,7 @@ replace (
 
 require (
 	github.com/cyrilgdn/terraform-provider-rabbitmq v0.0.0-00010101000000-000000000000
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.104.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.104.1-0.20250313133841-de5510662e1c
 	github.com/pulumi/pulumi/sdk/v3 v3.153.1
 )
 
