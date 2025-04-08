@@ -70,8 +70,8 @@ import javax.annotation.Nullable;
  *                 .priority(0)
  *                 .applyTo("queues")
  *                 .definition(Map.ofEntries(
- *                     Map.entry("message-ttl", 3600000),
- *                     Map.entry("expires", 1800000)
+ *                     Map.entry("message-ttl", "3600000"),
+ *                     Map.entry("expires", "1800000")
  *                 ))
  *                 .build())
  *             .build());
