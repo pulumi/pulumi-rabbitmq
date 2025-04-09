@@ -74,7 +74,7 @@ import javax.annotation.Nullable;
  *             .vhost(guest.vhost())
  *             .settings(ExchangeSettingsArgs.builder()
  *                 .type("topic")
- *                 .durable("true")
+ *                 .durable(true)
  *                 .build())
  *             .build());
  * 
@@ -96,7 +96,7 @@ import javax.annotation.Nullable;
  *             .name("foo")
  *             .vhost(guest.vhost())
  *             .policy(PolicyPolicyArgs.builder()
- *                 .pattern(foo.name().applyValue(name -> String.format("(^%s$)", name)))
+ *                 .pattern(foo.name().applyValue(_name -> String.format("(^%s$)", _name)))
  *                 .priority(1)
  *                 .applyTo("exchanges")
  *                 .definition(Map.of("federation-upstream", fooFederationUpstream.name()))
