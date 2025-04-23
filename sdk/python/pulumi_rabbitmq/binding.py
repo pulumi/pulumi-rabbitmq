@@ -262,6 +262,9 @@ class _BindingState:
 
 
 class Binding(pulumi.CustomResource):
+
+    pulumi_type = "rabbitmq:index/binding:Binding"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

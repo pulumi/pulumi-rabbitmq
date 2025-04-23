@@ -134,6 +134,9 @@ class _OperatorPolicyState:
 
 
 class OperatorPolicy(pulumi.CustomResource):
+
+    pulumi_type = "rabbitmq:index/operatorPolicy:OperatorPolicy"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
