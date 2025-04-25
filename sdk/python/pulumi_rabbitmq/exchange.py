@@ -135,6 +135,9 @@ class _ExchangeState:
 
 
 class Exchange(pulumi.CustomResource):
+
+    pulumi_type = "rabbitmq:index/exchange:Exchange"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
