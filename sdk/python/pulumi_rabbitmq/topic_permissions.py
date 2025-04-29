@@ -134,6 +134,9 @@ class _TopicPermissionsState:
 
 
 class TopicPermissions(pulumi.CustomResource):
+
+    pulumi_type = "rabbitmq:index/topicPermissions:TopicPermissions"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

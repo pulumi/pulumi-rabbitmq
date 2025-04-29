@@ -146,6 +146,9 @@ class _FederationUpstreamState:
 
 
 class FederationUpstream(pulumi.CustomResource):
+
+    pulumi_type = "rabbitmq:index/federationUpstream:FederationUpstream"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
