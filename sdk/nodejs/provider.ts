@@ -28,10 +28,10 @@ export class Provider extends pulumi.ProviderResource {
     public readonly cacertFile!: pulumi.Output<string | undefined>;
     public readonly clientcertFile!: pulumi.Output<string | undefined>;
     public readonly clientkeyFile!: pulumi.Output<string | undefined>;
-    public readonly endpoint!: pulumi.Output<string>;
-    public readonly password!: pulumi.Output<string>;
+    public readonly endpoint!: pulumi.Output<string | undefined>;
+    public readonly password!: pulumi.Output<string | undefined>;
     public readonly proxy!: pulumi.Output<string | undefined>;
-    public readonly username!: pulumi.Output<string>;
+    public readonly username!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -40,19 +40,10 @@ export class Provider extends pulumi.ProviderResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            if ((!args || args.endpoint === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'endpoint'");
-            }
-            if ((!args || args.password === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'password'");
-            }
-            if ((!args || args.username === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'username'");
-            }
             resourceInputs["cacertFile"] = (args ? args.cacertFile : undefined) ?? utilities.getEnv("RABBITMQ_CACERT");
             resourceInputs["clientcertFile"] = args ? args.clientcertFile : undefined;
             resourceInputs["clientkeyFile"] = args ? args.clientkeyFile : undefined;
@@ -65,6 +56,15 @@ export class Provider extends pulumi.ProviderResource {
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
+
+    /**
+     * This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.
+     */
+    terraformConfig(): pulumi.Output<Provider.TerraformConfigResult> {
+        return pulumi.runtime.call("pulumi:providers:rabbitmq/terraformConfig", {
+            "__self__": this,
+        }, this);
+    }
 }
 
 /**
@@ -74,9 +74,19 @@ export interface ProviderArgs {
     cacertFile?: pulumi.Input<string>;
     clientcertFile?: pulumi.Input<string>;
     clientkeyFile?: pulumi.Input<string>;
-    endpoint: pulumi.Input<string>;
+    endpoint?: pulumi.Input<string>;
     insecure?: pulumi.Input<boolean>;
-    password: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
     proxy?: pulumi.Input<string>;
-    username: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
+export namespace Provider {
+    /**
+     * The results of the Provider.terraformConfig method.
+     */
+    export interface TerraformConfigResult {
+        readonly result: {[key: string]: any};
+    }
+
 }

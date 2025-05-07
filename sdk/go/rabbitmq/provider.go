@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -22,28 +21,19 @@ type Provider struct {
 	CacertFile     pulumi.StringPtrOutput `pulumi:"cacertFile"`
 	ClientcertFile pulumi.StringPtrOutput `pulumi:"clientcertFile"`
 	ClientkeyFile  pulumi.StringPtrOutput `pulumi:"clientkeyFile"`
-	Endpoint       pulumi.StringOutput    `pulumi:"endpoint"`
-	Password       pulumi.StringOutput    `pulumi:"password"`
+	Endpoint       pulumi.StringPtrOutput `pulumi:"endpoint"`
+	Password       pulumi.StringPtrOutput `pulumi:"password"`
 	Proxy          pulumi.StringPtrOutput `pulumi:"proxy"`
-	Username       pulumi.StringOutput    `pulumi:"username"`
+	Username       pulumi.StringPtrOutput `pulumi:"username"`
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
 func NewProvider(ctx *pulumi.Context,
 	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &ProviderArgs{}
 	}
 
-	if args.Endpoint == nil {
-		return nil, errors.New("invalid value for required argument 'Endpoint'")
-	}
-	if args.Password == nil {
-		return nil, errors.New("invalid value for required argument 'Password'")
-	}
-	if args.Username == nil {
-		return nil, errors.New("invalid value for required argument 'Username'")
-	}
 	if args.CacertFile == nil {
 		if d := internal.GetEnvOrDefault(nil, nil, "RABBITMQ_CACERT"); d != nil {
 			args.CacertFile = pulumi.StringPtr(d.(string))
@@ -67,11 +57,11 @@ type providerArgs struct {
 	CacertFile     *string `pulumi:"cacertFile"`
 	ClientcertFile *string `pulumi:"clientcertFile"`
 	ClientkeyFile  *string `pulumi:"clientkeyFile"`
-	Endpoint       string  `pulumi:"endpoint"`
+	Endpoint       *string `pulumi:"endpoint"`
 	Insecure       *bool   `pulumi:"insecure"`
-	Password       string  `pulumi:"password"`
+	Password       *string `pulumi:"password"`
 	Proxy          *string `pulumi:"proxy"`
-	Username       string  `pulumi:"username"`
+	Username       *string `pulumi:"username"`
 }
 
 // The set of arguments for constructing a Provider resource.
@@ -79,15 +69,38 @@ type ProviderArgs struct {
 	CacertFile     pulumi.StringPtrInput
 	ClientcertFile pulumi.StringPtrInput
 	ClientkeyFile  pulumi.StringPtrInput
-	Endpoint       pulumi.StringInput
+	Endpoint       pulumi.StringPtrInput
 	Insecure       pulumi.BoolPtrInput
-	Password       pulumi.StringInput
+	Password       pulumi.StringPtrInput
 	Proxy          pulumi.StringPtrInput
-	Username       pulumi.StringInput
+	Username       pulumi.StringPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*providerArgs)(nil)).Elem()
+}
+
+// This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.
+func (r *Provider) TerraformConfig(ctx *pulumi.Context) (ProviderTerraformConfigResultOutput, error) {
+	out, err := ctx.Call("pulumi:providers:rabbitmq/terraformConfig", nil, ProviderTerraformConfigResultOutput{}, r)
+	if err != nil {
+		return ProviderTerraformConfigResultOutput{}, err
+	}
+	return out.(ProviderTerraformConfigResultOutput), nil
+}
+
+type ProviderTerraformConfigResult struct {
+	Result map[string]interface{} `pulumi:"result"`
+}
+
+type ProviderTerraformConfigResultOutput struct{ *pulumi.OutputState }
+
+func (ProviderTerraformConfigResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderTerraformConfigResult)(nil)).Elem()
+}
+
+func (o ProviderTerraformConfigResultOutput) Result() pulumi.MapOutput {
+	return o.ApplyT(func(v ProviderTerraformConfigResult) map[string]interface{} { return v.Result }).(pulumi.MapOutput)
 }
 
 type ProviderInput interface {
@@ -135,23 +148,24 @@ func (o ProviderOutput) ClientkeyFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ClientkeyFile }).(pulumi.StringPtrOutput)
 }
 
-func (o ProviderOutput) Endpoint() pulumi.StringOutput {
-	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.Endpoint }).(pulumi.StringOutput)
+func (o ProviderOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Endpoint }).(pulumi.StringPtrOutput)
 }
 
-func (o ProviderOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
+func (o ProviderOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
 
 func (o ProviderOutput) Proxy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Proxy }).(pulumi.StringPtrOutput)
 }
 
-func (o ProviderOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
+func (o ProviderOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Username }).(pulumi.StringPtrOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderInput)(nil)).Elem(), &Provider{})
 	pulumi.RegisterOutputType(ProviderOutput{})
+	pulumi.RegisterOutputType(ProviderTerraformConfigResultOutput{})
 }

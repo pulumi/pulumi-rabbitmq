@@ -28,16 +28,16 @@ namespace Pulumi.RabbitMQ
         public Output<string?> ClientkeyFile { get; private set; } = null!;
 
         [Output("endpoint")]
-        public Output<string> Endpoint { get; private set; } = null!;
+        public Output<string?> Endpoint { get; private set; } = null!;
 
         [Output("password")]
-        public Output<string> Password { get; private set; } = null!;
+        public Output<string?> Password { get; private set; } = null!;
 
         [Output("proxy")]
         public Output<string?> Proxy { get; private set; } = null!;
 
         [Output("username")]
-        public Output<string> Username { get; private set; } = null!;
+        public Output<string?> Username { get; private set; } = null!;
 
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Pulumi.RabbitMQ
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Provider(string name, ProviderArgs args, CustomResourceOptions? options = null)
+        public Provider(string name, ProviderArgs? args = null, CustomResourceOptions? options = null)
             : base("rabbitmq", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -63,6 +63,12 @@ namespace Pulumi.RabbitMQ
             merged.Id = id ?? merged.Id;
             return merged;
         }
+
+        /// <summary>
+        /// This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.
+        /// </summary>
+        public global::Pulumi.Output<ProviderTerraformConfigResult> TerraformConfig()
+            => global::Pulumi.Deployment.Instance.Call<ProviderTerraformConfigResult>("pulumi:providers:rabbitmq/terraformConfig", CallArgs.Empty, this);
     }
 
     public sealed class ProviderArgs : global::Pulumi.ResourceArgs
@@ -76,20 +82,20 @@ namespace Pulumi.RabbitMQ
         [Input("clientkeyFile")]
         public Input<string>? ClientkeyFile { get; set; }
 
-        [Input("endpoint", required: true)]
-        public Input<string> Endpoint { get; set; } = null!;
+        [Input("endpoint")]
+        public Input<string>? Endpoint { get; set; }
 
         [Input("insecure", json: true)]
         public Input<bool>? Insecure { get; set; }
 
-        [Input("password", required: true)]
-        public Input<string> Password { get; set; } = null!;
+        [Input("password")]
+        public Input<string>? Password { get; set; }
 
         [Input("proxy")]
         public Input<string>? Proxy { get; set; }
 
-        [Input("username", required: true)]
-        public Input<string> Username { get; set; } = null!;
+        [Input("username")]
+        public Input<string>? Username { get; set; }
 
         public ProviderArgs()
         {
@@ -97,5 +103,20 @@ namespace Pulumi.RabbitMQ
             Insecure = Utilities.GetEnvBoolean("RABBITMQ_INSECURE");
         }
         public static new ProviderArgs Empty => new ProviderArgs();
+    }
+
+    /// <summary>
+    /// The results of the <see cref="Provider.TerraformConfig"/> method.
+    /// </summary>
+    [OutputType]
+    public sealed class ProviderTerraformConfigResult
+    {
+        public readonly ImmutableDictionary<string, object> Result;
+
+        [OutputConstructor]
+        private ProviderTerraformConfigResult(ImmutableDictionary<string, object> result)
+        {
+            Result = result;
+        }
     }
 }

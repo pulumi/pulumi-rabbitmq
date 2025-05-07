@@ -65,10 +65,8 @@ class _VHostState:
         pulumi.set(self, "name", value)
 
 
+@pulumi.type_token("rabbitmq:index/vHost:VHost")
 class VHost(pulumi.CustomResource):
-
-    pulumi_type = "rabbitmq:index/vHost:VHost"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

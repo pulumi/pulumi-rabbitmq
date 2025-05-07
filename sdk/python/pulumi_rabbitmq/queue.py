@@ -134,10 +134,8 @@ class _QueueState:
         pulumi.set(self, "vhost", value)
 
 
+@pulumi.type_token("rabbitmq:index/queue:Queue")
 class Queue(pulumi.CustomResource):
-
-    pulumi_type = "rabbitmq:index/queue:Queue"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
