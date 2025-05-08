@@ -534,7 +534,10 @@
             "endpoint",
             "password",
             "username"
-        ]
+        ],
+        "methods": {
+            "terraformConfig": "pulumi:providers:rabbitmq/terraformConfig"
+        }
     },
     "resources": {
         "rabbitmq:index/binding:Binding": {
@@ -1319,6 +1322,35 @@
         }
     },
     "functions": {
+        "pulumi:providers:rabbitmq/terraformConfig": {
+            "description": "This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.",
+            "inputs": {
+                "properties": {
+                    "__self__": {
+                        "type": "ref",
+                        "$ref": "#/resources/pulumi:providers:rabbitmq"
+                    }
+                },
+                "type": "pulumi:providers:rabbitmq/terraformConfig",
+                "required": [
+                    "__self__"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "result": {
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "result"
+                ],
+                "type": "object"
+            }
+        },
         "rabbitmq:index/getExchange:getExchange": {
             "inputs": {
                 "description": "A collection of arguments for invoking getExchange.\n",
