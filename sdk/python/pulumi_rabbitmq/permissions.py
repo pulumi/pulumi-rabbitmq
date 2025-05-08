@@ -133,10 +133,8 @@ class _PermissionsState:
         pulumi.set(self, "vhost", value)
 
 
+@pulumi.type_token("rabbitmq:index/permissions:Permissions")
 class Permissions(pulumi.CustomResource):
-
-    pulumi_type = "rabbitmq:index/permissions:Permissions"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

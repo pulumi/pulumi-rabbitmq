@@ -133,10 +133,8 @@ class _ShovelState:
         pulumi.set(self, "vhost", value)
 
 
+@pulumi.type_token("rabbitmq:index/shovel:Shovel")
 class Shovel(pulumi.CustomResource):
-
-    pulumi_type = "rabbitmq:index/shovel:Shovel"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
