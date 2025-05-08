@@ -261,10 +261,8 @@ class _BindingState:
         pulumi.set(self, "vhost", value)
 
 
+@pulumi.type_token("rabbitmq:index/binding:Binding")
 class Binding(pulumi.CustomResource):
-
-    pulumi_type = "rabbitmq:index/binding:Binding"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

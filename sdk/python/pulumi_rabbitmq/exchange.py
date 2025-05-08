@@ -134,10 +134,8 @@ class _ExchangeState:
         pulumi.set(self, "vhost", value)
 
 
+@pulumi.type_token("rabbitmq:index/exchange:Exchange")
 class Exchange(pulumi.CustomResource):
-
-    pulumi_type = "rabbitmq:index/exchange:Exchange"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

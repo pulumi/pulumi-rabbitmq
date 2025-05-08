@@ -133,10 +133,8 @@ class _OperatorPolicyState:
         pulumi.set(self, "vhost", value)
 
 
+@pulumi.type_token("rabbitmq:index/operatorPolicy:OperatorPolicy")
 class OperatorPolicy(pulumi.CustomResource):
-
-    pulumi_type = "rabbitmq:index/operatorPolicy:OperatorPolicy"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
