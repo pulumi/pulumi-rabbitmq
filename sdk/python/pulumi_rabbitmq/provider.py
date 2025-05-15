@@ -20,20 +20,17 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 endpoint: pulumi.Input[builtins.str],
-                 password: pulumi.Input[builtins.str],
-                 username: pulumi.Input[builtins.str],
                  cacert_file: Optional[pulumi.Input[builtins.str]] = None,
                  clientcert_file: Optional[pulumi.Input[builtins.str]] = None,
                  clientkey_file: Optional[pulumi.Input[builtins.str]] = None,
+                 endpoint: Optional[pulumi.Input[builtins.str]] = None,
                  insecure: Optional[pulumi.Input[builtins.bool]] = None,
-                 proxy: Optional[pulumi.Input[builtins.str]] = None):
+                 password: Optional[pulumi.Input[builtins.str]] = None,
+                 proxy: Optional[pulumi.Input[builtins.str]] = None,
+                 username: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
         """
-        pulumi.set(__self__, "endpoint", endpoint)
-        pulumi.set(__self__, "password", password)
-        pulumi.set(__self__, "username", username)
         if cacert_file is None:
             cacert_file = _utilities.get_env('RABBITMQ_CACERT')
         if cacert_file is not None:
@@ -42,39 +39,18 @@ class ProviderArgs:
             pulumi.set(__self__, "clientcert_file", clientcert_file)
         if clientkey_file is not None:
             pulumi.set(__self__, "clientkey_file", clientkey_file)
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
         if insecure is None:
             insecure = _utilities.get_env_bool('RABBITMQ_INSECURE')
         if insecure is not None:
             pulumi.set(__self__, "insecure", insecure)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
         if proxy is not None:
             pulumi.set(__self__, "proxy", proxy)
-
-    @property
-    @pulumi.getter
-    def endpoint(self) -> pulumi.Input[builtins.str]:
-        return pulumi.get(self, "endpoint")
-
-    @endpoint.setter
-    def endpoint(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "endpoint", value)
-
-    @property
-    @pulumi.getter
-    def password(self) -> pulumi.Input[builtins.str]:
-        return pulumi.get(self, "password")
-
-    @password.setter
-    def password(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "password", value)
-
-    @property
-    @pulumi.getter
-    def username(self) -> pulumi.Input[builtins.str]:
-        return pulumi.get(self, "username")
-
-    @username.setter
-    def username(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "username", value)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter(name="cacertFile")
@@ -105,6 +81,15 @@ class ProviderArgs:
 
     @property
     @pulumi.getter
+    def endpoint(self) -> Optional[pulumi.Input[builtins.str]]:
+        return pulumi.get(self, "endpoint")
+
+    @endpoint.setter
+    def endpoint(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "endpoint", value)
+
+    @property
+    @pulumi.getter
     def insecure(self) -> Optional[pulumi.Input[builtins.bool]]:
         return pulumi.get(self, "insecure")
 
@@ -114,12 +99,30 @@ class ProviderArgs:
 
     @property
     @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[builtins.str]]:
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
     def proxy(self) -> Optional[pulumi.Input[builtins.str]]:
         return pulumi.get(self, "proxy")
 
     @proxy.setter
     def proxy(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "proxy", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[builtins.str]]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "username", value)
 
 
 @pulumi.type_token("pulumi:providers:rabbitmq")
@@ -150,7 +153,7 @@ class Provider(pulumi.ProviderResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ProviderArgs,
+                 args: Optional[ProviderArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The provider type for the rabbitmq package. By default, resources use package-wide configuration
@@ -195,18 +198,12 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["cacert_file"] = cacert_file
             __props__.__dict__["clientcert_file"] = clientcert_file
             __props__.__dict__["clientkey_file"] = clientkey_file
-            if endpoint is None and not opts.urn:
-                raise TypeError("Missing required property 'endpoint'")
             __props__.__dict__["endpoint"] = endpoint
             if insecure is None:
                 insecure = _utilities.get_env_bool('RABBITMQ_INSECURE')
             __props__.__dict__["insecure"] = pulumi.Output.from_input(insecure).apply(pulumi.runtime.to_json) if insecure is not None else None
-            if password is None and not opts.urn:
-                raise TypeError("Missing required property 'password'")
             __props__.__dict__["password"] = password
             __props__.__dict__["proxy"] = proxy
-            if username is None and not opts.urn:
-                raise TypeError("Missing required property 'username'")
             __props__.__dict__["username"] = username
         super(Provider, __self__).__init__(
             'rabbitmq',
@@ -231,12 +228,12 @@ class Provider(pulumi.ProviderResource):
 
     @property
     @pulumi.getter
-    def endpoint(self) -> pulumi.Output[builtins.str]:
+    def endpoint(self) -> pulumi.Output[Optional[builtins.str]]:
         return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter
-    def password(self) -> pulumi.Output[builtins.str]:
+    def password(self) -> pulumi.Output[Optional[builtins.str]]:
         return pulumi.get(self, "password")
 
     @property
@@ -246,7 +243,7 @@ class Provider(pulumi.ProviderResource):
 
     @property
     @pulumi.getter
-    def username(self) -> pulumi.Output[builtins.str]:
+    def username(self) -> pulumi.Output[Optional[builtins.str]]:
         return pulumi.get(self, "username")
 
     @pulumi.output_type
