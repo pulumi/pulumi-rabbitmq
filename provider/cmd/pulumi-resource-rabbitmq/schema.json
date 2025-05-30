@@ -489,11 +489,6 @@
                 "type": "string"
             }
         },
-        "required": [
-            "endpoint",
-            "password",
-            "username"
-        ],
         "inputProperties": {
             "cacertFile": {
                 "type": "string",
@@ -530,11 +525,6 @@
                 "type": "string"
             }
         },
-        "requiredInputs": [
-            "endpoint",
-            "password",
-            "username"
-        ],
         "methods": {
             "terraformConfig": "pulumi:providers:rabbitmq/terraformConfig"
         }
