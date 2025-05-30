@@ -6,7 +6,6 @@ package com.pulumi.rabbitmq;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.core.internal.Codegen;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -39,11 +38,11 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.clientkeyFile);
     }
 
-    @Import(name="endpoint", required=true)
-    private Output<String> endpoint;
+    @Import(name="endpoint")
+    private @Nullable Output<String> endpoint;
 
-    public Output<String> endpoint() {
-        return this.endpoint;
+    public Optional<Output<String>> endpoint() {
+        return Optional.ofNullable(this.endpoint);
     }
 
     @Import(name="insecure", json=true)
@@ -53,11 +52,11 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.insecure);
     }
 
-    @Import(name="password", required=true)
-    private Output<String> password;
+    @Import(name="password")
+    private @Nullable Output<String> password;
 
-    public Output<String> password() {
-        return this.password;
+    public Optional<Output<String>> password() {
+        return Optional.ofNullable(this.password);
     }
 
     @Import(name="proxy")
@@ -67,11 +66,11 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.proxy);
     }
 
-    @Import(name="username", required=true)
-    private Output<String> username;
+    @Import(name="username")
+    private @Nullable Output<String> username;
 
-    public Output<String> username() {
-        return this.username;
+    public Optional<Output<String>> username() {
+        return Optional.ofNullable(this.username);
     }
 
     private ProviderArgs() {}
@@ -132,7 +131,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
             return clientkeyFile(Output.of(clientkeyFile));
         }
 
-        public Builder endpoint(Output<String> endpoint) {
+        public Builder endpoint(@Nullable Output<String> endpoint) {
             $.endpoint = endpoint;
             return this;
         }
@@ -150,7 +149,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
             return insecure(Output.of(insecure));
         }
 
-        public Builder password(Output<String> password) {
+        public Builder password(@Nullable Output<String> password) {
             $.password = password;
             return this;
         }
@@ -168,7 +167,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
             return proxy(Output.of(proxy));
         }
 
-        public Builder username(Output<String> username) {
+        public Builder username(@Nullable Output<String> username) {
             $.username = username;
             return this;
         }
@@ -179,16 +178,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
         public ProviderArgs build() {
             $.cacertFile = Codegen.stringProp("cacertFile").output().arg($.cacertFile).env("RABBITMQ_CACERT").getNullable();
-            if ($.endpoint == null) {
-                throw new MissingRequiredPropertyException("ProviderArgs", "endpoint");
-            }
             $.insecure = Codegen.booleanProp("insecure").output().arg($.insecure).env("RABBITMQ_INSECURE").getNullable();
-            if ($.password == null) {
-                throw new MissingRequiredPropertyException("ProviderArgs", "password");
-            }
-            if ($.username == null) {
-                throw new MissingRequiredPropertyException("ProviderArgs", "username");
-            }
             return $;
         }
     }
