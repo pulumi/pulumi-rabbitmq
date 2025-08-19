@@ -1318,7 +1318,7 @@
                 "properties": {
                     "__self__": {
                         "type": "ref",
-                        "$ref": "#/resources/pulumi:providers:rabbitmq"
+                        "$ref": "#/provider"
                     }
                 },
                 "type": "pulumi:providers:rabbitmq/terraformConfig",
