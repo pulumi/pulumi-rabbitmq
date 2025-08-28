@@ -4,6 +4,7 @@ title: Rabbitmq Provider
 meta_desc: Provides an overview on how to configure the Pulumi Rabbitmq provider.
 layout: package
 ---
+
 ## Installation
 
 The Rabbitmq provider is available as a package in all Pulumi languages:
@@ -13,6 +14,7 @@ The Rabbitmq provider is available as a package in all Pulumi languages:
 * Go: [`github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq`](https://github.com/pulumi/pulumi-rabbitmq)
 * .NET: [`Pulumi.Rabbitmq`](https://www.nuget.org/packages/Pulumi.Rabbitmq)
 * Java: [`com.pulumi/rabbitmq`](https://central.sonatype.com/artifact/com.pulumi/rabbitmq)
+
 ## Overview
 
 [RabbitMQ](http://www.rabbitmq.com) is an AMQP message broker server. The

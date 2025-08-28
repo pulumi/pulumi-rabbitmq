@@ -65,17 +65,17 @@ export class User extends pulumi.CustomResource {
     /**
      * The name of the user.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The password of the user. The value of this argument
      * is plain-text so make sure to secure where this is defined.
      */
-    public readonly password!: pulumi.Output<string>;
+    declare public readonly password: pulumi.Output<string>;
     /**
      * Which permission model to apply to the user. Valid
      * options are: management, policymaker, monitoring, and administrator.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a User resource with the given unique name, arguments, and options.
@@ -90,17 +90,17 @@ export class User extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserState | undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["password"] = state?.password;
+            resourceInputs["tags"] = state?.tags;
         } else {
             const args = argsOrState as UserArgs | undefined;
-            if ((!args || args.password === undefined) && !opts.urn) {
+            if (args?.password === undefined && !opts.urn) {
                 throw new Error("Missing required property 'password'");
             }
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["name"] = args?.name;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["tags"] = args?.tags;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["password"] };

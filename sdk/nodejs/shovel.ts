@@ -88,15 +88,15 @@ export class Shovel extends pulumi.CustomResource {
      * The settings of the dynamic shovel. The structure is
      * described below.
      */
-    public readonly info!: pulumi.Output<outputs.ShovelInfo>;
+    declare public readonly info: pulumi.Output<outputs.ShovelInfo>;
     /**
      * The shovel name.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The vhost to create the resource in.
      */
-    public readonly vhost!: pulumi.Output<string>;
+    declare public readonly vhost: pulumi.Output<string>;
 
     /**
      * Create a Shovel resource with the given unique name, arguments, and options.
@@ -111,20 +111,20 @@ export class Shovel extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ShovelState | undefined;
-            resourceInputs["info"] = state ? state.info : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["vhost"] = state ? state.vhost : undefined;
+            resourceInputs["info"] = state?.info;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["vhost"] = state?.vhost;
         } else {
             const args = argsOrState as ShovelArgs | undefined;
-            if ((!args || args.info === undefined) && !opts.urn) {
+            if (args?.info === undefined && !opts.urn) {
                 throw new Error("Missing required property 'info'");
             }
-            if ((!args || args.vhost === undefined) && !opts.urn) {
+            if (args?.vhost === undefined && !opts.urn) {
                 throw new Error("Missing required property 'vhost'");
             }
-            resourceInputs["info"] = args ? args.info : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["vhost"] = args ? args.vhost : undefined;
+            resourceInputs["info"] = args?.info;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["vhost"] = args?.vhost;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Shovel.__pulumiType, name, resourceInputs, opts);

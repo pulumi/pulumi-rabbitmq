@@ -81,16 +81,16 @@ export class OperatorPolicy extends pulumi.CustomResource {
     /**
      * The name of the operator policy.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The settings of the operator policy. The structure is
      * described below.
      */
-    public readonly policy!: pulumi.Output<outputs.OperatorPolicyPolicy>;
+    declare public readonly policy: pulumi.Output<outputs.OperatorPolicyPolicy>;
     /**
      * The vhost to create the resource in.
      */
-    public readonly vhost!: pulumi.Output<string>;
+    declare public readonly vhost: pulumi.Output<string>;
 
     /**
      * Create a OperatorPolicy resource with the given unique name, arguments, and options.
@@ -105,20 +105,20 @@ export class OperatorPolicy extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OperatorPolicyState | undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["policy"] = state ? state.policy : undefined;
-            resourceInputs["vhost"] = state ? state.vhost : undefined;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["policy"] = state?.policy;
+            resourceInputs["vhost"] = state?.vhost;
         } else {
             const args = argsOrState as OperatorPolicyArgs | undefined;
-            if ((!args || args.policy === undefined) && !opts.urn) {
+            if (args?.policy === undefined && !opts.urn) {
                 throw new Error("Missing required property 'policy'");
             }
-            if ((!args || args.vhost === undefined) && !opts.urn) {
+            if (args?.vhost === undefined && !opts.urn) {
                 throw new Error("Missing required property 'vhost'");
             }
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["policy"] = args ? args.policy : undefined;
-            resourceInputs["vhost"] = args ? args.vhost : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["policy"] = args?.policy;
+            resourceInputs["vhost"] = args?.vhost;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(OperatorPolicy.__pulumiType, name, resourceInputs, opts);
