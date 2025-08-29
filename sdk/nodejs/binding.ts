@@ -90,32 +90,32 @@ export class Binding extends pulumi.CustomResource {
     /**
      * Additional key/value arguments for the binding.
      */
-    public readonly arguments!: pulumi.Output<{[key: string]: string} | undefined>;
-    public readonly argumentsJson!: pulumi.Output<string | undefined>;
+    declare public readonly arguments: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly argumentsJson: pulumi.Output<string | undefined>;
     /**
      * The destination queue or exchange.
      */
-    public readonly destination!: pulumi.Output<string>;
+    declare public readonly destination: pulumi.Output<string>;
     /**
      * The type of destination (queue or exchange).
      */
-    public readonly destinationType!: pulumi.Output<string>;
+    declare public readonly destinationType: pulumi.Output<string>;
     /**
      * A unique key to refer to the binding.
      */
-    public /*out*/ readonly propertiesKey!: pulumi.Output<string>;
+    declare public /*out*/ readonly propertiesKey: pulumi.Output<string>;
     /**
      * A routing key for the binding.
      */
-    public readonly routingKey!: pulumi.Output<string | undefined>;
+    declare public readonly routingKey: pulumi.Output<string | undefined>;
     /**
      * The source exchange.
      */
-    public readonly source!: pulumi.Output<string>;
+    declare public readonly source: pulumi.Output<string>;
     /**
      * The vhost to create the resource in.
      */
-    public readonly vhost!: pulumi.Output<string>;
+    declare public readonly vhost: pulumi.Output<string>;
 
     /**
      * Create a Binding resource with the given unique name, arguments, and options.
@@ -130,35 +130,35 @@ export class Binding extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BindingState | undefined;
-            resourceInputs["arguments"] = state ? state.arguments : undefined;
-            resourceInputs["argumentsJson"] = state ? state.argumentsJson : undefined;
-            resourceInputs["destination"] = state ? state.destination : undefined;
-            resourceInputs["destinationType"] = state ? state.destinationType : undefined;
-            resourceInputs["propertiesKey"] = state ? state.propertiesKey : undefined;
-            resourceInputs["routingKey"] = state ? state.routingKey : undefined;
-            resourceInputs["source"] = state ? state.source : undefined;
-            resourceInputs["vhost"] = state ? state.vhost : undefined;
+            resourceInputs["arguments"] = state?.arguments;
+            resourceInputs["argumentsJson"] = state?.argumentsJson;
+            resourceInputs["destination"] = state?.destination;
+            resourceInputs["destinationType"] = state?.destinationType;
+            resourceInputs["propertiesKey"] = state?.propertiesKey;
+            resourceInputs["routingKey"] = state?.routingKey;
+            resourceInputs["source"] = state?.source;
+            resourceInputs["vhost"] = state?.vhost;
         } else {
             const args = argsOrState as BindingArgs | undefined;
-            if ((!args || args.destination === undefined) && !opts.urn) {
+            if (args?.destination === undefined && !opts.urn) {
                 throw new Error("Missing required property 'destination'");
             }
-            if ((!args || args.destinationType === undefined) && !opts.urn) {
+            if (args?.destinationType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'destinationType'");
             }
-            if ((!args || args.source === undefined) && !opts.urn) {
+            if (args?.source === undefined && !opts.urn) {
                 throw new Error("Missing required property 'source'");
             }
-            if ((!args || args.vhost === undefined) && !opts.urn) {
+            if (args?.vhost === undefined && !opts.urn) {
                 throw new Error("Missing required property 'vhost'");
             }
-            resourceInputs["arguments"] = args ? args.arguments : undefined;
-            resourceInputs["argumentsJson"] = args ? args.argumentsJson : undefined;
-            resourceInputs["destination"] = args ? args.destination : undefined;
-            resourceInputs["destinationType"] = args ? args.destinationType : undefined;
-            resourceInputs["routingKey"] = args ? args.routingKey : undefined;
-            resourceInputs["source"] = args ? args.source : undefined;
-            resourceInputs["vhost"] = args ? args.vhost : undefined;
+            resourceInputs["arguments"] = args?.arguments;
+            resourceInputs["argumentsJson"] = args?.argumentsJson;
+            resourceInputs["destination"] = args?.destination;
+            resourceInputs["destinationType"] = args?.destinationType;
+            resourceInputs["routingKey"] = args?.routingKey;
+            resourceInputs["source"] = args?.source;
+            resourceInputs["vhost"] = args?.vhost;
             resourceInputs["propertiesKey"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

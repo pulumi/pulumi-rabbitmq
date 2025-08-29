@@ -25,13 +25,13 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === "pulumi:providers:" + Provider.__pulumiType;
     }
 
-    public readonly cacertFile!: pulumi.Output<string | undefined>;
-    public readonly clientcertFile!: pulumi.Output<string | undefined>;
-    public readonly clientkeyFile!: pulumi.Output<string | undefined>;
-    public readonly endpoint!: pulumi.Output<string | undefined>;
-    public readonly password!: pulumi.Output<string | undefined>;
-    public readonly proxy!: pulumi.Output<string | undefined>;
-    public readonly username!: pulumi.Output<string | undefined>;
+    declare public readonly cacertFile: pulumi.Output<string | undefined>;
+    declare public readonly clientcertFile: pulumi.Output<string | undefined>;
+    declare public readonly clientkeyFile: pulumi.Output<string | undefined>;
+    declare public readonly endpoint: pulumi.Output<string | undefined>;
+    declare public readonly password: pulumi.Output<string | undefined>;
+    declare public readonly proxy: pulumi.Output<string | undefined>;
+    declare public readonly username: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -44,14 +44,14 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["cacertFile"] = (args ? args.cacertFile : undefined) ?? utilities.getEnv("RABBITMQ_CACERT");
-            resourceInputs["clientcertFile"] = args ? args.clientcertFile : undefined;
-            resourceInputs["clientkeyFile"] = args ? args.clientkeyFile : undefined;
-            resourceInputs["endpoint"] = args ? args.endpoint : undefined;
-            resourceInputs["insecure"] = pulumi.output((args ? args.insecure : undefined) ?? utilities.getEnvBoolean("RABBITMQ_INSECURE")).apply(JSON.stringify);
-            resourceInputs["password"] = args ? args.password : undefined;
-            resourceInputs["proxy"] = args ? args.proxy : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["cacertFile"] = (args?.cacertFile) ?? utilities.getEnv("RABBITMQ_CACERT");
+            resourceInputs["clientcertFile"] = args?.clientcertFile;
+            resourceInputs["clientkeyFile"] = args?.clientkeyFile;
+            resourceInputs["endpoint"] = args?.endpoint;
+            resourceInputs["insecure"] = pulumi.output((args?.insecure) ?? utilities.getEnvBoolean("RABBITMQ_INSECURE")).apply(JSON.stringify);
+            resourceInputs["password"] = args?.password;
+            resourceInputs["proxy"] = args?.proxy;
+            resourceInputs["username"] = args?.username;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);

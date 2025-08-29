@@ -100,19 +100,19 @@ export class FederationUpstream extends pulumi.CustomResource {
     /**
      * Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
      */
-    public /*out*/ readonly component!: pulumi.Output<string>;
+    declare public /*out*/ readonly component: pulumi.Output<string>;
     /**
      * The configuration of the federation upstream. The structure is described below.
      */
-    public readonly definition!: pulumi.Output<outputs.FederationUpstreamDefinition>;
+    declare public readonly definition: pulumi.Output<outputs.FederationUpstreamDefinition>;
     /**
      * The name of the federation upstream.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The vhost to create the resource in.
      */
-    public readonly vhost!: pulumi.Output<string>;
+    declare public readonly vhost: pulumi.Output<string>;
 
     /**
      * Create a FederationUpstream resource with the given unique name, arguments, and options.
@@ -127,21 +127,21 @@ export class FederationUpstream extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FederationUpstreamState | undefined;
-            resourceInputs["component"] = state ? state.component : undefined;
-            resourceInputs["definition"] = state ? state.definition : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["vhost"] = state ? state.vhost : undefined;
+            resourceInputs["component"] = state?.component;
+            resourceInputs["definition"] = state?.definition;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["vhost"] = state?.vhost;
         } else {
             const args = argsOrState as FederationUpstreamArgs | undefined;
-            if ((!args || args.definition === undefined) && !opts.urn) {
+            if (args?.definition === undefined && !opts.urn) {
                 throw new Error("Missing required property 'definition'");
             }
-            if ((!args || args.vhost === undefined) && !opts.urn) {
+            if (args?.vhost === undefined && !opts.urn) {
                 throw new Error("Missing required property 'vhost'");
             }
-            resourceInputs["definition"] = args ? args.definition : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["vhost"] = args ? args.vhost : undefined;
+            resourceInputs["definition"] = args?.definition;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["vhost"] = args?.vhost;
             resourceInputs["component"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

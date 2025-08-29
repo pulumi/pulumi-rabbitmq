@@ -75,15 +75,15 @@ export class TopicPermissions extends pulumi.CustomResource {
      * The settings of the permissions. The structure is
      * described below.
      */
-    public readonly permissions!: pulumi.Output<outputs.TopicPermissionsPermission[]>;
+    declare public readonly permissions: pulumi.Output<outputs.TopicPermissionsPermission[]>;
     /**
      * The user to apply the permissions to.
      */
-    public readonly user!: pulumi.Output<string>;
+    declare public readonly user: pulumi.Output<string>;
     /**
      * The vhost to create the resource in.
      */
-    public readonly vhost!: pulumi.Output<string | undefined>;
+    declare public readonly vhost: pulumi.Output<string | undefined>;
 
     /**
      * Create a TopicPermissions resource with the given unique name, arguments, and options.
@@ -98,20 +98,20 @@ export class TopicPermissions extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TopicPermissionsState | undefined;
-            resourceInputs["permissions"] = state ? state.permissions : undefined;
-            resourceInputs["user"] = state ? state.user : undefined;
-            resourceInputs["vhost"] = state ? state.vhost : undefined;
+            resourceInputs["permissions"] = state?.permissions;
+            resourceInputs["user"] = state?.user;
+            resourceInputs["vhost"] = state?.vhost;
         } else {
             const args = argsOrState as TopicPermissionsArgs | undefined;
-            if ((!args || args.permissions === undefined) && !opts.urn) {
+            if (args?.permissions === undefined && !opts.urn) {
                 throw new Error("Missing required property 'permissions'");
             }
-            if ((!args || args.user === undefined) && !opts.urn) {
+            if (args?.user === undefined && !opts.urn) {
                 throw new Error("Missing required property 'user'");
             }
-            resourceInputs["permissions"] = args ? args.permissions : undefined;
-            resourceInputs["user"] = args ? args.user : undefined;
-            resourceInputs["vhost"] = args ? args.vhost : undefined;
+            resourceInputs["permissions"] = args?.permissions;
+            resourceInputs["user"] = args?.user;
+            resourceInputs["vhost"] = args?.vhost;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(TopicPermissions.__pulumiType, name, resourceInputs, opts);
