@@ -55,7 +55,7 @@ export class VHost extends pulumi.CustomResource {
     /**
      * The name of the vhost.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
 
     /**
      * Create a VHost resource with the given unique name, arguments, and options.
@@ -70,10 +70,10 @@ export class VHost extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VHostState | undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["name"] = state?.name;
         } else {
             const args = argsOrState as VHostArgs | undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["name"] = args?.name;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(VHost.__pulumiType, name, resourceInputs, opts);

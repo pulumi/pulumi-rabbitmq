@@ -77,16 +77,16 @@ export class Exchange extends pulumi.CustomResource {
     /**
      * The name of the exchange.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The settings of the exchange. The structure is
      * described below.
      */
-    public readonly settings!: pulumi.Output<outputs.ExchangeSettings>;
+    declare public readonly settings: pulumi.Output<outputs.ExchangeSettings>;
     /**
      * The vhost to create the resource in.
      */
-    public readonly vhost!: pulumi.Output<string | undefined>;
+    declare public readonly vhost: pulumi.Output<string | undefined>;
 
     /**
      * Create a Exchange resource with the given unique name, arguments, and options.
@@ -101,17 +101,17 @@ export class Exchange extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ExchangeState | undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["settings"] = state ? state.settings : undefined;
-            resourceInputs["vhost"] = state ? state.vhost : undefined;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["settings"] = state?.settings;
+            resourceInputs["vhost"] = state?.vhost;
         } else {
             const args = argsOrState as ExchangeArgs | undefined;
-            if ((!args || args.settings === undefined) && !opts.urn) {
+            if (args?.settings === undefined && !opts.urn) {
                 throw new Error("Missing required property 'settings'");
             }
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["settings"] = args ? args.settings : undefined;
-            resourceInputs["vhost"] = args ? args.vhost : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["settings"] = args?.settings;
+            resourceInputs["vhost"] = args?.vhost;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Exchange.__pulumiType, name, resourceInputs, opts);
