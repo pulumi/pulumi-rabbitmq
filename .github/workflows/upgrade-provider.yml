@@ -95,7 +95,6 @@ jobs:
           automerge: true
           target-version: ${{ steps.target_version.outputs.version }}
           allow-missing-docs: true
-          target-java-version: v0.9.7
         env:
           GH_TOKEN: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_TOKEN || steps.esc-secrets.outputs.PULUMI_BOT_TOKEN || secrets.GITHUB_TOKEN }}
       - name: Comment on upgrade issue if automated PR failed
