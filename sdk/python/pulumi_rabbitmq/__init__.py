@@ -9,6 +9,7 @@ import typing
 from .binding import *
 from .exchange import *
 from .federation_upstream import *
+from .get_default_user import *
 from .get_exchange import *
 from .get_user import *
 from .get_v_host import *

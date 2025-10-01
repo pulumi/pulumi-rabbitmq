@@ -754,7 +754,7 @@ if not MYPY:
         """
         The AMQP 1.0 destination link address.
         """
-        destination_application_properties: NotRequired[pulumi.Input[_builtins.str]]
+        destination_application_properties: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
         """
         Application properties to set when shovelling messages.
         """
@@ -767,7 +767,7 @@ if not MYPY:
         """
         The routing key when using `destination_exchange`.
         """
-        destination_properties: NotRequired[pulumi.Input[_builtins.str]]
+        destination_properties: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
         """
         Properties to overwrite when shovelling messages.
 
@@ -778,7 +778,7 @@ if not MYPY:
         The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
         Defaults to `amqp091`.
         """
-        destination_publish_properties: NotRequired[pulumi.Input[_builtins.str]]
+        destination_publish_properties: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
         """
         A map of properties to overwrite when shovelling messages.
         """
@@ -787,6 +787,7 @@ if not MYPY:
         The queue to which messages should be published.
         Either this or `destination_exchange` must be specified but not both.
         """
+        destination_queue_arguments: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
         prefetch_count: NotRequired[pulumi.Input[_builtins.int]]
         """
         The maximum number of unacknowledged messages copied over a shovel at any one time.
@@ -841,13 +842,14 @@ class ShovelInfoArgs:
                  destination_add_forward_headers: Optional[pulumi.Input[_builtins.bool]] = None,
                  destination_add_timestamp_header: Optional[pulumi.Input[_builtins.bool]] = None,
                  destination_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 destination_application_properties: Optional[pulumi.Input[_builtins.str]] = None,
+                 destination_application_properties: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  destination_exchange: Optional[pulumi.Input[_builtins.str]] = None,
                  destination_exchange_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 destination_properties: Optional[pulumi.Input[_builtins.str]] = None,
+                 destination_properties: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  destination_protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 destination_publish_properties: Optional[pulumi.Input[_builtins.str]] = None,
+                 destination_publish_properties: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  destination_queue: Optional[pulumi.Input[_builtins.str]] = None,
+                 destination_queue_arguments: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  prefetch_count: Optional[pulumi.Input[_builtins.int]] = None,
                  reconnect_delay: Optional[pulumi.Input[_builtins.int]] = None,
                  source_address: Optional[pulumi.Input[_builtins.str]] = None,
@@ -866,16 +868,16 @@ class ShovelInfoArgs:
         :param pulumi.Input[_builtins.str] delete_after: Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
         :param pulumi.Input[_builtins.bool] destination_add_forward_headers: Whether to add `x-shovelled` headers to shovelled messages.
         :param pulumi.Input[_builtins.str] destination_address: The AMQP 1.0 destination link address.
-        :param pulumi.Input[_builtins.str] destination_application_properties: Application properties to set when shovelling messages.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] destination_application_properties: Application properties to set when shovelling messages.
         :param pulumi.Input[_builtins.str] destination_exchange: The exchange to which messages should be published.
                Either this or `destination_queue` must be specified but not both.
         :param pulumi.Input[_builtins.str] destination_exchange_key: The routing key when using `destination_exchange`.
-        :param pulumi.Input[_builtins.str] destination_properties: Properties to overwrite when shovelling messages.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] destination_properties: Properties to overwrite when shovelling messages.
                
                For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
         :param pulumi.Input[_builtins.str] destination_protocol: The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
                Defaults to `amqp091`.
-        :param pulumi.Input[_builtins.str] destination_publish_properties: A map of properties to overwrite when shovelling messages.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] destination_publish_properties: A map of properties to overwrite when shovelling messages.
         :param pulumi.Input[_builtins.str] destination_queue: The queue to which messages should be published.
                Either this or `destination_exchange` must be specified but not both.
         :param pulumi.Input[_builtins.int] prefetch_count: The maximum number of unacknowledged messages copied over a shovel at any one time.
@@ -926,6 +928,8 @@ class ShovelInfoArgs:
             pulumi.set(__self__, "destination_publish_properties", destination_publish_properties)
         if destination_queue is not None:
             pulumi.set(__self__, "destination_queue", destination_queue)
+        if destination_queue_arguments is not None:
+            pulumi.set(__self__, "destination_queue_arguments", destination_queue_arguments)
         if prefetch_count is not None:
             warnings.warn("""use source_prefetch_count instead""", DeprecationWarning)
             pulumi.log.warn("""prefetch_count is deprecated: use source_prefetch_count instead""")
@@ -1046,14 +1050,14 @@ class ShovelInfoArgs:
 
     @_builtins.property
     @pulumi.getter(name="destinationApplicationProperties")
-    def destination_application_properties(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def destination_application_properties(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Application properties to set when shovelling messages.
         """
         return pulumi.get(self, "destination_application_properties")
 
     @destination_application_properties.setter
-    def destination_application_properties(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def destination_application_properties(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "destination_application_properties", value)
 
     @_builtins.property
@@ -1083,7 +1087,7 @@ class ShovelInfoArgs:
 
     @_builtins.property
     @pulumi.getter(name="destinationProperties")
-    def destination_properties(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def destination_properties(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Properties to overwrite when shovelling messages.
 
@@ -1092,7 +1096,7 @@ class ShovelInfoArgs:
         return pulumi.get(self, "destination_properties")
 
     @destination_properties.setter
-    def destination_properties(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def destination_properties(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "destination_properties", value)
 
     @_builtins.property
@@ -1110,14 +1114,14 @@ class ShovelInfoArgs:
 
     @_builtins.property
     @pulumi.getter(name="destinationPublishProperties")
-    def destination_publish_properties(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def destination_publish_properties(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of properties to overwrite when shovelling messages.
         """
         return pulumi.get(self, "destination_publish_properties")
 
     @destination_publish_properties.setter
-    def destination_publish_properties(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def destination_publish_properties(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "destination_publish_properties", value)
 
     @_builtins.property
@@ -1132,6 +1136,15 @@ class ShovelInfoArgs:
     @destination_queue.setter
     def destination_queue(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "destination_queue", value)
+
+    @_builtins.property
+    @pulumi.getter(name="destinationQueueArguments")
+    def destination_queue_arguments(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "destination_queue_arguments")
+
+    @destination_queue_arguments.setter
+    def destination_queue_arguments(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "destination_queue_arguments", value)
 
     @_builtins.property
     @pulumi.getter(name="prefetchCount")

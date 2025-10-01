@@ -9,6 +9,7 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -123,13 +124,13 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
      * 
      */
     @Import(name="destinationApplicationProperties")
-    private @Nullable Output<String> destinationApplicationProperties;
+    private @Nullable Output<Map<String,String>> destinationApplicationProperties;
 
     /**
      * @return Application properties to set when shovelling messages.
      * 
      */
-    public Optional<Output<String>> destinationApplicationProperties() {
+    public Optional<Output<Map<String,String>>> destinationApplicationProperties() {
         return Optional.ofNullable(this.destinationApplicationProperties);
     }
 
@@ -172,7 +173,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
      * 
      */
     @Import(name="destinationProperties")
-    private @Nullable Output<String> destinationProperties;
+    private @Nullable Output<Map<String,String>> destinationProperties;
 
     /**
      * @return Properties to overwrite when shovelling messages.
@@ -180,7 +181,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
      * For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
      * 
      */
-    public Optional<Output<String>> destinationProperties() {
+    public Optional<Output<Map<String,String>>> destinationProperties() {
         return Optional.ofNullable(this.destinationProperties);
     }
 
@@ -206,13 +207,13 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
      * 
      */
     @Import(name="destinationPublishProperties")
-    private @Nullable Output<String> destinationPublishProperties;
+    private @Nullable Output<Map<String,String>> destinationPublishProperties;
 
     /**
      * @return A map of properties to overwrite when shovelling messages.
      * 
      */
-    public Optional<Output<String>> destinationPublishProperties() {
+    public Optional<Output<Map<String,String>>> destinationPublishProperties() {
         return Optional.ofNullable(this.destinationPublishProperties);
     }
 
@@ -231,6 +232,13 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> destinationQueue() {
         return Optional.ofNullable(this.destinationQueue);
+    }
+
+    @Import(name="destinationQueueArguments")
+    private @Nullable Output<Map<String,String>> destinationQueueArguments;
+
+    public Optional<Output<Map<String,String>>> destinationQueueArguments() {
+        return Optional.ofNullable(this.destinationQueueArguments);
     }
 
     /**
@@ -430,6 +438,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
         this.destinationProtocol = $.destinationProtocol;
         this.destinationPublishProperties = $.destinationPublishProperties;
         this.destinationQueue = $.destinationQueue;
+        this.destinationQueueArguments = $.destinationQueueArguments;
         this.destinationUri = $.destinationUri;
         this.prefetchCount = $.prefetchCount;
         this.reconnectDelay = $.reconnectDelay;
@@ -599,7 +608,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder destinationApplicationProperties(@Nullable Output<String> destinationApplicationProperties) {
+        public Builder destinationApplicationProperties(@Nullable Output<Map<String,String>> destinationApplicationProperties) {
             $.destinationApplicationProperties = destinationApplicationProperties;
             return this;
         }
@@ -610,7 +619,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder destinationApplicationProperties(String destinationApplicationProperties) {
+        public Builder destinationApplicationProperties(Map<String,String> destinationApplicationProperties) {
             return destinationApplicationProperties(Output.of(destinationApplicationProperties));
         }
 
@@ -666,7 +675,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder destinationProperties(@Nullable Output<String> destinationProperties) {
+        public Builder destinationProperties(@Nullable Output<Map<String,String>> destinationProperties) {
             $.destinationProperties = destinationProperties;
             return this;
         }
@@ -679,7 +688,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder destinationProperties(String destinationProperties) {
+        public Builder destinationProperties(Map<String,String> destinationProperties) {
             return destinationProperties(Output.of(destinationProperties));
         }
 
@@ -712,7 +721,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder destinationPublishProperties(@Nullable Output<String> destinationPublishProperties) {
+        public Builder destinationPublishProperties(@Nullable Output<Map<String,String>> destinationPublishProperties) {
             $.destinationPublishProperties = destinationPublishProperties;
             return this;
         }
@@ -723,7 +732,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder destinationPublishProperties(String destinationPublishProperties) {
+        public Builder destinationPublishProperties(Map<String,String> destinationPublishProperties) {
             return destinationPublishProperties(Output.of(destinationPublishProperties));
         }
 
@@ -748,6 +757,15 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder destinationQueue(String destinationQueue) {
             return destinationQueue(Output.of(destinationQueue));
+        }
+
+        public Builder destinationQueueArguments(@Nullable Output<Map<String,String>> destinationQueueArguments) {
+            $.destinationQueueArguments = destinationQueueArguments;
+            return this;
+        }
+
+        public Builder destinationQueueArguments(Map<String,String> destinationQueueArguments) {
+            return destinationQueueArguments(Output.of(destinationQueueArguments));
         }
 
         /**

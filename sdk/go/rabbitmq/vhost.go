@@ -28,7 +28,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := rabbitmq.NewVHost(ctx, "my_vhost", &rabbitmq.VHostArgs{
-//				Name: pulumi.String("my_vhost"),
+//				Name:             pulumi.String("my_vhost"),
+//				Description:      pulumi.String("My Vhost"),
+//				DefaultQueueType: pulumi.String("quorum"),
+//				MaxConnections:   pulumi.String("200"),
+//				MaxQueues:        pulumi.String("100"),
+//				Tracing:          pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
@@ -49,8 +54,17 @@ import (
 type VHost struct {
 	pulumi.CustomResourceState
 
+	// default queue type for new queues
+	DefaultQueueType pulumi.StringPtrOutput `pulumi:"defaultQueueType"`
+	// A friendly description.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Maximum number of concurrent client connections to the vhost
+	MaxConnections pulumi.StringPtrOutput `pulumi:"maxConnections"`
+	// Maximum number of queues that can be created on the vhost
+	MaxQueues pulumi.StringPtrOutput `pulumi:"maxQueues"`
 	// The name of the vhost.
-	Name pulumi.StringOutput `pulumi:"name"`
+	Name    pulumi.StringOutput  `pulumi:"name"`
+	Tracing pulumi.BoolPtrOutput `pulumi:"tracing"`
 }
 
 // NewVHost registers a new resource with the given unique name, arguments, and options.
@@ -83,13 +97,31 @@ func GetVHost(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VHost resources.
 type vhostState struct {
+	// default queue type for new queues
+	DefaultQueueType *string `pulumi:"defaultQueueType"`
+	// A friendly description.
+	Description *string `pulumi:"description"`
+	// Maximum number of concurrent client connections to the vhost
+	MaxConnections *string `pulumi:"maxConnections"`
+	// Maximum number of queues that can be created on the vhost
+	MaxQueues *string `pulumi:"maxQueues"`
 	// The name of the vhost.
-	Name *string `pulumi:"name"`
+	Name    *string `pulumi:"name"`
+	Tracing *bool   `pulumi:"tracing"`
 }
 
 type VHostState struct {
+	// default queue type for new queues
+	DefaultQueueType pulumi.StringPtrInput
+	// A friendly description.
+	Description pulumi.StringPtrInput
+	// Maximum number of concurrent client connections to the vhost
+	MaxConnections pulumi.StringPtrInput
+	// Maximum number of queues that can be created on the vhost
+	MaxQueues pulumi.StringPtrInput
 	// The name of the vhost.
-	Name pulumi.StringPtrInput
+	Name    pulumi.StringPtrInput
+	Tracing pulumi.BoolPtrInput
 }
 
 func (VHostState) ElementType() reflect.Type {
@@ -97,14 +129,32 @@ func (VHostState) ElementType() reflect.Type {
 }
 
 type vhostArgs struct {
+	// default queue type for new queues
+	DefaultQueueType *string `pulumi:"defaultQueueType"`
+	// A friendly description.
+	Description *string `pulumi:"description"`
+	// Maximum number of concurrent client connections to the vhost
+	MaxConnections *string `pulumi:"maxConnections"`
+	// Maximum number of queues that can be created on the vhost
+	MaxQueues *string `pulumi:"maxQueues"`
 	// The name of the vhost.
-	Name *string `pulumi:"name"`
+	Name    *string `pulumi:"name"`
+	Tracing *bool   `pulumi:"tracing"`
 }
 
 // The set of arguments for constructing a VHost resource.
 type VHostArgs struct {
+	// default queue type for new queues
+	DefaultQueueType pulumi.StringPtrInput
+	// A friendly description.
+	Description pulumi.StringPtrInput
+	// Maximum number of concurrent client connections to the vhost
+	MaxConnections pulumi.StringPtrInput
+	// Maximum number of queues that can be created on the vhost
+	MaxQueues pulumi.StringPtrInput
 	// The name of the vhost.
-	Name pulumi.StringPtrInput
+	Name    pulumi.StringPtrInput
+	Tracing pulumi.BoolPtrInput
 }
 
 func (VHostArgs) ElementType() reflect.Type {
@@ -194,9 +244,33 @@ func (o VHostOutput) ToVHostOutputWithContext(ctx context.Context) VHostOutput {
 	return o
 }
 
+// default queue type for new queues
+func (o VHostOutput) DefaultQueueType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VHost) pulumi.StringPtrOutput { return v.DefaultQueueType }).(pulumi.StringPtrOutput)
+}
+
+// A friendly description.
+func (o VHostOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VHost) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Maximum number of concurrent client connections to the vhost
+func (o VHostOutput) MaxConnections() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VHost) pulumi.StringPtrOutput { return v.MaxConnections }).(pulumi.StringPtrOutput)
+}
+
+// Maximum number of queues that can be created on the vhost
+func (o VHostOutput) MaxQueues() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VHost) pulumi.StringPtrOutput { return v.MaxQueues }).(pulumi.StringPtrOutput)
+}
+
 // The name of the vhost.
 func (o VHostOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *VHost) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o VHostOutput) Tracing() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *VHost) pulumi.BoolPtrOutput { return v.Tracing }).(pulumi.BoolPtrOutput)
 }
 
 type VHostArrayOutput struct{ *pulumi.OutputState }

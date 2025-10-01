@@ -18,6 +18,7 @@
         "config/vars.ts",
         "exchange.ts",
         "federationUpstream.ts",
+        "getDefaultUser.ts",
         "getExchange.ts",
         "getUser.ts",
         "getVHost.ts",

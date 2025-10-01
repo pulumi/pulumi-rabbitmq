@@ -192,7 +192,7 @@ export interface ShovelInfo {
     /**
      * Application properties to set when shovelling messages.
      */
-    destinationApplicationProperties?: string;
+    destinationApplicationProperties?: {[key: string]: string};
     /**
      * The exchange to which messages should be published.
      * Either this or `destinationQueue` must be specified but not both.
@@ -207,7 +207,7 @@ export interface ShovelInfo {
      *
      * For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
      */
-    destinationProperties?: string;
+    destinationProperties?: {[key: string]: string};
     /**
      * The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
      * Defaults to `amqp091`.
@@ -216,12 +216,13 @@ export interface ShovelInfo {
     /**
      * A map of properties to overwrite when shovelling messages.
      */
-    destinationPublishProperties?: string;
+    destinationPublishProperties?: {[key: string]: string};
     /**
      * The queue to which messages should be published.
      * Either this or `destinationExchange` must be specified but not both.
      */
     destinationQueue?: string;
+    destinationQueueArguments?: {[key: string]: string};
     /**
      * The amqp uri for the destination .
      */

@@ -38,7 +38,7 @@ namespace Pulumi.RabbitMQ.Outputs
         /// <summary>
         /// Application properties to set when shovelling messages.
         /// </summary>
-        public readonly string? DestinationApplicationProperties;
+        public readonly ImmutableDictionary<string, string>? DestinationApplicationProperties;
         /// <summary>
         /// The exchange to which messages should be published.
         /// Either this or `destination_queue` must be specified but not both.
@@ -53,7 +53,7 @@ namespace Pulumi.RabbitMQ.Outputs
         /// 
         /// For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
         /// </summary>
-        public readonly string? DestinationProperties;
+        public readonly ImmutableDictionary<string, string>? DestinationProperties;
         /// <summary>
         /// The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
         /// Defaults to `amqp091`.
@@ -62,12 +62,13 @@ namespace Pulumi.RabbitMQ.Outputs
         /// <summary>
         /// A map of properties to overwrite when shovelling messages.
         /// </summary>
-        public readonly string? DestinationPublishProperties;
+        public readonly ImmutableDictionary<string, string>? DestinationPublishProperties;
         /// <summary>
         /// The queue to which messages should be published.
         /// Either this or `destination_exchange` must be specified but not both.
         /// </summary>
         public readonly string? DestinationQueue;
+        public readonly ImmutableDictionary<string, string>? DestinationQueueArguments;
         /// <summary>
         /// The amqp uri for the destination .
         /// </summary>
@@ -131,19 +132,21 @@ namespace Pulumi.RabbitMQ.Outputs
 
             string? destinationAddress,
 
-            string? destinationApplicationProperties,
+            ImmutableDictionary<string, string>? destinationApplicationProperties,
 
             string? destinationExchange,
 
             string? destinationExchangeKey,
 
-            string? destinationProperties,
+            ImmutableDictionary<string, string>? destinationProperties,
 
             string? destinationProtocol,
 
-            string? destinationPublishProperties,
+            ImmutableDictionary<string, string>? destinationPublishProperties,
 
             string? destinationQueue,
+
+            ImmutableDictionary<string, string>? destinationQueueArguments,
 
             string destinationUri,
 
@@ -180,6 +183,7 @@ namespace Pulumi.RabbitMQ.Outputs
             DestinationProtocol = destinationProtocol;
             DestinationPublishProperties = destinationPublishProperties;
             DestinationQueue = destinationQueue;
+            DestinationQueueArguments = destinationQueueArguments;
             DestinationUri = destinationUri;
             PrefetchCount = prefetchCount;
             ReconnectDelay = reconnectDelay;
