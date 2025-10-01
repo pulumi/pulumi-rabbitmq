@@ -100,19 +100,23 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Additional key/value settings for the exchange.\n"
+                    "description": "Additional key/value settings for the exchange.\n",
+                    "willReplaceOnChanges": true
                 },
                 "autoDelete": {
                     "type": "boolean",
-                    "description": "Whether the exchange will self-delete when all\nqueues have finished using it.\n"
+                    "description": "Whether the exchange will self-delete when all\nqueues have finished using it.\n",
+                    "willReplaceOnChanges": true
                 },
                 "durable": {
                     "type": "boolean",
-                    "description": "Whether the exchange survives server restarts.\nDefaults to `false`.\n"
+                    "description": "Whether the exchange survives server restarts.\nDefaults to `false`.\n",
+                    "willReplaceOnChanges": true
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of exchange.\n"
+                    "description": "The type of exchange.\n",
+                    "willReplaceOnChanges": true
                 }
             },
             "type": "object",
@@ -313,7 +317,10 @@
                     "willReplaceOnChanges": true
                 },
                 "destinationApplicationProperties": {
-                    "type": "string",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
                     "description": "Application properties to set when shovelling messages.\n",
                     "willReplaceOnChanges": true
                 },
@@ -328,7 +335,10 @@
                     "willReplaceOnChanges": true
                 },
                 "destinationProperties": {
-                    "type": "string",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
                     "description": "Properties to overwrite when shovelling messages.\n\nFor more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).\n",
                     "willReplaceOnChanges": true
                 },
@@ -338,13 +348,23 @@
                     "willReplaceOnChanges": true
                 },
                 "destinationPublishProperties": {
-                    "type": "string",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
                     "description": "A map of properties to overwrite when shovelling messages.\n",
                     "willReplaceOnChanges": true
                 },
                 "destinationQueue": {
                     "type": "string",
                     "description": "The queue to which messages should be published.\nEither this or `destination_exchange` must be specified but not both.\n",
+                    "willReplaceOnChanges": true
+                },
+                "destinationQueueArguments": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
                     "willReplaceOnChanges": true
                 },
                 "destinationUri": {
@@ -1281,30 +1301,87 @@
             }
         },
         "rabbitmq:index/vHost:VHost": {
-            "description": "The ``rabbitmq.VHost`` resource creates and manages a vhost.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as rabbitmq from \"@pulumi/rabbitmq\";\n\nconst myVhost = new rabbitmq.VHost(\"my_vhost\", {name: \"my_vhost\"});\n```\n```python\nimport pulumi\nimport pulumi_rabbitmq as rabbitmq\n\nmy_vhost = rabbitmq.VHost(\"my_vhost\", name=\"my_vhost\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing RabbitMQ = Pulumi.RabbitMQ;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myVhost = new RabbitMQ.VHost(\"my_vhost\", new()\n    {\n        Name = \"my_vhost\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := rabbitmq.NewVHost(ctx, \"my_vhost\", \u0026rabbitmq.VHostArgs{\n\t\t\tName: pulumi.String(\"my_vhost\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.rabbitmq.VHost;\nimport com.pulumi.rabbitmq.VHostArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myVhost = new VHost(\"myVhost\", VHostArgs.builder()\n            .name(\"my_vhost\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myVhost:\n    type: rabbitmq:VHost\n    name: my_vhost\n    properties:\n      name: my_vhost\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nVhosts can be imported using the `name`, e.g.\n\n```sh\n$ pulumi import rabbitmq:index/vHost:VHost my_vhost my_vhost\n```\n\n",
+            "description": "The ``rabbitmq.VHost`` resource creates and manages a vhost.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as rabbitmq from \"@pulumi/rabbitmq\";\n\nconst myVhost = new rabbitmq.VHost(\"my_vhost\", {\n    name: \"my_vhost\",\n    description: \"My Vhost\",\n    defaultQueueType: \"quorum\",\n    maxConnections: \"200\",\n    maxQueues: \"100\",\n    tracing: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_rabbitmq as rabbitmq\n\nmy_vhost = rabbitmq.VHost(\"my_vhost\",\n    name=\"my_vhost\",\n    description=\"My Vhost\",\n    default_queue_type=\"quorum\",\n    max_connections=\"200\",\n    max_queues=\"100\",\n    tracing=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing RabbitMQ = Pulumi.RabbitMQ;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myVhost = new RabbitMQ.VHost(\"my_vhost\", new()\n    {\n        Name = \"my_vhost\",\n        Description = \"My Vhost\",\n        DefaultQueueType = \"quorum\",\n        MaxConnections = \"200\",\n        MaxQueues = \"100\",\n        Tracing = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-rabbitmq/sdk/v3/go/rabbitmq\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := rabbitmq.NewVHost(ctx, \"my_vhost\", \u0026rabbitmq.VHostArgs{\n\t\t\tName:             pulumi.String(\"my_vhost\"),\n\t\t\tDescription:      pulumi.String(\"My Vhost\"),\n\t\t\tDefaultQueueType: pulumi.String(\"quorum\"),\n\t\t\tMaxConnections:   pulumi.String(\"200\"),\n\t\t\tMaxQueues:        pulumi.String(\"100\"),\n\t\t\tTracing:          pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.rabbitmq.VHost;\nimport com.pulumi.rabbitmq.VHostArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myVhost = new VHost(\"myVhost\", VHostArgs.builder()\n            .name(\"my_vhost\")\n            .description(\"My Vhost\")\n            .defaultQueueType(\"quorum\")\n            .maxConnections(\"200\")\n            .maxQueues(\"100\")\n            .tracing(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myVhost:\n    type: rabbitmq:VHost\n    name: my_vhost\n    properties:\n      name: my_vhost\n      description: My Vhost\n      defaultQueueType: quorum\n      maxConnections: '200'\n      maxQueues: 100\n      tracing: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nVhosts can be imported using the `name`, e.g.\n\n```sh\n$ pulumi import rabbitmq:index/vHost:VHost my_vhost my_vhost\n```\n\n",
             "properties": {
+                "defaultQueueType": {
+                    "type": "string",
+                    "description": "default queue type for new queues\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A friendly description.\n"
+                },
+                "maxConnections": {
+                    "type": "string",
+                    "description": "Maximum number of concurrent client connections to the vhost\n"
+                },
+                "maxQueues": {
+                    "type": "string",
+                    "description": "Maximum number of queues that can be created on the vhost\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The name of the vhost.\n"
+                },
+                "tracing": {
+                    "type": "boolean"
                 }
             },
             "required": [
                 "name"
             ],
             "inputProperties": {
+                "defaultQueueType": {
+                    "type": "string",
+                    "description": "default queue type for new queues\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A friendly description.\n"
+                },
+                "maxConnections": {
+                    "type": "string",
+                    "description": "Maximum number of concurrent client connections to the vhost\n"
+                },
+                "maxQueues": {
+                    "type": "string",
+                    "description": "Maximum number of queues that can be created on the vhost\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The name of the vhost.\n",
                     "willReplaceOnChanges": true
+                },
+                "tracing": {
+                    "type": "boolean"
                 }
             },
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering VHost resources.\n",
                 "properties": {
+                    "defaultQueueType": {
+                        "type": "string",
+                        "description": "default queue type for new queues\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "A friendly description.\n"
+                    },
+                    "maxConnections": {
+                        "type": "string",
+                        "description": "Maximum number of concurrent client connections to the vhost\n"
+                    },
+                    "maxQueues": {
+                        "type": "string",
+                        "description": "Maximum number of queues that can be created on the vhost\n"
+                    },
                     "name": {
                         "type": "string",
                         "description": "The name of the vhost.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "tracing": {
+                        "type": "boolean"
                     }
                 },
                 "type": "object"
@@ -1337,6 +1414,33 @@
                 },
                 "required": [
                     "result"
+                ],
+                "type": "object"
+            }
+        },
+        "rabbitmq:index/getDefaultUser:getDefaultUser": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getDefaultUser.\n",
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDefaultUser.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "type": "string"
+                    },
+                    "username": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id"
                 ],
                 "type": "object"
             }
