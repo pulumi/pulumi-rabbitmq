@@ -1,14 +1,11 @@
-From 8329154c6a32b316c1ad002ca577580af5004915 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Ian Wahbe <ian@wahbe.com>
 Date: Tue, 21 Mar 2023 14:05:41 +0100
 Subject: [PATCH] fix module name
 
----
- go.mod | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/go.mod b/go.mod
-index b6a3db8..8d2b04a 100644
+index 75cf142..18f4109 100644
 --- a/go.mod
 +++ b/go.mod
 @@ -1,4 +1,4 @@
@@ -16,7 +13,4 @@ index b6a3db8..8d2b04a 100644
 +module github.com/cyrilgdn/terraform-provider-rabbitmq
  
  require (
- 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.21.0
--- 
-2.39.1
-
+ 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.37.0
