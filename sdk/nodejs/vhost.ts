@@ -13,7 +13,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as rabbitmq from "@pulumi/rabbitmq";
  *
- * const myVhost = new rabbitmq.VHost("my_vhost", {name: "my_vhost"});
+ * const myVhost = new rabbitmq.VHost("my_vhost", {
+ *     name: "my_vhost",
+ *     description: "My Vhost",
+ *     defaultQueueType: "quorum",
+ *     maxConnections: "200",
+ *     maxQueues: "100",
+ *     tracing: true,
+ * });
  * ```
  *
  * ## Import
@@ -53,9 +60,26 @@ export class VHost extends pulumi.CustomResource {
     }
 
     /**
+     * default queue type for new queues
+     */
+    declare public readonly defaultQueueType: pulumi.Output<string | undefined>;
+    /**
+     * A friendly description.
+     */
+    declare public readonly description: pulumi.Output<string | undefined>;
+    /**
+     * Maximum number of concurrent client connections to the vhost
+     */
+    declare public readonly maxConnections: pulumi.Output<string | undefined>;
+    /**
+     * Maximum number of queues that can be created on the vhost
+     */
+    declare public readonly maxQueues: pulumi.Output<string | undefined>;
+    /**
      * The name of the vhost.
      */
     declare public readonly name: pulumi.Output<string>;
+    declare public readonly tracing: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a VHost resource with the given unique name, arguments, and options.
@@ -70,10 +94,20 @@ export class VHost extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VHostState | undefined;
+            resourceInputs["defaultQueueType"] = state?.defaultQueueType;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["maxConnections"] = state?.maxConnections;
+            resourceInputs["maxQueues"] = state?.maxQueues;
             resourceInputs["name"] = state?.name;
+            resourceInputs["tracing"] = state?.tracing;
         } else {
             const args = argsOrState as VHostArgs | undefined;
+            resourceInputs["defaultQueueType"] = args?.defaultQueueType;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["maxConnections"] = args?.maxConnections;
+            resourceInputs["maxQueues"] = args?.maxQueues;
             resourceInputs["name"] = args?.name;
+            resourceInputs["tracing"] = args?.tracing;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(VHost.__pulumiType, name, resourceInputs, opts);
@@ -85,9 +119,26 @@ export class VHost extends pulumi.CustomResource {
  */
 export interface VHostState {
     /**
+     * default queue type for new queues
+     */
+    defaultQueueType?: pulumi.Input<string>;
+    /**
+     * A friendly description.
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * Maximum number of concurrent client connections to the vhost
+     */
+    maxConnections?: pulumi.Input<string>;
+    /**
+     * Maximum number of queues that can be created on the vhost
+     */
+    maxQueues?: pulumi.Input<string>;
+    /**
      * The name of the vhost.
      */
     name?: pulumi.Input<string>;
+    tracing?: pulumi.Input<boolean>;
 }
 
 /**
@@ -95,7 +146,24 @@ export interface VHostState {
  */
 export interface VHostArgs {
     /**
+     * default queue type for new queues
+     */
+    defaultQueueType?: pulumi.Input<string>;
+    /**
+     * A friendly description.
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * Maximum number of concurrent client connections to the vhost
+     */
+    maxConnections?: pulumi.Input<string>;
+    /**
+     * Maximum number of queues that can be created on the vhost
+     */
+    maxQueues?: pulumi.Input<string>;
+    /**
      * The name of the vhost.
      */
     name?: pulumi.Input<string>;
+    tracing?: pulumi.Input<boolean>;
 }

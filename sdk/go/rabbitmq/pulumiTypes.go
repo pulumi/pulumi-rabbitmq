@@ -1354,7 +1354,7 @@ type ShovelInfo struct {
 	// The AMQP 1.0 destination link address.
 	DestinationAddress *string `pulumi:"destinationAddress"`
 	// Application properties to set when shovelling messages.
-	DestinationApplicationProperties *string `pulumi:"destinationApplicationProperties"`
+	DestinationApplicationProperties map[string]string `pulumi:"destinationApplicationProperties"`
 	// The exchange to which messages should be published.
 	// Either this or `destinationQueue` must be specified but not both.
 	DestinationExchange *string `pulumi:"destinationExchange"`
@@ -1363,15 +1363,16 @@ type ShovelInfo struct {
 	// Properties to overwrite when shovelling messages.
 	//
 	// For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
-	DestinationProperties *string `pulumi:"destinationProperties"`
+	DestinationProperties map[string]string `pulumi:"destinationProperties"`
 	// The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
 	// Defaults to `amqp091`.
 	DestinationProtocol *string `pulumi:"destinationProtocol"`
 	// A map of properties to overwrite when shovelling messages.
-	DestinationPublishProperties *string `pulumi:"destinationPublishProperties"`
+	DestinationPublishProperties map[string]string `pulumi:"destinationPublishProperties"`
 	// The queue to which messages should be published.
 	// Either this or `destinationExchange` must be specified but not both.
-	DestinationQueue *string `pulumi:"destinationQueue"`
+	DestinationQueue          *string           `pulumi:"destinationQueue"`
+	DestinationQueueArguments map[string]string `pulumi:"destinationQueueArguments"`
 	// The amqp uri for the destination .
 	DestinationUri string `pulumi:"destinationUri"`
 	// The maximum number of unacknowledged messages copied over a shovel at any one time.
@@ -1431,7 +1432,7 @@ type ShovelInfoArgs struct {
 	// The AMQP 1.0 destination link address.
 	DestinationAddress pulumi.StringPtrInput `pulumi:"destinationAddress"`
 	// Application properties to set when shovelling messages.
-	DestinationApplicationProperties pulumi.StringPtrInput `pulumi:"destinationApplicationProperties"`
+	DestinationApplicationProperties pulumi.StringMapInput `pulumi:"destinationApplicationProperties"`
 	// The exchange to which messages should be published.
 	// Either this or `destinationQueue` must be specified but not both.
 	DestinationExchange pulumi.StringPtrInput `pulumi:"destinationExchange"`
@@ -1440,15 +1441,16 @@ type ShovelInfoArgs struct {
 	// Properties to overwrite when shovelling messages.
 	//
 	// For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
-	DestinationProperties pulumi.StringPtrInput `pulumi:"destinationProperties"`
+	DestinationProperties pulumi.StringMapInput `pulumi:"destinationProperties"`
 	// The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
 	// Defaults to `amqp091`.
 	DestinationProtocol pulumi.StringPtrInput `pulumi:"destinationProtocol"`
 	// A map of properties to overwrite when shovelling messages.
-	DestinationPublishProperties pulumi.StringPtrInput `pulumi:"destinationPublishProperties"`
+	DestinationPublishProperties pulumi.StringMapInput `pulumi:"destinationPublishProperties"`
 	// The queue to which messages should be published.
 	// Either this or `destinationExchange` must be specified but not both.
-	DestinationQueue pulumi.StringPtrInput `pulumi:"destinationQueue"`
+	DestinationQueue          pulumi.StringPtrInput `pulumi:"destinationQueue"`
+	DestinationQueueArguments pulumi.StringMapInput `pulumi:"destinationQueueArguments"`
 	// The amqp uri for the destination .
 	DestinationUri pulumi.StringInput `pulumi:"destinationUri"`
 	// The maximum number of unacknowledged messages copied over a shovel at any one time.
@@ -1591,8 +1593,8 @@ func (o ShovelInfoOutput) DestinationAddress() pulumi.StringPtrOutput {
 }
 
 // Application properties to set when shovelling messages.
-func (o ShovelInfoOutput) DestinationApplicationProperties() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ShovelInfo) *string { return v.DestinationApplicationProperties }).(pulumi.StringPtrOutput)
+func (o ShovelInfoOutput) DestinationApplicationProperties() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ShovelInfo) map[string]string { return v.DestinationApplicationProperties }).(pulumi.StringMapOutput)
 }
 
 // The exchange to which messages should be published.
@@ -1609,8 +1611,8 @@ func (o ShovelInfoOutput) DestinationExchangeKey() pulumi.StringPtrOutput {
 // Properties to overwrite when shovelling messages.
 //
 // For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
-func (o ShovelInfoOutput) DestinationProperties() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ShovelInfo) *string { return v.DestinationProperties }).(pulumi.StringPtrOutput)
+func (o ShovelInfoOutput) DestinationProperties() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ShovelInfo) map[string]string { return v.DestinationProperties }).(pulumi.StringMapOutput)
 }
 
 // The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
@@ -1620,14 +1622,18 @@ func (o ShovelInfoOutput) DestinationProtocol() pulumi.StringPtrOutput {
 }
 
 // A map of properties to overwrite when shovelling messages.
-func (o ShovelInfoOutput) DestinationPublishProperties() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ShovelInfo) *string { return v.DestinationPublishProperties }).(pulumi.StringPtrOutput)
+func (o ShovelInfoOutput) DestinationPublishProperties() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ShovelInfo) map[string]string { return v.DestinationPublishProperties }).(pulumi.StringMapOutput)
 }
 
 // The queue to which messages should be published.
 // Either this or `destinationExchange` must be specified but not both.
 func (o ShovelInfoOutput) DestinationQueue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ShovelInfo) *string { return v.DestinationQueue }).(pulumi.StringPtrOutput)
+}
+
+func (o ShovelInfoOutput) DestinationQueueArguments() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ShovelInfo) map[string]string { return v.DestinationQueueArguments }).(pulumi.StringMapOutput)
 }
 
 // The amqp uri for the destination .
@@ -1780,13 +1786,13 @@ func (o ShovelInfoPtrOutput) DestinationAddress() pulumi.StringPtrOutput {
 }
 
 // Application properties to set when shovelling messages.
-func (o ShovelInfoPtrOutput) DestinationApplicationProperties() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ShovelInfo) *string {
+func (o ShovelInfoPtrOutput) DestinationApplicationProperties() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ShovelInfo) map[string]string {
 		if v == nil {
 			return nil
 		}
 		return v.DestinationApplicationProperties
-	}).(pulumi.StringPtrOutput)
+	}).(pulumi.StringMapOutput)
 }
 
 // The exchange to which messages should be published.
@@ -1813,13 +1819,13 @@ func (o ShovelInfoPtrOutput) DestinationExchangeKey() pulumi.StringPtrOutput {
 // Properties to overwrite when shovelling messages.
 //
 // For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
-func (o ShovelInfoPtrOutput) DestinationProperties() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ShovelInfo) *string {
+func (o ShovelInfoPtrOutput) DestinationProperties() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ShovelInfo) map[string]string {
 		if v == nil {
 			return nil
 		}
 		return v.DestinationProperties
-	}).(pulumi.StringPtrOutput)
+	}).(pulumi.StringMapOutput)
 }
 
 // The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
@@ -1834,13 +1840,13 @@ func (o ShovelInfoPtrOutput) DestinationProtocol() pulumi.StringPtrOutput {
 }
 
 // A map of properties to overwrite when shovelling messages.
-func (o ShovelInfoPtrOutput) DestinationPublishProperties() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ShovelInfo) *string {
+func (o ShovelInfoPtrOutput) DestinationPublishProperties() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ShovelInfo) map[string]string {
 		if v == nil {
 			return nil
 		}
 		return v.DestinationPublishProperties
-	}).(pulumi.StringPtrOutput)
+	}).(pulumi.StringMapOutput)
 }
 
 // The queue to which messages should be published.
@@ -1852,6 +1858,15 @@ func (o ShovelInfoPtrOutput) DestinationQueue() pulumi.StringPtrOutput {
 		}
 		return v.DestinationQueue
 	}).(pulumi.StringPtrOutput)
+}
+
+func (o ShovelInfoPtrOutput) DestinationQueueArguments() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ShovelInfo) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.DestinationQueueArguments
+	}).(pulumi.StringMapOutput)
 }
 
 // The amqp uri for the destination .

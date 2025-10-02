@@ -46,11 +46,17 @@ namespace Pulumi.RabbitMQ.Inputs
         [Input("destinationAddress")]
         public Input<string>? DestinationAddress { get; set; }
 
+        [Input("destinationApplicationProperties")]
+        private InputMap<string>? _destinationApplicationProperties;
+
         /// <summary>
         /// Application properties to set when shovelling messages.
         /// </summary>
-        [Input("destinationApplicationProperties")]
-        public Input<string>? DestinationApplicationProperties { get; set; }
+        public InputMap<string> DestinationApplicationProperties
+        {
+            get => _destinationApplicationProperties ?? (_destinationApplicationProperties = new InputMap<string>());
+            set => _destinationApplicationProperties = value;
+        }
 
         /// <summary>
         /// The exchange to which messages should be published.
@@ -65,13 +71,19 @@ namespace Pulumi.RabbitMQ.Inputs
         [Input("destinationExchangeKey")]
         public Input<string>? DestinationExchangeKey { get; set; }
 
+        [Input("destinationProperties")]
+        private InputMap<string>? _destinationProperties;
+
         /// <summary>
         /// Properties to overwrite when shovelling messages.
         /// 
         /// For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
         /// </summary>
-        [Input("destinationProperties")]
-        public Input<string>? DestinationProperties { get; set; }
+        public InputMap<string> DestinationProperties
+        {
+            get => _destinationProperties ?? (_destinationProperties = new InputMap<string>());
+            set => _destinationProperties = value;
+        }
 
         /// <summary>
         /// The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
@@ -80,11 +92,17 @@ namespace Pulumi.RabbitMQ.Inputs
         [Input("destinationProtocol")]
         public Input<string>? DestinationProtocol { get; set; }
 
+        [Input("destinationPublishProperties")]
+        private InputMap<string>? _destinationPublishProperties;
+
         /// <summary>
         /// A map of properties to overwrite when shovelling messages.
         /// </summary>
-        [Input("destinationPublishProperties")]
-        public Input<string>? DestinationPublishProperties { get; set; }
+        public InputMap<string> DestinationPublishProperties
+        {
+            get => _destinationPublishProperties ?? (_destinationPublishProperties = new InputMap<string>());
+            set => _destinationPublishProperties = value;
+        }
 
         /// <summary>
         /// The queue to which messages should be published.
@@ -92,6 +110,14 @@ namespace Pulumi.RabbitMQ.Inputs
         /// </summary>
         [Input("destinationQueue")]
         public Input<string>? DestinationQueue { get; set; }
+
+        [Input("destinationQueueArguments")]
+        private InputMap<string>? _destinationQueueArguments;
+        public InputMap<string> DestinationQueueArguments
+        {
+            get => _destinationQueueArguments ?? (_destinationQueueArguments = new InputMap<string>());
+            set => _destinationQueueArguments = value;
+        }
 
         /// <summary>
         /// The amqp uri for the destination .

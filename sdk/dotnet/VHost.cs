@@ -25,6 +25,11 @@ namespace Pulumi.RabbitMQ
     ///     var myVhost = new RabbitMQ.VHost("my_vhost", new()
     ///     {
     ///         Name = "my_vhost",
+    ///         Description = "My Vhost",
+    ///         DefaultQueueType = "quorum",
+    ///         MaxConnections = "200",
+    ///         MaxQueues = "100",
+    ///         Tracing = true,
     ///     });
     /// 
     /// });
@@ -42,10 +47,37 @@ namespace Pulumi.RabbitMQ
     public partial class VHost : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// default queue type for new queues
+        /// </summary>
+        [Output("defaultQueueType")]
+        public Output<string?> DefaultQueueType { get; private set; } = null!;
+
+        /// <summary>
+        /// A friendly description.
+        /// </summary>
+        [Output("description")]
+        public Output<string?> Description { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum number of concurrent client connections to the vhost
+        /// </summary>
+        [Output("maxConnections")]
+        public Output<string?> MaxConnections { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum number of queues that can be created on the vhost
+        /// </summary>
+        [Output("maxQueues")]
+        public Output<string?> MaxQueues { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the vhost.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        [Output("tracing")]
+        public Output<bool?> Tracing { get; private set; } = null!;
 
 
         /// <summary>
@@ -94,10 +126,37 @@ namespace Pulumi.RabbitMQ
     public sealed class VHostArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// default queue type for new queues
+        /// </summary>
+        [Input("defaultQueueType")]
+        public Input<string>? DefaultQueueType { get; set; }
+
+        /// <summary>
+        /// A friendly description.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// Maximum number of concurrent client connections to the vhost
+        /// </summary>
+        [Input("maxConnections")]
+        public Input<string>? MaxConnections { get; set; }
+
+        /// <summary>
+        /// Maximum number of queues that can be created on the vhost
+        /// </summary>
+        [Input("maxQueues")]
+        public Input<string>? MaxQueues { get; set; }
+
+        /// <summary>
         /// The name of the vhost.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("tracing")]
+        public Input<bool>? Tracing { get; set; }
 
         public VHostArgs()
         {
@@ -108,10 +167,37 @@ namespace Pulumi.RabbitMQ
     public sealed class VHostState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// default queue type for new queues
+        /// </summary>
+        [Input("defaultQueueType")]
+        public Input<string>? DefaultQueueType { get; set; }
+
+        /// <summary>
+        /// A friendly description.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// Maximum number of concurrent client connections to the vhost
+        /// </summary>
+        [Input("maxConnections")]
+        public Input<string>? MaxConnections { get; set; }
+
+        /// <summary>
+        /// Maximum number of queues that can be created on the vhost
+        /// </summary>
+        [Input("maxQueues")]
+        public Input<string>? MaxQueues { get; set; }
+
+        /// <summary>
         /// The name of the vhost.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("tracing")]
+        public Input<bool>? Tracing { get; set; }
 
         public VHostState()
         {

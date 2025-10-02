@@ -9,18 +9,42 @@ import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
 import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.rabbitmq.Utilities;
+import com.pulumi.rabbitmq.inputs.GetDefaultUserArgs;
+import com.pulumi.rabbitmq.inputs.GetDefaultUserPlainArgs;
 import com.pulumi.rabbitmq.inputs.GetExchangeArgs;
 import com.pulumi.rabbitmq.inputs.GetExchangePlainArgs;
 import com.pulumi.rabbitmq.inputs.GetUserArgs;
 import com.pulumi.rabbitmq.inputs.GetUserPlainArgs;
 import com.pulumi.rabbitmq.inputs.GetVHostArgs;
 import com.pulumi.rabbitmq.inputs.GetVHostPlainArgs;
+import com.pulumi.rabbitmq.outputs.GetDefaultUserResult;
 import com.pulumi.rabbitmq.outputs.GetExchangeResult;
 import com.pulumi.rabbitmq.outputs.GetUserResult;
 import com.pulumi.rabbitmq.outputs.GetVHostResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class RabbitmqFunctions {
+    public static Output<GetDefaultUserResult> getDefaultUser() {
+        return getDefaultUser(GetDefaultUserArgs.Empty, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetDefaultUserResult> getDefaultUserPlain() {
+        return getDefaultUserPlain(GetDefaultUserPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    public static Output<GetDefaultUserResult> getDefaultUser(GetDefaultUserArgs args) {
+        return getDefaultUser(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetDefaultUserResult> getDefaultUserPlain(GetDefaultUserPlainArgs args) {
+        return getDefaultUserPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetDefaultUserResult> getDefaultUser(GetDefaultUserArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("rabbitmq:index/getDefaultUser:getDefaultUser", TypeShape.of(GetDefaultUserResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetDefaultUserResult> getDefaultUser(GetDefaultUserArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("rabbitmq:index/getDefaultUser:getDefaultUser", TypeShape.of(GetDefaultUserResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetDefaultUserResult> getDefaultUserPlain(GetDefaultUserPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("rabbitmq:index/getDefaultUser:getDefaultUser", TypeShape.of(GetDefaultUserResult.class), args, Utilities.withVersion(options));
+    }
     public static Output<GetExchangeResult> getExchange(GetExchangeArgs args) {
         return getExchange(args, InvokeOptions.Empty);
     }

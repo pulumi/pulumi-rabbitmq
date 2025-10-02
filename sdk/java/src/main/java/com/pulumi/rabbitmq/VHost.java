@@ -10,7 +10,9 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.rabbitmq.Utilities;
 import com.pulumi.rabbitmq.VHostArgs;
 import com.pulumi.rabbitmq.inputs.VHostState;
+import java.lang.Boolean;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -42,6 +44,11 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var myVhost = new VHost("myVhost", VHostArgs.builder()
  *             .name("my_vhost")
+ *             .description("My Vhost")
+ *             .defaultQueueType("quorum")
+ *             .maxConnections("200")
+ *             .maxQueues("100")
+ *             .tracing(true)
  *             .build());
  * 
  *     }
@@ -61,6 +68,62 @@ import javax.annotation.Nullable;
 @ResourceType(type="rabbitmq:index/vHost:VHost")
 public class VHost extends com.pulumi.resources.CustomResource {
     /**
+     * default queue type for new queues
+     * 
+     */
+    @Export(name="defaultQueueType", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> defaultQueueType;
+
+    /**
+     * @return default queue type for new queues
+     * 
+     */
+    public Output<Optional<String>> defaultQueueType() {
+        return Codegen.optional(this.defaultQueueType);
+    }
+    /**
+     * A friendly description.
+     * 
+     */
+    @Export(name="description", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> description;
+
+    /**
+     * @return A friendly description.
+     * 
+     */
+    public Output<Optional<String>> description() {
+        return Codegen.optional(this.description);
+    }
+    /**
+     * Maximum number of concurrent client connections to the vhost
+     * 
+     */
+    @Export(name="maxConnections", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> maxConnections;
+
+    /**
+     * @return Maximum number of concurrent client connections to the vhost
+     * 
+     */
+    public Output<Optional<String>> maxConnections() {
+        return Codegen.optional(this.maxConnections);
+    }
+    /**
+     * Maximum number of queues that can be created on the vhost
+     * 
+     */
+    @Export(name="maxQueues", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> maxQueues;
+
+    /**
+     * @return Maximum number of queues that can be created on the vhost
+     * 
+     */
+    public Output<Optional<String>> maxQueues() {
+        return Codegen.optional(this.maxQueues);
+    }
+    /**
      * The name of the vhost.
      * 
      */
@@ -73,6 +136,12 @@ public class VHost extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
+    }
+    @Export(name="tracing", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> tracing;
+
+    public Output<Optional<Boolean>> tracing() {
+        return Codegen.optional(this.tracing);
     }
 
     /**

@@ -20,6 +20,11 @@ export type FederationUpstream = import("./federationUpstream").FederationUpstre
 export const FederationUpstream: typeof import("./federationUpstream").FederationUpstream = null as any;
 utilities.lazyLoad(exports, ["FederationUpstream"], () => require("./federationUpstream"));
 
+export { GetDefaultUserArgs, GetDefaultUserResult, GetDefaultUserOutputArgs } from "./getDefaultUser";
+export const getDefaultUser: typeof import("./getDefaultUser").getDefaultUser = null as any;
+export const getDefaultUserOutput: typeof import("./getDefaultUser").getDefaultUserOutput = null as any;
+utilities.lazyLoad(exports, ["getDefaultUser","getDefaultUserOutput"], () => require("./getDefaultUser"));
+
 export { GetExchangeArgs, GetExchangeResult, GetExchangeOutputArgs } from "./getExchange";
 export const getExchange: typeof import("./getExchange").getExchange = null as any;
 export const getExchangeOutput: typeof import("./getExchange").getExchangeOutput = null as any;

@@ -8,6 +8,7 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -53,7 +54,7 @@ public final class ShovelInfo {
      * @return Application properties to set when shovelling messages.
      * 
      */
-    private @Nullable String destinationApplicationProperties;
+    private @Nullable Map<String,String> destinationApplicationProperties;
     /**
      * @return The exchange to which messages should be published.
      * Either this or `destination_queue` must be specified but not both.
@@ -71,7 +72,7 @@ public final class ShovelInfo {
      * For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
      * 
      */
-    private @Nullable String destinationProperties;
+    private @Nullable Map<String,String> destinationProperties;
     /**
      * @return The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
      * Defaults to `amqp091`.
@@ -82,13 +83,14 @@ public final class ShovelInfo {
      * @return A map of properties to overwrite when shovelling messages.
      * 
      */
-    private @Nullable String destinationPublishProperties;
+    private @Nullable Map<String,String> destinationPublishProperties;
     /**
      * @return The queue to which messages should be published.
      * Either this or `destination_exchange` must be specified but not both.
      * 
      */
     private @Nullable String destinationQueue;
+    private @Nullable Map<String,String> destinationQueueArguments;
     /**
      * @return The amqp uri for the destination .
      * 
@@ -205,8 +207,8 @@ public final class ShovelInfo {
      * @return Application properties to set when shovelling messages.
      * 
      */
-    public Optional<String> destinationApplicationProperties() {
-        return Optional.ofNullable(this.destinationApplicationProperties);
+    public Map<String,String> destinationApplicationProperties() {
+        return this.destinationApplicationProperties == null ? Map.of() : this.destinationApplicationProperties;
     }
     /**
      * @return The exchange to which messages should be published.
@@ -229,8 +231,8 @@ public final class ShovelInfo {
      * For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
      * 
      */
-    public Optional<String> destinationProperties() {
-        return Optional.ofNullable(this.destinationProperties);
+    public Map<String,String> destinationProperties() {
+        return this.destinationProperties == null ? Map.of() : this.destinationProperties;
     }
     /**
      * @return The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
@@ -244,8 +246,8 @@ public final class ShovelInfo {
      * @return A map of properties to overwrite when shovelling messages.
      * 
      */
-    public Optional<String> destinationPublishProperties() {
-        return Optional.ofNullable(this.destinationPublishProperties);
+    public Map<String,String> destinationPublishProperties() {
+        return this.destinationPublishProperties == null ? Map.of() : this.destinationPublishProperties;
     }
     /**
      * @return The queue to which messages should be published.
@@ -254,6 +256,9 @@ public final class ShovelInfo {
      */
     public Optional<String> destinationQueue() {
         return Optional.ofNullable(this.destinationQueue);
+    }
+    public Map<String,String> destinationQueueArguments() {
+        return this.destinationQueueArguments == null ? Map.of() : this.destinationQueueArguments;
     }
     /**
      * @return The amqp uri for the destination .
@@ -356,13 +361,14 @@ public final class ShovelInfo {
         private @Nullable Boolean destinationAddForwardHeaders;
         private @Nullable Boolean destinationAddTimestampHeader;
         private @Nullable String destinationAddress;
-        private @Nullable String destinationApplicationProperties;
+        private @Nullable Map<String,String> destinationApplicationProperties;
         private @Nullable String destinationExchange;
         private @Nullable String destinationExchangeKey;
-        private @Nullable String destinationProperties;
+        private @Nullable Map<String,String> destinationProperties;
         private @Nullable String destinationProtocol;
-        private @Nullable String destinationPublishProperties;
+        private @Nullable Map<String,String> destinationPublishProperties;
         private @Nullable String destinationQueue;
+        private @Nullable Map<String,String> destinationQueueArguments;
         private String destinationUri;
         private @Nullable Integer prefetchCount;
         private @Nullable Integer reconnectDelay;
@@ -390,6 +396,7 @@ public final class ShovelInfo {
     	      this.destinationProtocol = defaults.destinationProtocol;
     	      this.destinationPublishProperties = defaults.destinationPublishProperties;
     	      this.destinationQueue = defaults.destinationQueue;
+    	      this.destinationQueueArguments = defaults.destinationQueueArguments;
     	      this.destinationUri = defaults.destinationUri;
     	      this.prefetchCount = defaults.prefetchCount;
     	      this.reconnectDelay = defaults.reconnectDelay;
@@ -440,7 +447,7 @@ public final class ShovelInfo {
             return this;
         }
         @CustomType.Setter
-        public Builder destinationApplicationProperties(@Nullable String destinationApplicationProperties) {
+        public Builder destinationApplicationProperties(@Nullable Map<String,String> destinationApplicationProperties) {
 
             this.destinationApplicationProperties = destinationApplicationProperties;
             return this;
@@ -458,7 +465,7 @@ public final class ShovelInfo {
             return this;
         }
         @CustomType.Setter
-        public Builder destinationProperties(@Nullable String destinationProperties) {
+        public Builder destinationProperties(@Nullable Map<String,String> destinationProperties) {
 
             this.destinationProperties = destinationProperties;
             return this;
@@ -470,7 +477,7 @@ public final class ShovelInfo {
             return this;
         }
         @CustomType.Setter
-        public Builder destinationPublishProperties(@Nullable String destinationPublishProperties) {
+        public Builder destinationPublishProperties(@Nullable Map<String,String> destinationPublishProperties) {
 
             this.destinationPublishProperties = destinationPublishProperties;
             return this;
@@ -479,6 +486,12 @@ public final class ShovelInfo {
         public Builder destinationQueue(@Nullable String destinationQueue) {
 
             this.destinationQueue = destinationQueue;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder destinationQueueArguments(@Nullable Map<String,String> destinationQueueArguments) {
+
+            this.destinationQueueArguments = destinationQueueArguments;
             return this;
         }
         @CustomType.Setter
@@ -566,6 +579,7 @@ public final class ShovelInfo {
             _resultValue.destinationProtocol = destinationProtocol;
             _resultValue.destinationPublishProperties = destinationPublishProperties;
             _resultValue.destinationQueue = destinationQueue;
+            _resultValue.destinationQueueArguments = destinationQueueArguments;
             _resultValue.destinationUri = destinationUri;
             _resultValue.prefetchCount = prefetchCount;
             _resultValue.reconnectDelay = reconnectDelay;

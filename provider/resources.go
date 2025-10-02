@@ -136,6 +136,10 @@ func Provider() tfbridge.ProviderInfo {
 				Tok:  makeDataSource(mainMod, "getUser"),
 				Docs: noDocs,
 			},
+			"rabbitmq_default_user": {
+				Tok:  makeDataSource(mainMod, "getDefaultUser"),
+				Docs: noDocs,
+			},
 			"rabbitmq_vhost": {
 				Tok:  makeDataSource(mainMod, "getVHost"),
 				Docs: noDocs,

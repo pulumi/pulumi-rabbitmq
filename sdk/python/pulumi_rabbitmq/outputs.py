@@ -567,6 +567,8 @@ class ShovelInfo(dict):
             suggest = "destination_publish_properties"
         elif key == "destinationQueue":
             suggest = "destination_queue"
+        elif key == "destinationQueueArguments":
+            suggest = "destination_queue_arguments"
         elif key == "prefetchCount":
             suggest = "prefetch_count"
         elif key == "reconnectDelay":
@@ -606,13 +608,14 @@ class ShovelInfo(dict):
                  destination_add_forward_headers: Optional[_builtins.bool] = None,
                  destination_add_timestamp_header: Optional[_builtins.bool] = None,
                  destination_address: Optional[_builtins.str] = None,
-                 destination_application_properties: Optional[_builtins.str] = None,
+                 destination_application_properties: Optional[Mapping[str, _builtins.str]] = None,
                  destination_exchange: Optional[_builtins.str] = None,
                  destination_exchange_key: Optional[_builtins.str] = None,
-                 destination_properties: Optional[_builtins.str] = None,
+                 destination_properties: Optional[Mapping[str, _builtins.str]] = None,
                  destination_protocol: Optional[_builtins.str] = None,
-                 destination_publish_properties: Optional[_builtins.str] = None,
+                 destination_publish_properties: Optional[Mapping[str, _builtins.str]] = None,
                  destination_queue: Optional[_builtins.str] = None,
+                 destination_queue_arguments: Optional[Mapping[str, _builtins.str]] = None,
                  prefetch_count: Optional[_builtins.int] = None,
                  reconnect_delay: Optional[_builtins.int] = None,
                  source_address: Optional[_builtins.str] = None,
@@ -631,16 +634,16 @@ class ShovelInfo(dict):
         :param _builtins.str delete_after: Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
         :param _builtins.bool destination_add_forward_headers: Whether to add `x-shovelled` headers to shovelled messages.
         :param _builtins.str destination_address: The AMQP 1.0 destination link address.
-        :param _builtins.str destination_application_properties: Application properties to set when shovelling messages.
+        :param Mapping[str, _builtins.str] destination_application_properties: Application properties to set when shovelling messages.
         :param _builtins.str destination_exchange: The exchange to which messages should be published.
                Either this or `destination_queue` must be specified but not both.
         :param _builtins.str destination_exchange_key: The routing key when using `destination_exchange`.
-        :param _builtins.str destination_properties: Properties to overwrite when shovelling messages.
+        :param Mapping[str, _builtins.str] destination_properties: Properties to overwrite when shovelling messages.
                
                For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
         :param _builtins.str destination_protocol: The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
                Defaults to `amqp091`.
-        :param _builtins.str destination_publish_properties: A map of properties to overwrite when shovelling messages.
+        :param Mapping[str, _builtins.str] destination_publish_properties: A map of properties to overwrite when shovelling messages.
         :param _builtins.str destination_queue: The queue to which messages should be published.
                Either this or `destination_exchange` must be specified but not both.
         :param _builtins.int prefetch_count: The maximum number of unacknowledged messages copied over a shovel at any one time.
@@ -685,6 +688,8 @@ class ShovelInfo(dict):
             pulumi.set(__self__, "destination_publish_properties", destination_publish_properties)
         if destination_queue is not None:
             pulumi.set(__self__, "destination_queue", destination_queue)
+        if destination_queue_arguments is not None:
+            pulumi.set(__self__, "destination_queue_arguments", destination_queue_arguments)
         if prefetch_count is not None:
             pulumi.set(__self__, "prefetch_count", prefetch_count)
         if reconnect_delay is not None:
@@ -770,7 +775,7 @@ class ShovelInfo(dict):
 
     @_builtins.property
     @pulumi.getter(name="destinationApplicationProperties")
-    def destination_application_properties(self) -> Optional[_builtins.str]:
+    def destination_application_properties(self) -> Optional[Mapping[str, _builtins.str]]:
         """
         Application properties to set when shovelling messages.
         """
@@ -795,7 +800,7 @@ class ShovelInfo(dict):
 
     @_builtins.property
     @pulumi.getter(name="destinationProperties")
-    def destination_properties(self) -> Optional[_builtins.str]:
+    def destination_properties(self) -> Optional[Mapping[str, _builtins.str]]:
         """
         Properties to overwrite when shovelling messages.
 
@@ -814,7 +819,7 @@ class ShovelInfo(dict):
 
     @_builtins.property
     @pulumi.getter(name="destinationPublishProperties")
-    def destination_publish_properties(self) -> Optional[_builtins.str]:
+    def destination_publish_properties(self) -> Optional[Mapping[str, _builtins.str]]:
         """
         A map of properties to overwrite when shovelling messages.
         """
@@ -828,6 +833,11 @@ class ShovelInfo(dict):
         Either this or `destination_exchange` must be specified but not both.
         """
         return pulumi.get(self, "destination_queue")
+
+    @_builtins.property
+    @pulumi.getter(name="destinationQueueArguments")
+    def destination_queue_arguments(self) -> Optional[Mapping[str, _builtins.str]]:
+        return pulumi.get(self, "destination_queue_arguments")
 
     @_builtins.property
     @pulumi.getter(name="prefetchCount")

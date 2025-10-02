@@ -19,13 +19,80 @@ __all__ = ['VHostArgs', 'VHost']
 @pulumi.input_type
 class VHostArgs:
     def __init__(__self__, *,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 default_queue_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
+                 max_connections: Optional[pulumi.Input[_builtins.str]] = None,
+                 max_queues: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 tracing: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a VHost resource.
+        :param pulumi.Input[_builtins.str] default_queue_type: default queue type for new queues
+        :param pulumi.Input[_builtins.str] description: A friendly description.
+        :param pulumi.Input[_builtins.str] max_connections: Maximum number of concurrent client connections to the vhost
+        :param pulumi.Input[_builtins.str] max_queues: Maximum number of queues that can be created on the vhost
         :param pulumi.Input[_builtins.str] name: The name of the vhost.
         """
+        if default_queue_type is not None:
+            pulumi.set(__self__, "default_queue_type", default_queue_type)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if max_connections is not None:
+            pulumi.set(__self__, "max_connections", max_connections)
+        if max_queues is not None:
+            pulumi.set(__self__, "max_queues", max_queues)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if tracing is not None:
+            pulumi.set(__self__, "tracing", tracing)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultQueueType")
+    def default_queue_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        default queue type for new queues
+        """
+        return pulumi.get(self, "default_queue_type")
+
+    @default_queue_type.setter
+    def default_queue_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "default_queue_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A friendly description.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxConnections")
+    def max_connections(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Maximum number of concurrent client connections to the vhost
+        """
+        return pulumi.get(self, "max_connections")
+
+    @max_connections.setter
+    def max_connections(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "max_connections", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxQueues")
+    def max_queues(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Maximum number of queues that can be created on the vhost
+        """
+        return pulumi.get(self, "max_queues")
+
+    @max_queues.setter
+    def max_queues(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "max_queues", value)
 
     @_builtins.property
     @pulumi.getter
@@ -38,18 +105,94 @@ class VHostArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tracing(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "tracing")
+
+    @tracing.setter
+    def tracing(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "tracing", value)
 
 
 @pulumi.input_type
 class _VHostState:
     def __init__(__self__, *,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 default_queue_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
+                 max_connections: Optional[pulumi.Input[_builtins.str]] = None,
+                 max_queues: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 tracing: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering VHost resources.
+        :param pulumi.Input[_builtins.str] default_queue_type: default queue type for new queues
+        :param pulumi.Input[_builtins.str] description: A friendly description.
+        :param pulumi.Input[_builtins.str] max_connections: Maximum number of concurrent client connections to the vhost
+        :param pulumi.Input[_builtins.str] max_queues: Maximum number of queues that can be created on the vhost
         :param pulumi.Input[_builtins.str] name: The name of the vhost.
         """
+        if default_queue_type is not None:
+            pulumi.set(__self__, "default_queue_type", default_queue_type)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if max_connections is not None:
+            pulumi.set(__self__, "max_connections", max_connections)
+        if max_queues is not None:
+            pulumi.set(__self__, "max_queues", max_queues)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if tracing is not None:
+            pulumi.set(__self__, "tracing", tracing)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultQueueType")
+    def default_queue_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        default queue type for new queues
+        """
+        return pulumi.get(self, "default_queue_type")
+
+    @default_queue_type.setter
+    def default_queue_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "default_queue_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A friendly description.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxConnections")
+    def max_connections(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Maximum number of concurrent client connections to the vhost
+        """
+        return pulumi.get(self, "max_connections")
+
+    @max_connections.setter
+    def max_connections(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "max_connections", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxQueues")
+    def max_queues(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Maximum number of queues that can be created on the vhost
+        """
+        return pulumi.get(self, "max_queues")
+
+    @max_queues.setter
+    def max_queues(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "max_queues", value)
 
     @_builtins.property
     @pulumi.getter
@@ -62,6 +205,15 @@ class _VHostState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tracing(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "tracing")
+
+    @tracing.setter
+    def tracing(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "tracing", value)
 
 
 @pulumi.type_token("rabbitmq:index/vHost:VHost")
@@ -70,7 +222,12 @@ class VHost(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 default_queue_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
+                 max_connections: Optional[pulumi.Input[_builtins.str]] = None,
+                 max_queues: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 tracing: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
         The ``VHost`` resource creates and manages a vhost.
@@ -81,7 +238,13 @@ class VHost(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        my_vhost = rabbitmq.VHost("my_vhost", name="my_vhost")
+        my_vhost = rabbitmq.VHost("my_vhost",
+            name="my_vhost",
+            description="My Vhost",
+            default_queue_type="quorum",
+            max_connections="200",
+            max_queues="100",
+            tracing=True)
         ```
 
         ## Import
@@ -94,6 +257,10 @@ class VHost(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] default_queue_type: default queue type for new queues
+        :param pulumi.Input[_builtins.str] description: A friendly description.
+        :param pulumi.Input[_builtins.str] max_connections: Maximum number of concurrent client connections to the vhost
+        :param pulumi.Input[_builtins.str] max_queues: Maximum number of queues that can be created on the vhost
         :param pulumi.Input[_builtins.str] name: The name of the vhost.
         """
         ...
@@ -111,7 +278,13 @@ class VHost(pulumi.CustomResource):
         import pulumi
         import pulumi_rabbitmq as rabbitmq
 
-        my_vhost = rabbitmq.VHost("my_vhost", name="my_vhost")
+        my_vhost = rabbitmq.VHost("my_vhost",
+            name="my_vhost",
+            description="My Vhost",
+            default_queue_type="quorum",
+            max_connections="200",
+            max_queues="100",
+            tracing=True)
         ```
 
         ## Import
@@ -137,7 +310,12 @@ class VHost(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 default_queue_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
+                 max_connections: Optional[pulumi.Input[_builtins.str]] = None,
+                 max_queues: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 tracing: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -147,7 +325,12 @@ class VHost(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = VHostArgs.__new__(VHostArgs)
 
+            __props__.__dict__["default_queue_type"] = default_queue_type
+            __props__.__dict__["description"] = description
+            __props__.__dict__["max_connections"] = max_connections
+            __props__.__dict__["max_queues"] = max_queues
             __props__.__dict__["name"] = name
+            __props__.__dict__["tracing"] = tracing
         super(VHost, __self__).__init__(
             'rabbitmq:index/vHost:VHost',
             resource_name,
@@ -158,7 +341,12 @@ class VHost(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None) -> 'VHost':
+            default_queue_type: Optional[pulumi.Input[_builtins.str]] = None,
+            description: Optional[pulumi.Input[_builtins.str]] = None,
+            max_connections: Optional[pulumi.Input[_builtins.str]] = None,
+            max_queues: Optional[pulumi.Input[_builtins.str]] = None,
+            name: Optional[pulumi.Input[_builtins.str]] = None,
+            tracing: Optional[pulumi.Input[_builtins.bool]] = None) -> 'VHost':
         """
         Get an existing VHost resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -166,14 +354,55 @@ class VHost(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] default_queue_type: default queue type for new queues
+        :param pulumi.Input[_builtins.str] description: A friendly description.
+        :param pulumi.Input[_builtins.str] max_connections: Maximum number of concurrent client connections to the vhost
+        :param pulumi.Input[_builtins.str] max_queues: Maximum number of queues that can be created on the vhost
         :param pulumi.Input[_builtins.str] name: The name of the vhost.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _VHostState.__new__(_VHostState)
 
+        __props__.__dict__["default_queue_type"] = default_queue_type
+        __props__.__dict__["description"] = description
+        __props__.__dict__["max_connections"] = max_connections
+        __props__.__dict__["max_queues"] = max_queues
         __props__.__dict__["name"] = name
+        __props__.__dict__["tracing"] = tracing
         return VHost(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultQueueType")
+    def default_queue_type(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        default queue type for new queues
+        """
+        return pulumi.get(self, "default_queue_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        A friendly description.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="maxConnections")
+    def max_connections(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Maximum number of concurrent client connections to the vhost
+        """
+        return pulumi.get(self, "max_connections")
+
+    @_builtins.property
+    @pulumi.getter(name="maxQueues")
+    def max_queues(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Maximum number of queues that can be created on the vhost
+        """
+        return pulumi.get(self, "max_queues")
 
     @_builtins.property
     @pulumi.getter
@@ -182,4 +411,9 @@ class VHost(pulumi.CustomResource):
         The name of the vhost.
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def tracing(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        return pulumi.get(self, "tracing")
 
