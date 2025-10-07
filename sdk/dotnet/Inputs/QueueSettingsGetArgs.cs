@@ -18,7 +18,7 @@ namespace Pulumi.RabbitMQ.Inputs
         /// <summary>
         /// Additional key/value settings for the queue.
         /// All values will be sent to RabbitMQ as a string. If you require non-string
-        /// values, use `arguments_json`.
+        /// values, use `ArgumentsJson`.
         /// </summary>
         public InputMap<string> Arguments
         {
@@ -43,7 +43,7 @@ namespace Pulumi.RabbitMQ.Inputs
 
         /// <summary>
         /// Whether the queue survives server restarts.
-        /// Defaults to `false`.
+        /// Defaults to `False`.
         /// </summary>
         [Input("durable")]
         public Input<bool>? Durable { get; set; }

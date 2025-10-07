@@ -33,7 +33,7 @@ namespace Pulumi.RabbitMQ.Inputs
 
         /// <summary>
         /// Whether the exchange survives server restarts.
-        /// Defaults to `false`.
+        /// Defaults to `False`.
         /// </summary>
         [Input("durable")]
         public Input<bool>? Durable { get; set; }
