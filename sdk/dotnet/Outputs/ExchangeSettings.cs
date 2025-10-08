@@ -24,7 +24,7 @@ namespace Pulumi.RabbitMQ.Outputs
         public readonly bool? AutoDelete;
         /// <summary>
         /// Whether the exchange survives server restarts.
-        /// Defaults to `false`.
+        /// Defaults to `False`.
         /// </summary>
         public readonly bool? Durable;
         /// <summary>

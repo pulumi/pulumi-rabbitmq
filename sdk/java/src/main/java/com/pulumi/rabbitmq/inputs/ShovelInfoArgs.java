@@ -40,10 +40,10 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
      * Whether to add `x-shovelled` headers to shovelled messages.
      * 
      * @deprecated
-     * use destination_add_forward_headers instead
+     * use destinationAddForwardHeaders instead
      * 
      */
-    @Deprecated /* use destination_add_forward_headers instead */
+    @Deprecated /* use destinationAddForwardHeaders instead */
     @Import(name="addForwardHeaders")
     private @Nullable Output<Boolean> addForwardHeaders;
 
@@ -51,10 +51,10 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
      * @return Whether to add `x-shovelled` headers to shovelled messages.
      * 
      * @deprecated
-     * use destination_add_forward_headers instead
+     * use destinationAddForwardHeaders instead
      * 
      */
-    @Deprecated /* use destination_add_forward_headers instead */
+    @Deprecated /* use destinationAddForwardHeaders instead */
     public Optional<Output<Boolean>> addForwardHeaders() {
         return Optional.ofNullable(this.addForwardHeaders);
     }
@@ -63,10 +63,10 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
      * Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
      * 
      * @deprecated
-     * use source_delete_after instead
+     * use sourceDeleteAfter instead
      * 
      */
-    @Deprecated /* use source_delete_after instead */
+    @Deprecated /* use sourceDeleteAfter instead */
     @Import(name="deleteAfter")
     private @Nullable Output<String> deleteAfter;
 
@@ -74,10 +74,10 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
      * @return Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
      * 
      * @deprecated
-     * use source_delete_after instead
+     * use sourceDeleteAfter instead
      * 
      */
-    @Deprecated /* use source_delete_after instead */
+    @Deprecated /* use sourceDeleteAfter instead */
     public Optional<Output<String>> deleteAfter() {
         return Optional.ofNullable(this.deleteAfter);
     }
@@ -136,7 +136,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * The exchange to which messages should be published.
-     * Either this or `destination_queue` must be specified but not both.
+     * Either this or `destinationQueue` must be specified but not both.
      * 
      */
     @Import(name="destinationExchange")
@@ -144,7 +144,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return The exchange to which messages should be published.
-     * Either this or `destination_queue` must be specified but not both.
+     * Either this or `destinationQueue` must be specified but not both.
      * 
      */
     public Optional<Output<String>> destinationExchange() {
@@ -152,14 +152,14 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The routing key when using `destination_exchange`.
+     * The routing key when using `destinationExchange`.
      * 
      */
     @Import(name="destinationExchangeKey")
     private @Nullable Output<String> destinationExchangeKey;
 
     /**
-     * @return The routing key when using `destination_exchange`.
+     * @return The routing key when using `destinationExchange`.
      * 
      */
     public Optional<Output<String>> destinationExchangeKey() {
@@ -219,7 +219,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * The queue to which messages should be published.
-     * Either this or `destination_exchange` must be specified but not both.
+     * Either this or `destinationExchange` must be specified but not both.
      * 
      */
     @Import(name="destinationQueue")
@@ -227,7 +227,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return The queue to which messages should be published.
-     * Either this or `destination_exchange` must be specified but not both.
+     * Either this or `destinationExchange` must be specified but not both.
      * 
      */
     public Optional<Output<String>> destinationQueue() {
@@ -260,10 +260,10 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
      * The maximum number of unacknowledged messages copied over a shovel at any one time.
      * 
      * @deprecated
-     * use source_prefetch_count instead
+     * use sourcePrefetchCount instead
      * 
      */
-    @Deprecated /* use source_prefetch_count instead */
+    @Deprecated /* use sourcePrefetchCount instead */
     @Import(name="prefetchCount")
     private @Nullable Output<Integer> prefetchCount;
 
@@ -271,10 +271,10 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
      * @return The maximum number of unacknowledged messages copied over a shovel at any one time.
      * 
      * @deprecated
-     * use source_prefetch_count instead
+     * use sourcePrefetchCount instead
      * 
      */
-    @Deprecated /* use source_prefetch_count instead */
+    @Deprecated /* use sourcePrefetchCount instead */
     public Optional<Output<Integer>> prefetchCount() {
         return Optional.ofNullable(this.prefetchCount);
     }
@@ -328,7 +328,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * The exchange from which to consume.
-     * Either this or `source_queue` must be specified but not both.
+     * Either this or `sourceQueue` must be specified but not both.
      * 
      */
     @Import(name="sourceExchange")
@@ -336,7 +336,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return The exchange from which to consume.
-     * Either this or `source_queue` must be specified but not both.
+     * Either this or `sourceQueue` must be specified but not both.
      * 
      */
     public Optional<Output<String>> sourceExchange() {
@@ -344,14 +344,14 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The routing key when using `source_exchange`.
+     * The routing key when using `sourceExchange`.
      * 
      */
     @Import(name="sourceExchangeKey")
     private @Nullable Output<String> sourceExchangeKey;
 
     /**
-     * @return The routing key when using `source_exchange`.
+     * @return The routing key when using `sourceExchange`.
      * 
      */
     public Optional<Output<String>> sourceExchangeKey() {
@@ -392,7 +392,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * The queue from which to consume.
-     * Either this or `source_exchange` must be specified but not both.
+     * Either this or `sourceExchange` must be specified but not both.
      * 
      */
     @Import(name="sourceQueue")
@@ -400,7 +400,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return The queue from which to consume.
-     * Either this or `source_exchange` must be specified but not both.
+     * Either this or `sourceExchange` must be specified but not both.
      * 
      */
     public Optional<Output<String>> sourceQueue() {
@@ -499,10 +499,10 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * use destination_add_forward_headers instead
+         * use destinationAddForwardHeaders instead
          * 
          */
-        @Deprecated /* use destination_add_forward_headers instead */
+        @Deprecated /* use destinationAddForwardHeaders instead */
         public Builder addForwardHeaders(@Nullable Output<Boolean> addForwardHeaders) {
             $.addForwardHeaders = addForwardHeaders;
             return this;
@@ -514,10 +514,10 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * use destination_add_forward_headers instead
+         * use destinationAddForwardHeaders instead
          * 
          */
-        @Deprecated /* use destination_add_forward_headers instead */
+        @Deprecated /* use destinationAddForwardHeaders instead */
         public Builder addForwardHeaders(Boolean addForwardHeaders) {
             return addForwardHeaders(Output.of(addForwardHeaders));
         }
@@ -528,10 +528,10 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * use source_delete_after instead
+         * use sourceDeleteAfter instead
          * 
          */
-        @Deprecated /* use source_delete_after instead */
+        @Deprecated /* use sourceDeleteAfter instead */
         public Builder deleteAfter(@Nullable Output<String> deleteAfter) {
             $.deleteAfter = deleteAfter;
             return this;
@@ -543,10 +543,10 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * use source_delete_after instead
+         * use sourceDeleteAfter instead
          * 
          */
-        @Deprecated /* use source_delete_after instead */
+        @Deprecated /* use sourceDeleteAfter instead */
         public Builder deleteAfter(String deleteAfter) {
             return deleteAfter(Output.of(deleteAfter));
         }
@@ -625,7 +625,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param destinationExchange The exchange to which messages should be published.
-         * Either this or `destination_queue` must be specified but not both.
+         * Either this or `destinationQueue` must be specified but not both.
          * 
          * @return builder
          * 
@@ -637,7 +637,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param destinationExchange The exchange to which messages should be published.
-         * Either this or `destination_queue` must be specified but not both.
+         * Either this or `destinationQueue` must be specified but not both.
          * 
          * @return builder
          * 
@@ -647,7 +647,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param destinationExchangeKey The routing key when using `destination_exchange`.
+         * @param destinationExchangeKey The routing key when using `destinationExchange`.
          * 
          * @return builder
          * 
@@ -658,7 +658,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param destinationExchangeKey The routing key when using `destination_exchange`.
+         * @param destinationExchangeKey The routing key when using `destinationExchange`.
          * 
          * @return builder
          * 
@@ -738,7 +738,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param destinationQueue The queue to which messages should be published.
-         * Either this or `destination_exchange` must be specified but not both.
+         * Either this or `destinationExchange` must be specified but not both.
          * 
          * @return builder
          * 
@@ -750,7 +750,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param destinationQueue The queue to which messages should be published.
-         * Either this or `destination_exchange` must be specified but not both.
+         * Either this or `destinationExchange` must be specified but not both.
          * 
          * @return builder
          * 
@@ -795,10 +795,10 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * use source_prefetch_count instead
+         * use sourcePrefetchCount instead
          * 
          */
-        @Deprecated /* use source_prefetch_count instead */
+        @Deprecated /* use sourcePrefetchCount instead */
         public Builder prefetchCount(@Nullable Output<Integer> prefetchCount) {
             $.prefetchCount = prefetchCount;
             return this;
@@ -810,10 +810,10 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * use source_prefetch_count instead
+         * use sourcePrefetchCount instead
          * 
          */
-        @Deprecated /* use source_prefetch_count instead */
+        @Deprecated /* use sourcePrefetchCount instead */
         public Builder prefetchCount(Integer prefetchCount) {
             return prefetchCount(Output.of(prefetchCount));
         }
@@ -885,7 +885,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param sourceExchange The exchange from which to consume.
-         * Either this or `source_queue` must be specified but not both.
+         * Either this or `sourceQueue` must be specified but not both.
          * 
          * @return builder
          * 
@@ -897,7 +897,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param sourceExchange The exchange from which to consume.
-         * Either this or `source_queue` must be specified but not both.
+         * Either this or `sourceQueue` must be specified but not both.
          * 
          * @return builder
          * 
@@ -907,7 +907,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sourceExchangeKey The routing key when using `source_exchange`.
+         * @param sourceExchangeKey The routing key when using `sourceExchange`.
          * 
          * @return builder
          * 
@@ -918,7 +918,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sourceExchangeKey The routing key when using `source_exchange`.
+         * @param sourceExchangeKey The routing key when using `sourceExchange`.
          * 
          * @return builder
          * 
@@ -973,7 +973,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param sourceQueue The queue from which to consume.
-         * Either this or `source_exchange` must be specified but not both.
+         * Either this or `sourceExchange` must be specified but not both.
          * 
          * @return builder
          * 
@@ -985,7 +985,7 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param sourceQueue The queue from which to consume.
-         * Either this or `source_exchange` must be specified but not both.
+         * Either this or `sourceExchange` must be specified but not both.
          * 
          * @return builder
          * 

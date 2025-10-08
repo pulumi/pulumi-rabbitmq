@@ -20,7 +20,7 @@ public final class QueueSettingsArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Additional key/value settings for the queue.
      * All values will be sent to RabbitMQ as a string. If you require non-string
-     * values, use `arguments_json`.
+     * values, use `argumentsJson`.
      * 
      */
     @Import(name="arguments")
@@ -29,7 +29,7 @@ public final class QueueSettingsArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * @return Additional key/value settings for the queue.
      * All values will be sent to RabbitMQ as a string. If you require non-string
-     * values, use `arguments_json`.
+     * values, use `argumentsJson`.
      * 
      */
     public Optional<Output<Map<String,String>>> arguments() {
@@ -119,7 +119,7 @@ public final class QueueSettingsArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param arguments Additional key/value settings for the queue.
          * All values will be sent to RabbitMQ as a string. If you require non-string
-         * values, use `arguments_json`.
+         * values, use `argumentsJson`.
          * 
          * @return builder
          * 
@@ -132,7 +132,7 @@ public final class QueueSettingsArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param arguments Additional key/value settings for the queue.
          * All values will be sent to RabbitMQ as a string. If you require non-string
-         * values, use `arguments_json`.
+         * values, use `argumentsJson`.
          * 
          * @return builder
          * 
