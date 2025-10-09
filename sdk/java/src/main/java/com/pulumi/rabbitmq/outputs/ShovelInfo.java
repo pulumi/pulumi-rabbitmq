@@ -25,19 +25,19 @@ public final class ShovelInfo {
      * @return Whether to add `x-shovelled` headers to shovelled messages.
      * 
      * @deprecated
-     * use destination_add_forward_headers instead
+     * use destinationAddForwardHeaders instead
      * 
      */
-    @Deprecated /* use destination_add_forward_headers instead */
+    @Deprecated /* use destinationAddForwardHeaders instead */
     private @Nullable Boolean addForwardHeaders;
     /**
      * @return Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
      * 
      * @deprecated
-     * use source_delete_after instead
+     * use sourceDeleteAfter instead
      * 
      */
-    @Deprecated /* use source_delete_after instead */
+    @Deprecated /* use sourceDeleteAfter instead */
     private @Nullable String deleteAfter;
     /**
      * @return Whether to add `x-shovelled` headers to shovelled messages.
@@ -57,12 +57,12 @@ public final class ShovelInfo {
     private @Nullable Map<String,String> destinationApplicationProperties;
     /**
      * @return The exchange to which messages should be published.
-     * Either this or `destination_queue` must be specified but not both.
+     * Either this or `destinationQueue` must be specified but not both.
      * 
      */
     private @Nullable String destinationExchange;
     /**
-     * @return The routing key when using `destination_exchange`.
+     * @return The routing key when using `destinationExchange`.
      * 
      */
     private @Nullable String destinationExchangeKey;
@@ -86,7 +86,7 @@ public final class ShovelInfo {
     private @Nullable Map<String,String> destinationPublishProperties;
     /**
      * @return The queue to which messages should be published.
-     * Either this or `destination_exchange` must be specified but not both.
+     * Either this or `destinationExchange` must be specified but not both.
      * 
      */
     private @Nullable String destinationQueue;
@@ -100,10 +100,10 @@ public final class ShovelInfo {
      * @return The maximum number of unacknowledged messages copied over a shovel at any one time.
      * 
      * @deprecated
-     * use source_prefetch_count instead
+     * use sourcePrefetchCount instead
      * 
      */
-    @Deprecated /* use source_prefetch_count instead */
+    @Deprecated /* use sourcePrefetchCount instead */
     private @Nullable Integer prefetchCount;
     /**
      * @return The duration in seconds to reconnect to a broker after disconnected.
@@ -123,12 +123,12 @@ public final class ShovelInfo {
     private @Nullable String sourceDeleteAfter;
     /**
      * @return The exchange from which to consume.
-     * Either this or `source_queue` must be specified but not both.
+     * Either this or `sourceQueue` must be specified but not both.
      * 
      */
     private @Nullable String sourceExchange;
     /**
-     * @return The routing key when using `source_exchange`.
+     * @return The routing key when using `sourceExchange`.
      * 
      */
     private @Nullable String sourceExchangeKey;
@@ -145,7 +145,7 @@ public final class ShovelInfo {
     private @Nullable String sourceProtocol;
     /**
      * @return The queue from which to consume.
-     * Either this or `source_exchange` must be specified but not both.
+     * Either this or `sourceExchange` must be specified but not both.
      * 
      */
     private @Nullable String sourceQueue;
@@ -168,10 +168,10 @@ public final class ShovelInfo {
      * @return Whether to add `x-shovelled` headers to shovelled messages.
      * 
      * @deprecated
-     * use destination_add_forward_headers instead
+     * use destinationAddForwardHeaders instead
      * 
      */
-    @Deprecated /* use destination_add_forward_headers instead */
+    @Deprecated /* use destinationAddForwardHeaders instead */
     public Optional<Boolean> addForwardHeaders() {
         return Optional.ofNullable(this.addForwardHeaders);
     }
@@ -179,10 +179,10 @@ public final class ShovelInfo {
      * @return Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
      * 
      * @deprecated
-     * use source_delete_after instead
+     * use sourceDeleteAfter instead
      * 
      */
-    @Deprecated /* use source_delete_after instead */
+    @Deprecated /* use sourceDeleteAfter instead */
     public Optional<String> deleteAfter() {
         return Optional.ofNullable(this.deleteAfter);
     }
@@ -212,14 +212,14 @@ public final class ShovelInfo {
     }
     /**
      * @return The exchange to which messages should be published.
-     * Either this or `destination_queue` must be specified but not both.
+     * Either this or `destinationQueue` must be specified but not both.
      * 
      */
     public Optional<String> destinationExchange() {
         return Optional.ofNullable(this.destinationExchange);
     }
     /**
-     * @return The routing key when using `destination_exchange`.
+     * @return The routing key when using `destinationExchange`.
      * 
      */
     public Optional<String> destinationExchangeKey() {
@@ -251,7 +251,7 @@ public final class ShovelInfo {
     }
     /**
      * @return The queue to which messages should be published.
-     * Either this or `destination_exchange` must be specified but not both.
+     * Either this or `destinationExchange` must be specified but not both.
      * 
      */
     public Optional<String> destinationQueue() {
@@ -271,10 +271,10 @@ public final class ShovelInfo {
      * @return The maximum number of unacknowledged messages copied over a shovel at any one time.
      * 
      * @deprecated
-     * use source_prefetch_count instead
+     * use sourcePrefetchCount instead
      * 
      */
-    @Deprecated /* use source_prefetch_count instead */
+    @Deprecated /* use sourcePrefetchCount instead */
     public Optional<Integer> prefetchCount() {
         return Optional.ofNullable(this.prefetchCount);
     }
@@ -302,14 +302,14 @@ public final class ShovelInfo {
     }
     /**
      * @return The exchange from which to consume.
-     * Either this or `source_queue` must be specified but not both.
+     * Either this or `sourceQueue` must be specified but not both.
      * 
      */
     public Optional<String> sourceExchange() {
         return Optional.ofNullable(this.sourceExchange);
     }
     /**
-     * @return The routing key when using `source_exchange`.
+     * @return The routing key when using `sourceExchange`.
      * 
      */
     public Optional<String> sourceExchangeKey() {
@@ -332,7 +332,7 @@ public final class ShovelInfo {
     }
     /**
      * @return The queue from which to consume.
-     * Either this or `source_exchange` must be specified but not both.
+     * Either this or `sourceExchange` must be specified but not both.
      * 
      */
     public Optional<String> sourceQueue() {
