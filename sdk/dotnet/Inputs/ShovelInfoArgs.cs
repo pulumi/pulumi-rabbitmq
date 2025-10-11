@@ -26,7 +26,7 @@ namespace Pulumi.RabbitMQ.Inputs
         public Input<bool>? AddForwardHeaders { get; set; }
 
         /// <summary>
-        /// Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+        /// Determines when (if ever) the shovel should delete itself. Possible values are: `Never`, `queue-length` or an integer.
         /// </summary>
         [Input("deleteAfter")]
         public Input<string>? DeleteAfter { get; set; }
@@ -60,13 +60,13 @@ namespace Pulumi.RabbitMQ.Inputs
 
         /// <summary>
         /// The exchange to which messages should be published.
-        /// Either this or `destination_queue` must be specified but not both.
+        /// Either this or `DestinationQueue` must be specified but not both.
         /// </summary>
         [Input("destinationExchange")]
         public Input<string>? DestinationExchange { get; set; }
 
         /// <summary>
-        /// The routing key when using `destination_exchange`.
+        /// The routing key when using `DestinationExchange`.
         /// </summary>
         [Input("destinationExchangeKey")]
         public Input<string>? DestinationExchangeKey { get; set; }
@@ -86,8 +86,8 @@ namespace Pulumi.RabbitMQ.Inputs
         }
 
         /// <summary>
-        /// The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
-        /// Defaults to `amqp091`.
+        /// The protocol (`Amqp091` or `Amqp10`) to use when connecting to the destination.
+        /// Defaults to `Amqp091`.
         /// </summary>
         [Input("destinationProtocol")]
         public Input<string>? DestinationProtocol { get; set; }
@@ -106,7 +106,7 @@ namespace Pulumi.RabbitMQ.Inputs
 
         /// <summary>
         /// The queue to which messages should be published.
-        /// Either this or `destination_exchange` must be specified but not both.
+        /// Either this or `DestinationExchange` must be specified but not both.
         /// </summary>
         [Input("destinationQueue")]
         public Input<string>? DestinationQueue { get; set; }
@@ -145,20 +145,20 @@ namespace Pulumi.RabbitMQ.Inputs
         public Input<string>? SourceAddress { get; set; }
 
         /// <summary>
-        /// Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+        /// Determines when (if ever) the shovel should delete itself. Possible values are: `Never`, `queue-length` or an integer.
         /// </summary>
         [Input("sourceDeleteAfter")]
         public Input<string>? SourceDeleteAfter { get; set; }
 
         /// <summary>
         /// The exchange from which to consume.
-        /// Either this or `source_queue` must be specified but not both.
+        /// Either this or `SourceQueue` must be specified but not both.
         /// </summary>
         [Input("sourceExchange")]
         public Input<string>? SourceExchange { get; set; }
 
         /// <summary>
-        /// The routing key when using `source_exchange`.
+        /// The routing key when using `SourceExchange`.
         /// </summary>
         [Input("sourceExchangeKey")]
         public Input<string>? SourceExchangeKey { get; set; }
@@ -170,15 +170,15 @@ namespace Pulumi.RabbitMQ.Inputs
         public Input<int>? SourcePrefetchCount { get; set; }
 
         /// <summary>
-        /// The protocol (`amqp091` or `amqp10`) to use when connecting to the source.
-        /// Defaults to `amqp091`.
+        /// The protocol (`Amqp091` or `Amqp10`) to use when connecting to the source.
+        /// Defaults to `Amqp091`.
         /// </summary>
         [Input("sourceProtocol")]
         public Input<string>? SourceProtocol { get; set; }
 
         /// <summary>
         /// The queue from which to consume.
-        /// Either this or `source_exchange` must be specified but not both.
+        /// Either this or `SourceExchange` must be specified but not both.
         /// </summary>
         [Input("sourceQueue")]
         public Input<string>? SourceQueue { get; set; }
