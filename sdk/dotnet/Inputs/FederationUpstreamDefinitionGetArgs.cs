@@ -65,7 +65,7 @@ namespace Pulumi.RabbitMQ.Inputs
         public Input<int>? ReconnectDelay { get; set; }
 
         /// <summary>
-        /// Determines how federation should interact with the validated user-id feature. Default is `false`.
+        /// Determines how federation should interact with the validated user-id feature. Default is `False`.
         /// 
         /// Applicable to Federated Exchanges Only
         /// </summary>

@@ -23,7 +23,7 @@ namespace Pulumi.RabbitMQ.Outputs
         /// </summary>
         public readonly bool? AddForwardHeaders;
         /// <summary>
-        /// Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+        /// Determines when (if ever) the shovel should delete itself. Possible values are: `Never`, `queue-length` or an integer.
         /// </summary>
         public readonly string? DeleteAfter;
         /// <summary>
@@ -41,11 +41,11 @@ namespace Pulumi.RabbitMQ.Outputs
         public readonly ImmutableDictionary<string, string>? DestinationApplicationProperties;
         /// <summary>
         /// The exchange to which messages should be published.
-        /// Either this or `destination_queue` must be specified but not both.
+        /// Either this or `DestinationQueue` must be specified but not both.
         /// </summary>
         public readonly string? DestinationExchange;
         /// <summary>
-        /// The routing key when using `destination_exchange`.
+        /// The routing key when using `DestinationExchange`.
         /// </summary>
         public readonly string? DestinationExchangeKey;
         /// <summary>
@@ -55,8 +55,8 @@ namespace Pulumi.RabbitMQ.Outputs
         /// </summary>
         public readonly ImmutableDictionary<string, string>? DestinationProperties;
         /// <summary>
-        /// The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
-        /// Defaults to `amqp091`.
+        /// The protocol (`Amqp091` or `Amqp10`) to use when connecting to the destination.
+        /// Defaults to `Amqp091`.
         /// </summary>
         public readonly string? DestinationProtocol;
         /// <summary>
@@ -65,7 +65,7 @@ namespace Pulumi.RabbitMQ.Outputs
         public readonly ImmutableDictionary<string, string>? DestinationPublishProperties;
         /// <summary>
         /// The queue to which messages should be published.
-        /// Either this or `destination_exchange` must be specified but not both.
+        /// Either this or `DestinationExchange` must be specified but not both.
         /// </summary>
         public readonly string? DestinationQueue;
         public readonly ImmutableDictionary<string, string>? DestinationQueueArguments;
@@ -87,16 +87,16 @@ namespace Pulumi.RabbitMQ.Outputs
         /// </summary>
         public readonly string? SourceAddress;
         /// <summary>
-        /// Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
+        /// Determines when (if ever) the shovel should delete itself. Possible values are: `Never`, `queue-length` or an integer.
         /// </summary>
         public readonly string? SourceDeleteAfter;
         /// <summary>
         /// The exchange from which to consume.
-        /// Either this or `source_queue` must be specified but not both.
+        /// Either this or `SourceQueue` must be specified but not both.
         /// </summary>
         public readonly string? SourceExchange;
         /// <summary>
-        /// The routing key when using `source_exchange`.
+        /// The routing key when using `SourceExchange`.
         /// </summary>
         public readonly string? SourceExchangeKey;
         /// <summary>
@@ -104,13 +104,13 @@ namespace Pulumi.RabbitMQ.Outputs
         /// </summary>
         public readonly int? SourcePrefetchCount;
         /// <summary>
-        /// The protocol (`amqp091` or `amqp10`) to use when connecting to the source.
-        /// Defaults to `amqp091`.
+        /// The protocol (`Amqp091` or `Amqp10`) to use when connecting to the source.
+        /// Defaults to `Amqp091`.
         /// </summary>
         public readonly string? SourceProtocol;
         /// <summary>
         /// The queue from which to consume.
-        /// Either this or `source_exchange` must be specified but not both.
+        /// Either this or `SourceExchange` must be specified but not both.
         /// </summary>
         public readonly string? SourceQueue;
         /// <summary>
