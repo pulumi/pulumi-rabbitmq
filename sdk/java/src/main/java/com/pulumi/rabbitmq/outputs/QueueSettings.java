@@ -16,7 +16,7 @@ public final class QueueSettings {
     /**
      * @return Additional key/value settings for the queue.
      * All values will be sent to RabbitMQ as a string. If you require non-string
-     * values, use `arguments_json`.
+     * values, use `argumentsJson`.
      * 
      */
     private @Nullable Map<String,String> arguments;
@@ -44,7 +44,7 @@ public final class QueueSettings {
     /**
      * @return Additional key/value settings for the queue.
      * All values will be sent to RabbitMQ as a string. If you require non-string
-     * values, use `arguments_json`.
+     * values, use `argumentsJson`.
      * 
      */
     public Map<String,String> arguments() {
