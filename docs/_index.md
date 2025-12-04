@@ -41,6 +41,7 @@ config:
         value: guest
 
 ```
+
 ```typescript
 import * as pulumi from "@pulumi/pulumi";
 import * as rabbitmq from "@pulumi/rabbitmq";
@@ -48,6 +49,7 @@ import * as rabbitmq from "@pulumi/rabbitmq";
 // Create a virtual host
 const vhost1 = new rabbitmq.VHost("vhost_1", {name: "vhost_1"});
 ```
+
 {{% /choosable %}}
 {{% choosable language python %}}
 ```yaml
@@ -63,6 +65,7 @@ config:
         value: guest
 
 ```
+
 ```python
 import pulumi
 import pulumi_rabbitmq as rabbitmq
@@ -70,6 +73,7 @@ import pulumi_rabbitmq as rabbitmq
 # Create a virtual host
 vhost1 = rabbitmq.VHost("vhost_1", name="vhost_1")
 ```
+
 {{% /choosable %}}
 {{% choosable language csharp %}}
 ```yaml
@@ -85,6 +89,7 @@ config:
         value: guest
 
 ```
+
 ```csharp
 using System.Collections.Generic;
 using System.Linq;
@@ -102,6 +107,7 @@ return await Deployment.RunAsync(() =>
 });
 
 ```
+
 {{% /choosable %}}
 {{% choosable language go %}}
 ```yaml
@@ -117,6 +123,7 @@ config:
         value: guest
 
 ```
+
 ```go
 package main
 
@@ -138,6 +145,7 @@ func main() {
 	})
 }
 ```
+
 {{% /choosable %}}
 {{% choosable language yaml %}}
 ```yaml
@@ -153,6 +161,7 @@ config:
         value: guest
 
 ```
+
 ```yaml
 resources:
   # Create a virtual host
@@ -162,6 +171,7 @@ resources:
     properties:
       name: vhost_1
 ```
+
 {{% /choosable %}}
 {{% choosable language java %}}
 ```yaml
@@ -177,6 +187,7 @@ config:
         value: guest
 
 ```
+
 ```java
 package generated_program;
 
@@ -206,6 +217,7 @@ public class App {
     }
 }
 ```
+
 {{% /choosable %}}
 {{< /chooser >}}
 ## Requirements
