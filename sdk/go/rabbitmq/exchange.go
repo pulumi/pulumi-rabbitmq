@@ -67,7 +67,6 @@ import (
 // ## Import
 //
 // Exchanges can be imported using the `id` which is composed of  `name@vhost`.
-//
 // E.g.
 //
 // ```sh

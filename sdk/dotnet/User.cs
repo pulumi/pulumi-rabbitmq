@@ -41,7 +41,7 @@ namespace Pulumi.RabbitMQ
     /// 
     /// ## Import
     /// 
-    /// Users can be imported using the `name`, e.g.
+    /// Users can be imported using the `Name`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import rabbitmq:index/user:User test mctest

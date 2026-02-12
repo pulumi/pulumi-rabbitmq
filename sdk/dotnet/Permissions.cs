@@ -55,8 +55,7 @@ namespace Pulumi.RabbitMQ
     /// 
     /// ## Import
     /// 
-    /// Permissions can be imported using the `id` which is composed of  `user@vhost`.
-    /// 
+    /// Permissions can be imported using the `Id` which is composed of  `user@vhost`.
     /// E.g.
     /// 
     /// ```sh

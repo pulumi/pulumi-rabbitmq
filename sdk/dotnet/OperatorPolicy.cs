@@ -61,8 +61,7 @@ namespace Pulumi.RabbitMQ
     /// 
     /// ## Import
     /// 
-    /// Operator policies can be imported using the `id` which is composed of `name@vhost`.
-    /// 
+    /// Operator policies can be imported using the `Id` which is composed of `name@vhost`.
     /// E.g.
     /// 
     /// ```sh

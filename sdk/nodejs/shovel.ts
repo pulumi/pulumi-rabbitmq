@@ -49,7 +49,6 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * Shovels can be imported using the `name` and `vhost`
- *
  * E.g.
  *
  * ```sh

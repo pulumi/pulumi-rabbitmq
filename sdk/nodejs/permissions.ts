@@ -36,7 +36,6 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * Permissions can be imported using the `id` which is composed of  `user@vhost`.
- *
  * E.g.
  *
  * ```sh

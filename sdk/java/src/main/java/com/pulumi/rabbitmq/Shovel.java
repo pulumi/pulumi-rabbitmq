@@ -93,7 +93,6 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * Shovels can be imported using the `name` and `vhost`
- * 
  * E.g.
  * 
  * ```sh
