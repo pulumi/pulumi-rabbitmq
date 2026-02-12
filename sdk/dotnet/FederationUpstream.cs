@@ -88,7 +88,7 @@ namespace Pulumi.RabbitMQ
     /// 
     /// ## Import
     /// 
-    /// A Federation upstream can be imported using the resource `id` which is composed of `name@vhost`, e.g.
+    /// A Federation upstream can be imported using the resource `Id` which is composed of `name@vhost`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import rabbitmq:index/federationUpstream:FederationUpstream foo foo@test

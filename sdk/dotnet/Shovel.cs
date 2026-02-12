@@ -69,8 +69,7 @@ namespace Pulumi.RabbitMQ
     /// 
     /// ## Import
     /// 
-    /// Shovels can be imported using the `name` and `vhost`
-    /// 
+    /// Shovels can be imported using the `Name` and `Vhost`
     /// E.g.
     /// 
     /// ```sh

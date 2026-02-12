@@ -170,7 +170,6 @@ class Permissions(pulumi.CustomResource):
         ## Import
 
         Permissions can be imported using the `id` which is composed of  `user@vhost`.
-
         E.g.
 
         ```sh
@@ -218,7 +217,6 @@ class Permissions(pulumi.CustomResource):
         ## Import
 
         Permissions can be imported using the `id` which is composed of  `user@vhost`.
-
         E.g.
 
         ```sh

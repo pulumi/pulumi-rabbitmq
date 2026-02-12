@@ -83,7 +83,6 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * Operator policies can be imported using the `id` which is composed of `name{@literal @}vhost`.
- * 
  * E.g.
  * 
  * ```sh

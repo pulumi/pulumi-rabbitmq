@@ -76,7 +76,6 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * Permissions can be imported using the `id` which is composed of  `user{@literal @}vhost`.
- * 
  * E.g.
  * 
  * ```sh

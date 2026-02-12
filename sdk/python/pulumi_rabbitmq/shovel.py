@@ -182,7 +182,6 @@ class Shovel(pulumi.CustomResource):
         ## Import
 
         Shovels can be imported using the `name` and `vhost`
-
         E.g.
 
         ```sh
@@ -242,7 +241,6 @@ class Shovel(pulumi.CustomResource):
         ## Import
 
         Shovels can be imported using the `name` and `vhost`
-
         E.g.
 
         ```sh
