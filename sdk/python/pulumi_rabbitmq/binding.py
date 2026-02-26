@@ -28,6 +28,7 @@ class BindingArgs:
                  routing_key: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Binding resource.
+
         :param pulumi.Input[_builtins.str] destination: The destination queue or exchange.
         :param pulumi.Input[_builtins.str] destination_type: The type of destination (queue or exchange).
         :param pulumi.Input[_builtins.str] source: The source exchange.
@@ -141,6 +142,7 @@ class _BindingState:
                  vhost: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Binding resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] arguments: Additional key/value arguments for the binding.
         :param pulumi.Input[_builtins.str] destination: The destination queue or exchange.
         :param pulumi.Input[_builtins.str] destination_type: The type of destination (queue or exchange).
@@ -325,6 +327,7 @@ class Binding(pulumi.CustomResource):
         $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] arguments: Additional key/value arguments for the binding.
@@ -390,6 +393,7 @@ class Binding(pulumi.CustomResource):
         ```sh
         $ pulumi import rabbitmq:index/binding:Binding test test/test/test/queue/%23
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BindingArgs args: The arguments to use to populate this resource's properties.

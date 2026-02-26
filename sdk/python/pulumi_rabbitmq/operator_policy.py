@@ -26,6 +26,7 @@ class OperatorPolicyArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OperatorPolicy resource.
+
         :param pulumi.Input['OperatorPolicyPolicyArgs'] policy: The settings of the operator policy. The structure is
                described below.
         :param pulumi.Input[_builtins.str] vhost: The vhost to create the resource in.
@@ -82,6 +83,7 @@ class _OperatorPolicyState:
                  vhost: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OperatorPolicy resources.
+
         :param pulumi.Input[_builtins.str] name: The name of the operator policy.
         :param pulumi.Input['OperatorPolicyPolicyArgs'] policy: The settings of the operator policy. The structure is
                described below.
@@ -183,6 +185,7 @@ class OperatorPolicy(pulumi.CustomResource):
         $ pulumi import rabbitmq:index/operatorPolicy:OperatorPolicy test name@vhost
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The name of the operator policy.
@@ -236,6 +239,7 @@ class OperatorPolicy(pulumi.CustomResource):
         ```sh
         $ pulumi import rabbitmq:index/operatorPolicy:OperatorPolicy test name@vhost
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OperatorPolicyArgs args: The arguments to use to populate this resource's properties.

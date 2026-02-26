@@ -26,6 +26,7 @@ class FederationUpstreamArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FederationUpstream resource.
+
         :param pulumi.Input['FederationUpstreamDefinitionArgs'] definition: The configuration of the federation upstream. The structure is described below.
         :param pulumi.Input[_builtins.str] vhost: The vhost to create the resource in.
         :param pulumi.Input[_builtins.str] name: The name of the federation upstream.
@@ -81,6 +82,7 @@ class _FederationUpstreamState:
                  vhost: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FederationUpstream resources.
+
         :param pulumi.Input[_builtins.str] component: Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
         :param pulumi.Input['FederationUpstreamDefinitionArgs'] definition: The configuration of the federation upstream. The structure is described below.
         :param pulumi.Input[_builtins.str] name: The name of the federation upstream.
@@ -213,6 +215,7 @@ class FederationUpstream(pulumi.CustomResource):
         $ pulumi import rabbitmq:index/federationUpstream:FederationUpstream foo foo@test
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['FederationUpstreamDefinitionArgs', 'FederationUpstreamDefinitionArgsDict']] definition: The configuration of the federation upstream. The structure is described below.
@@ -283,6 +286,7 @@ class FederationUpstream(pulumi.CustomResource):
         ```sh
         $ pulumi import rabbitmq:index/federationUpstream:FederationUpstream foo foo@test
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FederationUpstreamArgs args: The arguments to use to populate this resource's properties.
