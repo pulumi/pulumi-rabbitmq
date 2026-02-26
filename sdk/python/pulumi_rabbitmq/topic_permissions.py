@@ -26,6 +26,7 @@ class TopicPermissionsArgs:
                  vhost: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TopicPermissions resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['TopicPermissionsPermissionArgs']]] permissions: The settings of the permissions. The structure is
                described below.
         :param pulumi.Input[_builtins.str] user: The user to apply the permissions to.
@@ -82,6 +83,7 @@ class _TopicPermissionsState:
                  vhost: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TopicPermissions resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['TopicPermissionsPermissionArgs']]] permissions: The settings of the permissions. The structure is
                described below.
         :param pulumi.Input[_builtins.str] user: The user to apply the permissions to.
@@ -176,6 +178,7 @@ class TopicPermissions(pulumi.CustomResource):
         $ pulumi import rabbitmq:index/topicPermissions:TopicPermissions test user@vhost
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['TopicPermissionsPermissionArgs', 'TopicPermissionsPermissionArgsDict']]]] permissions: The settings of the permissions. The structure is
@@ -222,6 +225,7 @@ class TopicPermissions(pulumi.CustomResource):
         ```sh
         $ pulumi import rabbitmq:index/topicPermissions:TopicPermissions test user@vhost
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TopicPermissionsArgs args: The arguments to use to populate this resource's properties.

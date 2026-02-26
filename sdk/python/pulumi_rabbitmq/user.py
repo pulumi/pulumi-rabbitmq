@@ -24,6 +24,7 @@ class UserArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a User resource.
+
         :param pulumi.Input[_builtins.str] password: The password of the user. The value of this argument
                is plain-text so make sure to secure where this is defined.
         :param pulumi.Input[_builtins.str] name: The name of the user.
@@ -83,6 +84,7 @@ class _UserState:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering User resources.
+
         :param pulumi.Input[_builtins.str] name: The name of the user.
         :param pulumi.Input[_builtins.str] password: The password of the user. The value of this argument
                is plain-text so make sure to secure where this is defined.
@@ -174,6 +176,7 @@ class User(pulumi.CustomResource):
         $ pulumi import rabbitmq:index/user:User test mctest
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The name of the user.
@@ -216,6 +219,7 @@ class User(pulumi.CustomResource):
         ```sh
         $ pulumi import rabbitmq:index/user:User test mctest
         ```
+
 
         :param str resource_name: The name of the resource.
         :param UserArgs args: The arguments to use to populate this resource's properties.

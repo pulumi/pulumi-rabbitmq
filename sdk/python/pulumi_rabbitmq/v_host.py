@@ -27,6 +27,7 @@ class VHostArgs:
                  tracing: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a VHost resource.
+
         :param pulumi.Input[_builtins.str] default_queue_type: default queue type for new queues
         :param pulumi.Input[_builtins.str] description: A friendly description.
         :param pulumi.Input[_builtins.str] max_connections: Maximum number of concurrent client connections to the vhost
@@ -127,6 +128,7 @@ class _VHostState:
                  tracing: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering VHost resources.
+
         :param pulumi.Input[_builtins.str] default_queue_type: default queue type for new queues
         :param pulumi.Input[_builtins.str] description: A friendly description.
         :param pulumi.Input[_builtins.str] max_connections: Maximum number of concurrent client connections to the vhost
@@ -255,6 +257,7 @@ class VHost(pulumi.CustomResource):
         $ pulumi import rabbitmq:index/vHost:VHost my_vhost my_vhost
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] default_queue_type: default queue type for new queues
@@ -294,6 +297,7 @@ class VHost(pulumi.CustomResource):
         ```sh
         $ pulumi import rabbitmq:index/vHost:VHost my_vhost my_vhost
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VHostArgs args: The arguments to use to populate this resource's properties.

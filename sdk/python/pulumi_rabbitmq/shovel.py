@@ -26,6 +26,7 @@ class ShovelArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Shovel resource.
+
         :param pulumi.Input['ShovelInfoArgs'] info: The settings of the dynamic shovel. The structure is
                described below.
         :param pulumi.Input[_builtins.str] vhost: The vhost to create the resource in.
@@ -82,6 +83,7 @@ class _ShovelState:
                  vhost: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Shovel resources.
+
         :param pulumi.Input['ShovelInfoArgs'] info: The settings of the dynamic shovel. The structure is
                described below.
         :param pulumi.Input[_builtins.str] name: The shovel name.
@@ -188,6 +190,7 @@ class Shovel(pulumi.CustomResource):
         $ pulumi import rabbitmq:index/shovel:Shovel test shovelTest@test
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['ShovelInfoArgs', 'ShovelInfoArgsDict']] info: The settings of the dynamic shovel. The structure is
@@ -246,6 +249,7 @@ class Shovel(pulumi.CustomResource):
         ```sh
         $ pulumi import rabbitmq:index/shovel:Shovel test shovelTest@test
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ShovelArgs args: The arguments to use to populate this resource's properties.
