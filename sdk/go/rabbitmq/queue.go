@@ -112,7 +112,7 @@ import (
 //				Settings: &rabbitmq.QueueSettingsArgs{
 //					Durable:       pulumi.Bool(false),
 //					AutoDelete:    pulumi.Bool(true),
-//					ArgumentsJson: pulumi.String(arguments),
+//					ArgumentsJson: pulumi.String(pulumi.String(arguments)),
 //				},
 //			})
 //			if err != nil {
