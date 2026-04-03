@@ -3,9 +3,10 @@ package rabbitmq
 import (
 	"testing"
 
+	"github.com/stretchr/testify/require"
+
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
-	"github.com/stretchr/testify/require"
 
 	"github.com/pulumi/pulumi-rabbitmq/provider/v3/pkg/version"
 )
