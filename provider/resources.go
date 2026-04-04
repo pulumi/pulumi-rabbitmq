@@ -22,6 +22,7 @@ import (
 	"github.com/cyrilgdn/terraform-provider-rabbitmq/rabbitmq"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	tftokens "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
@@ -86,10 +87,7 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"rabbitmq_binding":  {Tok: makeResource(mainMod, "Binding")},
-			"rabbitmq_exchange": {Tok: makeResource(mainMod, "Exchange")},
 			"rabbitmq_permissions": {
-				Tok: makeResource(mainMod, "Permissions"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"permissions": {
 						CSharpName: "PermissionDetails",
@@ -97,31 +95,25 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 			"rabbitmq_policy": {
-				Tok: makeResource(mainMod, "Policy"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"policy": {
 						CSharpName: "PolicyBlock",
 					},
 				},
 			},
-			"rabbitmq_queue": {Tok: makeResource(mainMod, "Queue")},
-			"rabbitmq_user":  {Tok: makeResource(mainMod, "User")},
+			// Preserve the long-standing VHost token casing instead of the default Vhost.
 			"rabbitmq_vhost": {Tok: makeResource(mainMod, "VHost")},
 			"rabbitmq_topic_permissions": {
-				Tok: makeResource(mainMod, "TopicPermissions"),
 				Docs: &tfbridge.DocInfo{
 					Source: "topic-permissions.html.markdown",
 				},
 			},
 			"rabbitmq_federation_upstream": {
-				Tok: makeResource(mainMod, "FederationUpstream"),
 				Docs: &tfbridge.DocInfo{
 					Source: "federation-upstream.html.markdown",
 				},
 			},
-			"rabbitmq_shovel": {Tok: makeResource(mainMod, "Shovel")},
 			"rabbitmq_operator_policy": {
-				Tok: makeResource(mainMod, "OperatorPolicy"),
 				Docs: &tfbridge.DocInfo{
 					Source: "operator-policy.html.markdown",
 				},
@@ -129,18 +121,16 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"rabbitmq_exchange": {
-				Tok:  makeDataSource(mainMod, "getExchange"),
 				Docs: noDocs,
 			},
 			"rabbitmq_user": {
-				Tok:  makeDataSource(mainMod, "getUser"),
 				Docs: noDocs,
 			},
 			"rabbitmq_default_user": {
-				Tok:  makeDataSource(mainMod, "getDefaultUser"),
 				Docs: noDocs,
 			},
 			"rabbitmq_vhost": {
+				// Preserve the long-standing getVHost token casing instead of getVhost.
 				Tok:  makeDataSource(mainMod, "getVHost"),
 				Docs: noDocs,
 			},
@@ -182,6 +172,11 @@ func Provider() tfbridge.ProviderInfo {
 		},
 	}
 
+	prov.MustComputeTokens(tftokens.SingleModule(
+		prov.GetResourcePrefix(),
+		mainMod,
+		tftokens.MakeStandard(mainPkg),
+	))
 	prov.SetAutonaming(255, "-")
 
 	return prov
