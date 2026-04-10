@@ -22,7 +22,7 @@ namespace Pulumi.RabbitMQ
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myVhost = new RabbitMQ.VHost("my_vhost", new()
+    ///     var myVhost = new RabbitMQ.Index.VHost("my_vhost", new()
     ///     {
     ///         Name = "my_vhost",
     ///         Description = "My Vhost",

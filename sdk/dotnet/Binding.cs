@@ -23,12 +23,12 @@ namespace Pulumi.RabbitMQ
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new RabbitMQ.VHost("test", new()
+    ///     var test = new RabbitMQ.Index.VHost("test", new()
     ///     {
     ///         Name = "test",
     ///     });
     /// 
-    ///     var guest = new RabbitMQ.Permissions("guest", new()
+    ///     var guest = new RabbitMQ.Index.Permissions("guest", new()
     ///     {
     ///         User = "guest",
     ///         Vhost = test.Name,
@@ -40,7 +40,7 @@ namespace Pulumi.RabbitMQ
     ///         },
     ///     });
     /// 
-    ///     var testExchange = new RabbitMQ.Exchange("test", new()
+    ///     var testExchange = new RabbitMQ.Index.Exchange("test", new()
     ///     {
     ///         Name = "test",
     ///         Vhost = guest.Vhost,
@@ -52,7 +52,7 @@ namespace Pulumi.RabbitMQ
     ///         },
     ///     });
     /// 
-    ///     var testQueue = new RabbitMQ.Queue("test", new()
+    ///     var testQueue = new RabbitMQ.Index.Queue("test", new()
     ///     {
     ///         Name = "test",
     ///         Vhost = guest.Vhost,
@@ -63,7 +63,7 @@ namespace Pulumi.RabbitMQ
     ///         },
     ///     });
     /// 
-    ///     var testBinding = new RabbitMQ.Binding("test", new()
+    ///     var testBinding = new RabbitMQ.Index.Binding("test", new()
     ///     {
     ///         Source = testExchange.Name,
     ///         Vhost = test.Name,

@@ -99,7 +99,7 @@ using RabbitMQ = Pulumi.RabbitMQ;
 return await Deployment.RunAsync(() =>
 {
     // Create a virtual host
-    var vhost1 = new RabbitMQ.VHost("vhost_1", new()
+    var vhost1 = new RabbitMQ.Index.VHost("vhost_1", new()
     {
         Name = "vhost_1",
     });
