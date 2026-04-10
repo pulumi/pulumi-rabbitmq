@@ -22,12 +22,12 @@ namespace Pulumi.RabbitMQ
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new RabbitMQ.VHost("test", new()
+    ///     var test = new RabbitMQ.Index.VHost("test", new()
     ///     {
     ///         Name = "test",
     ///     });
     /// 
-    ///     var guest = new RabbitMQ.Permissions("guest", new()
+    ///     var guest = new RabbitMQ.Index.Permissions("guest", new()
     ///     {
     ///         User = "guest",
     ///         Vhost = test.Name,
@@ -40,7 +40,7 @@ namespace Pulumi.RabbitMQ
     ///     });
     /// 
     ///     // downstream exchange
-    ///     var foo = new RabbitMQ.Exchange("foo", new()
+    ///     var foo = new RabbitMQ.Index.Exchange("foo", new()
     ///     {
     ///         Name = "foo",
     ///         Vhost = guest.Vhost,
@@ -52,7 +52,7 @@ namespace Pulumi.RabbitMQ
     ///     });
     /// 
     ///     // upstream broker
-    ///     var fooFederationUpstream = new RabbitMQ.FederationUpstream("foo", new()
+    ///     var fooFederationUpstream = new RabbitMQ.Index.FederationUpstream("foo", new()
     ///     {
     ///         Name = "foo",
     ///         Vhost = guest.Vhost,
@@ -67,7 +67,7 @@ namespace Pulumi.RabbitMQ
     ///         },
     ///     });
     /// 
-    ///     var fooPolicy = new RabbitMQ.Policy("foo", new()
+    ///     var fooPolicy = new RabbitMQ.Index.Policy("foo", new()
     ///     {
     ///         Name = "foo",
     ///         Vhost = guest.Vhost,

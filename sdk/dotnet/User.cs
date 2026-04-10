@@ -25,7 +25,7 @@ namespace Pulumi.RabbitMQ
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new RabbitMQ.User("test", new()
+    ///     var test = new RabbitMQ.Index.User("test", new()
     ///     {
     ///         Name = "mctest",
     ///         Password = "foobar",
