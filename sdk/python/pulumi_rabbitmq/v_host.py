@@ -19,12 +19,12 @@ __all__ = ['VHostArgs', 'VHost']
 @pulumi.input_type
 class VHostArgs:
     def __init__(__self__, *,
-                 default_queue_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_connections: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_queues: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 tracing: Optional[pulumi.Input[_builtins.bool]] = None):
+                 default_queue_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_connections: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_queues: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 tracing: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a VHost resource.
 
@@ -49,83 +49,83 @@ class VHostArgs:
 
     @_builtins.property
     @pulumi.getter(name="defaultQueueType")
-    def default_queue_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_queue_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         default queue type for new queues
         """
         return pulumi.get(self, "default_queue_type")
 
     @default_queue_type.setter
-    def default_queue_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_queue_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_queue_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A friendly description.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnections")
-    def max_connections(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_connections(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum number of concurrent client connections to the vhost
         """
         return pulumi.get(self, "max_connections")
 
     @max_connections.setter
-    def max_connections(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_connections(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxQueues")
-    def max_queues(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_queues(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum number of queues that can be created on the vhost
         """
         return pulumi.get(self, "max_queues")
 
     @max_queues.setter
-    def max_queues(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_queues(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_queues", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the vhost.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def tracing(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tracing(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "tracing")
 
     @tracing.setter
-    def tracing(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tracing(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tracing", value)
 
 
 @pulumi.input_type
 class _VHostState:
     def __init__(__self__, *,
-                 default_queue_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_connections: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_queues: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 tracing: Optional[pulumi.Input[_builtins.bool]] = None):
+                 default_queue_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_connections: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_queues: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 tracing: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering VHost resources.
 
@@ -150,71 +150,71 @@ class _VHostState:
 
     @_builtins.property
     @pulumi.getter(name="defaultQueueType")
-    def default_queue_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_queue_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         default queue type for new queues
         """
         return pulumi.get(self, "default_queue_type")
 
     @default_queue_type.setter
-    def default_queue_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_queue_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_queue_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A friendly description.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnections")
-    def max_connections(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_connections(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum number of concurrent client connections to the vhost
         """
         return pulumi.get(self, "max_connections")
 
     @max_connections.setter
-    def max_connections(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_connections(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxQueues")
-    def max_queues(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_queues(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum number of queues that can be created on the vhost
         """
         return pulumi.get(self, "max_queues")
 
     @max_queues.setter
-    def max_queues(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_queues(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_queues", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the vhost.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def tracing(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tracing(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "tracing")
 
     @tracing.setter
-    def tracing(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tracing(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tracing", value)
 
 
@@ -224,12 +224,12 @@ class VHost(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 default_queue_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_connections: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_queues: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 tracing: Optional[pulumi.Input[_builtins.bool]] = None,
+                 default_queue_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_connections: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_queues: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 tracing: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         The ``VHost`` resource creates and manages a vhost.
@@ -314,12 +314,12 @@ class VHost(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 default_queue_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_connections: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_queues: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 tracing: Optional[pulumi.Input[_builtins.bool]] = None,
+                 default_queue_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_connections: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_queues: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 tracing: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -345,12 +345,12 @@ class VHost(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            default_queue_type: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            max_connections: Optional[pulumi.Input[_builtins.str]] = None,
-            max_queues: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            tracing: Optional[pulumi.Input[_builtins.bool]] = None) -> 'VHost':
+            default_queue_type: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            max_connections: pulumi.Input[Optional[_builtins.str]] = None,
+            max_queues: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            tracing: pulumi.Input[Optional[_builtins.bool]] = None) -> 'VHost':
         """
         Get an existing VHost resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

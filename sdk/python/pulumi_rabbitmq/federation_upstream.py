@@ -23,7 +23,7 @@ class FederationUpstreamArgs:
     def __init__(__self__, *,
                  definition: pulumi.Input['FederationUpstreamDefinitionArgs'],
                  vhost: pulumi.Input[_builtins.str],
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a FederationUpstream resource.
 
@@ -62,24 +62,24 @@ class FederationUpstreamArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the federation upstream.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _FederationUpstreamState:
     def __init__(__self__, *,
-                 component: Optional[pulumi.Input[_builtins.str]] = None,
-                 definition: Optional[pulumi.Input['FederationUpstreamDefinitionArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None):
+                 component: pulumi.Input[Optional[_builtins.str]] = None,
+                 definition: pulumi.Input[Optional['FederationUpstreamDefinitionArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FederationUpstream resources.
 
@@ -99,50 +99,50 @@ class _FederationUpstreamState:
 
     @_builtins.property
     @pulumi.getter
-    def component(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def component(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
         """
         return pulumi.get(self, "component")
 
     @component.setter
-    def component(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def component(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "component", value)
 
     @_builtins.property
     @pulumi.getter
-    def definition(self) -> Optional[pulumi.Input['FederationUpstreamDefinitionArgs']]:
+    def definition(self) -> pulumi.Input[Optional['FederationUpstreamDefinitionArgs']]:
         """
         The configuration of the federation upstream. The structure is described below.
         """
         return pulumi.get(self, "definition")
 
     @definition.setter
-    def definition(self, value: Optional[pulumi.Input['FederationUpstreamDefinitionArgs']]):
+    def definition(self, value: pulumi.Input[Optional['FederationUpstreamDefinitionArgs']]):
         pulumi.set(self, "definition", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the federation upstream.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def vhost(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vhost(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The vhost to create the resource in.
         """
         return pulumi.get(self, "vhost")
 
     @vhost.setter
-    def vhost(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vhost(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vhost", value)
 
 
@@ -152,9 +152,9 @@ class FederationUpstream(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 definition: Optional[pulumi.Input[Union['FederationUpstreamDefinitionArgs', 'FederationUpstreamDefinitionArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None,
+                 definition: pulumi.Input[Optional[Union['FederationUpstreamDefinitionArgs', 'FederationUpstreamDefinitionArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The ``FederationUpstream`` resource creates and manages a federation upstream parameter.
@@ -303,9 +303,9 @@ class FederationUpstream(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 definition: Optional[pulumi.Input[Union['FederationUpstreamDefinitionArgs', 'FederationUpstreamDefinitionArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None,
+                 definition: pulumi.Input[Optional[Union['FederationUpstreamDefinitionArgs', 'FederationUpstreamDefinitionArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -333,10 +333,10 @@ class FederationUpstream(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            component: Optional[pulumi.Input[_builtins.str]] = None,
-            definition: Optional[pulumi.Input[Union['FederationUpstreamDefinitionArgs', 'FederationUpstreamDefinitionArgsDict']]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            vhost: Optional[pulumi.Input[_builtins.str]] = None) -> 'FederationUpstream':
+            component: pulumi.Input[Optional[_builtins.str]] = None,
+            definition: pulumi.Input[Optional[Union['FederationUpstreamDefinitionArgs', 'FederationUpstreamDefinitionArgsDict']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            vhost: pulumi.Input[Optional[_builtins.str]] = None) -> 'FederationUpstream':
         """
         Get an existing FederationUpstream resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

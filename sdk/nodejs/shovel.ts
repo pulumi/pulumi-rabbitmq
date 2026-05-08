@@ -138,15 +138,15 @@ export interface ShovelState {
      * The settings of the dynamic shovel. The structure is
      * described below.
      */
-    info?: pulumi.Input<inputs.ShovelInfo>;
+    info?: pulumi.Input<inputs.ShovelInfo | undefined>;
     /**
      * The shovel name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The vhost to create the resource in.
      */
-    vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -161,7 +161,7 @@ export interface ShovelArgs {
     /**
      * The shovel name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The vhost to create the resource in.
      */

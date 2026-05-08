@@ -41,5 +41,5 @@ export function getDefaultUserOutput(args?: GetDefaultUserOutputArgs, opts?: pul
  * A collection of arguments for invoking getDefaultUser.
  */
 export interface GetDefaultUserOutputArgs {
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }

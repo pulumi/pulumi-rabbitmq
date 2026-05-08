@@ -159,16 +159,16 @@ export interface QueueState {
     /**
      * The name of the queue.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The settings of the queue. The structure is
      * described below.
      */
-    settings?: pulumi.Input<inputs.QueueSettings>;
+    settings?: pulumi.Input<inputs.QueueSettings | undefined>;
     /**
      * The vhost to create the resource in.
      */
-    vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -178,7 +178,7 @@ export interface QueueArgs {
     /**
      * The name of the queue.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The settings of the queue. The structure is
      * described below.
@@ -187,5 +187,5 @@ export interface QueueArgs {
     /**
      * The vhost to create the resource in.
      */
-    vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string | undefined>;
 }

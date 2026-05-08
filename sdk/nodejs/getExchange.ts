@@ -44,5 +44,5 @@ export function getExchangeOutput(args: GetExchangeOutputArgs, opts?: pulumi.Inv
  */
 export interface GetExchangeOutputArgs {
     name: pulumi.Input<string>;
-    vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string | undefined>;
 }

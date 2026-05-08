@@ -124,16 +124,16 @@ export interface ExchangeState {
     /**
      * The name of the exchange.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The settings of the exchange. The structure is
      * described below.
      */
-    settings?: pulumi.Input<inputs.ExchangeSettings>;
+    settings?: pulumi.Input<inputs.ExchangeSettings | undefined>;
     /**
      * The vhost to create the resource in.
      */
-    vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -143,7 +143,7 @@ export interface ExchangeArgs {
     /**
      * The name of the exchange.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The settings of the exchange. The structure is
      * described below.
@@ -152,5 +152,5 @@ export interface ExchangeArgs {
     /**
      * The vhost to create the resource in.
      */
-    vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string | undefined>;
 }

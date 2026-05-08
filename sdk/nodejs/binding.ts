@@ -173,32 +173,32 @@ export interface BindingState {
     /**
      * Additional key/value arguments for the binding.
      */
-    arguments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    argumentsJson?: pulumi.Input<string>;
+    arguments?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    argumentsJson?: pulumi.Input<string | undefined>;
     /**
      * The destination queue or exchange.
      */
-    destination?: pulumi.Input<string>;
+    destination?: pulumi.Input<string | undefined>;
     /**
      * The type of destination (queue or exchange).
      */
-    destinationType?: pulumi.Input<string>;
+    destinationType?: pulumi.Input<string | undefined>;
     /**
      * A unique key to refer to the binding.
      */
-    propertiesKey?: pulumi.Input<string>;
+    propertiesKey?: pulumi.Input<string | undefined>;
     /**
      * A routing key for the binding.
      */
-    routingKey?: pulumi.Input<string>;
+    routingKey?: pulumi.Input<string | undefined>;
     /**
      * The source exchange.
      */
-    source?: pulumi.Input<string>;
+    source?: pulumi.Input<string | undefined>;
     /**
      * The vhost to create the resource in.
      */
-    vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -208,8 +208,8 @@ export interface BindingArgs {
     /**
      * Additional key/value arguments for the binding.
      */
-    arguments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    argumentsJson?: pulumi.Input<string>;
+    arguments?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    argumentsJson?: pulumi.Input<string | undefined>;
     /**
      * The destination queue or exchange.
      */
@@ -221,7 +221,7 @@ export interface BindingArgs {
     /**
      * A routing key for the binding.
      */
-    routingKey?: pulumi.Input<string>;
+    routingKey?: pulumi.Input<string | undefined>;
     /**
      * The source exchange.
      */

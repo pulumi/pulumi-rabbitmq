@@ -125,15 +125,15 @@ export interface TopicPermissionsState {
      * The settings of the permissions. The structure is
      * described below.
      */
-    permissions?: pulumi.Input<pulumi.Input<inputs.TopicPermissionsPermission>[]>;
+    permissions?: pulumi.Input<pulumi.Input<inputs.TopicPermissionsPermission>[] | undefined>;
     /**
      * The user to apply the permissions to.
      */
-    user?: pulumi.Input<string>;
+    user?: pulumi.Input<string | undefined>;
     /**
      * The vhost to create the resource in.
      */
-    vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -152,5 +152,5 @@ export interface TopicPermissionsArgs {
     /**
      * The vhost to create the resource in.
      */
-    vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string | undefined>;
 }

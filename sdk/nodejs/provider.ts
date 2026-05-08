@@ -71,14 +71,14 @@ export class Provider extends pulumi.ProviderResource {
  * The set of arguments for constructing a Provider resource.
  */
 export interface ProviderArgs {
-    cacertFile?: pulumi.Input<string>;
-    clientcertFile?: pulumi.Input<string>;
-    clientkeyFile?: pulumi.Input<string>;
-    endpoint?: pulumi.Input<string>;
-    insecure?: pulumi.Input<boolean>;
-    password?: pulumi.Input<string>;
-    proxy?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    cacertFile?: pulumi.Input<string | undefined>;
+    clientcertFile?: pulumi.Input<string | undefined>;
+    clientkeyFile?: pulumi.Input<string | undefined>;
+    endpoint?: pulumi.Input<string | undefined>;
+    insecure?: pulumi.Input<boolean | undefined>;
+    password?: pulumi.Input<string | undefined>;
+    proxy?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export namespace Provider {

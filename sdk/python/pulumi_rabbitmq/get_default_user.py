@@ -71,7 +71,7 @@ def get_default_user(username: Optional[_builtins.str] = None,
     return AwaitableGetDefaultUserResult(
         id=pulumi.get(__ret__, 'id'),
         username=pulumi.get(__ret__, 'username'))
-def get_default_user_output(username: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_default_user_output(username: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDefaultUserResult]:
     """
     Use this data source to access information about an existing resource.

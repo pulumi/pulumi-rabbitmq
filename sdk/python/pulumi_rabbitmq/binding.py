@@ -23,9 +23,9 @@ class BindingArgs:
                  destination_type: pulumi.Input[_builtins.str],
                  source: pulumi.Input[_builtins.str],
                  vhost: pulumi.Input[_builtins.str],
-                 arguments: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 arguments_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_key: Optional[pulumi.Input[_builtins.str]] = None):
+                 arguments: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 arguments_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_key: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Binding resource.
 
@@ -97,49 +97,49 @@ class BindingArgs:
 
     @_builtins.property
     @pulumi.getter
-    def arguments(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def arguments(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Additional key/value arguments for the binding.
         """
         return pulumi.get(self, "arguments")
 
     @arguments.setter
-    def arguments(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def arguments(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "arguments", value)
 
     @_builtins.property
     @pulumi.getter(name="argumentsJson")
-    def arguments_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def arguments_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "arguments_json")
 
     @arguments_json.setter
-    def arguments_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def arguments_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "arguments_json", value)
 
     @_builtins.property
     @pulumi.getter(name="routingKey")
-    def routing_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def routing_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A routing key for the binding.
         """
         return pulumi.get(self, "routing_key")
 
     @routing_key.setter
-    def routing_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def routing_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "routing_key", value)
 
 
 @pulumi.input_type
 class _BindingState:
     def __init__(__self__, *,
-                 arguments: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 arguments_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 destination: Optional[pulumi.Input[_builtins.str]] = None,
-                 destination_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 properties_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 source: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None):
+                 arguments: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 arguments_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 destination: pulumi.Input[Optional[_builtins.str]] = None,
+                 destination_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 properties_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 source: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Binding resources.
 
@@ -170,95 +170,95 @@ class _BindingState:
 
     @_builtins.property
     @pulumi.getter
-    def arguments(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def arguments(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Additional key/value arguments for the binding.
         """
         return pulumi.get(self, "arguments")
 
     @arguments.setter
-    def arguments(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def arguments(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "arguments", value)
 
     @_builtins.property
     @pulumi.getter(name="argumentsJson")
-    def arguments_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def arguments_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "arguments_json")
 
     @arguments_json.setter
-    def arguments_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def arguments_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "arguments_json", value)
 
     @_builtins.property
     @pulumi.getter
-    def destination(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def destination(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The destination queue or exchange.
         """
         return pulumi.get(self, "destination")
 
     @destination.setter
-    def destination(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def destination(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "destination", value)
 
     @_builtins.property
     @pulumi.getter(name="destinationType")
-    def destination_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def destination_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of destination (queue or exchange).
         """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
-    def destination_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def destination_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "destination_type", value)
 
     @_builtins.property
     @pulumi.getter(name="propertiesKey")
-    def properties_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def properties_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A unique key to refer to the binding.
         """
         return pulumi.get(self, "properties_key")
 
     @properties_key.setter
-    def properties_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def properties_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "properties_key", value)
 
     @_builtins.property
     @pulumi.getter(name="routingKey")
-    def routing_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def routing_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A routing key for the binding.
         """
         return pulumi.get(self, "routing_key")
 
     @routing_key.setter
-    def routing_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def routing_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "routing_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def source(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def source(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The source exchange.
         """
         return pulumi.get(self, "source")
 
     @source.setter
-    def source(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def source(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source", value)
 
     @_builtins.property
     @pulumi.getter
-    def vhost(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vhost(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The vhost to create the resource in.
         """
         return pulumi.get(self, "vhost")
 
     @vhost.setter
-    def vhost(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vhost(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vhost", value)
 
 
@@ -268,13 +268,13 @@ class Binding(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 arguments: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 arguments_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 destination: Optional[pulumi.Input[_builtins.str]] = None,
-                 destination_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 source: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None,
+                 arguments: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 arguments_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 destination: pulumi.Input[Optional[_builtins.str]] = None,
+                 destination_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 source: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The ``Binding`` resource creates and manages a binding relationship
@@ -410,13 +410,13 @@ class Binding(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 arguments: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 arguments_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 destination: Optional[pulumi.Input[_builtins.str]] = None,
-                 destination_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 source: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None,
+                 arguments: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 arguments_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 destination: pulumi.Input[Optional[_builtins.str]] = None,
+                 destination_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 source: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -452,14 +452,14 @@ class Binding(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            arguments: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            arguments_json: Optional[pulumi.Input[_builtins.str]] = None,
-            destination: Optional[pulumi.Input[_builtins.str]] = None,
-            destination_type: Optional[pulumi.Input[_builtins.str]] = None,
-            properties_key: Optional[pulumi.Input[_builtins.str]] = None,
-            routing_key: Optional[pulumi.Input[_builtins.str]] = None,
-            source: Optional[pulumi.Input[_builtins.str]] = None,
-            vhost: Optional[pulumi.Input[_builtins.str]] = None) -> 'Binding':
+            arguments: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            arguments_json: pulumi.Input[Optional[_builtins.str]] = None,
+            destination: pulumi.Input[Optional[_builtins.str]] = None,
+            destination_type: pulumi.Input[Optional[_builtins.str]] = None,
+            properties_key: pulumi.Input[Optional[_builtins.str]] = None,
+            routing_key: pulumi.Input[Optional[_builtins.str]] = None,
+            source: pulumi.Input[Optional[_builtins.str]] = None,
+            vhost: pulumi.Input[Optional[_builtins.str]] = None) -> 'Binding':
         """
         Get an existing Binding resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

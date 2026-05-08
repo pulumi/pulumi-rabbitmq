@@ -23,7 +23,7 @@ class ShovelArgs:
     def __init__(__self__, *,
                  info: pulumi.Input['ShovelInfoArgs'],
                  vhost: pulumi.Input[_builtins.str],
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Shovel resource.
 
@@ -64,23 +64,23 @@ class ShovelArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The shovel name.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _ShovelState:
     def __init__(__self__, *,
-                 info: Optional[pulumi.Input['ShovelInfoArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None):
+                 info: pulumi.Input[Optional['ShovelInfoArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Shovel resources.
 
@@ -98,7 +98,7 @@ class _ShovelState:
 
     @_builtins.property
     @pulumi.getter
-    def info(self) -> Optional[pulumi.Input['ShovelInfoArgs']]:
+    def info(self) -> pulumi.Input[Optional['ShovelInfoArgs']]:
         """
         The settings of the dynamic shovel. The structure is
         described below.
@@ -106,31 +106,31 @@ class _ShovelState:
         return pulumi.get(self, "info")
 
     @info.setter
-    def info(self, value: Optional[pulumi.Input['ShovelInfoArgs']]):
+    def info(self, value: pulumi.Input[Optional['ShovelInfoArgs']]):
         pulumi.set(self, "info", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The shovel name.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def vhost(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vhost(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The vhost to create the resource in.
         """
         return pulumi.get(self, "vhost")
 
     @vhost.setter
-    def vhost(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vhost(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vhost", value)
 
 
@@ -140,9 +140,9 @@ class Shovel(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 info: Optional[pulumi.Input[Union['ShovelInfoArgs', 'ShovelInfoArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None,
+                 info: pulumi.Input[Optional[Union['ShovelInfoArgs', 'ShovelInfoArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The ``Shovel`` resource creates and manages a dynamic shovel.
@@ -266,9 +266,9 @@ class Shovel(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 info: Optional[pulumi.Input[Union['ShovelInfoArgs', 'ShovelInfoArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None,
+                 info: pulumi.Input[Optional[Union['ShovelInfoArgs', 'ShovelInfoArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -295,9 +295,9 @@ class Shovel(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            info: Optional[pulumi.Input[Union['ShovelInfoArgs', 'ShovelInfoArgsDict']]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            vhost: Optional[pulumi.Input[_builtins.str]] = None) -> 'Shovel':
+            info: pulumi.Input[Optional[Union['ShovelInfoArgs', 'ShovelInfoArgsDict']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            vhost: pulumi.Input[Optional[_builtins.str]] = None) -> 'Shovel':
         """
         Get an existing Shovel resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

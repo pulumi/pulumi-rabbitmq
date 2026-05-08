@@ -23,7 +23,7 @@ class PermissionsArgs:
     def __init__(__self__, *,
                  permissions: pulumi.Input['PermissionsPermissionsArgs'],
                  user: pulumi.Input[_builtins.str],
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None):
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Permissions resource.
 
@@ -64,23 +64,23 @@ class PermissionsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def vhost(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vhost(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The vhost to create the resource in.
         """
         return pulumi.get(self, "vhost")
 
     @vhost.setter
-    def vhost(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vhost(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vhost", value)
 
 
 @pulumi.input_type
 class _PermissionsState:
     def __init__(__self__, *,
-                 permissions: Optional[pulumi.Input['PermissionsPermissionsArgs']] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None):
+                 permissions: pulumi.Input[Optional['PermissionsPermissionsArgs']] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Permissions resources.
 
@@ -98,7 +98,7 @@ class _PermissionsState:
 
     @_builtins.property
     @pulumi.getter
-    def permissions(self) -> Optional[pulumi.Input['PermissionsPermissionsArgs']]:
+    def permissions(self) -> pulumi.Input[Optional['PermissionsPermissionsArgs']]:
         """
         The settings of the permissions. The structure is
         described below.
@@ -106,31 +106,31 @@ class _PermissionsState:
         return pulumi.get(self, "permissions")
 
     @permissions.setter
-    def permissions(self, value: Optional[pulumi.Input['PermissionsPermissionsArgs']]):
+    def permissions(self, value: pulumi.Input[Optional['PermissionsPermissionsArgs']]):
         pulumi.set(self, "permissions", value)
 
     @_builtins.property
     @pulumi.getter
-    def user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The user to apply the permissions to.
         """
         return pulumi.get(self, "user")
 
     @user.setter
-    def user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user", value)
 
     @_builtins.property
     @pulumi.getter
-    def vhost(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vhost(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The vhost to create the resource in.
         """
         return pulumi.get(self, "vhost")
 
     @vhost.setter
-    def vhost(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vhost(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vhost", value)
 
 
@@ -140,9 +140,9 @@ class Permissions(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 permissions: Optional[pulumi.Input[Union['PermissionsPermissionsArgs', 'PermissionsPermissionsArgsDict']]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None,
+                 permissions: pulumi.Input[Optional[Union['PermissionsPermissionsArgs', 'PermissionsPermissionsArgsDict']]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The ``Permissions`` resource creates and manages a user's set of
@@ -242,9 +242,9 @@ class Permissions(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 permissions: Optional[pulumi.Input[Union['PermissionsPermissionsArgs', 'PermissionsPermissionsArgsDict']]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None,
+                 permissions: pulumi.Input[Optional[Union['PermissionsPermissionsArgs', 'PermissionsPermissionsArgsDict']]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -271,9 +271,9 @@ class Permissions(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            permissions: Optional[pulumi.Input[Union['PermissionsPermissionsArgs', 'PermissionsPermissionsArgsDict']]] = None,
-            user: Optional[pulumi.Input[_builtins.str]] = None,
-            vhost: Optional[pulumi.Input[_builtins.str]] = None) -> 'Permissions':
+            permissions: pulumi.Input[Optional[Union['PermissionsPermissionsArgs', 'PermissionsPermissionsArgsDict']]] = None,
+            user: pulumi.Input[Optional[_builtins.str]] = None,
+            vhost: pulumi.Input[Optional[_builtins.str]] = None) -> 'Permissions':
         """
         Get an existing Permissions resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

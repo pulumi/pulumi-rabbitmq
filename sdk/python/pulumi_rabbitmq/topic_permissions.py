@@ -23,7 +23,7 @@ class TopicPermissionsArgs:
     def __init__(__self__, *,
                  permissions: pulumi.Input[Sequence[pulumi.Input['TopicPermissionsPermissionArgs']]],
                  user: pulumi.Input[_builtins.str],
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None):
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a TopicPermissions resource.
 
@@ -64,23 +64,23 @@ class TopicPermissionsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def vhost(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vhost(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The vhost to create the resource in.
         """
         return pulumi.get(self, "vhost")
 
     @vhost.setter
-    def vhost(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vhost(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vhost", value)
 
 
 @pulumi.input_type
 class _TopicPermissionsState:
     def __init__(__self__, *,
-                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input['TopicPermissionsPermissionArgs']]]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None):
+                 permissions: pulumi.Input[Optional[Sequence[pulumi.Input['TopicPermissionsPermissionArgs']]]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TopicPermissions resources.
 
@@ -98,7 +98,7 @@ class _TopicPermissionsState:
 
     @_builtins.property
     @pulumi.getter
-    def permissions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TopicPermissionsPermissionArgs']]]]:
+    def permissions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['TopicPermissionsPermissionArgs']]]]:
         """
         The settings of the permissions. The structure is
         described below.
@@ -106,31 +106,31 @@ class _TopicPermissionsState:
         return pulumi.get(self, "permissions")
 
     @permissions.setter
-    def permissions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TopicPermissionsPermissionArgs']]]]):
+    def permissions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['TopicPermissionsPermissionArgs']]]]):
         pulumi.set(self, "permissions", value)
 
     @_builtins.property
     @pulumi.getter
-    def user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The user to apply the permissions to.
         """
         return pulumi.get(self, "user")
 
     @user.setter
-    def user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user", value)
 
     @_builtins.property
     @pulumi.getter
-    def vhost(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vhost(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The vhost to create the resource in.
         """
         return pulumi.get(self, "vhost")
 
     @vhost.setter
-    def vhost(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vhost(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vhost", value)
 
 
@@ -140,9 +140,9 @@ class TopicPermissions(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TopicPermissionsPermissionArgs', 'TopicPermissionsPermissionArgsDict']]]]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None,
+                 permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TopicPermissionsPermissionArgs', 'TopicPermissionsPermissionArgsDict']]]]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The ``TopicPermissions`` resource creates and manages a user's set of
@@ -242,9 +242,9 @@ class TopicPermissions(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TopicPermissionsPermissionArgs', 'TopicPermissionsPermissionArgsDict']]]]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None,
+                 permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TopicPermissionsPermissionArgs', 'TopicPermissionsPermissionArgsDict']]]]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -271,9 +271,9 @@ class TopicPermissions(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TopicPermissionsPermissionArgs', 'TopicPermissionsPermissionArgsDict']]]]] = None,
-            user: Optional[pulumi.Input[_builtins.str]] = None,
-            vhost: Optional[pulumi.Input[_builtins.str]] = None) -> 'TopicPermissions':
+            permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TopicPermissionsPermissionArgs', 'TopicPermissionsPermissionArgsDict']]]]] = None,
+            user: pulumi.Input[Optional[_builtins.str]] = None,
+            vhost: pulumi.Input[Optional[_builtins.str]] = None) -> 'TopicPermissions':
         """
         Get an existing TopicPermissions resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
