@@ -22,8 +22,8 @@ __all__ = ['ExchangeArgs', 'Exchange']
 class ExchangeArgs:
     def __init__(__self__, *,
                  settings: pulumi.Input['ExchangeSettingsArgs'],
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Exchange resource.
 
@@ -53,35 +53,35 @@ class ExchangeArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the exchange.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def vhost(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vhost(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The vhost to create the resource in.
         """
         return pulumi.get(self, "vhost")
 
     @vhost.setter
-    def vhost(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vhost(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vhost", value)
 
 
 @pulumi.input_type
 class _ExchangeState:
     def __init__(__self__, *,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 settings: Optional[pulumi.Input['ExchangeSettingsArgs']] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 settings: pulumi.Input[Optional['ExchangeSettingsArgs']] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Exchange resources.
 
@@ -99,19 +99,19 @@ class _ExchangeState:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the exchange.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def settings(self) -> Optional[pulumi.Input['ExchangeSettingsArgs']]:
+    def settings(self) -> pulumi.Input[Optional['ExchangeSettingsArgs']]:
         """
         The settings of the exchange. The structure is
         described below.
@@ -119,19 +119,19 @@ class _ExchangeState:
         return pulumi.get(self, "settings")
 
     @settings.setter
-    def settings(self, value: Optional[pulumi.Input['ExchangeSettingsArgs']]):
+    def settings(self, value: pulumi.Input[Optional['ExchangeSettingsArgs']]):
         pulumi.set(self, "settings", value)
 
     @_builtins.property
     @pulumi.getter
-    def vhost(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vhost(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The vhost to create the resource in.
         """
         return pulumi.get(self, "vhost")
 
     @vhost.setter
-    def vhost(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vhost(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vhost", value)
 
 
@@ -141,9 +141,9 @@ class Exchange(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 settings: Optional[pulumi.Input[Union['ExchangeSettingsArgs', 'ExchangeSettingsArgsDict']]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 settings: pulumi.Input[Optional[Union['ExchangeSettingsArgs', 'ExchangeSettingsArgsDict']]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The ``Exchange`` resource creates and manages an exchange.
@@ -249,9 +249,9 @@ class Exchange(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 settings: Optional[pulumi.Input[Union['ExchangeSettingsArgs', 'ExchangeSettingsArgsDict']]] = None,
-                 vhost: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 settings: pulumi.Input[Optional[Union['ExchangeSettingsArgs', 'ExchangeSettingsArgsDict']]] = None,
+                 vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -276,9 +276,9 @@ class Exchange(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            settings: Optional[pulumi.Input[Union['ExchangeSettingsArgs', 'ExchangeSettingsArgsDict']]] = None,
-            vhost: Optional[pulumi.Input[_builtins.str]] = None) -> 'Exchange':
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            settings: pulumi.Input[Optional[Union['ExchangeSettingsArgs', 'ExchangeSettingsArgsDict']]] = None,
+            vhost: pulumi.Input[Optional[_builtins.str]] = None) -> 'Exchange':
         """
         Get an existing Exchange resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

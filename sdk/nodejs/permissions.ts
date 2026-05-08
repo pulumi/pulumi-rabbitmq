@@ -125,15 +125,15 @@ export interface PermissionsState {
      * The settings of the permissions. The structure is
      * described below.
      */
-    permissions?: pulumi.Input<inputs.PermissionsPermissions>;
+    permissions?: pulumi.Input<inputs.PermissionsPermissions | undefined>;
     /**
      * The user to apply the permissions to.
      */
-    user?: pulumi.Input<string>;
+    user?: pulumi.Input<string | undefined>;
     /**
      * The vhost to create the resource in.
      */
-    vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -152,5 +152,5 @@ export interface PermissionsArgs {
     /**
      * The vhost to create the resource in.
      */
-    vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string | undefined>;
 }

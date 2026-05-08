@@ -38,16 +38,16 @@ class ExchangeSettingsArgsDict(TypedDict):
     """
     The type of exchange.
     """
-    arguments: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    arguments: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     Additional key/value settings for the exchange.
     """
-    auto_delete: NotRequired[pulumi.Input[_builtins.bool]]
+    auto_delete: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the exchange will self-delete when all
     queues have finished using it.
     """
-    durable: NotRequired[pulumi.Input[_builtins.bool]]
+    durable: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the exchange survives server restarts.
     Defaults to `false`.
@@ -57,9 +57,9 @@ class ExchangeSettingsArgsDict(TypedDict):
 class ExchangeSettingsArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
-                 arguments: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 auto_delete: Optional[pulumi.Input[_builtins.bool]] = None,
-                 durable: Optional[pulumi.Input[_builtins.bool]] = None):
+                 arguments: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 auto_delete: pulumi.Input[Optional[_builtins.bool]] = None,
+                 durable: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] type: The type of exchange.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] arguments: Additional key/value settings for the exchange.
@@ -90,19 +90,19 @@ class ExchangeSettingsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def arguments(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def arguments(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Additional key/value settings for the exchange.
         """
         return pulumi.get(self, "arguments")
 
     @arguments.setter
-    def arguments(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def arguments(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "arguments", value)
 
     @_builtins.property
     @pulumi.getter(name="autoDelete")
-    def auto_delete(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_delete(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the exchange will self-delete when all
         queues have finished using it.
@@ -110,12 +110,12 @@ class ExchangeSettingsArgs:
         return pulumi.get(self, "auto_delete")
 
     @auto_delete.setter
-    def auto_delete(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_delete(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_delete", value)
 
     @_builtins.property
     @pulumi.getter
-    def durable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def durable(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the exchange survives server restarts.
         Defaults to `false`.
@@ -123,7 +123,7 @@ class ExchangeSettingsArgs:
         return pulumi.get(self, "durable")
 
     @durable.setter
-    def durable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def durable(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "durable", value)
 
 
@@ -132,43 +132,43 @@ class FederationUpstreamDefinitionArgsDict(TypedDict):
     """
     The AMQP URI(s) for the upstream. Note that the URI may contain sensitive information, such as a password.
     """
-    ack_mode: NotRequired[pulumi.Input[_builtins.str]]
+    ack_mode: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Determines how the link should acknowledge messages. Valid values are `on-confirm`, `on-publish`, and `no-ack`. Default is `on-confirm`.
     """
-    exchange: NotRequired[pulumi.Input[_builtins.str]]
+    exchange: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the upstream exchange.
     """
-    expires: NotRequired[pulumi.Input[_builtins.int]]
+    expires: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The expiry time (in milliseconds) after which an upstream queue for a federated exchange may be deleted if a connection to the upstream is lost.
     """
-    max_hops: NotRequired[pulumi.Input[_builtins.int]]
+    max_hops: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of federation links that messages can traverse before being dropped. Default is `1`.
     """
-    message_ttl: NotRequired[pulumi.Input[_builtins.int]]
+    message_ttl: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
 
     Applicable to Federated Queues Only
     """
-    prefetch_count: NotRequired[pulumi.Input[_builtins.int]]
+    prefetch_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of unacknowledged messages that may be in flight over a federation link at one time. Default is `1000`.
     """
-    queue: NotRequired[pulumi.Input[_builtins.str]]
+    queue: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the upstream queue.
 
     Consult the RabbitMQ [Federation Reference](https://www.rabbitmq.com/federation-reference.html) documentation for detailed information and guidance on setting these values.
     """
-    reconnect_delay: NotRequired[pulumi.Input[_builtins.int]]
+    reconnect_delay: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Time in seconds to wait after a network link goes down before attempting reconnection. Default is `5`.
     """
-    trust_user_id: NotRequired[pulumi.Input[_builtins.bool]]
+    trust_user_id: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Determines how federation should interact with the validated user-id feature. Default is `false`.
 
@@ -179,15 +179,15 @@ class FederationUpstreamDefinitionArgsDict(TypedDict):
 class FederationUpstreamDefinitionArgs:
     def __init__(__self__, *,
                  uri: pulumi.Input[_builtins.str],
-                 ack_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 exchange: Optional[pulumi.Input[_builtins.str]] = None,
-                 expires: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_hops: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 prefetch_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 queue: Optional[pulumi.Input[_builtins.str]] = None,
-                 reconnect_delay: Optional[pulumi.Input[_builtins.int]] = None,
-                 trust_user_id: Optional[pulumi.Input[_builtins.bool]] = None):
+                 ack_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 exchange: pulumi.Input[Optional[_builtins.str]] = None,
+                 expires: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_hops: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 prefetch_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 queue: pulumi.Input[Optional[_builtins.str]] = None,
+                 reconnect_delay: pulumi.Input[Optional[_builtins.int]] = None,
+                 trust_user_id: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] uri: The AMQP URI(s) for the upstream. Note that the URI may contain sensitive information, such as a password.
         :param pulumi.Input[_builtins.str] ack_mode: Determines how the link should acknowledge messages. Valid values are `on-confirm`, `on-publish`, and `no-ack`. Default is `on-confirm`.
@@ -240,55 +240,55 @@ class FederationUpstreamDefinitionArgs:
 
     @_builtins.property
     @pulumi.getter(name="ackMode")
-    def ack_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ack_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Determines how the link should acknowledge messages. Valid values are `on-confirm`, `on-publish`, and `no-ack`. Default is `on-confirm`.
         """
         return pulumi.get(self, "ack_mode")
 
     @ack_mode.setter
-    def ack_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ack_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ack_mode", value)
 
     @_builtins.property
     @pulumi.getter
-    def exchange(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def exchange(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the upstream exchange.
         """
         return pulumi.get(self, "exchange")
 
     @exchange.setter
-    def exchange(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def exchange(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "exchange", value)
 
     @_builtins.property
     @pulumi.getter
-    def expires(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def expires(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The expiry time (in milliseconds) after which an upstream queue for a federated exchange may be deleted if a connection to the upstream is lost.
         """
         return pulumi.get(self, "expires")
 
     @expires.setter
-    def expires(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def expires(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "expires", value)
 
     @_builtins.property
     @pulumi.getter(name="maxHops")
-    def max_hops(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_hops(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of federation links that messages can traverse before being dropped. Default is `1`.
         """
         return pulumi.get(self, "max_hops")
 
     @max_hops.setter
-    def max_hops(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_hops(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_hops", value)
 
     @_builtins.property
     @pulumi.getter(name="messageTtl")
-    def message_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def message_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires).
 
@@ -297,24 +297,24 @@ class FederationUpstreamDefinitionArgs:
         return pulumi.get(self, "message_ttl")
 
     @message_ttl.setter
-    def message_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def message_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "message_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="prefetchCount")
-    def prefetch_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def prefetch_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of unacknowledged messages that may be in flight over a federation link at one time. Default is `1000`.
         """
         return pulumi.get(self, "prefetch_count")
 
     @prefetch_count.setter
-    def prefetch_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def prefetch_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "prefetch_count", value)
 
     @_builtins.property
     @pulumi.getter
-    def queue(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def queue(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the upstream queue.
 
@@ -323,24 +323,24 @@ class FederationUpstreamDefinitionArgs:
         return pulumi.get(self, "queue")
 
     @queue.setter
-    def queue(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def queue(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "queue", value)
 
     @_builtins.property
     @pulumi.getter(name="reconnectDelay")
-    def reconnect_delay(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def reconnect_delay(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Time in seconds to wait after a network link goes down before attempting reconnection. Default is `5`.
         """
         return pulumi.get(self, "reconnect_delay")
 
     @reconnect_delay.setter
-    def reconnect_delay(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def reconnect_delay(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "reconnect_delay", value)
 
     @_builtins.property
     @pulumi.getter(name="trustUserId")
-    def trust_user_id(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def trust_user_id(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Determines how federation should interact with the validated user-id feature. Default is `false`.
 
@@ -349,7 +349,7 @@ class FederationUpstreamDefinitionArgs:
         return pulumi.get(self, "trust_user_id")
 
     @trust_user_id.setter
-    def trust_user_id(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def trust_user_id(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "trust_user_id", value)
 
 
@@ -596,24 +596,24 @@ class PolicyPolicyArgs:
 
 
 class QueueSettingsArgsDict(TypedDict):
-    arguments: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    arguments: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     Additional key/value settings for the queue.
     All values will be sent to RabbitMQ as a string. If you require non-string
     values, use `arguments_json`.
     """
-    arguments_json: NotRequired[pulumi.Input[_builtins.str]]
+    arguments_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A nested JSON string which contains additional
     settings for the queue. This is useful for when the arguments contain
     non-string values.
     """
-    auto_delete: NotRequired[pulumi.Input[_builtins.bool]]
+    auto_delete: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the queue will self-delete when all
     consumers have unsubscribed.
     """
-    durable: NotRequired[pulumi.Input[_builtins.bool]]
+    durable: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the queue survives server restarts.
     Defaults to `false`.
@@ -622,10 +622,10 @@ class QueueSettingsArgsDict(TypedDict):
 @pulumi.input_type
 class QueueSettingsArgs:
     def __init__(__self__, *,
-                 arguments: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 arguments_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 auto_delete: Optional[pulumi.Input[_builtins.bool]] = None,
-                 durable: Optional[pulumi.Input[_builtins.bool]] = None):
+                 arguments: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 arguments_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 auto_delete: pulumi.Input[Optional[_builtins.bool]] = None,
+                 durable: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] arguments: Additional key/value settings for the queue.
                All values will be sent to RabbitMQ as a string. If you require non-string
@@ -649,7 +649,7 @@ class QueueSettingsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def arguments(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def arguments(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Additional key/value settings for the queue.
         All values will be sent to RabbitMQ as a string. If you require non-string
@@ -658,12 +658,12 @@ class QueueSettingsArgs:
         return pulumi.get(self, "arguments")
 
     @arguments.setter
-    def arguments(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def arguments(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "arguments", value)
 
     @_builtins.property
     @pulumi.getter(name="argumentsJson")
-    def arguments_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def arguments_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A nested JSON string which contains additional
         settings for the queue. This is useful for when the arguments contain
@@ -672,12 +672,12 @@ class QueueSettingsArgs:
         return pulumi.get(self, "arguments_json")
 
     @arguments_json.setter
-    def arguments_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def arguments_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "arguments_json", value)
 
     @_builtins.property
     @pulumi.getter(name="autoDelete")
-    def auto_delete(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_delete(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the queue will self-delete when all
         consumers have unsubscribed.
@@ -685,12 +685,12 @@ class QueueSettingsArgs:
         return pulumi.get(self, "auto_delete")
 
     @auto_delete.setter
-    def auto_delete(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_delete(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_delete", value)
 
     @_builtins.property
     @pulumi.getter
-    def durable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def durable(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the queue survives server restarts.
         Defaults to `false`.
@@ -698,7 +698,7 @@ class QueueSettingsArgs:
         return pulumi.get(self, "durable")
 
     @durable.setter
-    def durable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def durable(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "durable", value)
 
 
@@ -711,98 +711,98 @@ class ShovelInfoArgsDict(TypedDict):
     """
     The amqp uri for the source.
     """
-    ack_mode: NotRequired[pulumi.Input[_builtins.str]]
+    ack_mode: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Determines how the shovel should acknowledge messages. Possible values are: `on-confirm`, `on-publish` and `no-ack`.
     Defaults to `on-confirm`.
     """
-    add_forward_headers: NotRequired[pulumi.Input[_builtins.bool]]
+    add_forward_headers: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to add `x-shovelled` headers to shovelled messages.
     """
-    delete_after: NotRequired[pulumi.Input[_builtins.str]]
+    delete_after: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
     """
-    destination_add_forward_headers: NotRequired[pulumi.Input[_builtins.bool]]
+    destination_add_forward_headers: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to add `x-shovelled` headers to shovelled messages.
     """
-    destination_add_timestamp_header: NotRequired[pulumi.Input[_builtins.bool]]
-    destination_address: NotRequired[pulumi.Input[_builtins.str]]
+    destination_add_timestamp_header: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    destination_address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AMQP 1.0 destination link address.
     """
-    destination_application_properties: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    destination_application_properties: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     Application properties to set when shovelling messages.
     """
-    destination_exchange: NotRequired[pulumi.Input[_builtins.str]]
+    destination_exchange: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The exchange to which messages should be published.
     Either this or `destination_queue` must be specified but not both.
     """
-    destination_exchange_key: NotRequired[pulumi.Input[_builtins.str]]
+    destination_exchange_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The routing key when using `destination_exchange`.
     """
-    destination_properties: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    destination_properties: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     Properties to overwrite when shovelling messages.
 
     For more details regarding dynamic shovel parameters please have a look at the official reference documentaion at [RabbitMQ: Configuring Dynamic Shovels](https://www.rabbitmq.com/shovel-dynamic.html).
     """
-    destination_protocol: NotRequired[pulumi.Input[_builtins.str]]
+    destination_protocol: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
     Defaults to `amqp091`.
     """
-    destination_publish_properties: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    destination_publish_properties: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map of properties to overwrite when shovelling messages.
     """
-    destination_queue: NotRequired[pulumi.Input[_builtins.str]]
+    destination_queue: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The queue to which messages should be published.
     Either this or `destination_exchange` must be specified but not both.
     """
-    destination_queue_arguments: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-    prefetch_count: NotRequired[pulumi.Input[_builtins.int]]
+    destination_queue_arguments: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    prefetch_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum number of unacknowledged messages copied over a shovel at any one time.
     """
-    reconnect_delay: NotRequired[pulumi.Input[_builtins.int]]
+    reconnect_delay: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The duration in seconds to reconnect to a broker after disconnected.
     Defaults to `1`.
     """
-    source_address: NotRequired[pulumi.Input[_builtins.str]]
+    source_address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AMQP 1.0 source link address.
     """
-    source_delete_after: NotRequired[pulumi.Input[_builtins.str]]
+    source_delete_after: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
     """
-    source_exchange: NotRequired[pulumi.Input[_builtins.str]]
+    source_exchange: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The exchange from which to consume.
     Either this or `source_queue` must be specified but not both.
     """
-    source_exchange_key: NotRequired[pulumi.Input[_builtins.str]]
+    source_exchange_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The routing key when using `source_exchange`.
     """
-    source_prefetch_count: NotRequired[pulumi.Input[_builtins.int]]
+    source_prefetch_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum number of unacknowledged messages copied over a shovel at any one time.
     """
-    source_protocol: NotRequired[pulumi.Input[_builtins.str]]
+    source_protocol: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The protocol (`amqp091` or `amqp10`) to use when connecting to the source.
     Defaults to `amqp091`.
     """
-    source_queue: NotRequired[pulumi.Input[_builtins.str]]
+    source_queue: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The queue from which to consume.
     Either this or `source_exchange` must be specified but not both.
@@ -813,29 +813,29 @@ class ShovelInfoArgs:
     def __init__(__self__, *,
                  destination_uri: pulumi.Input[_builtins.str],
                  source_uri: pulumi.Input[_builtins.str],
-                 ack_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 add_forward_headers: Optional[pulumi.Input[_builtins.bool]] = None,
-                 delete_after: Optional[pulumi.Input[_builtins.str]] = None,
-                 destination_add_forward_headers: Optional[pulumi.Input[_builtins.bool]] = None,
-                 destination_add_timestamp_header: Optional[pulumi.Input[_builtins.bool]] = None,
-                 destination_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 destination_application_properties: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 destination_exchange: Optional[pulumi.Input[_builtins.str]] = None,
-                 destination_exchange_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 destination_properties: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 destination_protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 destination_publish_properties: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 destination_queue: Optional[pulumi.Input[_builtins.str]] = None,
-                 destination_queue_arguments: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 prefetch_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 reconnect_delay: Optional[pulumi.Input[_builtins.int]] = None,
-                 source_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_delete_after: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_exchange: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_exchange_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_prefetch_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 source_protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_queue: Optional[pulumi.Input[_builtins.str]] = None):
+                 ack_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 add_forward_headers: pulumi.Input[Optional[_builtins.bool]] = None,
+                 delete_after: pulumi.Input[Optional[_builtins.str]] = None,
+                 destination_add_forward_headers: pulumi.Input[Optional[_builtins.bool]] = None,
+                 destination_add_timestamp_header: pulumi.Input[Optional[_builtins.bool]] = None,
+                 destination_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 destination_application_properties: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 destination_exchange: pulumi.Input[Optional[_builtins.str]] = None,
+                 destination_exchange_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 destination_properties: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 destination_protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 destination_publish_properties: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 destination_queue: pulumi.Input[Optional[_builtins.str]] = None,
+                 destination_queue_arguments: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 prefetch_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 reconnect_delay: pulumi.Input[Optional[_builtins.int]] = None,
+                 source_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_delete_after: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_exchange: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_exchange_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_prefetch_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 source_protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_queue: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] destination_uri: The amqp uri for the destination .
         :param pulumi.Input[_builtins.str] source_uri: The amqp uri for the source.
@@ -955,7 +955,7 @@ class ShovelInfoArgs:
 
     @_builtins.property
     @pulumi.getter(name="ackMode")
-    def ack_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ack_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Determines how the shovel should acknowledge messages. Possible values are: `on-confirm`, `on-publish` and `no-ack`.
         Defaults to `on-confirm`.
@@ -963,83 +963,83 @@ class ShovelInfoArgs:
         return pulumi.get(self, "ack_mode")
 
     @ack_mode.setter
-    def ack_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ack_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ack_mode", value)
 
     @_builtins.property
     @pulumi.getter(name="addForwardHeaders")
     @_utilities.deprecated("""use destination_add_forward_headers instead""")
-    def add_forward_headers(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def add_forward_headers(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to add `x-shovelled` headers to shovelled messages.
         """
         return pulumi.get(self, "add_forward_headers")
 
     @add_forward_headers.setter
-    def add_forward_headers(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def add_forward_headers(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_forward_headers", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteAfter")
     @_utilities.deprecated("""use source_delete_after instead""")
-    def delete_after(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def delete_after(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
         """
         return pulumi.get(self, "delete_after")
 
     @delete_after.setter
-    def delete_after(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def delete_after(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "delete_after", value)
 
     @_builtins.property
     @pulumi.getter(name="destinationAddForwardHeaders")
-    def destination_add_forward_headers(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def destination_add_forward_headers(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to add `x-shovelled` headers to shovelled messages.
         """
         return pulumi.get(self, "destination_add_forward_headers")
 
     @destination_add_forward_headers.setter
-    def destination_add_forward_headers(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def destination_add_forward_headers(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "destination_add_forward_headers", value)
 
     @_builtins.property
     @pulumi.getter(name="destinationAddTimestampHeader")
-    def destination_add_timestamp_header(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def destination_add_timestamp_header(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "destination_add_timestamp_header")
 
     @destination_add_timestamp_header.setter
-    def destination_add_timestamp_header(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def destination_add_timestamp_header(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "destination_add_timestamp_header", value)
 
     @_builtins.property
     @pulumi.getter(name="destinationAddress")
-    def destination_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def destination_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AMQP 1.0 destination link address.
         """
         return pulumi.get(self, "destination_address")
 
     @destination_address.setter
-    def destination_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def destination_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "destination_address", value)
 
     @_builtins.property
     @pulumi.getter(name="destinationApplicationProperties")
-    def destination_application_properties(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def destination_application_properties(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Application properties to set when shovelling messages.
         """
         return pulumi.get(self, "destination_application_properties")
 
     @destination_application_properties.setter
-    def destination_application_properties(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def destination_application_properties(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "destination_application_properties", value)
 
     @_builtins.property
     @pulumi.getter(name="destinationExchange")
-    def destination_exchange(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def destination_exchange(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The exchange to which messages should be published.
         Either this or `destination_queue` must be specified but not both.
@@ -1047,24 +1047,24 @@ class ShovelInfoArgs:
         return pulumi.get(self, "destination_exchange")
 
     @destination_exchange.setter
-    def destination_exchange(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def destination_exchange(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "destination_exchange", value)
 
     @_builtins.property
     @pulumi.getter(name="destinationExchangeKey")
-    def destination_exchange_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def destination_exchange_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The routing key when using `destination_exchange`.
         """
         return pulumi.get(self, "destination_exchange_key")
 
     @destination_exchange_key.setter
-    def destination_exchange_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def destination_exchange_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "destination_exchange_key", value)
 
     @_builtins.property
     @pulumi.getter(name="destinationProperties")
-    def destination_properties(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def destination_properties(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Properties to overwrite when shovelling messages.
 
@@ -1073,12 +1073,12 @@ class ShovelInfoArgs:
         return pulumi.get(self, "destination_properties")
 
     @destination_properties.setter
-    def destination_properties(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def destination_properties(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "destination_properties", value)
 
     @_builtins.property
     @pulumi.getter(name="destinationProtocol")
-    def destination_protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def destination_protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The protocol (`amqp091` or `amqp10`) to use when connecting to the destination.
         Defaults to `amqp091`.
@@ -1086,24 +1086,24 @@ class ShovelInfoArgs:
         return pulumi.get(self, "destination_protocol")
 
     @destination_protocol.setter
-    def destination_protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def destination_protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "destination_protocol", value)
 
     @_builtins.property
     @pulumi.getter(name="destinationPublishProperties")
-    def destination_publish_properties(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def destination_publish_properties(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of properties to overwrite when shovelling messages.
         """
         return pulumi.get(self, "destination_publish_properties")
 
     @destination_publish_properties.setter
-    def destination_publish_properties(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def destination_publish_properties(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "destination_publish_properties", value)
 
     @_builtins.property
     @pulumi.getter(name="destinationQueue")
-    def destination_queue(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def destination_queue(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The queue to which messages should be published.
         Either this or `destination_exchange` must be specified but not both.
@@ -1111,34 +1111,34 @@ class ShovelInfoArgs:
         return pulumi.get(self, "destination_queue")
 
     @destination_queue.setter
-    def destination_queue(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def destination_queue(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "destination_queue", value)
 
     @_builtins.property
     @pulumi.getter(name="destinationQueueArguments")
-    def destination_queue_arguments(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def destination_queue_arguments(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "destination_queue_arguments")
 
     @destination_queue_arguments.setter
-    def destination_queue_arguments(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def destination_queue_arguments(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "destination_queue_arguments", value)
 
     @_builtins.property
     @pulumi.getter(name="prefetchCount")
     @_utilities.deprecated("""use source_prefetch_count instead""")
-    def prefetch_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def prefetch_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of unacknowledged messages copied over a shovel at any one time.
         """
         return pulumi.get(self, "prefetch_count")
 
     @prefetch_count.setter
-    def prefetch_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def prefetch_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "prefetch_count", value)
 
     @_builtins.property
     @pulumi.getter(name="reconnectDelay")
-    def reconnect_delay(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def reconnect_delay(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The duration in seconds to reconnect to a broker after disconnected.
         Defaults to `1`.
@@ -1146,36 +1146,36 @@ class ShovelInfoArgs:
         return pulumi.get(self, "reconnect_delay")
 
     @reconnect_delay.setter
-    def reconnect_delay(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def reconnect_delay(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "reconnect_delay", value)
 
     @_builtins.property
     @pulumi.getter(name="sourceAddress")
-    def source_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def source_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AMQP 1.0 source link address.
         """
         return pulumi.get(self, "source_address")
 
     @source_address.setter
-    def source_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def source_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source_address", value)
 
     @_builtins.property
     @pulumi.getter(name="sourceDeleteAfter")
-    def source_delete_after(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def source_delete_after(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
         """
         return pulumi.get(self, "source_delete_after")
 
     @source_delete_after.setter
-    def source_delete_after(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def source_delete_after(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source_delete_after", value)
 
     @_builtins.property
     @pulumi.getter(name="sourceExchange")
-    def source_exchange(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def source_exchange(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The exchange from which to consume.
         Either this or `source_queue` must be specified but not both.
@@ -1183,36 +1183,36 @@ class ShovelInfoArgs:
         return pulumi.get(self, "source_exchange")
 
     @source_exchange.setter
-    def source_exchange(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def source_exchange(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source_exchange", value)
 
     @_builtins.property
     @pulumi.getter(name="sourceExchangeKey")
-    def source_exchange_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def source_exchange_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The routing key when using `source_exchange`.
         """
         return pulumi.get(self, "source_exchange_key")
 
     @source_exchange_key.setter
-    def source_exchange_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def source_exchange_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source_exchange_key", value)
 
     @_builtins.property
     @pulumi.getter(name="sourcePrefetchCount")
-    def source_prefetch_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def source_prefetch_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of unacknowledged messages copied over a shovel at any one time.
         """
         return pulumi.get(self, "source_prefetch_count")
 
     @source_prefetch_count.setter
-    def source_prefetch_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def source_prefetch_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "source_prefetch_count", value)
 
     @_builtins.property
     @pulumi.getter(name="sourceProtocol")
-    def source_protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def source_protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The protocol (`amqp091` or `amqp10`) to use when connecting to the source.
         Defaults to `amqp091`.
@@ -1220,12 +1220,12 @@ class ShovelInfoArgs:
         return pulumi.get(self, "source_protocol")
 
     @source_protocol.setter
-    def source_protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def source_protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source_protocol", value)
 
     @_builtins.property
     @pulumi.getter(name="sourceQueue")
-    def source_queue(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def source_queue(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The queue from which to consume.
         Either this or `source_exchange` must be specified but not both.
@@ -1233,7 +1233,7 @@ class ShovelInfoArgs:
         return pulumi.get(self, "source_queue")
 
     @source_queue.setter
-    def source_queue(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def source_queue(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source_queue", value)
 
 

@@ -99,7 +99,7 @@ using RabbitMQ = Pulumi.RabbitMQ;
 return await Deployment.RunAsync(() =>
 {
     // Create a virtual host
-    var vhost1 = new RabbitMQ.Index.VHost("vhost_1", new()
+    var vhost1 = new RabbitMQ.VHost("vhost_1", new()
     {
         Name = "vhost_1",
     });
@@ -196,8 +196,8 @@ import com.pulumi.Pulumi;
 import com.pulumi.core.Output;
 import com.pulumi.rabbitmq.VHost;
 import com.pulumi.rabbitmq.VHostArgs;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.io.File;
 import java.nio.file.Files;

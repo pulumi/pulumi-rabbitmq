@@ -156,19 +156,19 @@ export interface FederationUpstreamState {
     /**
      * Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
      */
-    component?: pulumi.Input<string>;
+    component?: pulumi.Input<string | undefined>;
     /**
      * The configuration of the federation upstream. The structure is described below.
      */
-    definition?: pulumi.Input<inputs.FederationUpstreamDefinition>;
+    definition?: pulumi.Input<inputs.FederationUpstreamDefinition | undefined>;
     /**
      * The name of the federation upstream.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The vhost to create the resource in.
      */
-    vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -182,7 +182,7 @@ export interface FederationUpstreamArgs {
     /**
      * The name of the federation upstream.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The vhost to create the resource in.
      */

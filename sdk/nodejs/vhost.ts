@@ -121,24 +121,24 @@ export interface VHostState {
     /**
      * default queue type for new queues
      */
-    defaultQueueType?: pulumi.Input<string>;
+    defaultQueueType?: pulumi.Input<string | undefined>;
     /**
      * A friendly description.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Maximum number of concurrent client connections to the vhost
      */
-    maxConnections?: pulumi.Input<string>;
+    maxConnections?: pulumi.Input<string | undefined>;
     /**
      * Maximum number of queues that can be created on the vhost
      */
-    maxQueues?: pulumi.Input<string>;
+    maxQueues?: pulumi.Input<string | undefined>;
     /**
      * The name of the vhost.
      */
-    name?: pulumi.Input<string>;
-    tracing?: pulumi.Input<boolean>;
+    name?: pulumi.Input<string | undefined>;
+    tracing?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -148,22 +148,22 @@ export interface VHostArgs {
     /**
      * default queue type for new queues
      */
-    defaultQueueType?: pulumi.Input<string>;
+    defaultQueueType?: pulumi.Input<string | undefined>;
     /**
      * A friendly description.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Maximum number of concurrent client connections to the vhost
      */
-    maxConnections?: pulumi.Input<string>;
+    maxConnections?: pulumi.Input<string | undefined>;
     /**
      * Maximum number of queues that can be created on the vhost
      */
-    maxQueues?: pulumi.Input<string>;
+    maxQueues?: pulumi.Input<string | undefined>;
     /**
      * The name of the vhost.
      */
-    name?: pulumi.Input<string>;
-    tracing?: pulumi.Input<boolean>;
+    name?: pulumi.Input<string | undefined>;
+    tracing?: pulumi.Input<boolean | undefined>;
 }

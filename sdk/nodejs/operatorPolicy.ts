@@ -131,16 +131,16 @@ export interface OperatorPolicyState {
     /**
      * The name of the operator policy.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The settings of the operator policy. The structure is
      * described below.
      */
-    policy?: pulumi.Input<inputs.OperatorPolicyPolicy>;
+    policy?: pulumi.Input<inputs.OperatorPolicyPolicy | undefined>;
     /**
      * The vhost to create the resource in.
      */
-    vhost?: pulumi.Input<string>;
+    vhost?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -150,7 +150,7 @@ export interface OperatorPolicyArgs {
     /**
      * The name of the operator policy.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The settings of the operator policy. The structure is
      * described below.

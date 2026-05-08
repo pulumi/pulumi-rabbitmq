@@ -91,8 +91,8 @@ def get_exchange(name: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         settings=pulumi.get(__ret__, 'settings'),
         vhost=pulumi.get(__ret__, 'vhost'))
-def get_exchange_output(name: Optional[pulumi.Input[_builtins.str]] = None,
-                        vhost: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_exchange_output(name: pulumi.Input[Optional[_builtins.str]] = None,
+                        vhost: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetExchangeResult]:
     """
     Use this data source to access information about an existing resource.

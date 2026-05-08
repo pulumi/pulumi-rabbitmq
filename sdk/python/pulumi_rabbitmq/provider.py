@@ -19,14 +19,14 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 cacert_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 clientcert_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 clientkey_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 insecure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 proxy: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 cacert_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 clientcert_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 clientkey_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 insecure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 proxy: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
         """
@@ -53,74 +53,74 @@ class ProviderArgs:
 
     @_builtins.property
     @pulumi.getter(name="cacertFile")
-    def cacert_file(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cacert_file(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "cacert_file")
 
     @cacert_file.setter
-    def cacert_file(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cacert_file(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cacert_file", value)
 
     @_builtins.property
     @pulumi.getter(name="clientcertFile")
-    def clientcert_file(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def clientcert_file(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "clientcert_file")
 
     @clientcert_file.setter
-    def clientcert_file(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def clientcert_file(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "clientcert_file", value)
 
     @_builtins.property
     @pulumi.getter(name="clientkeyFile")
-    def clientkey_file(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def clientkey_file(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "clientkey_file")
 
     @clientkey_file.setter
-    def clientkey_file(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def clientkey_file(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "clientkey_file", value)
 
     @_builtins.property
     @pulumi.getter
-    def endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "endpoint")
 
     @endpoint.setter
-    def endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint", value)
 
     @_builtins.property
     @pulumi.getter
-    def insecure(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def insecure(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "insecure")
 
     @insecure.setter
-    def insecure(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def insecure(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "insecure", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter
-    def proxy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def proxy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "proxy")
 
     @proxy.setter
-    def proxy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def proxy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "proxy", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -130,14 +130,14 @@ class Provider(pulumi.ProviderResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cacert_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 clientcert_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 clientkey_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 insecure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 proxy: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 cacert_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 clientcert_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 clientkey_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 insecure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 proxy: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The provider type for the rabbitmq package. By default, resources use package-wide configuration
@@ -177,14 +177,14 @@ class Provider(pulumi.ProviderResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cacert_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 clientcert_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 clientkey_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 insecure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 proxy: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 cacert_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 clientcert_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 clientkey_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 insecure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 proxy: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
