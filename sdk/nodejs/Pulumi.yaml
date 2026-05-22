@@ -1,3 +1,0 @@
-name: rabbitmq
-description: A Pulumi resource provider for rabbitmq.
-language: nodejs
