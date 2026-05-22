@@ -26,7 +26,7 @@ Use the navigation to the left to read about the available resources.
 
 The following is a minimal example:
 
-{{< chooser language "typescript,python,go,csharp,java,yaml" >}}
+{{< chooser language "typescript,python,go,csharp,java,yaml,hcl" >}}
 {{% choosable language typescript %}}
 ```yaml
 # Pulumi.yaml provider configuration file
@@ -215,6 +215,23 @@ public class App {
             .build());
 
     }
+}
+```
+
+{{% /choosable %}}
+{{% choosable language hcl %}}
+```hcl
+pulumi {
+  required_providers {
+    rabbitmq = {
+      source = "pulumi/rabbitmq"
+    }
+  }
+}
+
+# Create a virtual host
+resource "rabbitmq_vhost" "vhost_1" {
+  name = "vhost_1"
 }
 ```
 
