@@ -95,7 +95,7 @@ publishing {
                 inceptionYear = "2022"
                 name = "pulumi-rabbitmq"
                 packaging = "jar"
-                description = "A Pulumi package for creating and managing RabbitMQ resources."
+                description = $/A Pulumi package for creating and managing RabbitMQ resources./$
 
                 url = "https://github.com/pulumi/pulumi-rabbitmq"
 
