@@ -34,12 +34,8 @@ type GetDefaultUserResult struct {
 }
 
 func GetDefaultUserOutput(ctx *pulumi.Context, args GetDefaultUserOutputArgs, opts ...pulumi.InvokeOption) GetDefaultUserResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetDefaultUserResultOutput, error) {
-			args := v.(GetDefaultUserArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("rabbitmq:index/getDefaultUser:getDefaultUser", args, GetDefaultUserResultOutput{}, options).(GetDefaultUserResultOutput), nil
-		}).(GetDefaultUserResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("rabbitmq:index/getDefaultUser:getDefaultUser", args, GetDefaultUserResultOutput{}, options).(GetDefaultUserResultOutput)
 }
 
 // A collection of arguments for invoking getDefaultUser.
