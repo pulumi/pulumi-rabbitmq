@@ -31,20 +31,18 @@ namespace Pulumi.RabbitMQ
     /// 
     ///     var guest = new RabbitMQ.Permissions("guest", new()
     ///     {
-    ///         User = "guest",
-    ///         Vhost = test.Name,
     ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
     ///         {
     ///             Configure = ".*",
     ///             Write = ".*",
     ///             Read = ".*",
     ///         },
+    ///         User = "guest",
+    ///         Vhost = test.Name,
     ///     });
     /// 
     ///     var testQueue = new RabbitMQ.Queue("test", new()
     ///     {
-    ///         Name = "test",
-    ///         Vhost = guest.Vhost,
     ///         Settings = new RabbitMQ.Inputs.QueueSettingsArgs
     ///         {
     ///             Durable = false,
@@ -54,6 +52,8 @@ namespace Pulumi.RabbitMQ
     ///                 { "x-queue-type", "quorum" },
     ///             },
     ///         },
+    ///         Name = "test",
+    ///         Vhost = guest.Vhost,
     ///     });
     /// 
     /// });
@@ -81,26 +81,26 @@ namespace Pulumi.RabbitMQ
     /// 
     ///     var guest = new RabbitMQ.Permissions("guest", new()
     ///     {
-    ///         User = "guest",
-    ///         Vhost = test.Name,
     ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
     ///         {
     ///             Configure = ".*",
     ///             Write = ".*",
     ///             Read = ".*",
     ///         },
+    ///         User = "guest",
+    ///         Vhost = test.Name,
     ///     });
     /// 
     ///     var testQueue = new RabbitMQ.Queue("test", new()
     ///     {
-    ///         Name = "test",
-    ///         Vhost = guest.Vhost,
     ///         Settings = new RabbitMQ.Inputs.QueueSettingsArgs
     ///         {
     ///             Durable = false,
     ///             AutoDelete = true,
     ///             ArgumentsJson = arguments,
     ///         },
+    ///         Name = "test",
+    ///         Vhost = guest.Vhost,
     ///     });
     /// 
     /// });

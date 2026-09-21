@@ -46,8 +46,6 @@ import (
 //				return err
 //			}
 //			_, err = rabbitmq.NewTopicPermissions(ctx, "test", &rabbitmq.TopicPermissionsArgs{
-//				User:  testUser.Name,
-//				Vhost: test.Name,
 //				Permissions: rabbitmq.TopicPermissionsPermissionArray{
 //					&rabbitmq.TopicPermissionsPermissionArgs{
 //						Exchange: pulumi.String("amq.topic"),
@@ -55,6 +53,8 @@ import (
 //						Read:     pulumi.String(".*"),
 //					},
 //				},
+//				User:  testUser.Name,
+//				Vhost: test.Name,
 //			})
 //			if err != nil {
 //				return err

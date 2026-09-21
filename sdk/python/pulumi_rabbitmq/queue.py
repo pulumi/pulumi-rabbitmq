@@ -142,7 +142,7 @@ class Queue(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 settings: pulumi.Input[Optional[Union['QueueSettingsArgs', 'QueueSettingsArgsDict']]] = None,
+                 settings: pulumi.Input[Optional[Union['QueueSettingsArgs', 'QueueSettingsArgsDict', 'outputs.QueueSettings']]] = None,
                  vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -158,23 +158,23 @@ class Queue(pulumi.CustomResource):
 
         test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
-            user="guest",
-            vhost=test.name,
             permissions={
                 "configure": ".*",
                 "write": ".*",
                 "read": ".*",
-            })
+            },
+            user="guest",
+            vhost=test.name)
         test_queue = rabbitmq.Queue("test",
-            name="test",
-            vhost=guest.vhost,
             settings={
                 "durable": False,
                 "auto_delete": True,
                 "arguments": {
                     "x-queue-type": "quorum",
                 },
-            })
+            },
+            name="test",
+            vhost=guest.vhost)
         ```
 
         ### Example With JSON Arguments
@@ -192,21 +192,21 @@ class Queue(pulumi.CustomResource):
         \"\"\"
         test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
-            user="guest",
-            vhost=test.name,
             permissions={
                 "configure": ".*",
                 "write": ".*",
                 "read": ".*",
-            })
+            },
+            user="guest",
+            vhost=test.name)
         test_queue = rabbitmq.Queue("test",
-            name="test",
-            vhost=guest.vhost,
             settings={
                 "durable": False,
                 "auto_delete": True,
                 "arguments_json": arguments,
-            })
+            },
+            name="test",
+            vhost=guest.vhost)
         ```
 
         ## Import
@@ -221,7 +221,7 @@ class Queue(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The name of the queue.
-        :param pulumi.Input[Union['QueueSettingsArgs', 'QueueSettingsArgsDict']] settings: The settings of the queue. The structure is
+        :param pulumi.Input[Union['QueueSettingsArgs', 'QueueSettingsArgsDict', 'outputs.QueueSettings']] settings: The settings of the queue. The structure is
                described below.
         :param pulumi.Input[_builtins.str] vhost: The vhost to create the resource in.
         """
@@ -244,23 +244,23 @@ class Queue(pulumi.CustomResource):
 
         test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
-            user="guest",
-            vhost=test.name,
             permissions={
                 "configure": ".*",
                 "write": ".*",
                 "read": ".*",
-            })
+            },
+            user="guest",
+            vhost=test.name)
         test_queue = rabbitmq.Queue("test",
-            name="test",
-            vhost=guest.vhost,
             settings={
                 "durable": False,
                 "auto_delete": True,
                 "arguments": {
                     "x-queue-type": "quorum",
                 },
-            })
+            },
+            name="test",
+            vhost=guest.vhost)
         ```
 
         ### Example With JSON Arguments
@@ -278,21 +278,21 @@ class Queue(pulumi.CustomResource):
         \"\"\"
         test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
-            user="guest",
-            vhost=test.name,
             permissions={
                 "configure": ".*",
                 "write": ".*",
                 "read": ".*",
-            })
+            },
+            user="guest",
+            vhost=test.name)
         test_queue = rabbitmq.Queue("test",
-            name="test",
-            vhost=guest.vhost,
             settings={
                 "durable": False,
                 "auto_delete": True,
                 "arguments_json": arguments,
-            })
+            },
+            name="test",
+            vhost=guest.vhost)
         ```
 
         ## Import
@@ -320,7 +320,7 @@ class Queue(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 settings: pulumi.Input[Optional[Union['QueueSettingsArgs', 'QueueSettingsArgsDict']]] = None,
+                 settings: pulumi.Input[Optional[Union['QueueSettingsArgs', 'QueueSettingsArgsDict', 'outputs.QueueSettings']]] = None,
                  vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -347,7 +347,7 @@ class Queue(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            settings: pulumi.Input[Optional[Union['QueueSettingsArgs', 'QueueSettingsArgsDict']]] = None,
+            settings: pulumi.Input[Optional[Union['QueueSettingsArgs', 'QueueSettingsArgsDict', 'outputs.QueueSettings']]] = None,
             vhost: pulumi.Input[Optional[_builtins.str]] = None) -> 'Queue':
         """
         Get an existing Queue resource's state with the given name, id, and optional extra
@@ -357,7 +357,7 @@ class Queue(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The name of the queue.
-        :param pulumi.Input[Union['QueueSettingsArgs', 'QueueSettingsArgsDict']] settings: The settings of the queue. The structure is
+        :param pulumi.Input[Union['QueueSettingsArgs', 'QueueSettingsArgsDict', 'outputs.QueueSettings']] settings: The settings of the queue. The structure is
                described below.
         :param pulumi.Input[_builtins.str] vhost: The vhost to create the resource in.
         """

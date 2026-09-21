@@ -288,28 +288,28 @@ class Binding(pulumi.CustomResource):
 
         test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
-            user="guest",
-            vhost=test.name,
             permissions={
                 "configure": ".*",
                 "write": ".*",
                 "read": ".*",
-            })
+            },
+            user="guest",
+            vhost=test.name)
         test_exchange = rabbitmq.Exchange("test",
-            name="test",
-            vhost=guest.vhost,
             settings={
                 "type": "fanout",
                 "durable": False,
                 "auto_delete": True,
-            })
-        test_queue = rabbitmq.Queue("test",
+            },
             name="test",
-            vhost=guest.vhost,
+            vhost=guest.vhost)
+        test_queue = rabbitmq.Queue("test",
             settings={
                 "durable": True,
                 "auto_delete": False,
-            })
+            },
+            name="test",
+            vhost=guest.vhost)
         test_binding = rabbitmq.Binding("test",
             source=test_exchange.name,
             vhost=test.name,
@@ -355,28 +355,28 @@ class Binding(pulumi.CustomResource):
 
         test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
-            user="guest",
-            vhost=test.name,
             permissions={
                 "configure": ".*",
                 "write": ".*",
                 "read": ".*",
-            })
+            },
+            user="guest",
+            vhost=test.name)
         test_exchange = rabbitmq.Exchange("test",
-            name="test",
-            vhost=guest.vhost,
             settings={
                 "type": "fanout",
                 "durable": False,
                 "auto_delete": True,
-            })
-        test_queue = rabbitmq.Queue("test",
+            },
             name="test",
-            vhost=guest.vhost,
+            vhost=guest.vhost)
+        test_queue = rabbitmq.Queue("test",
             settings={
                 "durable": True,
                 "auto_delete": False,
-            })
+            },
+            name="test",
+            vhost=guest.vhost)
         test_binding = rabbitmq.Binding("test",
             source=test_exchange.name,
             vhost=test.name,

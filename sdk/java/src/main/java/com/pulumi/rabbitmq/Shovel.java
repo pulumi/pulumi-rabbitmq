@@ -55,27 +55,25 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var testExchange = new Exchange("testExchange", ExchangeArgs.builder()
- *             .name("test_exchange")
- *             .vhost(test.name())
  *             .settings(ExchangeSettingsArgs.builder()
  *                 .type("fanout")
  *                 .durable(false)
  *                 .autoDelete(true)
  *                 .build())
+ *             .name("test_exchange")
+ *             .vhost(test.name())
  *             .build());
  * 
  *         var testQueue = new Queue("testQueue", QueueArgs.builder()
- *             .name("test_queue")
- *             .vhost(test.name())
  *             .settings(QueueSettingsArgs.builder()
  *                 .durable(false)
  *                 .autoDelete(true)
  *                 .build())
+ *             .name("test_queue")
+ *             .vhost(test.name())
  *             .build());
  * 
  *         var shovelTest = new Shovel("shovelTest", ShovelArgs.builder()
- *             .name("shovelTest")
- *             .vhost(test.name())
  *             .info(ShovelInfoArgs.builder()
  *                 .sourceUri("amqp:///test")
  *                 .sourceExchange(testExchange.name())
@@ -83,6 +81,8 @@ import javax.annotation.Nullable;
  *                 .destinationUri("amqp:///test")
  *                 .destinationQueue(testQueue.name())
  *                 .build())
+ *             .name("shovelTest")
+ *             .vhost(test.name())
  *             .build());
  * 
  *     }

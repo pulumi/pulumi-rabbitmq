@@ -59,32 +59,32 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var guest = new Permissions("guest", PermissionsArgs.builder()
- *             .user("guest")
- *             .vhost(test.name())
  *             .permissions(PermissionsPermissionsArgs.builder()
  *                 .configure(".*")
  *                 .write(".*")
  *                 .read(".*")
  *                 .build())
+ *             .user("guest")
+ *             .vhost(test.name())
  *             .build());
  * 
  *         var testExchange = new Exchange("testExchange", ExchangeArgs.builder()
- *             .name("test")
- *             .vhost(guest.vhost())
  *             .settings(ExchangeSettingsArgs.builder()
  *                 .type("fanout")
  *                 .durable(false)
  *                 .autoDelete(true)
  *                 .build())
+ *             .name("test")
+ *             .vhost(guest.vhost())
  *             .build());
  * 
  *         var testQueue = new Queue("testQueue", QueueArgs.builder()
- *             .name("test")
- *             .vhost(guest.vhost())
  *             .settings(QueueSettingsArgs.builder()
  *                 .durable(true)
  *                 .autoDelete(false)
  *                 .build())
+ *             .name("test")
+ *             .vhost(guest.vhost())
  *             .build());
  * 
  *         var testBinding = new Binding("testBinding", BindingArgs.builder()

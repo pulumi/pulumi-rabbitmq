@@ -141,7 +141,7 @@ class OperatorPolicy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 policy: pulumi.Input[Optional[Union['OperatorPolicyPolicyArgs', 'OperatorPolicyPolicyArgsDict']]] = None,
+                 policy: pulumi.Input[Optional[Union['OperatorPolicyPolicyArgs', 'OperatorPolicyPolicyArgsDict', 'outputs.OperatorPolicyPolicy']]] = None,
                  vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -155,16 +155,14 @@ class OperatorPolicy(pulumi.CustomResource):
 
         test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
-            user="guest",
-            vhost=test.name,
             permissions={
                 "configure": ".*",
                 "write": ".*",
                 "read": ".*",
-            })
+            },
+            user="guest",
+            vhost=test.name)
         test_operator_policy = rabbitmq.OperatorPolicy("test",
-            name="test",
-            vhost=guest.vhost,
             policy={
                 "pattern": ".*",
                 "priority": 0,
@@ -173,7 +171,9 @@ class OperatorPolicy(pulumi.CustomResource):
                     "message-ttl": "3600000",
                     "expires": "1800000",
                 },
-            })
+            },
+            name="test",
+            vhost=guest.vhost)
         ```
 
         ## Import
@@ -189,7 +189,7 @@ class OperatorPolicy(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The name of the operator policy.
-        :param pulumi.Input[Union['OperatorPolicyPolicyArgs', 'OperatorPolicyPolicyArgsDict']] policy: The settings of the operator policy. The structure is
+        :param pulumi.Input[Union['OperatorPolicyPolicyArgs', 'OperatorPolicyPolicyArgsDict', 'outputs.OperatorPolicyPolicy']] policy: The settings of the operator policy. The structure is
                described below.
         :param pulumi.Input[_builtins.str] vhost: The vhost to create the resource in.
         """
@@ -210,16 +210,14 @@ class OperatorPolicy(pulumi.CustomResource):
 
         test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
-            user="guest",
-            vhost=test.name,
             permissions={
                 "configure": ".*",
                 "write": ".*",
                 "read": ".*",
-            })
+            },
+            user="guest",
+            vhost=test.name)
         test_operator_policy = rabbitmq.OperatorPolicy("test",
-            name="test",
-            vhost=guest.vhost,
             policy={
                 "pattern": ".*",
                 "priority": 0,
@@ -228,7 +226,9 @@ class OperatorPolicy(pulumi.CustomResource):
                     "message-ttl": "3600000",
                     "expires": "1800000",
                 },
-            })
+            },
+            name="test",
+            vhost=guest.vhost)
         ```
 
         ## Import
@@ -257,7 +257,7 @@ class OperatorPolicy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 policy: pulumi.Input[Optional[Union['OperatorPolicyPolicyArgs', 'OperatorPolicyPolicyArgsDict']]] = None,
+                 policy: pulumi.Input[Optional[Union['OperatorPolicyPolicyArgs', 'OperatorPolicyPolicyArgsDict', 'outputs.OperatorPolicyPolicy']]] = None,
                  vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -286,7 +286,7 @@ class OperatorPolicy(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            policy: pulumi.Input[Optional[Union['OperatorPolicyPolicyArgs', 'OperatorPolicyPolicyArgsDict']]] = None,
+            policy: pulumi.Input[Optional[Union['OperatorPolicyPolicyArgs', 'OperatorPolicyPolicyArgsDict', 'outputs.OperatorPolicyPolicy']]] = None,
             vhost: pulumi.Input[Optional[_builtins.str]] = None) -> 'OperatorPolicy':
         """
         Get an existing OperatorPolicy resource's state with the given name, id, and optional extra
@@ -296,7 +296,7 @@ class OperatorPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The name of the operator policy.
-        :param pulumi.Input[Union['OperatorPolicyPolicyArgs', 'OperatorPolicyPolicyArgsDict']] policy: The settings of the operator policy. The structure is
+        :param pulumi.Input[Union['OperatorPolicyPolicyArgs', 'OperatorPolicyPolicyArgsDict', 'outputs.OperatorPolicyPolicy']] policy: The settings of the operator policy. The structure is
                described below.
         :param pulumi.Input[_builtins.str] vhost: The vhost to create the resource in.
         """

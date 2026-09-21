@@ -58,29 +58,27 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var guest = new Permissions("guest", PermissionsArgs.builder()
- *             .user("guest")
- *             .vhost(test.name())
  *             .permissions(PermissionsPermissionsArgs.builder()
  *                 .configure(".*")
  *                 .write(".*")
  *                 .read(".*")
  *                 .build())
+ *             .user("guest")
+ *             .vhost(test.name())
  *             .build());
  * 
  *         // downstream exchange
  *         var foo = new Exchange("foo", ExchangeArgs.builder()
- *             .name("foo")
- *             .vhost(guest.vhost())
  *             .settings(ExchangeSettingsArgs.builder()
  *                 .type("topic")
  *                 .durable(true)
  *                 .build())
+ *             .name("foo")
+ *             .vhost(guest.vhost())
  *             .build());
  * 
  *         // upstream broker
  *         var fooFederationUpstream = new FederationUpstream("fooFederationUpstream", FederationUpstreamArgs.builder()
- *             .name("foo")
- *             .vhost(guest.vhost())
  *             .definition(FederationUpstreamDefinitionArgs.builder()
  *                 .uri("amqp://guest:guest}{@literal @}{@code upstream-server-name:5672/%2f")
  *                 .prefetchCount(1000)
@@ -89,17 +87,19 @@ import javax.annotation.Nullable;
  *                 .trustUserId(false)
  *                 .maxHops(1)
  *                 .build())
+ *             .name("foo")
+ *             .vhost(guest.vhost())
  *             .build());
  * 
  *         var fooPolicy = new Policy("fooPolicy", PolicyArgs.builder()
- *             .name("foo")
- *             .vhost(guest.vhost())
  *             .policy(PolicyPolicyArgs.builder()
  *                 .pattern(foo.name().applyValue(_name -> String.format("(^%s$)", _name)))
  *                 .priority(1)
  *                 .applyTo("exchanges")
  *                 .definition(Map.of("federation-upstream", fooFederationUpstream.name()))
  *                 .build())
+ *             .name("foo")
+ *             .vhost(guest.vhost())
  *             .build());
  * 
  *     }}{@code

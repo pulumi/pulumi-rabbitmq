@@ -17,27 +17,25 @@ import * as utilities from "./utilities";
  *
  * const test = new rabbitmq.VHost("test", {name: "test"});
  * const guest = new rabbitmq.Permissions("guest", {
- *     user: "guest",
- *     vhost: test.name,
  *     permissions: {
  *         configure: ".*",
  *         write: ".*",
  *         read: ".*",
  *     },
+ *     user: "guest",
+ *     vhost: test.name,
  * });
  * // downstream exchange
  * const foo = new rabbitmq.Exchange("foo", {
- *     name: "foo",
- *     vhost: guest.vhost,
  *     settings: {
  *         type: "topic",
  *         durable: true,
  *     },
+ *     name: "foo",
+ *     vhost: guest.vhost,
  * });
  * // upstream broker
  * const fooFederationUpstream = new rabbitmq.FederationUpstream("foo", {
- *     name: "foo",
- *     vhost: guest.vhost,
  *     definition: {
  *         uri: "amqp://guest:guest@upstream-server-name:5672/%2f",
  *         prefetchCount: 1000,
@@ -46,10 +44,10 @@ import * as utilities from "./utilities";
  *         trustUserId: false,
  *         maxHops: 1,
  *     },
- * });
- * const fooPolicy = new rabbitmq.Policy("foo", {
  *     name: "foo",
  *     vhost: guest.vhost,
+ * });
+ * const fooPolicy = new rabbitmq.Policy("foo", {
  *     policy: {
  *         pattern: pulumi.interpolate`(^${foo.name}$)`,
  *         priority: 1,
@@ -58,6 +56,8 @@ import * as utilities from "./utilities";
  *             "federation-upstream": fooFederationUpstream.name,
  *         },
  *     },
+ *     name: "foo",
+ *     vhost: guest.vhost,
  * });
  * ```
  *

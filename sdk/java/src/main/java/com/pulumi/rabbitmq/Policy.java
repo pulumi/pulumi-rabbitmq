@@ -53,24 +53,24 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var guest = new Permissions("guest", PermissionsArgs.builder()
- *             .user("guest")
- *             .vhost(test.name())
  *             .permissions(PermissionsPermissionsArgs.builder()
  *                 .configure(".*")
  *                 .write(".*")
  *                 .read(".*")
  *                 .build())
+ *             .user("guest")
+ *             .vhost(test.name())
  *             .build());
  * 
  *         var testPolicy = new Policy("testPolicy", PolicyArgs.builder()
- *             .name("test")
- *             .vhost(guest.vhost())
  *             .policy(PolicyPolicyArgs.builder()
  *                 .pattern(".*")
  *                 .priority(0)
  *                 .applyTo("all")
  *                 .definition(Map.of("ha-mode", "all"))
  *                 .build())
+ *             .name("test")
+ *             .vhost(guest.vhost())
  *             .build());
  * 
  *     }

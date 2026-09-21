@@ -17,25 +17,23 @@ import * as utilities from "./utilities";
  *
  * const test = new rabbitmq.VHost("test", {name: "test"});
  * const testExchange = new rabbitmq.Exchange("test", {
- *     name: "test_exchange",
- *     vhost: test.name,
  *     settings: {
  *         type: "fanout",
  *         durable: false,
  *         autoDelete: true,
  *     },
+ *     name: "test_exchange",
+ *     vhost: test.name,
  * });
  * const testQueue = new rabbitmq.Queue("test", {
- *     name: "test_queue",
- *     vhost: test.name,
  *     settings: {
  *         durable: false,
  *         autoDelete: true,
  *     },
+ *     name: "test_queue",
+ *     vhost: test.name,
  * });
  * const shovelTest = new rabbitmq.Shovel("shovelTest", {
- *     name: "shovelTest",
- *     vhost: test.name,
  *     info: {
  *         sourceUri: "amqp:///test",
  *         sourceExchange: testExchange.name,
@@ -43,6 +41,8 @@ import * as utilities from "./utilities";
  *         destinationUri: "amqp:///test",
  *         destinationQueue: testQueue.name,
  *     },
+ *     name: "shovelTest",
+ *     vhost: test.name,
  * });
  * ```
  *

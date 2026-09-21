@@ -23,13 +23,13 @@ import * as utilities from "./utilities";
  *     tags: ["administrator"],
  * });
  * const testPermissions = new rabbitmq.Permissions("test", {
- *     user: testUser.name,
- *     vhost: test.name,
  *     permissions: {
  *         configure: ".*",
  *         write: ".*",
  *         read: ".*",
  *     },
+ *     user: testUser.name,
+ *     vhost: test.name,
  * });
  * ```
  *

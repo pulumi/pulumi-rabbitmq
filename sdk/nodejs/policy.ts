@@ -18,17 +18,15 @@ import * as utilities from "./utilities";
  *
  * const test = new rabbitmq.VHost("test", {name: "test"});
  * const guest = new rabbitmq.Permissions("guest", {
- *     user: "guest",
- *     vhost: test.name,
  *     permissions: {
  *         configure: ".*",
  *         write: ".*",
  *         read: ".*",
  *     },
+ *     user: "guest",
+ *     vhost: test.name,
  * });
  * const testPolicy = new rabbitmq.Policy("test", {
- *     name: "test",
- *     vhost: guest.vhost,
  *     policy: {
  *         pattern: ".*",
  *         priority: 0,
@@ -37,6 +35,8 @@ import * as utilities from "./utilities";
  *             "ha-mode": "all",
  *         },
  *     },
+ *     name: "test",
+ *     vhost: guest.vhost,
  * });
  * ```
  *

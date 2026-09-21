@@ -59,13 +59,13 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var testPermissions = new Permissions("testPermissions", PermissionsArgs.builder()
- *             .user(testUser.name())
- *             .vhost(test.name())
  *             .permissions(PermissionsPermissionsArgs.builder()
  *                 .configure(".*")
  *                 .write(".*")
  *                 .read(".*")
  *                 .build())
+ *             .user(testUser.name())
+ *             .vhost(test.name())
  *             .build());
  * 
  *     }

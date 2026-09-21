@@ -140,7 +140,7 @@ class TopicPermissions(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TopicPermissionsPermissionArgs', 'TopicPermissionsPermissionArgsDict']]]]] = None,
+                 permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TopicPermissionsPermissionArgs', 'TopicPermissionsPermissionArgsDict', 'outputs.TopicPermissionsPermission']]]]] = None,
                  user: pulumi.Input[Optional[_builtins.str]] = None,
                  vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -160,13 +160,13 @@ class TopicPermissions(pulumi.CustomResource):
             password="foobar",
             tags=["administrator"])
         test_topic_permissions = rabbitmq.TopicPermissions("test",
-            user=test_user.name,
-            vhost=test.name,
             permissions=[{
                 "exchange": "amq.topic",
                 "write": ".*",
                 "read": ".*",
-            }])
+            }],
+            user=test_user.name,
+            vhost=test.name)
         ```
 
         ## Import
@@ -181,7 +181,7 @@ class TopicPermissions(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['TopicPermissionsPermissionArgs', 'TopicPermissionsPermissionArgsDict']]]] permissions: The settings of the permissions. The structure is
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TopicPermissionsPermissionArgs', 'TopicPermissionsPermissionArgsDict', 'outputs.TopicPermissionsPermission']]]] permissions: The settings of the permissions. The structure is
                described below.
         :param pulumi.Input[_builtins.str] user: The user to apply the permissions to.
         :param pulumi.Input[_builtins.str] vhost: The vhost to create the resource in.
@@ -208,13 +208,13 @@ class TopicPermissions(pulumi.CustomResource):
             password="foobar",
             tags=["administrator"])
         test_topic_permissions = rabbitmq.TopicPermissions("test",
-            user=test_user.name,
-            vhost=test.name,
             permissions=[{
                 "exchange": "amq.topic",
                 "write": ".*",
                 "read": ".*",
-            }])
+            }],
+            user=test_user.name,
+            vhost=test.name)
         ```
 
         ## Import
@@ -242,7 +242,7 @@ class TopicPermissions(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TopicPermissionsPermissionArgs', 'TopicPermissionsPermissionArgsDict']]]]] = None,
+                 permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TopicPermissionsPermissionArgs', 'TopicPermissionsPermissionArgsDict', 'outputs.TopicPermissionsPermission']]]]] = None,
                  user: pulumi.Input[Optional[_builtins.str]] = None,
                  vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -271,7 +271,7 @@ class TopicPermissions(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TopicPermissionsPermissionArgs', 'TopicPermissionsPermissionArgsDict']]]]] = None,
+            permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TopicPermissionsPermissionArgs', 'TopicPermissionsPermissionArgsDict', 'outputs.TopicPermissionsPermission']]]]] = None,
             user: pulumi.Input[Optional[_builtins.str]] = None,
             vhost: pulumi.Input[Optional[_builtins.str]] = None) -> 'TopicPermissions':
         """
@@ -281,7 +281,7 @@ class TopicPermissions(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['TopicPermissionsPermissionArgs', 'TopicPermissionsPermissionArgsDict']]]] permissions: The settings of the permissions. The structure is
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TopicPermissionsPermissionArgs', 'TopicPermissionsPermissionArgsDict', 'outputs.TopicPermissionsPermission']]]] permissions: The settings of the permissions. The structure is
                described below.
         :param pulumi.Input[_builtins.str] user: The user to apply the permissions to.
         :param pulumi.Input[_builtins.str] vhost: The vhost to create the resource in.

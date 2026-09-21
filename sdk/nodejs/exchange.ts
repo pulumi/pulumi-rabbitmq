@@ -17,22 +17,22 @@ import * as utilities from "./utilities";
  *
  * const test = new rabbitmq.VHost("test", {name: "test"});
  * const guest = new rabbitmq.Permissions("guest", {
- *     user: "guest",
- *     vhost: test.name,
  *     permissions: {
  *         configure: ".*",
  *         write: ".*",
  *         read: ".*",
  *     },
+ *     user: "guest",
+ *     vhost: test.name,
  * });
  * const testExchange = new rabbitmq.Exchange("test", {
- *     name: "test",
- *     vhost: guest.vhost,
  *     settings: {
  *         type: "fanout",
  *         durable: false,
  *         autoDelete: true,
  *     },
+ *     name: "test",
+ *     vhost: guest.vhost,
  * });
  * ```
  *

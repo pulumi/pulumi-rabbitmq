@@ -30,20 +30,18 @@ namespace Pulumi.RabbitMQ
     /// 
     ///     var guest = new RabbitMQ.Permissions("guest", new()
     ///     {
-    ///         User = "guest",
-    ///         Vhost = test.Name,
     ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
     ///         {
     ///             Configure = ".*",
     ///             Write = ".*",
     ///             Read = ".*",
     ///         },
+    ///         User = "guest",
+    ///         Vhost = test.Name,
     ///     });
     /// 
     ///     var testPolicy = new RabbitMQ.Policy("test", new()
     ///     {
-    ///         Name = "test",
-    ///         Vhost = guest.Vhost,
     ///         PolicyBlock = new RabbitMQ.Inputs.PolicyPolicyArgs
     ///         {
     ///             Pattern = ".*",
@@ -54,6 +52,8 @@ namespace Pulumi.RabbitMQ
     ///                 { "ha-mode", "all" },
     ///             },
     ///         },
+    ///         Name = "test",
+    ///         Vhost = guest.Vhost,
     ///     });
     /// 
     /// });

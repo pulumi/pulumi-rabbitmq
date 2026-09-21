@@ -35,31 +35,29 @@ import (
 //				return err
 //			}
 //			testExchange, err := rabbitmq.NewExchange(ctx, "test", &rabbitmq.ExchangeArgs{
-//				Name:  pulumi.String("test_exchange"),
-//				Vhost: test.Name,
 //				Settings: &rabbitmq.ExchangeSettingsArgs{
 //					Type:       pulumi.String("fanout"),
 //					Durable:    pulumi.Bool(false),
 //					AutoDelete: pulumi.Bool(true),
 //				},
+//				Name:  pulumi.String("test_exchange"),
+//				Vhost: test.Name,
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			testQueue, err := rabbitmq.NewQueue(ctx, "test", &rabbitmq.QueueArgs{
-//				Name:  pulumi.String("test_queue"),
-//				Vhost: test.Name,
 //				Settings: &rabbitmq.QueueSettingsArgs{
 //					Durable:    pulumi.Bool(false),
 //					AutoDelete: pulumi.Bool(true),
 //				},
+//				Name:  pulumi.String("test_queue"),
+//				Vhost: test.Name,
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = rabbitmq.NewShovel(ctx, "shovelTest", &rabbitmq.ShovelArgs{
-//				Name:  pulumi.String("shovelTest"),
-//				Vhost: test.Name,
 //				Info: &rabbitmq.ShovelInfoArgs{
 //					SourceUri:         pulumi.String("amqp:///test"),
 //					SourceExchange:    testExchange.Name,
@@ -67,6 +65,8 @@ import (
 //					DestinationUri:    pulumi.String("amqp:///test"),
 //					DestinationQueue:  testQueue.Name,
 //				},
+//				Name:  pulumi.String("shovelTest"),
+//				Vhost: test.Name,
 //			})
 //			if err != nil {
 //				return err

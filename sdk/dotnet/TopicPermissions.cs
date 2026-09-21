@@ -40,8 +40,6 @@ namespace Pulumi.RabbitMQ
     /// 
     ///     var testTopicPermissions = new RabbitMQ.TopicPermissions("test", new()
     ///     {
-    ///         User = testUser.Name,
-    ///         Vhost = test.Name,
     ///         Permissions = new[]
     ///         {
     ///             new RabbitMQ.Inputs.TopicPermissionsPermissionArgs
@@ -51,6 +49,8 @@ namespace Pulumi.RabbitMQ
     ///                 Read = ".*",
     ///             },
     ///         },
+    ///         User = testUser.Name,
+    ///         Vhost = test.Name,
     ///     });
     /// 
     /// });

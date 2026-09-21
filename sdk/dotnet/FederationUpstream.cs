@@ -29,33 +29,31 @@ namespace Pulumi.RabbitMQ
     /// 
     ///     var guest = new RabbitMQ.Permissions("guest", new()
     ///     {
-    ///         User = "guest",
-    ///         Vhost = test.Name,
     ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
     ///         {
     ///             Configure = ".*",
     ///             Write = ".*",
     ///             Read = ".*",
     ///         },
+    ///         User = "guest",
+    ///         Vhost = test.Name,
     ///     });
     /// 
     ///     // downstream exchange
     ///     var foo = new RabbitMQ.Exchange("foo", new()
     ///     {
-    ///         Name = "foo",
-    ///         Vhost = guest.Vhost,
     ///         Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
     ///         {
     ///             Type = "topic",
     ///             Durable = true,
     ///         },
+    ///         Name = "foo",
+    ///         Vhost = guest.Vhost,
     ///     });
     /// 
     ///     // upstream broker
     ///     var fooFederationUpstream = new RabbitMQ.FederationUpstream("foo", new()
     ///     {
-    ///         Name = "foo",
-    ///         Vhost = guest.Vhost,
     ///         Definition = new RabbitMQ.Inputs.FederationUpstreamDefinitionArgs
     ///         {
     ///             Uri = "amqp://guest:guest@upstream-server-name:5672/%2f",
@@ -65,12 +63,12 @@ namespace Pulumi.RabbitMQ
     ///             TrustUserId = false,
     ///             MaxHops = 1,
     ///         },
+    ///         Name = "foo",
+    ///         Vhost = guest.Vhost,
     ///     });
     /// 
     ///     var fooPolicy = new RabbitMQ.Policy("foo", new()
     ///     {
-    ///         Name = "foo",
-    ///         Vhost = guest.Vhost,
     ///         PolicyBlock = new RabbitMQ.Inputs.PolicyPolicyArgs
     ///         {
     ///             Pattern = foo.Name.Apply(name =&gt; $"(^{name}$)"),
@@ -81,6 +79,8 @@ namespace Pulumi.RabbitMQ
     ///                 { "federation-upstream", fooFederationUpstream.Name },
     ///             },
     ///         },
+    ///         Name = "foo",
+    ///         Vhost = guest.Vhost,
     ///     });
     /// 
     /// });

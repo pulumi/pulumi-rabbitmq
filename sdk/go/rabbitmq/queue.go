@@ -37,20 +37,18 @@ import (
 //				return err
 //			}
 //			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
-//				User:  pulumi.String("guest"),
-//				Vhost: test.Name,
 //				Permissions: &rabbitmq.PermissionsPermissionsArgs{
 //					Configure: pulumi.String(".*"),
 //					Write:     pulumi.String(".*"),
 //					Read:      pulumi.String(".*"),
 //				},
+//				User:  pulumi.String("guest"),
+//				Vhost: test.Name,
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = rabbitmq.NewQueue(ctx, "test", &rabbitmq.QueueArgs{
-//				Name:  pulumi.String("test"),
-//				Vhost: guest.Vhost,
 //				Settings: &rabbitmq.QueueSettingsArgs{
 //					Durable:    pulumi.Bool(false),
 //					AutoDelete: pulumi.Bool(true),
@@ -58,6 +56,8 @@ import (
 //						"x-queue-type": pulumi.String("quorum"),
 //					},
 //				},
+//				Name:  pulumi.String("test"),
+//				Vhost: guest.Vhost,
 //			})
 //			if err != nil {
 //				return err
@@ -95,25 +95,25 @@ import (
 //				return err
 //			}
 //			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
-//				User:  pulumi.String("guest"),
-//				Vhost: test.Name,
 //				Permissions: &rabbitmq.PermissionsPermissionsArgs{
 //					Configure: pulumi.String(".*"),
 //					Write:     pulumi.String(".*"),
 //					Read:      pulumi.String(".*"),
 //				},
+//				User:  pulumi.String("guest"),
+//				Vhost: test.Name,
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = rabbitmq.NewQueue(ctx, "test", &rabbitmq.QueueArgs{
-//				Name:  pulumi.String("test"),
-//				Vhost: guest.Vhost,
 //				Settings: &rabbitmq.QueueSettingsArgs{
 //					Durable:       pulumi.Bool(false),
 //					AutoDelete:    pulumi.Bool(true),
 //					ArgumentsJson: pulumi.String(arguments),
 //				},
+//				Name:  pulumi.String("test"),
+//				Vhost: guest.Vhost,
 //			})
 //			if err != nil {
 //				return err
