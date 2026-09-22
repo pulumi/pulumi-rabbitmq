@@ -37,33 +37,31 @@ import (
 //				return err
 //			}
 //			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
-//				User:  pulumi.String("guest"),
-//				Vhost: test.Name,
 //				Permissions: &rabbitmq.PermissionsPermissionsArgs{
 //					Configure: pulumi.String(".*"),
 //					Write:     pulumi.String(".*"),
 //					Read:      pulumi.String(".*"),
 //				},
+//				User:  pulumi.String("guest"),
+//				Vhost: test.Name,
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// downstream exchange
 //			foo, err := rabbitmq.NewExchange(ctx, "foo", &rabbitmq.ExchangeArgs{
-//				Name:  pulumi.String("foo"),
-//				Vhost: guest.Vhost,
 //				Settings: &rabbitmq.ExchangeSettingsArgs{
 //					Type:    pulumi.String("topic"),
 //					Durable: pulumi.Bool(true),
 //				},
+//				Name:  pulumi.String("foo"),
+//				Vhost: guest.Vhost,
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// upstream broker
 //			fooFederationUpstream, err := rabbitmq.NewFederationUpstream(ctx, "foo", &rabbitmq.FederationUpstreamArgs{
-//				Name:  pulumi.String("foo"),
-//				Vhost: guest.Vhost,
 //				Definition: &rabbitmq.FederationUpstreamDefinitionArgs{
 //					Uri:            pulumi.String("amqp://guest:guest@upstream-server-name:5672/%2f"),
 //					PrefetchCount:  pulumi.Int(1000),
@@ -72,13 +70,13 @@ import (
 //					TrustUserId:    pulumi.Bool(false),
 //					MaxHops:        pulumi.Int(1),
 //				},
+//				Name:  pulumi.String("foo"),
+//				Vhost: guest.Vhost,
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = rabbitmq.NewPolicy(ctx, "foo", &rabbitmq.PolicyArgs{
-//				Name:  pulumi.String("foo"),
-//				Vhost: guest.Vhost,
 //				Policy: &rabbitmq.PolicyPolicyArgs{
 //					Pattern: foo.Name.ApplyT(func(name string) (string, error) {
 //						return fmt.Sprintf("(^%v$)", name), nil
@@ -89,6 +87,8 @@ import (
 //						"federation-upstream": fooFederationUpstream.Name,
 //					},
 //				},
+//				Name:  pulumi.String("foo"),
+//				Vhost: guest.Vhost,
 //			})
 //			if err != nil {
 //				return err

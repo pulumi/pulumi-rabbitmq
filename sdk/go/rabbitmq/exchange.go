@@ -35,25 +35,25 @@ import (
 //				return err
 //			}
 //			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
-//				User:  pulumi.String("guest"),
-//				Vhost: test.Name,
 //				Permissions: &rabbitmq.PermissionsPermissionsArgs{
 //					Configure: pulumi.String(".*"),
 //					Write:     pulumi.String(".*"),
 //					Read:      pulumi.String(".*"),
 //				},
+//				User:  pulumi.String("guest"),
+//				Vhost: test.Name,
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = rabbitmq.NewExchange(ctx, "test", &rabbitmq.ExchangeArgs{
-//				Name:  pulumi.String("test"),
-//				Vhost: guest.Vhost,
 //				Settings: &rabbitmq.ExchangeSettingsArgs{
 //					Type:       pulumi.String("fanout"),
 //					Durable:    pulumi.Bool(false),
 //					AutoDelete: pulumi.Bool(true),
 //				},
+//				Name:  pulumi.String("test"),
+//				Vhost: guest.Vhost,
 //			})
 //			if err != nil {
 //				return err

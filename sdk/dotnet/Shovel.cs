@@ -29,31 +29,29 @@ namespace Pulumi.RabbitMQ
     /// 
     ///     var testExchange = new RabbitMQ.Exchange("test", new()
     ///     {
-    ///         Name = "test_exchange",
-    ///         Vhost = test.Name,
     ///         Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
     ///         {
     ///             Type = "fanout",
     ///             Durable = false,
     ///             AutoDelete = true,
     ///         },
+    ///         Name = "test_exchange",
+    ///         Vhost = test.Name,
     ///     });
     /// 
     ///     var testQueue = new RabbitMQ.Queue("test", new()
     ///     {
-    ///         Name = "test_queue",
-    ///         Vhost = test.Name,
     ///         Settings = new RabbitMQ.Inputs.QueueSettingsArgs
     ///         {
     ///             Durable = false,
     ///             AutoDelete = true,
     ///         },
+    ///         Name = "test_queue",
+    ///         Vhost = test.Name,
     ///     });
     /// 
     ///     var shovelTest = new RabbitMQ.Shovel("shovelTest", new()
     ///     {
-    ///         Name = "shovelTest",
-    ///         Vhost = test.Name,
     ///         Info = new RabbitMQ.Inputs.ShovelInfoArgs
     ///         {
     ///             SourceUri = "amqp:///test",
@@ -62,6 +60,8 @@ namespace Pulumi.RabbitMQ
     ///             DestinationUri = "amqp:///test",
     ///             DestinationQueue = testQueue.Name,
     ///         },
+    ///         Name = "shovelTest",
+    ///         Vhost = test.Name,
     ///     });
     /// 
     /// });

@@ -46,13 +46,13 @@ import (
 //				return err
 //			}
 //			_, err = rabbitmq.NewPermissions(ctx, "test", &rabbitmq.PermissionsArgs{
-//				User:  testUser.Name,
-//				Vhost: test.Name,
 //				Permissions: &rabbitmq.PermissionsPermissionsArgs{
 //					Configure: pulumi.String(".*"),
 //					Write:     pulumi.String(".*"),
 //					Read:      pulumi.String(".*"),
 //				},
+//				User:  testUser.Name,
+//				Vhost: test.Name,
 //			})
 //			if err != nil {
 //				return err

@@ -52,18 +52,16 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var guest = new Permissions("guest", PermissionsArgs.builder()
- *             .user("guest")
- *             .vhost(test.name())
  *             .permissions(PermissionsPermissionsArgs.builder()
  *                 .configure(".*")
  *                 .write(".*")
  *                 .read(".*")
  *                 .build())
+ *             .user("guest")
+ *             .vhost(test.name())
  *             .build());
  * 
  *         var testOperatorPolicy = new OperatorPolicy("testOperatorPolicy", OperatorPolicyArgs.builder()
- *             .name("test")
- *             .vhost(guest.vhost())
  *             .policy(OperatorPolicyPolicyArgs.builder()
  *                 .pattern(".*")
  *                 .priority(0)
@@ -73,6 +71,8 @@ import javax.annotation.Nullable;
  *                     Map.entry("expires", "1800000")
  *                 ))
  *                 .build())
+ *             .name("test")
+ *             .vhost(guest.vhost())
  *             .build());
  * 
  *     }

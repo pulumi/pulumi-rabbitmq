@@ -36,20 +36,18 @@ import (
 //				return err
 //			}
 //			guest, err := rabbitmq.NewPermissions(ctx, "guest", &rabbitmq.PermissionsArgs{
-//				User:  pulumi.String("guest"),
-//				Vhost: test.Name,
 //				Permissions: &rabbitmq.PermissionsPermissionsArgs{
 //					Configure: pulumi.String(".*"),
 //					Write:     pulumi.String(".*"),
 //					Read:      pulumi.String(".*"),
 //				},
+//				User:  pulumi.String("guest"),
+//				Vhost: test.Name,
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = rabbitmq.NewPolicy(ctx, "test", &rabbitmq.PolicyArgs{
-//				Name:  pulumi.String("test"),
-//				Vhost: guest.Vhost,
 //				Policy: &rabbitmq.PolicyPolicyArgs{
 //					Pattern:  pulumi.String(".*"),
 //					Priority: pulumi.Int(0),
@@ -58,6 +56,8 @@ import (
 //						"ha-mode": pulumi.String("all"),
 //					},
 //				},
+//				Name:  pulumi.String("test"),
+//				Vhost: guest.Vhost,
 //			})
 //			if err != nil {
 //				return err

@@ -40,14 +40,14 @@ namespace Pulumi.RabbitMQ
     /// 
     ///     var testPermissions = new RabbitMQ.Permissions("test", new()
     ///     {
-    ///         User = testUser.Name,
-    ///         Vhost = test.Name,
     ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
     ///         {
     ///             Configure = ".*",
     ///             Write = ".*",
     ///             Read = ".*",
     ///         },
+    ///         User = testUser.Name,
+    ///         Vhost = test.Name,
     ///     });
     /// 
     /// });

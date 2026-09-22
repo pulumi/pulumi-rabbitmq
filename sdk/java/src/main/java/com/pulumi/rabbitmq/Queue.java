@@ -55,23 +55,23 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var guest = new Permissions("guest", PermissionsArgs.builder()
- *             .user("guest")
- *             .vhost(test.name())
  *             .permissions(PermissionsPermissionsArgs.builder()
  *                 .configure(".*")
  *                 .write(".*")
  *                 .read(".*")
  *                 .build())
+ *             .user("guest")
+ *             .vhost(test.name())
  *             .build());
  * 
  *         var testQueue = new Queue("testQueue", QueueArgs.builder()
- *             .name("test")
- *             .vhost(guest.vhost())
  *             .settings(QueueSettingsArgs.builder()
  *                 .durable(false)
  *                 .autoDelete(true)
  *                 .arguments(Map.of("x-queue-type", "quorum"))
  *                 .build())
+ *             .name("test")
+ *             .vhost(guest.vhost())
  *             .build());
  * 
  *     }
@@ -120,23 +120,23 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var guest = new Permissions("guest", PermissionsArgs.builder()
- *             .user("guest")
- *             .vhost(test.name())
  *             .permissions(PermissionsPermissionsArgs.builder()
  *                 .configure(".*")
  *                 .write(".*")
  *                 .read(".*")
  *                 .build())
+ *             .user("guest")
+ *             .vhost(test.name())
  *             .build());
  * 
  *         var testQueue = new Queue("testQueue", QueueArgs.builder()
- *             .name("test")
- *             .vhost(guest.vhost())
  *             .settings(QueueSettingsArgs.builder()
  *                 .durable(false)
  *                 .autoDelete(true)
  *                 .argumentsJson(arguments)
  *                 .build())
+ *             .name("test")
+ *             .vhost(guest.vhost())
  *             .build());
  * 
  *     }

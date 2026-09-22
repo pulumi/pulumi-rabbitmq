@@ -30,37 +30,37 @@ namespace Pulumi.RabbitMQ
     /// 
     ///     var guest = new RabbitMQ.Permissions("guest", new()
     ///     {
-    ///         User = "guest",
-    ///         Vhost = test.Name,
     ///         PermissionDetails = new RabbitMQ.Inputs.PermissionsPermissionsArgs
     ///         {
     ///             Configure = ".*",
     ///             Write = ".*",
     ///             Read = ".*",
     ///         },
+    ///         User = "guest",
+    ///         Vhost = test.Name,
     ///     });
     /// 
     ///     var testExchange = new RabbitMQ.Exchange("test", new()
     ///     {
-    ///         Name = "test",
-    ///         Vhost = guest.Vhost,
     ///         Settings = new RabbitMQ.Inputs.ExchangeSettingsArgs
     ///         {
     ///             Type = "fanout",
     ///             Durable = false,
     ///             AutoDelete = true,
     ///         },
+    ///         Name = "test",
+    ///         Vhost = guest.Vhost,
     ///     });
     /// 
     ///     var testQueue = new RabbitMQ.Queue("test", new()
     ///     {
-    ///         Name = "test",
-    ///         Vhost = guest.Vhost,
     ///         Settings = new RabbitMQ.Inputs.QueueSettingsArgs
     ///         {
     ///             Durable = true,
     ///             AutoDelete = false,
     ///         },
+    ///         Name = "test",
+    ///         Vhost = guest.Vhost,
     ///     });
     /// 
     ///     var testBinding = new RabbitMQ.Binding("test", new()

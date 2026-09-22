@@ -19,17 +19,15 @@ import * as utilities from "./utilities";
  *
  * const test = new rabbitmq.VHost("test", {name: "test"});
  * const guest = new rabbitmq.Permissions("guest", {
- *     user: "guest",
- *     vhost: test.name,
  *     permissions: {
  *         configure: ".*",
  *         write: ".*",
  *         read: ".*",
  *     },
+ *     user: "guest",
+ *     vhost: test.name,
  * });
  * const testQueue = new rabbitmq.Queue("test", {
- *     name: "test",
- *     vhost: guest.vhost,
  *     settings: {
  *         durable: false,
  *         autoDelete: true,
@@ -37,6 +35,8 @@ import * as utilities from "./utilities";
  *             "x-queue-type": "quorum",
  *         },
  *     },
+ *     name: "test",
+ *     vhost: guest.vhost,
  * });
  * ```
  *
@@ -53,22 +53,22 @@ import * as utilities from "./utilities";
  * `;
  * const test = new rabbitmq.VHost("test", {name: "test"});
  * const guest = new rabbitmq.Permissions("guest", {
- *     user: "guest",
- *     vhost: test.name,
  *     permissions: {
  *         configure: ".*",
  *         write: ".*",
  *         read: ".*",
  *     },
+ *     user: "guest",
+ *     vhost: test.name,
  * });
  * const testQueue = new rabbitmq.Queue("test", {
- *     name: "test",
- *     vhost: guest.vhost,
  *     settings: {
  *         durable: false,
  *         autoDelete: true,
  *         argumentsJson: arguments,
  *     },
+ *     name: "test",
+ *     vhost: guest.vhost,
  * });
  * ```
  *

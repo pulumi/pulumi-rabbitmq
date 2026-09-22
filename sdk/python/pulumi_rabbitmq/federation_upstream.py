@@ -152,7 +152,7 @@ class FederationUpstream(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 definition: pulumi.Input[Optional[Union['FederationUpstreamDefinitionArgs', 'FederationUpstreamDefinitionArgsDict']]] = None,
+                 definition: pulumi.Input[Optional[Union['FederationUpstreamDefinitionArgs', 'FederationUpstreamDefinitionArgsDict', 'outputs.FederationUpstreamDefinition']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -167,25 +167,23 @@ class FederationUpstream(pulumi.CustomResource):
 
         test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
-            user="guest",
-            vhost=test.name,
             permissions={
                 "configure": ".*",
                 "write": ".*",
                 "read": ".*",
-            })
+            },
+            user="guest",
+            vhost=test.name)
         # downstream exchange
         foo = rabbitmq.Exchange("foo",
-            name="foo",
-            vhost=guest.vhost,
             settings={
                 "type": "topic",
                 "durable": True,
-            })
+            },
+            name="foo",
+            vhost=guest.vhost)
         # upstream broker
         foo_federation_upstream = rabbitmq.FederationUpstream("foo",
-            name="foo",
-            vhost=guest.vhost,
             definition={
                 "uri": "amqp://guest:guest@upstream-server-name:5672/%2f",
                 "prefetch_count": 1000,
@@ -193,10 +191,10 @@ class FederationUpstream(pulumi.CustomResource):
                 "ack_mode": "on-confirm",
                 "trust_user_id": False,
                 "max_hops": 1,
-            })
-        foo_policy = rabbitmq.Policy("foo",
+            },
             name="foo",
-            vhost=guest.vhost,
+            vhost=guest.vhost)
+        foo_policy = rabbitmq.Policy("foo",
             policy={
                 "pattern": foo.name.apply(lambda name: f"(^{name}$)"),
                 "priority": 1,
@@ -204,7 +202,9 @@ class FederationUpstream(pulumi.CustomResource):
                 "definition": {
                     "federation-upstream": foo_federation_upstream.name,
                 },
-            })
+            },
+            name="foo",
+            vhost=guest.vhost)
         ```
 
         ## Import
@@ -218,7 +218,7 @@ class FederationUpstream(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['FederationUpstreamDefinitionArgs', 'FederationUpstreamDefinitionArgsDict']] definition: The configuration of the federation upstream. The structure is described below.
+        :param pulumi.Input[Union['FederationUpstreamDefinitionArgs', 'FederationUpstreamDefinitionArgsDict', 'outputs.FederationUpstreamDefinition']] definition: The configuration of the federation upstream. The structure is described below.
         :param pulumi.Input[_builtins.str] name: The name of the federation upstream.
         :param pulumi.Input[_builtins.str] vhost: The vhost to create the resource in.
         """
@@ -239,25 +239,23 @@ class FederationUpstream(pulumi.CustomResource):
 
         test = rabbitmq.VHost("test", name="test")
         guest = rabbitmq.Permissions("guest",
-            user="guest",
-            vhost=test.name,
             permissions={
                 "configure": ".*",
                 "write": ".*",
                 "read": ".*",
-            })
+            },
+            user="guest",
+            vhost=test.name)
         # downstream exchange
         foo = rabbitmq.Exchange("foo",
-            name="foo",
-            vhost=guest.vhost,
             settings={
                 "type": "topic",
                 "durable": True,
-            })
+            },
+            name="foo",
+            vhost=guest.vhost)
         # upstream broker
         foo_federation_upstream = rabbitmq.FederationUpstream("foo",
-            name="foo",
-            vhost=guest.vhost,
             definition={
                 "uri": "amqp://guest:guest@upstream-server-name:5672/%2f",
                 "prefetch_count": 1000,
@@ -265,10 +263,10 @@ class FederationUpstream(pulumi.CustomResource):
                 "ack_mode": "on-confirm",
                 "trust_user_id": False,
                 "max_hops": 1,
-            })
-        foo_policy = rabbitmq.Policy("foo",
+            },
             name="foo",
-            vhost=guest.vhost,
+            vhost=guest.vhost)
+        foo_policy = rabbitmq.Policy("foo",
             policy={
                 "pattern": foo.name.apply(lambda name: f"(^{name}$)"),
                 "priority": 1,
@@ -276,7 +274,9 @@ class FederationUpstream(pulumi.CustomResource):
                 "definition": {
                     "federation-upstream": foo_federation_upstream.name,
                 },
-            })
+            },
+            name="foo",
+            vhost=guest.vhost)
         ```
 
         ## Import
@@ -303,7 +303,7 @@ class FederationUpstream(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 definition: pulumi.Input[Optional[Union['FederationUpstreamDefinitionArgs', 'FederationUpstreamDefinitionArgsDict']]] = None,
+                 definition: pulumi.Input[Optional[Union['FederationUpstreamDefinitionArgs', 'FederationUpstreamDefinitionArgsDict', 'outputs.FederationUpstreamDefinition']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  vhost: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -334,7 +334,7 @@ class FederationUpstream(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             component: pulumi.Input[Optional[_builtins.str]] = None,
-            definition: pulumi.Input[Optional[Union['FederationUpstreamDefinitionArgs', 'FederationUpstreamDefinitionArgsDict']]] = None,
+            definition: pulumi.Input[Optional[Union['FederationUpstreamDefinitionArgs', 'FederationUpstreamDefinitionArgsDict', 'outputs.FederationUpstreamDefinition']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             vhost: pulumi.Input[Optional[_builtins.str]] = None) -> 'FederationUpstream':
         """
@@ -345,7 +345,7 @@ class FederationUpstream(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] component: Set to `federation-upstream` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.
-        :param pulumi.Input[Union['FederationUpstreamDefinitionArgs', 'FederationUpstreamDefinitionArgsDict']] definition: The configuration of the federation upstream. The structure is described below.
+        :param pulumi.Input[Union['FederationUpstreamDefinitionArgs', 'FederationUpstreamDefinitionArgsDict', 'outputs.FederationUpstreamDefinition']] definition: The configuration of the federation upstream. The structure is described below.
         :param pulumi.Input[_builtins.str] name: The name of the federation upstream.
         :param pulumi.Input[_builtins.str] vhost: The vhost to create the resource in.
         """

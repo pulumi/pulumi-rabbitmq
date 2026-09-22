@@ -60,13 +60,13 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var testTopicPermissions = new TopicPermissions("testTopicPermissions", TopicPermissionsArgs.builder()
- *             .user(testUser.name())
- *             .vhost(test.name())
  *             .permissions(TopicPermissionsPermissionArgs.builder()
  *                 .exchange("amq.topic")
  *                 .write(".*")
  *                 .read(".*")
  *                 .build())
+ *             .user(testUser.name())
+ *             .vhost(test.name())
  *             .build());
  * 
  *     }
