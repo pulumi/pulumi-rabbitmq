@@ -221,7 +221,7 @@ public class App {
 {{% /choosable %}}
 {{% choosable language hcl %}}
 ```hcl
-pulumi {
+terraform {
   required_providers {
     rabbitmq = {
       source = "pulumi/rabbitmq"
@@ -230,7 +230,10 @@ pulumi {
 }
 
 # Create a virtual host
-resource "rabbitmq_vhost" "vhost_1" {
+resource "rabbitmq_v_host" "vhost_1" {
+  lifecycle {
+    create_before_destroy = true
+  }
   name = "vhost_1"
 }
 ```
