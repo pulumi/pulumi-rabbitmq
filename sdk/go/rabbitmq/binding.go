@@ -196,6 +196,12 @@ func (BindingState) ElementType() reflect.Type {
 	return reflect.TypeOf((*bindingState)(nil)).Elem()
 }
 
+// BindingExists checks whether an existing Binding resource with the given ID exists.
+func BindingExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BindingState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("rabbitmq:index/binding:Binding", id, state, "", opts...)
+}
+
 type bindingArgs struct {
 	// Additional key/value arguments for the binding.
 	Arguments     map[string]string `pulumi:"arguments"`

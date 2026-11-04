@@ -319,6 +319,18 @@ class Shovel(pulumi.CustomResource):
         __props__.__dict__["vhost"] = vhost
         return Shovel(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            info: pulumi.Input[Optional[Union['ShovelInfoArgs', 'ShovelInfoArgsDict', 'outputs.ShovelInfo']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            vhost: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["info"] = info
+        __props__["name"] = name
+        __props__["vhost"] = vhost
+        return pulumi.runtime.exists_resource(None, 'rabbitmq:index/shovel:Shovel', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def info(self) -> pulumi.Output['outputs.ShovelInfo']:

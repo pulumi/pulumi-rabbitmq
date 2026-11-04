@@ -199,6 +199,12 @@ func (QueueState) ElementType() reflect.Type {
 	return reflect.TypeOf((*queueState)(nil)).Elem()
 }
 
+// QueueExists checks whether an existing Queue resource with the given ID exists.
+func QueueExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *QueueState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("rabbitmq:index/queue:Queue", id, state, "", opts...)
+}
+
 type queueArgs struct {
 	// The name of the queue.
 	Name *string `pulumi:"name"`

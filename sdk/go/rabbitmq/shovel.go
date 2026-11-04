@@ -156,6 +156,12 @@ func (ShovelState) ElementType() reflect.Type {
 	return reflect.TypeOf((*shovelState)(nil)).Elem()
 }
 
+// ShovelExists checks whether an existing Shovel resource with the given ID exists.
+func ShovelExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ShovelState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("rabbitmq:index/shovel:Shovel", id, state, "", opts...)
+}
+
 type shovelArgs struct {
 	// The settings of the dynamic shovel. The structure is
 	// described below.

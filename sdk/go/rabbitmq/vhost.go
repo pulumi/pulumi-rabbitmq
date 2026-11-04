@@ -128,6 +128,12 @@ func (VHostState) ElementType() reflect.Type {
 	return reflect.TypeOf((*vhostState)(nil)).Elem()
 }
 
+// VHostExists checks whether an existing VHost resource with the given ID exists.
+func VHostExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *VHostState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("rabbitmq:index/vHost:VHost", id, state, "", opts...)
+}
+
 type vhostArgs struct {
 	// default queue type for new queues
 	DefaultQueueType *string `pulumi:"defaultQueueType"`
