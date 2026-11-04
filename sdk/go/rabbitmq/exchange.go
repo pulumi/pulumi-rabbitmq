@@ -140,6 +140,12 @@ func (ExchangeState) ElementType() reflect.Type {
 	return reflect.TypeOf((*exchangeState)(nil)).Elem()
 }
 
+// ExchangeExists checks whether an existing Exchange resource with the given ID exists.
+func ExchangeExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ExchangeState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("rabbitmq:index/exchange:Exchange", id, state, "", opts...)
+}
+
 type exchangeArgs struct {
 	// The name of the exchange.
 	Name *string `pulumi:"name"`

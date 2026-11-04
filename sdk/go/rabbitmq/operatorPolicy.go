@@ -147,6 +147,12 @@ func (OperatorPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*operatorPolicyState)(nil)).Elem()
 }
 
+// OperatorPolicyExists checks whether an existing OperatorPolicy resource with the given ID exists.
+func OperatorPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OperatorPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("rabbitmq:index/operatorPolicy:OperatorPolicy", id, state, "", opts...)
+}
+
 type operatorPolicyArgs struct {
 	// The name of the operator policy.
 	Name *string `pulumi:"name"`

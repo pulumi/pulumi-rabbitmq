@@ -489,6 +489,28 @@ class Binding(pulumi.CustomResource):
         __props__.__dict__["vhost"] = vhost
         return Binding(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arguments: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            arguments_json: pulumi.Input[Optional[_builtins.str]] = None,
+            destination: pulumi.Input[Optional[_builtins.str]] = None,
+            destination_type: pulumi.Input[Optional[_builtins.str]] = None,
+            properties_key: pulumi.Input[Optional[_builtins.str]] = None,
+            routing_key: pulumi.Input[Optional[_builtins.str]] = None,
+            source: pulumi.Input[Optional[_builtins.str]] = None,
+            vhost: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["arguments"] = arguments
+        __props__["argumentsJson"] = arguments_json
+        __props__["destination"] = destination
+        __props__["destinationType"] = destination_type
+        __props__["propertiesKey"] = properties_key
+        __props__["routingKey"] = routing_key
+        __props__["source"] = source
+        __props__["vhost"] = vhost
+        return pulumi.runtime.exists_resource(None, 'rabbitmq:index/binding:Binding', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def arguments(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:

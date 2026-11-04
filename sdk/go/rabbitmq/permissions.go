@@ -142,6 +142,12 @@ func (PermissionsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*permissionsState)(nil)).Elem()
 }
 
+// PermissionsExists checks whether an existing Permissions resource with the given ID exists.
+func PermissionsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PermissionsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("rabbitmq:index/permissions:Permissions", id, state, "", opts...)
+}
+
 type permissionsArgs struct {
 	// The settings of the permissions. The structure is
 	// described below.

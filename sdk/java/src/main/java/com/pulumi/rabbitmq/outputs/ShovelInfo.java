@@ -24,20 +24,18 @@ public final class ShovelInfo {
     /**
      * @return Whether to add `x-shovelled` headers to shovelled messages.
      * 
-     * @deprecated
-     * use destinationAddForwardHeaders instead
+     * @deprecated use destinationAddForwardHeaders instead
      * 
      */
-    @Deprecated /* use destinationAddForwardHeaders instead */
+    @Deprecated
     private @Nullable Boolean addForwardHeaders;
     /**
      * @return Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
      * 
-     * @deprecated
-     * use sourceDeleteAfter instead
+     * @deprecated use sourceDeleteAfter instead
      * 
      */
-    @Deprecated /* use sourceDeleteAfter instead */
+    @Deprecated
     private @Nullable String deleteAfter;
     /**
      * @return Whether to add `x-shovelled` headers to shovelled messages.
@@ -99,11 +97,10 @@ public final class ShovelInfo {
     /**
      * @return The maximum number of unacknowledged messages copied over a shovel at any one time.
      * 
-     * @deprecated
-     * use sourcePrefetchCount instead
+     * @deprecated use sourcePrefetchCount instead
      * 
      */
-    @Deprecated /* use sourcePrefetchCount instead */
+    @Deprecated
     private @Nullable Integer prefetchCount;
     /**
      * @return The duration in seconds to reconnect to a broker after disconnected.
@@ -167,22 +164,20 @@ public final class ShovelInfo {
     /**
      * @return Whether to add `x-shovelled` headers to shovelled messages.
      * 
-     * @deprecated
-     * use destinationAddForwardHeaders instead
+     * @deprecated use destinationAddForwardHeaders instead
      * 
      */
-    @Deprecated /* use destinationAddForwardHeaders instead */
+    @Deprecated
     public Optional<Boolean> addForwardHeaders() {
         return Optional.ofNullable(this.addForwardHeaders);
     }
     /**
      * @return Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
      * 
-     * @deprecated
-     * use sourceDeleteAfter instead
+     * @deprecated use sourceDeleteAfter instead
      * 
      */
-    @Deprecated /* use sourceDeleteAfter instead */
+    @Deprecated
     public Optional<String> deleteAfter() {
         return Optional.ofNullable(this.deleteAfter);
     }
@@ -270,11 +265,10 @@ public final class ShovelInfo {
     /**
      * @return The maximum number of unacknowledged messages copied over a shovel at any one time.
      * 
-     * @deprecated
-     * use sourcePrefetchCount instead
+     * @deprecated use sourcePrefetchCount instead
      * 
      */
-    @Deprecated /* use sourcePrefetchCount instead */
+    @Deprecated
     public Optional<Integer> prefetchCount() {
         return Optional.ofNullable(this.prefetchCount);
     }

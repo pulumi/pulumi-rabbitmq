@@ -180,6 +180,12 @@ func (FederationUpstreamState) ElementType() reflect.Type {
 	return reflect.TypeOf((*federationUpstreamState)(nil)).Elem()
 }
 
+// FederationUpstreamExists checks whether an existing FederationUpstream resource with the given ID exists.
+func FederationUpstreamExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FederationUpstreamState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("rabbitmq:index/federationUpstream:FederationUpstream", id, state, "", opts...)
+}
+
 type federationUpstreamArgs struct {
 	// The configuration of the federation upstream. The structure is described below.
 	Definition FederationUpstreamDefinition `pulumi:"definition"`

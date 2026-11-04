@@ -39,22 +39,20 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Whether to add `x-shovelled` headers to shovelled messages.
      * 
-     * @deprecated
-     * use destinationAddForwardHeaders instead
+     * @deprecated use destinationAddForwardHeaders instead
      * 
      */
-    @Deprecated /* use destinationAddForwardHeaders instead */
+    @Deprecated
     @Import(name="addForwardHeaders")
     private @Nullable Output<Boolean> addForwardHeaders;
 
     /**
      * @return Whether to add `x-shovelled` headers to shovelled messages.
      * 
-     * @deprecated
-     * use destinationAddForwardHeaders instead
+     * @deprecated use destinationAddForwardHeaders instead
      * 
      */
-    @Deprecated /* use destinationAddForwardHeaders instead */
+    @Deprecated
     public Optional<Output<Boolean>> addForwardHeaders() {
         return Optional.ofNullable(this.addForwardHeaders);
     }
@@ -62,22 +60,20 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
      * 
-     * @deprecated
-     * use sourceDeleteAfter instead
+     * @deprecated use sourceDeleteAfter instead
      * 
      */
-    @Deprecated /* use sourceDeleteAfter instead */
+    @Deprecated
     @Import(name="deleteAfter")
     private @Nullable Output<String> deleteAfter;
 
     /**
      * @return Determines when (if ever) the shovel should delete itself. Possible values are: `never`, `queue-length` or an integer.
      * 
-     * @deprecated
-     * use sourceDeleteAfter instead
+     * @deprecated use sourceDeleteAfter instead
      * 
      */
-    @Deprecated /* use sourceDeleteAfter instead */
+    @Deprecated
     public Optional<Output<String>> deleteAfter() {
         return Optional.ofNullable(this.deleteAfter);
     }
@@ -259,22 +255,20 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * The maximum number of unacknowledged messages copied over a shovel at any one time.
      * 
-     * @deprecated
-     * use sourcePrefetchCount instead
+     * @deprecated use sourcePrefetchCount instead
      * 
      */
-    @Deprecated /* use sourcePrefetchCount instead */
+    @Deprecated
     @Import(name="prefetchCount")
     private @Nullable Output<Integer> prefetchCount;
 
     /**
      * @return The maximum number of unacknowledged messages copied over a shovel at any one time.
      * 
-     * @deprecated
-     * use sourcePrefetchCount instead
+     * @deprecated use sourcePrefetchCount instead
      * 
      */
-    @Deprecated /* use sourcePrefetchCount instead */
+    @Deprecated
     public Optional<Output<Integer>> prefetchCount() {
         return Optional.ofNullable(this.prefetchCount);
     }
@@ -498,11 +492,10 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * use destinationAddForwardHeaders instead
+         * @deprecated use destinationAddForwardHeaders instead
          * 
          */
-        @Deprecated /* use destinationAddForwardHeaders instead */
+        @Deprecated
         public Builder addForwardHeaders(@Nullable Output<Boolean> addForwardHeaders) {
             $.addForwardHeaders = addForwardHeaders;
             return this;
@@ -513,11 +506,10 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * use destinationAddForwardHeaders instead
+         * @deprecated use destinationAddForwardHeaders instead
          * 
          */
-        @Deprecated /* use destinationAddForwardHeaders instead */
+        @Deprecated
         public Builder addForwardHeaders(Boolean addForwardHeaders) {
             return addForwardHeaders(Output.of(addForwardHeaders));
         }
@@ -527,11 +519,10 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * use sourceDeleteAfter instead
+         * @deprecated use sourceDeleteAfter instead
          * 
          */
-        @Deprecated /* use sourceDeleteAfter instead */
+        @Deprecated
         public Builder deleteAfter(@Nullable Output<String> deleteAfter) {
             $.deleteAfter = deleteAfter;
             return this;
@@ -542,11 +533,10 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * use sourceDeleteAfter instead
+         * @deprecated use sourceDeleteAfter instead
          * 
          */
-        @Deprecated /* use sourceDeleteAfter instead */
+        @Deprecated
         public Builder deleteAfter(String deleteAfter) {
             return deleteAfter(Output.of(deleteAfter));
         }
@@ -794,11 +784,10 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * use sourcePrefetchCount instead
+         * @deprecated use sourcePrefetchCount instead
          * 
          */
-        @Deprecated /* use sourcePrefetchCount instead */
+        @Deprecated
         public Builder prefetchCount(@Nullable Output<Integer> prefetchCount) {
             $.prefetchCount = prefetchCount;
             return this;
@@ -809,11 +798,10 @@ public final class ShovelInfoArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * use sourcePrefetchCount instead
+         * @deprecated use sourcePrefetchCount instead
          * 
          */
-        @Deprecated /* use sourcePrefetchCount instead */
+        @Deprecated
         public Builder prefetchCount(Integer prefetchCount) {
             return prefetchCount(Output.of(prefetchCount));
         }
